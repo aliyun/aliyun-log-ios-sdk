@@ -1,6 +1,9 @@
 # Mac OS X
 .DS_Store
 
+# Git
+git-m
+
 # Xcode
 
 ## Build generated

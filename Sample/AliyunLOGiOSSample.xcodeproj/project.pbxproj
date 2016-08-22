@@ -326,7 +326,7 @@
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = AliyunSLSiOSSample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.aliyun.AliyunSLSiOSSample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aliyun.AliyunLOGiOSSample;
 				PRODUCT_NAME = AliyunLOGiOSSample;
 			};
 			name = Debug;
@@ -338,7 +338,7 @@
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = AliyunSLSiOSSample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.aliyun.AliyunSLSiOSSample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aliyun.AliyunLOGiOSSample;
 				PRODUCT_NAME = AliyunLOGiOSSample;
 			};
 			name = Release;
