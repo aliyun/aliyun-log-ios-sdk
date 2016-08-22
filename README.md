@@ -1,4 +1,6 @@
 # Aliyun SLS iOS SDK
+[![Language](https://img.shields.io/badge/swift-2.3-orange.svg)](http://swift.org)
+[![Build Status](https://travis-ci.org/wangjwchn/aliyun-log-ios-sdk.svg?branch=master)](https://github.com/aliyun/aliyun-log-ios-sdk)
 ### 简介
 ###### [阿里云日志服务](https://www.aliyun.com/product/sls/)SDK基于[日志服务API](https://help.aliyun.com/document_detail/29007.html?spm=5176.55536.224569.9.2rvzUk)实现，目前提供以下功能：
   - 写入日志
