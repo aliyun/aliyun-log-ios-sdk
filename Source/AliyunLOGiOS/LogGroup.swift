@@ -8,8 +8,8 @@
 
 import Foundation
 public class LogGroup:NSObject{
-    private var mTopic:String
-    private var mSource:String
+    private var mTopic:String = ""
+    private var mSource:String = ""
     private var mContent = [[String:AnyObject]]()
     
     public init(topic:String,source:String){
@@ -29,16 +29,16 @@ public class LogGroup:NSObject{
     public func GetJsonPackage() -> String{
         do {
             var package:[String:AnyObject] = [:]
-            package[KEY_TOPIC] = mTopic
-            package[KEY_SOURCE] = mSource
-            package[KEY_LOGS] = mContent
+            package["__topic__"] = mTopic
+            package["__source__"] = mSource
+            package["__logs__"] = mContent
             let JsonPackage = String(data:try NSJSONSerialization.dataWithJSONObject(package, options:NSJSONWritingOptions.PrettyPrinted), encoding: NSUTF8StringEncoding)!
             return JsonPackage
             
         }catch _ as NSError {
             fatalError("Fail to serialize data.")
         }
-        return String()
+        return ""
     }
-
+    
 }

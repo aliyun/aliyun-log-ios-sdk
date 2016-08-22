@@ -31,6 +31,8 @@ class ViewController: UIViewController {
                                       accessKeySecret: "",
                                       projectName:"")
         
+        while(true)
+        {
         /* 创建logGroup */
         let logGroup = LogGroup(topic: "mTopic",source: "mSource")
         
@@ -50,6 +52,9 @@ class ViewController: UIViewController {
         
         /* Post log */
         myClient.PostLog(logGroup,logStoreName: "")
+            
+        sleep(1)
+        }
     }
 }
 

@@ -29,7 +29,7 @@ extension NSData{
         var status = deflateInit2_(&zStream, Z_DEFAULT_COMPRESSION, Z_DEFLATED, (15), 8, Z_DEFAULT_STRATEGY,ZLIB_VERSION, Int32(sizeof(z_stream)))
         
         if (status != Z_OK) { return nil;}
-    
+        
         let bytes = UnsafeMutablePointer<Bytef>(self.bytes)
         zStream.next_in = bytes;
         zStream.avail_in = uInt(self.length);
@@ -38,7 +38,7 @@ extension NSData{
         
         let halfLen = self.length / 2;
         let output = NSMutableData(length:halfLen)!
-
+        
         while (zStream.avail_out == 0) {
             if (zStream.total_out >= uLong(output.length)) {
                 output.increaseLengthBy(halfLen)
@@ -115,7 +115,7 @@ extension NSData{
 extension NSDate{
     var GMT:String{
         let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = HTTP_DATE_FORMAT
+        dateFormatter.dateFormat = "EEE, dd MMM yyyy HH:mm:ss"
         dateFormatter.timeZone = NSTimeZone(abbreviation: "GMT+0000")
         dateFormatter.locale = NSLocale(localeIdentifier: "en_US")
         var convertedDate = dateFormatter.stringFromDate(self)

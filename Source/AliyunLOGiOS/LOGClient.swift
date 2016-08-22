@@ -16,42 +16,44 @@ public class LOGClient:NSObject{
     private var mExpireDate:NSDate
     public init(endPoint:String,accessKeyID:String,accessKeySecret :String,projectName:String) throws{
         
-        guard !endPoint.isEmpty else{
+        guard endPoint != "" else{
             throw LogError.NullEndPoint
         }
-        let endPoint_L = endPoint.lowercaseString.stringByTrimmingCharactersInSet(.whitespaceCharacterSet())
-        
-        if( endPoint_L.rangeOfString("http://") != nil){
-             mEndPoint = endPoint.substringFromIndex(endPoint.startIndex.advancedBy(7))
+        if( endPoint.rangeOfString("http://") != nil ||
+            endPoint.rangeOfString("Http://") != nil ||
+            endPoint.rangeOfString("HTTP://") != nil){
+            mEndPoint = endPoint.substringFromIndex(endPoint.startIndex.advancedBy(7))
         }
-        else if(endPoint_L.rangeOfString("https://") != nil){
-             mEndPoint = endPoint.substringFromIndex(endPoint.startIndex.advancedBy(8))
+        else if( endPoint.rangeOfString("https://") != nil ||
+            endPoint.rangeOfString("Https://") != nil ||
+            endPoint.rangeOfString("HTTPS://") != nil){
+            mEndPoint = endPoint.substringFromIndex(endPoint.startIndex.advancedBy(8))
         }
         else{
-            mEndPoint = endPoint_L
+            mEndPoint = endPoint
         }
         
-        guard !accessKeyID.isEmpty else{
+        guard accessKeyID != "" else{
             throw LogError.NullAKID
         }
         mAccessKeyID = accessKeyID
         
-        guard !accessKeySecret.isEmpty else{
+        guard accessKeySecret != "" else{
             throw LogError.NullAKSecret
         }
         mAccessKeySecret = accessKeySecret
         
-        guard !projectName.isEmpty else{
+        guard projectName != "" else{
             throw LogError.NullProjectName
         }
         mProject = projectName
         
-        mAccessToken = String()
-        mExpireDate = NSDate().dateByAddingTimeInterval(Double(TOKEN_EXPIRE_TIME))//default: 15 min
+        mAccessToken = ""
+        mExpireDate = NSDate().dateByAddingTimeInterval(60*15)//default: 15 min
     }
     public func SetToken(token:String,expireDate:NSDate)throws{
         mAccessToken = token
-        guard !mAccessToken.isEmpty else{
+        guard mAccessToken != "" else{
             throw LogError.NullToken
         }
         guard expireDate.compare(NSDate())==NSComparisonResult.OrderedDescending else{
@@ -94,45 +96,45 @@ public class LOGClient:NSObject{
     private func GetHttpHeadersFrom(logstore:String,url:String,body:NSData,bodyZipped:NSData) -> [String:String]{
         var headers = [String:String]()
         
-        headers[KEY_LOG_APIVERSION] = POST_VALUE_LOG_APIVERSION
-        headers[KEY_LOG_SIGNATUREMETHOD] = POST_VALUE_LOG_SIGNATUREMETHOD
-        headers[KEY_CONTENT_TYPE] = POST_VALUE_LOG_CONTENTTYPE
-        headers[KEY_DATE] = NSDate().GMT
-        headers[KEY_CONTENT_MD5] = bodyZipped.md5
-        headers[KEY_CONTENT_LENGTH] = "\(bodyZipped.length)"
-        headers[KEY_LOG_BODYRAWSIZE] = "\(body.length)"
-        headers[KEY_LOG_COMPRESSTYPE] = POST_VALUE_LOG_COMPRESSTYPE
-        headers[KEY_HOST] = self.getHostIn(url)
+        headers["x-log-apiversion"] = "0.6.0"
+        headers["x-log-signaturemethod"] = "hmac-sha1"
+        headers["Content-Type"] = "application/json"
+        headers["Date"] = NSDate().GMT
+        headers["Content-MD5"] = bodyZipped.md5
+        headers["Content-Length"] = "\(bodyZipped.length)"
+        headers["x-log-bodyrawsize"] = "\(body.length)"
+        headers["x-log-compresstype"] = "deflate"
+        headers["Host"] = self.getHostIn(url)
         
         
-        var signString = POST_METHOD_NAME + "\n"
-        signString += headers[KEY_CONTENT_MD5]! + "\n"
-        signString += headers[KEY_CONTENT_TYPE]! + "\n"
-        signString += headers[KEY_DATE]! + "\n"
+        var signString = "POST"+"\n"
+        signString += headers["Content-MD5"]! + "\n"
+        signString += headers["Content-Type"]! + "\n"
+        signString += headers["Date"]! + "\n"
         
-        if(!mAccessToken.isEmpty && mExpireDate.timeIntervalSinceDate(NSDate())<=0)
+        if(mAccessToken != "" && mExpireDate.timeIntervalSinceDate(NSDate())<=0)
         {
-            headers[KEY_ACS_SECURITY_TOKEN] = mAccessToken
-            signString += "\(KEY_ACS_SECURITY_TOKEN):\(headers[KEY_ACS_SECURITY_TOKEN]!)\n"
+            headers["x-acs-security-token"] = mAccessToken
+            signString += "x-acs-security-token:\(headers["x-acs-security-token"]!)\n"
         }
         
-        signString += "\(KEY_LOG_APIVERSION):\(headers[KEY_LOG_APIVERSION]!)"
-        signString += "\(KEY_LOG_BODYRAWSIZE):\(headers[KEY_LOG_BODYRAWSIZE]!)\n"
-        signString += "\(KEY_LOG_COMPRESSTYPE):\(headers[KEY_LOG_COMPRESSTYPE]!)\n"
-        signString += "\(KEY_LOG_SIGNATUREMETHOD):\(headers[KEY_LOG_SIGNATUREMETHOD]!)\n"
+        signString += "x-log-apiversion:0.6.0\n"
+        signString += "x-log-bodyrawsize:\(headers["x-log-bodyrawsize"]!)\n"
+        signString += "x-log-compresstype:deflate\n"
+        signString += "x-log-signaturemethod:hmac-sha1\n"
         signString += "/logstores/\(logstore)/shards/lb"
         let sign  =  hmac_sha1(signString, key: mAccessKeySecret)
         
-        headers[KEY_AUTHORIZATION] = "LOG \(mAccessKeyID):\(sign)"
+        headers["Authorization"] = "LOG \(mAccessKeyID):\(sign)"
         return headers
     }
-
+    
     private func HttpPostRequest(url:String,headers:[String:String],body:NSData){
         
         let NSurl: NSURL = NSURL(string: url)!
         
         let request: NSMutableURLRequest = NSMutableURLRequest(URL: NSurl)
-        request.HTTPMethod = POST_METHOD_NAME
+        request.HTTPMethod = "POST"
         request.timeoutInterval = 60
         request.HTTPBody=body
         request.HTTPShouldHandleCookies=false

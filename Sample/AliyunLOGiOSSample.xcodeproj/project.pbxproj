@@ -13,7 +13,6 @@
 		28AC42DE1D6AE73500F45E29 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28AC42D51D6AE73500F45E29 /* Assets.xcassets */; };
 		28AC42DF1D6AE73500F45E29 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28AC42D71D6AE73500F45E29 /* LaunchScreen.storyboard */; };
 		28AC42E01D6AE73500F45E29 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28AC42D91D6AE73500F45E29 /* Main.storyboard */; };
-		28AC42E11D6AE73500F45E29 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 28AC42DB1D6AE73500F45E29 /* Info.plist */; };
 		28AC42E21D6AE73500F45E29 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28AC42DC1D6AE73500F45E29 /* ViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -91,11 +90,11 @@
 		282E4F771D4F004C00E79DA9 /* AliyunLOGiOSSample */ = {
 			isa = PBXGroup;
 			children = (
+				28AC42DC1D6AE73500F45E29 /* ViewController.swift */,
 				28AC42D41D6AE73500F45E29 /* AppDelegate.swift */,
 				28AC42D51D6AE73500F45E29 /* Assets.xcassets */,
 				28AC42D61D6AE73500F45E29 /* Base.lproj */,
 				28AC42DB1D6AE73500F45E29 /* Info.plist */,
-				28AC42DC1D6AE73500F45E29 /* ViewController.swift */,
 			);
 			name = AliyunLOGiOSSample;
 			path = AliyunSLSiOSSample;
@@ -196,7 +195,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				28AC42E11D6AE73500F45E29 /* Info.plist in Resources */,
 				28AC42E01D6AE73500F45E29 /* Main.storyboard in Resources */,
 				28AC42DE1D6AE73500F45E29 /* Assets.xcassets in Resources */,
 				28AC42DF1D6AE73500F45E29 /* LaunchScreen.storyboard in Resources */,
