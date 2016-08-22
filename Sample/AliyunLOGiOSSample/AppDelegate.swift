@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  AliyunSLSiOSSample
+//  AliyunLOGiOSSample
 //
 //  Created by 王佳玮 on 16/8/1.
 //  Copyright © 2016年 wangjwchn. All rights reserved.

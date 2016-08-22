@@ -7,13 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		282E4F791D4F004C00E79DA9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282E4F781D4F004C00E79DA9 /* AppDelegate.swift */; };
-		282E4F7B1D4F004C00E79DA9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282E4F7A1D4F004C00E79DA9 /* ViewController.swift */; };
-		282E4F7E1D4F004C00E79DA9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 282E4F7C1D4F004C00E79DA9 /* Main.storyboard */; };
-		282E4F801D4F004C00E79DA9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 282E4F7F1D4F004C00E79DA9 /* Assets.xcassets */; };
-		282E4F831D4F004C00E79DA9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 282E4F811D4F004C00E79DA9 /* LaunchScreen.storyboard */; };
 		28900EBB1D4F55A3007D5FFD /* AliyunLOGiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28818EDB1D4F405A005258CC /* AliyunLOGiOS.framework */; };
 		28900EBC1D4F55A3007D5FFD /* AliyunLOGiOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 28818EDB1D4F405A005258CC /* AliyunLOGiOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		28AC42DD1D6AE73500F45E29 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28AC42D41D6AE73500F45E29 /* AppDelegate.swift */; };
+		28AC42DE1D6AE73500F45E29 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28AC42D51D6AE73500F45E29 /* Assets.xcassets */; };
+		28AC42DF1D6AE73500F45E29 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28AC42D71D6AE73500F45E29 /* LaunchScreen.storyboard */; };
+		28AC42E01D6AE73500F45E29 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28AC42D91D6AE73500F45E29 /* Main.storyboard */; };
+		28AC42E11D6AE73500F45E29 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 28AC42DB1D6AE73500F45E29 /* Info.plist */; };
+		28AC42E21D6AE73500F45E29 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28AC42DC1D6AE73500F45E29 /* ViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,13 +50,13 @@
 
 /* Begin PBXFileReference section */
 		282E4F751D4F004C00E79DA9 /* AliyunLOGiOSSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AliyunLOGiOSSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		282E4F781D4F004C00E79DA9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		282E4F7A1D4F004C00E79DA9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		282E4F7D1D4F004C00E79DA9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		282E4F7F1D4F004C00E79DA9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		282E4F821D4F004C00E79DA9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		282E4F841D4F004C00E79DA9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		28818ED61D4F405A005258CC /* AliyunLOGiOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AliyunLOGiOS.xcodeproj; path = ../Source/AliyunLOGiOS.xcodeproj; sourceTree = "<group>"; };
+		28AC42D41D6AE73500F45E29 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = AliyunLOGiOSSample/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
+		28AC42D51D6AE73500F45E29 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = AliyunLOGiOSSample/Assets.xcassets; sourceTree = SOURCE_ROOT; };
+		28AC42D81D6AE73500F45E29 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		28AC42DA1D6AE73500F45E29 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Main.storyboard; sourceTree = "<group>"; };
+		28AC42DB1D6AE73500F45E29 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = AliyunLOGiOSSample/Info.plist; sourceTree = SOURCE_ROOT; };
+		28AC42DC1D6AE73500F45E29 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = AliyunLOGiOSSample/ViewController.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,12 +91,11 @@
 		282E4F771D4F004C00E79DA9 /* AliyunLOGiOSSample */ = {
 			isa = PBXGroup;
 			children = (
-				282E4F781D4F004C00E79DA9 /* AppDelegate.swift */,
-				282E4F7A1D4F004C00E79DA9 /* ViewController.swift */,
-				282E4F7C1D4F004C00E79DA9 /* Main.storyboard */,
-				282E4F7F1D4F004C00E79DA9 /* Assets.xcassets */,
-				282E4F811D4F004C00E79DA9 /* LaunchScreen.storyboard */,
-				282E4F841D4F004C00E79DA9 /* Info.plist */,
+				28AC42D41D6AE73500F45E29 /* AppDelegate.swift */,
+				28AC42D51D6AE73500F45E29 /* Assets.xcassets */,
+				28AC42D61D6AE73500F45E29 /* Base.lproj */,
+				28AC42DB1D6AE73500F45E29 /* Info.plist */,
+				28AC42DC1D6AE73500F45E29 /* ViewController.swift */,
 			);
 			name = AliyunLOGiOSSample;
 			path = AliyunSLSiOSSample;
@@ -108,6 +108,16 @@
 			);
 			name = Products;
 			sourceTree = "<group>";
+		};
+		28AC42D61D6AE73500F45E29 /* Base.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				28AC42D71D6AE73500F45E29 /* LaunchScreen.storyboard */,
+				28AC42D91D6AE73500F45E29 /* Main.storyboard */,
+			);
+			name = Base.lproj;
+			path = AliyunLOGiOSSample/Base.lproj;
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
@@ -186,9 +196,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				282E4F831D4F004C00E79DA9 /* LaunchScreen.storyboard in Resources */,
-				282E4F801D4F004C00E79DA9 /* Assets.xcassets in Resources */,
-				282E4F7E1D4F004C00E79DA9 /* Main.storyboard in Resources */,
+				28AC42E11D6AE73500F45E29 /* Info.plist in Resources */,
+				28AC42E01D6AE73500F45E29 /* Main.storyboard in Resources */,
+				28AC42DE1D6AE73500F45E29 /* Assets.xcassets in Resources */,
+				28AC42DF1D6AE73500F45E29 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -199,8 +210,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				282E4F7B1D4F004C00E79DA9 /* ViewController.swift in Sources */,
-				282E4F791D4F004C00E79DA9 /* AppDelegate.swift in Sources */,
+				28AC42E21D6AE73500F45E29 /* ViewController.swift in Sources */,
+				28AC42DD1D6AE73500F45E29 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -215,20 +226,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		282E4F7C1D4F004C00E79DA9 /* Main.storyboard */ = {
+		28AC42D71D6AE73500F45E29 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				282E4F7D1D4F004C00E79DA9 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		282E4F811D4F004C00E79DA9 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				282E4F821D4F004C00E79DA9 /* Base */,
+				28AC42D81D6AE73500F45E29 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		28AC42D91D6AE73500F45E29 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				28AC42DA1D6AE73500F45E29 /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -323,11 +334,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
-				INFOPLIST_FILE = AliyunSLSiOSSample/Info.plist;
+				INFOPLIST_FILE = AliyunLOGiOSSample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.aliyun.AliyunLOGiOSSample;
 				PRODUCT_NAME = AliyunLOGiOSSample;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -335,8 +348,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
-				INFOPLIST_FILE = AliyunSLSiOSSample/Info.plist;
+				INFOPLIST_FILE = AliyunLOGiOSSample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.aliyun.AliyunLOGiOSSample;
 				PRODUCT_NAME = AliyunLOGiOSSample;

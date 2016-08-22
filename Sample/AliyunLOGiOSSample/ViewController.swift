@@ -1,6 +1,6 @@
 //
 //  ViewController.swift
-//  AliyunSLSiOSSample
+//  AliyunLOGiOSSample
 //
 //  Created by 王佳玮 on 16/8/1.
 //  Copyright © 2016年 wangjwchn. All rights reserved.
@@ -32,7 +32,7 @@ class ViewController: UIViewController {
                                       projectName:"")
         
         /* 创建logGroup */
-        let logGroup = try! LogGroup(topic: "mTopic",source: "mSource")
+        let logGroup = LogGroup(topic: "mTopic",source: "mSource")
         
             /* 存入一条log */
             let log1 = Log()
