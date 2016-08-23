@@ -11,12 +11,13 @@
 ##### 使用CocoaPods
   - 敬请期待
 
-
 ##### 使用Carthage
-创建一个 `Cartfile`，列出所需要的framework，运行`carthage bootstrap`. 根据这个[说明](https://github.com/Carthage/Carthage#if-youre-building-for-ios-tvos-or-watchos) 来添加 `$(SRCROOT)/Carthage/Build/iOS/AliyunLOGiOS.framework` 到iOS项目中
+ - 创建一个 `Cartfile`，列出所需要的framework，运行`carthage bootstrap`.
+ - 根据这个[说明](https://github.com/Carthage/Carthage#if-youre-building-for-ios-tvos-or-watchos) 来添加 `$(SRCROOT)/Carthage/Build/iOS/AliyunLOGiOS.framework` 到iOS项目中
 
 ##### 导入source code
  - 下载并将Source/AliyunLOGiOS文件夹拖入目标项目中.
+
 ##### 导入framework
 
 ```
@@ -27,7 +28,7 @@ cd Products
 ls
 
 ```
-执行之后，会在Products文件夹下生成AliyunLOGiOS.framework文件.
+ - 执行之后，会在Products文件夹下生成AliyunLOGiOS.framework文件.
 
 ### 示例
 
