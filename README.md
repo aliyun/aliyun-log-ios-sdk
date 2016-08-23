@@ -20,7 +20,7 @@
 
 ##### 导入framework
 
-```
+``` bash
 cd aliyun-log-ios-sdk
 cd Source
 bash buildFramework.sh
@@ -32,7 +32,7 @@ ls
 
 ### 示例
 
-```
+``` swift
 
  /*
     通过EndPoint、accessKeyID、accessKeySecret 构建日志服务客户端
