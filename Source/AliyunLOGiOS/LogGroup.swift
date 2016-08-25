@@ -16,13 +16,13 @@ public class LogGroup:NSObject{
         mTopic = topic
         mSource = source
     }
-    public func PutTopic(topic:String){
+    public func PutTopic(_ topic:String){
         mTopic = topic
     }
-    public func PutSource(source:String){
+    public func PutSource(_ source:String){
         mSource = source
     }
-    public func PutLog(log:Log){
+    public func PutLog(_ log:Log){
         mContent.append(log.GetContent())
     }
     
@@ -32,7 +32,7 @@ public class LogGroup:NSObject{
             package["__topic__"] = mTopic
             package["__source__"] = mSource
             package["__logs__"] = mContent
-            let JsonPackage = String(data:try NSJSONSerialization.dataWithJSONObject(package, options:NSJSONWritingOptions.PrettyPrinted), encoding: NSUTF8StringEncoding)!
+            let JsonPackage = String(data:try JSONSerialization.data(withJSONObject: package, options:JSONSerialization.WritingOptions.prettyPrinted), encoding: String.Encoding.utf8)!
             return JsonPackage
             
         }catch _ as NSError {

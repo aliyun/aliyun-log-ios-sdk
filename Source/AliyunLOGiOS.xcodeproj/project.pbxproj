@@ -121,12 +121,13 @@
 		28363D891D4F175400BB1738 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = wangjwchn;
 				TargetAttributes = {
 					28363D911D4F175400BB1738 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = 7EGABX8KQS;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -281,6 +282,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/AliyunLOGiOS-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -299,6 +301,8 @@
 				PRODUCT_NAME = AliyunLOGiOS;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/AliyunLOGiOS-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

@@ -7,12 +7,12 @@
 //
 
 import Foundation
-extension NSData{
-    var GZip:NSData!{
-        if(self.length == 0){return nil}
+extension Data{
+    var GZip:Data!{
+        if(self.count == 0){return nil}
         var zStream = z_stream(
-            next_in: UnsafeMutablePointer<Bytef>(self.bytes),
-            avail_in: uint(self.length),
+            next_in: UnsafeMutablePointer<Bytef>((self as NSData).bytes),
+            avail_in: uint(self.count),
             total_in: 0,
             next_out: nil,
             avail_out: 0,
@@ -30,20 +30,20 @@ extension NSData{
         
         if (status != Z_OK) { return nil;}
         
-        let bytes = UnsafeMutablePointer<Bytef>(self.bytes)
+        let bytes = UnsafeMutablePointer<Bytef>((self as NSData).bytes)
         zStream.next_in = bytes;
-        zStream.avail_in = uInt(self.length);
+        zStream.avail_in = uInt(self.count);
         zStream.avail_out = 0;
         zStream.total_out = 0;
         
-        let halfLen = self.length / 2;
+        let halfLen = self.count / 2;
         let output = NSMutableData(length:halfLen)!
         
         while (zStream.avail_out == 0) {
             if (zStream.total_out >= uLong(output.length)) {
-                output.increaseLengthBy(halfLen)
+                output.increaseLength(by: halfLen)
             }
-            zStream.next_out = UnsafeMutablePointer<Bytef>(output.mutableBytes).advancedBy(Int(zStream.total_out))
+            zStream.next_out = UnsafeMutablePointer<Bytef>(output.mutableBytes).advanced(by: Int(zStream.total_out))
             zStream.avail_out = uInt(output.length) - uInt(zStream.total_out)
             status = deflate(&zStream,Z_FINISH);
             
@@ -56,14 +56,14 @@ extension NSData{
         }
         output.length = Int(zStream.total_out)
         deflateEnd(&zStream);
-        bytes.destroy()
-        return output;
+        bytes.deinitialize()
+        return output as Data!;
     }
-    var GUnZip:NSData!{
-        if(self.length == 0){return nil}
+    var GUnZip:Data!{
+        if(self.count == 0){return nil}
         var zStream = z_stream(
-            next_in: UnsafeMutablePointer<Bytef>(self.bytes),
-            avail_in: uint(self.length),
+            next_in: UnsafeMutablePointer<Bytef>((self as NSData).bytes),
+            avail_in: uint(self.count),
             total_in: 0,
             next_out: nil,
             avail_out: 0,
@@ -81,20 +81,20 @@ extension NSData{
         
         if (status != Z_OK) { return nil;}
         
-        let bytes = UnsafeMutablePointer<Bytef>(self.bytes)
+        let bytes = UnsafeMutablePointer<Bytef>((self as NSData).bytes)
         zStream.next_in = bytes;
-        zStream.avail_in = uInt(self.length);
+        zStream.avail_in = uInt(self.count);
         zStream.avail_out = 0;
         zStream.total_out = 0;
         
-        let halfLen = self.length / 2;
-        let output = NSMutableData(length:(halfLen+self.length))!
+        let halfLen = self.count / 2;
+        let output = NSMutableData(length:(halfLen+self.count))!
         
         while (zStream.avail_out == 0) {
             if (zStream.total_out >= uLong(output.length)) {
-                output.increaseLengthBy(halfLen)
+                output.increaseLength(by: halfLen)
             }
-            zStream.next_out = UnsafeMutablePointer<Bytef>(output.mutableBytes).advancedBy(Int(zStream.total_out))
+            zStream.next_out = UnsafeMutablePointer<Bytef>(output.mutableBytes).advanced(by: Int(zStream.total_out))
             zStream.avail_out = uInt(output.length) - uInt(zStream.total_out)
             status = inflate(&zStream,Z_NO_FLUSH);
             
@@ -107,37 +107,37 @@ extension NSData{
         }
         output.length = Int(zStream.total_out)
         inflateEnd(&zStream);
-        bytes.destroy()
-        return output;
+        bytes.deinitialize()
+        return output as Data!;
     }
 }
 
-extension NSDate{
+extension Date{
     var GMT:String{
-        let dateFormatter = NSDateFormatter()
+        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "EEE, dd MMM yyyy HH:mm:ss"
-        dateFormatter.timeZone = NSTimeZone(abbreviation: "GMT+0000")
-        dateFormatter.locale = NSLocale(localeIdentifier: "en_US")
-        var convertedDate = dateFormatter.stringFromDate(self)
+        dateFormatter.timeZone = TimeZone(abbreviation: "GMT+0000")
+        dateFormatter.locale = Locale(localeIdentifier: "en_US")
+        var convertedDate = dateFormatter.string(from: self)
         convertedDate = convertedDate + " GMT"
         return convertedDate
     }
     
 }
 
-extension NSData  {
+extension Data  {
     var md5: String! {
-        let bytes = self.bytes
-        let strLen = CUnsignedInt(self.length)
+        let bytes = (self as NSData).bytes
+        let strLen = CUnsignedInt(self.count)
         let digestLen = Int(CC_MD5_DIGEST_LENGTH)
-        let result = UnsafeMutablePointer<CUnsignedChar>.alloc(digestLen)
+        let result = UnsafeMutablePointer<CUnsignedChar>(allocatingCapacity: digestLen)
         CC_MD5(bytes, strLen, result)
         
         let hash = NSMutableString()
         for i in 0 ..< digestLen {
             hash.appendFormat("%02X", result[i])
         }
-        result.destroy()
+        result.deinitialize()
         return String(format: hash as String)
     }
 }

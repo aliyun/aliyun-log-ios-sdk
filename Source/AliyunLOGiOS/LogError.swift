@@ -7,16 +7,16 @@
 //
 
 import Foundation
-public enum LogError: ErrorType{
-    case NullEndPoint
-    case NullAKID
-    case NullAKSecret
-    case NullToken
-    case IllegalValueTime
-    case NullKey
-    case NullValue
-    case Null
-    case NullProjectName
-    case NullLogStoreName
-    case WrongURL
+public enum LogError: ErrorProtocol{
+    case nullEndPoint
+    case nullAKID
+    case nullAKSecret
+    case nullToken
+    case illegalValueTime
+    case nullKey
+    case nullValue
+    case null
+    case nullProjectName
+    case nullLogStoreName
+    case wrongURL
 }

@@ -30,9 +30,9 @@ class ViewController: UIViewController {
                                       accessKeyID: "",
                                       accessKeySecret: "",
                                       projectName:"")
-        
         while(true)
         {
+       
         /* 创建logGroup */
         let logGroup = LogGroup(topic: "mTopic",source: "mSource")
         
@@ -50,10 +50,11 @@ class ViewController: UIViewController {
                 try! log2.PutContent("K23", value: "V23")
             logGroup.PutLog(log2)
         
+        
         /* Post log */
         myClient.PostLog(logGroup,logStoreName: "")
             
-        sleep(1)
+        sleep(1);
         }
     }
 }

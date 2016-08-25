@@ -10,20 +10,20 @@ import Foundation
 public class Log:NSObject{
     private var mContent:[String:AnyObject] = [:]
     public override init(){
-        mContent["__time__"] = Int(NSDate().timeIntervalSince1970)
+        mContent["__time__"] = Int(Date().timeIntervalSince1970)
     }
-    public func PutTime(time:Int32)throws{
-        guard Int(NSDate().timeIntervalSince1970)<Int(time) else{
-            throw LogError.IllegalValueTime
+    public func PutTime(_ time:Int32)throws{
+        guard Int(Date().timeIntervalSince1970)<Int(time) else{
+            throw LogError.illegalValueTime
         }
-        mContent["__time__"] = NSNumber(int: time)
+        mContent["__time__"] = NSNumber(value: time)
     }
-    public func PutContent(key:String,value:String)throws{
+    public func PutContent(_ key:String,value:String)throws{
         guard key != "" else{
-            throw LogError.NullKey
+            throw LogError.nullKey
         }
         guard value != "" else{
-            throw LogError.NullValue
+            throw LogError.nullValue
         }
         mContent[key] = value
     }
