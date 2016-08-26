@@ -38,18 +38,18 @@ class ViewController: UIViewController {
         
             /* 存入一条log */
             let log1 = Log()
-                try! log1.PutContent("K11", value: "V11")
-                try! log1.PutContent("K12", value: "V12")
-                try! log1.PutContent("K13", value: "V13")
-            logGroup.PutLog(log1)
-        
+                try! log1.PutContent("k11", value: "v11")
+                try! log1.PutContent("k12", value: "v12")
+                try! log1.PutContent("k13", value: "v13")
+         logGroup.PutLog(log1)
+            
             /* 存入一条log */
             let log2 = Log()
-                try! log2.PutContent("K21", value: "V21")
-                try! log2.PutContent("K22", value: "V22")
-                try! log2.PutContent("K23", value: "V23")
-            logGroup.PutLog(log2)
-        
+            try! log2.PutContent("k21", value: "v21")
+            try! log2.PutContent("k22", value: "v22")
+            try! log2.PutContent("k23", value: "v23")
+        logGroup.PutLog(log2)
+       
         
         /* Post log */
         myClient.PostLog(logGroup,logStoreName: "")

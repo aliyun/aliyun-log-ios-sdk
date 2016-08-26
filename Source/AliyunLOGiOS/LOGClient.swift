@@ -76,13 +76,16 @@ public class LOGClient:NSObject{
     public func GetKeySecret() ->String{
         return mAccessKeySecret
     }
+    
+    
+    
     public func PostLog(_ logGroup:LogGroup,logStoreName:String){
-        
         DispatchQueue.global(attributes: DispatchQueue.GlobalAttributes.qosDefault).async(execute: {
             
             let httpUrl = "http://\(self.mProject).\(self.mEndPoint)"+"/logstores/\(logStoreName)/shards/lb"
-            
-            let httpPostBody = logGroup.GetJsonPackage().data(using: String.Encoding.utf8)!
+
+            let httpPostBody = Data(bytes:logGroup.GetProtoBufPackage(),count:logGroup.GetProtoBufPackage().count)
+
             let httpPostBodyZipped = httpPostBody.GZip!
             
             let httpHeaders = self.GetHttpHeadersFrom(logStoreName,url: httpUrl,body: httpPostBody,bodyZipped: httpPostBodyZipped)
@@ -90,7 +93,7 @@ public class LOGClient:NSObject{
             self.HttpPostRequest(httpUrl,headers: httpHeaders,body: httpPostBodyZipped)
             
         })
-        
+
     }
     
     private func GetHttpHeadersFrom(_ logstore:String,url:String,body:Data,bodyZipped:Data) -> [String:String]{
@@ -98,7 +101,7 @@ public class LOGClient:NSObject{
         
         headers["x-log-apiversion"] = "0.6.0"
         headers["x-log-signaturemethod"] = "hmac-sha1"
-        headers["Content-Type"] = "application/json"
+        headers["Content-Type"] = "application/x-protobuf"
         headers["Date"] = Date().GMT
         headers["Content-MD5"] = bodyZipped.md5
         headers["Content-Length"] = "\(bodyZipped.count)"
@@ -154,7 +157,7 @@ public class LOGClient:NSObject{
                     } catch let error as NSError {
                         print(error.localizedDescription)
                     }
-                }//else: success
+                }else{print("Success.")}//else: success
             }else{print("Invalid address:\(url)")}
         }.resume()
         

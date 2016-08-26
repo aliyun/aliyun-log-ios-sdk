@@ -9,14 +9,15 @@
 import Foundation
 public class Log:NSObject{
     private var mContent:[String:AnyObject] = [:]
+    private var mTime:UInt32
     public override init(){
-        mContent["__time__"] = Int(Date().timeIntervalSince1970)
+        mTime = UInt32(Date().timeIntervalSince1970)
     }
-    public func PutTime(_ time:Int32)throws{
+    public func PutTime(_ time:UInt32)throws{
         guard Int(Date().timeIntervalSince1970)<Int(time) else{
             throw LogError.illegalValueTime
         }
-        mContent["__time__"] = NSNumber(value: time)
+        mTime = time
     }
     public func PutContent(_ key:String,value:String)throws{
         guard key != "" else{
@@ -26,6 +27,9 @@ public class Log:NSObject{
             throw LogError.nullValue
         }
         mContent[key] = value
+    }
+    public func GetTime()->UInt32{
+        return mTime
     }
     public func GetContent()->[String:AnyObject]{
         return mContent
