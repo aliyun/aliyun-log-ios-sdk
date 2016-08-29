@@ -26,10 +26,10 @@ class ViewController: UIViewController {
          通过EndPoint、accessKeyID、accessKeySecret 构建日志服务客户端
          @endPoint: 服务访问入口，参见 https://help.aliyun.com/document_detail/29008.html
          */
-        let myClient = try! LOGClient(endPoint: "",
-                                      accessKeyID: "",
-                                      accessKeySecret: "",
-                                      projectName:"")
+        let myClient = try! LOGClient(endPoint: "XXX",
+                                      accessKeyID: "XXX",
+                                      accessKeySecret: "XXX",
+                                      projectName:"XXX")
         while(true)
         {
        
@@ -52,7 +52,7 @@ class ViewController: UIViewController {
        
         
         /* Post log */
-        myClient.PostLog(logGroup,logStoreName: "")
+        myClient.PostLog(logGroup,logStoreName: "XXX")
             
         sleep(1);
         }

@@ -86,12 +86,11 @@ public class LOGClient:NSObject{
 
             let httpPostBody = Data(bytes:logGroup.GetProtoBufPackage(),count:logGroup.GetProtoBufPackage().count)
 
-            let httpPostBodyZipped = httpPostBody.GZip!
+            let httpPostBodyZipped = httpPostBody.LZ4!
             
             let httpHeaders = self.GetHttpHeadersFrom(logStoreName,url: httpUrl,body: httpPostBody,bodyZipped: httpPostBodyZipped)
-            
+        
             self.HttpPostRequest(httpUrl,headers: httpHeaders,body: httpPostBodyZipped)
-            
         })
 
     }
@@ -106,7 +105,7 @@ public class LOGClient:NSObject{
         headers["Content-MD5"] = bodyZipped.md5
         headers["Content-Length"] = "\(bodyZipped.count)"
         headers["x-log-bodyrawsize"] = "\(body.count)"
-        headers["x-log-compresstype"] = "deflate"
+        headers["x-log-compresstype"] = "lz4"
         headers["Host"] = self.getHostIn(url)
         
         
@@ -123,7 +122,7 @@ public class LOGClient:NSObject{
         
         signString += "x-log-apiversion:0.6.0\n"
         signString += "x-log-bodyrawsize:\(headers["x-log-bodyrawsize"]!)\n"
-        signString += "x-log-compresstype:deflate\n"
+        signString += "x-log-compresstype:lz4\n"
         signString += "x-log-signaturemethod:hmac-sha1\n"
         signString += "/logstores/\(logstore)/shards/lb"
         let sign  =  hmac_sha1(signString, key: mAccessKeySecret)
@@ -157,7 +156,7 @@ public class LOGClient:NSObject{
                     } catch let error as NSError {
                         print(error.localizedDescription)
                     }
-                }else{print("Success.")}//else: success
+                }//else{print("Success.")}
             }else{print("Invalid address:\(url)")}
         }.resume()
         

@@ -3,3 +3,4 @@
 //
 #import <CommonCrypto/CommonCrypto.h>
 #import <zlib.h>
+#import "lz4.h"
