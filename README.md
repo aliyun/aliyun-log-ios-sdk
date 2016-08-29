@@ -65,7 +65,7 @@ let logGroup = try! LogGroup(topic: "mTopic",source: "mSource")
     通过EndPoint、accessKeyID、accessKeySecret 构建日志服务客户端
     @endPoint: 服务访问入口，参见 https://help.aliyun.com/document_detail/29008.html
 */
-    LOGClient *myClient = [[LOGClient alloc]initWithEndPoint:@"XXX" accessKeyID:@"XXX" accessKeySecret:@"XXX" projectName:@"XXX" error:NULL];
+LOGClient *myClient = [[LOGClient alloc]initWithEndPoint:@"XXX" accessKeyID:@"XXX" accessKeySecret:@"XXX" projectName:@"XXX" error:NULL];
     
 /* 创建logGroup */    
 LogGroup *logGroup = [[LogGroup alloc] initWithTopic:@"topic_test" source:@"source_test"];
