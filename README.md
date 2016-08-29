@@ -24,6 +24,8 @@
 
 ### 示例
 
+##### Swift:
+
 ``` swift
  /*
     通过EndPoint、accessKeyID、accessKeySecret 构建日志服务客户端
@@ -55,6 +57,8 @@ let logGroup = try! LogGroup(topic: "mTopic",source: "mSource")
  myClient.PostLog(logGroup,logStoreName: "")
 
 ```
+
+##### Objective-C:
 
 ``` objective-c
 /*
