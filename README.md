@@ -1,25 +1,49 @@
-# Aliyun SLS iOS SDK
-[![Language](https://img.shields.io/badge/swift-2.3-orange.svg)](http://swift.org)
+# Aliyun LOG iOS SDK
+[![Language](https://img.shields.io/badge/swift-3.0-orange.svg)](http://swift.org)
 [![Build Status](https://travis-ci.org/aliyun/aliyun-log-ios-sdk.svg?branch=master)](https://github.com/aliyun/aliyun-log-ios-sdk)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 ### 简介
 ###### [阿里云日志服务](https://www.aliyun.com/product/sls/)SDK基于[日志服务API](https://help.aliyun.com/document_detail/29007.html?spm=5176.55536.224569.9.2rvzUk)实现，目前提供以下功能：
   - 写入日志
   
-### 使用
-#### 目前提供一下几种方式：
+### 目前提供一下几种使用方式：
 
-##### 通过导入framework
+##### 使用CocoaPods
+  - 敬请期待
 
- - 执行Source文件夹下的buildFramework.sh，生成的framwork在Products文件夹下
+##### 使用Carthage
+ - 创建一个 `Cartfile`，列出所需要的framework，运行`carthage bootstrap`.
+ - 根据这个[说明](https://github.com/Carthage/Carthage#if-youre-building-for-ios-tvos-or-watchos) 来添加 `$(SRCROOT)/Carthage/Build/iOS/AliyunLOGiOS.framework` 到iOS项目中
 
+##### 导入source code
+ - 下载并将Source/AliyunLOGiOS文件夹拖入目标项目中.
 
-##### 通过CocoaPods
+##### 导入framework
 
+``` bash
+cd aliyun-log-ios-sdk
+cd Source
+bash buildFramework.sh
+cd Products
+ls
 
+```
 
-##### 通过Carthage
-
+ - 执行之后，会在Products文件夹下生成AliyunLOGiOS.framework文件.
+ - 将framework拖入xcode project中
+ - 确保General--Embedded Binaries中含有此framework
+ - 如果拖入framework没有选择copy,确保Build Phases--Embed Frameworks中含有此framework,并在Build Settings--Search Paths--Framework Search Paths中添加aliyun-log-ios-sdk.framework的文件路径
+ - 修改安全协议：
+ 	- 由于目前SDK只支持http协议，所以需要进行如下修改：
+ 	- 右键点击项目的Info.plist选择open as -- source code ,添加类似如下的配置:
+ 	
+ 		```
+ 		<key>NSAppTransportSecurity</key>
+		<dict>
+			<key>NSAllowsArbitraryLoads</key>
+			<true/>
+		</dict>
+		```
 
 
 ### 示例
@@ -88,4 +112,3 @@ LogGroup *logGroup = [[LogGroup alloc] initWithTopic:@"topic_test" source:@"sour
 [myClient PostLog:logGroup logStoreName:@"XXX"];
 
 ```
-
