@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		28363DB01D4F194500BB1738 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 28363DAF1D4F194500BB1738 /* libz.tbd */; };
 		2846808B1D4F42DD00E60635 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 284680881D4F42DD00E60635 /* Log.swift */; };
 		2846808C1D4F42DD00E60635 /* LogGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 284680891D4F42DD00E60635 /* LogGroup.swift */; };
 		28818EC41D4F3D86005258CC /* LOGClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28818EBF1D4F3D86005258CC /* LOGClient.swift */; };
@@ -14,12 +15,11 @@
 		28818ECB1D4F3D98005258CC /* AliyunLOGiOS-Bridging-Header.h in Headers */ = {isa = PBXBuildFile; fileRef = 28818EC91D4F3D98005258CC /* AliyunLOGiOS-Bridging-Header.h */; };
 		2895278C1D65CE73009B1AB9 /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2895278B1D65CE73009B1AB9 /* Const.swift */; };
 		28A49BC01D62DBAE00948425 /* LogError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A49BBF1D62DBAE00948425 /* LogError.swift */; };
-		28AA80DB1D74145D00AA1F20 /* lz4.c in Sources */ = {isa = PBXBuildFile; fileRef = 28AA80D91D74145D00AA1F20 /* lz4.c */; };
-		28AA80DC1D74145D00AA1F20 /* lz4.h in Headers */ = {isa = PBXBuildFile; fileRef = 28AA80DA1D74145D00AA1F20 /* lz4.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		28363D921D4F175400BB1738 /* AliyunLOGiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AliyunLOGiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		28363DAF1D4F194500BB1738 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		284680881D4F42DD00E60635 /* Log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Log.swift; path = AliyunLOGiOS/Log.swift; sourceTree = SOURCE_ROOT; };
 		284680891D4F42DD00E60635 /* LogGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LogGroup.swift; path = AliyunLOGiOS/LogGroup.swift; sourceTree = SOURCE_ROOT; };
 		28818EBF1D4F3D86005258CC /* LOGClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LOGClient.swift; path = AliyunLOGiOS/LOGClient.swift; sourceTree = SOURCE_ROOT; };
@@ -28,8 +28,6 @@
 		28818ECA1D4F3D98005258CC /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = AliyunLOGiOS/Info.plist; sourceTree = SOURCE_ROOT; };
 		2895278B1D65CE73009B1AB9 /* Const.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Const.swift; path = AliyunLOGiOS/Const.swift; sourceTree = SOURCE_ROOT; };
 		28A49BBF1D62DBAE00948425 /* LogError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LogError.swift; path = AliyunLOGiOS/LogError.swift; sourceTree = SOURCE_ROOT; };
-		28AA80D91D74145D00AA1F20 /* lz4.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = lz4.c; path = AliyunLOGiOS/lz4.c; sourceTree = SOURCE_ROOT; };
-		28AA80DA1D74145D00AA1F20 /* lz4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lz4.h; path = AliyunLOGiOS/lz4.h; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28363DB01D4F194500BB1738 /* libz.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +62,7 @@
 			isa = PBXGroup;
 			children = (
 				28363DB11D4F195400BB1738 /* src */,
+				28363DAF1D4F194500BB1738 /* libz.tbd */,
 				28818EC91D4F3D98005258CC /* AliyunLOGiOS-Bridging-Header.h */,
 				28818ECA1D4F3D98005258CC /* Info.plist */,
 			);
@@ -79,8 +79,6 @@
 				284680891D4F42DD00E60635 /* LogGroup.swift */,
 				28A49BBF1D62DBAE00948425 /* LogError.swift */,
 				2895278B1D65CE73009B1AB9 /* Const.swift */,
-				28AA80D91D74145D00AA1F20 /* lz4.c */,
-				28AA80DA1D74145D00AA1F20 /* lz4.h */,
 			);
 			name = src;
 			sourceTree = "<group>";
@@ -93,7 +91,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				28818ECB1D4F3D98005258CC /* AliyunLOGiOS-Bridging-Header.h in Headers */,
-				28AA80DC1D74145D00AA1F20 /* lz4.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -124,13 +121,12 @@
 		28363D891D4F175400BB1738 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = wangjwchn;
 				TargetAttributes = {
 					28363D911D4F175400BB1738 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = 7EGABX8KQS;
-						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -166,7 +162,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				28AA80DB1D74145D00AA1F20 /* lz4.c in Sources */,
 				28A49BC01D62DBAE00948425 /* LogError.swift in Sources */,
 				2846808B1D4F42DD00E60635 /* Log.swift in Sources */,
 				2846808C1D4F42DD00E60635 /* LogGroup.swift in Sources */,
@@ -286,7 +281,6 @@
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/AliyunLOGiOS-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -305,8 +299,6 @@
 				PRODUCT_NAME = AliyunLOGiOS;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/AliyunLOGiOS-Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

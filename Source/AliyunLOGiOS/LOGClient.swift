@@ -13,55 +13,55 @@ public class LOGClient:NSObject{
     private var mAccessKeySecret:String
     private var mProject:String
     private var mAccessToken:String
-    private var mExpireDate:Date
+    private var mExpireDate:NSDate
     public init(endPoint:String,accessKeyID:String,accessKeySecret :String,projectName:String) throws{
         
         guard endPoint != "" else{
-            throw LogError.nullEndPoint
+            throw LogError.NullEndPoint
         }
-        if( endPoint.range(of: "http://") != nil ||
-            endPoint.range(of: "Http://") != nil ||
-            endPoint.range(of: "HTTP://") != nil){
-            mEndPoint = endPoint.substring(from: endPoint.characters.index(endPoint.startIndex, offsetBy: 7))
+        if( endPoint.rangeOfString("http://") != nil ||
+            endPoint.rangeOfString("Http://") != nil ||
+            endPoint.rangeOfString("HTTP://") != nil){
+            mEndPoint = endPoint.substringFromIndex(endPoint.startIndex.advancedBy(7))
         }
-        else if( endPoint.range(of: "https://") != nil ||
-            endPoint.range(of: "Https://") != nil ||
-            endPoint.range(of: "HTTPS://") != nil){
-            mEndPoint = endPoint.substring(from: endPoint.characters.index(endPoint.startIndex, offsetBy: 8))
+        else if( endPoint.rangeOfString("https://") != nil ||
+            endPoint.rangeOfString("Https://") != nil ||
+            endPoint.rangeOfString("HTTPS://") != nil){
+            mEndPoint = endPoint.substringFromIndex(endPoint.startIndex.advancedBy(8))
         }
         else{
             mEndPoint = endPoint
         }
         
         guard accessKeyID != "" else{
-            throw LogError.nullAKID
+            throw LogError.NullAKID
         }
         mAccessKeyID = accessKeyID
         
         guard accessKeySecret != "" else{
-            throw LogError.nullAKSecret
+            throw LogError.NullAKSecret
         }
         mAccessKeySecret = accessKeySecret
         
         guard projectName != "" else{
-            throw LogError.nullProjectName
+            throw LogError.NullProjectName
         }
         mProject = projectName
         
         mAccessToken = ""
-        mExpireDate = Date().addingTimeInterval(60*15)//default: 15 min
+        mExpireDate = NSDate().dateByAddingTimeInterval(60*15)//default: 15 min
     }
-    public func SetToken(_ token:String,expireDate:Date)throws{
+    public func SetToken(token:String,expireDate:NSDate)throws{
         mAccessToken = token
         guard mAccessToken != "" else{
-            throw LogError.nullToken
+            throw LogError.NullToken
         }
-        guard expireDate.compare(Date())==ComparisonResult.orderedDescending else{
-            throw LogError.illegalValueTime
+        guard expireDate.compare(NSDate())==NSComparisonResult.OrderedDescending else{
+            throw LogError.IllegalValueTime
         }
         mExpireDate = expireDate
     }
-    public func GetExpireDate() -> Date{
+    public func GetExpireDate() -> NSDate{
         return mExpireDate
     }
     public func GetToken() -> String{
@@ -76,36 +76,34 @@ public class LOGClient:NSObject{
     public func GetKeySecret() ->String{
         return mAccessKeySecret
     }
-    
-    
-    
-    public func PostLog(_ logGroup:LogGroup,logStoreName:String){
-        DispatchQueue.global(attributes: DispatchQueue.GlobalAttributes.qosDefault).async(execute: {
+    public func PostLog(logGroup:LogGroup,logStoreName:String){
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
             
             let httpUrl = "http://\(self.mProject).\(self.mEndPoint)"+"/logstores/\(logStoreName)/shards/lb"
-
-            let httpPostBody = Data(bytes:logGroup.GetProtoBufPackage(),count:logGroup.GetProtoBufPackage().count)
-
-            let httpPostBodyZipped = httpPostBody.LZ4!
+            
+            let httpPostBody = logGroup.GetJsonPackage().dataUsingEncoding(NSUTF8StringEncoding)!
+            let httpPostBodyZipped = httpPostBody.GZip!
             
             let httpHeaders = self.GetHttpHeadersFrom(logStoreName,url: httpUrl,body: httpPostBody,bodyZipped: httpPostBodyZipped)
-        
+            
             self.HttpPostRequest(httpUrl,headers: httpHeaders,body: httpPostBodyZipped)
+            
         })
-
+        
     }
     
-    private func GetHttpHeadersFrom(_ logstore:String,url:String,body:Data,bodyZipped:Data) -> [String:String]{
+    private func GetHttpHeadersFrom(logstore:String,url:String,body:NSData,bodyZipped:NSData) -> [String:String]{
         var headers = [String:String]()
         
         headers["x-log-apiversion"] = "0.6.0"
         headers["x-log-signaturemethod"] = "hmac-sha1"
-        headers["Content-Type"] = "application/x-protobuf"
-        headers["Date"] = Date().GMT
+        headers["Content-Type"] = "application/json"
+        headers["Date"] = NSDate().GMT
         headers["Content-MD5"] = bodyZipped.md5
-        headers["Content-Length"] = "\(bodyZipped.count)"
-        headers["x-log-bodyrawsize"] = "\(body.count)"
-        headers["x-log-compresstype"] = "lz4"
+        headers["Content-Length"] = "\(bodyZipped.length)"
+        headers["x-log-bodyrawsize"] = "\(body.length)"
+        headers["x-log-compresstype"] = "deflate"
         headers["Host"] = self.getHostIn(url)
         
         
@@ -114,7 +112,7 @@ public class LOGClient:NSObject{
         signString += headers["Content-Type"]! + "\n"
         signString += headers["Date"]! + "\n"
         
-        if(mAccessToken != "" && mExpireDate.timeIntervalSince(Date())<=0)
+        if(mAccessToken != "" && mExpireDate.timeIntervalSinceDate(NSDate())<=0)
         {
             headers["x-acs-security-token"] = mAccessToken
             signString += "x-acs-security-token:\(headers["x-acs-security-token"]!)\n"
@@ -122,7 +120,7 @@ public class LOGClient:NSObject{
         
         signString += "x-log-apiversion:0.6.0\n"
         signString += "x-log-bodyrawsize:\(headers["x-log-bodyrawsize"]!)\n"
-        signString += "x-log-compresstype:lz4\n"
+        signString += "x-log-compresstype:deflate\n"
         signString += "x-log-signaturemethod:hmac-sha1\n"
         signString += "/logstores/\(logstore)/shards/lb"
         let sign  =  hmac_sha1(signString, key: mAccessKeySecret)
@@ -131,63 +129,67 @@ public class LOGClient:NSObject{
         return headers
     }
     
-    private func HttpPostRequest(_ url:String,headers:[String:String],body:Data){
+    private func HttpPostRequest(url:String,headers:[String:String],body:NSData){
         
-        let NSurl: URL = URL(string: url)!
+        let NSurl: NSURL = NSURL(string: url)!
         
-        var request = URLRequest(url: NSurl);
-        request.httpMethod = "POST"
+        let request: NSMutableURLRequest = NSMutableURLRequest(URL: NSurl)
+        request.HTTPMethod = "POST"
         request.timeoutInterval = 60
-        request.httpBody=body
-        request.httpShouldHandleCookies=false
+        request.HTTPBody=body
+        request.HTTPShouldHandleCookies=false
         
         for (key, val) in headers {
             request.setValue(val, forHTTPHeaderField: key)
         }
         
-        URLSession.shared().dataTask(with: request) {data, response, error in
+        let config = NSURLSessionConfiguration.defaultSessionConfiguration()
+        let session = NSURLSession(configuration: config)
+        let task = session.dataTaskWithRequest(request, completionHandler: {(data, response, error) in
             if(response != nil){
-                let httpResponse = response as! HTTPURLResponse
+                let httpResponse = response as! NSHTTPURLResponse
                 if(httpResponse.statusCode != 200){
                     do {
-                        if let jsonResult = try JSONSerialization.jsonObject(with: data!, options: []) as? NSDictionary {
+                        if let jsonResult = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as? NSDictionary {
                             print("Result:\(jsonResult)")
                         }
                     } catch let error as NSError {
                         print(error.localizedDescription)
                     }
-                }//else{print("Success.")}
+                }//else: success
             }else{print("Invalid address:\(url)")}
-        }.resume()
+        });
+        
+        task.resume()
         
     }
-    private func hmac_sha1(_ text:String, key:String)->String {
+    private func hmac_sha1(text:String, key:String)->String {
         
-        let keydata =  key.data(using: String.Encoding.utf8)!
-        let keybytes = (keydata as NSData).bytes
-        let keylen = keydata.count
+        let keydata =  key.dataUsingEncoding(NSUTF8StringEncoding)!
+        let keybytes = keydata.bytes
+        let keylen = keydata.length
         
-        let textdata = text.data(using: String.Encoding.utf8)!
-        let textbytes = (textdata as NSData).bytes
-        let textlen = textdata.count
+        let textdata = text.dataUsingEncoding(NSUTF8StringEncoding)!
+        let textbytes = textdata.bytes
+        let textlen = textdata.length
         
         let resultlen = Int(CC_SHA1_DIGEST_LENGTH)
-        let result = UnsafeMutablePointer<CUnsignedChar>(allocatingCapacity: resultlen)
+        let result = UnsafeMutablePointer<CUnsignedChar>.alloc(resultlen)
         CCHmac(CCHmacAlgorithm(kCCHmacAlgSHA1), keybytes, keylen, textbytes, textlen, result)
         
-        let resultData = Data(bytes: UnsafePointer<UInt8>(result), count: resultlen)
-        let base64String = resultData.base64EncodedString(NSData.Base64EncodingOptions(rawValue: 0))
+        let resultData = NSData(bytes: result, length: resultlen)
+        let base64String = resultData.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(rawValue: 0))
         
-        result.deinitialize()
+        result.destroy()
         return base64String
     }
-    private func getHostIn(_ url:String)->String {
+    private func getHostIn(url:String)->String {
         var host = url
-        if let idx = url.range(of: "://") {
-            host = host.substring(from: url.index(idx.lowerBound, offsetBy: 3))
+        if let idx = url.rangeOfString("://") {
+            host = host.substringFromIndex(idx.startIndex.advancedBy(3))
         }
-        if let idx = host.range(of: "/") {
-            host = host.substring(to: idx.lowerBound)
+        if let idx = host.rangeOfString("/") {
+            host = host.substringToIndex(idx.startIndex)
         }
         return host;
     }

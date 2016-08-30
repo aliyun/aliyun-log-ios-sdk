@@ -10,75 +10,35 @@ import Foundation
 public class LogGroup:NSObject{
     private var mTopic:String = ""
     private var mSource:String = ""
-    private var mLog = [Log]()
+    private var mContent = [[String:AnyObject]]()
+    
     public init(topic:String,source:String){
         mTopic = topic
         mSource = source
     }
-    public func PutTopic(_ topic:String){
+    public func PutTopic(topic:String){
         mTopic = topic
     }
-    public func PutSource(_ source:String){
+    public func PutSource(source:String){
         mSource = source
     }
-    public func PutLog(_ log:Log){
-        mLog.append(log)
+    public func PutLog(log:Log){
+        mContent.append(log.GetContent())
     }
     
-    public func GetProtoBufPackage()->[UInt8]{
-        var LogGroup = [UInt8]()
-        for log in mLog{
-            LogGroup += EncodingLog(log: log)
+    public func GetJsonPackage() -> String{
+        do {
+            var package:[String:AnyObject] = [:]
+            package["__topic__"] = mTopic
+            package["__source__"] = mSource
+            package["__logs__"] = mContent
+            let JsonPackage = String(data:try NSJSONSerialization.dataWithJSONObject(package, options:NSJSONWritingOptions.PrettyPrinted), encoding: NSUTF8StringEncoding)!
+            return JsonPackage
+            
+        }catch _ as NSError {
+            fatalError("Fail to serialize data.")
         }
-        LogGroup += EncodingString(field_number: 3,value: mTopic);
-        LogGroup += EncodingString(field_number: 4,value: mSource);
-        return LogGroup
+        return ""
     }
     
-    public func EncodingLog(log:Log)->[UInt8]{
-        var value = EncodingNumber(field_number:1,value:log.GetTime())
-        for cont in log.GetContent(){
-            let content =  EncodingContent(cont:cont)
-            value += EncodingMessage(field_number: 2, value: content)
-        }
-        return EncodingMessage(field_number: 1, value: value)
-    }
-    
-    public func EncodingContent(cont:(String,AnyObject))->[UInt8]{
-
-        return EncodingString(field_number:1,value: cont.0) +
-            EncodingString(field_number:2,value: cont.1 as! String)
-    }
-
-    public func EncodingMessage(field_number:Int,value:[UInt8])->[UInt8]{
-        var key = [UInt8]()
-        key.append(UInt8((field_number << 3) | 2))
-        let length = VarInt(value: UInt32(value.count))
-        return key + length + value
-    }
-    
-    public func EncodingNumber(field_number:Int,value:UInt32)->[UInt8]{
-        var key = [UInt8]()
-        key.append(UInt8((field_number << 3) | 0))
-        let valueArray = VarInt(value: value)
-        return key + valueArray
-    }
-    public func EncodingString(field_number:Int,value:String)->[UInt8]{
-        var key = [UInt8]()
-        key.append(UInt8((field_number << 3) | 2))
-        let valueArray: [UInt8] = Array(value.utf8)
-        let length = VarInt(value: UInt32(valueArray.count))
-        return key + length + valueArray
-    }
-    
-    public func VarInt(value:UInt32)->[UInt8]{
-        var value = value
-        var data = [UInt8]()
-        repeat{
-            data.append((UInt8)((value & 0x7F) | 0x80))
-            value >>= 7
-        } while (value != 0);
-        data.append(data.removeLast()&(0x7F));
-        return data
-    }
 }

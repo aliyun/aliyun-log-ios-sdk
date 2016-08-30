@@ -35,12 +35,12 @@ lipo -create "${DEVICE_DIR}/${FMK_NAME}" "${SIMULATOR_DIR}/${FMK_NAME}" -output 
 
 rm -r "${WRK_DIR}"
 
-if [ -d "${INSTALL_DIR}/_CodeSignature" ]
-then
-    rm -rf "${INSTALL_DIR}/_CodeSignature"
-fi
+#if [ -d "${INSTALL_DIR}/_CodeSignature" ]
+#then
+#    rm -rf "${INSTALL_DIR}/_CodeSignature"
+#fi
 
-if [ -f "${INSTALL_DIR}/Info.plist" ]
-then
-    rm "${INSTALL_DIR}/Info.plist"
-fi
+#if [ -f "${INSTALL_DIR}/Info.plist" ]
+#then
+#    rm "${INSTALL_DIR}/Info.plist"
+#fi

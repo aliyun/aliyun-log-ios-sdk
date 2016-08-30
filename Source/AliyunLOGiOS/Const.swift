@@ -31,8 +31,8 @@ let KEY_ACS_SECURITY_TOKEN = "x-acs-security-token"
 let KEY_AUTHORIZATION = "Authorization"
 
 let POST_VALUE_LOG_APIVERSION = "0.6.0"
-let POST_VALUE_LOG_COMPRESSTYPE = "lz4"
-let POST_VALUE_LOG_CONTENTTYPE = "application/x-protobuf"
+let POST_VALUE_LOG_COMPRESSTYPE = "deflate"
+let POST_VALUE_LOG_CONTENTTYPE = "application/json"
 let POST_VALUE_LOG_SIGNATUREMETHOD = "hmac-sha1"
 
 

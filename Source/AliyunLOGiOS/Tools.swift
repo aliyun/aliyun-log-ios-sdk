@@ -7,66 +7,137 @@
 //
 
 import Foundation
-
-extension Data{
-    var LZ4:Data!{
+extension NSData{
+    var GZip:NSData!{
+        if(self.length == 0){return nil}
+        var zStream = z_stream(
+            next_in: UnsafeMutablePointer<Bytef>(self.bytes),
+            avail_in: uint(self.length),
+            total_in: 0,
+            next_out: nil,
+            avail_out: 0,
+            total_out: 0,
+            msg: nil,
+            state: nil,
+            zalloc: nil,
+            zfree: nil,
+            opaque: nil,
+            data_type: 0,
+            adler: 0,
+            reserved: 0
+        )
+        var status = deflateInit2_(&zStream, Z_DEFAULT_COMPRESSION, Z_DEFLATED, (15), 8, Z_DEFAULT_STRATEGY,ZLIB_VERSION, Int32(sizeof(z_stream)))
         
+        if (status != Z_OK) { return nil;}
         
-        let raw_data_size = self.count
-        let compress_bound = LZ4_compressBound(Int32(raw_data_size));
-        let compress_data = Data.init(capacity: Int(compress_bound))
-        let compressed_size = LZ4_compress(UnsafePointer<Int8>((self as NSData).bytes),UnsafeMutablePointer<Int8>((compress_data! as NSData).bytes),Int32(raw_data_size));
+        let bytes = UnsafeMutablePointer<Bytef>(self.bytes)
+        zStream.next_in = bytes;
+        zStream.avail_in = uInt(self.length);
+        zStream.avail_out = 0;
+        zStream.total_out = 0;
         
-        return Data.init(bytes: UnsafePointer<UInt8>((compress_data! as NSData).bytes), count: Int(compressed_size))
+        let halfLen = self.length / 2;
+        let output = NSMutableData(length:halfLen)!
         
-        /*
-        let raw_data = UnsafePointer<Int8>((self as NSData).bytes)
-        let raw_data_size = self.count
+        while (zStream.avail_out == 0) {
+            if (zStream.total_out >= uLong(output.length)) {
+                output.increaseLengthBy(halfLen)
+            }
+            zStream.next_out = UnsafeMutablePointer<Bytef>(output.mutableBytes).advancedBy(Int(zStream.total_out))
+            zStream.avail_out = uInt(output.length) - uInt(zStream.total_out)
+            status = deflate(&zStream,Z_FINISH);
+            
+            if (status == Z_STREAM_END) {
+                break;
+            } else if (status != Z_OK) {
+                deflateEnd(&zStream);
+                return nil;
+            }
+        }
+        output.length = Int(zStream.total_out)
+        deflateEnd(&zStream);
+        bytes.destroy()
+        return output;
+    }
+    var GUnZip:NSData!{
+        if(self.length == 0){return nil}
+        var zStream = z_stream(
+            next_in: UnsafeMutablePointer<Bytef>(self.bytes),
+            avail_in: uint(self.length),
+            total_in: 0,
+            next_out: nil,
+            avail_out: 0,
+            total_out: 0,
+            msg: nil,
+            state: nil,
+            zalloc: nil,
+            zfree: nil,
+            opaque: nil,
+            data_type: 0,
+            adler: 0,
+            reserved: 0
+        )
+        var status = inflateInit2_(&zStream, (15+32), ZLIB_VERSION, Int32(sizeof(z_stream)))
         
+        if (status != Z_OK) { return nil;}
         
-        let compress_bound = LZ4_compressBound(Int32(raw_data_size));
-        let compress_data = UnsafeMutablePointer<Int8>.init(allocatingCapacity: 1)
-        compress_data.initialize(with:Int8(compress_bound))
+        let bytes = UnsafeMutablePointer<Bytef>(self.bytes)
+        zStream.next_in = bytes;
+        zStream.avail_in = uInt(self.length);
+        zStream.avail_out = 0;
+        zStream.total_out = 0;
         
-        let compressed_size = LZ4_compress(raw_data,compress_data,Int32(raw_data_size));
+        let halfLen = self.length / 2;
+        let output = NSMutableData(length:(halfLen+self.length))!
         
-        let output = NSData(bytes: compress_data, length: Int(compressed_size))
-        
-        compress_data.deinitialize()
-        compress_data.deallocateCapacity(1)
-        
-        
-        return output as Data
-        */
+        while (zStream.avail_out == 0) {
+            if (zStream.total_out >= uLong(output.length)) {
+                output.increaseLengthBy(halfLen)
+            }
+            zStream.next_out = UnsafeMutablePointer<Bytef>(output.mutableBytes).advancedBy(Int(zStream.total_out))
+            zStream.avail_out = uInt(output.length) - uInt(zStream.total_out)
+            status = inflate(&zStream,Z_NO_FLUSH);
+            
+            if (status == Z_STREAM_END) {
+                break;
+            } else if (status != Z_OK) {
+                inflateEnd(&zStream);
+                return nil;
+            }
+        }
+        output.length = Int(zStream.total_out)
+        inflateEnd(&zStream);
+        bytes.destroy()
+        return output;
     }
 }
 
-extension Date{
+extension NSDate{
     var GMT:String{
-        let dateFormatter = DateFormatter()
+        let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "EEE, dd MMM yyyy HH:mm:ss"
-        dateFormatter.timeZone = TimeZone(abbreviation: "GMT+0000")
-        dateFormatter.locale = Locale(localeIdentifier: "en_US")
-        var convertedDate = dateFormatter.string(from: self)
+        dateFormatter.timeZone = NSTimeZone(abbreviation: "GMT+0000")
+        dateFormatter.locale = NSLocale(localeIdentifier: "en_US")
+        var convertedDate = dateFormatter.stringFromDate(self)
         convertedDate = convertedDate + " GMT"
         return convertedDate
     }
     
 }
 
-extension Data  {
+extension NSData  {
     var md5: String! {
-        let bytes = (self as NSData).bytes
-        let strLen = CUnsignedInt(self.count)
+        let bytes = self.bytes
+        let strLen = CUnsignedInt(self.length)
         let digestLen = Int(CC_MD5_DIGEST_LENGTH)
-        let result = UnsafeMutablePointer<CUnsignedChar>(allocatingCapacity: digestLen)
+        let result = UnsafeMutablePointer<CUnsignedChar>.alloc(digestLen)
         CC_MD5(bytes, strLen, result)
         
         let hash = NSMutableString()
         for i in 0 ..< digestLen {
             hash.appendFormat("%02X", result[i])
         }
-        result.deinitialize()
+        result.destroy()
         return String(format: hash as String)
     }
 }
