@@ -33,6 +33,7 @@ ls
  - 将framework拖入xcode project中
  - 确保General--Embedded Binaries中含有此framework
  - 如果拖入framework没有选择copy,确保Build Phases--Embed Frameworks中含有此framework,并在Build Settings--Search Paths--Framework Search Paths中添加aliyun-log-ios-sdk.framework的文件路径
+ - 如果是Objective-C工程的话，需要设置Build Settings -- Embedded Content Contains Swift Code 为 Yes
  - 修改安全协议：
  	- 由于目前SDK只支持http协议，所以需要进行如下修改：
  	- 右键点击项目的Info.plist选择open as -- source code ,添加类似如下的配置:
@@ -95,14 +96,14 @@ LOGClient *myClient = [[LOGClient alloc]initWithEndPoint:@"XXX" accessKeyID:@"XX
 LogGroup *logGroup = [[LogGroup alloc] initWithTopic:@"topic_test" source:@"source_test"];
 
 	/* 存入一条log */
-    Log *log1 = [Log alloc];
+    Log *log1 = [[Log alloc] init];
     [log1 PutContent:@"K11" value:@"V11" error:NULL];
     [log1 PutContent:@"K12" value:@"V12" error:NULL];
     [log1 PutContent:@"K13" value:@"V13" error:NULL];
     [logGroup PutLog:log1];
     
     /* 存入一条log */
-    Log *log2 = [Log alloc];
+    Log *log2 = [[Log alloc] init];
     [log2 PutContent:@"K21" value:@"V21" error:NULL];
     [log2 PutContent:@"K22" value:@"V22" error:NULL];
     [log2 PutContent:@"K23" value:@"V23" error:NULL];
