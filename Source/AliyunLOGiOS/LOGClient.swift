@@ -7,13 +7,13 @@
 //
 
 import Foundation
-public class LOGClient:NSObject{
-    private var mEndPoint:String
-    private var mAccessKeyID:String
-    private var mAccessKeySecret:String
-    private var mProject:String
-    private var mAccessToken:String
-    private var mExpireDate:Date
+open class LOGClient:NSObject{
+    fileprivate var mEndPoint:String
+    fileprivate var mAccessKeyID:String
+    fileprivate var mAccessKeySecret:String
+    fileprivate var mProject:String
+    fileprivate var mAccessToken:String
+    fileprivate var mExpireDate:Date
     public init(endPoint:String,accessKeyID:String,accessKeySecret :String,projectName:String) throws{
         
         guard endPoint != "" else{
@@ -51,7 +51,7 @@ public class LOGClient:NSObject{
         mAccessToken = ""
         mExpireDate = Date().addingTimeInterval(60*15)//default: 15 min
     }
-    public func SetToken(_ token:String,expireDate:Date)throws{
+    open func SetToken(_ token:String,expireDate:Date)throws{
         mAccessToken = token
         guard mAccessToken != "" else{
             throw LogError.nullToken
@@ -61,26 +61,26 @@ public class LOGClient:NSObject{
         }
         mExpireDate = expireDate
     }
-    public func GetExpireDate() -> Date{
+    open func GetExpireDate() -> Date{
         return mExpireDate
     }
-    public func GetToken() -> String{
+    open func GetToken() -> String{
         return mAccessToken
     }
-    public func GetEndPoint() -> String{
+    open func GetEndPoint() -> String{
         return mEndPoint
     }
-    public func GetKeyID() -> String{
+    open func GetKeyID() -> String{
         return mAccessKeyID
     }
-    public func GetKeySecret() ->String{
+    open func GetKeySecret() ->String{
         return mAccessKeySecret
     }
     
     
     
-    public func PostLog(_ logGroup:LogGroup,logStoreName:String){
-        DispatchQueue.global(attributes: DispatchQueue.GlobalAttributes.qosDefault).async(execute: {
+    open func PostLog(_ logGroup:LogGroup,logStoreName:String){
+        DispatchQueue.global(qos: DispatchQoS.default.qosClass).async(execute: {
             
             let httpUrl = "http://\(self.mProject).\(self.mEndPoint)"+"/logstores/\(logStoreName)/shards/lb"
 
@@ -95,7 +95,7 @@ public class LOGClient:NSObject{
 
     }
     
-    private func GetHttpHeadersFrom(_ logstore:String,url:String,body:Data,bodyZipped:Data) -> [String:String]{
+    fileprivate func GetHttpHeadersFrom(_ logstore:String,url:String,body:Data,bodyZipped:Data) -> [String:String]{
         var headers = [String:String]()
         
         headers["x-log-apiversion"] = "0.6.0"
@@ -131,7 +131,7 @@ public class LOGClient:NSObject{
         return headers
     }
     
-    private func HttpPostRequest(_ url:String,headers:[String:String],body:Data){
+    fileprivate func HttpPostRequest(_ url:String,headers:[String:String],body:Data){
         
         let NSurl: URL = URL(string: url)!
         
@@ -145,7 +145,7 @@ public class LOGClient:NSObject{
             request.setValue(val, forHTTPHeaderField: key)
         }
         
-        URLSession.shared().dataTask(with: request) {data, response, error in
+        URLSession.shared.dataTask(with: request) {data, response, error in
             if(response != nil){
                 let httpResponse = response as! HTTPURLResponse
                 if(httpResponse.statusCode != 200){
@@ -161,7 +161,7 @@ public class LOGClient:NSObject{
         }.resume()
         
     }
-    private func hmac_sha1(_ text:String, key:String)->String {
+    fileprivate func hmac_sha1(_ text:String, key:String)->String {
         
         let keydata =  key.data(using: String.Encoding.utf8)!
         let keybytes = (keydata as NSData).bytes
@@ -172,16 +172,16 @@ public class LOGClient:NSObject{
         let textlen = textdata.count
         
         let resultlen = Int(CC_SHA1_DIGEST_LENGTH)
-        let result = UnsafeMutablePointer<CUnsignedChar>(allocatingCapacity: resultlen)
+        let result = UnsafeMutablePointer<CUnsignedChar>.allocate(capacity: resultlen)
         CCHmac(CCHmacAlgorithm(kCCHmacAlgSHA1), keybytes, keylen, textbytes, textlen, result)
         
         let resultData = Data(bytes: UnsafePointer<UInt8>(result), count: resultlen)
-        let base64String = resultData.base64EncodedString(NSData.Base64EncodingOptions(rawValue: 0))
+        let base64String = resultData.base64EncodedString(options: Data.Base64EncodingOptions(rawValue: 0))
         
         result.deinitialize()
         return base64String
     }
-    private func getHostIn(_ url:String)->String {
+    fileprivate func getHostIn(_ url:String)->String {
         var host = url
         if let idx = url.range(of: "://") {
             host = host.substring(from: url.index(idx.lowerBound, offsetBy: 3))

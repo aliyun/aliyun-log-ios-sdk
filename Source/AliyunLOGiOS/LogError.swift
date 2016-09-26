@@ -7,7 +7,7 @@
 //
 
 import Foundation
-public enum LogError: ErrorProtocol{
+public enum LogError: Error{
     case nullEndPoint
     case nullAKID
     case nullAKSecret

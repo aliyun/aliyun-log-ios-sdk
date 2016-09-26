@@ -11,13 +11,12 @@ import Foundation
 extension Data{
     var LZ4:Data!{
         
-        
         let raw_data_size = self.count
         let compress_bound = LZ4_compressBound(Int32(raw_data_size));
         let compress_data = Data.init(capacity: Int(compress_bound))
-        let compressed_size = LZ4_compress(UnsafePointer<Int8>((self as NSData).bytes),UnsafeMutablePointer<Int8>((compress_data! as NSData).bytes),Int32(raw_data_size));
+        let compressed_size = LZ4_compress((self as NSData).bytes.assumingMemoryBound(to: Int8.self),UnsafeMutablePointer<Int8>(mutating: (compress_data as NSData).bytes.assumingMemoryBound(to: Int8.self)),Int32(raw_data_size));
         
-        return Data.init(bytes: UnsafePointer<UInt8>((compress_data! as NSData).bytes), count: Int(compressed_size))
+        return Data.init(bytes: (compress_data as NSData).bytes.assumingMemoryBound(to: Int8.self), count: Int(compressed_size))
         
         /*
         let raw_data = UnsafePointer<Int8>((self as NSData).bytes)
@@ -46,7 +45,7 @@ extension Date{
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "EEE, dd MMM yyyy HH:mm:ss"
         dateFormatter.timeZone = TimeZone(abbreviation: "GMT+0000")
-        dateFormatter.locale = Locale(localeIdentifier: "en_US")
+        dateFormatter.locale = Locale(identifier: "en_US")
         var convertedDate = dateFormatter.string(from: self)
         convertedDate = convertedDate + " GMT"
         return convertedDate
@@ -59,7 +58,7 @@ extension Data  {
         let bytes = (self as NSData).bytes
         let strLen = CUnsignedInt(self.count)
         let digestLen = Int(CC_MD5_DIGEST_LENGTH)
-        let result = UnsafeMutablePointer<CUnsignedChar>(allocatingCapacity: digestLen)
+        let result = UnsafeMutablePointer<CUnsignedChar>.allocate(capacity: digestLen)
         CC_MD5(bytes, strLen, result)
         
         let hash = NSMutableString()
