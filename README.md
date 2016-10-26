@@ -1,4 +1,4 @@
-# Aliyun SLS iOS SDK
+# Aliyun LOG iOS SDK
 [![Language](https://img.shields.io/badge/swift-2.3-orange.svg)](http://swift.org)
 [![Build Status](https://travis-ci.org/aliyun/aliyun-log-ios-sdk.svg?branch=master)](https://github.com/aliyun/aliyun-log-ios-sdk)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
@@ -6,29 +6,84 @@
 ###### [阿里云日志服务](https://www.aliyun.com/product/sls/)SDK基于[日志服务API](https://help.aliyun.com/document_detail/29007.html?spm=5176.55536.224569.9.2rvzUk)实现，目前提供以下功能：
   - 写入日志
   
-### 使用
-#### 目前提供一下几种方式：
+### 目前提供一下几种使用方式：
 
-##### 通过导入framework
+##### 使用CocoaPods
+  - 敬请期待
 
- - 执行Source文件夹下的buildFramework.sh，生成的framwork在Products文件夹下
+##### 使用Carthage
+ - 创建一个 `Cartfile`，列出所需要的framework，运行`carthage bootstrap`.
+ - 根据这个[说明](https://github.com/Carthage/Carthage#if-youre-building-for-ios-tvos-or-watchos) 来添加 `$(SRCROOT)/Carthage/Build/iOS/AliyunLOGiOS.framework` 到iOS项目中
+
+##### 导入source code
+ - 下载并将Source/AliyunLOGiOS文件夹拖入目标项目中.
+
+##### 导入framework
+- 根据需要可以选择构建i386或者arm的framework，也可以选择同时构建。
 
 
-##### 通过CocoaPods
+build i386 framework
+
+``` bash
+cd aliyun-log-ios-sdk
+cd Source
+bash build_i386.sh
+cd Products
+ls
+
+```
 
 
+build arm framework
 
-##### 通过Carthage
+``` bash
+cd aliyun-log-ios-sdk
+cd Source
+bash build_arm.sh
+cd Products
+ls
 
+```
+
+
+build both
+
+``` bash
+cd aliyun-log-ios-sdk
+cd Source
+bash build_both.sh
+cd Products
+ls
+
+```
+
+ - 执行之后，会在Products文件夹下生成AliyunLOGiOS.framework文件.
+ - 将framework拖入xcode project中
+ - 确保General--Embedded Binaries中含有此framework
+ - 如果拖入framework没有选择copy,确保Build Phases--Embed Frameworks中含有此framework,并在Build Settings--Search Paths--Framework Search Paths中添加aliyun-log-ios-sdk.framework的文件路径
+ - 如果是Objective-C工程的话，需要设置Build Settings -- Embedded Content Contains Swift Code 为 Yes
+ - 修改安全协议：
+ 	- 由于目前SDK只支持http协议，所以需要进行如下修改：
+ 	- 右键点击项目的Info.plist选择open as -- source code ,添加类似如下的配置:
+ 	
+ 		```
+ 		<key>NSAppTransportSecurity</key>
+		<dict>
+			<key>NSAllowsArbitraryLoads</key>
+			<true/>
+		</dict>
+		```
 
 
 ### 示例
 
-```
+##### Swift:
+
+``` swift
  /*
     通过EndPoint、accessKeyID、accessKeySecret 构建日志服务客户端
     @endPoint: 服务访问入口，参见 https://help.aliyun.com/document_detail/29008.html
-  */
+ */
 let myClient = try! LOGClient(endPoint: "",
                               accessKeyID: "",
                               accessKeySecret: "",
@@ -53,5 +108,36 @@ let logGroup = try! LogGroup(topic: "mTopic",source: "mSource")
         
  /* 发送 log */
  myClient.PostLog(logGroup,logStoreName: "")
+
+```
+
+##### Objective-C:
+
+``` objective-c
+/*
+    通过EndPoint、accessKeyID、accessKeySecret 构建日志服务客户端
+    @endPoint: 服务访问入口，参见 https://help.aliyun.com/document_detail/29008.html
+*/
+LOGClient *myClient = [[LOGClient alloc]initWithEndPoint:@"XXX" accessKeyID:@"XXX" accessKeySecret:@"XXX" projectName:@"XXX" error:NULL];
+    
+/* 创建logGroup */    
+LogGroup *logGroup = [[LogGroup alloc] initWithTopic:@"topic_test" source:@"source_test"];
+
+	/* 存入一条log */
+    Log *log1 = [[Log alloc] init];
+    [log1 PutContent:@"K11" value:@"V11" error:NULL];
+    [log1 PutContent:@"K12" value:@"V12" error:NULL];
+    [log1 PutContent:@"K13" value:@"V13" error:NULL];
+    [logGroup PutLog:log1];
+    
+    /* 存入一条log */
+    Log *log2 = [[Log alloc] init];
+    [log2 PutContent:@"K21" value:@"V21" error:NULL];
+    [log2 PutContent:@"K22" value:@"V22" error:NULL];
+    [log2 PutContent:@"K23" value:@"V23" error:NULL];
+    [logGroup PutLog:log2];
+
+ /* 发送 log */    
+[myClient PostLog:logGroup logStoreName:@"XXX"];
 
 ```
