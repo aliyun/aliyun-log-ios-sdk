@@ -66,7 +66,7 @@ public class LOGClient:NSObject{
     public func GetKeySecret() ->String{
         return mAccessKeySecret
     }
-    public func PostLog(logGroup:LogGroup,logStoreName:String){
+    public func PostLog(logGroup:LogGroup,logStoreName:String, call: (NSURLResponse?, NSError?) -> ()){
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
             
@@ -77,7 +77,7 @@ public class LOGClient:NSObject{
             
             let httpHeaders = self.GetHttpHeadersFrom(logStoreName,url: httpUrl,body: httpPostBody,bodyZipped: httpPostBodyZipped)
             
-            self.HttpPostRequest(httpUrl,headers: httpHeaders,body: httpPostBodyZipped)
+            self.HttpPostRequest(httpUrl,headers: httpHeaders,body: httpPostBodyZipped, callBack:call)
             
         })
         
@@ -119,7 +119,7 @@ public class LOGClient:NSObject{
         return headers
     }
     
-    private func HttpPostRequest(url:String,headers:[String:String],body:NSData){
+    private func HttpPostRequest(url:String,headers:[String:String],body:NSData, callBack: (NSURLResponse?, NSError?) -> ()){
         
         let NSurl: NSURL = NSURL(string: url)!
         
@@ -136,19 +136,8 @@ public class LOGClient:NSObject{
         let config = NSURLSessionConfiguration.defaultSessionConfiguration()
         let session = NSURLSession(configuration: config)
         let task = session.dataTaskWithRequest(request, completionHandler: {(data, response, error) in
-            if(response != nil){
-                let httpResponse = response as! NSHTTPURLResponse
-                if(httpResponse.statusCode != 200){
-                    do {
-                        if let jsonResult = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as? NSDictionary {
-                            print("Result:\(jsonResult)")
-                        }
-                    } catch let error as NSError {
-                        print(error.localizedDescription)
-                    }
-                }//else: success
-            }else{print("Invalid address:\(url)")}
-        });
+            callBack(response, error)
+            })
         
         task.resume()
         
