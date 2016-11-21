@@ -107,8 +107,14 @@ let logGroup = try! LogGroup(topic: "mTopic",source: "mSource")
     logGroup.PutLog(log2)
         
  /* 发送 log */
- myClient.PostLog(logGroup,logStoreName: "")
+    myClient.PostLog(logGroup,logStoreName: ""){ response, error in
 
+        // handle response however you want
+
+        if error?.domain == NSURLErrorDomain && error?.code == NSURLErrorTimedOut {
+            print("timed out") // note, `response` is likely `nil` if it timed out
+        }
+    }
 ```
 
 ##### Objective-C:
