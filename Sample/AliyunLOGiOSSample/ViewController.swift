@@ -52,9 +52,14 @@ class ViewController: UIViewController {
             logGroup.PutLog(log2)
         
         /* Post log */
-        myClient.PostLog(logGroup,logStoreName: "")
+            myClient.PostLog(logGroup,logStoreName: ""){ response, error in
+                // handle response however you want
+                if error?.domain == NSURLErrorDomain && error?.code == NSURLErrorTimedOut {
+                    print("timed out") // note, `response` is likely `nil` if it timed out
+                }
+            }
         
-        sleep(1)
+            sleep(1)
         }
     }
 }
