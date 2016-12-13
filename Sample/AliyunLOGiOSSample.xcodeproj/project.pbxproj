@@ -7,31 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		28900EBB1D4F55A3007D5FFD /* AliyunLOGiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28818EDB1D4F405A005258CC /* AliyunLOGiOS.framework */; };
-		28900EBC1D4F55A3007D5FFD /* AliyunLOGiOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 28818EDB1D4F405A005258CC /* AliyunLOGiOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		28AC42DD1D6AE73500F45E29 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28AC42D41D6AE73500F45E29 /* AppDelegate.swift */; };
 		28AC42DE1D6AE73500F45E29 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28AC42D51D6AE73500F45E29 /* Assets.xcassets */; };
 		28AC42DF1D6AE73500F45E29 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28AC42D71D6AE73500F45E29 /* LaunchScreen.storyboard */; };
 		28AC42E01D6AE73500F45E29 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28AC42D91D6AE73500F45E29 /* Main.storyboard */; };
 		28AC42E21D6AE73500F45E29 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28AC42DC1D6AE73500F45E29 /* ViewController.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		28818EDA1D4F405A005258CC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 28818ED61D4F405A005258CC /* AliyunLOGiOS.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 28363D921D4F175400BB1738;
-			remoteInfo = AliyunLOGiOS;
-		};
-		28900EBD1D4F55A3007D5FFD /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 28818ED61D4F405A005258CC /* AliyunLOGiOS.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 28363D911D4F175400BB1738;
-			remoteInfo = AliyunLOGiOS;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		28B5BE9D1D4F0CB00056BC1A /* Embed Frameworks */ = {
@@ -40,7 +21,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				28900EBC1D4F55A3007D5FFD /* AliyunLOGiOS.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -49,7 +29,6 @@
 
 /* Begin PBXFileReference section */
 		282E4F751D4F004C00E79DA9 /* AliyunLOGiOSSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AliyunLOGiOSSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		28818ED61D4F405A005258CC /* AliyunLOGiOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AliyunLOGiOS.xcodeproj; path = ../Source/AliyunLOGiOS.xcodeproj; sourceTree = "<group>"; };
 		28AC42D41D6AE73500F45E29 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = AliyunLOGiOSSample/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
 		28AC42D51D6AE73500F45E29 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = AliyunLOGiOSSample/Assets.xcassets; sourceTree = SOURCE_ROOT; };
 		28AC42D81D6AE73500F45E29 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -63,7 +42,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				28900EBB1D4F55A3007D5FFD /* AliyunLOGiOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,7 +51,6 @@
 		282E4F6C1D4F004C00E79DA9 = {
 			isa = PBXGroup;
 			children = (
-				28818ED61D4F405A005258CC /* AliyunLOGiOS.xcodeproj */,
 				282E4F771D4F004C00E79DA9 /* AliyunLOGiOSSample */,
 				282E4F761D4F004C00E79DA9 /* Products */,
 			);
@@ -98,14 +75,6 @@
 			);
 			name = AliyunLOGiOSSample;
 			path = AliyunSLSiOSSample;
-			sourceTree = "<group>";
-		};
-		28818ED71D4F405A005258CC /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				28818EDB1D4F405A005258CC /* AliyunLOGiOS.framework */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		28AC42D61D6AE73500F45E29 /* Base.lproj */ = {
@@ -133,7 +102,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				28900EBE1D4F55A3007D5FFD /* PBXTargetDependency */,
 			);
 			name = AliyunLOGiOSSample;
 			productName = AliyunSLSiOSSample;
@@ -152,7 +120,8 @@
 				TargetAttributes = {
 					282E4F741D4F004C00E79DA9 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = 7EGABX8KQS;
+						DevelopmentTeam = 9FQ972GY7E;
+						LastSwiftMigration = 0810;
 					};
 				};
 			};
@@ -167,28 +136,12 @@
 			mainGroup = 282E4F6C1D4F004C00E79DA9;
 			productRefGroup = 282E4F761D4F004C00E79DA9 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 28818ED71D4F405A005258CC /* Products */;
-					ProjectRef = 28818ED61D4F405A005258CC /* AliyunLOGiOS.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				282E4F741D4F004C00E79DA9 /* AliyunLOGiOSSample */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		28818EDB1D4F405A005258CC /* AliyunLOGiOS.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = AliyunLOGiOS.framework;
-			remoteRef = 28818EDA1D4F405A005258CC /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		282E4F731D4F004C00E79DA9 /* Resources */ = {
@@ -214,14 +167,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		28900EBE1D4F55A3007D5FFD /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = AliyunLOGiOS;
-			targetProxy = 28900EBD1D4F55A3007D5FFD /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		28AC42D71D6AE73500F45E29 /* LaunchScreen.storyboard */ = {
@@ -257,8 +202,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -303,8 +250,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -323,6 +272,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -334,11 +284,13 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = 9FQ972GY7E;
 				INFOPLIST_FILE = AliyunLOGiOSSample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.aliyun.AliyunLOGiOSSample;
 				PRODUCT_NAME = AliyunLOGiOSSample;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -348,11 +300,12 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = 9FQ972GY7E;
 				INFOPLIST_FILE = AliyunLOGiOSSample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.aliyun.AliyunLOGiOSSample;
 				PRODUCT_NAME = AliyunLOGiOSSample;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

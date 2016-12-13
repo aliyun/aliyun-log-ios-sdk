@@ -12,8 +12,7 @@ open class LOGClient:NSObject{
     fileprivate var mAccessKeyID:String
     fileprivate var mAccessKeySecret:String
     fileprivate var mProject:String
-    fileprivate var mAccessToken:String
-    fileprivate var mExpireDate:Date
+    fileprivate var mAccessToken:String?
     public init(endPoint:String,accessKeyID:String,accessKeySecret :String,projectName:String) throws{
         
         guard endPoint != "" else{
@@ -48,23 +47,14 @@ open class LOGClient:NSObject{
         }
         mProject = projectName
         
-        mAccessToken = ""
-        mExpireDate = Date().addingTimeInterval(60*15)//default: 15 min
     }
-    open func SetToken(_ token:String,expireDate:Date)throws{
-        mAccessToken = token
-        guard mAccessToken != "" else{
+    open func SetToken(_ token:String)throws{
+        guard token != "" else{
             throw LogError.nullToken
         }
-        guard expireDate.compare(Date())==ComparisonResult.orderedDescending else{
-            throw LogError.illegalValueTime
-        }
-        mExpireDate = expireDate
+        mAccessToken = token
     }
-    open func GetExpireDate() -> Date{
-        return mExpireDate
-    }
-    open func GetToken() -> String{
+    open func GetToken() -> String?{
         return mAccessToken
     }
     open func GetEndPoint() -> String{
@@ -76,23 +66,21 @@ open class LOGClient:NSObject{
     open func GetKeySecret() ->String{
         return mAccessKeySecret
     }
-    
-    
-    
-    open func PostLog(_ logGroup:LogGroup,logStoreName:String){
-        DispatchQueue.global(qos: DispatchQoS.default.qosClass).async(execute: {
+    open func PostLog(_ logGroup:LogGroup,logStoreName:String, call: @escaping (URLResponse?, Error?) -> ()){
+        
+        DispatchQueue.global(qos: .default).async(execute: {
             
-            let httpUrl = "http://\(self.mProject).\(self.mEndPoint)"+"/logstores/\(logStoreName)/shards/lb"
-
-            let httpPostBody = Data(bytes:logGroup.GetProtoBufPackage(),count:logGroup.GetProtoBufPackage().count)
-
-            let httpPostBodyZipped = httpPostBody.LZ4!
+            let httpUrl = "https://\(self.mProject).\(self.mEndPoint)"+"/logstores/\(logStoreName)/shards/lb"
+            
+            let httpPostBody = logGroup.GetJsonPackage().data(using: String.Encoding.utf8)!
+            let httpPostBodyZipped = httpPostBody.GZip!
             
             let httpHeaders = self.GetHttpHeadersFrom(logStoreName,url: httpUrl,body: httpPostBody,bodyZipped: httpPostBodyZipped)
-        
-            self.HttpPostRequest(httpUrl,headers: httpHeaders,body: httpPostBodyZipped)
+            
+            self.HttpPostRequest(httpUrl,headers: httpHeaders,body: httpPostBodyZipped, callBack:call)
+            
         })
-
+        
     }
     
     fileprivate func GetHttpHeadersFrom(_ logstore:String,url:String,body:Data,bodyZipped:Data) -> [String:String]{
@@ -100,12 +88,12 @@ open class LOGClient:NSObject{
         
         headers["x-log-apiversion"] = "0.6.0"
         headers["x-log-signaturemethod"] = "hmac-sha1"
-        headers["Content-Type"] = "application/x-protobuf"
+        headers["Content-Type"] = "application/json"
         headers["Date"] = Date().GMT
         headers["Content-MD5"] = bodyZipped.md5
         headers["Content-Length"] = "\(bodyZipped.count)"
         headers["x-log-bodyrawsize"] = "\(body.count)"
-        headers["x-log-compresstype"] = "lz4"
+        headers["x-log-compresstype"] = "deflate"
         headers["Host"] = self.getHostIn(url)
         
         
@@ -114,15 +102,15 @@ open class LOGClient:NSObject{
         signString += headers["Content-Type"]! + "\n"
         signString += headers["Date"]! + "\n"
         
-        if(mAccessToken != "" && mExpireDate.timeIntervalSince(Date())<=0)
+        if(mAccessToken != nil)
         {
-            headers["x-acs-security-token"] = mAccessToken
+            headers["x-acs-security-token"] = mAccessToken!
             signString += "x-acs-security-token:\(headers["x-acs-security-token"]!)\n"
         }
         
         signString += "x-log-apiversion:0.6.0\n"
         signString += "x-log-bodyrawsize:\(headers["x-log-bodyrawsize"]!)\n"
-        signString += "x-log-compresstype:lz4\n"
+        signString += "x-log-compresstype:deflate\n"
         signString += "x-log-signaturemethod:hmac-sha1\n"
         signString += "/logstores/\(logstore)/shards/lb"
         let sign  =  hmac_sha1(signString, key: mAccessKeySecret)
@@ -131,11 +119,11 @@ open class LOGClient:NSObject{
         return headers
     }
     
-    fileprivate func HttpPostRequest(_ url:String,headers:[String:String],body:Data){
+    fileprivate func HttpPostRequest(_ url:String,headers:[String:String],body:Data, callBack: @escaping (URLResponse?, Error?) -> ()){
         
         let NSurl: URL = URL(string: url)!
         
-        var request = URLRequest(url: NSurl);
+        var request: URLRequest = URLRequest(url: NSurl)
         request.httpMethod = "POST"
         request.timeoutInterval = 60
         request.httpBody=body
@@ -145,20 +133,12 @@ open class LOGClient:NSObject{
             request.setValue(val, forHTTPHeaderField: key)
         }
         
-        URLSession.shared.dataTask(with: request) {data, response, error in
-            if(response != nil){
-                let httpResponse = response as! HTTPURLResponse
-                if(httpResponse.statusCode != 200){
-                    do {
-                        if let jsonResult = try JSONSerialization.jsonObject(with: data!, options: []) as? NSDictionary {
-                            print("Result:\(jsonResult)")
-                        }
-                    } catch let error as NSError {
-                        print(error.localizedDescription)
-                    }
-                }//else{print("Success.")}
-            }else{print("Invalid address:\(url)")}
-        }.resume()
+        let config = URLSessionConfiguration.default
+        let session = URLSession(configuration: config)
+        
+        session.dataTask(with: request, completionHandler: {(data: Data?, response: URLResponse?, error: Error?) in
+            callBack(response, error)
+        }).resume()
         
     }
     fileprivate func hmac_sha1(_ text:String, key:String)->String {
@@ -176,7 +156,7 @@ open class LOGClient:NSObject{
         CCHmac(CCHmacAlgorithm(kCCHmacAlgSHA1), keybytes, keylen, textbytes, textlen, result)
         
         let resultData = Data(bytes: UnsafePointer<UInt8>(result), count: resultlen)
-        let base64String = resultData.base64EncodedString(options: Data.Base64EncodingOptions(rawValue: 0))
+        let base64String = resultData.base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0))
         
         result.deinitialize()
         return base64String

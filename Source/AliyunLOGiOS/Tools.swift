@@ -9,34 +9,111 @@
 import Foundation
 
 extension Data{
-    var LZ4:Data!{
+    var GZip:Data!{
+        if(self.count == 0){return nil}
+        var zStream = z_stream(
+            next_in: UnsafeMutablePointer<Bytef>(mutating: (self as NSData).bytes.bindMemory(to: Bytef.self, capacity: self.count)),
+            avail_in: uint(self.count),
+            total_in: 0,
+            next_out: nil,
+            avail_out: 0,
+            total_out: 0,
+            msg: nil,
+            state: nil,
+            zalloc: nil,
+            zfree: nil,
+            opaque: nil,
+            data_type: 0,
+            adler: 0,
+            reserved: 0
+        )
+        var status = deflateInit2_(&zStream, Z_DEFAULT_COMPRESSION, Z_DEFLATED, (15), 8, Z_DEFAULT_STRATEGY,ZLIB_VERSION, Int32(MemoryLayout<z_stream>.size))
         
-        let raw_data_size = self.count
-        let compress_bound = LZ4_compressBound(Int32(raw_data_size));
-        let compress_data = Data.init(capacity: Int(compress_bound))
-        let compressed_size = LZ4_compress((self as NSData).bytes.assumingMemoryBound(to: Int8.self),UnsafeMutablePointer<Int8>(mutating: (compress_data as NSData).bytes.assumingMemoryBound(to: Int8.self)),Int32(raw_data_size));
+        if (status != Z_OK) { return nil;}
         
-        return Data.init(bytes: (compress_data as NSData).bytes.assumingMemoryBound(to: Int8.self), count: Int(compressed_size))
+        let bytes = UnsafeMutablePointer<Bytef>(mutating: (self as NSData).bytes.bindMemory(to: Bytef.self, capacity: self.count))
+        zStream.next_in = bytes;
+        zStream.avail_in = uInt(self.count);
+        zStream.avail_out = 0;
+        zStream.total_out = 0;
         
-        /*
-        let raw_data = UnsafePointer<Int8>((self as NSData).bytes)
-        let raw_data_size = self.count
+        let halfLen = self.count / 2;
+        var output = Data(capacity:halfLen)
         
+        while (zStream.avail_out == 0) {
+            if Int(zStream.total_out) >= output.count {
+                output.count += halfLen
+            }
+            output.withUnsafeMutableBytes({ (bytes: UnsafeMutablePointer<Bytef>) in
+                zStream.next_out = bytes.advanced(by: Int(zStream.total_out))
+            })
+            zStream.avail_out = uInt(output.count) - uInt(zStream.total_out)
+            status = deflate(&zStream,Z_FINISH);
+            
+            if (status == Z_STREAM_END) {
+                break;
+            } else if (status != Z_OK) {
+                deflateEnd(&zStream);
+                return nil;
+            }
+        }
+        output.count = Int(zStream.total_out)
+        deflateEnd(&zStream);
+        bytes.deinitialize()
+        return output as Data!;
+    }
+    var GUnZip:Data!{
+        if(self.count == 0){return nil}
+        var zStream = z_stream(
+            next_in: UnsafeMutablePointer<Bytef>(mutating: (self as NSData).bytes.bindMemory(to: Bytef.self, capacity: self.count)),
+            avail_in: uint(self.count),
+            total_in: 0,
+            next_out: nil,
+            avail_out: 0,
+            total_out: 0,
+            msg: nil,
+            state: nil,
+            zalloc: nil,
+            zfree: nil,
+            opaque: nil,
+            data_type: 0,
+            adler: 0,
+            reserved: 0
+        )
+        var status = inflateInit2_(&zStream, (15+32), ZLIB_VERSION, Int32(MemoryLayout<z_stream>.size))
         
-        let compress_bound = LZ4_compressBound(Int32(raw_data_size));
-        let compress_data = UnsafeMutablePointer<Int8>.init(allocatingCapacity: 1)
-        compress_data.initialize(with:Int8(compress_bound))
+        if (status != Z_OK) { return nil;}
         
-        let compressed_size = LZ4_compress(raw_data,compress_data,Int32(raw_data_size));
+        let bytes = UnsafeMutablePointer<Bytef>(mutating: (self as NSData).bytes.bindMemory(to: Bytef.self, capacity: self.count))
+        zStream.next_in = bytes;
+        zStream.avail_in = uInt(self.count);
+        zStream.avail_out = 0;
+        zStream.total_out = 0;
         
-        let output = NSData(bytes: compress_data, length: Int(compressed_size))
+        let halfLen = self.count / 2;
+        var output = Data(capacity:(halfLen+self.count))
         
-        compress_data.deinitialize()
-        compress_data.deallocateCapacity(1)
-        
-        
-        return output as Data
-        */
+        while zStream.avail_out == 0 {
+            if Int(zStream.total_out) >= output.count {
+                output.count += halfLen
+            }
+            output.withUnsafeMutableBytes { (bytes: UnsafeMutablePointer<Bytef>) in
+                zStream.next_out = bytes.advanced(by: Int(zStream.total_out))
+            }
+            zStream.avail_out = uInt(output.count) - uInt(zStream.total_out)
+            status = inflate(&zStream,Z_NO_FLUSH);
+            
+            if (status == Z_STREAM_END) {
+                break;
+            } else if (status != Z_OK) {
+                inflateEnd(&zStream);
+                return nil;
+            }
+        }
+        output.count = Int(zStream.total_out)
+        inflateEnd(&zStream);
+        bytes.deinitialize()
+        return output as Data!;
     }
 }
 
@@ -52,6 +129,7 @@ extension Date{
     }
     
 }
+
 
 extension Data  {
     var md5: String! {

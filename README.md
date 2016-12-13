@@ -1,5 +1,5 @@
 # Aliyun LOG iOS SDK
-[![Language](https://img.shields.io/badge/swift-3.0-orange.svg)](http://swift.org)
+[![Language](https://img.shields.io/badge/swift-2.3-orange.svg)](http://swift.org)
 [![Build Status](https://travis-ci.org/aliyun/aliyun-log-ios-sdk.svg?branch=master)](https://github.com/aliyun/aliyun-log-ios-sdk)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 ### 简介
@@ -19,11 +19,39 @@
  - 下载并将Source/AliyunLOGiOS文件夹拖入目标项目中.
 
 ##### 导入framework
+- 根据需要可以选择构建i386或者arm的framework，也可以选择同时构建。
+
+
+build i386 framework
 
 ``` bash
 cd aliyun-log-ios-sdk
 cd Source
-bash buildFramework.sh
+bash build_i386.sh
+cd Products
+ls
+
+```
+
+
+build arm framework
+
+``` bash
+cd aliyun-log-ios-sdk
+cd Source
+bash build_arm.sh
+cd Products
+ls
+
+```
+
+
+build both
+
+``` bash
+cd aliyun-log-ios-sdk
+cd Source
+bash build_both.sh
 cd Products
 ls
 
@@ -80,7 +108,14 @@ let logGroup = try! LogGroup(topic: "mTopic",source: "mSource")
         
  /* 发送 log */
  myClient.PostLog(logGroup,logStoreName: "")
+    myClient.PostLog(logGroup,logStoreName: ""){ response, error in
 
+        // handle response however you want
+
+        if error?.domain == NSURLErrorDomain && error?.code == NSURLErrorTimedOut {
+            print("timed out") // note, `response` is likely `nil` if it timed out
+        }
+    }
 ```
 
 ##### Objective-C:

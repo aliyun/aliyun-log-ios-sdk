@@ -7,17 +7,17 @@
 //
 
 import Foundation
+
 open class Log:NSObject{
     fileprivate var mContent:[String:AnyObject] = [:]
-    fileprivate var mTime:UInt32
     public override init(){
-        mTime = UInt32(Date().timeIntervalSince1970)
+        mContent["__time__"] = Int(Date().timeIntervalSince1970) as AnyObject?
     }
-    open func PutTime(_ time:UInt32)throws{
+    open func PutTime(_ time:Int32)throws{
         guard Int(Date().timeIntervalSince1970)<Int(time) else{
             throw LogError.illegalValueTime
         }
-        mTime = time
+        mContent["__time__"] = NSNumber(value: time as Int32)
     }
     open func PutContent(_ key:String,value:String)throws{
         guard key != "" else{
@@ -27,9 +27,6 @@ open class Log:NSObject{
             throw LogError.nullValue
         }
         mContent[key] = value as AnyObject?
-    }
-    open func GetTime()->UInt32{
-        return mTime
     }
     open func GetContent()->[String:AnyObject]{
         return mContent

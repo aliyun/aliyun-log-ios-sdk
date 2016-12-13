@@ -7,6 +7,7 @@
 //
 
 import Foundation
+
 public enum LogError: Error{
     case nullEndPoint
     case nullAKID
