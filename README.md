@@ -107,6 +107,7 @@ let logGroup = try! LogGroup(topic: "mTopic",source: "mSource")
     logGroup.PutLog(log2)
         
  /* 发送 log */
+ myClient.PostLog(logGroup,logStoreName: "")
     myClient.PostLog(logGroup,logStoreName: ""){ response, error in
 
         // handle response however you want

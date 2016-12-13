@@ -30,15 +30,16 @@ class ViewController: UIViewController {
                                       accessKeyID: "",
                                       accessKeySecret: "",
                                       projectName:"")
-        try! myClient.SetToken("")
+        //try! myClient.SetToken("")
         
         while(true)
         {
-        /* 创建logGroup */
-        let logGroup = LogGroup(topic: "mTopic",source: "mSource")
+            /* 创建logGroup */
+            let logGroup = LogGroup(topic: "mTopic",source: "mSource")
         
             /* 存入一条log */
             let log1 = Log()
+
                 try! log1.PutContent("K11", value: "V11")
                 try! log1.PutContent("K12", value: "V12")
                 try! log1.PutContent("K13", value: "V13")
@@ -51,11 +52,13 @@ class ViewController: UIViewController {
                 try! log2.PutContent("K23", value: "V23")
             logGroup.PutLog(log2)
         
-        /* Post log */
+            /* Post log */
             myClient.PostLog(logGroup,logStoreName: ""){ response, error in
-                // handle response however you want
-                if error?.domain == NSURLErrorDomain && error?.code == NSURLErrorTimedOut {
-                    print("timed out") // note, `response` is likely `nil` if it timed out
+                if let err = (error as? NSError) {
+                    // handle response however you want
+                    if err.domain == NSURLErrorDomain && err.code == NSURLErrorTimedOut {
+                        print("timed out") // note, `response` is likely `nil` if it timed out
+                    }
                 }
             }
         

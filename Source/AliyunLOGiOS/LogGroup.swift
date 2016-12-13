@@ -7,32 +7,34 @@
 //
 
 import Foundation
-public class LogGroup:NSObject{
-    private var mTopic:String = ""
-    private var mSource:String = ""
-    private var mContent = [[String:AnyObject]]()
-    
+
+
+open class LogGroup:NSObject{
+    fileprivate var mTopic:String = ""
+    fileprivate var mSource:String = ""
+    fileprivate var mContent = [[String:AnyObject]]()
     public init(topic:String,source:String){
         mTopic = topic
         mSource = source
     }
-    public func PutTopic(topic:String){
+
+    open func PutTopic(_ topic:String){
         mTopic = topic
     }
-    public func PutSource(source:String){
+    open func PutSource(_ source:String){
         mSource = source
     }
-    public func PutLog(log:Log){
+    open func PutLog(_ log:Log){
         mContent.append(log.GetContent())
     }
     
-    public func GetJsonPackage() -> String{
+    open func GetJsonPackage() -> String{
         do {
             var package:[String:AnyObject] = [:]
-            package["__topic__"] = mTopic
-            package["__source__"] = mSource
-            package["__logs__"] = mContent
-            let JsonPackage = String(data:try NSJSONSerialization.dataWithJSONObject(package, options:NSJSONWritingOptions.PrettyPrinted), encoding: NSUTF8StringEncoding)!
+            package["__topic__"] = mTopic as AnyObject?
+            package["__source__"] = mSource as AnyObject?
+            package["__logs__"] = mContent as AnyObject?
+            let JsonPackage = String(data:try JSONSerialization.data(withJSONObject: package, options:JSONSerialization.WritingOptions.prettyPrinted), encoding: String.Encoding.utf8)!
             return JsonPackage
             
         }catch _ as NSError {

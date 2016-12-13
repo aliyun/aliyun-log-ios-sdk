@@ -7,30 +7,31 @@
 //
 
 import Foundation
-public class Log:NSObject{
-    private var mContent:[String:AnyObject] = [:]
+
+open class Log:NSObject{
+    fileprivate var mContent:[String:AnyObject] = [:]
     public override init(){
-        mContent["__time__"] = Int(NSDate().timeIntervalSince1970)
+        mContent["__time__"] = Int(Date().timeIntervalSince1970) as AnyObject?
     }
-    public func PutTime(time:Int32)throws{
-        guard Int(NSDate().timeIntervalSince1970)<Int(time) else{
-            throw LogError.IllegalValueTime
+    open func PutTime(_ time:Int32)throws{
+        guard Int(Date().timeIntervalSince1970)<Int(time) else{
+            throw LogError.illegalValueTime
         }
-        mContent["__time__"] = NSNumber(int: time)
+        mContent["__time__"] = NSNumber(value: time as Int32)
     }
-    public func PutContent(key:String,value:String)throws{
+    open func PutContent(_ key:String,value:String)throws{
         guard key != "" else{
-            throw LogError.NullKey
+            throw LogError.nullKey
         }
         guard value != "" else{
-            throw LogError.NullValue
+            throw LogError.nullValue
         }
-        mContent[key] = value
+        mContent[key] = value as AnyObject?
     }
-    public func GetContent()->[String:AnyObject]{
+    open func GetContent()->[String:AnyObject]{
         return mContent
     }
-    public func GetContentConut()->Int{
+    open func GetContentConut()->Int{
         return mContent.count
     }
 }

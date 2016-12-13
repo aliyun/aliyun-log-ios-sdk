@@ -7,72 +7,72 @@
 //
 
 import Foundation
-public class LOGClient:NSObject{
-    private var mEndPoint:String
-    private var mAccessKeyID:String
-    private var mAccessKeySecret:String
-    private var mProject:String
-    private var mAccessToken:String?
+open class LOGClient:NSObject{
+    fileprivate var mEndPoint:String
+    fileprivate var mAccessKeyID:String
+    fileprivate var mAccessKeySecret:String
+    fileprivate var mProject:String
+    fileprivate var mAccessToken:String?
     public init(endPoint:String,accessKeyID:String,accessKeySecret :String,projectName:String) throws{
         
         guard endPoint != "" else{
-            throw LogError.NullEndPoint
+            throw LogError.nullEndPoint
         }
-        if( endPoint.rangeOfString("http://") != nil ||
-            endPoint.rangeOfString("Http://") != nil ||
-            endPoint.rangeOfString("HTTP://") != nil){
-            mEndPoint = endPoint.substringFromIndex(endPoint.startIndex.advancedBy(7))
+        if( endPoint.range(of: "http://") != nil ||
+            endPoint.range(of: "Http://") != nil ||
+            endPoint.range(of: "HTTP://") != nil){
+            mEndPoint = endPoint.substring(from: endPoint.characters.index(endPoint.startIndex, offsetBy: 7))
         }
-        else if( endPoint.rangeOfString("https://") != nil ||
-            endPoint.rangeOfString("Https://") != nil ||
-            endPoint.rangeOfString("HTTPS://") != nil){
-            mEndPoint = endPoint.substringFromIndex(endPoint.startIndex.advancedBy(8))
+        else if( endPoint.range(of: "https://") != nil ||
+            endPoint.range(of: "Https://") != nil ||
+            endPoint.range(of: "HTTPS://") != nil){
+            mEndPoint = endPoint.substring(from: endPoint.characters.index(endPoint.startIndex, offsetBy: 8))
         }
         else{
             mEndPoint = endPoint
         }
         
         guard accessKeyID != "" else{
-            throw LogError.NullAKID
+            throw LogError.nullAKID
         }
         mAccessKeyID = accessKeyID
         
         guard accessKeySecret != "" else{
-            throw LogError.NullAKSecret
+            throw LogError.nullAKSecret
         }
         mAccessKeySecret = accessKeySecret
         
         guard projectName != "" else{
-            throw LogError.NullProjectName
+            throw LogError.nullProjectName
         }
         mProject = projectName
         
     }
-    public func SetToken(token:String)throws{
+    open func SetToken(_ token:String)throws{
         guard token != "" else{
-            throw LogError.NullToken
+            throw LogError.nullToken
         }
         mAccessToken = token
     }
-    public func GetToken() -> String?{
+    open func GetToken() -> String?{
         return mAccessToken
     }
-    public func GetEndPoint() -> String{
+    open func GetEndPoint() -> String{
         return mEndPoint
     }
-    public func GetKeyID() -> String{
+    open func GetKeyID() -> String{
         return mAccessKeyID
     }
-    public func GetKeySecret() ->String{
+    open func GetKeySecret() ->String{
         return mAccessKeySecret
     }
-    public func PostLog(logGroup:LogGroup,logStoreName:String, call: (NSURLResponse?, NSError?) -> ()){
+    open func PostLog(_ logGroup:LogGroup,logStoreName:String, call: @escaping (URLResponse?, Error?) -> ()){
         
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+        DispatchQueue.global(qos: .default).async(execute: {
             
-            let httpUrl = "http://\(self.mProject).\(self.mEndPoint)"+"/logstores/\(logStoreName)/shards/lb"
+            let httpUrl = "https://\(self.mProject).\(self.mEndPoint)"+"/logstores/\(logStoreName)/shards/lb"
             
-            let httpPostBody = logGroup.GetJsonPackage().dataUsingEncoding(NSUTF8StringEncoding)!
+            let httpPostBody = logGroup.GetJsonPackage().data(using: String.Encoding.utf8)!
             let httpPostBodyZipped = httpPostBody.GZip!
             
             let httpHeaders = self.GetHttpHeadersFrom(logStoreName,url: httpUrl,body: httpPostBody,bodyZipped: httpPostBodyZipped)
@@ -83,16 +83,16 @@ public class LOGClient:NSObject{
         
     }
     
-    private func GetHttpHeadersFrom(logstore:String,url:String,body:NSData,bodyZipped:NSData) -> [String:String]{
+    fileprivate func GetHttpHeadersFrom(_ logstore:String,url:String,body:Data,bodyZipped:Data) -> [String:String]{
         var headers = [String:String]()
         
         headers["x-log-apiversion"] = "0.6.0"
         headers["x-log-signaturemethod"] = "hmac-sha1"
         headers["Content-Type"] = "application/json"
-        headers["Date"] = NSDate().GMT
+        headers["Date"] = Date().GMT
         headers["Content-MD5"] = bodyZipped.md5
-        headers["Content-Length"] = "\(bodyZipped.length)"
-        headers["x-log-bodyrawsize"] = "\(body.length)"
+        headers["Content-Length"] = "\(bodyZipped.count)"
+        headers["x-log-bodyrawsize"] = "\(body.count)"
         headers["x-log-compresstype"] = "deflate"
         headers["Host"] = self.getHostIn(url)
         
@@ -119,56 +119,55 @@ public class LOGClient:NSObject{
         return headers
     }
     
-    private func HttpPostRequest(url:String,headers:[String:String],body:NSData, callBack: (NSURLResponse?, NSError?) -> ()){
+    fileprivate func HttpPostRequest(_ url:String,headers:[String:String],body:Data, callBack: @escaping (URLResponse?, Error?) -> ()){
         
-        let NSurl: NSURL = NSURL(string: url)!
+        let NSurl: URL = URL(string: url)!
         
-        let request: NSMutableURLRequest = NSMutableURLRequest(URL: NSurl)
-        request.HTTPMethod = "POST"
+        var request: URLRequest = URLRequest(url: NSurl)
+        request.httpMethod = "POST"
         request.timeoutInterval = 60
-        request.HTTPBody=body
-        request.HTTPShouldHandleCookies=false
+        request.httpBody=body
+        request.httpShouldHandleCookies=false
         
         for (key, val) in headers {
             request.setValue(val, forHTTPHeaderField: key)
         }
         
-        let config = NSURLSessionConfiguration.defaultSessionConfiguration()
-        let session = NSURLSession(configuration: config)
-        let task = session.dataTaskWithRequest(request, completionHandler: {(data, response, error) in
-            callBack(response, error)
-            })
+        let config = URLSessionConfiguration.default
+        let session = URLSession(configuration: config)
         
-        task.resume()
+        session.dataTask(with: request, completionHandler: {(data: Data?, response: URLResponse?, error: Error?) in
+            callBack(response, error)
+        }).resume()
         
     }
-    private func hmac_sha1(text:String, key:String)->String {
+    fileprivate func hmac_sha1(_ text:String, key:String)->String {
         
-        let keydata =  key.dataUsingEncoding(NSUTF8StringEncoding)!
-        let keybytes = keydata.bytes
-        let keylen = keydata.length
+        let keydata =  key.data(using: String.Encoding.utf8)!
+        let keybytes = (keydata as NSData).bytes
+        let keylen = keydata.count
         
-        let textdata = text.dataUsingEncoding(NSUTF8StringEncoding)!
-        let textbytes = textdata.bytes
-        let textlen = textdata.length
+        let textdata = text.data(using: String.Encoding.utf8)!
+        let textbytes = (textdata as NSData).bytes
+        let textlen = textdata.count
         
         let resultlen = Int(CC_SHA1_DIGEST_LENGTH)
-        let result = UnsafeMutablePointer<CUnsignedChar>.alloc(resultlen)
+        let result = UnsafeMutablePointer<CUnsignedChar>.allocate(capacity: resultlen)
         CCHmac(CCHmacAlgorithm(kCCHmacAlgSHA1), keybytes, keylen, textbytes, textlen, result)
         
-        let resultData = NSData(bytes: result, length: resultlen)
-        let base64String = resultData.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(rawValue: 0))
+        let resultData = Data(bytes: UnsafePointer<UInt8>(result), count: resultlen)
+        let base64String = resultData.base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0))
         
-        result.destroy()
+        result.deinitialize()
         return base64String
     }
-    private func getHostIn(url:String)->String {
+    fileprivate func getHostIn(_ url:String)->String {
         var host = url
-        if let idx = url.rangeOfString("://") {
-            host = host.substringFromIndex(idx.startIndex.advancedBy(3))
+        if let idx = url.range(of: "://") {
+            host = host.substring(from: url.index(idx.lowerBound, offsetBy: 3))
         }
-        if let idx = host.rangeOfString("/") {
-            host = host.substringToIndex(idx.startIndex)
+        if let idx = host.range(of: "/") {
+            host = host.substring(to: idx.lowerBound)
         }
         return host;
     }
