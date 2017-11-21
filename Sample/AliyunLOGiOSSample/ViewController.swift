@@ -23,7 +23,7 @@ class ViewController: UIViewController {
     func WriteTest(){
         
         //可以调试打印输出，分不同的级别
-        SLSLog.setLogLevel(level: SLSLog.LogLevel.debug)
+        SLSLog.setLogLevel(level: SLSLog.LogLevel.none)
         
         
         let ENDPOINT = "cn-qingdao.log.aliyuncs.com"
@@ -73,13 +73,18 @@ class ViewController: UIViewController {
         
         /* Post log */
         myClient.PostLog(logGroup,logStoreName: LOGSTORENAME){ response, error in
-                        
-            
+            //当前回调是在异步线程中，在主线程中同步UI
             if let err = error {
                 // handle response however you want
                 debugPrint(" err : \(err) \n")
+//                DispatchQueue.main.async {
+//                    ...
+//                }
             }else{
                 debugPrint(" response : ",(String(describing: response)) )
+//                DispatchQueue.main.async {
+//                    ...
+//                }
             }
         }
 

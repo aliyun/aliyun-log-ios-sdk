@@ -232,7 +232,7 @@ public class LOGClient:NSObject{
     
     /*
      *  判断是否需要重试。
-     *  目前重试的逻辑是当返回的responsecode > 500才进行重试，其他的暂不重试。
+     *  目前重试的逻辑是当返回的responsecode >= 500才进行重试，其他的暂不重试。
      *  1.  服务器内部错误造成的的500 response
      */
     func shouldRetry(error: Error?, httpResponse:HTTPURLResponse, retryCount:Int) -> Bool{
