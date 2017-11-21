@@ -3,21 +3,22 @@
 //  AliyunLOGiOS
 //
 //  Created by 王佳玮 on 16/7/29.
+//  edited by zhuoqin on 17/11/20
 //  Copyright © 2016年 wangjwchn. All rights reserved.
-//
 
 import Foundation
-open class LOGClient:NSObject{
-    fileprivate var mEndPoint:String
-    fileprivate var mAccessKeyID:String
-    fileprivate var mAccessKeySecret:String
-    fileprivate var mProject:String
-    fileprivate var mAccessToken:String?
+public class LOGClient:NSObject{
+    var mEndPoint:String
+    var mAccessKeyID:String
+    var mAccessKeySecret:String
+    var mProject:String
+    var mAccessToken:String?
+    
+    //重试相关逻辑
+    var retryCount:Int
+    let retryMax:Int = 3
+    
     public init(endPoint:String,accessKeyID:String,accessKeySecret :String,projectName:String) throws{
-        
-        guard endPoint != "" else{
-            throw LogError.nullEndPoint
-        }
         if( endPoint.range(of: "http://") != nil ||
             endPoint.range(of: "Http://") != nil ||
             endPoint.range(of: "HTTP://") != nil){
@@ -42,12 +43,34 @@ open class LOGClient:NSObject{
         }
         mAccessKeySecret = accessKeySecret
         
+        
         guard projectName != "" else{
             throw LogError.nullProjectName
         }
         mProject = projectName
         
+        retryCount = 0
     }
+    
+    
+    public convenience init(endPoint:String, accessKeyID:String, accessKeySecret:String, token:String, projectName:String) throws{
+        
+        try! self.init(endPoint: endPoint, accessKeyID: accessKeyID, accessKeySecret: accessKeySecret, projectName: projectName)
+        
+        guard token != "" else{
+            throw LogError.nullToken
+        }
+        mAccessToken = token
+    }
+    
+    private func impl(endPoint:String)throws{
+        guard endPoint != "" else{
+            throw LogError.nullEndPoint
+        }
+    }
+    
+    
+    
     open func SetToken(_ token:String)throws{
         guard token != "" else{
             throw LogError.nullToken
@@ -70,7 +93,7 @@ open class LOGClient:NSObject{
         
         DispatchQueue.global(qos: .default).async(execute: {
             
-            let httpUrl = "https://\(self.mProject).\(self.mEndPoint)"+"/logstores/\(logStoreName)/shards/lb"
+            let httpUrl = "http://\(self.mProject).\(self.mEndPoint)"+"/logstores/\(logStoreName)/shards/lb"
             
             let httpPostBody = logGroup.GetJsonPackage().data(using: String.Encoding.utf8)!
             let httpPostBodyZipped = httpPostBody.GZip!
@@ -123,7 +146,7 @@ open class LOGClient:NSObject{
         
         let NSurl: URL = URL(string: url)!
         
-        var request: URLRequest = URLRequest(url: NSurl)
+        var request = URLRequest(url: NSurl)
         request.httpMethod = "POST"
         request.timeoutInterval = 60
         request.httpBody=body
@@ -136,11 +159,45 @@ open class LOGClient:NSObject{
         let config = URLSessionConfiguration.default
         let session = URLSession(configuration: config)
         
-        session.dataTask(with: request, completionHandler: {(data: Data?, response: URLResponse?, error: Error?) in
-            callBack(response, error)
-        }).resume()
+        SLSLog.logDebug("request : ", request)
         
+        session.dataTask(with: request, completionHandler: {(data: Data?, response: URLResponse?, error: Error?) in
+            
+            SLSLog.logDebug("response header : " ,(String(describing: response)))
+            var responseBody:String?
+            if (data != nil){
+                responseBody = String(data:data!, encoding: String.Encoding.utf8)!
+            }
+            SLSLog.logDebug("response body  : ", responseBody ?? "")
+            SLSLog.logDebug("error : ", (String(describing: error)))
+            
+            if let httpResponse = response as? HTTPURLResponse , error == nil{
+                var serviceError = error;
+                SLSLog.logDebug("check retry")
+                let needRetry = self.shouldRetry(error:error,httpResponse:httpResponse,retryCount:self.retryCount)
+                if needRetry {
+                    SLSLog.logDebug("need retry")
+                    self.retryCount += 1
+                    self.HttpPostRequest(url, headers:headers, body:body, callBack:callBack)
+                }else{
+                    if (httpResponse.statusCode > 300){
+                        let jsonArr = try! JSONSerialization.jsonObject(with:data!,
+                                                                        options: JSONSerialization.ReadingOptions.mutableContainers) as! [String: String]
+                        if (jsonArr.count > 0){
+                            let errorCode = jsonArr["errorCode"]
+                            let errorMessage = jsonArr["errorMessage"]
+                            let requestID = httpResponse.allHeaderFields["x-log-requestid"]
+                            serviceError = LogError.ServiceError(errorCode: errorCode!, errorMessage: errorMessage!, requesetID: requestID as! String)
+                        }
+                    }
+                }
+                callBack(response, serviceError)
+            }else{
+                callBack(response, error)
+            }
+        }).resume()
     }
+    
     fileprivate func hmac_sha1(_ text:String, key:String)->String {
         
         let keydata =  key.data(using: String.Encoding.utf8)!
@@ -161,6 +218,7 @@ open class LOGClient:NSObject{
         result.deinitialize()
         return base64String
     }
+    
     fileprivate func getHostIn(_ url:String)->String {
         var host = url
         if let idx = url.range(of: "://") {
@@ -170,6 +228,25 @@ open class LOGClient:NSObject{
             host = host.substring(to: idx.lowerBound)
         }
         return host;
+    }
+    
+    /*
+     *  判断是否需要重试。
+     *  目前重试的逻辑是当返回的responsecode > 500才进行重试，其他的暂不重试。
+     *  1.  服务器内部错误造成的的500 response
+     */
+    func shouldRetry(error: Error?, httpResponse:HTTPURLResponse, retryCount:Int) -> Bool{
+        if error != nil{
+            return  false
+        }
+        if (retryCount >= retryMax){
+            return  false
+        }
+        let statusCode = httpResponse.statusCode
+        if (statusCode >= 500){
+            return  true
+        }
+        return false;
     }
 }
 

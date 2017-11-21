@@ -9,7 +9,7 @@
 import UIKit
 import AliyunLOGiOS
 class ViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         WriteTest()
@@ -22,48 +22,67 @@ class ViewController: UIViewController {
     
     func WriteTest(){
         
-        /**
-         通过EndPoint、accessKeyID、accessKeySecret 构建日志服务客户端
-         @endPoint: 服务访问入口，参见 https://help.aliyun.com/document_detail/29008.html
-         */
-        let myClient = try! LOGClient(endPoint: "",
-                                      accessKeyID: "",
-                                      accessKeySecret: "",
-                                      projectName:"")
-        //try! myClient.SetToken("")
+        //可以调试打印输出，分不同的级别
+        SLSLog.setLogLevel(level: SLSLog.LogLevel.debug)
         
-        while(true)
-        {
-            /* 创建logGroup */
-            let logGroup = LogGroup(topic: "mTopic",source: "mSource")
         
-            /* 存入一条log */
-            let log1 = Log()
+        let ENDPOINT = "cn-qingdao.log.aliyuncs.com"
+        let PROJECTNAME = "zhuoqinsls001"
+        let LOGSTORENAME = "zhuoqinsls001-logstore001"
+        
 
-                try! log1.PutContent("K11", value: "V11")
-                try! log1.PutContent("K12", value: "V12")
-                try! log1.PutContent("K13", value: "V13")
-            logGroup.PutLog(log1)
         
-            /* 存入一条log */
-            let log2 = Log()
-                try! log2.PutContent("K21", value: "V21")
-                try! log2.PutContent("K22", value: "V22")
-                try! log2.PutContent("K23", value: "V23")
-            logGroup.PutLog(log2)
+//        移动端是不安全环境，不建议直接使用阿里云主账号ak，sk的方式。建议使用STS方式。具体参见 https://help.aliyun.com/document_detail/60899.html
+//        注意：只建议在测试环境或者用户可以保证阿里云主账号AK，SK安全的前提下使用。
+//        通过主账号AK，SK使用日志服务
+//        let ALIYUN_AK = "******"
+//        let ALIYUN_SK = "******"
+//        let myClient = try! LOGClient(endPoint: ENDPOINT,
+//                                      accessKeyID: ALIYUN_AK,
+//                                      accessKeySecret: ALIYUN_SK,
+//                                      projectName:PROJECTNAME)
         
-            /* Post log */
-            myClient.PostLog(logGroup,logStoreName: ""){ response, error in
-                if let err = (error as? NSError) {
-                    // handle response however you want
-                    if err.domain == NSURLErrorDomain && err.code == NSURLErrorTimedOut {
-                        print("timed out") // note, `response` is likely `nil` if it timed out
-                    }
-                }
+//        通过STS使用日志服务
+        let STS_AK = "******"
+        let STS_SK = "******"
+        let STS_TOKEM = "******"
+        
+    
+        let myClient = try! LOGClient(endPoint: ENDPOINT,
+                                      accessKeyID: STS_AK,
+                                      accessKeySecret: STS_SK,
+                                      token:STS_TOKEM,
+                                      projectName:PROJECTNAME)
+
+        /* 创建logGroup */
+        let logGroup = LogGroup(topic: "mTopic",source: "mSource")
+        
+        /* 存入一条log */
+        let log1 = Log()
+        try! log1.PutContent("K11", value: "V11")
+        try! log1.PutContent("K12", value: "V12")
+        try! log1.PutContent("K13", value: "V13")
+        logGroup.PutLog(log1)
+        
+        /* 存入一条log */
+        let log2 = Log()
+        try! log2.PutContent("K21", value: "V21")
+        try! log2.PutContent("K22", value: "V22")
+        try! log2.PutContent("K23", value: "V23")
+        logGroup.PutLog(log2)
+        
+        /* Post log */
+        myClient.PostLog(logGroup,logStoreName: LOGSTORENAME){ response, error in
+                        
+            
+            if let err = error {
+                // handle response however you want
+                debugPrint(" err : \(err) \n")
+            }else{
+                debugPrint(" response : ",(String(describing: response)) )
             }
-        
-            sleep(1)
         }
+
     }
 }
 

@@ -15,6 +15,7 @@
 		28818ECB1D4F3D98005258CC /* AliyunLOGiOS-Bridging-Header.h in Headers */ = {isa = PBXBuildFile; fileRef = 28818EC91D4F3D98005258CC /* AliyunLOGiOS-Bridging-Header.h */; };
 		2895278C1D65CE73009B1AB9 /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2895278B1D65CE73009B1AB9 /* Const.swift */; };
 		28A49BC01D62DBAE00948425 /* LogError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A49BBF1D62DBAE00948425 /* LogError.swift */; };
+		D1A0CF901FC418F7009D4782 /* SLSLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A0CF8F1FC418F7009D4782 /* SLSLog.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		28818ECA1D4F3D98005258CC /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = AliyunLOGiOS/Info.plist; sourceTree = SOURCE_ROOT; };
 		2895278B1D65CE73009B1AB9 /* Const.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Const.swift; path = AliyunLOGiOS/Const.swift; sourceTree = SOURCE_ROOT; };
 		28A49BBF1D62DBAE00948425 /* LogError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LogError.swift; path = AliyunLOGiOS/LogError.swift; sourceTree = SOURCE_ROOT; };
+		D1A0CF8F1FC418F7009D4782 /* SLSLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SLSLog.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 				284680891D4F42DD00E60635 /* LogGroup.swift */,
 				28A49BBF1D62DBAE00948425 /* LogError.swift */,
 				2895278B1D65CE73009B1AB9 /* Const.swift */,
+				D1A0CF8F1FC418F7009D4782 /* SLSLog.swift */,
 			);
 			name = src;
 			sourceTree = "<group>";
@@ -164,6 +167,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				28A49BC01D62DBAE00948425 /* LogError.swift in Sources */,
+				D1A0CF901FC418F7009D4782 /* SLSLog.swift in Sources */,
 				2846808B1D4F42DD00E60635 /* Log.swift in Sources */,
 				2846808C1D4F42DD00E60635 /* LogGroup.swift in Sources */,
 				28818EC51D4F3D86005258CC /* Tools.swift in Sources */,
@@ -282,6 +286,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "$(SRCROOT)/AliyunLOGiOS/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.aliyun.AliyunLOGiOS;
 				PRODUCT_NAME = AliyunLOGiOS;
@@ -303,6 +308,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "$(SRCROOT)/AliyunLOGiOS/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.aliyun.AliyunLOGiOS;
 				PRODUCT_NAME = AliyunLOGiOS;

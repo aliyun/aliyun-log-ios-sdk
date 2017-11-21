@@ -12,6 +12,8 @@
 		28AC42DF1D6AE73500F45E29 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28AC42D71D6AE73500F45E29 /* LaunchScreen.storyboard */; };
 		28AC42E01D6AE73500F45E29 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28AC42D91D6AE73500F45E29 /* Main.storyboard */; };
 		28AC42E21D6AE73500F45E29 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28AC42DC1D6AE73500F45E29 /* ViewController.swift */; };
+		D15A0ECD1FC2FE75006B285E /* AliyunLOGiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D15A0ECC1FC2FE75006B285E /* AliyunLOGiOS.framework */; };
+		D15A0ECE1FC2FE75006B285E /* AliyunLOGiOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D15A0ECC1FC2FE75006B285E /* AliyunLOGiOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -21,6 +23,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				D15A0ECE1FC2FE75006B285E /* AliyunLOGiOS.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -35,6 +38,7 @@
 		28AC42DA1D6AE73500F45E29 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Main.storyboard; sourceTree = "<group>"; };
 		28AC42DB1D6AE73500F45E29 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = AliyunLOGiOSSample/Info.plist; sourceTree = SOURCE_ROOT; };
 		28AC42DC1D6AE73500F45E29 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = AliyunLOGiOSSample/ViewController.swift; sourceTree = SOURCE_ROOT; };
+		D15A0ECC1FC2FE75006B285E /* AliyunLOGiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AliyunLOGiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +46,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D15A0ECD1FC2FE75006B285E /* AliyunLOGiOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -51,6 +56,7 @@
 		282E4F6C1D4F004C00E79DA9 = {
 			isa = PBXGroup;
 			children = (
+				D15A0ECC1FC2FE75006B285E /* AliyunLOGiOS.framework */,
 				282E4F771D4F004C00E79DA9 /* AliyunLOGiOSSample */,
 				282E4F761D4F004C00E79DA9 /* Products */,
 			);
@@ -120,7 +126,7 @@
 				TargetAttributes = {
 					282E4F741D4F004C00E79DA9 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = 9FQ972GY7E;
+						DevelopmentTeam = HG8JRXJARL;
 						LastSwiftMigration = 0810;
 					};
 				};
@@ -227,7 +233,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -269,7 +275,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -284,8 +290,9 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = 9FQ972GY7E;
+				DEVELOPMENT_TEAM = HG8JRXJARL;
 				INFOPLIST_FILE = AliyunLOGiOSSample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.aliyun.AliyunLOGiOSSample;
 				PRODUCT_NAME = AliyunLOGiOSSample;
@@ -300,8 +307,9 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = 9FQ972GY7E;
+				DEVELOPMENT_TEAM = HG8JRXJARL;
 				INFOPLIST_FILE = AliyunLOGiOSSample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.aliyun.AliyunLOGiOSSample;
 				PRODUCT_NAME = AliyunLOGiOSSample;
