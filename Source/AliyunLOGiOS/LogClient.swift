@@ -18,63 +18,42 @@ public class LOGClient:NSObject{
     var retryCount:Int
     let retryMax:Int = 3
     
-    public init(endPoint:String,accessKeyID:String,accessKeySecret :String,projectName:String) throws{
+    public var mIsLogEnable:Bool = false
+    
+    public init(endPoint:String,accessKeyID:String,accessKeySecret :String,projectName:String){
         if( endPoint.range(of: "http://") != nil ||
             endPoint.range(of: "Http://") != nil ||
             endPoint.range(of: "HTTP://") != nil){
             mEndPoint = endPoint.substring(from: endPoint.characters.index(endPoint.startIndex, offsetBy: 7))
-        }
-        else if( endPoint.range(of: "https://") != nil ||
+        } else if( endPoint.range(of: "https://") != nil ||
             endPoint.range(of: "Https://") != nil ||
             endPoint.range(of: "HTTPS://") != nil){
             mEndPoint = endPoint.substring(from: endPoint.characters.index(endPoint.startIndex, offsetBy: 8))
-        }
-        else{
+        } else{
             mEndPoint = endPoint
         }
         
-        guard accessKeyID != "" else{
-            throw LogError.nullAKID
-        }
         mAccessKeyID = accessKeyID
-        
-        guard accessKeySecret != "" else{
-            throw LogError.nullAKSecret
-        }
         mAccessKeySecret = accessKeySecret
-        
-        
-        guard projectName != "" else{
-            throw LogError.nullProjectName
-        }
         mProject = projectName
-        
         retryCount = 0
     }
     
     
-    public convenience init(endPoint:String, accessKeyID:String, accessKeySecret:String, token:String, projectName:String) throws{
+    public convenience init(endPoint:String, accessKeyID:String, accessKeySecret:String, token:String, projectName:String){
         
-        try! self.init(endPoint: endPoint, accessKeyID: accessKeyID, accessKeySecret: accessKeySecret, projectName: projectName)
+        self.init(endPoint: endPoint, accessKeyID: accessKeyID, accessKeySecret: accessKeySecret, projectName: projectName)
         
-        guard token != "" else{
-            throw LogError.nullToken
-        }
+        //        guard token != "" else{
+        //            throw LogError.nullToken
+        //        }
         mAccessToken = token
     }
     
-    private func impl(endPoint:String)throws{
-        guard endPoint != "" else{
-            throw LogError.nullEndPoint
-        }
-    }
-    
-    
-    
-    open func SetToken(_ token:String)throws{
-        guard token != "" else{
-            throw LogError.nullToken
-        }
+    open func SetToken(_ token:String){
+        //        guard token != "" else{
+        //            throw LogError.nullToken
+        //        }
         mAccessToken = token
     }
     open func GetToken() -> String?{
@@ -89,11 +68,11 @@ public class LOGClient:NSObject{
     open func GetKeySecret() ->String{
         return mAccessKeySecret
     }
-    open func PostLog(_ logGroup:LogGroup,logStoreName:String, call: @escaping (URLResponse?, Error?) -> ()){
+    open func PostLog(_ logGroup:LogGroup,logStoreName:String, call: @escaping (URLResponse?, NSError?) -> ()){
         
         DispatchQueue.global(qos: .default).async(execute: {
             
-            let httpUrl = "http://\(self.mProject).\(self.mEndPoint)"+"/logstores/\(logStoreName)/shards/lb"
+            let httpUrl = "https://\(self.mProject).\(self.mEndPoint)"+"/logstores/\(logStoreName)/shards/lb"
             
             let httpPostBody = logGroup.GetJsonPackage().data(using: String.Encoding.utf8)!
             let httpPostBodyZipped = httpPostBody.GZip!
@@ -142,7 +121,7 @@ public class LOGClient:NSObject{
         return headers
     }
     
-    fileprivate func HttpPostRequest(_ url:String,headers:[String:String],body:Data, callBack: @escaping (URLResponse?, Error?) -> ()){
+    private func HttpPostRequest(_ url:String,headers:[String:String],body:Data, callBack: @escaping (URLResponse?, NSError?) -> ()){
         
         let NSurl: URL = URL(string: url)!
         
@@ -159,24 +138,38 @@ public class LOGClient:NSObject{
         let config = URLSessionConfiguration.default
         let session = URLSession(configuration: config)
         
-        SLSLog.logDebug("request : ", request)
+        self.logDebug("request : ", request)
         
-        session.dataTask(with: request, completionHandler: {(data: Data?, response: URLResponse?, error: Error?) in
-            
-            SLSLog.logDebug("response header : " ,(String(describing: response)))
+        session.dataTask(with: request, completionHandler: {(data: Data?, response: URLResponse?, error: Error?)  in
+            self.logDebug("response header : " , response.debugDescription)
             var responseBody:String?
             if (data != nil){
                 responseBody = String(data:data!, encoding: String.Encoding.utf8)!
             }
-            SLSLog.logDebug("response body  : ", responseBody ?? "")
-            SLSLog.logDebug("error : ", (String(describing: error)))
+            self.logDebug("response body  : ", responseBody ?? "")
+            self.logDebug("error : ", error.debugDescription)
+        
+            var nsError:NSError?
+            if (error != nil){
+                nsError = error as NSError?
+                if (nsError == nil){
+                    nsError = NSError(
+                        domain: "AliyunLOGError",
+                        code: 10001,
+                        userInfo: [
+                            NSLocalizedDescriptionKey: error.debugDescription
+                        ]
+                    )
+                }
+                callBack(response, nsError)
+                return
+            }
             
-            if let httpResponse = response as? HTTPURLResponse , error == nil{
-                var serviceError = error;
-                SLSLog.logDebug("check retry")
-                let needRetry = self.shouldRetry(error:error,httpResponse:httpResponse,retryCount:self.retryCount)
+            if let httpResponse = response as? HTTPURLResponse{
+                self.logDebug("ready check retry")
+                let needRetry = self.shouldRetry(httpResponse:httpResponse,retryCount:(self.retryCount))
                 if needRetry {
-                    SLSLog.logDebug("need retry")
+                    self.logDebug("need retry")
                     self.retryCount += 1
                     self.HttpPostRequest(url, headers:headers, body:body, callBack:callBack)
                 }else{
@@ -187,13 +180,20 @@ public class LOGClient:NSObject{
                             let errorCode = jsonArr["errorCode"]
                             let errorMessage = jsonArr["errorMessage"]
                             let requestID = httpResponse.allHeaderFields["x-log-requestid"]
-                            serviceError = LogError.ServiceError(errorCode: errorCode!, errorMessage: errorMessage!, requesetID: requestID as! String)
+                            let userInfo = "errorCode : " + String(describing: errorCode) + " errorMessage : " + String(describing: errorMessage) + " requestID : " + String(describing: requestID)
+                            nsError = NSError(
+                                domain: "AliyunLOGError",
+                                code: 10002,
+                                userInfo: [
+                                    NSLocalizedDescriptionKey: userInfo
+                                ]
+                            )
                         }
                     }
                 }
-                callBack(response, serviceError)
+                callBack(response, nsError)
             }else{
-                callBack(response, error)
+                callBack(response, nsError)
             }
         }).resume()
     }
@@ -219,7 +219,7 @@ public class LOGClient:NSObject{
         return base64String
     }
     
-    fileprivate func getHostIn(_ url:String)->String {
+    private func getHostIn(_ url:String)->String {
         var host = url
         if let idx = url.range(of: "://") {
             host = host.substring(from: url.index(idx.lowerBound, offsetBy: 3))
@@ -235,10 +235,7 @@ public class LOGClient:NSObject{
      *  目前重试的逻辑是当返回的responsecode >= 500才进行重试，其他的暂不重试。
      *  1.  服务器内部错误造成的的500 response
      */
-    func shouldRetry(error: Error?, httpResponse:HTTPURLResponse, retryCount:Int) -> Bool{
-        if error != nil{
-            return  false
-        }
+    private func shouldRetry(httpResponse:HTTPURLResponse, retryCount:Int) -> Bool{
         if (retryCount >= retryMax){
             return  false
         }
@@ -247,6 +244,16 @@ public class LOGClient:NSObject{
             return  true
         }
         return false;
+    }
+    
+    private func logDebug(_ items: Any..., separator: String = " ") {
+        if mIsLogEnable {
+            print("Debug: ", terminator: separator)
+            items.forEach({ (item) in
+                debugPrint(item, terminator: separator)
+            })
+            print()
+        }
     }
 }
 
