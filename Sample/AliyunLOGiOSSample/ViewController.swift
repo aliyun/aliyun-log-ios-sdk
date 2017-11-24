@@ -21,31 +21,31 @@ class ViewController: UIViewController {
     
     func LogTest(){
     
-        let ENDPOINT = "cn-qingdao.log.aliyuncs.com"
-        let PROJECTNAME = "zhuoqinsls001"
-        let LOGSTORENAME = "zhuoqinsls001-logstore001"
+        let ENDPOINT = "******"
+        let PROJECTNAME = "******"
+        let LOGSTORENAME = "******"
         
 //        移动端是不安全环境，不建议直接使用阿里云主账号ak，sk的方式。建议使用STS方式。具体参见 https://help.aliyun.com/document_detail/62643.html
 //        注意：只建议在测试环境或者用户可以保证阿里云主账号AK，SK安全的前提下使用。
 //        通过主账号AK，SK使用日志服务
-        let ALIYUN_AK = "LTAIdJcQW6Uap6c"
-        let ALIYUN_SK = "ssnJED1Ro4inSpE2NF71bGZD6IEbN1"
-        
-        let myClient = LOGClient(endPoint: ENDPOINT,
-                                      accessKeyID: ALIYUN_AK,
-                                      accessKeySecret: ALIYUN_SK,
-                                      projectName:PROJECTNAME)
-        
-//        通过STS使用日志服务
-//        let STS_AK = "******"
-//        let STS_SK = "******"
-//        let STS_TOKEM = "******"
-//        
+//        let ALIYUN_AK = "******"
+//        let ALIYUN_SK = "******"
+
 //        let myClient = LOGClient(endPoint: ENDPOINT,
-//                                      accessKeyID: STS_AK,
-//                                      accessKeySecret: STS_SK,
-//                                      token:STS_TOKEM,
+//                                      accessKeyID: ALIYUN_AK,
+//                                      accessKeySecret: ALIYUN_SK,
 //                                      projectName:PROJECTNAME)
+        
+//        通过STS使用日志服务,具体参见 https://help.aliyun.com/document_detail/62643.html
+        let STS_AK = "******"
+        let STS_SK = "******"
+        let STS_TOKEM = "******"
+
+        let myClient = LOGClient(endPoint: ENDPOINT,
+                                      accessKeyID: STS_AK,
+                                      accessKeySecret: STS_SK,
+                                      token:STS_TOKEM,
+                                      projectName:PROJECTNAME)
         //打开调试开关
         myClient.mIsLogEnable = true
 

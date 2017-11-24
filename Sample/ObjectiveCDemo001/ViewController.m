@@ -23,19 +23,19 @@
     //        移动端是不安全环境，不建议直接使用阿里云主账号ak，sk的方式。建议使用STS方式。具体参见 https://help.aliyun.com/document_detail/62643.html
     //        注意：只建议在测试环境或者用户可以保证阿里云主账号AK，SK安全的前提下使用。
     //        通过主账号AK，SK使用日志服务
-    NSString * ENDPOINT = @"cn-beijing.log.aliyuncs.com";
-//    NSString * AK = @"LTAIdJcQW6Uap6cL";
-    NSString * AK = @"LTAIdJcQW6Uap6c";
-    NSString * SK = @"ssnJED1Ro4inSpE2NF71bGZD6IEbN1";
-    NSString * PROJECTNAME = @"zhuoqinsls001";
-    NSString * LOGSTORENAME = @"zhuoqinsls001-logstore001";
+    NSString * ENDPOINT = @"******";
+    NSString * AK = @"******";
+    NSString * SK = @"******";
+    NSString * PROJECTNAME = @"******";
+    NSString * LOGSTORENAME = @"******";
     LOGClient * client = [[LOGClient alloc] initWithEndPoint:ENDPOINT accessKeyID:AK accessKeySecret:SK projectName:PROJECTNAME];
+    //  log调试开关
     client.mIsLogEnable = true;
     
     Log * loginfo = [[Log alloc] init];
     [loginfo PutContent:@"key001" value:@"value001"];
     
-    LogGroup * group = [[LogGroup alloc] initWithTopic:@"topic" source:@"source"];
+    LogGroup * group = [[LogGroup alloc] initWithTopic:@"topic" source:@"object-c"];
     [group PutLog:loginfo];
 
     [client PostLog:group logStoreName:LOGSTORENAME call:^(NSURLResponse *response,NSError *error) {
