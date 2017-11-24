@@ -21,7 +21,6 @@
 ##### 导入framework
 - 根据需要可以选择构建i386或者arm的framework，也可以选择同时构建。
 
-
 build i386 framework
 
 ``` bash
