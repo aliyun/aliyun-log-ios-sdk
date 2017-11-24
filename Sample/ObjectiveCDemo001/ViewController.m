@@ -20,6 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
     NSString * ENDPOINT = @"******";
     NSString * PROJECTNAME = @"******";
     NSString * LOGSTORENAME = @"******";
@@ -32,7 +33,7 @@
     //    NSString * SK = @"******";
     //    LOGClient * client = [[LOGClient alloc] initWithEndPoint:ENDPOINT accessKeyID:AK accessKeySecret:SK projectName:PROJECTNAME];
     
-    //通过STS使用日志服务
+    //通过STS使用日志服务,如果是Objective-C工程的话，需要设置Build Settings -- Embedded Content Contains Swift Code 为 Yes
     NSString * STS_AK = @"******";
     NSString * STS_SK = @"******";
     NSString * STS_TOKEN = @"******";
