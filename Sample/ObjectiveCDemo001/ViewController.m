@@ -34,6 +34,7 @@
     //    LOGClient * client = [[LOGClient alloc] initWithEndPoint:ENDPOINT accessKeyID:AK accessKeySecret:SK projectName:PROJECTNAME];
     
     //通过STS使用日志服务,如果是Objective-C工程的话，需要设置Build Settings -- Embedded Content Contains Swift Code 为 Yes
+    //更多请参见 https://help.aliyun.com/document_detail/62681.html
     NSString * STS_AK = @"******";
     NSString * STS_SK = @"******";
     NSString * STS_TOKEN = @"******";

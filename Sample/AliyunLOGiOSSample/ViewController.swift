@@ -36,7 +36,7 @@ class ViewController: UIViewController {
 //                                      accessKeySecret: ALIYUN_SK,
 //                                      projectName:PROJECTNAME)
         
-//        通过STS使用日志服务,具体参见 https://help.aliyun.com/document_detail/62643.html
+//        通过STS使用日志服务,具体参见 https://help.aliyun.com/document_detail/62681.html
         let STS_AK = "******"
         let STS_SK = "******"
         let STS_TOKEM = "******"
