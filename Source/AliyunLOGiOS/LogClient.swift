@@ -3,55 +3,57 @@
 //  AliyunLOGiOS
 //
 //  Created by 王佳玮 on 16/7/29.
+//  edited by zhuoqin on 17/11/20
 //  Copyright © 2016年 wangjwchn. All rights reserved.
-//
 
 import Foundation
-open class LOGClient:NSObject{
-    fileprivate var mEndPoint:String
-    fileprivate var mAccessKeyID:String
-    fileprivate var mAccessKeySecret:String
-    fileprivate var mProject:String
-    fileprivate var mAccessToken:String?
-    public init(endPoint:String,accessKeyID:String,accessKeySecret :String,projectName:String) throws{
-        
-        guard endPoint != "" else{
-            throw LogError.nullEndPoint
-        }
+public class LOGClient:NSObject{
+    var mEndPoint:String
+    var mAccessKeyID:String
+    var mAccessKeySecret:String
+    var mProject:String
+    var mAccessToken:String?
+    
+    //重试相关逻辑
+    var retryCount:Int
+    let retryMax:Int = 3
+    
+    public var mIsLogEnable:Bool = false
+    
+    public init(endPoint:String,accessKeyID:String,accessKeySecret :String,projectName:String){
         if( endPoint.range(of: "http://") != nil ||
             endPoint.range(of: "Http://") != nil ||
             endPoint.range(of: "HTTP://") != nil){
             mEndPoint = endPoint.substring(from: endPoint.characters.index(endPoint.startIndex, offsetBy: 7))
-        }
-        else if( endPoint.range(of: "https://") != nil ||
+        } else if( endPoint.range(of: "https://") != nil ||
             endPoint.range(of: "Https://") != nil ||
             endPoint.range(of: "HTTPS://") != nil){
             mEndPoint = endPoint.substring(from: endPoint.characters.index(endPoint.startIndex, offsetBy: 8))
-        }
-        else{
+        } else{
             mEndPoint = endPoint
         }
         
-        guard accessKeyID != "" else{
-            throw LogError.nullAKID
-        }
         mAccessKeyID = accessKeyID
-        
-        guard accessKeySecret != "" else{
-            throw LogError.nullAKSecret
-        }
         mAccessKeySecret = accessKeySecret
-        
-        guard projectName != "" else{
-            throw LogError.nullProjectName
-        }
         mProject = projectName
-        
+        retryCount = 0
     }
-    open func SetToken(_ token:String)throws{
-        guard token != "" else{
-            throw LogError.nullToken
-        }
+    
+    
+    public convenience init(endPoint:String, accessKeyID:String, accessKeySecret:String, token:String, projectName:String){
+        
+        self.init(endPoint: endPoint, accessKeyID: accessKeyID, accessKeySecret: accessKeySecret, projectName: projectName)
+        
+        //        guard token != "" else{
+        //            throw LogError.nullToken
+        //        }
+        mAccessToken = token
+    }
+    
+    open func SetToken(_ token:String){
+        //        guard token != "" else{
+        //            throw LogError.nullToken
+        //        }
         mAccessToken = token
     }
     open func GetToken() -> String?{
@@ -66,7 +68,7 @@ open class LOGClient:NSObject{
     open func GetKeySecret() ->String{
         return mAccessKeySecret
     }
-    open func PostLog(_ logGroup:LogGroup,logStoreName:String, call: @escaping (URLResponse?, Error?) -> ()){
+    open func PostLog(_ logGroup:LogGroup,logStoreName:String, call: @escaping (URLResponse?, NSError?) -> ()){
         
         DispatchQueue.global(qos: .default).async(execute: {
             
@@ -119,11 +121,11 @@ open class LOGClient:NSObject{
         return headers
     }
     
-    fileprivate func HttpPostRequest(_ url:String,headers:[String:String],body:Data, callBack: @escaping (URLResponse?, Error?) -> ()){
+    private func HttpPostRequest(_ url:String,headers:[String:String],body:Data, callBack: @escaping (URLResponse?, NSError?) -> ()){
         
         let NSurl: URL = URL(string: url)!
         
-        var request: URLRequest = URLRequest(url: NSurl)
+        var request = URLRequest(url: NSurl)
         request.httpMethod = "POST"
         request.timeoutInterval = 60
         request.httpBody=body
@@ -136,11 +138,66 @@ open class LOGClient:NSObject{
         let config = URLSessionConfiguration.default
         let session = URLSession(configuration: config)
         
-        session.dataTask(with: request, completionHandler: {(data: Data?, response: URLResponse?, error: Error?) in
-            callBack(response, error)
-        }).resume()
+        self.logDebug("request : ", request)
         
+        session.dataTask(with: request, completionHandler: {(data: Data?, response: URLResponse?, error: Error?)  in
+            self.logDebug("response header : " , response.debugDescription)
+            var responseBody:String?
+            if (data != nil){
+                responseBody = String(data:data!, encoding: String.Encoding.utf8)!
+            }
+            self.logDebug("response body  : ", responseBody ?? "")
+            self.logDebug("error : ", error.debugDescription)
+        
+            var nsError:NSError?
+            if (error != nil){
+                nsError = error as NSError?
+                if (nsError == nil){
+                    nsError = NSError(
+                        domain: "AliyunLOGError",
+                        code: 10001,
+                        userInfo: [
+                            NSLocalizedDescriptionKey: error.debugDescription
+                        ]
+                    )
+                }
+                callBack(response, nsError)
+                return
+            }
+            
+            if let httpResponse = response as? HTTPURLResponse{
+                self.logDebug("ready check retry")
+                let needRetry = self.shouldRetry(httpResponse:httpResponse,retryCount:(self.retryCount))
+                if needRetry {
+                    self.logDebug("need retry")
+                    self.retryCount += 1
+                    self.HttpPostRequest(url, headers:headers, body:body, callBack:callBack)
+                }else{
+                    if (httpResponse.statusCode > 300){
+                        let jsonArr = try! JSONSerialization.jsonObject(with:data!,
+                                                                        options: JSONSerialization.ReadingOptions.mutableContainers) as! [String: String]
+                        if (jsonArr.count > 0){
+                            let errorCode = jsonArr["errorCode"]
+                            let errorMessage = jsonArr["errorMessage"]
+                            let requestID = httpResponse.allHeaderFields["x-log-requestid"]
+                            let userInfo = "errorCode : " + String(describing: errorCode) + " errorMessage : " + String(describing: errorMessage) + " requestID : " + String(describing: requestID)
+                            nsError = NSError(
+                                domain: "AliyunLOGError",
+                                code: 10002,
+                                userInfo: [
+                                    NSLocalizedDescriptionKey: userInfo
+                                ]
+                            )
+                        }
+                    }
+                }
+                callBack(response, nsError)
+            }else{
+                callBack(response, nsError)
+            }
+        }).resume()
     }
+    
     fileprivate func hmac_sha1(_ text:String, key:String)->String {
         
         let keydata =  key.data(using: String.Encoding.utf8)!
@@ -161,7 +218,8 @@ open class LOGClient:NSObject{
         result.deinitialize()
         return base64String
     }
-    fileprivate func getHostIn(_ url:String)->String {
+    
+    private func getHostIn(_ url:String)->String {
         var host = url
         if let idx = url.range(of: "://") {
             host = host.substring(from: url.index(idx.lowerBound, offsetBy: 3))
@@ -170,6 +228,32 @@ open class LOGClient:NSObject{
             host = host.substring(to: idx.lowerBound)
         }
         return host;
+    }
+    
+    /*
+     *  判断是否需要重试。
+     *  目前重试的逻辑是当返回的responsecode >= 500才进行重试，其他的暂不重试。
+     *  1.  服务器内部错误造成的的500 response
+     */
+    private func shouldRetry(httpResponse:HTTPURLResponse, retryCount:Int) -> Bool{
+        if (retryCount >= retryMax){
+            return  false
+        }
+        let statusCode = httpResponse.statusCode
+        if (statusCode >= 500){
+            return  true
+        }
+        return false;
+    }
+    
+    private func logDebug(_ items: Any..., separator: String = " ") {
+        if mIsLogEnable {
+            print("Debug: ", terminator: separator)
+            items.forEach({ (item) in
+                debugPrint(item, terminator: separator)
+            })
+            print()
+        }
     }
 }
 

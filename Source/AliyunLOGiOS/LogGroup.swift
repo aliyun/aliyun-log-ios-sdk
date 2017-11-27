@@ -8,11 +8,10 @@
 
 import Foundation
 
-
 open class LogGroup:NSObject{
     fileprivate var mTopic:String = ""
     fileprivate var mSource:String = ""
-    fileprivate var mContent = [[String:AnyObject]]()
+    fileprivate var mContent = [NSMutableDictionary]()
     public init(topic:String,source:String){
         mTopic = topic
         mSource = source
@@ -25,7 +24,7 @@ open class LogGroup:NSObject{
         mSource = source
     }
     open func PutLog(_ log:Log){
-        mContent.append(log.GetContent())
+        mContent.append(log.mContent)
     }
     
     open func GetJsonPackage() -> String{
