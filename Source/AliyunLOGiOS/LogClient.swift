@@ -97,6 +97,8 @@ public class LOGClient:NSObject{
         headers["x-log-bodyrawsize"] = "\(body.count)"
         headers["x-log-compresstype"] = "deflate"
         headers["Host"] = self.getHostIn(url)
+        headers["User-Agent"] = "aliyun-log-sdk-ios/1.2.0"
+        
         
         
         var signString = "POST"+"\n"
@@ -133,6 +135,7 @@ public class LOGClient:NSObject{
         
         for (key, val) in headers {
             request.setValue(val, forHTTPHeaderField: key)
+            self.logDebug("request header key : ", key , " val : ", val)
         }
         
         let config = URLSessionConfiguration.default
