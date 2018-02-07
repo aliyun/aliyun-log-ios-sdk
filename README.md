@@ -61,6 +61,13 @@ ls
  - 确保General--Embedded Binaries中含有此framework
  - 如果拖入framework没有选择copy,确保Build Phases--Embed Frameworks中含有此framework,并在Build Settings--Search Paths--Framework Search Paths中添加aliyun-log-ios-sdk.framework的文件路径
 
+## 常见问题
+
+1.工程编译出来的iOS库怎么没有支持armv7s的架构？
+
+​	Xcode9中默认支持的架构是armv7/arm64,由于arm是向下兼容的，armv7的库在需要支持armv7s的app中也是适用的，如果仍然需要针对armv7s进行优化，那么需要如下图进行设置
+
+![list1](https://github.com/aliyun/aliyun-oss-ios-sdk/blob/master/Images/list1.png)
 
 ### 示例
 
