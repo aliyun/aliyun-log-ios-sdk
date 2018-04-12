@@ -25,7 +25,7 @@ class ViewController: UIViewController {
         let PROJECTNAME = "******"
         let LOGSTORENAME = "******"
         
-//        移动端是不安全环境，不建议直接使用阿里云主账号ak，sk的方式。建议使用STS方式。具体参见 https://help.aliyun.com/document_detail/62643.html
+//        移动端是不安全环境，不建议直接使用阿里云主账号ak，sk的方式。建议使用STS方式。具体参见 https://help.aliyun.com/document_detail/62681.html
 //        注意：只建议在测试环境或者用户可以保证阿里云主账号AK，SK安全的前提下使用。
 //        通过主账号AK，SK使用日志服务
 //        let ALIYUN_AK = "******"
