@@ -11,7 +11,7 @@ import Foundation
 open class Log : NSObject{
     public var mContent:NSMutableDictionary = [:]
     public override init(){
-        mContent["__time__"] = Int(Date().timeIntervalSince1970) as AnyObject?
+        mContent[KEY_TIME] = Int(Date().timeIntervalSince1970) as AnyObject?
     }
     
     //    open func PutTime(_ time:Int32)throws{
@@ -25,7 +25,7 @@ open class Log : NSObject{
         //        guard Int(Date().timeIntervalSince1970)<Int(time) else{
         //            throw LogError.illegalValueTime
         //        }
-        mContent["__time__"] = NSNumber(value: time as Int32)
+        mContent[KEY_TIME] = NSNumber(value: time as Int32)
     }
     
     //    open func PutContent(_ key:String,value:String)throws{

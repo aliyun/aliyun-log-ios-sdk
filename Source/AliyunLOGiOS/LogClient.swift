@@ -7,20 +7,22 @@
 //  Copyright © 2016年 wangjwchn. All rights reserved.
 
 import Foundation
-public class LOGClient:NSObject{
-    var mEndPoint:String
-    var mAccessKeyID:String
-    var mAccessKeySecret:String
-    var mProject:String
-    var mAccessToken:String?
+public class LOGClient: NSObject {
+    var mEndPoint: String
+    var mAccessKeyID: String
+    var mAccessKeySecret: String
+    var mProject: String
+    var mAccessToken: String?
     
     //重试相关逻辑
-    var retryCount:Int
-    let retryMax:Int = 3
+    var retryCount: Int
+    let retryMax: Int = 3
     
-    public var mIsLogEnable:Bool = false
+    public var mIsLogEnable: Bool = false
+    fileprivate var cacheManager: CacheCheckManager?
+    public var mConfig: SLSConfig?
     
-    public init(endPoint:String,accessKeyID:String,accessKeySecret :String,projectName:String){
+    public init(endPoint:String,accessKeyID:String,accessKeySecret :String,projectName:String, token: String? = nil, config: SLSConfig = SLSConfig()){
         if( endPoint.range(of: "http://") != nil ||
             endPoint.range(of: "Http://") != nil ||
             endPoint.range(of: "HTTP://") != nil){
@@ -37,17 +39,18 @@ public class LOGClient:NSObject{
         mAccessKeySecret = accessKeySecret
         mProject = projectName
         retryCount = 0
+        mConfig = config
+        mAccessToken = token
+        
+        super.init()
+        
+        cacheManager = CacheCheckManager(client: self)
+        cacheManager?.startCacheCheck()
     }
     
     
-    public convenience init(endPoint:String, accessKeyID:String, accessKeySecret:String, token:String, projectName:String){
-        
-        self.init(endPoint: endPoint, accessKeyID: accessKeyID, accessKeySecret: accessKeySecret, projectName: projectName)
-        
-        //        guard token != "" else{
-        //            throw LogError.nullToken
-        //        }
-        mAccessToken = token
+    public convenience init(endPoint:String, accessKeyID:String, accessKeySecret:String, token:String, projectName:String, config: SLSConfig){
+        self.init(endPoint: endPoint, accessKeyID: accessKeyID, accessKeySecret: accessKeySecret, projectName: projectName, token: token, config: config)
     }
     
     open func SetToken(_ token:String){
@@ -73,57 +76,76 @@ public class LOGClient:NSObject{
         DispatchQueue.global(qos: .default).async(execute: {
             
             let httpUrl = "https://\(self.mProject).\(self.mEndPoint)"+"/logstores/\(logStoreName)/shards/lb"
-            
-            let httpPostBody = logGroup.GetJsonPackage().data(using: String.Encoding.utf8)!
+            let jsonpackage = logGroup.GetJsonPackage()
+            let httpPostBody = jsonpackage.data(using: String.Encoding.utf8)!
             let httpPostBodyZipped = httpPostBody.GZip!
             
             let httpHeaders = self.GetHttpHeadersFrom(logStoreName,url: httpUrl,body: httpPostBody,bodyZipped: httpPostBodyZipped)
             
-            self.HttpPostRequest(httpUrl,headers: httpHeaders,body: httpPostBodyZipped, callBack:call)
-            
+            self.HttpPostRequest(httpUrl, headers: httpHeaders, body: httpPostBodyZipped, callBack: {[weak self] (result, error) in
+                if (error != nil && (self?.mConfig?.isCachable)!) {
+                    let timestamp = Date.timeIntervalBetween1970AndReferenceDate
+                    DBManager.defaultManager().insertRecords(endpoint: (self?.mEndPoint)!, project: (self?.mProject)!, logstore: logStoreName, log: jsonpackage, timestamp: timestamp)
+                }
+                call(result, error)
+            })
         })
+    }
+    
+    open func PostLogInCache(logstore: String, logMsg: String, call: @escaping (URLResponse?, NSError?) -> ()){
         
+        DispatchQueue.global(qos: .default).async(execute: {
+            
+            let httpUrl = "https://\(self.mProject).\(self.mEndPoint)"+"/logstores/\(logstore)/shards/lb"
+            
+            let httpPostBody = logMsg.data(using: .utf8)!
+            let httpPostBodyZipped = httpPostBody.GZip!
+            
+            let httpHeaders = self.GetHttpHeadersFrom(logstore , url: httpUrl, body: httpPostBody, bodyZipped: httpPostBodyZipped)
+            
+            self.HttpPostRequest(httpUrl, headers: httpHeaders, body: httpPostBodyZipped, callBack: call)
+        })
     }
     
     fileprivate func GetHttpHeadersFrom(_ logstore:String,url:String,body:Data,bodyZipped:Data) -> [String:String]{
         var headers = [String:String]()
         
-        headers["x-log-apiversion"] = "0.6.0"
-        headers["x-log-signaturemethod"] = "hmac-sha1"
-        headers["Content-Type"] = "application/json"
-        headers["Date"] = Date().GMT
-        headers["Content-MD5"] = bodyZipped.md5
-        headers["Content-Length"] = "\(bodyZipped.count)"
-        headers["x-log-bodyrawsize"] = "\(body.count)"
-        headers["x-log-compresstype"] = "deflate"
-        headers["Host"] = self.getHostIn(url)
+        headers[KEY_LOG_APIVERSION] = POST_VALUE_LOG_APIVERSION
+        headers[KEY_LOG_SIGNATUREMETHOD] = POST_VALUE_LOG_SIGNATUREMETHOD
+        headers[KEY_CONTENT_TYPE] = POST_VALUE_LOG_CONTENTTYPE
+        headers[KEY_DATE] = Date().GMT
+        headers[KEY_CONTENT_MD5] = bodyZipped.md5
+        headers[KEY_CONTENT_LENGTH] = "\(bodyZipped.count)"
+        headers[KEY_LOG_BODYRAWSIZE] = "\(body.count)"
+        headers[KEY_LOG_COMPRESSTYPE] = POST_VALUE_LOG_COMPRESSTYPE
+        headers[KEY_HOST] = self.getHostIn(url)
         headers["User-Agent"] = "aliyun-log-sdk-ios/1.2.0"
         
         
         
         var signString = "POST"+"\n"
-        signString += headers["Content-MD5"]! + "\n"
-        signString += headers["Content-Type"]! + "\n"
-        signString += headers["Date"]! + "\n"
+        signString += headers[KEY_CONTENT_MD5]! + "\n"
+        signString += headers[KEY_CONTENT_TYPE]! + "\n"
+        signString += headers[KEY_DATE]! + "\n"
         
         if(mAccessToken != nil)
         {
-            headers["x-acs-security-token"] = mAccessToken!
-            signString += "x-acs-security-token:\(headers["x-acs-security-token"]!)\n"
+            headers[KEY_ACS_SECURITY_TOKEN] = mAccessToken!
+            signString += "\(KEY_ACS_SECURITY_TOKEN):\(headers[KEY_ACS_SECURITY_TOKEN]!)\n"
         }
         
-        signString += "x-log-apiversion:0.6.0\n"
-        signString += "x-log-bodyrawsize:\(headers["x-log-bodyrawsize"]!)\n"
-        signString += "x-log-compresstype:deflate\n"
-        signString += "x-log-signaturemethod:hmac-sha1\n"
+        signString += "\(KEY_LOG_APIVERSION):0.6.0\n"
+        signString += "\(KEY_LOG_BODYRAWSIZE):\(headers[KEY_LOG_BODYRAWSIZE]!)\n"
+        signString += "\(KEY_LOG_COMPRESSTYPE):\(POST_VALUE_LOG_COMPRESSTYPE)\n"
+        signString += "\(KEY_LOG_SIGNATUREMETHOD):\(POST_VALUE_LOG_SIGNATUREMETHOD)\n"
         signString += "/logstores/\(logstore)/shards/lb"
         let sign  =  hmac_sha1(signString, key: mAccessKeySecret)
         
-        headers["Authorization"] = "LOG \(mAccessKeyID):\(sign)"
+        headers[KEY_AUTHORIZATION] = "LOG \(mAccessKeyID):\(sign)"
         return headers
     }
     
-    private func HttpPostRequest(_ url:String,headers:[String:String],body:Data, callBack: @escaping (URLResponse?, NSError?) -> ()){
+    private func HttpPostRequest(_ url: String,headers: [String:String],body: Data, callBack: @escaping (URLResponse?, NSError?) -> ()){
         
         let NSurl: URL = URL(string: url)!
         
@@ -253,7 +275,7 @@ public class LOGClient:NSObject{
         if mIsLogEnable {
             print("Debug: ", terminator: separator)
             items.forEach({ (item) in
-                debugPrint(item, terminator: separator)
+                print(item, terminator: separator)
             })
             print()
         }

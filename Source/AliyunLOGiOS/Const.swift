@@ -8,8 +8,6 @@
 
 import Foundation
 
-let HTTP_DATE_FORMAT = "EEE, dd MMM yyyy HH:mm:ss"
-
 let KEY_HOST = "Host"
 let KEY_TIME = "__time__"
 let KEY_TOPIC = "__topic__"
@@ -40,5 +38,13 @@ let POST_METHOD_NAME = "POST"
 
 let TOKEN_EXPIRE_TIME = 60 * 15 //15min
 
+let sls_documentPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first
 
-
+enum SLS_TABLE_COLUMN_NAME: String {
+    case id = "id"
+    case endpoint = "endpoint"
+    case project = "project"
+    case logstore = "logstore"
+    case log = "log"
+    case timestamp = "timestamp"
+}
