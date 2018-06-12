@@ -21,7 +21,7 @@
     [super viewDidLoad];
     
     
-    NSString * ENDPOINT = @"******";
+    NSString * ENDPOINT = @"http://cn-hangzhou.log.aliyuncs.com";
     NSString * PROJECTNAME = @"******";
     NSString * LOGSTORENAME = @"******";
     
@@ -37,9 +37,11 @@
     //更多请参见 https://help.aliyun.com/document_detail/62681.html
     NSString * STS_AK = @"******";
     NSString * STS_SK = @"******";
-    NSString * STS_TOKEN = @"******";
+    NSString * STS_TOKEN = nil;
     
-    LOGClient * client = [[LOGClient alloc] initWithEndPoint:ENDPOINT accessKeyID:STS_AK accessKeySecret:STS_SK token:STS_TOKEN projectName:PROJECTNAME];
+    SLSConfig *clientConfig = [[SLSConfig alloc] initWithConnectType:SLSConnectionTypeWifi cachable:YES];
+    
+    LOGClient * client = [[LOGClient alloc] initWithEndPoint:ENDPOINT accessKeyID:STS_AK accessKeySecret:STS_SK projectName:PROJECTNAME token:nil config:clientConfig];
     
     //  log调试开关
     client.mIsLogEnable = true;
@@ -51,8 +53,11 @@
     [group PutLog:loginfo];
     
     [client PostLog:group logStoreName:LOGSTORENAME call:^(NSURLResponse *response,NSError *error) {
-        NSLog(@"response %@", [response debugDescription]);
-        NSLog(@"error %@",[error debugDescription]);
+        if (error) {
+            NSLog(@"直接发送失败%@", error);
+        } else {
+            NSLog(@"直接发送成功");
+        }
     }];
 }
 

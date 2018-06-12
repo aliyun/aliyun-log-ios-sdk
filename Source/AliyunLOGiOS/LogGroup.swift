@@ -11,7 +11,17 @@ import Foundation
 open class LogGroup:NSObject{
     fileprivate var mTopic:String = ""
     fileprivate var mSource:String = ""
-    fileprivate var mContent = [NSMutableDictionary]()
+    fileprivate var mContent = NSMutableArray.init()
+    open var logs: NSMutableArray{
+        return self.mContent
+    }
+    open var logTopic: String{
+        return self.mTopic
+    }
+    open var logSource: String{
+        return self.mSource
+    }
+    
     public init(topic:String,source:String){
         mTopic = topic
         mSource = source
@@ -24,15 +34,15 @@ open class LogGroup:NSObject{
         mSource = source
     }
     open func PutLog(_ log:Log){
-        mContent.append(log.mContent)
+        mContent.add(log.mContent)
     }
     
     open func GetJsonPackage() -> String{
         do {
             var package:[String:AnyObject] = [:]
-            package["__topic__"] = mTopic as AnyObject?
-            package["__source__"] = mSource as AnyObject?
-            package["__logs__"] = mContent as AnyObject?
+            package[KEY_TOPIC] = mTopic as AnyObject?
+            package[KEY_SOURCE] = mSource as AnyObject?
+            package[KEY_LOGS] = mContent as AnyObject?
             let JsonPackage = String(data:try JSONSerialization.data(withJSONObject: package, options:JSONSerialization.WritingOptions.prettyPrinted), encoding: String.Encoding.utf8)!
             return JsonPackage
             
@@ -41,5 +51,4 @@ open class LogGroup:NSObject{
         }
         return ""
     }
-    
 }
