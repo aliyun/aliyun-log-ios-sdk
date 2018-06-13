@@ -15,11 +15,11 @@
 		28818ECB1D4F3D98005258CC /* AliyunLOGiOS-Bridging-Header.h in Headers */ = {isa = PBXBuildFile; fileRef = 28818EC91D4F3D98005258CC /* AliyunLOGiOS-Bridging-Header.h */; };
 		2895278C1D65CE73009B1AB9 /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2895278B1D65CE73009B1AB9 /* Const.swift */; };
 		28A49BC01D62DBAE00948425 /* LogError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A49BBF1D62DBAE00948425 /* LogError.swift */; };
+		D89E9BF820D1045A004C1192 /* CacheCheckManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89E9BF720D1045A004C1192 /* CacheCheckManager.swift */; };
 		D89EAFEC20C7E2CD00A82916 /* FMDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D89EAFEB20C7E2CD00A82916 /* FMDB.framework */; };
 		D89EAFF320C8D65100A82916 /* SLSConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89EAFF020C8D65100A82916 /* SLSConfig.swift */; };
 		D89EAFF420C8D65100A82916 /* NetworkReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89EAFF120C8D65100A82916 /* NetworkReachabilityManager.swift */; };
 		D89EAFF520C8D65100A82916 /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89EAFF220C8D65100A82916 /* DBManager.swift */; };
-		D89EAFF920C9197600A82916 /* CacheCheckManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89EAFF820C9197600A82916 /* CacheCheckManager.swift */; };
 		D89EB00120CA6C8000A82916 /* AliyunLOGiOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89EB00020CA6C8000A82916 /* AliyunLOGiOSTests.swift */; };
 		D89EB00320CA6C8000A82916 /* AliyunLOGiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28363D921D4F175400BB1738 /* AliyunLOGiOS.framework */; };
 		D89EB00A20CA6CC700A82916 /* DBManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89EB00920CA6CC700A82916 /* DBManagerTests.swift */; };
@@ -46,11 +46,11 @@
 		28818ECA1D4F3D98005258CC /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = AliyunLOGiOS/Info.plist; sourceTree = SOURCE_ROOT; };
 		2895278B1D65CE73009B1AB9 /* Const.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Const.swift; path = AliyunLOGiOS/Const.swift; sourceTree = SOURCE_ROOT; };
 		28A49BBF1D62DBAE00948425 /* LogError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LogError.swift; path = AliyunLOGiOS/LogError.swift; sourceTree = SOURCE_ROOT; };
+		D89E9BF720D1045A004C1192 /* CacheCheckManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CacheCheckManager.swift; path = AliyunLOGiOS/CacheCheckManager.swift; sourceTree = SOURCE_ROOT; };
 		D89EAFEB20C7E2CD00A82916 /* FMDB.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FMDB.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D89EAFF020C8D65100A82916 /* SLSConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SLSConfig.swift; path = AliyunLOGiOS/SLSConfig.swift; sourceTree = SOURCE_ROOT; };
 		D89EAFF120C8D65100A82916 /* NetworkReachabilityManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetworkReachabilityManager.swift; path = AliyunLOGiOS/NetworkReachabilityManager.swift; sourceTree = SOURCE_ROOT; };
 		D89EAFF220C8D65100A82916 /* DBManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DBManager.swift; path = AliyunLOGiOS/DBManager.swift; sourceTree = SOURCE_ROOT; };
-		D89EAFF820C9197600A82916 /* CacheCheckManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheCheckManager.swift; sourceTree = SOURCE_ROOT; };
 		D89EAFFE20CA6C8000A82916 /* AliyunLOGiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AliyunLOGiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D89EB00020CA6C8000A82916 /* AliyunLOGiOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AliyunLOGiOSTests.swift; sourceTree = "<group>"; };
 		D89EB00220CA6C8000A82916 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -112,6 +112,7 @@
 		28363DB11D4F195400BB1738 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				D89E9BF720D1045A004C1192 /* CacheCheckManager.swift */,
 				D89EAFF220C8D65100A82916 /* DBManager.swift */,
 				D89EAFF120C8D65100A82916 /* NetworkReachabilityManager.swift */,
 				D89EAFF020C8D65100A82916 /* SLSConfig.swift */,
@@ -121,7 +122,6 @@
 				284680891D4F42DD00E60635 /* LogGroup.swift */,
 				28A49BBF1D62DBAE00948425 /* LogError.swift */,
 				2895278B1D65CE73009B1AB9 /* Const.swift */,
-				D89EAFF820C9197600A82916 /* CacheCheckManager.swift */,
 			);
 			name = src;
 			sourceTree = "<group>";
@@ -256,12 +256,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				28A49BC01D62DBAE00948425 /* LogError.swift in Sources */,
+				D89E9BF820D1045A004C1192 /* CacheCheckManager.swift in Sources */,
 				2846808B1D4F42DD00E60635 /* Log.swift in Sources */,
 				D89EAFF420C8D65100A82916 /* NetworkReachabilityManager.swift in Sources */,
 				2846808C1D4F42DD00E60635 /* LogGroup.swift in Sources */,
 				D89EAFF520C8D65100A82916 /* DBManager.swift in Sources */,
 				28818EC51D4F3D86005258CC /* Tools.swift in Sources */,
-				D89EAFF920C9197600A82916 /* CacheCheckManager.swift in Sources */,
 				28818EC41D4F3D86005258CC /* LogClient.swift in Sources */,
 				D89EAFF320C8D65100A82916 /* SLSConfig.swift in Sources */,
 				2895278C1D65CE73009B1AB9 /* Const.swift in Sources */,

@@ -111,7 +111,7 @@ open class DBManager: NSObject {
     /// - Parameter range: limit
     /// - Returns: a array in which elements are dictionary
     open func fetchRecords(limit: Int) -> NSArray {
-        var records: NSMutableArray = NSMutableArray.init()
+        let records: NSMutableArray = NSMutableArray.init()
         
         self.dbQueue?.inDatabase({ (db) in
             do{
