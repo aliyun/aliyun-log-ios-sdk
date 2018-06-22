@@ -72,7 +72,7 @@ public class LOGClient:NSObject{
         
         DispatchQueue.global(qos: .default).async(execute: {
             
-            let httpUrl = "https://\(self.mProject).\(self.mEndPoint)"+"/logstores/\(logStoreName)/shards/lb"
+            let httpUrl = "http://\(self.mProject).\(self.mEndPoint)"+"/logstores/\(logStoreName)/shards/lb"
             
             let httpPostBody = logGroup.GetJsonPackage().data(using: String.Encoding.utf8)!
             let httpPostBodyZipped = httpPostBody.GZip!
@@ -144,18 +144,10 @@ public class LOGClient:NSObject{
         self.logDebug("request : ", request)
         
         session.dataTask(with: request, completionHandler: {(data: Data?, response: URLResponse?, error: Error?)  in
-            self.logDebug("response header : " , response.debugDescription)
-            var responseBody:String?
-            if (data != nil){
-                responseBody = String(data:data!, encoding: String.Encoding.utf8)!
-            }
-            self.logDebug("response body  : ", responseBody ?? "")
-            self.logDebug("error : ", error.debugDescription)
-        
-            var nsError:NSError?
-            if (error != nil){
+            var nsError: NSError?
+            if (error != nil) {
                 nsError = error as NSError?
-                if (nsError == nil){
+                if (nsError == nil) {
                     nsError = NSError(
                         domain: "AliyunLOGError",
                         code: 10001,
@@ -168,7 +160,7 @@ public class LOGClient:NSObject{
                 return
             }
             
-            if let httpResponse = response as? HTTPURLResponse{
+            if let httpResponse = response as? HTTPURLResponse {
                 self.logDebug("ready check retry")
                 let needRetry = self.shouldRetry(httpResponse:httpResponse,retryCount:(self.retryCount))
                 if needRetry {
@@ -220,7 +212,7 @@ public class LOGClient:NSObject{
                     }
                 }
                 callBack(response, nsError)
-            }else{
+            } else {
                 callBack(response, nsError)
             }
         }).resume()
