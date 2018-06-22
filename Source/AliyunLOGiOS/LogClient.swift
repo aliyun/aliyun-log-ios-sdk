@@ -175,22 +175,47 @@ public class LOGClient:NSObject{
                     self.logDebug("need retry")
                     self.retryCount += 1
                     self.HttpPostRequest(url, headers:headers, body:body, callBack:callBack)
-                }else{
-                    if (httpResponse.statusCode > 300){
-                        let jsonArr = try! JSONSerialization.jsonObject(with:data!,
-                                                                        options: JSONSerialization.ReadingOptions.mutableContainers) as! [String: String]
-                        if (jsonArr.count > 0){
-                            let errorCode = jsonArr["errorCode"]
-                            let errorMessage = jsonArr["errorMessage"]
-                            let requestID = httpResponse.allHeaderFields["x-log-requestid"]
-                            let userInfo = "errorCode : " + String(describing: errorCode) + " errorMessage : " + String(describing: errorMessage) + " requestID : " + String(describing: requestID)
+                    return;
+                } else {
+                    if (httpResponse.statusCode > 300) {
+                        if let rData = data {
+                            do {
+                                let jsonObject = try JSONSerialization.jsonObject(with:rData, options: .mutableContainers)
+                                if let result = jsonObject as? Dictionary<String, AnyObject> {
+                                    // do whatever with jsonResult
+                                    self.logDebug(result)
+                                    
+                                    nsError = NSError(
+                                        domain: "AliyunLOGError",
+                                        code: 10002,
+                                        userInfo: [
+                                            NSLocalizedDescriptionKey: result.debugDescription
+                                        ])
+                                } else {
+                                    let errorMsg = "jsonObject cannot convert to Dictionary!"
+                                    nsError = NSError(
+                                        domain: "AliyunLOGError",
+                                        code: 10002,
+                                        userInfo: [
+                                            NSLocalizedDescriptionKey: errorMsg
+                                        ])
+                                    self.logDebug(errorMsg)
+                                }
+                            } catch {
+                                self.logDebug("failed to parse data!error: \(error.localizedDescription)")
+                                
+                                callBack(response, error as NSError)
+                            }
+                        } else {
+                            let errorMsg = "The data returned by the network is empty!"
+                            self.logDebug(errorMsg)
+                            
                             nsError = NSError(
                                 domain: "AliyunLOGError",
                                 code: 10002,
                                 userInfo: [
-                                    NSLocalizedDescriptionKey: userInfo
-                                ]
-                            )
+                                    NSLocalizedDescriptionKey: errorMsg
+                                ])
                         }
                     }
                 }
