@@ -144,6 +144,13 @@ public class LOGClient:NSObject{
         self.logDebug("request : ", request)
         
         session.dataTask(with: request, completionHandler: {(data: Data?, response: URLResponse?, error: Error?)  in
+
+            if let retData = data {
+                if let ret = String.init(data: retData, encoding: .utf8) {
+                    self.logDebug(ret)
+                }
+            }
+            
             var nsError: NSError?
             if (error != nil) {
                 nsError = error as NSError?
@@ -161,6 +168,7 @@ public class LOGClient:NSObject{
             }
             
             if let httpResponse = response as? HTTPURLResponse {
+                self.logDebug("\(httpResponse)")
                 self.logDebug("ready check retry")
                 let needRetry = self.shouldRetry(httpResponse:httpResponse,retryCount:(self.retryCount))
                 if needRetry {
