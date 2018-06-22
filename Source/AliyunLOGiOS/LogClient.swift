@@ -72,7 +72,7 @@ public class LOGClient:NSObject{
         
         DispatchQueue.global(qos: .default).async(execute: {
             
-            let httpUrl = "https://\(self.mProject).\(self.mEndPoint)"+"/logstores/\(logStoreName)/shards/lb"
+            let httpUrl = "http://\(self.mProject).\(self.mEndPoint)"+"/logstores/\(logStoreName)/shards/lb"
             
             let httpPostBody = logGroup.GetJsonPackage().data(using: String.Encoding.utf8)!
             let httpPostBodyZipped = httpPostBody.GZip!
@@ -97,7 +97,7 @@ public class LOGClient:NSObject{
         headers["x-log-bodyrawsize"] = "\(body.count)"
         headers["x-log-compresstype"] = "deflate"
         headers["Host"] = self.getHostIn(url)
-        headers["User-Agent"] = "aliyun-log-sdk-ios/1.2.0"
+        headers["User-Agent"] = "aliyun-log-sdk-ios/\(ALIYUN_SLS_SDK_VERSION)"
         
         
         
@@ -144,18 +144,17 @@ public class LOGClient:NSObject{
         self.logDebug("request : ", request)
         
         session.dataTask(with: request, completionHandler: {(data: Data?, response: URLResponse?, error: Error?)  in
-            self.logDebug("response header : " , response.debugDescription)
-            var responseBody:String?
-            if (data != nil){
-                responseBody = String(data:data!, encoding: String.Encoding.utf8)!
+
+            if let retData = data {
+                if let ret = String.init(data: retData, encoding: .utf8) {
+                    self.logDebug(ret)
+                }
             }
-            self.logDebug("response body  : ", responseBody ?? "")
-            self.logDebug("error : ", error.debugDescription)
-        
-            var nsError:NSError?
-            if (error != nil){
+            
+            var nsError: NSError?
+            if (error != nil) {
                 nsError = error as NSError?
-                if (nsError == nil){
+                if (nsError == nil) {
                     nsError = NSError(
                         domain: "AliyunLOGError",
                         code: 10001,
@@ -168,34 +167,60 @@ public class LOGClient:NSObject{
                 return
             }
             
-            if let httpResponse = response as? HTTPURLResponse{
+            if let httpResponse = response as? HTTPURLResponse {
+                self.logDebug("\(httpResponse)")
                 self.logDebug("ready check retry")
                 let needRetry = self.shouldRetry(httpResponse:httpResponse,retryCount:(self.retryCount))
                 if needRetry {
                     self.logDebug("need retry")
                     self.retryCount += 1
                     self.HttpPostRequest(url, headers:headers, body:body, callBack:callBack)
-                }else{
-                    if (httpResponse.statusCode > 300){
-                        let jsonArr = try! JSONSerialization.jsonObject(with:data!,
-                                                                        options: JSONSerialization.ReadingOptions.mutableContainers) as! [String: String]
-                        if (jsonArr.count > 0){
-                            let errorCode = jsonArr["errorCode"]
-                            let errorMessage = jsonArr["errorMessage"]
-                            let requestID = httpResponse.allHeaderFields["x-log-requestid"]
-                            let userInfo = "errorCode : " + String(describing: errorCode) + " errorMessage : " + String(describing: errorMessage) + " requestID : " + String(describing: requestID)
+                    return;
+                } else {
+                    if (httpResponse.statusCode > 300) {
+                        if let rData = data {
+                            do {
+                                let jsonObject = try JSONSerialization.jsonObject(with:rData, options: .mutableContainers)
+                                if let result = jsonObject as? Dictionary<String, AnyObject> {
+                                    // do whatever with jsonResult
+                                    self.logDebug(result)
+                                    
+                                    nsError = NSError(
+                                        domain: "AliyunLOGError",
+                                        code: 10002,
+                                        userInfo: [
+                                            NSLocalizedDescriptionKey: result.debugDescription
+                                        ])
+                                } else {
+                                    let errorMsg = "jsonObject cannot convert to Dictionary!"
+                                    nsError = NSError(
+                                        domain: "AliyunLOGError",
+                                        code: 10002,
+                                        userInfo: [
+                                            NSLocalizedDescriptionKey: errorMsg
+                                        ])
+                                    self.logDebug(errorMsg)
+                                }
+                            } catch {
+                                self.logDebug("failed to parse data!error: \(error.localizedDescription)")
+                                
+                                callBack(response, error as NSError)
+                            }
+                        } else {
+                            let errorMsg = "The data returned by the network is empty!"
+                            self.logDebug(errorMsg)
+                            
                             nsError = NSError(
                                 domain: "AliyunLOGError",
                                 code: 10002,
                                 userInfo: [
-                                    NSLocalizedDescriptionKey: userInfo
-                                ]
-                            )
+                                    NSLocalizedDescriptionKey: errorMsg
+                                ])
                         }
                     }
                 }
                 callBack(response, nsError)
-            }else{
+            } else {
                 callBack(response, nsError)
             }
         }).resume()

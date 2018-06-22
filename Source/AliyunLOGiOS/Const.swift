@@ -8,6 +8,8 @@
 
 import Foundation
 
+let ALIYUN_SLS_SDK_VERSION = "1.2.1"
+
 let HTTP_DATE_FORMAT = "EEE, dd MMM yyyy HH:mm:ss"
 
 let KEY_HOST = "Host"
