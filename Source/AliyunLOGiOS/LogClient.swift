@@ -97,7 +97,7 @@ public class LOGClient:NSObject{
         headers["x-log-bodyrawsize"] = "\(body.count)"
         headers["x-log-compresstype"] = "deflate"
         headers["Host"] = self.getHostIn(url)
-        headers["User-Agent"] = "aliyun-log-sdk-ios/1.2.0"
+        headers["User-Agent"] = "aliyun-log-sdk-ios/\(ALIYUN_SLS_SDK_VERSION)"
         
         
         
