@@ -119,7 +119,7 @@ public class LOGClient: NSObject {
         headers[KEY_LOG_BODYRAWSIZE] = "\(body.count)"
         headers[KEY_LOG_COMPRESSTYPE] = POST_VALUE_LOG_COMPRESSTYPE
         headers[KEY_HOST] = self.getHostIn(url)
-        headers["User-Agent"] = "aliyun-log-sdk-ios/1.2.0"
+        headers[KEY_REQUEST_UA] = VALUE_REQUEST_UA
         
         
         
