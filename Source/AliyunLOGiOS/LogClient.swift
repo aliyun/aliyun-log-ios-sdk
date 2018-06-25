@@ -161,6 +161,7 @@ public class LOGClient: NSObject {
         }
         
         let config = URLSessionConfiguration.default
+        config.timeoutIntervalForRequest = 15
         let session = URLSession(configuration: config)
         
         self.logDebug("request : ", request)
