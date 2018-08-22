@@ -5,6 +5,7 @@
 ### 简介
 ###### [阿里云日志服务](https://www.aliyun.com/product/sls/)SDK基于[日志服务API](https://help.aliyun.com/document_detail/29007.html?spm=5176.55536.224569.9.2rvzUk)实现，目前提供以下功能：
   - 写入日志(默认为HTTPS)
+  - 断点续传(默认为HTTPS)
   
 ### 目前提供一下几种使用方式：
 
@@ -13,10 +14,11 @@
 
 ##### 使用Carthage
  - 创建一个 `Cartfile`，列出所需要的framework，运行`carthage bootstrap`.
- - 根据这个[说明](https://github.com/Carthage/Carthage#if-youre-building-for-ios-tvos-or-watchos) 来添加 `$(SRCROOT)/Carthage/Build/iOS/AliyunLOGiOS.framework` 到iOS项目中
+ - 根据这个[说明](https://github.com/Carthage/Carthage#if-youre-building-for-ios-tvos-or-watchos) 来添加 `$(SRCROOT)/Carthage/Build/iOS/AliyunLOGiOS.framework $(SRCROOT)/Carthage/Build/iOS/FMDB.framework` 到iOS项目中
 
 ##### 导入source code
  - 下载并将Source/AliyunLOGiOS文件夹拖入目标项目中.
+ - 下载FMDB并添加到工程依赖中,SDK目前使用的2.7.4版本。
 
 ##### 导入framework
 - 根据需要可以选择构建i386或者arm的framework，也可以选择同时构建。

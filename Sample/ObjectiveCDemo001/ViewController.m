@@ -9,9 +9,9 @@
 #import "ViewController.h"
 @import AliyunLOGiOS;
 
-NSString * ENDPOINT = @"*************";
-NSString * PROJECTNAME = @"***********";
-NSString * LOGSTORENAME = @"*********";
+NSString * ENDPOINT = @"http://cn-hangzhou.log.aliyuncs.com";
+NSString * PROJECTNAME = @"PROJECTNAME";
+NSString * LOGSTORENAME = @"LOGSTORENAME";
 
 @interface ViewController ()
 
@@ -34,21 +34,24 @@ NSString * LOGSTORENAME = @"*********";
 }
 
 - (void)setupClient {
+    SLSConfig *clientConfig = [[SLSConfig alloc] initWithConnectType:SLSConnectionTypeWifi cachable:YES];
 //        移动端是不安全环境，不建议直接使用阿里云主账号ak，sk的方式。建议使用STS方式。具体参见 https://help.aliyun.com/document_detail/62681.html
 //        注意：只建议在测试环境或者用户可以保证阿里云主账号AK，SK安全的前提下使用。
 //        通过主账号AK，SK使用日志服务
     
-//    NSString * AK = @"*********";
-//    NSString * SK = @"**********";
-//    _client = [[LOGClient alloc] initWithEndPoint:ENDPOINT accessKeyID:AK accessKeySecret:SK projectName:PROJECTNAME];
+//    NSString * AK = @"AK";
+//    NSString * SK = @"SK";
+//    _client = [[LOGClient alloc] initWithEndPoint:ENDPOINT accessKeyID:AK accessKeySecret:SK projectName:PROJECTNAME token:nil config:clientConfig];
 //
     //通过STS使用日志服务,如果是Objective-C工程的话，需要设置Build Settings -- Embedded Content Contains Swift Code 为 Yes
     //更多请参见 https://help.aliyun.com/document_detail/62681.html
-    NSString * STS_AK = @"******";
-    NSString * STS_SK = @"******";
-    NSString * STS_TOKEN = @"******";
-
-    _client = [[LOGClient alloc] initWithEndPoint:ENDPOINT accessKeyID:STS_AK accessKeySecret:STS_SK token:STS_TOKEN projectName:PROJECTNAME];
+    NSString * STS_AK = @"STS_AK";
+    NSString * STS_SK = @"STS_SK";
+    NSString * STS_TOKEN = @"STS_TOKEN";
+    
+    _client = [[LOGClient alloc] initWithEndPoint:ENDPOINT accessKeyID:STS_AK accessKeySecret:STS_SK projectName:PROJECTNAME token:nil config:clientConfig];
+    
+    
     
     //  log调试开关
     _client.mIsLogEnable = true;

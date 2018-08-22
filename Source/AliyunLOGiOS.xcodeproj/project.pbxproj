@@ -15,7 +15,25 @@
 		28818ECB1D4F3D98005258CC /* AliyunLOGiOS-Bridging-Header.h in Headers */ = {isa = PBXBuildFile; fileRef = 28818EC91D4F3D98005258CC /* AliyunLOGiOS-Bridging-Header.h */; };
 		2895278C1D65CE73009B1AB9 /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2895278B1D65CE73009B1AB9 /* Const.swift */; };
 		28A49BC01D62DBAE00948425 /* LogError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A49BBF1D62DBAE00948425 /* LogError.swift */; };
+		D89E9BF820D1045A004C1192 /* CacheCheckManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89E9BF720D1045A004C1192 /* CacheCheckManager.swift */; };
+		D89EAFEC20C7E2CD00A82916 /* FMDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D89EAFEB20C7E2CD00A82916 /* FMDB.framework */; };
+		D89EAFF320C8D65100A82916 /* SLSConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89EAFF020C8D65100A82916 /* SLSConfig.swift */; };
+		D89EAFF420C8D65100A82916 /* NetworkReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89EAFF120C8D65100A82916 /* NetworkReachabilityManager.swift */; };
+		D89EAFF520C8D65100A82916 /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89EAFF220C8D65100A82916 /* DBManager.swift */; };
+		D89EB00120CA6C8000A82916 /* AliyunLOGiOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89EB00020CA6C8000A82916 /* AliyunLOGiOSTests.swift */; };
+		D89EB00320CA6C8000A82916 /* AliyunLOGiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28363D921D4F175400BB1738 /* AliyunLOGiOS.framework */; };
+		D89EB00A20CA6CC700A82916 /* DBManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89EB00920CA6CC700A82916 /* DBManagerTests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D89EB00420CA6C8000A82916 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 28363D891D4F175400BB1738 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 28363D911D4F175400BB1738;
+			remoteInfo = AliyunLOGiOS;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		28363D921D4F175400BB1738 /* AliyunLOGiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AliyunLOGiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -28,6 +46,15 @@
 		28818ECA1D4F3D98005258CC /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = AliyunLOGiOS/Info.plist; sourceTree = SOURCE_ROOT; };
 		2895278B1D65CE73009B1AB9 /* Const.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Const.swift; path = AliyunLOGiOS/Const.swift; sourceTree = SOURCE_ROOT; };
 		28A49BBF1D62DBAE00948425 /* LogError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LogError.swift; path = AliyunLOGiOS/LogError.swift; sourceTree = SOURCE_ROOT; };
+		D89E9BF720D1045A004C1192 /* CacheCheckManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CacheCheckManager.swift; path = AliyunLOGiOS/CacheCheckManager.swift; sourceTree = SOURCE_ROOT; };
+		D89EAFEB20C7E2CD00A82916 /* FMDB.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FMDB.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D89EAFF020C8D65100A82916 /* SLSConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SLSConfig.swift; path = AliyunLOGiOS/SLSConfig.swift; sourceTree = SOURCE_ROOT; };
+		D89EAFF120C8D65100A82916 /* NetworkReachabilityManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetworkReachabilityManager.swift; path = AliyunLOGiOS/NetworkReachabilityManager.swift; sourceTree = SOURCE_ROOT; };
+		D89EAFF220C8D65100A82916 /* DBManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DBManager.swift; path = AliyunLOGiOS/DBManager.swift; sourceTree = SOURCE_ROOT; };
+		D89EAFFE20CA6C8000A82916 /* AliyunLOGiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AliyunLOGiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D89EB00020CA6C8000A82916 /* AliyunLOGiOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AliyunLOGiOSTests.swift; sourceTree = "<group>"; };
+		D89EB00220CA6C8000A82916 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D89EB00920CA6CC700A82916 /* DBManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBManagerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,7 +62,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D89EAFEC20C7E2CD00A82916 /* FMDB.framework in Frameworks */,
 				28363DB01D4F194500BB1738 /* libz.tbd in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D89EAFFB20CA6C8000A82916 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D89EB00320CA6C8000A82916 /* AliyunLOGiOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -46,7 +82,9 @@
 			isa = PBXGroup;
 			children = (
 				28363D941D4F175400BB1738 /* AliyunLOGiOS */,
+				D89EAFFF20CA6C8000A82916 /* AliyunLOGiOSTests */,
 				28363D931D4F175400BB1738 /* Products */,
+				D89EAFEA20C7E2CD00A82916 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				28363D921D4F175400BB1738 /* AliyunLOGiOS.framework */,
+				D89EAFFE20CA6C8000A82916 /* AliyunLOGiOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -73,6 +112,10 @@
 		28363DB11D4F195400BB1738 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				D89E9BF720D1045A004C1192 /* CacheCheckManager.swift */,
+				D89EAFF220C8D65100A82916 /* DBManager.swift */,
+				D89EAFF120C8D65100A82916 /* NetworkReachabilityManager.swift */,
+				D89EAFF020C8D65100A82916 /* SLSConfig.swift */,
 				28818EBF1D4F3D86005258CC /* LogClient.swift */,
 				28818EC01D4F3D86005258CC /* Tools.swift */,
 				284680881D4F42DD00E60635 /* Log.swift */,
@@ -81,6 +124,24 @@
 				2895278B1D65CE73009B1AB9 /* Const.swift */,
 			);
 			name = src;
+			sourceTree = "<group>";
+		};
+		D89EAFEA20C7E2CD00A82916 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D89EAFEB20C7E2CD00A82916 /* FMDB.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D89EAFFF20CA6C8000A82916 /* AliyunLOGiOSTests */ = {
+			isa = PBXGroup;
+			children = (
+				D89EB00020CA6C8000A82916 /* AliyunLOGiOSTests.swift */,
+				D89EB00220CA6C8000A82916 /* Info.plist */,
+				D89EB00920CA6CC700A82916 /* DBManagerTests.swift */,
+			);
+			path = AliyunLOGiOSTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -115,12 +176,31 @@
 			productReference = 28363D921D4F175400BB1738 /* AliyunLOGiOS.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		D89EAFFD20CA6C8000A82916 /* AliyunLOGiOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D89EB00620CA6C8000A82916 /* Build configuration list for PBXNativeTarget "AliyunLOGiOSTests" */;
+			buildPhases = (
+				D89EAFFA20CA6C8000A82916 /* Sources */,
+				D89EAFFB20CA6C8000A82916 /* Frameworks */,
+				D89EAFFC20CA6C8000A82916 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D89EB00520CA6C8000A82916 /* PBXTargetDependency */,
+			);
+			name = AliyunLOGiOSTests;
+			productName = AliyunLOGiOSTests;
+			productReference = D89EAFFE20CA6C8000A82916 /* AliyunLOGiOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		28363D891D4F175400BB1738 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0940;
 				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = wangjwchn;
 				TargetAttributes = {
@@ -128,6 +208,10 @@
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = 7EGABX8KQS;
 						LastSwiftMigration = 0810;
+					};
+					D89EAFFD20CA6C8000A82916 = {
+						CreatedOnToolsVersion = 9.4;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -144,12 +228,20 @@
 			projectRoot = "";
 			targets = (
 				28363D911D4F175400BB1738 /* AliyunLOGiOS */,
+				D89EAFFD20CA6C8000A82916 /* AliyunLOGiOSTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		28363D901D4F175400BB1738 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D89EAFFC20CA6C8000A82916 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -164,15 +256,36 @@
 			buildActionMask = 2147483647;
 			files = (
 				28A49BC01D62DBAE00948425 /* LogError.swift in Sources */,
+				D89E9BF820D1045A004C1192 /* CacheCheckManager.swift in Sources */,
 				2846808B1D4F42DD00E60635 /* Log.swift in Sources */,
+				D89EAFF420C8D65100A82916 /* NetworkReachabilityManager.swift in Sources */,
 				2846808C1D4F42DD00E60635 /* LogGroup.swift in Sources */,
+				D89EAFF520C8D65100A82916 /* DBManager.swift in Sources */,
 				28818EC51D4F3D86005258CC /* Tools.swift in Sources */,
 				28818EC41D4F3D86005258CC /* LogClient.swift in Sources */,
+				D89EAFF320C8D65100A82916 /* SLSConfig.swift in Sources */,
 				2895278C1D65CE73009B1AB9 /* Const.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D89EAFFA20CA6C8000A82916 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D89EB00120CA6C8000A82916 /* AliyunLOGiOSTests.swift in Sources */,
+				D89EB00A20CA6CC700A82916 /* DBManagerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D89EB00520CA6C8000A82916 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 28363D911D4F175400BB1738 /* AliyunLOGiOS */;
+			targetProxy = D89EB00420CA6C8000A82916 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		28363D981D4F175400BB1738 /* Debug */ = {
@@ -316,6 +429,65 @@
 			};
 			name = Release;
 		};
+		D89EB00720CA6C8000A82916 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = AliyunLOGiOSTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.alicloud.AliyunLOGiOSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D89EB00820CA6C8000A82916 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = AliyunLOGiOSTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.alicloud.AliyunLOGiOSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -333,6 +505,15 @@
 			buildConfigurations = (
 				28363D9B1D4F175400BB1738 /* Debug */,
 				28363D9C1D4F175400BB1738 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D89EB00620CA6C8000A82916 /* Build configuration list for PBXNativeTarget "AliyunLOGiOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D89EB00720CA6C8000A82916 /* Debug */,
+				D89EB00820CA6C8000A82916 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
