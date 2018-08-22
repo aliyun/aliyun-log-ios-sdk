@@ -10,6 +10,7 @@ import Foundation
 
 let ALIYUN_LOG_SDK_VERSION = "2.0.0"
 
+let HTTP_DATE_FORMAT = "EEE, dd MMM yyyy HH:mm:ss"
 
 let KEY_HOST = "Host"
 let KEY_TIME = "__time__"
@@ -34,7 +35,7 @@ let POST_VALUE_LOG_APIVERSION = "0.6.0"
 let POST_VALUE_LOG_COMPRESSTYPE = "deflate"
 let POST_VALUE_LOG_CONTENTTYPE = "application/json"
 let POST_VALUE_LOG_SIGNATUREMETHOD = "hmac-sha1"
-let VALUE_REQUEST_UA = "aliyun-log-sdk-ios/\(ALIYUN_LOG_SDK_VERSION))"
+let VALUE_REQUEST_UA = "aliyun-log-sdk-ios/\(ALIYUN_LOG_SDK_VERSION)"
 
 
 let POST_METHOD_NAME = "POST"
