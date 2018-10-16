@@ -45,4 +45,6 @@ Carthage/Build
 
 # Cocoapods
 Source/Pods
+Sample/Pods
+Pods/
 

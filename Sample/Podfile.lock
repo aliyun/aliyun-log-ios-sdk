@@ -1,0 +1,25 @@
+PODS:
+  - AliyunLOGiOS (1.2.2):
+    - FMDB (~> 2.7.5)
+  - FMDB (2.7.5):
+    - FMDB/standard (= 2.7.5)
+  - FMDB/standard (2.7.5)
+
+DEPENDENCIES:
+  - AliyunLOGiOS (from `../`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - FMDB
+
+EXTERNAL SOURCES:
+  AliyunLOGiOS:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  AliyunLOGiOS: 05a4cc16c60c919c83690db0a5399c1260bc2f96
+  FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
+
+PODFILE CHECKSUM: 4a7c8af760fb7f960458c241b4648f9cac4d1895
+
+COCOAPODS: 1.5.3

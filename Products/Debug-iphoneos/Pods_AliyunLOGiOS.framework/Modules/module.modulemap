@@ -1,0 +1,6 @@
+framework module Pods_AliyunLOGiOS {
+  umbrella header "Pods-AliyunLOGiOS-umbrella.h"
+
+  export *
+  module * { export * }
+}

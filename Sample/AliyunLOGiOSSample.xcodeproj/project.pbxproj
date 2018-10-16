@@ -7,23 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		28AC42DD1D6AE73500F45E29 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28AC42D41D6AE73500F45E29 /* AppDelegate.swift */; };
-		28AC42DE1D6AE73500F45E29 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28AC42D51D6AE73500F45E29 /* Assets.xcassets */; };
-		28AC42DF1D6AE73500F45E29 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28AC42D71D6AE73500F45E29 /* LaunchScreen.storyboard */; };
-		28AC42E01D6AE73500F45E29 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28AC42D91D6AE73500F45E29 /* Main.storyboard */; };
-		28AC42E21D6AE73500F45E29 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28AC42DC1D6AE73500F45E29 /* ViewController.swift */; };
+		A587E251EE6ED8BC735ECDF1 /* Pods_ObjectiveCDemo001.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0804EE825101B606BE7E85C4 /* Pods_ObjectiveCDemo001.framework */; };
+		BAC804CB11E949398C45BCB3 /* Pods_AliyunLOGiOSSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3E4FB6EB5B136D3F39AAC12 /* Pods_AliyunLOGiOSSample.framework */; };
 		D17BF91A1FC581F200B77BD7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D17BF9191FC581F200B77BD7 /* main.m */; };
 		D17BF91D1FC581F200B77BD7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D17BF91C1FC581F200B77BD7 /* AppDelegate.m */; };
 		D17BF9201FC581F200B77BD7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D17BF91F1FC581F200B77BD7 /* ViewController.m */; };
 		D17BF9231FC581F200B77BD7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D17BF9211FC581F200B77BD7 /* Main.storyboard */; };
 		D17BF9251FC581F200B77BD7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D17BF9241FC581F200B77BD7 /* Assets.xcassets */; };
 		D17BF9281FC581F200B77BD7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D17BF9261FC581F200B77BD7 /* LaunchScreen.storyboard */; };
-		D17F05921FC6B3A7009458F8 /* AliyunLOGiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D17F05911FC6B3A7009458F8 /* AliyunLOGiOS.framework */; };
-		D17F05931FC6B3A7009458F8 /* AliyunLOGiOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D17F05911FC6B3A7009458F8 /* AliyunLOGiOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		D17F05951FC6B3AF009458F8 /* AliyunLOGiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D17F05911FC6B3A7009458F8 /* AliyunLOGiOS.framework */; };
-		D17F05961FC6B3AF009458F8 /* AliyunLOGiOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D17F05911FC6B3A7009458F8 /* AliyunLOGiOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		D89EAFEE20C7E36D00A82916 /* FMDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D89EAFED20C7E36D00A82916 /* FMDB.framework */; };
-		D89EAFEF20C7E36D00A82916 /* FMDB.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D89EAFED20C7E36D00A82916 /* FMDB.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D84B62152175B7360022CF9A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84B620D2175B7360022CF9A /* ViewController.swift */; };
+		D84B62162175B7360022CF9A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D84B620E2175B7360022CF9A /* Assets.xcassets */; };
+		D84B62172175B7360022CF9A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D84B620F2175B7360022CF9A /* LaunchScreen.storyboard */; };
+		D84B62182175B7360022CF9A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D84B62112175B7360022CF9A /* Main.storyboard */; };
+		D84B62192175B7360022CF9A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84B62132175B7360022CF9A /* AppDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -33,8 +29,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				D17F05931FC6B3A7009458F8 /* AliyunLOGiOS.framework in Embed Frameworks */,
-				D89EAFEF20C7E36D00A82916 /* FMDB.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -45,7 +39,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				D17F05961FC6B3AF009458F8 /* AliyunLOGiOS.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -53,13 +46,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0804EE825101B606BE7E85C4 /* Pods_ObjectiveCDemo001.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ObjectiveCDemo001.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2385A1CC5DC51EFB33FF14B3 /* Pods-AliyunLOGiOSSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AliyunLOGiOSSample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AliyunLOGiOSSample/Pods-AliyunLOGiOSSample.debug.xcconfig"; sourceTree = "<group>"; };
 		282E4F751D4F004C00E79DA9 /* AliyunLOGiOSSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AliyunLOGiOSSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		28AC42D41D6AE73500F45E29 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = AliyunLOGiOSSample/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
-		28AC42D51D6AE73500F45E29 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = AliyunLOGiOSSample/Assets.xcassets; sourceTree = SOURCE_ROOT; };
-		28AC42D81D6AE73500F45E29 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		28AC42DA1D6AE73500F45E29 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Main.storyboard; sourceTree = "<group>"; };
-		28AC42DB1D6AE73500F45E29 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = AliyunLOGiOSSample/Info.plist; sourceTree = SOURCE_ROOT; };
-		28AC42DC1D6AE73500F45E29 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = AliyunLOGiOSSample/ViewController.swift; sourceTree = SOURCE_ROOT; };
+		3998B09D16CB17C48F16CB1C /* Pods-ObjectiveCDemo001.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ObjectiveCDemo001.release.xcconfig"; path = "Pods/Target Support Files/Pods-ObjectiveCDemo001/Pods-ObjectiveCDemo001.release.xcconfig"; sourceTree = "<group>"; };
+		640165F756F26EB3D221DABD /* Pods-ObjectiveCDemo001.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ObjectiveCDemo001.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ObjectiveCDemo001/Pods-ObjectiveCDemo001.debug.xcconfig"; sourceTree = "<group>"; };
+		C545F0EB65744185772BE0D6 /* Pods-AliyunLOGiOSSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AliyunLOGiOSSample.release.xcconfig"; path = "Pods/Target Support Files/Pods-AliyunLOGiOSSample/Pods-AliyunLOGiOSSample.release.xcconfig"; sourceTree = "<group>"; };
 		D17BF9161FC581F200B77BD7 /* ObjectiveCDemo001.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ObjectiveCDemo001.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D17BF9191FC581F200B77BD7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D17BF91B1FC581F200B77BD7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -69,9 +61,12 @@
 		D17BF9221FC581F200B77BD7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D17BF9241FC581F200B77BD7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D17BF9271FC581F200B77BD7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		D17BF9291FC581F200B77BD7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D17F05911FC6B3A7009458F8 /* AliyunLOGiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AliyunLOGiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D89EAFED20C7E36D00A82916 /* FMDB.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FMDB.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D84B620D2175B7360022CF9A /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D84B620E2175B7360022CF9A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D84B62102175B7360022CF9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D84B62122175B7360022CF9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D84B62132175B7360022CF9A /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F3E4FB6EB5B136D3F39AAC12 /* Pods_AliyunLOGiOSSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AliyunLOGiOSSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,8 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D17F05921FC6B3A7009458F8 /* AliyunLOGiOS.framework in Frameworks */,
-				D89EAFEE20C7E36D00A82916 /* FMDB.framework in Frameworks */,
+				BAC804CB11E949398C45BCB3 /* Pods_AliyunLOGiOSSample.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,7 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D17F05951FC6B3AF009458F8 /* AliyunLOGiOS.framework in Frameworks */,
+				A587E251EE6ED8BC735ECDF1 /* Pods_ObjectiveCDemo001.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,11 +92,11 @@
 		282E4F6C1D4F004C00E79DA9 = {
 			isa = PBXGroup;
 			children = (
-				D89EAFED20C7E36D00A82916 /* FMDB.framework */,
-				D17F05911FC6B3A7009458F8 /* AliyunLOGiOS.framework */,
-				282E4F771D4F004C00E79DA9 /* AliyunLOGiOSSample */,
+				D84B620C2175B7360022CF9A /* AliyunLOGiOSSample */,
 				D17BF9171FC581F200B77BD7 /* ObjectiveCDemo001 */,
 				282E4F761D4F004C00E79DA9 /* Products */,
+				9E1D8C124EA1154B2A9A030B /* Pods */,
+				D3804E3749BDA1CF129D87B8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -115,28 +109,16 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		282E4F771D4F004C00E79DA9 /* AliyunLOGiOSSample */ = {
+		9E1D8C124EA1154B2A9A030B /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				28AC42DC1D6AE73500F45E29 /* ViewController.swift */,
-				28AC42D41D6AE73500F45E29 /* AppDelegate.swift */,
-				28AC42D51D6AE73500F45E29 /* Assets.xcassets */,
-				28AC42D61D6AE73500F45E29 /* Base.lproj */,
-				28AC42DB1D6AE73500F45E29 /* Info.plist */,
+				2385A1CC5DC51EFB33FF14B3 /* Pods-AliyunLOGiOSSample.debug.xcconfig */,
+				C545F0EB65744185772BE0D6 /* Pods-AliyunLOGiOSSample.release.xcconfig */,
+				640165F756F26EB3D221DABD /* Pods-ObjectiveCDemo001.debug.xcconfig */,
+				3998B09D16CB17C48F16CB1C /* Pods-ObjectiveCDemo001.release.xcconfig */,
 			);
-			name = AliyunLOGiOSSample;
-			path = AliyunSLSiOSSample;
+			name = Pods;
 			sourceTree = "<group>";
-		};
-		28AC42D61D6AE73500F45E29 /* Base.lproj */ = {
-			isa = PBXGroup;
-			children = (
-				28AC42D71D6AE73500F45E29 /* LaunchScreen.storyboard */,
-				28AC42D91D6AE73500F45E29 /* Main.storyboard */,
-			);
-			name = Base.lproj;
-			path = AliyunLOGiOSSample/Base.lproj;
-			sourceTree = SOURCE_ROOT;
 		};
 		D17BF9171FC581F200B77BD7 /* ObjectiveCDemo001 */ = {
 			isa = PBXGroup;
@@ -148,7 +130,6 @@
 				D17BF9211FC581F200B77BD7 /* Main.storyboard */,
 				D17BF9241FC581F200B77BD7 /* Assets.xcassets */,
 				D17BF9261FC581F200B77BD7 /* LaunchScreen.storyboard */,
-				D17BF9291FC581F200B77BD7 /* Info.plist */,
 				D17BF9181FC581F200B77BD7 /* Supporting Files */,
 			);
 			path = ObjectiveCDemo001;
@@ -162,6 +143,27 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		D3804E3749BDA1CF129D87B8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F3E4FB6EB5B136D3F39AAC12 /* Pods_AliyunLOGiOSSample.framework */,
+				0804EE825101B606BE7E85C4 /* Pods_ObjectiveCDemo001.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D84B620C2175B7360022CF9A /* AliyunLOGiOSSample */ = {
+			isa = PBXGroup;
+			children = (
+				D84B620D2175B7360022CF9A /* ViewController.swift */,
+				D84B620E2175B7360022CF9A /* Assets.xcassets */,
+				D84B620F2175B7360022CF9A /* LaunchScreen.storyboard */,
+				D84B62112175B7360022CF9A /* Main.storyboard */,
+				D84B62132175B7360022CF9A /* AppDelegate.swift */,
+			);
+			path = AliyunLOGiOSSample;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -169,10 +171,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 282E4F871D4F004C00E79DA9 /* Build configuration list for PBXNativeTarget "AliyunLOGiOSSample" */;
 			buildPhases = (
+				12451452B6D1D3E219B19C12 /* [CP] Check Pods Manifest.lock */,
 				282E4F711D4F004C00E79DA9 /* Sources */,
 				282E4F721D4F004C00E79DA9 /* Frameworks */,
 				282E4F731D4F004C00E79DA9 /* Resources */,
 				D17F05941FC6B3A7009458F8 /* Embed Frameworks */,
+				1326F87C37560C21235FD3A7 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -187,10 +191,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D17BF92A1FC581F200B77BD7 /* Build configuration list for PBXNativeTarget "ObjectiveCDemo001" */;
 			buildPhases = (
+				35F3D145F765977BEEB5CA6E /* [CP] Check Pods Manifest.lock */,
 				D17BF9121FC581F200B77BD7 /* Sources */,
 				D17BF9131FC581F200B77BD7 /* Frameworks */,
 				D17BF9141FC581F200B77BD7 /* Resources */,
 				D17F05971FC6B3AF009458F8 /* Embed Frameworks */,
+				FDCE861C227970E811031CAA /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -213,13 +219,12 @@
 				TargetAttributes = {
 					282E4F741D4F004C00E79DA9 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = 6ND67KCL32;
 						LastSwiftMigration = 0810;
+						ProvisioningStyle = Manual;
 					};
 					D17BF9151FC581F200B77BD7 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = HG8JRXJARL;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -247,9 +252,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				28AC42E01D6AE73500F45E29 /* Main.storyboard in Resources */,
-				28AC42DE1D6AE73500F45E29 /* Assets.xcassets in Resources */,
-				28AC42DF1D6AE73500F45E29 /* LaunchScreen.storyboard in Resources */,
+				D84B62182175B7360022CF9A /* Main.storyboard in Resources */,
+				D84B62162175B7360022CF9A /* Assets.xcassets in Resources */,
+				D84B62172175B7360022CF9A /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,13 +270,92 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		12451452B6D1D3E219B19C12 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AliyunLOGiOSSample-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1326F87C37560C21235FD3A7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-AliyunLOGiOSSample/Pods-AliyunLOGiOSSample-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AliyunLOGiOS/AliyunLOGiOS.framework",
+				"${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AliyunLOGiOS.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FMDB.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AliyunLOGiOSSample/Pods-AliyunLOGiOSSample-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		35F3D145F765977BEEB5CA6E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ObjectiveCDemo001-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FDCE861C227970E811031CAA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-ObjectiveCDemo001/Pods-ObjectiveCDemo001-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AliyunLOGiOS/AliyunLOGiOS.framework",
+				"${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AliyunLOGiOS.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FMDB.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ObjectiveCDemo001/Pods-ObjectiveCDemo001-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		282E4F711D4F004C00E79DA9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				28AC42E21D6AE73500F45E29 /* ViewController.swift in Sources */,
-				28AC42DD1D6AE73500F45E29 /* AppDelegate.swift in Sources */,
+				D84B62192175B7360022CF9A /* AppDelegate.swift in Sources */,
+				D84B62152175B7360022CF9A /* ViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,22 +372,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		28AC42D71D6AE73500F45E29 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				28AC42D81D6AE73500F45E29 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		28AC42D91D6AE73500F45E29 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				28AC42DA1D6AE73500F45E29 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		D17BF9211FC581F200B77BD7 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -318,6 +386,22 @@
 				D17BF9271FC581F200B77BD7 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		D84B620F2175B7360022CF9A /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D84B62102175B7360022CF9A /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		D84B62112175B7360022CF9A /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D84B62122175B7360022CF9A /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -417,15 +501,18 @@
 		};
 		282E4F881D4F004C00E79DA9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2385A1CC5DC51EFB33FF14B3 /* Pods-AliyunLOGiOSSample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = 6ND67KCL32;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = AliyunLOGiOSSample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.aliyun.AliyunLOGiOSSample;
 				PRODUCT_NAME = AliyunLOGiOSSample;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
@@ -433,48 +520,57 @@
 		};
 		282E4F891D4F004C00E79DA9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C545F0EB65744185772BE0D6 /* Pods-AliyunLOGiOSSample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = 6ND67KCL32;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = AliyunLOGiOSSample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.aliyun.AliyunLOGiOSSample;
 				PRODUCT_NAME = AliyunLOGiOSSample;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
 		D17BF92B1FC581F200B77BD7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 640165F756F26EB3D221DABD /* Pods-ObjectiveCDemo001.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				DEVELOPMENT_TEAM = HG8JRXJARL;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = ObjectiveCDemo001/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zuoqin.demo.ObjectiveCDemo001;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
 		D17BF92C1FC581F200B77BD7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3998B09D16CB17C48F16CB1C /* Pods-ObjectiveCDemo001.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				DEVELOPMENT_TEAM = HG8JRXJARL;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = ObjectiveCDemo001/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zuoqin.demo.ObjectiveCDemo001;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};

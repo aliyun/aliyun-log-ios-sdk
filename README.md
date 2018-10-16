@@ -10,7 +10,7 @@
 ### 目前提供一下几种使用方式：
 
 ##### 使用CocoaPods
-  - 敬请期待
+  - pod AliyunLOGiOS, '~> 1.2.2'
 
 ##### 使用Carthage
  - 创建一个 `Cartfile`，列出所需要的framework，运行`carthage bootstrap`.
@@ -21,47 +21,12 @@
  - 下载FMDB并添加到工程依赖中,SDK目前使用的2.7.4版本。
 
 ##### 导入framework
-- 根据需要可以选择构建i386或者arm的framework，也可以选择同时构建。
-
-build i386 framework
-
-``` bash
-cd aliyun-log-ios-sdk
-cd Source
-bash build_i386.sh
-cd Products
-ls
-
-```
-
-
-build arm framework
-
-``` bash
-cd aliyun-log-ios-sdk
-cd Source
-bash build_arm.sh
-cd Products
-ls
-
-```
-
-
-build both
-
-``` bash
-cd aliyun-log-ios-sdk
-cd Source
-bash build_both.sh
-cd Products
-ls
-
-```
-
- - 执行之后，会在Products文件夹下生成AliyunLOGiOS.framework文件.
- - 将framework拖入xcode project中
+ 我们已经将构建好的framework文件存放到Products/下面
+ 
+ - 将相应的AliyunLOGiOS.framework,FMDB.framework拖入xcode project中
  - 确保General--Embedded Binaries中含有此framework
- - 如果拖入framework没有选择copy,确保Build Phases--Embed Frameworks中含有此framework,并在Build Settings--Search Paths--Framework Search Paths中添加aliyun-log-ios-sdk.framework的文件路径
+   ![embedfmk](https://github.com/aliyun/aliyun-log-ios-sdk/blob/master/Images/embed-fmk.png)
+ - 如果拖入framework没有选择copy,确保Build Phases--Embed Frameworks中含有此framework,并在Build Settings--Search Paths--Framework Search Paths中添加AliyunLOGiOS.framework,FMDB.framework的文件路径
 
 ## 常见问题
 
