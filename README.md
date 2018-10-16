@@ -10,11 +10,10 @@
 ### 目前提供一下几种使用方式：
 
 ##### 使用CocoaPods
-  - pod AliyunLOGiOS, '~> 2.0.1'
 
-##### 使用Carthage
- - 创建一个 `Cartfile`，列出所需要的framework，运行`carthage bootstrap`.
- - 根据这个[说明](https://github.com/Carthage/Carthage#if-youre-building-for-ios-tvos-or-watchos) 来添加 `$(SRCROOT)/Carthage/Build/iOS/AliyunLOGiOS.framework $(SRCROOT)/Carthage/Build/iOS/FMDB.framework` 到iOS项目中
+  - pod AliyunLOGiOS, '~> 2.0.1'
+  
+  **注意:由于AliyunLOGiOS是Swift代码库，需要在Podfile中添加use_frameworks**
 
 ##### 导入source code
  - 下载并将Source/AliyunLOGiOS文件夹拖入目标项目中.
