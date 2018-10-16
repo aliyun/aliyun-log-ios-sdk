@@ -10,7 +10,7 @@
 ### 目前提供一下几种使用方式：
 
 ##### 使用CocoaPods
-  - pod AliyunLOGiOS, '~> 1.2.2'
+  - pod AliyunLOGiOS, '~> 2.0.1'
 
 ##### 使用Carthage
  - 创建一个 `Cartfile`，列出所需要的framework，运行`carthage bootstrap`.
