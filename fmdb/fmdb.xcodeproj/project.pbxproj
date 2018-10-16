@@ -154,7 +154,6 @@
 		83C73F291C326CE800FFC730 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		83C73F2B1C326CF400FFC730 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.2.sdk/usr/lib/libsqlite3.tbd; sourceTree = DEVELOPER_DIR; };
 		83C73F301C326D8600FFC730 /* FMDB.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = FMDB.podspec; sourceTree = "<group>"; };
-		83C73F311C326FA600FFC730 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = src/fmdb/Info.plist; sourceTree = "<group>"; };
 		8DD76FA10486AA7600D96B5E /* fmdb */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = fmdb; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF5D041618416BB2008C5AA9 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF5D041818416BB2008C5AA9 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -348,7 +347,6 @@
 				CC50F2CB0DF9183600E4AAAE /* FMDatabaseAdditions.m */,
 				CC9E4EB713B31188005F9210 /* FMDatabasePool.h */,
 				CC9E4EB813B31188005F9210 /* FMDatabasePool.m */,
-				83C73F311C326FA600FFC730 /* Info.plist */,
 			);
 			name = fmdb;
 			sourceTree = "<group>";
