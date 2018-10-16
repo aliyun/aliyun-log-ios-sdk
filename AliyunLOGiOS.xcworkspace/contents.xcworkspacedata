@@ -2,12 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:fmdb/fmdb.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:Sample/AliyunLOGiOSSample.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Source/AliyunLOGiOS.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:fmdb/fmdb.xcodeproj">
    </FileRef>
 </Workspace>
