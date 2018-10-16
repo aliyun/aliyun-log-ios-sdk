@@ -18,38 +18,37 @@
 		D88CBB72217606D100B27683 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D88CBB6A217606D100B27683 /* LaunchScreen.storyboard */; };
 		D88CBB73217606D100B27683 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D88CBB6C217606D100B27683 /* Main.storyboard */; };
 		D88CBB74217606D100B27683 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88CBB6E217606D100B27683 /* AppDelegate.swift */; };
-		D88CBB75217606D100B27683 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D88CBB6F217606D100B27683 /* Info.plist */; };
-		D88CBB942176078800B27683 /* AliyunLOGiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D88CBB932176078800B27683 /* AliyunLOGiOS.framework */; };
-		D88CBB952176078800B27683 /* AliyunLOGiOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D88CBB932176078800B27683 /* AliyunLOGiOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		D88CBB9A217607AA00B27683 /* AliyunLOGiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D88CBB99217607AA00B27683 /* AliyunLOGiOS.framework */; };
-		D88CBB9B217607AA00B27683 /* AliyunLOGiOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D88CBB99217607AA00B27683 /* AliyunLOGiOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		D88CBB9D217607AF00B27683 /* FMDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D88CBB9C217607AF00B27683 /* FMDB.framework */; };
-		D88CBB9E217607AF00B27683 /* FMDB.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D88CBB9C217607AF00B27683 /* FMDB.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		D88CBBA021760AE100B27683 /* FMDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D88CBB9F21760AE100B27683 /* FMDB.framework */; };
-		D88CBBA121760AE100B27683 /* FMDB.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D88CBB9F21760AE100B27683 /* FMDB.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D88CBBC621760DF000B27683 /* FMDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D88CBBC521760DF000B27683 /* FMDB.framework */; };
+		D88CBBC721760DF000B27683 /* FMDB.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D88CBBC521760DF000B27683 /* FMDB.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D88CBBCA21760DF800B27683 /* AliyunLOGiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D88CBBC921760DF800B27683 /* AliyunLOGiOS.framework */; };
+		D88CBBCB21760DF800B27683 /* AliyunLOGiOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D88CBBC921760DF800B27683 /* AliyunLOGiOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D88CBBCC21760E0100B27683 /* FMDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D88CBBC521760DF000B27683 /* FMDB.framework */; };
+		D88CBBCD21760E0100B27683 /* FMDB.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D88CBBC521760DF000B27683 /* FMDB.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D88CBBCF21760E0A00B27683 /* AliyunLOGiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D88CBBC921760DF800B27683 /* AliyunLOGiOS.framework */; };
+		D88CBBD021760E0A00B27683 /* AliyunLOGiOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D88CBBC921760DF800B27683 /* AliyunLOGiOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		D17F05941FC6B3A7009458F8 /* Embed Frameworks */ = {
+		D88CBBC821760DF000B27683 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				D88CBB9B217607AA00B27683 /* AliyunLOGiOS.framework in Embed Frameworks */,
-				D88CBB9E217607AF00B27683 /* FMDB.framework in Embed Frameworks */,
+				D88CBBC721760DF000B27683 /* FMDB.framework in Embed Frameworks */,
+				D88CBBCB21760DF800B27683 /* AliyunLOGiOS.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D17F05971FC6B3AF009458F8 /* Embed Frameworks */ = {
+		D88CBBCE21760E0200B27683 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				D88CBB952176078800B27683 /* AliyunLOGiOS.framework in Embed Frameworks */,
-				D88CBBA121760AE100B27683 /* FMDB.framework in Embed Frameworks */,
+				D88CBBCD21760E0100B27683 /* FMDB.framework in Embed Frameworks */,
+				D88CBBD021760E0A00B27683 /* AliyunLOGiOS.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -67,18 +66,13 @@
 		D17BF9221FC581F200B77BD7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D17BF9241FC581F200B77BD7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D17BF9271FC581F200B77BD7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		D17BF9291FC581F200B77BD7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D88CBB68217606D100B27683 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D88CBB69217606D100B27683 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D88CBB6B217606D100B27683 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D88CBB6D217606D100B27683 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D88CBB6E217606D100B27683 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D88CBB6F217606D100B27683 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D88CBB932176078800B27683 /* AliyunLOGiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AliyunLOGiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D88CBB962176079400B27683 /* FMDB.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FMDB.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D88CBB99217607AA00B27683 /* AliyunLOGiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AliyunLOGiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D88CBB9C217607AF00B27683 /* FMDB.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FMDB.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D88CBB9F21760AE100B27683 /* FMDB.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FMDB.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D88CBBC521760DF000B27683 /* FMDB.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FMDB.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D88CBBC921760DF800B27683 /* AliyunLOGiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AliyunLOGiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,8 +80,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D88CBB9A217607AA00B27683 /* AliyunLOGiOS.framework in Frameworks */,
-				D88CBB9D217607AF00B27683 /* FMDB.framework in Frameworks */,
+				D88CBBC621760DF000B27683 /* FMDB.framework in Frameworks */,
+				D88CBBCA21760DF800B27683 /* AliyunLOGiOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,8 +89,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D88CBB942176078800B27683 /* AliyunLOGiOS.framework in Frameworks */,
-				D88CBBA021760AE100B27683 /* FMDB.framework in Frameworks */,
+				D88CBBCC21760E0100B27683 /* FMDB.framework in Frameworks */,
+				D88CBBCF21760E0A00B27683 /* AliyunLOGiOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,11 +100,8 @@
 		282E4F6C1D4F004C00E79DA9 = {
 			isa = PBXGroup;
 			children = (
-				D88CBB9F21760AE100B27683 /* FMDB.framework */,
-				D88CBB9C217607AF00B27683 /* FMDB.framework */,
-				D88CBB99217607AA00B27683 /* AliyunLOGiOS.framework */,
-				D88CBB962176079400B27683 /* FMDB.framework */,
-				D88CBB932176078800B27683 /* AliyunLOGiOS.framework */,
+				D88CBBC921760DF800B27683 /* AliyunLOGiOS.framework */,
+				D88CBBC521760DF000B27683 /* FMDB.framework */,
 				D88CBB67217606D100B27683 /* AliyunLOGiOSSample */,
 				D17BF9171FC581F200B77BD7 /* ObjectiveCDemo001 */,
 				282E4F761D4F004C00E79DA9 /* Products */,
@@ -136,7 +127,6 @@
 				D17BF9211FC581F200B77BD7 /* Main.storyboard */,
 				D17BF9241FC581F200B77BD7 /* Assets.xcassets */,
 				D17BF9261FC581F200B77BD7 /* LaunchScreen.storyboard */,
-				D17BF9291FC581F200B77BD7 /* Info.plist */,
 				D17BF9181FC581F200B77BD7 /* Supporting Files */,
 			);
 			path = ObjectiveCDemo001;
@@ -158,7 +148,6 @@
 				D88CBB6A217606D100B27683 /* LaunchScreen.storyboard */,
 				D88CBB6C217606D100B27683 /* Main.storyboard */,
 				D88CBB6E217606D100B27683 /* AppDelegate.swift */,
-				D88CBB6F217606D100B27683 /* Info.plist */,
 			);
 			path = AliyunLOGiOSSample;
 			sourceTree = "<group>";
@@ -173,7 +162,7 @@
 				282E4F711D4F004C00E79DA9 /* Sources */,
 				282E4F721D4F004C00E79DA9 /* Frameworks */,
 				282E4F731D4F004C00E79DA9 /* Resources */,
-				D17F05941FC6B3A7009458F8 /* Embed Frameworks */,
+				D88CBBC821760DF000B27683 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -191,7 +180,7 @@
 				D17BF9121FC581F200B77BD7 /* Sources */,
 				D17BF9131FC581F200B77BD7 /* Frameworks */,
 				D17BF9141FC581F200B77BD7 /* Resources */,
-				D17F05971FC6B3AF009458F8 /* Embed Frameworks */,
+				D88CBBCE21760E0200B27683 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -248,7 +237,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D88CBB75217606D100B27683 /* Info.plist in Resources */,
 				D88CBB73217606D100B27683 /* Main.storyboard in Resources */,
 				D88CBB71217606D100B27683 /* Assets.xcassets in Resources */,
 				D88CBB72217606D100B27683 /* LaunchScreen.storyboard in Resources */,

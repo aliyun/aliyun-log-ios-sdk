@@ -20,13 +20,69 @@
 		D88CBB8F2176072A00B27683 /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88CBB812176072A00B27683 /* Const.swift */; };
 		D88CBB902176072A00B27683 /* lz4.c in Sources */ = {isa = PBXBuildFile; fileRef = D88CBB822176072A00B27683 /* lz4.c */; };
 		D88CBB922176072A00B27683 /* LogClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88CBB842176072A00B27683 /* LogClient.swift */; };
-		D89EAFEC20C7E2CD00A82916 /* FMDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D89EAFEB20C7E2CD00A82916 /* FMDB.framework */; };
+		D88CBBC421760D7400B27683 /* FMDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D88CBBB521760C6300B27683 /* FMDB.framework */; };
 		D89EB00120CA6C8000A82916 /* AliyunLOGiOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89EB00020CA6C8000A82916 /* AliyunLOGiOSTests.swift */; };
 		D89EB00320CA6C8000A82916 /* AliyunLOGiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28363D921D4F175400BB1738 /* AliyunLOGiOS.framework */; };
 		D89EB00A20CA6CC700A82916 /* DBManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89EB00920CA6CC700A82916 /* DBManagerTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		D88CBBAC21760C6300B27683 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D88CBBA221760C6300B27683 /* fmdb.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8DD76FA10486AA7600D96B5E;
+			remoteInfo = fmdb;
+		};
+		D88CBBAE21760C6300B27683 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D88CBBA221760C6300B27683 /* fmdb.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EE4290EF12B42F870088BD94;
+			remoteInfo = FMDB;
+		};
+		D88CBBB021760C6300B27683 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D88CBBA221760C6300B27683 /* fmdb.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BF5D041618416BB2008C5AA9;
+			remoteInfo = Tests;
+		};
+		D88CBBB221760C6300B27683 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D88CBBA221760C6300B27683 /* fmdb.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6290CBB5188FE836009790F8;
+			remoteInfo = "FMDB-IOS";
+		};
+		D88CBBB421760C6300B27683 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D88CBBA221760C6300B27683 /* fmdb.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 83C73EFE1C326AB000FFC730;
+			remoteInfo = "FMDB iOS";
+		};
+		D88CBBB621760C6300B27683 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D88CBBA221760C6300B27683 /* fmdb.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 83C73F0B1C326ADA00FFC730;
+			remoteInfo = "FMDB MacOS";
+		};
+		D88CBBB821760C6300B27683 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D88CBBA221760C6300B27683 /* fmdb.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2CD2426D1FCC09CA00479FDE;
+			remoteInfo = "FMDB watchOS";
+		};
+		D88CBBBB21760C9300B27683 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D88CBBA221760C6300B27683 /* fmdb.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 83C73EFD1C326AB000FFC730;
+			remoteInfo = "FMDB iOS";
+		};
 		D89EB00420CA6C8000A82916 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 28363D891D4F175400BB1738 /* Project object */;
@@ -51,6 +107,7 @@
 		D88CBB812176072A00B27683 /* Const.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
 		D88CBB822176072A00B27683 /* lz4.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lz4.c; sourceTree = "<group>"; };
 		D88CBB842176072A00B27683 /* LogClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogClient.swift; sourceTree = "<group>"; };
+		D88CBBA221760C6300B27683 /* fmdb.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = fmdb.xcodeproj; path = ../fmdb/fmdb.xcodeproj; sourceTree = "<group>"; };
 		D89EAFEB20C7E2CD00A82916 /* FMDB.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FMDB.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D89EAFFE20CA6C8000A82916 /* AliyunLOGiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AliyunLOGiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D89EB00020CA6C8000A82916 /* AliyunLOGiOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AliyunLOGiOSTests.swift; sourceTree = "<group>"; };
@@ -63,7 +120,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D89EAFEC20C7E2CD00A82916 /* FMDB.framework in Frameworks */,
+				D88CBBC421760D7400B27683 /* FMDB.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +138,7 @@
 		28363D881D4F175400BB1738 = {
 			isa = PBXGroup;
 			children = (
+				D88CBBA221760C6300B27683 /* fmdb.xcodeproj */,
 				D88CBB762176072A00B27683 /* AliyunLOGiOS */,
 				D89EAFFF20CA6C8000A82916 /* AliyunLOGiOSTests */,
 				28363D931D4F175400BB1738 /* Products */,
@@ -115,6 +173,20 @@
 				D88CBB842176072A00B27683 /* LogClient.swift */,
 			);
 			path = AliyunLOGiOS;
+			sourceTree = "<group>";
+		};
+		D88CBBA321760C6300B27683 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D88CBBAD21760C6300B27683 /* fmdb */,
+				D88CBBAF21760C6300B27683 /* libFMDB.a */,
+				D88CBBB121760C6300B27683 /* Tests.xctest */,
+				D88CBBB321760C6300B27683 /* libFMDB-IOS.a */,
+				D88CBBB521760C6300B27683 /* FMDB.framework */,
+				D88CBBB721760C6300B27683 /* FMDB.framework */,
+				D88CBBB921760C6300B27683 /* FMDB.framework */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		D89EAFEA20C7E2CD00A82916 /* Frameworks */ = {
@@ -162,6 +234,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				D88CBBBC21760C9300B27683 /* PBXTargetDependency */,
 			);
 			name = AliyunLOGiOS;
 			productName = AliyunSLSiOS;
@@ -217,6 +290,12 @@
 			mainGroup = 28363D881D4F175400BB1738;
 			productRefGroup = 28363D931D4F175400BB1738 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = D88CBBA321760C6300B27683 /* Products */;
+					ProjectRef = D88CBBA221760C6300B27683 /* fmdb.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				28363D911D4F175400BB1738 /* AliyunLOGiOS */,
@@ -224,6 +303,58 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		D88CBBAD21760C6300B27683 /* fmdb */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = fmdb;
+			remoteRef = D88CBBAC21760C6300B27683 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D88CBBAF21760C6300B27683 /* libFMDB.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libFMDB.a;
+			remoteRef = D88CBBAE21760C6300B27683 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D88CBBB121760C6300B27683 /* Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = Tests.xctest;
+			remoteRef = D88CBBB021760C6300B27683 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D88CBBB321760C6300B27683 /* libFMDB-IOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libFMDB-IOS.a";
+			remoteRef = D88CBBB221760C6300B27683 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D88CBBB521760C6300B27683 /* FMDB.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = FMDB.framework;
+			remoteRef = D88CBBB421760C6300B27683 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D88CBBB721760C6300B27683 /* FMDB.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = FMDB.framework;
+			remoteRef = D88CBBB621760C6300B27683 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D88CBBB921760C6300B27683 /* FMDB.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = FMDB.framework;
+			remoteRef = D88CBBB821760C6300B27683 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		28363D901D4F175400BB1738 /* Resources */ = {
@@ -273,6 +404,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		D88CBBBC21760C9300B27683 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "FMDB iOS";
+			targetProxy = D88CBBBB21760C9300B27683 /* PBXContainerItemProxy */;
+		};
 		D89EB00520CA6C8000A82916 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 28363D911D4F175400BB1738 /* AliyunLOGiOS */;
