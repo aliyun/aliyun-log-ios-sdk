@@ -8,6 +8,6 @@
       location = "group:Source/AliyunLOGiOS.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:fmdb-2.7.4/fmdb.xcodeproj">
+      location = "group:fmdb/fmdb.xcodeproj">
    </FileRef>
 </Workspace>
