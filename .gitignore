@@ -9,6 +9,8 @@ git-m
 ## Build generated
 build/
 DerivedData
+Source/build/
+Source/DerivedData
 
 ## Various settings
 *.pbxuser
@@ -40,4 +42,7 @@ playground.xcworkspace
 
 # Carthage
 Carthage/Build
+
+# Cocoapods
+Source/Pods
 
