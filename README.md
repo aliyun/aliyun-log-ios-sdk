@@ -17,11 +17,16 @@
 
 ##### 导入framework
 
-**注意:当前只支持通过打开AliyunLOGiOS.xcworkspace文件编译framework文件,然后引入到工程中**
-
- - 将AliyunLOGiOS.framework,FMDB.framework拖入xcode project中
- - 确保General--Embedded Binaries中含有此framework
+ - 打开**终端**,cd到工程目录,然后执行
+   ```
+   sh build_both.sh
+   ```
+   ,然后会在工程根目录下生成Products文件夹,AliyunLOGiOS.framework,FMDB.framework均位于其中。
+ - 将AliyunLOGiOS.framework,FMDB.framework拖入您的xcode project中
+ - 确保General--Embedded Binaries中含有AliyunLOGiOS.framework以及依赖的FMDB.framework
  - 如果拖入framework没有选择copy,确保Build Phases--Embed Frameworks中含有此framework,并在Build Settings--Search Paths--Framework Search Paths中添加AliyunLOGiOS.framework,FMDB.framework的文件路径
+ 
+ **打包脚本编译出来的framework库是Release版本,支持i386,x86_64,armv7,arm64的fat库**
 
 ## 常见问题
 
