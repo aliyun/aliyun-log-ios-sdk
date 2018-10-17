@@ -8,7 +8,7 @@
 
 import Foundation
 
-let ALIYUN_LOG_SDK_VERSION = "2.0.0"
+let ALIYUN_LOG_SDK_VERSION = "2.0.1"
 
 let HTTP_DATE_FORMAT = "EEE, dd MMM yyyy HH:mm:ss"
 
