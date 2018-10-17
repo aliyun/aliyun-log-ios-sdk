@@ -41,7 +41,7 @@ cp -R "${DEVICE_DIR_FMDB}" "${INSTALL_DIR_FMDB}"
 lipo -create "${DEVICE_DIR_LOGSDK}/${FMK_NAME}" "${SIMULATOR_DIR_LOGSDK}/${FMK_NAME}" -output "${INSTALL_DIR_LOGSDK}/${FMK_NAME}"
 lipo -create "${DEVICE_DIR_FMDB}/${DEPENDENCY_NAME}" "${SIMULATOR_DIR_FMDB}/${DEPENDENCY_NAME}" -output "${INSTALL_DIR_FMDB}/${DEPENDENCY_NAME}"
 
-#rm -r "${WRK_DIR}"
+rm -r "${WRK_DIR}"
 
 #if [ -d "${INSTALL_DIR}/_CodeSignature" ]
 #then
