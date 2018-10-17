@@ -9,6 +9,7 @@ git-m
 ## Build generated
 build/
 DerivedData
+Products
 
 ## Various settings
 *.pbxuser
