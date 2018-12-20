@@ -5,7 +5,7 @@
 ### 简介
 ###### [阿里云日志服务](https://www.aliyun.com/product/sls/)SDK基于[日志服务API](https://help.aliyun.com/document_detail/29007.html?spm=5176.55536.224569.9.2rvzUk)实现，目前提供以下功能：
   - 写入日志(默认为HTTPS)
-  - 断点续传(默认为HTTPS)
+  - 断点续传(默认为HTTPS)
   
 ### 目前提供一下几种使用方式：
 
@@ -13,7 +13,7 @@
 
 ##### 导入source code
  - 下载并将Source/AliyunLOGiOS文件夹拖入目标项目中.
- - 下载FMDB并添加到工程依赖中,SDK目前引用FMDB的2.7.5版本。
+ - 下载FMDB并添加到工程依赖中,SDK目前引用FMDB的2.7.5版本。
 
 ##### 导入framework
 
