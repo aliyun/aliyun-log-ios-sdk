@@ -26,8 +26,7 @@
  - 确保General--Embedded Binaries中含有AliyunLOGiOS.framework以及依赖的FMDB.framework
  - 如果拖入framework没有选择copy,确保Build Phases--Embed Frameworks中含有此framework,并在Build Settings--Search Paths--Framework Search Paths中添加AliyunLOGiOS.framework,FMDB.framework的文件路径
  
- **打包脚本编译出来的framework库是Release版本,支持i386,x86_64,armv7,arm64的fat库**
- **注：目前Fat方式暂不支持xcode10，详见：https://forums.developer.apple.com/thread/109583。如果用xcode10 开发请选择源码方式**
+ **打包脚本编译出来的framework库是Release版本,支持i386,x86_64,armv7,arm64的fat库。Fat方式暂不支持xcode10，详见：https://forums.developer.apple.com/thread/109583。如果用xcode10 开发请选择源码方式**
 
 ## 常见问题
 
