@@ -58,8 +58,9 @@ extension Data{
             }
         }
         output.count = Int(zStream.total_out)
-        deflateEnd(&zStream);
-        bytes.deinitialize()
+//        bytes.deinitialize()
+//        bytes.deallocate(capacity: self.count)
+        deflateEnd(&zStream)
         return output as Data!;
     }
     var GUnZip:Data!{
@@ -111,8 +112,9 @@ extension Data{
             }
         }
         output.count = Int(zStream.total_out)
+//        bytes.deinitialize()
+//        bytes.deallocate(capacity: self.count)
         inflateEnd(&zStream);
-        bytes.deinitialize()
         return output as Data!;
     }
 }
@@ -144,6 +146,7 @@ extension Data  {
             hash.appendFormat("%02X", result[i])
         }
         result.deinitialize()
+        result.deallocate(capacity: digestLen)
         return String(format: hash as String)
     }
 }
