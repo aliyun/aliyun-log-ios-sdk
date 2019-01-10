@@ -13,6 +13,7 @@ public class LOGClient: NSObject {
     var mAccessKeySecret: String
     var mProject: String
     var mAccessToken: String?
+    var session:URLSession!
     
     //重试相关逻辑
     var retryCount: Int
@@ -155,7 +156,7 @@ public class LOGClient: NSObject {
         
         let config = URLSessionConfiguration.default
         config.timeoutIntervalForRequest = 15
-        let session = URLSession(configuration: config)
+        session = URLSession(configuration: config)
         
         self.logDebug("request : ", request)
         
@@ -253,13 +254,14 @@ public class LOGClient: NSObject {
         let textlen = textdata.count
         
         let resultlen = Int(CC_SHA1_DIGEST_LENGTH)
-        let result = UnsafeMutablePointer<CUnsignedChar>.allocate(capacity: resultlen)
+        var result = UnsafeMutablePointer<CUnsignedChar>.allocate(capacity: resultlen)
         CCHmac(CCHmacAlgorithm(kCCHmacAlgSHA1), keybytes, keylen, textbytes, textlen, result)
         
         let resultData = Data(bytes: UnsafePointer<UInt8>(result), count: resultlen)
         let base64String = resultData.base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0))
         
         result.deinitialize()
+        result.deallocate(capacity: resultlen)
         return base64String
     }
     
