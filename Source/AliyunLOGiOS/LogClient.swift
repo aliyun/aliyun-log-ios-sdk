@@ -42,6 +42,11 @@ public class LOGClient: NSObject {
         mConfig = config
         mAccessToken = token
         
+        
+        let config = URLSessionConfiguration.default
+        config.timeoutIntervalForRequest = 15
+        session = URLSession(configuration: config)
+        
         super.init()
         
     }
@@ -154,9 +159,7 @@ public class LOGClient: NSObject {
             self.logDebug("request header key : ", key , " val : ", val)
         }
         
-        let config = URLSessionConfiguration.default
-        config.timeoutIntervalForRequest = 15
-        session = URLSession(configuration: config)
+        
         
         self.logDebug("request : ", request)
         
