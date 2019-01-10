@@ -10,10 +10,8 @@
 		D88CBB852176072A00B27683 /* NetworkReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88CBB772176072A00B27683 /* NetworkReachabilityManager.swift */; };
 		D88CBB862176072A00B27683 /* LogGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88CBB782176072A00B27683 /* LogGroup.swift */; };
 		D88CBB872176072A00B27683 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88CBB792176072A00B27683 /* Log.swift */; };
-		D88CBB882176072A00B27683 /* CacheCheckManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88CBB7A2176072A00B27683 /* CacheCheckManager.swift */; };
 		D88CBB892176072A00B27683 /* AliyunLOGiOS-Bridging-Header.h in Headers */ = {isa = PBXBuildFile; fileRef = D88CBB7B2176072A00B27683 /* AliyunLOGiOS-Bridging-Header.h */; };
 		D88CBB8A2176072A00B27683 /* lz4.h in Headers */ = {isa = PBXBuildFile; fileRef = D88CBB7C2176072A00B27683 /* lz4.h */; };
-		D88CBB8B2176072A00B27683 /* SLSConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88CBB7D2176072A00B27683 /* SLSConfig.swift */; };
 		D88CBB8C2176072A00B27683 /* LogError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88CBB7E2176072A00B27683 /* LogError.swift */; };
 		D88CBB8D2176072A00B27683 /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88CBB7F2176072A00B27683 /* DBManager.swift */; };
 		D88CBB8E2176072A00B27683 /* Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88CBB802176072A00B27683 /* Tools.swift */; };
@@ -97,10 +95,8 @@
 		D88CBB772176072A00B27683 /* NetworkReachabilityManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkReachabilityManager.swift; sourceTree = "<group>"; };
 		D88CBB782176072A00B27683 /* LogGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogGroup.swift; sourceTree = "<group>"; };
 		D88CBB792176072A00B27683 /* Log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
-		D88CBB7A2176072A00B27683 /* CacheCheckManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CacheCheckManager.swift; sourceTree = "<group>"; };
 		D88CBB7B2176072A00B27683 /* AliyunLOGiOS-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AliyunLOGiOS-Bridging-Header.h"; sourceTree = "<group>"; };
 		D88CBB7C2176072A00B27683 /* lz4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lz4.h; sourceTree = "<group>"; };
-		D88CBB7D2176072A00B27683 /* SLSConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SLSConfig.swift; sourceTree = "<group>"; };
 		D88CBB7E2176072A00B27683 /* LogError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogError.swift; sourceTree = "<group>"; };
 		D88CBB7F2176072A00B27683 /* DBManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
 		D88CBB802176072A00B27683 /* Tools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tools.swift; sourceTree = "<group>"; };
@@ -161,10 +157,8 @@
 				D88CBB772176072A00B27683 /* NetworkReachabilityManager.swift */,
 				D88CBB782176072A00B27683 /* LogGroup.swift */,
 				D88CBB792176072A00B27683 /* Log.swift */,
-				D88CBB7A2176072A00B27683 /* CacheCheckManager.swift */,
 				D88CBB7B2176072A00B27683 /* AliyunLOGiOS-Bridging-Header.h */,
 				D88CBB7C2176072A00B27683 /* lz4.h */,
-				D88CBB7D2176072A00B27683 /* SLSConfig.swift */,
 				D88CBB7E2176072A00B27683 /* LogError.swift */,
 				D88CBB7F2176072A00B27683 /* DBManager.swift */,
 				D88CBB802176072A00B27683 /* Tools.swift */,
@@ -378,14 +372,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D88CBB8B2176072A00B27683 /* SLSConfig.swift in Sources */,
 				D88CBB922176072A00B27683 /* LogClient.swift in Sources */,
 				D88CBB862176072A00B27683 /* LogGroup.swift in Sources */,
 				D88CBB852176072A00B27683 /* NetworkReachabilityManager.swift in Sources */,
 				D88CBB8C2176072A00B27683 /* LogError.swift in Sources */,
 				D88CBB902176072A00B27683 /* lz4.c in Sources */,
 				D88CBB872176072A00B27683 /* Log.swift in Sources */,
-				D88CBB882176072A00B27683 /* CacheCheckManager.swift in Sources */,
 				D88CBB8D2176072A00B27683 /* DBManager.swift in Sources */,
 				D88CBB8E2176072A00B27683 /* Tools.swift in Sources */,
 				D88CBB8F2176072A00B27683 /* Const.swift in Sources */,

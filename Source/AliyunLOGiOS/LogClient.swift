@@ -14,15 +14,16 @@ public class LOGClient: NSObject {
     var mProject: String
     var mAccessToken: String?
     var session:URLSession!
+//    var queue:DispatchQueue!
+    
     
     //重试相关逻辑
     var retryCount: Int
     let retryMax: Int = 3
     
     public var mIsLogEnable: Bool = false
-    public var mConfig: SLSConfig?
     
-    public init(endPoint:String,accessKeyID:String,accessKeySecret :String,projectName:String, token: String? = nil, config: SLSConfig = SLSConfig()){
+    public init(endPoint:String,accessKeyID:String,accessKeySecret :String,projectName:String, token: String? = nil){
         if( endPoint.range(of: "http://") != nil ||
             endPoint.range(of: "Http://") != nil ||
             endPoint.range(of: "HTTP://") != nil){
@@ -39,21 +40,21 @@ public class LOGClient: NSObject {
         mAccessKeySecret = accessKeySecret
         mProject = projectName
         retryCount = 0
-        mConfig = config
         mAccessToken = token
         
-        
         let config = URLSessionConfiguration.default
-        config.timeoutIntervalForRequest = 15
+        config.timeoutIntervalForRequest = 60
+        config.httpMaximumConnectionsPerHost = 3;
         session = URLSession(configuration: config)
         
-        super.init()
+//        queue = DispatchQueue(label: "serialQueue");
         
+        super.init()
     }
     
     
-    public convenience init(endPoint:String, accessKeyID:String, accessKeySecret:String, token:String, projectName:String, config: SLSConfig){
-        self.init(endPoint: endPoint, accessKeyID: accessKeyID, accessKeySecret: accessKeySecret, projectName: projectName, token: token, config: config)
+    public convenience init(endPoint:String, accessKeyID:String, accessKeySecret:String, token:String, projectName:String){
+        self.init(endPoint: endPoint, accessKeyID: accessKeyID, accessKeySecret: accessKeySecret, projectName: projectName, token: token)
     }
     
     open func SetToken(_ token:String){
@@ -76,7 +77,8 @@ public class LOGClient: NSObject {
     }
     open func PostLog(_ logGroup:LogGroup,logStoreName:String, call: @escaping (URLResponse?, NSError?) -> ()){
         
-        DispatchQueue.global(qos: .default).async(execute: {
+        DispatchQueue.global(qos: .background).async(execute: {
+//        queue.async(execute: {
             
             let httpUrl = "https://\(self.mProject).\(self.mEndPoint)"+"/logstores/\(logStoreName)/shards/lb"
             let jsonpackage = logGroup.GetJsonPackage()
@@ -87,7 +89,6 @@ public class LOGClient: NSObject {
             let httpHeaders = self.GetHttpHeadersFrom(logStoreName,url: httpUrl,body: httpPostBody,bodyZipped: httpPostBodyZipped)
             
             self.HttpPostRequest(httpUrl, headers: httpHeaders, body: httpPostBodyZipped, callBack: {[weak self] (result, error) in
-
                 call(result, error)
             })
         })
@@ -95,8 +96,8 @@ public class LOGClient: NSObject {
     
     open func PostLogInCache(logstore: String, logMsg: String, call: @escaping (URLResponse?, NSError?) -> ()){
         
-        DispatchQueue.global(qos: .default).async(execute: {
-            
+        DispatchQueue.global(qos: .background).async(execute: {
+        
             let httpUrl = "https://\(self.mProject).\(self.mEndPoint)"+"/logstores/\(logstore)/shards/lb"
             
             let httpPostBody = logMsg.data(using: .utf8)!
