@@ -22,6 +22,8 @@ public class LOGClient: NSObject {
     public var mIsLogEnable: Bool = false
     public var mConfig: SLSConfig
     
+    fileprivate var cacheManager: CacheCheckManager?
+    
     public init(endPoint:String,accessKeyID:String,accessKeySecret :String,projectName:String, token: String? = nil, config: SLSConfig = SLSConfig()){
         if( endPoint.range(of: "http://") != nil ||
             endPoint.range(of: "Http://") != nil ||
@@ -44,13 +46,15 @@ public class LOGClient: NSObject {
         
         
         let config = URLSessionConfiguration.default
-        config.timeoutIntervalForRequest = 15
+        config.timeoutIntervalForRequest = 60
+        config.httpMaximumConnectionsPerHost = 3
         session = URLSession(configuration: config)
         
         super.init()
         
         if (mConfig.isCachable){
-            CacheCheckManager(client: self).startCacheCheck()
+            cacheManager = CacheCheckManager(client: self)
+            cacheManager?.startCacheCheck()
         }
     }
     
@@ -101,6 +105,7 @@ public class LOGClient: NSObject {
     }
     
     open func PostLogInCache(logstore: String, logMsg: String, call: @escaping (URLResponse?, NSError?) -> ()){
+        self.logDebug("PostLogInCache")
         
         DispatchQueue.global(qos: .default).async(execute: {
             
