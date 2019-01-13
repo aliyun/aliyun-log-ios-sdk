@@ -14,8 +14,8 @@ import AliyunLOGiOS
 class ViewController: UIViewController {
     fileprivate var mClient: LOGClient?
     fileprivate let endpoint = "https://cn-hangzhou.log.aliyuncs.com";  // 更多关于endpoint的信息请参考https://help.aliyun.com/document_detail/29008.html
-    fileprivate let project = "projectName"
-    fileprivate let store = "storeName"
+    fileprivate let project = "******"
+    fileprivate let store = "******"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,26 +41,26 @@ class ViewController: UIViewController {
         
 //        通过主账号AK，SK使用日志服务。
 //        注意：移动端是不安全环境，请勿直接使用阿里云主账号ak，sk的方式。建议使用STS方式。只建议在测试环境或者用户可以保证阿里云主账号AK，SK安全的前提下使用。
-//        let ALIYUN_AK = "ALIYUN_AK"
-//        let ALIYUN_SK = "ALIYUN_SK"
-//        mClient = LOGClient(endPoint: endpoint,
-//                            accessKeyID: ALIYUN_AK,
-//                            accessKeySecret: ALIYUN_SK,
-//                            projectName: project,
-//                            token: nil,
-//                            config: cf)
+        let ALIYUN_AK = "******"
+        let ALIYUN_SK = "******"
+        mClient = LOGClient(endPoint: endpoint,
+                            accessKeyID: ALIYUN_AK,
+                            accessKeySecret: ALIYUN_SK,
+                            projectName: project,
+                            token: nil,
+                            config: cf)
         
 //                通过STS使用日志服务,具体参见 https://help.aliyun.com/document_detail/62681.html
-                let STS_AK = "******"
-                let STS_SK = "******"
-                let STS_TOKEM = "******"
-
-                mClient = LOGClient(endPoint: endpoint,
-                                    accessKeyID: STS_AK,
-                                    accessKeySecret: STS_SK,
-                                    token: STS_TOKEM,
-                                    projectName: project,
-                                    config: cf)
+//                let STS_AK = "******"
+//                let STS_SK = "******"
+//                let STS_TOKEM = "******"
+//
+//                mClient = LOGClient(endPoint: endpoint,
+//                                    accessKeyID: STS_AK,
+//                                    accessKeySecret: STS_SK,
+//                                    token: STS_TOKEM,
+//                                    projectName: project,
+//                                    config: cf)
         //打开调试开关
         mClient?.mIsLogEnable = true
     }
@@ -93,7 +93,10 @@ class ViewController: UIViewController {
     
     /// 发送日志
     @IBAction func sendLogAction(_ sender: Any) {
-        createLogAndSend()
+        for _ in 1...100 {
+            createLogAndSend()
+        }
+
     }
 }
 
