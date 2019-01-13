@@ -20,8 +20,10 @@ public class LOGClient: NSObject {
     let retryMax: Int = 3
     
     public var mIsLogEnable: Bool = false
-    public var mConfig: SLSConfig?
+    public var mConfig: SLSConfig
     
+//    fileprivate var cacheManager: CacheCheckManager?
+
     public init(endPoint:String,accessKeyID:String,accessKeySecret :String,projectName:String, token: String? = nil, config: SLSConfig = SLSConfig()){
         if( endPoint.range(of: "http://") != nil ||
             endPoint.range(of: "Http://") != nil ||
@@ -47,8 +49,14 @@ public class LOGClient: NSObject {
         config.timeoutIntervalForRequest = 15
         session = URLSession(configuration: config)
         
+        
+        
+        
         super.init()
         
+        if (mConfig.isCachable){
+            CacheCheckManager(client: self).startCacheCheck()
+        }
     }
     
     
@@ -87,6 +95,10 @@ public class LOGClient: NSObject {
             let httpHeaders = self.GetHttpHeadersFrom(logStoreName,url: httpUrl,body: httpPostBody,bodyZipped: httpPostBodyZipped)
             
             self.HttpPostRequest(httpUrl, headers: httpHeaders, body: httpPostBodyZipped, callBack: {[weak self] (result, error) in
+                if (error != nil && (self?.mConfig.isCachable)!) {
+                    let timestamp = Date.timeIntervalBetween1970AndReferenceDate
+                    DBManager.defaultManager().insertRecords(endpoint: (self?.mEndPoint)!, project: (self?.mProject)!, logstore: logStoreName, log: jsonpackage, timestamp: timestamp)
+                }
 
                 call(result, error)
             })
