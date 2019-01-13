@@ -193,6 +193,7 @@ public class LOGClient: NSObject {
                 self.logDebug("ready check retry")
                 let needRetry = self.shouldRetry(httpResponse:httpResponse,retryCount:(self.retryCount))
                 if needRetry {
+                    sleep(30)
                     self.logDebug("need retry")
                     self.retryCount += 1
                     self.HttpPostRequest(url, headers:headers, body:body, callBack:callBack)
