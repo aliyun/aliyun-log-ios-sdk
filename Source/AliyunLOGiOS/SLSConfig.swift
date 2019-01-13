@@ -15,7 +15,7 @@ open class SLSConfig: NSObject {
         case wifiOrwwan
     }
     /// 是否开启离线缓存日志功能,默认不开启
-    fileprivate var mCachable: Bool;
+    fileprivate var mCachable: Bool = false;
     
     
     /// 离线日志的发送时机,默认是只在wifi网络状况下发送

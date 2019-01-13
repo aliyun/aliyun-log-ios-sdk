@@ -22,8 +22,6 @@ public class LOGClient: NSObject {
     public var mIsLogEnable: Bool = false
     public var mConfig: SLSConfig
     
-//    fileprivate var cacheManager: CacheCheckManager?
-
     public init(endPoint:String,accessKeyID:String,accessKeySecret :String,projectName:String, token: String? = nil, config: SLSConfig = SLSConfig()){
         if( endPoint.range(of: "http://") != nil ||
             endPoint.range(of: "Http://") != nil ||
@@ -48,9 +46,6 @@ public class LOGClient: NSObject {
         let config = URLSessionConfiguration.default
         config.timeoutIntervalForRequest = 15
         session = URLSession(configuration: config)
-        
-        
-        
         
         super.init()
         
@@ -205,6 +200,7 @@ public class LOGClient: NSObject {
                 let needRetry = self.shouldRetry(httpResponse:httpResponse,retryCount:(self.retryCount))
                 if needRetry {
                     self.logDebug("need retry")
+                    sleep(UInt32(30))
                     self.retryCount += 1
                     self.HttpPostRequest(url, headers:headers, body:body, callBack:callBack)
                     return;
