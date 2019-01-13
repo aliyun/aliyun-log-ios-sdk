@@ -90,6 +90,7 @@ open class CacheCheckManager: NSObject {
                                 if error != nil {
                                     print("缓存日志发送失败,error:\(String(describing: error))")
                                 } else {
+                                    print("缓存日志发送成功)")
                                     DBManager.defaultManager().deleteRecord(record: ["id": id])
                                 }
                             })
