@@ -166,7 +166,7 @@ open class DBManager: NSObject {
                 if let path = self.dbPath() {
                     let attributes = try fm.attributesOfItem(atPath: path)
                     if let fileSize = attributes[FileAttributeKey.size] as? UInt64 {
-                        // 文件大于25M时，从数据库中删除按照时间正序前2k条记录
+                        // 文件大于30M时，从数据库中删除按照时间正序前2k条记录
                         if fileSize > 1024 * 1024 * 30 {
                             self.asyncDeleteRecords(count: 2000)
                         }

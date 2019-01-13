@@ -34,9 +34,13 @@ open class CacheCheckManager: NSObject {
         startMonitor()
     }
     
-    deinit {
+    open func stopMonitor(){
         gcdTimer?.cancel()
         gcdTimer = nil
+    }
+    
+    deinit {
+        stopMonitor()
     }
     
     open func startMonitor() {
