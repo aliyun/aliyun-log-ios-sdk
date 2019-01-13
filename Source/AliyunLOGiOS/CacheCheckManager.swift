@@ -60,8 +60,8 @@ open class CacheCheckManager: NSObject {
             return
         }
         
-        let shouldPostViaWiFi = (mClient?.mConfig?.connectType == .wifi && (manager?.isReachableOnEthernetOrWiFi)!)
-        let shouldPost = (mClient?.mConfig?.connectType == .wifiOrwwan && (manager?.isReachable)!)
+        let shouldPostViaWiFi = (mClient?.mConfig.connectType == .wifi && (manager?.isReachableOnEthernetOrWiFi)!)
+        let shouldPost = (mClient?.mConfig.connectType == .wifiOrwwan && (manager?.isReachable)!)
         
         if shouldPostViaWiFi || shouldPost {
             DispatchQueue.global().async {
