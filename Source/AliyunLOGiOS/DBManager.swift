@@ -23,13 +23,13 @@ let SLS_MAX_DB_SAVE_RECORDS = 10000
 open class DBManager: NSObject {
     private static let `default`: DBManager = DBManager()
     open let dbPath = {
-        return sls_documentPath?.appendingFormat("/slslog/log.sqlite")
+        return NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first?.appendingFormat("/slslog/log.sqlite")
     }
     private var dbQueue: FMDatabaseQueue?
     
     private override init() {
         let fm = FileManager.default
-        let folderPath = sls_documentPath?.appendingFormat("/slslog")
+        let folderPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first?.appendingFormat("/slslog")
         if !fm.fileExists(atPath: folderPath!) {
             do {
                 try fm.createDirectory(atPath: folderPath!, withIntermediateDirectories: true, attributes: nil)
