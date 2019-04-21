@@ -100,18 +100,7 @@ public class LOGClient: NSObject {
             }
             call(result, error)
         })
-        
-//        DispatchQueue.global(qos: .default).async(execute: {
-//
-//            self.HttpPostRequest(httpUrl, headers: httpHeaders, body: httpPostBodyZipped, callBack: {[weak self] (result, error) in
-//                if (error != nil && (self?.mConfig.isCachable)!) {
-//                    let timestamp = Date.timeIntervalBetween1970AndReferenceDate
-//                    DBManager.defaultManager().insertRecords(endpoint: (self?.mEndPoint)!, project: (self?.mProject)!, logstore: logStoreName, log: jsonpackage, timestamp: timestamp)
-//                }
-//
-//                call(result, error)
-//            })
-//        })
+    
     }
     
     open func PostLogInCache(logstore: String, logMsg: String, call: @escaping (URLResponse?, NSError?) -> ()){
@@ -126,9 +115,6 @@ public class LOGClient: NSObject {
         
         HttpPostRequest(httpUrl, headers: httpHeaders, body: httpPostBodyZipped, callBack: call)
         
-//        DispatchQueue.global(qos: .default).async(execute: {
-//            self.HttpPostRequest(httpUrl, headers: httpHeaders, body: httpPostBodyZipped, callBack: call)
-//        })
     }
     
     fileprivate func GetHttpHeadersFrom(_ logstore:String,url:String,body:Data,bodyZipped:Data) -> [String:String]{
@@ -211,7 +197,7 @@ public class LOGClient: NSObject {
             
             if let httpResponse = response as? HTTPURLResponse {
                 self.logDebug("\(httpResponse)")
-                self.logDebug("ready check retry")
+//                self.logDebug("ready check retry")
                 let needRetry = self.shouldRetry(httpResponse:httpResponse,retryCount:(self.retryCount))
                 if needRetry {
                     self.logDebug("need retry")
