@@ -22,7 +22,7 @@ let SLS_MAX_DB_SAVE_RECORDS = 10000
 /// 数据库管理器.支持增,删,查操作
 open class DBManager: NSObject {
     private static let `default`: DBManager = DBManager()
-    open let dbPath = {
+    public let dbPath = {
         return NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first?.appendingFormat("/slslog/log.sqlite")
     }
     private var dbQueue: FMDatabaseQueue?

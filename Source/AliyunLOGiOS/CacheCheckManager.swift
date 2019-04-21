@@ -50,7 +50,7 @@ open class CacheCheckManager: NSObject {
         
         gcdTimer = DispatchSource.makeTimerSource(queue: queue)
         
-        gcdTimer?.scheduleRepeating(deadline: .now(), interval: .seconds(mTimeInterval))
+        gcdTimer?.schedule(deadline: .now(), repeating: .seconds(mTimeInterval))
         
         gcdTimer?.setEventHandler { [weak self] in // `[weak self]` only needed if you reference `self` in this closure and you want to prevent strong reference cycle
             self?.postLogsFromDB()
