@@ -25,18 +25,19 @@ public class LOGClient: NSObject {
     fileprivate var cacheManager: CacheCheckManager?
     
     public init(endPoint:String,accessKeyID:String,accessKeySecret :String,projectName:String, token: String? = nil, config: SLSConfig = SLSConfig()){
-        if( endPoint.range(of: "http://") != nil ||
-            endPoint.range(of: "Http://") != nil ||
-            endPoint.range(of: "HTTP://") != nil){
-            mEndPoint = endPoint.substring(from: endPoint.characters.index(endPoint.startIndex, offsetBy: 7))
-        } else if( endPoint.range(of: "https://") != nil ||
-            endPoint.range(of: "Https://") != nil ||
-            endPoint.range(of: "HTTPS://") != nil){
-            mEndPoint = endPoint.substring(from: endPoint.characters.index(endPoint.startIndex, offsetBy: 8))
-        } else{
-            mEndPoint = endPoint
-        }
-        
+//        if( endPoint.range(of: "http://") != nil ||
+//            endPoint.range(of: "Http://") != nil ||
+//            endPoint.range(of: "HTTP://") != nil){
+//            mEndPoint = endPoint.substring(from: endPoint.characters.index(endPoint.startIndex, offsetBy: 7))
+//        } else if( endPoint.range(of: "https://") != nil ||
+//            endPoint.range(of: "Https://") != nil ||
+//            endPoint.range(of: "HTTPS://") != nil){
+//            mEndPoint = endPoint.substring(from: endPoint.characters.index(endPoint.startIndex, offsetBy: 8))
+//        } else{
+//            mEndPoint = endPoint
+//        }
+        let url = NSURL(string: endPoint)
+        mEndPoint = url?.host ?? endPoint
         mAccessKeyID = accessKeyID
         mAccessKeySecret = accessKeySecret
         mProject = projectName
@@ -83,41 +84,51 @@ public class LOGClient: NSObject {
     }
     open func PostLog(_ logGroup:LogGroup,logStoreName:String, call: @escaping (URLResponse?, NSError?) -> ()){
         
-        DispatchQueue.global(qos: .default).async(execute: {
-            
-            let httpUrl = "https://\(self.mProject).\(self.mEndPoint)"+"/logstores/\(logStoreName)/shards/lb"
-            let jsonpackage = logGroup.GetJsonPackage()
-            let httpPostBody = jsonpackage.data(using: String.Encoding.utf8)!
-
-            let httpPostBodyZipped = httpPostBody.GZip!
-            
-            let httpHeaders = self.GetHttpHeadersFrom(logStoreName,url: httpUrl,body: httpPostBody,bodyZipped: httpPostBodyZipped)
-            
-            self.HttpPostRequest(httpUrl, headers: httpHeaders, body: httpPostBodyZipped, callBack: {[weak self] (result, error) in
-                if (error != nil && (self?.mConfig.isCachable)!) {
-                    let timestamp = Date.timeIntervalBetween1970AndReferenceDate
+        let httpUrl = "https://\(self.mProject).\(self.mEndPoint)/logstores/\(logStoreName)/shards/lb"
+        
+        let jsonpackage = logGroup.GetJsonPackage()
+        let httpPostBody = jsonpackage.data(using: String.Encoding.utf8)!
+        
+        let httpPostBodyZipped = httpPostBody.GZip!
+        
+        let httpHeaders = self.GetHttpHeadersFrom(logStoreName,url: httpUrl,body: httpPostBody,bodyZipped: httpPostBodyZipped)
+        
+        HttpPostRequest(httpUrl, headers: httpHeaders, body: httpPostBodyZipped, callBack: {[weak self] (result, error) in
+            if (error != nil && (self?.mConfig.isCachable)!) {
+                let timestamp = Date.timeIntervalBetween1970AndReferenceDate
                     DBManager.defaultManager().insertRecords(endpoint: (self?.mEndPoint)!, project: (self?.mProject)!, logstore: logStoreName, log: jsonpackage, timestamp: timestamp)
-                }
-
-                call(result, error)
-            })
+            }
+            call(result, error)
         })
+        
+//        DispatchQueue.global(qos: .default).async(execute: {
+//
+//            self.HttpPostRequest(httpUrl, headers: httpHeaders, body: httpPostBodyZipped, callBack: {[weak self] (result, error) in
+//                if (error != nil && (self?.mConfig.isCachable)!) {
+//                    let timestamp = Date.timeIntervalBetween1970AndReferenceDate
+//                    DBManager.defaultManager().insertRecords(endpoint: (self?.mEndPoint)!, project: (self?.mProject)!, logstore: logStoreName, log: jsonpackage, timestamp: timestamp)
+//                }
+//
+//                call(result, error)
+//            })
+//        })
     }
     
     open func PostLogInCache(logstore: String, logMsg: String, call: @escaping (URLResponse?, NSError?) -> ()){
         self.logDebug("PostLogInCache")
         
-        DispatchQueue.global(qos: .default).async(execute: {
-            
-            let httpUrl = "https://\(self.mProject).\(self.mEndPoint)"+"/logstores/\(logstore)/shards/lb"
-            
-            let httpPostBody = logMsg.data(using: .utf8)!
-            let httpPostBodyZipped = httpPostBody.GZip!
-            
-            let httpHeaders = self.GetHttpHeadersFrom(logstore , url: httpUrl, body: httpPostBody, bodyZipped: httpPostBodyZipped)
-            
-            self.HttpPostRequest(httpUrl, headers: httpHeaders, body: httpPostBodyZipped, callBack: call)
-        })
+        let httpUrl = "https://\(self.mProject).\(self.mEndPoint)/logstores/\(logstore)/shards/lb"
+        
+        let httpPostBody = logMsg.data(using: .utf8)!
+        let httpPostBodyZipped = httpPostBody.GZip!
+        
+        let httpHeaders = self.GetHttpHeadersFrom(logstore , url: httpUrl, body: httpPostBody, bodyZipped: httpPostBodyZipped)
+        
+        HttpPostRequest(httpUrl, headers: httpHeaders, body: httpPostBodyZipped, callBack: call)
+        
+//        DispatchQueue.global(qos: .default).async(execute: {
+//            self.HttpPostRequest(httpUrl, headers: httpHeaders, body: httpPostBodyZipped, callBack: call)
+//        })
     }
     
     fileprivate func GetHttpHeadersFrom(_ logstore:String,url:String,body:Data,bodyZipped:Data) -> [String:String]{
@@ -170,7 +181,6 @@ public class LOGClient: NSObject {
             request.setValue(val, forHTTPHeaderField: key)
             self.logDebug("request header key : ", key , " val : ", val)
         }
-        
         
         
         self.logDebug("request : ", request)
@@ -270,25 +280,30 @@ public class LOGClient: NSObject {
         let textlen = textdata.count
         
         let resultlen = Int(CC_SHA1_DIGEST_LENGTH)
-        var result = UnsafeMutablePointer<CUnsignedChar>.allocate(capacity: resultlen)
+        let result = UnsafeMutablePointer<CUnsignedChar>.allocate(capacity: resultlen)
         CCHmac(CCHmacAlgorithm(kCCHmacAlgSHA1), keybytes, keylen, textbytes, textlen, result)
         
         let resultData = Data(bytes: UnsafePointer<UInt8>(result), count: resultlen)
         let base64String = resultData.base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0))
         
-        result.deinitialize()
-        result.deallocate(capacity: resultlen)
+        result.deinitialize(count: resultlen)
+        result.deallocate()
+//        result.deinitialize()
+//        result.deallocate(capacity: resultlen)
         return base64String
     }
     
     private func getHostIn(_ url:String)->String {
-        var host = url
-        if let idx = url.range(of: "://") {
-            host = host.substring(from: url.index(idx.lowerBound, offsetBy: 3))
-        }
-        if let idx = host.range(of: "/") {
-            host = host.substring(to: idx.lowerBound)
-        }
+        
+        let toUrl = NSURL(string: url)
+        let host = toUrl?.host ?? url
+
+//        if let idx = url.range(of: "://") {
+//            host = host.substring(from: url.index(idx.lowerBound, offsetBy: 3))
+//        }
+//        if let idx = host.range(of: "/") {
+//            host = host.substring(to: idx.lowerBound)
+//        }
         return host;
     }
     

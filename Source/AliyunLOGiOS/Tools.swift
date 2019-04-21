@@ -145,8 +145,10 @@ extension Data  {
         for i in 0 ..< digestLen {
             hash.appendFormat("%02X", result[i])
         }
-        result.deinitialize()
-        result.deallocate(capacity: digestLen)
+        result.deinitialize(count: digestLen)
+        result.deallocate()
+//        result.deinitialize()
+//        result.deallocate(capacity: digestLen)
         return String(format: hash as String)
     }
 }

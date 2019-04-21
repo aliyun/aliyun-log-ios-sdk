@@ -48,7 +48,7 @@ open class LogGroup:NSObject{
             
         }catch _ as NSError {
             fatalError("Fail to serialize data.")
+            return ""
         }
-        return ""
     }
 }
