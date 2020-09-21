@@ -16,17 +16,13 @@ class ViewController: UIViewController {
     fileprivate let endpoint = "https://cn-hangzhou.log.aliyuncs.com"
     fileprivate let project = "k8s-log-c783b4a12f29b44efa31f655a586bb243"
     fileprivate let logstore = "666"
-    fileprivate let accesskeyid = "LTAIOras4OLg5mBS"
-    fileprivate let accesskeysecret = "XYlauGF44poy6IK0j2nStfCq5dN7Z6"
+    fileprivate let accesskeyid = ""
+    fileprivate let accesskeysecret = ""
     
     var x : Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        NotificationCenter.default.addObserver(self, selector: #selector(suspending), name: UIApplication.willResignActiveNotification, object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(suspending), name: UIApplication.willTerminateNotification, object: nil)
-        
         let file = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).first
         let path = file! + "/log.dat"
         
@@ -148,9 +144,9 @@ class ViewController: UIViewController {
         log.PutContent("content_key_7", value:"7abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+")
         log.PutContent("content_key_8", value:"8abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+")
         log.PutContent("content_key_9", value:"9abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+")
-//        log.PutContent("random", value:String(arc4random()))
+        log.PutContent("random", value:String(arc4random()))
         log.PutContent("content", value:"中文")
-//        log.PutContent("random_val", value:getRandomVal())
+        log.PutContent("random_val", value:getRandomVal())
         return log
     }
     
@@ -164,10 +160,4 @@ class ViewController: UIViewController {
         }
         return ranStr
     }
-    
-//    @objc func suspending () {
-//        client.DestroyLogProducer()
-//    }
-    
 }
-

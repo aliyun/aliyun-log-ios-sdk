@@ -21,8 +21,8 @@ LogProducerClient* client = nil;
 NSString* endpoint = @"https://cn-hangzhou.log.aliyuncs.com";
 NSString* project = @"k8s-log-c783b4a12f29b44efa31f655a586bb243";
 NSString* logstore = @"666";
-NSString* accesskeyid = @"LTAIOras4OLg5mBS";
-NSString* accesskeysecret = @"XYlauGF44poy6IK0j2nStfCq5dN7Z6";
+NSString* accesskeyid = @"";
+NSString* accesskeysecret = @"";
 
 NSNumber* x = 0;
 
@@ -33,7 +33,6 @@ NSNumber* x = 0;
     NSArray  *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *Path = [[paths lastObject] stringByAppendingString:@"/log.dat"];
     
-//    LogProducerConfig* config = [[LogProducerConfig alloc] initWithEndpoint:endpoint project:project logstore:logstore accessKeyID:accesskeyid accessKeySecret:accesskeysecret isDebugEnabled:true];
     LogProducerConfig* config = [[LogProducerConfig alloc] initWithEndpoint:endpoint project:project logstore:logstore accessKeyID:accesskeyid accessKeySecret:accesskeysecret];
     // 指定sts token 创建config，过期之前调用ResetSecurityToken重置token
 //    LogProducerConfig* config = [[LogProducerConfig alloc] initWithEndpoint:endpoint project:project logstore:logstore accessKeyID:accesskeyid accessKeySecret:accesskeysecret securityToken:securityToken];

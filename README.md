@@ -1,117 +1,202 @@
-# Aliyun LOG iOS SDK
-[![Language](https://img.shields.io/badge/swift-3.0-orange.svg)](http://swift.org)
-[![Build Status](https://travis-ci.org/aliyun/aliyun-log-ios-sdk.svg?branch=master)](https://github.com/aliyun/aliyun-log-ios-sdk)
-[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
-### 简介
-###### [阿里云日志服务](https://www.aliyun.com/product/sls/)SDK基于[日志服务API](https://help.aliyun.com/document_detail/29007.html?spm=5176.55536.224569.9.2rvzUk)实现，目前提供以下功能：
-  - 写入日志(默认为HTTPS)
-  - 断点续传(默认为HTTPS)
-  
-### 目前提供一下几种使用方式：
+# log service ios producer
 
+## 功能特点
 
+* 异步
+    * 异步写入，客户端线程无阻塞
+* 聚合&压缩 上传
+    * 支持按超时时间、日志数、日志size聚合数据发送
+    * 支持lz4压缩
+* 多客户端
+	* 可同时配置多个客户端，每个客户端可独立配置采集优先级、缓存上限、目的project/logstore、聚合参数等
+* 缓存
+    * 支持缓存上限可设置
+    * 超过上限后日志写入失败
+* 自定义标识
+    * 支持设置自定义tag、topic
+* 断点续传功能
+    * 每次发送前会把日志保存到本地的binlog文件，只有发送成功才会删除，保证日志上传At Least Once
 
-##### 导入source code
- - 下载并将Source/AliyunLOGiOS文件夹拖入目标项目中.
- - 下载FMDB并添加到工程依赖中,SDK目前引用FMDB的2.7.5版本。
+![image.png](https://test-lichao.oss-cn-hangzhou.aliyuncs.com/pic/099B6EC1-7305-4C18-A1CF-BA2CCD1FBDBC.png)
 
-##### 导入framework
+## 性能测试
 
- - 打开**终端**,cd到工程目录,然后执行
-   ```
-   sh build_both.sh
-   ```
-   ,然后会在工程根目录下生成Products文件夹,AliyunLOGiOS.framework,FMDB.framework均位于其中。
- - 将AliyunLOGiOS.framework,FMDB.framework拖入您的xcode project中
- - 确保General--Embedded Binaries中含有AliyunLOGiOS.framework以及依赖的FMDB.framework
- - 如果拖入framework没有选择copy,确保Build Phases--Embed Frameworks中含有此framework,并在Build Settings--Search Paths--Framework Search Paths中添加AliyunLOGiOS.framework,FMDB.framework的文件路径
- 
- **打包脚本编译出来的framework库是Release版本,支持i386,x86_64,armv7,arm64的fat库。Fat方式暂不支持xcode10，详见：https://forums.developer.apple.com/thread/109583。如果用xcode10 开发请选择源码方式**
+* 开启断点续传
 
-## 常见问题
+| 发送 条/每秒 | cpu占用 |  内存占用(MB) | 上传速(MB/min) |
+| --- | --- | --- | --- |
+| 1 | <1% | 14.2 | 0.046 |
+| 10 | 1% | 14.5 | 0.435 |
+| 100 | 6% | 14.5 | 4.31 |
+| 300 | 11% | 14.7 | 12.80 |
 
-1.工程编译出来的iOS库怎么没有支持armv7s的架构？
+* 不开启断点续
 
-​	Xcode9中默认支持的架构是armv7/arm64,由于arm是向下兼容的，armv7的库在需要支持armv7s的app中也是适用的，如果仍然需要针对armv7s进行优化，那么需要如下图进行设置
+| 发送 条/每秒 | cpu占用 |  内存占用(MB) | 上传速(MB/min) |
+| --- | --- | --- | --- |
+| 1 | <1% | 14 | 0.046 |
+| 10 | 1% | 14 | 0.437 |
+| 100 | 6% | 14.1 | 4.50 |
+| 300 | 9% | 14.4 | 13.47 |
 
-![list1](https://github.com/aliyun/aliyun-oss-ios-sdk/blob/master/Images/list1.png)
+## swift 配置说明
 
-### 示例
+### import
 
-##### Swift:
-
-``` swift
- /*
-    通过EndPoint、accessKeyID、accessKeySecret 构建日志服务客户端
-    @endPoint: 服务访问入口，参见 https://help.aliyun.com/document_detail/29008.html
- */
-let myClient = try! LOGClient(endPoint: "",
-                              accessKeyID: "",
-                              accessKeySecret: "",
-                              projectName:"")
-        
-/* 创建logGroup */
-let logGroup = try! LogGroup(topic: "mTopic",source: "mSource")
-        
-   /* 存入一条log */
-    let log1 = Log()
-     	 try! log1.PutContent("K11", value: "V11")
-         try! log1.PutContent("K12", value: "V12")
-         try! log1.PutContent("K13", value: "V13")
-    logGroup.PutLog(log1)
-        
-   /* 存入一条log */
-    let log2 = Log()
-     	 try! log2.PutContent("K21", value: "V21")
-         try! log2.PutContent("K22", value: "V22")
-         try! log2.PutContent("K23", value: "V23")
-    logGroup.PutLog(log2)
-        
- /* 发送 log */
- myClient.PostLog(logGroup,logStoreName: "")
-    myClient.PostLog(logGroup,logStoreName: ""){ response, error in
-
-        // handle response however you want
-
-        if error?.domain == NSURLErrorDomain && error?.code == NSURLErrorTimedOut {
-            print("timed out") // note, `response` is likely `nil` if it timed out
-        }
-    }
+```
+import AliyunLogProducer
 ```
 
+### 创建config
 
-##### Objective-C
-``` OC
-	// - 如果是Objective-C工程的话，需要设置Build Settings -- Embedded Content Contains Swift Code 为 Yes
+https://help.aliyun.com/document_detail/29064.html
 
+```
+let endpoint = "project's_endpoint";
+let project = "project_name";
+let logstore = "logstore_name";
+let accesskeyid = "your_accesskey_id";
+let accesskeysecret = "your_accesskey_secret";
 
-    NSString * ENDPOINT = @"******";
-    NSString * PROJECTNAME = @"******";
-    NSString * LOGSTORENAME = @"******";
-    
-    //        移动端是不安全环境，不建议直接使用阿里云主账号ak，sk的方式。建议使用STS方式。具体参见 https://help.aliyun.com/document_detail/62643.html
-    //        注意：只建议在测试环境或者用户可以保证阿里云主账号AK，SK安全的前提下使用。
-    
-    //通过STS使用日志服务
-    NSString * STS_AK = @"******";
-    NSString * STS_SK = @"******";
-    NSString * STS_TOKEN = @"******";
-    
-    LOGClient * client = [[LOGClient alloc] initWithEndPoint:ENDPOINT accessKeyID:STS_AK accessKeySecret:STS_SK token:STS_TOKEN projectName:PROJECTNAME];
-    
-    //  log调试开关
-    client.mIsLogEnable = true;
-    
-    Log * loginfo = [[Log alloc] init];
-    [loginfo PutContent:@"key001" value:@"value001"];
-    
-    LogGroup * group = [[LogGroup alloc] initWithTopic:@"topic" source:@"object-c"];
-    [group PutLog:loginfo];
-    
-    [client PostLog:group logStoreName:LOGSTORENAME call:^(NSURLResponse *response,NSError *error) {
-        NSLog(@"response %@", [response debugDescription]);
-        NSLog(@"error %@",[error debugDescription]);
-    }];
+let config = LogProducerConfig(endpoint:endpoint, project:project, logstore:logstore, accessKeyID:accesskeyid, accessKeySecret:accesskeysecret);
+// 指定sts token 创建config，过期之前调用ResetSecurityToken重置token
+// let config = LogProducerConfig(endpoint:endpoint, project:project, logstore:logstore, accessKeyID:accesskeyid, accessKeySecret:accesskeysecret, securityToken:securityToken);
+```
 
+### 配置config & 创建client
+
+```
+// 设置主题
+config.SetTopic("test_topic")
+// 设置tag信息，此tag会附加在每条日志上
+config.AddTag("test", value:"test_tag")
+// 每个缓存的日志包的大小上限，取值为1~5242880，单位为字节。默认为1024 * 1024
+config.SetPacketLogBytes(1024*1024)
+// 每个缓存的日志包中包含日志数量的最大值，取值为1~4096，默认为1024
+config.SetPacketLogCount(1024)
+// 被缓存日志的发送超时时间，如果缓存超时，则会被立即发送，单位为毫秒，默认为3000
+config.SetPacketTimeout(3000)
+// 单个Producer Client实例可以使用的内存的上限，超出缓存时add_log接口会立即返回失败
+// 默认为64 * 1024 * 1024
+config.SetMaxBufferLimit(64*1024*1024)
+// 发送线程数，默认为1
+config.SetSendThreadCount(1)
+// 是否设置全局变量的回调结果
+config.IsGlobalCallbackEnable(true)
+
+// 1 开启断点续传功能， 0 关闭
+// 每次发送前会把日志保存到本地的binlog文件，只有发送成功才会删除，保证日志上传At Least Once
+config.SetPersistent(1);
+// 持久化的文件名，需要保证文件所在的文件夹已创建。
+config.SetPersistentFilePath(path);
+// 是否每次AddLog强制刷新，高可靠性场景建议打开
+config.SetPersistentForceFlush(1);
+// 持久化文件滚动个数，建议设置成10。
+config.SetPersistentMaxFileCount(10);
+// 每个持久化文件的大小，建议设置成1-10M
+config.SetPersistentMaxFileSize(1024*1024);
+// 本地最多缓存的日志数，不建议超过1M，通常设置为65536即可
+config.SetPersistentMaxLogCount(65536);
+
+//创建client
+let client = LogProducerClient(logProducerConfig:config)
+```
+
+### 写数据
+
+```
+let log = Log()
+log.PutContent("k1", value:"v1")
+log.PutContent("k2", value:"v2")
+
+// addLog第二个参数flush，是否立即发送，1代表立即发送，不设置时默认为0
+let res = client?.AddLog(log, flush:0)
+```
+
+### 获取发送结果
+```
+let queue = DispatchQueue(label: "Results")
+queue.async {
+    while true {
+        while LogProducerCallbackQueue.count > 0 {
+            if let res = LogProducerCallbackQueue.dequeue() {
+                print(res.logProducerResult,res.reqId,res.errorMessage)
+            }
+        }
+        usleep(1000000)
+    }
+}
+```
+
+## oc 配置说明
+
+### import
+
+```
+#import "AliyunLogProducer/AliyunLogProducer-Swift.h"
+```
+
+### 创建config
+
+https://help.aliyun.com/document_detail/29064.html
+
+```
+NSString* endpoint = @"project's_endpoint";
+NSString* project = @"project_name";
+NSString* logstore = @"logstore_name";
+NSString* accesskeyid = @"your_accesskey_id";
+NSString* accesskeysecret = @"your_accesskey_secret";
+
+LogProducerConfig* config = [[LogProducerConfig alloc] initWithEndpoint:endpoint project:project logstore:logstore accessKeyID:accesskeyid accessKeySecret:accesskeysecret];
+// 指定sts token 创建config，过期之前调用ResetSecurityToken重置token
+// LogProducerConfig* config = [[LogProducerConfig alloc] initWithEndpoint:endpoint project:project logstore:logstore accessKeyID:accesskeyid accessKeySecret:accesskeysecret securityToken:securityToken];
+```
+
+### 配置config & 创建client
+
+```
+// 设置主题
+[config SetTopic:@"test_topic"];
+// 设置tag信息，此tag会附加在每条日志上
+[config AddTag:@"test" value:@"test_tag"];
+// 每个缓存的日志包的大小上限，取值为1~5242880，单位为字节。默认为1024 * 1024
+[config SetPacketLogBytes:1024*1024];
+// 每个缓存的日志包中包含日志数量的最大值，取值为1~4096，默认为1024
+[config SetPacketLogCount:1024];
+// 被缓存日志的发送超时时间，如果缓存超时，则会被立即发送，单位为毫秒，默认为3000
+[config SetPacketTimeout:3000];
+// 单个Producer Client实例可以使用的内存的上限，超出缓存时add_log接口会立即返回失败
+// 默认为64 * 1024 * 1024
+[config SetMaxBufferLimit:64*1024*1024];
+// 发送线程数，默认为1
+[config SetSendThreadCount:1];
+
+// 1 开启断点续传功能， 0 关闭
+// 每次发送前会把日志保存到本地的binlog文件，只有发送成功才会删除，保证日志上传At Least Once
+[config SetPersistent:1];
+// 持久化的文件名，需要保证文件所在的文件夹已创建。
+[config SetPersistentFilePath:Path];
+// 是否每次AddLog强制刷新，高可靠性场景建议打开
+[config SetPersistentForceFlush:1];
+// 持久化文件滚动个数，建议设置成10。
+[config SetPersistentMaxFileCount:10];
+// 每个持久化文件的大小，建议设置成1-10M
+[config SetPersistentMaxFileSize:1024*1024];
+// 本地最多缓存的日志数，不建议超过1M，通常设置为65536即可
+[config SetPersistentMaxLogCount:65536];
+
+//创建client
+client = [[LogProducerClient alloc] initWithLogProducerConfig:config];
+```
+
+### 写数据
+
+```
+Log* log = [[Log alloc] init];
+[log PutContent:@"k1" value:@"v1"];
+[log PutContent:@"k2" value:@"v2"];
+
+// addLog第二个参数flush，是否立即发送，1代表立即发送，不设置时默认为0
+LogProducerResult* res = [client AddLog:log flush:0];
 ```
 
