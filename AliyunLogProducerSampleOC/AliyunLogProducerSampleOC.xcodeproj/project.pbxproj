@@ -1,0 +1,623 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9D7FD31224FF8E3300482FC4 /* AliyunLogProducer.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9DA4D31A24FF348D005B9E69 /* AliyunLogProducer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9DA4D2E324FF333C005B9E69 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DA4D2E224FF333C005B9E69 /* AppDelegate.m */; };
+		9DA4D2E624FF333C005B9E69 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DA4D2E524FF333C005B9E69 /* SceneDelegate.m */; };
+		9DA4D2E924FF333C005B9E69 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DA4D2E824FF333C005B9E69 /* ViewController.m */; };
+		9DA4D2EC24FF333C005B9E69 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DA4D2EA24FF333C005B9E69 /* Main.storyboard */; };
+		9DA4D2EE24FF333E005B9E69 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9DA4D2ED24FF333E005B9E69 /* Assets.xcassets */; };
+		9DA4D2F124FF333E005B9E69 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DA4D2EF24FF333E005B9E69 /* LaunchScreen.storyboard */; };
+		9DA4D2F424FF333E005B9E69 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DA4D2F324FF333E005B9E69 /* main.m */; };
+		9DA4D2FE24FF333E005B9E69 /* AliyunLogProducerSampleOCTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DA4D2FD24FF333E005B9E69 /* AliyunLogProducerSampleOCTests.m */; };
+		9DA4D30924FF333E005B9E69 /* AliyunLogProducerSampleOCUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DA4D30824FF333E005B9E69 /* AliyunLogProducerSampleOCUITests.m */; };
+		9DA4D31B24FF348D005B9E69 /* AliyunLogProducer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DA4D31A24FF348D005B9E69 /* AliyunLogProducer.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		9DA4D2FA24FF333E005B9E69 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9DA4D2D624FF333C005B9E69 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9DA4D2DD24FF333C005B9E69;
+			remoteInfo = AliyunLogProducerSampleOC;
+		};
+		9DA4D30524FF333E005B9E69 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9DA4D2D624FF333C005B9E69 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9DA4D2DD24FF333C005B9E69;
+			remoteInfo = AliyunLogProducerSampleOC;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		9D7FD31124FF8E0E00482FC4 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				9D7FD31224FF8E3300482FC4 /* AliyunLogProducer.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		9DA4D2DE24FF333C005B9E69 /* AliyunLogProducerSampleOC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AliyunLogProducerSampleOC.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9DA4D2E124FF333C005B9E69 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		9DA4D2E224FF333C005B9E69 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		9DA4D2E424FF333C005B9E69 /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
+		9DA4D2E524FF333C005B9E69 /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
+		9DA4D2E724FF333C005B9E69 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		9DA4D2E824FF333C005B9E69 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		9DA4D2EB24FF333C005B9E69 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		9DA4D2ED24FF333E005B9E69 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9DA4D2F024FF333E005B9E69 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		9DA4D2F224FF333E005B9E69 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9DA4D2F324FF333E005B9E69 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		9DA4D2F924FF333E005B9E69 /* AliyunLogProducerSampleOCTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AliyunLogProducerSampleOCTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9DA4D2FD24FF333E005B9E69 /* AliyunLogProducerSampleOCTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AliyunLogProducerSampleOCTests.m; sourceTree = "<group>"; };
+		9DA4D2FF24FF333E005B9E69 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9DA4D30424FF333E005B9E69 /* AliyunLogProducerSampleOCUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AliyunLogProducerSampleOCUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9DA4D30824FF333E005B9E69 /* AliyunLogProducerSampleOCUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AliyunLogProducerSampleOCUITests.m; sourceTree = "<group>"; };
+		9DA4D30A24FF333E005B9E69 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9DA4D31A24FF348D005B9E69 /* AliyunLogProducer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AliyunLogProducer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9DA4D2DB24FF333C005B9E69 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9DA4D31B24FF348D005B9E69 /* AliyunLogProducer.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9DA4D2F624FF333E005B9E69 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9DA4D30124FF333E005B9E69 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9DA4D2D524FF333C005B9E69 = {
+			isa = PBXGroup;
+			children = (
+				9DA4D2E024FF333C005B9E69 /* AliyunLogProducerSampleOC */,
+				9DA4D2FC24FF333E005B9E69 /* AliyunLogProducerSampleOCTests */,
+				9DA4D30724FF333E005B9E69 /* AliyunLogProducerSampleOCUITests */,
+				9DA4D2DF24FF333C005B9E69 /* Products */,
+				9DA4D31924FF348D005B9E69 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		9DA4D2DF24FF333C005B9E69 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9DA4D2DE24FF333C005B9E69 /* AliyunLogProducerSampleOC.app */,
+				9DA4D2F924FF333E005B9E69 /* AliyunLogProducerSampleOCTests.xctest */,
+				9DA4D30424FF333E005B9E69 /* AliyunLogProducerSampleOCUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9DA4D2E024FF333C005B9E69 /* AliyunLogProducerSampleOC */ = {
+			isa = PBXGroup;
+			children = (
+				9DA4D2E124FF333C005B9E69 /* AppDelegate.h */,
+				9DA4D2E224FF333C005B9E69 /* AppDelegate.m */,
+				9DA4D2E424FF333C005B9E69 /* SceneDelegate.h */,
+				9DA4D2E524FF333C005B9E69 /* SceneDelegate.m */,
+				9DA4D2E724FF333C005B9E69 /* ViewController.h */,
+				9DA4D2E824FF333C005B9E69 /* ViewController.m */,
+				9DA4D2EA24FF333C005B9E69 /* Main.storyboard */,
+				9DA4D2ED24FF333E005B9E69 /* Assets.xcassets */,
+				9DA4D2EF24FF333E005B9E69 /* LaunchScreen.storyboard */,
+				9DA4D2F224FF333E005B9E69 /* Info.plist */,
+				9DA4D2F324FF333E005B9E69 /* main.m */,
+			);
+			path = AliyunLogProducerSampleOC;
+			sourceTree = "<group>";
+		};
+		9DA4D2FC24FF333E005B9E69 /* AliyunLogProducerSampleOCTests */ = {
+			isa = PBXGroup;
+			children = (
+				9DA4D2FD24FF333E005B9E69 /* AliyunLogProducerSampleOCTests.m */,
+				9DA4D2FF24FF333E005B9E69 /* Info.plist */,
+			);
+			path = AliyunLogProducerSampleOCTests;
+			sourceTree = "<group>";
+		};
+		9DA4D30724FF333E005B9E69 /* AliyunLogProducerSampleOCUITests */ = {
+			isa = PBXGroup;
+			children = (
+				9DA4D30824FF333E005B9E69 /* AliyunLogProducerSampleOCUITests.m */,
+				9DA4D30A24FF333E005B9E69 /* Info.plist */,
+			);
+			path = AliyunLogProducerSampleOCUITests;
+			sourceTree = "<group>";
+		};
+		9DA4D31924FF348D005B9E69 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9DA4D31A24FF348D005B9E69 /* AliyunLogProducer.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9DA4D2DD24FF333C005B9E69 /* AliyunLogProducerSampleOC */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9DA4D30D24FF333E005B9E69 /* Build configuration list for PBXNativeTarget "AliyunLogProducerSampleOC" */;
+			buildPhases = (
+				9DA4D2DA24FF333C005B9E69 /* Sources */,
+				9DA4D2DB24FF333C005B9E69 /* Frameworks */,
+				9DA4D2DC24FF333C005B9E69 /* Resources */,
+				9D7FD31124FF8E0E00482FC4 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AliyunLogProducerSampleOC;
+			productName = AliyunLogProducerSampleOC;
+			productReference = 9DA4D2DE24FF333C005B9E69 /* AliyunLogProducerSampleOC.app */;
+			productType = "com.apple.product-type.application";
+		};
+		9DA4D2F824FF333E005B9E69 /* AliyunLogProducerSampleOCTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9DA4D31024FF333E005B9E69 /* Build configuration list for PBXNativeTarget "AliyunLogProducerSampleOCTests" */;
+			buildPhases = (
+				9DA4D2F524FF333E005B9E69 /* Sources */,
+				9DA4D2F624FF333E005B9E69 /* Frameworks */,
+				9DA4D2F724FF333E005B9E69 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9DA4D2FB24FF333E005B9E69 /* PBXTargetDependency */,
+			);
+			name = AliyunLogProducerSampleOCTests;
+			productName = AliyunLogProducerSampleOCTests;
+			productReference = 9DA4D2F924FF333E005B9E69 /* AliyunLogProducerSampleOCTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		9DA4D30324FF333E005B9E69 /* AliyunLogProducerSampleOCUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9DA4D31324FF333E005B9E69 /* Build configuration list for PBXNativeTarget "AliyunLogProducerSampleOCUITests" */;
+			buildPhases = (
+				9DA4D30024FF333E005B9E69 /* Sources */,
+				9DA4D30124FF333E005B9E69 /* Frameworks */,
+				9DA4D30224FF333E005B9E69 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9DA4D30624FF333E005B9E69 /* PBXTargetDependency */,
+			);
+			name = AliyunLogProducerSampleOCUITests;
+			productName = AliyunLogProducerSampleOCUITests;
+			productReference = 9DA4D30424FF333E005B9E69 /* AliyunLogProducerSampleOCUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9DA4D2D624FF333C005B9E69 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1120;
+				ORGANIZATIONNAME = lichao;
+				TargetAttributes = {
+					9DA4D2DD24FF333C005B9E69 = {
+						CreatedOnToolsVersion = 11.2.1;
+					};
+					9DA4D2F824FF333E005B9E69 = {
+						CreatedOnToolsVersion = 11.2.1;
+						TestTargetID = 9DA4D2DD24FF333C005B9E69;
+					};
+					9DA4D30324FF333E005B9E69 = {
+						CreatedOnToolsVersion = 11.2.1;
+						TestTargetID = 9DA4D2DD24FF333C005B9E69;
+					};
+				};
+			};
+			buildConfigurationList = 9DA4D2D924FF333C005B9E69 /* Build configuration list for PBXProject "AliyunLogProducerSampleOC" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 9DA4D2D524FF333C005B9E69;
+			productRefGroup = 9DA4D2DF24FF333C005B9E69 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9DA4D2DD24FF333C005B9E69 /* AliyunLogProducerSampleOC */,
+				9DA4D2F824FF333E005B9E69 /* AliyunLogProducerSampleOCTests */,
+				9DA4D30324FF333E005B9E69 /* AliyunLogProducerSampleOCUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9DA4D2DC24FF333C005B9E69 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9DA4D2F124FF333E005B9E69 /* LaunchScreen.storyboard in Resources */,
+				9DA4D2EE24FF333E005B9E69 /* Assets.xcassets in Resources */,
+				9DA4D2EC24FF333C005B9E69 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9DA4D2F724FF333E005B9E69 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9DA4D30224FF333E005B9E69 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9DA4D2DA24FF333C005B9E69 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9DA4D2E924FF333C005B9E69 /* ViewController.m in Sources */,
+				9DA4D2E324FF333C005B9E69 /* AppDelegate.m in Sources */,
+				9DA4D2F424FF333E005B9E69 /* main.m in Sources */,
+				9DA4D2E624FF333C005B9E69 /* SceneDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9DA4D2F524FF333E005B9E69 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9DA4D2FE24FF333E005B9E69 /* AliyunLogProducerSampleOCTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9DA4D30024FF333E005B9E69 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9DA4D30924FF333E005B9E69 /* AliyunLogProducerSampleOCUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9DA4D2FB24FF333E005B9E69 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9DA4D2DD24FF333C005B9E69 /* AliyunLogProducerSampleOC */;
+			targetProxy = 9DA4D2FA24FF333E005B9E69 /* PBXContainerItemProxy */;
+		};
+		9DA4D30624FF333E005B9E69 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9DA4D2DD24FF333C005B9E69 /* AliyunLogProducerSampleOC */;
+			targetProxy = 9DA4D30524FF333E005B9E69 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		9DA4D2EA24FF333C005B9E69 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9DA4D2EB24FF333C005B9E69 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		9DA4D2EF24FF333E005B9E69 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9DA4D2F024FF333E005B9E69 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		9DA4D30B24FF333E005B9E69 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				VALID_ARCHS = "arm64 arm64e armv7 armv7s";
+			};
+			name = Debug;
+		};
+		9DA4D30C24FF333E005B9E69 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "arm64 arm64e armv7 armv7s";
+			};
+			name = Release;
+		};
+		9DA4D30E24FF333E005B9E69 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 38973228P3;
+				INFOPLIST_FILE = AliyunLogProducerSampleOC/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = lichao.AliyunLogProducerSampleOC;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		9DA4D30F24FF333E005B9E69 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 38973228P3;
+				INFOPLIST_FILE = AliyunLogProducerSampleOC/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = lichao.AliyunLogProducerSampleOC;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		9DA4D31124FF333E005B9E69 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 38973228P3;
+				INFOPLIST_FILE = AliyunLogProducerSampleOCTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = lichao.AliyunLogProducerSampleOCTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AliyunLogProducerSampleOC.app/AliyunLogProducerSampleOC";
+			};
+			name = Debug;
+		};
+		9DA4D31224FF333E005B9E69 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 38973228P3;
+				INFOPLIST_FILE = AliyunLogProducerSampleOCTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = lichao.AliyunLogProducerSampleOCTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AliyunLogProducerSampleOC.app/AliyunLogProducerSampleOC";
+			};
+			name = Release;
+		};
+		9DA4D31424FF333E005B9E69 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 38973228P3;
+				INFOPLIST_FILE = AliyunLogProducerSampleOCUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = lichao.AliyunLogProducerSampleOCUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = AliyunLogProducerSampleOC;
+			};
+			name = Debug;
+		};
+		9DA4D31524FF333E005B9E69 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 38973228P3;
+				INFOPLIST_FILE = AliyunLogProducerSampleOCUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = lichao.AliyunLogProducerSampleOCUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = AliyunLogProducerSampleOC;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9DA4D2D924FF333C005B9E69 /* Build configuration list for PBXProject "AliyunLogProducerSampleOC" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9DA4D30B24FF333E005B9E69 /* Debug */,
+				9DA4D30C24FF333E005B9E69 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9DA4D30D24FF333E005B9E69 /* Build configuration list for PBXNativeTarget "AliyunLogProducerSampleOC" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9DA4D30E24FF333E005B9E69 /* Debug */,
+				9DA4D30F24FF333E005B9E69 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9DA4D31024FF333E005B9E69 /* Build configuration list for PBXNativeTarget "AliyunLogProducerSampleOCTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9DA4D31124FF333E005B9E69 /* Debug */,
+				9DA4D31224FF333E005B9E69 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9DA4D31324FF333E005B9E69 /* Build configuration list for PBXNativeTarget "AliyunLogProducerSampleOCUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9DA4D31424FF333E005B9E69 /* Debug */,
+				9DA4D31524FF333E005B9E69 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9DA4D2D624FF333C005B9E69 /* Project object */;
+}
