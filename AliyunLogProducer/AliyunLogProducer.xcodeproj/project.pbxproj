@@ -132,7 +132,7 @@
 		9D6FCC3E24F4A45B00C015A5 /* log_producer_config.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D6FCC2A24F4A45B00C015A5 /* log_producer_config.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9D6FCC3F24F4A45B00C015A5 /* ProducerHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D6FCC2B24F4A45B00C015A5 /* ProducerHeader.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
 		9D6FCC4024F4A45B00C015A5 /* log_producer_client.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D6FCC2C24F4A45B00C015A5 /* log_producer_client.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		9D6FCC4124F4A45B00C015A5 /* inner_log.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D6FCC2D24F4A45B00C015A5 /* inner_log.h */; };
+		9D6FCC4124F4A45B00C015A5 /* inner_log.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D6FCC2D24F4A45B00C015A5 /* inner_log.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9D6FCC4224F4A45B00C015A5 /* log_inner_include.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D6FCC2E24F4A45B00C015A5 /* log_inner_include.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9D6FCC4324F4A45B00C015A5 /* hmac-sha.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D6FCC2F24F4A45B00C015A5 /* hmac-sha.h */; };
 		9D6FCC4424F4A45B00C015A5 /* log_producer_sender.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D6FCC3024F4A45B00C015A5 /* log_producer_sender.h */; };
@@ -144,7 +144,7 @@
 		9D6FCC4A24F4A45B00C015A5 /* log_api.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D6FCC3624F4A45B00C015A5 /* log_api.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9D6FCC4B24F4A45B00C015A5 /* log_producer_common.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D6FCC3724F4A45B00C015A5 /* log_producer_common.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9D6FCC4C24F4A45B00C015A5 /* sha1.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D6FCC3824F4A45B00C015A5 /* sha1.h */; };
-		9D6FCC4D24F4A45B00C015A5 /* log_builder.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D6FCC3924F4A45B00C015A5 /* log_builder.h */; };
+		9D6FCC4D24F4A45B00C015A5 /* log_builder.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D6FCC3924F4A45B00C015A5 /* log_builder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9D6FCC4E24F4A45B00C015A5 /* log_define.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D6FCC3A24F4A45B00C015A5 /* log_define.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9D6FCC4F24F4A45B00C015A5 /* log_producer_manager.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D6FCC3B24F4A45B00C015A5 /* log_producer_manager.h */; };
 		9D6FCC5124F4A45B00C015A5 /* log_queue.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D6FCC3D24F4A45B00C015A5 /* log_queue.h */; };
@@ -568,10 +568,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				9DA4D32024FF686F005B9E69 /* AliyunLogProducer-Bridging-Header.h in Headers */,
+				9D6FCC4124F4A45B00C015A5 /* inner_log.h in Headers */,
 				9D6FCC4024F4A45B00C015A5 /* log_producer_client.h in Headers */,
 				9D6FCC4B24F4A45B00C015A5 /* log_producer_common.h in Headers */,
 				9D6FCC3E24F4A45B00C015A5 /* log_producer_config.h in Headers */,
 				9D6FCC4724F4A45B00C015A5 /* log_multi_thread.h in Headers */,
+				9D6FCC4D24F4A45B00C015A5 /* log_builder.h in Headers */,
 				9D6FCC3F24F4A45B00C015A5 /* ProducerHeader.h in Headers */,
 				9D6FCC4A24F4A45B00C015A5 /* log_api.h in Headers */,
 				9D6FCC4E24F4A45B00C015A5 /* log_define.h in Headers */,
@@ -591,7 +593,6 @@
 				9D6FCBD724F4A44400C015A5 /* crypto.h in Headers */,
 				9D6FCC2424F4A45000C015A5 /* system.h in Headers */,
 				9D6FCBDD24F4A44400C015A5 /* async.h in Headers */,
-				9D6FCC4124F4A45B00C015A5 /* inner_log.h in Headers */,
 				9D6FCBE724F4A44400C015A5 /* aes.h in Headers */,
 				9D6FCC4C24F4A45B00C015A5 /* sha1.h in Headers */,
 				9D6FCC0624F4A44400C015A5 /* pkcs7err.h in Headers */,
@@ -602,7 +603,6 @@
 				9D6FCC0F24F4A44400C015A5 /* ebcdic.h in Headers */,
 				9D6FCBBB24F4A44300C015A5 /* objectserr.h in Headers */,
 				9D6FCC0124F4A44400C015A5 /* rsaerr.h in Headers */,
-				9D6FCC4D24F4A45B00C015A5 /* log_builder.h in Headers */,
 				9D6FCBF424F4A44400C015A5 /* ecerr.h in Headers */,
 				9D6FCBB324F4A44300C015A5 /* err.h in Headers */,
 				9D6FCBBD24F4A44300C015A5 /* ui.h in Headers */,
