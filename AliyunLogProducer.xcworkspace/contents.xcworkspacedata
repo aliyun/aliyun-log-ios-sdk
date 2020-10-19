@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:AliyunLogProducer/AliyunLogProducer.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:AliyunLogProducerSampleSwift/AliyunLogProducerSampleSwift.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:AliyunLogProducerSampleOC/AliyunLogProducerSampleOC.xcodeproj">
+   </FileRef>
+</Workspace>
