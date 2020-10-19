@@ -41,7 +41,7 @@
 
 - (LogProducerResult)AddLog:(Log *) log
 {
-    return [self AddLog:log flush:1];
+    return [self AddLog:log flush:0];
 }
 
 - (LogProducerResult)AddLog:(Log *) log flush:(int) flush
