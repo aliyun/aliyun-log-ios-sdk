@@ -39,13 +39,16 @@
 | 100 | 6% | 14.1 | 4.50 |
 | 300 | 9% | 14.4 | 13.47 |
 
+## Podfile
+```
+pod 'AliyunLogProducer', '~> 2.1.0'
+```
+
 ## swift 配置说明
 
 ### import
 
 ```
-配置Bridging-Header.h
-
 import AliyunLogProducer
 ```
 
