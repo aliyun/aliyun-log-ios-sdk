@@ -46,6 +46,9 @@
 		9D984EF02520AACF009DE4FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9D984EF12520AACF009DE4FE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		9DA1A71D253D3A3900E85477 /* AliyunLogProducer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AliyunLogProducer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9DB239B025491ACF00561659 /* Example1.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Example1.m; sourceTree = "<group>"; };
+		9DB239B125491B2B00561659 /* Example2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Example2.m; sourceTree = "<group>"; };
+		9DB239B225491B3B00561659 /* Example3.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Example3.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +91,7 @@
 		9D984EDE2520AACA009DE4FE /* AliyunLogProducerSampleOC */ = {
 			isa = PBXGroup;
 			children = (
+				9DB239AF25491A5F00561659 /* example */,
 				9D984EDF2520AACA009DE4FE /* AppDelegate.h */,
 				9D984EE02520AACA009DE4FE /* AppDelegate.m */,
 				9D984EE22520AACB009DE4FE /* SceneDelegate.h */,
@@ -101,6 +105,16 @@
 				9D984EF12520AACF009DE4FE /* main.m */,
 			);
 			path = AliyunLogProducerSampleOC;
+			sourceTree = "<group>";
+		};
+		9DB239AF25491A5F00561659 /* example */ = {
+			isa = PBXGroup;
+			children = (
+				9DB239B025491ACF00561659 /* Example1.m */,
+				9DB239B125491B2B00561659 /* Example2.m */,
+				9DB239B225491B3B00561659 /* Example3.m */,
+			);
+			path = example;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
