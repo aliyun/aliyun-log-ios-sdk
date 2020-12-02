@@ -13,6 +13,7 @@
 #endif /* LogProducerConfig_h */
 
 #import "log_producer_config.h"
+#import "log_http_interface.h"
 
 
 @interface LogProducerConfig : NSObject

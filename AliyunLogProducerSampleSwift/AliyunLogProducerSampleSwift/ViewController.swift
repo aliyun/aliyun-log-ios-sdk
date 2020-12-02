@@ -61,8 +61,10 @@ class ViewController: UIViewController {
         let callbackFunc: on_log_producer_send_done_function = {config_name,result,log_bytes,compressed_bytes,req_id,error_message,raw_buffer,user_param in
             let res = LogProducerResult(rawValue: Int(result))
 //            print(res!)
-//            let req = String(cString: req_id!)
-//            print(req)
+//            let reqId = req_id == nil ? "":String(cString: req_id!)
+//            print(reqId)
+//            let errorMessage = error_message == nil ? "" : String(cString: error_message!)
+//            print(errorMessage)
 //            print(log_bytes)
 //            print(compressed_bytes)
         }
