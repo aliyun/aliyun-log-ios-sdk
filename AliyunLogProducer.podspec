@@ -33,7 +33,7 @@ https://help.aliyun.com/product/28958.html
   s.requires_arc  = true
   s.libraries = 'z'
 
-  s.source_files = 'AliyunLogProducer/AliyunLogProducer/*.{h,m}','AliyunLogProducer/aliyun-log-c-sdk/src/*.{h,m}'
+  s.source_files = 'AliyunLogProducer/AliyunLogProducer/*.{h,m}','AliyunLogProducer/aliyun-log-c-sdk/src/*.{c,h}'
   
   s.public_header_files = 'AliyunLogProducer/AliyunLogProducer/*.h','AliyunLogProducer/*/src/log_define.h','AliyunLogProducer/*/src/log_http_interface.h','AliyunLogProducer/*/src/log_inner_include.h','AliyunLogProducer/*/src/log_multi_thread.h','AliyunLogProducer/*/src/log_producer_client.h','AliyunLogProducer/*/src/log_producer_common.h','AliyunLogProducer/*/src/log_producer_config.h'
 end
