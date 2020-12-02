@@ -18,6 +18,53 @@
 
 @implementation LogProducerConfig
 
+static int os_http_post(const char *url,
+                char **header_array,
+                int header_count,
+                const void *data,
+                int data_len)
+{
+    if(url == NULL || *url == 0 || header_array == NULL || header_count < 1 || data == NULL || data_len <= 0)
+        return 400; // bad request
+
+    NSString *urlString = [NSString stringWithUTF8String:url];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setHTTPMethod:@"POST"];
+    [request setURL:[NSURL URLWithString:urlString]];
+
+    // set headers
+    for(int i=0; i<header_count; i++) {
+        char *kv = header_array[i];
+        if(kv != NULL) {
+            char *eq = strchr(kv, ':');
+            if(eq != NULL && eq != kv && eq[1] != 0) {
+                *eq = 0;
+                [request addValue:[NSString stringWithUTF8String:eq+1] forHTTPHeaderField:[NSString stringWithUTF8String:kv]];
+                *eq = '='; // restore
+            }
+        }
+    }
+
+    [request setValue:@"log-c-lite_0.1.1" forHTTPHeaderField:@"User-Agent"];
+
+    // set body
+    NSData *postData = [NSData dataWithBytes:data length:data_len];
+    [request setHTTPBody:postData];
+
+    // send
+    NSError *error = nil;
+    NSHTTPURLResponse *response = nil;
+    [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    if(response != nil)
+        return [response statusCode];
+    else
+        return 400;
+}
+
++(void)load{
+    log_set_http_post_func(os_http_post);
+}
+
 - (id) initWithEndpoint:(NSString *) endpoint project:(NSString *)project logstore:(NSString *)logstore accessKeyID:(NSString *)accessKeyID accessKeySecret:(NSString *)accessKeySecret
 {
     if (self = [super init])
