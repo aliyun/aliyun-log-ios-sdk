@@ -11,7 +11,7 @@ import AliyunLogProducer
 class ViewController: UIViewController {
 
     fileprivate var client:     LogProducerClient!
-
+    // endpoint前需要加 https://
     fileprivate let endpoint = "https://cn-hangzhou.log.aliyuncs.com"
     fileprivate let project = "k8s-log-c783b4a12f29b44efa31f655a586bb243"
     fileprivate let logstore = "666"
@@ -58,6 +58,28 @@ class ViewController: UIViewController {
         config.setPersistentMaxFileSize(1024*1024)
         // 本地最多缓存的日志数，不建议超过1M，通常设置为65536即可
         config.setPersistentMaxLogCount(65536)
+        
+        //网络连接超时时间，整数，单位秒，默认为10
+        config.setConnectTimeoutSec(10)
+        //日志发送超时时间，整数，单位秒，默认为15
+        config.setSendTimeoutSec(10)
+        //flusher线程销毁最大等待时间，整数，单位秒，默认为1
+        config.setDestroyFlusherWaitSec(2)
+        //sender线程池销毁最大等待时间，整数，单位秒，默认为1
+        config.setDestroySenderWaitSec(2)
+        //数据上传时的压缩类型，默认为LZ4压缩， 0 不压缩，1 LZ4压缩， 默认为1
+        config.setCompressType(1)
+        //设备时间与标准时间之差，值为标准时间-设备时间，一般此种情况用户客户端设备时间不同步的场景
+        //整数，单位秒，默认为0；比如当前设备时间为1607064208, 标准时间为1607064308，则值设置为 1607064308 - 1607064208 = 100
+        config.setNtpTimeOffset(1)
+        //日志时间与本机时间之差，超过该大小后会根据 `drop_delay_log` 选项进行处理。
+        //一般此种情况只会在设置persistent的情况下出现，即设备下线后，超过几天/数月启动，发送退出前未发出的日志
+        //整数，单位秒，默认为7*24*3600，即7天
+        config.setMaxLogDelayTime(7*24*3600)
+        //对于超过 `max_log_delay_time` 日志的处理策略
+        //0 不丢弃，把日志时间修改为当前时间; 1 丢弃，默认为 1 （丢弃）
+        config.setDropDelayLog(1)
+        
         let callbackFunc: on_log_producer_send_done_function = {config_name,result,log_bytes,compressed_bytes,req_id,error_message,raw_buffer,user_param in
             let res = LogProducerResult(rawValue: Int(result))
 //            print(res!)
@@ -74,26 +96,15 @@ class ViewController: UIViewController {
 
     @IBAction func test(_ sender: UIButton) {
 //        sendOneLog()
-        sendMulLog(200)
+        sendMulLog(2048)
     }
     
     func sendOneLog() {
-        sendOneLog1()
         let log = getOneLog()
         log.putContent("index", value:String(x))
         x = x + 1
         let res = client?.add(log, flush:1)
         print(res!)
-    }
-    
-    func sendOneLog1() {
-        let config1 = LogProducerConfig(endpoint:endpoint, project:project, logstore:logstore, accessKeyID:accesskeyid, accessKeySecret:accesskeysecret)!;
-        config1.setTopic("test_topic1")
-        let client1 = LogProducerClient(logProducerConfig:config1)!
-        let log = getOneLog()
-        log.putContent("index", value:String(x))
-        x = x + 1
-        _ = client1.add(log, flush:1)
     }
     
     func sendMulLog(_ num :Int) {
@@ -125,18 +136,7 @@ class ViewController: UIViewController {
         log.putContent("content_key_9", value:"9abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+")
         log.putContent("random", value:String(arc4random()))
         log.putContent("content", value:"中文")
-        log.putContent("random_val", value:getRandomVal())
         return log
     }
-    
-    func getRandomVal() -> String {
-        let random_str_characters = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-        var ranStr = ""
-        let len = Int(arc4random_uniform(1000))
-        for _ in 0..<len {
-            let index = Int(arc4random_uniform(UInt32(random_str_characters.count)))
-            ranStr.append(random_str_characters[random_str_characters.index(random_str_characters.startIndex, offsetBy: index)])
-        }
-        return ranStr
-    }
+
 }
