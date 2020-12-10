@@ -45,7 +45,7 @@ static int os_http_post(const char *url,
         }
     }
 
-    [request setValue:@"log-c-lite_0.1.1" forHTTPHeaderField:@"User-Agent"];
+    [request setValue:@"sls-ios-sdk_v2.2.1" forHTTPHeaderField:@"User-Agent"];
 
     // set body
     NSData *postData = [NSData dataWithBytes:data length:data_len];
@@ -61,7 +61,7 @@ static int os_http_post(const char *url,
         return 400;
 }
 
-+(void)load{
++ (void)load{
     log_set_http_post_func(os_http_post);
 }
 
@@ -182,6 +182,67 @@ static int os_http_post(const char *url,
 - (void)SetPersistentMaxLogCount:(int) num
 {
     log_producer_config_set_persistent_max_log_count(config, num);
+}
+
+- (void)SetUsingHttp:(int) num;
+{
+    log_producer_config_set_using_http(config, num);
+}
+
+- (void)SetNetInterface:(NSString *) netInterface;
+{
+    const char *netInterfaceChar=[netInterface UTF8String];
+    log_producer_config_set_net_interface(config, netInterfaceChar);
+}
+
+- (void)SetConnectTimeoutSec:(int) num;
+{
+    log_producer_config_set_connect_timeout_sec(config, num);
+}
+
+- (void)SetSendTimeoutSec:(int) num;
+{
+    log_producer_config_set_send_timeout_sec(config, num);
+}
+
+- (void)SetDestroyFlusherWaitSec:(int) num;
+{
+    log_producer_config_set_destroy_flusher_wait_sec(config, num);
+}
+
+- (void)SetDestroySenderWaitSec:(int) num;
+{
+    log_producer_config_set_destroy_sender_wait_sec(config, num);
+}
+
+- (void)SetCompressType:(int) num;
+{
+    log_producer_config_set_compress_type(config, num);
+}
+
+- (void)SetNtpTimeOffset:(int) num;
+{
+    log_producer_config_set_ntp_time_offset(config, num);
+}
+
+- (void)SetMaxLogDelayTime:(int) num;
+{
+    log_producer_config_set_max_log_delay_time(config, num);
+}
+
+- (void)SetDropDelayLog:(int) num;
+{
+    log_producer_config_set_drop_delay_log(config, num);
+}
+
+- (int)IsValid;
+{
+    return log_producer_config_is_valid(config);
+}
+
+- (int)IsEnabled;
+{
+    return log_producer_persistent_config_is_enabled(config);
 }
 
 - (void)ResetSecurityToken:(NSString *) accessKeyID accessKeySecret:(NSString *)accessKeySecret securityToken:(NSString *)securityToken

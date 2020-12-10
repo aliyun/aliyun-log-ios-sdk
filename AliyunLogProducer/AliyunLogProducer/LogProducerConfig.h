@@ -53,6 +53,30 @@
 
 - (void)SetPersistentMaxLogCount:(int) num;
 
+- (void)SetUsingHttp:(int) num;
+
+- (void)SetNetInterface:(NSString *) netInterface;
+
+- (void)SetConnectTimeoutSec:(int) num;
+
+- (void)SetSendTimeoutSec:(int) num;
+
+- (void)SetDestroyFlusherWaitSec:(int) num;
+
+- (void)SetDestroySenderWaitSec:(int) num;
+
+- (void)SetCompressType:(int) num;
+
+- (void)SetNtpTimeOffset:(int) num;
+
+- (void)SetMaxLogDelayTime:(int) num;
+
+- (void)SetDropDelayLog:(int) num;
+
+- (int)IsValid;
+
+- (int)IsEnabled;
+
 - (void)ResetSecurityToken:(NSString *) accessKeyID accessKeySecret:(NSString *)accessKeySecret securityToken:(NSString *)securityToken;
 
 + (void)Debug;

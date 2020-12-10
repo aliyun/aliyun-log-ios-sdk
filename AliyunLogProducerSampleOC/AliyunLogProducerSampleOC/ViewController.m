@@ -17,7 +17,7 @@
 @implementation ViewController
 
 LogProducerClient* client = nil;
-
+// endpoint前需要加 https://
 NSString* endpoint = @"https://cn-hangzhou.log.aliyuncs.com";
 NSString* project = @"k8s-log-c783b4a12f29b44efa31f655a586bb243";
 NSString* logstore = @"666";
@@ -51,6 +51,15 @@ int x = 0;
     [config SetPersistentMaxFileCount:10];
     [config SetPersistentMaxFileSize:1024*1024];
     [config SetPersistentMaxLogCount:65536];
+    
+    [config SetConnectTimeoutSec:10];
+    [config SetSendTimeoutSec:10];
+    [config SetDestroyFlusherWaitSec:1];
+    [config SetDestroySenderWaitSec:1];
+    [config SetCompressType:1];
+    [config SetNtpTimeOffset:1];
+    [config SetMaxLogDelayTime:7*24*3600];
+    [config SetDropDelayLog:1];
 
     client = [[LogProducerClient alloc] initWithLogProducerConfig:config callback:on_log_send_done];
 }
@@ -65,7 +74,7 @@ void on_log_send_done(const char * config_name, log_producer_result result, size
 
 - (IBAction)send:(id)sender {
 //    [self sendOneLog];
-    [self sendMulLog:300];
+    [self sendMulLog:2048];
 }
 
 -(void)sendOneLog {
