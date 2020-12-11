@@ -18,6 +18,8 @@
 
 @implementation LogProducerConfig
 
+const static NSString *VERSION = @"sls-ios-sdk_v2.2.2";
+
 static int os_http_post(const char *url,
                 char **header_array,
                 int header_count,
@@ -45,7 +47,7 @@ static int os_http_post(const char *url,
         }
     }
 
-    [request setValue:@"sls-ios-sdk_v2.2.1" forHTTPHeaderField:@"User-Agent"];
+    [request setValue:VERSION forHTTPHeaderField:@"User-Agent"];
 
     // set body
     NSData *postData = [NSData dataWithBytes:data length:data_len];
@@ -55,10 +57,20 @@ static int os_http_post(const char *url,
     NSError *error = nil;
     NSHTTPURLResponse *response = nil;
     [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-    if(response != nil)
+    if(response != nil){
         return [response statusCode];
-    else
+    }
+    else {
+        NSLog(@"%@: %@", VERSION, error);
+        if (error.code == kCFURLErrorUserCancelledAuthentication)
+            return 401;
+        if (error.code == kCFURLErrorBadServerResponse)
+            return 500;
+        if (error.code == kCFURLErrorTimedOut ||
+            error.code == kCFURLErrorNotConnectedToInternet)
+            return -1;
         return 400;
+    }
 }
 
 + (void)load{
