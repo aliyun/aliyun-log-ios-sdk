@@ -6,6 +6,12 @@
 //  Copyright © 2020 lichao. All rights reserved.
 //
 
+#ifdef DEBUG
+#define SLSLog(...) NSLog(__VA_ARGS__)
+#else
+#define SLSLog(...)
+#endif
+
 #import <Foundation/Foundation.h>
 #import "LogProducerConfig.h"
 #import "inner_log.h"
@@ -18,7 +24,7 @@
 
 @implementation LogProducerConfig
 
-const static NSString *VERSION = @"sls-ios-sdk_v2.2.2";
+static NSString *VERSION = @"sls-ios-sdk_v2.2.3";
 
 static int os_http_post(const char *url,
                 char **header_array,
@@ -58,18 +64,21 @@ static int os_http_post(const char *url,
     NSHTTPURLResponse *response = nil;
     [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     if(response != nil){
-        return [response statusCode];
+        int responseCode = (int)[response statusCode];
+        if (responseCode != 200) {
+            SLSLog(@"%@: %ld %@", VERSION, [response statusCode], [response allHeaderFields]);
+        }
+        return responseCode;
     }
     else {
-        NSLog(@"%@: %@", VERSION, error);
-        if (error.code == kCFURLErrorUserCancelledAuthentication)
-            return 401;
-        if (error.code == kCFURLErrorBadServerResponse)
-            return 500;
-        if (error.code == kCFURLErrorTimedOut ||
-            error.code == kCFURLErrorNotConnectedToInternet)
-            return -1;
-        return 400;
+        if(error != nil){
+            SLSLog(@"%@: %@", VERSION, error);
+            if (error.code == kCFURLErrorUserCancelledAuthentication)
+                return 401;
+            if (error.code == kCFURLErrorBadServerResponse)
+                return 500;
+        }
+        return -1;
     }
 }
 
