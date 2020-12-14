@@ -87,10 +87,6 @@
     return res;
 }
 
--(void)dealloc {
-    [self DestroyLogProducer];
-}
-
 -(char*)convertToChar:(NSString*)strtemp
 {
     NSUInteger arbLength = [strtemp lengthOfBytesUsingEncoding:NSUTF8StringEncoding] + 1;
