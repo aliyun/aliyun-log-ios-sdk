@@ -79,6 +79,9 @@ class ViewController: UIViewController {
         //对于超过 `max_log_delay_time` 日志的处理策略
         //0 不丢弃，把日志时间修改为当前时间; 1 丢弃，默认为 1 （丢弃）
         config.setDropDelayLog(1)
+        //是否丢弃鉴权失败的日志，0 不丢弃，1丢弃
+        //整数，默认为 0，即不丢弃
+        config.setDropUnauthorizedLog(0)
         
         let callbackFunc: on_log_producer_send_done_function = {config_name,result,log_bytes,compressed_bytes,req_id,error_message,raw_buffer,user_param in
             let res = LogProducerResult(rawValue: Int(result))

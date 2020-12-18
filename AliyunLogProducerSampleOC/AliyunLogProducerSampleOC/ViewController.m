@@ -60,6 +60,7 @@ int x = 0;
     [config SetNtpTimeOffset:1];
     [config SetMaxLogDelayTime:7*24*3600];
     [config SetDropDelayLog:1];
+    [config SetDropUnauthorizedLog:0];
 
     client = [[LogProducerClient alloc] initWithLogProducerConfig:config callback:on_log_send_done];
 }

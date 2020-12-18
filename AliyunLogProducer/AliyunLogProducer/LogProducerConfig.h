@@ -73,6 +73,8 @@
 
 - (void)SetDropDelayLog:(int) num;
 
+- (void)SetDropUnauthorizedLog:(int) num;
+
 - (int)IsValid;
 
 - (int)IsEnabled;
