@@ -73,12 +73,7 @@
         
         ids = ids + 1;
     }
-    log_producer_result res;
-    if (log->logTime == 0) {
-        res = log_producer_client_add_log_with_len_int32(client, pairCount, keyArray, keyCountArray, valueArray, valueCountArray, flush);
-    } else {
-        res = log_producer_client_add_log_with_len_time_int32(client, log->logTime, pairCount, keyArray, keyCountArray, valueArray, valueCountArray, flush);
-    }
+    log_producer_result res = log_producer_client_add_log_with_len_time_int32(client, log->logTime, pairCount, keyArray, keyCountArray, valueArray, valueCountArray, flush);
     
     for(int i=0;i<pairCount;i++) {
         free(keyArray[i]);

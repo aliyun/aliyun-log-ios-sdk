@@ -19,7 +19,7 @@
 {
     if (self = [super init])
     {
-        logTime = 0;
+        logTime = [[NSDate date] timeIntervalSince1970];
         content = [NSMutableDictionary dictionary];
 
     }
