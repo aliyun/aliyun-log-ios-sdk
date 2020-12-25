@@ -55,8 +55,8 @@
     char **keyArray = (char **)malloc(sizeof(char *)*(pairCount));
     char **valueArray = (char **)malloc(sizeof(char *)*(pairCount));
     
-    size_t *keyCountArray = (size_t*)malloc(sizeof(size_t)*(pairCount));
-    size_t *valueCountArray = (size_t*)malloc(sizeof(size_t)*(pairCount));
+    int32_t *keyCountArray = (int32_t*)malloc(sizeof(int32_t)*(pairCount));
+    int32_t *valueCountArray = (int32_t*)malloc(sizeof(int32_t)*(pairCount));
     
     
     int ids = 0;
@@ -68,13 +68,17 @@
 
         keyArray[ids] = keyChar;
         valueArray[ids] = valueChar;
-        keyCountArray[ids] = strlen(keyChar);
-        valueCountArray[ids] = strlen(valueChar);
+        keyCountArray[ids] = (int32_t)strlen(keyChar);
+        valueCountArray[ids] = (int32_t)strlen(valueChar);
         
         ids = ids + 1;
     }
-    
-    log_producer_result res = log_producer_client_add_log_with_len(client, pairCount, keyArray, keyCountArray, valueArray, valueCountArray, flush);
+    log_producer_result res;
+    if (log->logTime == 0) {
+        res = log_producer_client_add_log_with_len_int32(client, pairCount, keyArray, keyCountArray, valueArray, valueCountArray, flush);
+    } else {
+        res = log_producer_client_add_log_with_len_time_int32(client, log->logTime, pairCount, keyArray, keyCountArray, valueArray, valueCountArray, flush);
+    }
     
     for(int i=0;i<pairCount;i++) {
         free(keyArray[i]);
@@ -89,10 +93,11 @@
 
 -(char*)convertToChar:(NSString*)strtemp
 {
-    NSUInteger arbLength = [strtemp lengthOfBytesUsingEncoding:NSUTF8StringEncoding] + 1;
-    char strArb [arbLength];
-    [strtemp getCString:strArb maxLength:arbLength encoding:NSUTF8StringEncoding];
-    return strdup(strArb);
+    NSUInteger len = [strtemp lengthOfBytesUsingEncoding:NSUTF8StringEncoding] + 1;
+    if (len > 1000000) return strdup([strtemp UTF8String]);
+    char cStr [len];
+    [strtemp getCString:cStr maxLength:len encoding:NSUTF8StringEncoding];
+    return strdup(cStr);
 }
 
 @end

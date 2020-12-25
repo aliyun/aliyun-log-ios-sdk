@@ -19,8 +19,8 @@
 LogProducerClient* client = nil;
 // endpoint前需要加 https://
 NSString* endpoint = @"https://cn-hangzhou.log.aliyuncs.com";
-NSString* project = @"k8s-log-c783b4a12f29b44efa31f655a586bb243";
-NSString* logstore = @"666";
+NSString* project = @"k8s-log-cdc990939f2f547e883a4cb9236e85872";
+NSString* logstore = @"002";
 NSString* accesskeyid = @"";
 NSString* accesskeysecret = @"";
 
@@ -78,6 +78,7 @@ void on_log_send_done(const char * config_name, log_producer_result result, size
     [self sendMulLog:2048];
 }
 
+
 -(void)sendOneLog {
     Log* log = [self getOneLog];
     [log PutContent:@"index" value:[@(x) stringValue]];
@@ -106,6 +107,8 @@ void on_log_send_done(const char * config_name, log_producer_result result, size
 
 -(Log*)getOneLog {
     Log* log = [[Log alloc] init];
+    int logTime = [[NSDate date] timeIntervalSince1970];
+    [log SetTime:logTime];
     [log PutContent:@"content_key_1" value:@"1abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+"];
     [log PutContent:@"content_key_2" value:@"2abcdefghijklmnopqrstuvwxyz0123456789"];
     [log PutContent:@"content_key_3" value:@"3abcdefghijklmnopqrstuvwxyz0123456789"];
@@ -118,5 +121,6 @@ void on_log_send_done(const char * config_name, log_producer_result result, size
     [log PutContent:@"content" value:@"中文"];
     return log;
 }
+
 
 @end

@@ -13,8 +13,8 @@ class ViewController: UIViewController {
     fileprivate var client:     LogProducerClient!
     // endpoint前需要加 https://
     fileprivate let endpoint = "https://cn-hangzhou.log.aliyuncs.com"
-    fileprivate let project = "k8s-log-c783b4a12f29b44efa31f655a586bb243"
-    fileprivate let logstore = "666"
+    fileprivate let project = "k8s-log-cdc990939f2f547e883a4cb9236e85872"
+    fileprivate let logstore = "002"
     fileprivate let accesskeyid = ""
     fileprivate let accesskeysecret = ""
     
@@ -128,6 +128,8 @@ class ViewController: UIViewController {
     
     func getOneLog() -> Log {
         let log = Log()
+        let logTime = Date().timeIntervalSince1970
+        log.setTime(useconds_t(logTime))
         log.putContent("content_key_1", value:"1abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+")
         log.putContent("content_key_2", value:"2abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+")
         log.putContent("content_key_3", value:"3abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+")

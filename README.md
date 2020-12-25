@@ -119,6 +119,9 @@ client = LogProducerClient(logProducerConfig:config, callback:callbackFunc)
 
 ```
 let log = Log()
+let logTime = Date().timeIntervalSince1970
+//不设置默认当前时间
+log.setTime(useconds_t(logTime))
 log.putContent("k1", value:"v1")
 log.putContent("k2", value:"v2")
 
@@ -192,6 +195,9 @@ client = [[LogProducerClient alloc] initWithLogProducerConfig:config];
 
 ```
 Log* log = [[Log alloc] init];
+int logTime = [[NSDate date] timeIntervalSince1970];
+//不设置默认当前时间
+[log SetTime:logTime];
 [log PutContent:@"k1" value:@"v1"];
 [log PutContent:@"k2" value:@"v2"];
 
