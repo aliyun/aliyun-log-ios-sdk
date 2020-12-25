@@ -14,9 +14,12 @@
 
 @interface Log : NSObject
 {
+    @package unsigned int logTime;
     @package NSMutableDictionary *content;
 }
 
 - (void)PutContent:(NSString *) key value:(NSString *)value;
+
+- (void)SetTime:(unsigned int) logTime;
 
 @end

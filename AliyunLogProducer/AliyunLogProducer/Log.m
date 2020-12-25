@@ -19,6 +19,7 @@
 {
     if (self = [super init])
     {
+        logTime = 0;
         content = [NSMutableDictionary dictionary];
 
     }
@@ -31,6 +32,11 @@
     if (key && value) {
        [content setObject:value forKey:key];
     }
+}
+
+- (void)SetTime:(unsigned int) logTime
+{
+    self->logTime = logTime;
 }
 
 @end
