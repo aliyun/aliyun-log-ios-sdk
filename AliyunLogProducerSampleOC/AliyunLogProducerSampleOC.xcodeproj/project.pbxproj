@@ -152,7 +152,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 9D984ED72520AACA009DE4FE /* Build configuration list for PBXProject "AliyunLogProducerSampleOC" */;
+			buildConfigurationList = 9D984ED72520AACA009DE4FE /* Build configuration list for PBXProject "AliyunLogProducerSampleOC1" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -341,7 +341,7 @@
 					"@executable_path/Frameworks",
 				);
 				OTHER_CFLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = lichao.AliyunLogProducerSampleOC;
+				PRODUCT_BUNDLE_IDENTIFIER = lichao.AliyunLogProducerSampleOC1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -361,7 +361,7 @@
 					"@executable_path/Frameworks",
 				);
 				OTHER_CFLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = lichao.AliyunLogProducerSampleOC;
+				PRODUCT_BUNDLE_IDENTIFIER = lichao.AliyunLogProducerSampleOC1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -370,7 +370,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9D984ED72520AACA009DE4FE /* Build configuration list for PBXProject "AliyunLogProducerSampleOC" */ = {
+		9D984ED72520AACA009DE4FE /* Build configuration list for PBXProject "AliyunLogProducerSampleOC1" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9D984EF32520AACF009DE4FE /* Debug */,
