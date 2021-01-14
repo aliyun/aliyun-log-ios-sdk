@@ -24,7 +24,7 @@
 
 @implementation LogProducerConfig
 
-static NSString *VERSION = @"sls-ios-sdk_v2.2.6";
+static NSString *VERSION = @"sls-ios-sdk_v2.2.7";
 
 static int os_http_post(const char *url,
                 char **header_array,
