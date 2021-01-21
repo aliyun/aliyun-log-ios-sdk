@@ -75,6 +75,8 @@
 
 - (void)SetDropUnauthorizedLog:(int) num;
 
+- (void)SetGetTimeUnixFunc:(unsigned int (*)()) f;
+
 - (int)IsValid;
 
 - (int)IsEnabled;

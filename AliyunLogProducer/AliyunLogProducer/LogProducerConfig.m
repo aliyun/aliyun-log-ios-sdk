@@ -24,7 +24,7 @@
 
 @implementation LogProducerConfig
 
-static NSString *VERSION = @"sls-ios-sdk_v2.2.7";
+static NSString *VERSION = @"sls-ios-sdk_v2.2.8";
 
 static int os_http_post(const char *url,
                 char **header_array,
@@ -259,6 +259,11 @@ static int os_http_post(const char *url,
 - (void)SetDropUnauthorizedLog:(int) num;
 {
     log_producer_config_set_drop_unauthorized_log(config, num);
+}
+
+- (void)SetGetTimeUnixFunc:(unsigned int (*)()) f;
+{
+    log_set_get_time_unix_func(f);
 }
 
 - (int)IsValid;
