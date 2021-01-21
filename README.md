@@ -41,7 +41,7 @@
 
 ## Podfile
 ```
-pod 'AliyunLogProducer', '~> 2.2.7'
+pod 'AliyunLogProducer', '~> 2.2.8'
 ```
 
 ## swift 配置说明
@@ -103,6 +103,10 @@ config.setPersistentMaxFileCount(10)
 config.setPersistentMaxFileSize(1024*1024)
 // 本地最多缓存的日志数，不建议超过1M，通常设置为65536即可
 config.setPersistentMaxLogCount(65536)
+config.setGetTimeUnixFunc({ () -> UInt32 in
+    let time = Date().timeIntervalSince1970
+    return UInt32(time);
+})
 let callbackFunc: on_log_producer_send_done_function = {config_name,result,log_bytes,compressed_bytes,req_id,error_message,raw_buffer,user_param in
           let res = LogProducerResult(rawValue: Int(result))
 //            print(res!)
@@ -186,6 +190,9 @@ LogProducerConfig* config = [[LogProducerConfig alloc] initWithEndpoint:endpoint
 [config SetPersistentMaxFileSize:1024*1024];
 // 本地最多缓存的日志数，不建议超过1M，通常设置为65536即可
 [config SetPersistentMaxLogCount:65536];
+
+// 注册 获取服务器时间 的函数
+[config SetGetTimeUnixFunc:time];
 
 //创建client
 client = [[LogProducerClient alloc] initWithLogProducerConfig:config];

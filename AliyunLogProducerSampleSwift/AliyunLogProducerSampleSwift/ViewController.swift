@@ -13,7 +13,7 @@ class ViewController: UIViewController {
     fileprivate var client:     LogProducerClient!
     // endpoint前需要加 https://
     fileprivate let endpoint = "https://cn-hangzhou.log.aliyuncs.com"
-    fileprivate let project = "k8s-log-cdc990939f2f547e883a4cb9236e85872"
+    fileprivate let project = "test-hangzhou-b"
     fileprivate let logstore = "002"
     fileprivate let accesskeyid = ""
     fileprivate let accesskeysecret = ""
@@ -82,6 +82,11 @@ class ViewController: UIViewController {
         //是否丢弃鉴权失败的日志，0 不丢弃，1丢弃
         //整数，默认为 0，即不丢弃
         config.setDropUnauthorizedLog(0)
+        //注册 获取服务器时间 的函数
+        config.setGetTimeUnixFunc({ () -> UInt32 in
+            let time = Date().timeIntervalSince1970
+            return UInt32(time);
+        })
         
         let callbackFunc: on_log_producer_send_done_function = {config_name,result,log_bytes,compressed_bytes,req_id,error_message,raw_buffer,user_param in
             let res = LogProducerResult(rawValue: Int(result))

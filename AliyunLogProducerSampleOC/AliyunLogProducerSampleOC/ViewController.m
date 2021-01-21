@@ -19,7 +19,7 @@
 LogProducerClient* client = nil;
 // endpoint前需要加 https://
 NSString* endpoint = @"https://cn-hangzhou.log.aliyuncs.com";
-NSString* project = @"k8s-log-cdc990939f2f547e883a4cb9236e85872";
+NSString* project = @"test-hangzhou-b";
 NSString* logstore = @"002";
 NSString* accesskeyid = @"";
 NSString* accesskeysecret = @"";
@@ -61,6 +61,7 @@ int x = 0;
     [config SetMaxLogDelayTime:7*24*3600];
     [config SetDropDelayLog:1];
     [config SetDropUnauthorizedLog:0];
+    [config SetGetTimeUnixFunc:time];
 
     client = [[LogProducerClient alloc] initWithLogProducerConfig:config callback:on_log_send_done];
 }
