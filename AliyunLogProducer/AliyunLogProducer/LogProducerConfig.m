@@ -24,7 +24,10 @@
 
 @implementation LogProducerConfig
 
-static NSString *VERSION = @"sls-ios-sdk_v2.2.8";
+static NSString *VERSION = @"sls-ios-sdk_v2.2.9";
+static NSInteger LocalServerDeltaTime = 0;
+NSLock *TimeLock;
+
 
 static int os_http_post(const char *url,
                 char **header_array,
@@ -62,17 +65,33 @@ static int os_http_post(const char *url,
     // send
     NSError *error = nil;
     NSHTTPURLResponse *response = nil;
-    [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    NSData *resData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     if(response != nil){
         int responseCode = (int)[response statusCode];
+        NSDictionary *fields = [response allHeaderFields];
+        NSString *timeVal = fields[@"x-log-time"];
+        if ([timeVal length] != 0) {
+            double serverTime = [timeVal doubleValue];
+            if (serverTime > 1500000000 && serverTime < 4294967294) {
+                int sysTime = [[NSDate date] timeIntervalSince1970];
+                int deltaTime = serverTime - sysTime;
+                if (deltaTime > 600 || deltaTime < -600) {
+                    [TimeLock lock];
+                    LocalServerDeltaTime = deltaTime;
+                    [TimeLock unlock];
+                }
+            }
+        }
         if (responseCode != 200) {
-            SLSLog(@"%@: %ld %@", VERSION, [response statusCode], [response allHeaderFields]);
+            NSString *res = [[NSString alloc] initWithData:resData encoding:NSUTF8StringEncoding];
+            SLSLog(@"%@: %ld %@ %@", VERSION, [response statusCode], [response allHeaderFields], res);
         }
         return responseCode;
     }
     else {
         if(error != nil){
-            SLSLog(@"%@: %@", VERSION, error);
+            NSString *res = [[NSString alloc] initWithData:resData encoding:NSUTF8StringEncoding];
+            SLSLog(@"%@: %@ %@", VERSION, error, res);
             if (error.code == kCFURLErrorUserCancelledAuthentication)
                 return 401;
             if (error.code == kCFURLErrorBadServerResponse)
@@ -83,6 +102,7 @@ static int os_http_post(const char *url,
 }
 
 + (void)load{
+    TimeLock = [[NSLock alloc] init];
     log_set_http_post_func(os_http_post);
 }
 
@@ -131,9 +151,15 @@ static int os_http_post(const char *url,
         log_producer_config_set_packet_log_count(config, 1024);
         log_producer_config_set_packet_log_bytes(config, 1024*1024);
         log_producer_config_set_send_thread_count(config, 1);
+        
+        log_set_get_time_unix_func(time_func);
     }
 
     return self;
+}
+
+unsigned int time_func(){
+    return time(NULL) + LocalServerDeltaTime;
 }
 
 - (void)SetTopic:(NSString *) topic
