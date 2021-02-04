@@ -61,7 +61,7 @@ int x = 0;
     [config SetMaxLogDelayTime:7*24*3600];
     [config SetDropDelayLog:1];
     [config SetDropUnauthorizedLog:0];
-    [config SetGetTimeUnixFunc:time];
+//    [config SetGetTimeUnixFunc:time];
 
     client = [[LogProducerClient alloc] initWithLogProducerConfig:config callback:on_log_send_done];
 }
