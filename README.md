@@ -209,7 +209,7 @@ int logTime = [[NSDate date] timeIntervalSince1970];
 [log PutContent:@"k2" value:@"v2"];
 
 // addLog第二个参数flush，是否立即发送，1代表立即发送，不设置时默认为0
-LogProducerResult* res = [client AddLog:log flush:0];
+LogProducerResult res = [client AddLog:log flush:0];
 ```
 
 ## config其他参数说明
