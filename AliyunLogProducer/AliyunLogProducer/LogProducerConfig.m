@@ -24,7 +24,7 @@
 
 @implementation LogProducerConfig
 
-static NSString *VERSION = @"sls-ios-sdk_v2.2.10";
+static NSString *VERSION = @"sls-ios-sdk_v2.2.11";
 static NSInteger LocalServerDeltaTime = 0;
 NSLock *TimeLock;
 
