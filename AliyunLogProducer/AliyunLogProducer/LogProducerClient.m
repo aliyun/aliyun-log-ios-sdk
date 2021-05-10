@@ -63,8 +63,8 @@
     for (NSString *key in logContents) {
         NSString *value = logContents[key];
 
-        char* keyChar=[self convertToChar:key];
-        char* valueChar=[self convertToChar:value];
+        char* keyChar=strdup([key UTF8String]);
+        char* valueChar=strdup([value UTF8String]);
 
         keyArray[ids] = keyChar;
         valueArray[ids] = valueChar;
@@ -88,11 +88,12 @@
 
 -(char*)convertToChar:(NSString*)strtemp
 {
-    NSUInteger len = [strtemp lengthOfBytesUsingEncoding:NSUTF8StringEncoding] + 1;
-    if (len > 1000000) return strdup([strtemp UTF8String]);
-    char cStr [len];
-    [strtemp getCString:cStr maxLength:len encoding:NSUTF8StringEncoding];
-    return strdup(cStr);
+//    NSUInteger len = [strtemp lengthOfBytesUsingEncoding:NSUTF8StringEncoding] + 1;
+//    if (len > 1000000) return strdup([strtemp UTF8String]);
+//    char cStr [len];
+//    [strtemp getCString:cStr maxLength:len encoding:NSUTF8StringEncoding];
+//    return strdup(cStr);
+    return strdup([strtemp UTF8String]);
 }
 
 @end
