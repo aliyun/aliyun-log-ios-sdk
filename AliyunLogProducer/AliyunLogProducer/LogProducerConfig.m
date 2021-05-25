@@ -24,7 +24,7 @@
 
 @implementation LogProducerConfig
 
-static NSString *VERSION = @"sls-ios-sdk_v2.2.12";
+static NSString *VERSION = @"sls-ios-sdk_v2.2.13";
 static NSInteger LocalServerDeltaTime = 0;
 NSLock *TimeLock;
 
@@ -112,9 +112,9 @@ static int os_http_post(const char *url,
     {
         self = [self initWithEndpoint:endpoint project:project logstore:logstore];
         const char *accesskeyidChar=[accessKeyID UTF8String];
-        log_producer_config_set_access_id(config, accesskeyidChar);
+        log_producer_config_set_access_id(self->config, accesskeyidChar);
         const char *accesskeysecretChar=[accessKeySecret UTF8String];
-        log_producer_config_set_access_key(config, accesskeysecretChar);
+        log_producer_config_set_access_key(self->config, accesskeysecretChar);
     }
 
     return self;
@@ -128,7 +128,7 @@ static int os_http_post(const char *url,
         const char *accesskeyidChar=[accessKeyID UTF8String];
         const char *accesskeysecretChar=[accessKeySecret UTF8String];
         const char *securityTokenChar=[securityToken UTF8String];
-        log_producer_config_reset_security_token(config, accesskeyidChar, accesskeysecretChar, securityTokenChar);
+        log_producer_config_reset_security_token(self->config, accesskeyidChar, accesskeysecretChar, securityTokenChar);
     }
 
     return self;
@@ -138,19 +138,19 @@ static int os_http_post(const char *url,
 {
     if (self = [super init])
     {
-        config = create_log_producer_config();
+        self->config = create_log_producer_config();
         
         const char *endpointChar=[endpoint UTF8String];
-        log_producer_config_set_endpoint(config, endpointChar);
+        log_producer_config_set_endpoint(self->config, endpointChar);
         const char *projectChar=[project UTF8String];
-        log_producer_config_set_project(config, projectChar);
+        log_producer_config_set_project(self->config, projectChar);
         const char *logstoreChar=[logstore UTF8String];
-        log_producer_config_set_logstore(config, logstoreChar);
+        log_producer_config_set_logstore(self->config, logstoreChar);
 
-        log_producer_config_set_packet_timeout(config, 3000);
-        log_producer_config_set_packet_log_count(config, 1024);
-        log_producer_config_set_packet_log_bytes(config, 1024*1024);
-        log_producer_config_set_send_thread_count(config, 1);
+        log_producer_config_set_packet_timeout(self->config, 3000);
+        log_producer_config_set_packet_log_count(self->config, 1024);
+        log_producer_config_set_packet_log_bytes(self->config, 1024*1024);
+        log_producer_config_set_send_thread_count(self->config, 1);
         
         log_set_get_time_unix_func(time_func);
     }
@@ -165,126 +165,126 @@ unsigned int time_func(){
 - (void)SetTopic:(NSString *) topic
 {
     const char *topicChar=[topic UTF8String];
-    log_producer_config_set_topic(config, topicChar);
+    log_producer_config_set_topic(self->config, topicChar);
 }
 
 - (void)AddTag:(NSString *) key value:(NSString *)value
 {
     const char *keyChar=[key UTF8String];
     const char *valueChar=[value UTF8String];
-    log_producer_config_add_tag(config, keyChar, valueChar);
+    log_producer_config_add_tag(self->config, keyChar, valueChar);
 }
 
 - (void)SetPacketLogBytes:(int) num
 {
-    log_producer_config_set_packet_log_bytes(config, num);
+    log_producer_config_set_packet_log_bytes(self->config, num);
 }
 
 - (void)SetPacketLogCount:(int) num
 {
-    log_producer_config_set_packet_log_count(config, num);
+    log_producer_config_set_packet_log_count(self->config, num);
 }
 
 - (void)SetPacketTimeout:(int) num
 {
-    log_producer_config_set_packet_timeout(config, num);
+    log_producer_config_set_packet_timeout(self->config, num);
 }
 
 - (void)SetMaxBufferLimit:(int) num
 {
-    log_producer_config_set_max_buffer_limit(config, num);
+    log_producer_config_set_max_buffer_limit(self->config, num);
 }
 
 - (void)SetSendThreadCount:(int) num
 {
-    log_producer_config_set_send_thread_count(config, num);
+    log_producer_config_set_send_thread_count(self->config, num);
 }
 
 - (void)SetPersistent:(int) num
 {
-    log_producer_config_set_persistent(config, num);
+    log_producer_config_set_persistent(self->config, num);
 }
 
 - (void)SetPersistentFilePath:(NSString *) path
 {
     const char *pathChar=[path UTF8String];
-    log_producer_config_set_persistent_file_path(config, pathChar);
+    log_producer_config_set_persistent_file_path(self->config, pathChar);
 }
 
 - (void)SetPersistentForceFlush:(int) num
 {
-    log_producer_config_set_persistent_force_flush(config, num);
+    log_producer_config_set_persistent_force_flush(self->config, num);
 }
 
 - (void)SetPersistentMaxFileCount:(int ) num
 {
-    log_producer_config_set_persistent_max_file_count(config, num);
+    log_producer_config_set_persistent_max_file_count(self->config, num);
 }
 
 - (void)SetPersistentMaxFileSize:(int) num
 {
-    log_producer_config_set_persistent_max_file_size(config, num);
+    log_producer_config_set_persistent_max_file_size(self->config, num);
 }
 
 - (void)SetPersistentMaxLogCount:(int) num
 {
-    log_producer_config_set_persistent_max_log_count(config, num);
+    log_producer_config_set_persistent_max_log_count(self->config, num);
 }
 
 - (void)SetUsingHttp:(int) num;
 {
-    log_producer_config_set_using_http(config, num);
+    log_producer_config_set_using_http(self->config, num);
 }
 
 - (void)SetNetInterface:(NSString *) netInterface;
 {
     const char *netInterfaceChar=[netInterface UTF8String];
-    log_producer_config_set_net_interface(config, netInterfaceChar);
+    log_producer_config_set_net_interface(self->config, netInterfaceChar);
 }
 
 - (void)SetConnectTimeoutSec:(int) num;
 {
-    log_producer_config_set_connect_timeout_sec(config, num);
+    log_producer_config_set_connect_timeout_sec(self->config, num);
 }
 
 - (void)SetSendTimeoutSec:(int) num;
 {
-    log_producer_config_set_send_timeout_sec(config, num);
+    log_producer_config_set_send_timeout_sec(self->config, num);
 }
 
 - (void)SetDestroyFlusherWaitSec:(int) num;
 {
-    log_producer_config_set_destroy_flusher_wait_sec(config, num);
+    log_producer_config_set_destroy_flusher_wait_sec(self->config, num);
 }
 
 - (void)SetDestroySenderWaitSec:(int) num;
 {
-    log_producer_config_set_destroy_sender_wait_sec(config, num);
+    log_producer_config_set_destroy_sender_wait_sec(self->config, num);
 }
 
 - (void)SetCompressType:(int) num;
 {
-    log_producer_config_set_compress_type(config, num);
+    log_producer_config_set_compress_type(self->config, num);
 }
 
 - (void)SetNtpTimeOffset:(int) num;
 {
-    log_producer_config_set_ntp_time_offset(config, num);
+    log_producer_config_set_ntp_time_offset(self->config, num);
 }
 
 - (void)SetMaxLogDelayTime:(int) num;
 {
-    log_producer_config_set_max_log_delay_time(config, num);
+    log_producer_config_set_max_log_delay_time(self->config, num);
 }
 
 - (void)SetDropDelayLog:(int) num;
 {
-    log_producer_config_set_drop_delay_log(config, num);
+    log_producer_config_set_drop_delay_log(self->config, num);
 }
 
 - (void)SetDropUnauthorizedLog:(int) num;
 {
-    log_producer_config_set_drop_unauthorized_log(config, num);
+    log_producer_config_set_drop_unauthorized_log(self->config, num);
 }
 
 - (void)SetGetTimeUnixFunc:(unsigned int (*)()) f;
@@ -294,12 +294,12 @@ unsigned int time_func(){
 
 - (int)IsValid;
 {
-    return log_producer_config_is_valid(config);
+    return log_producer_config_is_valid(self->config);
 }
 
 - (int)IsEnabled;
 {
-    return log_producer_persistent_config_is_enabled(config);
+    return log_producer_persistent_config_is_enabled(self->config);
 }
 
 - (void)ResetSecurityToken:(NSString *) accessKeyID accessKeySecret:(NSString *)accessKeySecret securityToken:(NSString *)securityToken
@@ -307,7 +307,7 @@ unsigned int time_func(){
     const char *accessKeyIDChar=[accessKeyID UTF8String];
     const char *accessKeySecretChar=[accessKeySecret UTF8String];
     const char *securityTokenChar=[securityToken UTF8String];
-    log_producer_config_reset_security_token(config, accessKeyIDChar, accessKeySecretChar, securityTokenChar);
+    log_producer_config_reset_security_token(self->config, accessKeyIDChar, accessKeySecretChar, securityTokenChar);
 }
 
 + (void)Debug

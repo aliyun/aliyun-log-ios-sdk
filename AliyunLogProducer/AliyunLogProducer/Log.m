@@ -19,8 +19,8 @@
 {
     if (self = [super init])
     {
-        logTime = [[NSDate date] timeIntervalSince1970];
-        content = [NSMutableDictionary dictionary];
+        self->logTime = [[NSDate date] timeIntervalSince1970];
+        self->content = [NSMutableDictionary dictionary];
 
     }
 
@@ -30,7 +30,7 @@
 - (void)PutContent:(NSString *) key value:(NSString *)value
 {
     if (key && value) {
-       [content setObject:value forKey:key];
+        [self->content setObject:value forKey:key];
     }
 }
 
