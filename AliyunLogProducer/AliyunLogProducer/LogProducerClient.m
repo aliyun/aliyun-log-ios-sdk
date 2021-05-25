@@ -27,8 +27,8 @@
 {
     if (self = [super init])
     {
-        producer = create_log_producer(logProducerConfig->config, *callback, nil);
-        client = get_log_producer_client(producer, nil);
+        self->producer = create_log_producer(logProducerConfig->config, *callback, nil);
+        self->client = get_log_producer_client(self->producer, nil);
     }
 
     return self;
@@ -36,7 +36,7 @@
 
 - (void)DestroyLogProducer
 {
-    destroy_log_producer(producer);
+    destroy_log_producer(self->producer);
 }
 
 - (LogProducerResult)AddLog:(Log *) log
@@ -46,7 +46,7 @@
 
 - (LogProducerResult)AddLog:(Log *) log flush:(int) flush
 {
-    if (client == NULL || log == nil) {
+    if (self->client == NULL || log == nil) {
         return LogProducerInvalid;
     }
     NSMutableDictionary *logContents = log->content;
@@ -73,7 +73,7 @@
         
         ids = ids + 1;
     }
-    log_producer_result res = log_producer_client_add_log_with_len_time_int32(client, log->logTime, pairCount, keyArray, keyCountArray, valueArray, valueCountArray, flush);
+    log_producer_result res = log_producer_client_add_log_with_len_time_int32(self->client, log->logTime, pairCount, keyArray, keyCountArray, valueArray, valueCountArray, flush);
     
     for(int i=0;i<pairCount;i++) {
         free(keyArray[i]);
