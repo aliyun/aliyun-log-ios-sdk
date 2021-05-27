@@ -29,6 +29,8 @@
 
 - (void)SetTopic:(NSString *) topic;
 
+- (void)SetSource:(NSString *) source;
+
 - (void)AddTag:(NSString *) key value:(NSString *)value;
 
 - (void)SetPacketLogBytes:(int) num;
