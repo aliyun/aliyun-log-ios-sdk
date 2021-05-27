@@ -146,6 +146,8 @@ static int os_http_post(const char *url,
         log_producer_config_set_project(self->config, projectChar);
         const char *logstoreChar=[logstore UTF8String];
         log_producer_config_set_logstore(self->config, logstoreChar);
+        const char *sourceChar = "iOS";
+        log_producer_config_set_source(self->config, sourceChar);
 
         log_producer_config_set_packet_timeout(self->config, 3000);
         log_producer_config_set_packet_log_count(self->config, 1024);
@@ -166,6 +168,12 @@ unsigned int time_func(){
 {
     const char *topicChar=[topic UTF8String];
     log_producer_config_set_topic(self->config, topicChar);
+}
+
+- (void)SetSource:(NSString *)source
+{
+    const char *sourceChar = [source UTF8String];
+    log_producer_config_set_source(self->config, sourceChar);
 }
 
 - (void)AddTag:(NSString *) key value:(NSString *)value
