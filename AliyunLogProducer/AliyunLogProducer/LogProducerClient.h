@@ -16,12 +16,13 @@
 #import "LogProducerConfig.h"
 #import "Log.h"
 
-
+typedef void (^AddLogInterceptor)(Log *log);
 
 @interface LogProducerClient : NSObject
 {
     @private log_producer* producer;
     @private log_producer_client* client;
+    @private AddLogInterceptor addLogInterceptor;
 }
 
 typedef NS_ENUM(NSInteger, LogProducerResult) {
@@ -48,5 +49,7 @@ typedef NS_ENUM(NSInteger, LogProducerResult) {
 - (LogProducerResult)AddLog:(Log *) log;
 
 - (LogProducerResult)AddLog:(Log *) log flush:(int) flush;
+
+- (void) setAddLogInterceptor: (AddLogInterceptor *) addLogInterceptor;
 
 @end

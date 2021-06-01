@@ -64,14 +64,18 @@ int x = 0;
 //    [config SetGetTimeUnixFunc:time];
 
     client = [[LogProducerClient alloc] initWithLogProducerConfig:config callback:on_log_send_done];
+    AddLogInterceptor interceptor = ^(Log *log) {
+        [log PutContent:@"DEBUGGGG" value:@"test"];
+    };
+    [client setAddLogInterceptor:&interceptor];
 }
 
 void on_log_send_done(const char * config_name, log_producer_result result, size_t log_bytes, size_t compressed_bytes, const char * req_id, const char * message, const unsigned char * raw_buffer, void * userparams) {
-//    if (result == LOG_PRODUCER_OK) {
-//        printf("send success, config : %s, result : %d, log bytes : %d, compressed bytes : %d, request id : %s \n", config_name, (result), (int)log_bytes, (int)compressed_bytes, req_id);
-//    } else {
-//        printf("send fail   , config : %s, result : %d, log bytes : %d, compressed bytes : %d, request id : %s \n, error message : %s\n", config_name, (result), (int)log_bytes, (int)compressed_bytes, req_id, message);
-//    }
+    if (result == LOG_PRODUCER_OK) {
+        printf("send success, config : %s, result : %d, log bytes : %d, compressed bytes : %d, request id : %s \n", config_name, (result), (int)log_bytes, (int)compressed_bytes, req_id);
+    } else {
+        printf("send fail   , config : %s, result : %d, log bytes : %d, compressed bytes : %d, request id : %s \n, error message : %s\n", config_name, (result), (int)log_bytes, (int)compressed_bytes, req_id, message);
+    }
 }
 
 - (IBAction)send:(id)sender {

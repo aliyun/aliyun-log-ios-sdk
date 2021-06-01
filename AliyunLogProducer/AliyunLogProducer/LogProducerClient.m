@@ -50,6 +50,11 @@
         return LogProducerInvalid;
     }
     NSMutableDictionary *logContents = log->content;
+
+    if(self ->addLogInterceptor) {
+        addLogInterceptor(log);
+    }
+    
     int pairCount = (int)[logContents count];
         
     char **keyArray = (char **)malloc(sizeof(char *)*(pairCount));
@@ -94,6 +99,10 @@
 //    [strtemp getCString:cStr maxLength:len encoding:NSUTF8StringEncoding];
 //    return strdup(cStr);
     return strdup([strtemp UTF8String]);
+}
+
+- (void) setAddLogInterceptor: (AddLogInterceptor *) addLogInterceptor {
+    self -> addLogInterceptor = *addLogInterceptor;
 }
 
 @end
