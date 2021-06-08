@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Log.h"
+#import "TimeUtils.h"
 
 @interface Log ()
 
@@ -19,7 +20,7 @@
 {
     if (self = [super init])
     {
-        self->logTime = [[NSDate date] timeIntervalSince1970];
+        self->logTime = [TimeUtils getTimeInMilliis];
         self->content = [NSMutableDictionary dictionary];
 
     }
@@ -34,9 +35,19 @@
     }
 }
 
+- (NSMutableDictionary *)getContent
+{
+    return self->content;
+}
+
 - (void)SetTime:(unsigned int) logTime
 {
     self->logTime = logTime;
+}
+
+- (unsigned int)getTime
+{
+    return self->logTime;
 }
 
 @end

@@ -54,6 +54,8 @@
 		9D984F042520D796009DE4FE /* LogProducerClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D984F032520D796009DE4FE /* LogProducerClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9D984F062520E110009DE4FE /* Log.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D984F052520E110009DE4FE /* Log.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9D984F082520E121009DE4FE /* Log.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D984F072520E120009DE4FE /* Log.m */; };
+		F87A2451266F3FE000499D4D /* TimeUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = F87A244F266F3FE000499D4D /* TimeUtils.h */; };
+		F87A2452266F3FE000499D4D /* TimeUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = F87A2450266F3FE000499D4D /* TimeUtils.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -106,6 +108,8 @@
 		9D984F032520D796009DE4FE /* LogProducerClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogProducerClient.h; sourceTree = "<group>"; };
 		9D984F052520E110009DE4FE /* Log.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Log.h; sourceTree = "<group>"; };
 		9D984F072520E120009DE4FE /* Log.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Log.m; sourceTree = "<group>"; };
+		F87A244F266F3FE000499D4D /* TimeUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TimeUtils.h; sourceTree = "<group>"; };
+		F87A2450266F3FE000499D4D /* TimeUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimeUtils.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,6 +207,7 @@
 		9D984DB42520A9B7009DE4FE /* AliyunLogProducer */ = {
 			isa = PBXGroup;
 			children = (
+				F87A244E266F3FCD00499D4D /* utils */,
 				9D984DB52520A9B7009DE4FE /* AliyunLogProducer.h */,
 				9D984DB62520A9B7009DE4FE /* Info.plist */,
 				9D984F022520B137009DE4FE /* LogProducerConfig.h */,
@@ -213,6 +218,15 @@
 				9D984F072520E120009DE4FE /* Log.m */,
 			);
 			path = AliyunLogProducer;
+			sourceTree = "<group>";
+		};
+		F87A244E266F3FCD00499D4D /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				F87A244F266F3FE000499D4D /* TimeUtils.h */,
+				F87A2450266F3FE000499D4D /* TimeUtils.m */,
+			);
+			path = utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -233,6 +247,7 @@
 				9D2468962577848D0031EB1F /* log_multi_thread.h in Headers */,
 				9D2468B32577848E0031EB1F /* log_inner_include.h in Headers */,
 				9D2468A12577848D0031EB1F /* sds.h in Headers */,
+				F87A2451266F3FE000499D4D /* TimeUtils.h in Headers */,
 				9D984F062520E110009DE4FE /* Log.h in Headers */,
 				9D2468AF2577848D0031EB1F /* log_queue.h in Headers */,
 				9D2468B12577848E0031EB1F /* log_api.h in Headers */,
@@ -320,6 +335,7 @@
 			files = (
 				9D2468A82577848D0031EB1F /* log_producer_config.c in Sources */,
 				9D24689E2577848D0031EB1F /* sds.c in Sources */,
+				F87A2452266F3FE000499D4D /* TimeUtils.m in Sources */,
 				9D2468B02577848D0031EB1F /* log_util.c in Sources */,
 				9D2468952577848D0031EB1F /* sha1.c in Sources */,
 				9D24689F2577848D0031EB1F /* log_queue.c in Sources */,
@@ -469,7 +485,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 38973228P3;
+				DEVELOPMENT_TEAM = QWPJRHMG6U;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -500,7 +516,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
 				DEPLOYMENT_POSTPROCESSING = YES;
-				DEVELOPMENT_TEAM = 38973228P3;
+				DEVELOPMENT_TEAM = QWPJRHMG6U;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
