@@ -10,6 +10,7 @@
 #import "LogProducerClient.h"
 #import "LogProducerConfig.h"
 #import "Log.h"
+#import "TimeUtils.h"
 
 
 @interface LogProducerClient ()
@@ -29,6 +30,8 @@
     {
         self->producer = create_log_producer(logProducerConfig->config, *callback, nil);
         self->client = get_log_producer_client(self->producer, nil);
+        
+        [TimeUtils startUpdateServerTime:[logProducerConfig getEndpoint]];
     }
 
     return self;
@@ -53,6 +56,7 @@
 
     if(self ->addLogInterceptor) {
         addLogInterceptor(log);
+        [TimeUtils fixTime:log];
     }
     
     int pairCount = (int)[logContents count];

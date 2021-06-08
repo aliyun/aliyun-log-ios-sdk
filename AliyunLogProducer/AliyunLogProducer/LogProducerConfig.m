@@ -15,6 +15,7 @@
 #import <Foundation/Foundation.h>
 #import "LogProducerConfig.h"
 #import "inner_log.h"
+#import "TimeUtils.h"
 
 
 
@@ -71,15 +72,9 @@ static int os_http_post(const char *url,
         NSDictionary *fields = [response allHeaderFields];
         NSString *timeVal = fields[@"x-log-time"];
         if ([timeVal length] != 0) {
-            double serverTime = [timeVal doubleValue];
+            NSInteger serverTime = [timeVal integerValue];
             if (serverTime > 1500000000 && serverTime < 4294967294) {
-                int sysTime = [[NSDate date] timeIntervalSince1970];
-                int deltaTime = serverTime - sysTime;
-                if (deltaTime > 600 || deltaTime < -600) {
-                    [TimeLock lock];
-                    LocalServerDeltaTime = deltaTime;
-                    [TimeLock unlock];
-                }
+                [TimeUtils updateServerTime:serverTime];
             }
         }
         if (responseCode != 200) {
@@ -102,7 +97,6 @@ static int os_http_post(const char *url,
 }
 
 + (void)load{
-    TimeLock = [[NSLock alloc] init];
     log_set_http_post_func(os_http_post);
 }
 
@@ -138,6 +132,7 @@ static int os_http_post(const char *url,
 {
     if (self = [super init])
     {
+        self->endpoint = endpoint;
         self->config = create_log_producer_config();
         
         const char *endpointChar=[endpoint UTF8String];
@@ -160,8 +155,9 @@ static int os_http_post(const char *url,
     return self;
 }
 
-unsigned int time_func(){
-    return time(NULL) + LocalServerDeltaTime;
+unsigned int time_func() {
+    NSInteger timeInMillis = [TimeUtils getTimeInMilliis];
+    return timeInMillis;
 }
 
 - (void)SetTopic:(NSString *) topic
@@ -316,6 +312,11 @@ unsigned int time_func(){
     const char *accessKeySecretChar=[accessKeySecret UTF8String];
     const char *securityTokenChar=[securityToken UTF8String];
     log_producer_config_reset_security_token(self->config, accessKeyIDChar, accessKeySecretChar, securityTokenChar);
+}
+
+- (NSString *)getEndpoint
+{
+    return self->endpoint;
 }
 
 + (void)Debug

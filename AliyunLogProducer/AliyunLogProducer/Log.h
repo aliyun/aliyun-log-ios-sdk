@@ -20,6 +20,10 @@
 
 - (void)PutContent:(NSString *) key value:(NSString *)value;
 
+- (NSMutableDictionary *) getContent;
+
 - (void)SetTime:(unsigned int) logTime;
+
+- (unsigned int) getTime;
 
 @end

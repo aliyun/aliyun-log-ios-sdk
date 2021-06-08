@@ -19,6 +19,7 @@
 @interface LogProducerConfig : NSObject
 {
     @package log_producer_config* config;
+    @private NSString *endpoint;
 }
 
 - (id) initWithEndpoint:(NSString *) endpoint project:(NSString *)project logstore:(NSString *)logstore accessKeyID:(NSString *)accessKeyID accessKeySecret:(NSString *)accessKeySecret;
@@ -82,6 +83,8 @@
 - (int)IsValid;
 
 - (int)IsEnabled;
+
+- (NSString *)getEndpoint;
 
 - (void)ResetSecurityToken:(NSString *) accessKeyID accessKeySecret:(NSString *)accessKeySecret securityToken:(NSString *)securityToken;
 
