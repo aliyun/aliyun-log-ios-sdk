@@ -135,12 +135,16 @@ static int os_http_post(const char *url,
         self->endpoint = endpoint;
         self->config = create_log_producer_config();
         
-        const char *endpointChar=[endpoint UTF8String];
-        log_producer_config_set_endpoint(self->config, endpointChar);
-        const char *projectChar=[project UTF8String];
-        log_producer_config_set_project(self->config, projectChar);
-        const char *logstoreChar=[logstore UTF8String];
-        log_producer_config_set_logstore(self->config, logstoreChar);
+        if ([endpoint length] != 0 && [project length] != 0 && [logstore length] != 0) {
+            const char *endpointChar=[endpoint UTF8String];
+            log_producer_config_set_endpoint(self->config, endpointChar);
+            const char *projectChar=[project UTF8String];
+            log_producer_config_set_project(self->config, projectChar);
+            const char *logstoreChar=[logstore UTF8String];
+            log_producer_config_set_logstore(self->config, logstoreChar);
+        }
+        
+        
         const char *sourceChar = "iOS";
         log_producer_config_set_source(self->config, sourceChar);
 
@@ -308,6 +312,10 @@ unsigned int time_func() {
 
 - (void)ResetSecurityToken:(NSString *) accessKeyID accessKeySecret:(NSString *)accessKeySecret securityToken:(NSString *)securityToken
 {
+    if ([accessKeyID length] == 0 || [accessKeySecret length] == 0 || [securityToken length] == 0) {
+        return;
+    }
+    
     const char *accessKeyIDChar=[accessKeyID UTF8String];
     const char *accessKeySecretChar=[accessKeySecret UTF8String];
     const char *securityTokenChar=[securityToken UTF8String];
