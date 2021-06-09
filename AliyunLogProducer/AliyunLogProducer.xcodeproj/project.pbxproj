@@ -54,7 +54,7 @@
 		9D984F042520D796009DE4FE /* LogProducerClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D984F032520D796009DE4FE /* LogProducerClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9D984F062520E110009DE4FE /* Log.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D984F052520E110009DE4FE /* Log.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9D984F082520E121009DE4FE /* Log.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D984F072520E120009DE4FE /* Log.m */; };
-		F87A2451266F3FE000499D4D /* TimeUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = F87A244F266F3FE000499D4D /* TimeUtils.h */; };
+		F87A2451266F3FE000499D4D /* TimeUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = F87A244F266F3FE000499D4D /* TimeUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F87A2452266F3FE000499D4D /* TimeUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = F87A2450266F3FE000499D4D /* TimeUtils.m */; };
 /* End PBXBuildFile section */
 
