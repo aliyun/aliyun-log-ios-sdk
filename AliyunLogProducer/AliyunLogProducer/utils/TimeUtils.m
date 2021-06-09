@@ -79,7 +79,7 @@ static NSTimeInterval elapsedRealtime = 0;
     NSLog(@"log.getTime: %d", [log getTime]);
     
     NSDate *date = [NSDate date];
-    NSString *local_timestamp = [[NSString stringWithFormat:@"%d", [log getTime]] stringByAppendingString: [[NSString stringWithFormat:@"%.0f", [date timeIntervalSince1970] * 1000] substringFromIndex:10]];
+    NSString *local_timestamp = [[NSString stringWithString:[[log getContent] objectForKey:@"local_timestamp"]] stringByAppendingString: [[NSString stringWithFormat:@"%.0f", [date timeIntervalSince1970] * 1000] substringFromIndex:10]];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
     [dateFormatter setDateFormat:@"YYYY-MM-dd HH:mm:ss SSS"];
     
@@ -107,6 +107,10 @@ static NSTimeInterval elapsedRealtime = 0;
 //         uptime += (double)(now.tv_usec - boottime.tv_usec) / 1000000.0;
 //     }
 //     return uptime;
+    
+//    struct timeval tp;
+//    gettimeofday(&tp, NULL);
+//    int64_t microseconds = ((int64_t)tp.tv_sec) * 1000000 + tp.tv_usec;
     return [[NSProcessInfo processInfo] systemUptime];
 }
 @end
