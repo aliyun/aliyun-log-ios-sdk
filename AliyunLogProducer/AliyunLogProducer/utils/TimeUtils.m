@@ -86,8 +86,8 @@ static NSTimeInterval elapsedRealtime = 0;
     date = [NSDate dateWithTimeIntervalSince1970:[local_timestamp doubleValue] / 1000];
     NSString *local_time = [dateFormatter stringFromDate:date];
     
-    [log PutContent:@"local_timestamp" value:local_timestamp];
-    [log PutContent:@"local_time" value:local_time];
+    [log PutContent:@"local_timestamp_fixed" value:local_timestamp];
+    [log PutContent:@"local_time_fixed" value:local_time];
 }
 
 + (NSTimeInterval)elapsedRealtime {
