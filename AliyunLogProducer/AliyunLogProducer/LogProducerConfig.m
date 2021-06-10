@@ -133,6 +133,7 @@ static int os_http_post(const char *url,
     if (self = [super init])
     {
         self->endpoint = endpoint;
+        self->project = project;
         self->config = create_log_producer_config();
         
         if ([endpoint length] != 0 && [project length] != 0 && [logstore length] != 0) {
@@ -325,6 +326,11 @@ unsigned int time_func() {
 - (NSString *)getEndpoint
 {
     return self->endpoint;
+}
+
+- (NSString *)getProject
+{
+    return self->project;
 }
 
 + (void)Debug

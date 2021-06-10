@@ -31,7 +31,7 @@
         self->producer = create_log_producer(logProducerConfig->config, *callback, nil);
         self->client = get_log_producer_client(self->producer, nil);
         
-        [TimeUtils startUpdateServerTime:[logProducerConfig getEndpoint]];
+        [TimeUtils startUpdateServerTime:[logProducerConfig getEndpoint] project:[logProducerConfig getProject]];
     }
 
     return self;

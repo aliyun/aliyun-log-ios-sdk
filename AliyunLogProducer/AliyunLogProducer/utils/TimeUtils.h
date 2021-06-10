@@ -12,7 +12,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface TimeUtils : NSObject
-+(void) startUpdateServerTime: (NSString *)endpoint;
++(void) startUpdateServerTime: (NSString *)endpoint project: (NSString *)project;
 +(void) updateServerTime: (NSInteger) timeInMillis;
 +(NSInteger) getTimeInMilliis;
 +(void) fixTime: (Log *)log;

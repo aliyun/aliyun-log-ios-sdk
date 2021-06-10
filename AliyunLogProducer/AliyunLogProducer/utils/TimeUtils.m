@@ -18,13 +18,14 @@ static NSInteger serverTime = 0;
 static NSTimeInterval elapsedRealtime = 0;
 
 @implementation TimeUtils
-+(void) startUpdateServerTime: (NSString *)endpoint
++(void) startUpdateServerTime: (NSString *)endpoint project:(nonnull NSString *)project
 {
-    NSString *url = [NSString stringWithFormat:@"%@/servertime", endpoint];
+    NSURL *url = [NSURL URLWithString:endpoint];
+    NSString *urlString = [NSString stringWithFormat:@"https://%@.%@/servertime", project, url.host];
 //    NSString *url = @"https://cn-shanghai-staging-share.sls.aliyuncs.com/servertime";
     
     
-    NSString *urlString = [NSString stringWithUTF8String:[url UTF8String]];
+//    NSString *urlString = [NSString stringWithUTF8String:[url UTF8String]];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setHTTPMethod: @"GET"];
     [request setURL:[NSURL URLWithString:urlString]];
