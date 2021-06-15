@@ -56,7 +56,7 @@
 
     if(self ->addLogInterceptor) {
         addLogInterceptor(log);
-        [TimeUtils fixTime:log];
+//        [TimeUtils fixTime:log];
     }
     
     int pairCount = (int)[logContents count];
