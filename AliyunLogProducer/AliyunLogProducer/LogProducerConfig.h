@@ -21,6 +21,7 @@
     @package log_producer_config* config;
     @private NSString *endpoint;
     @private NSString *project;
+    @private NSString *logstore;
 }
 
 - (id) initWithEndpoint:(NSString *) endpoint project:(NSString *)project logstore:(NSString *)logstore accessKeyID:(NSString *)accessKeyID accessKeySecret:(NSString *)accessKeySecret;
@@ -85,12 +86,22 @@
 
 - (int)IsEnabled;
 
+- (void) setEndpoint: (NSString *)endpoint;
+
 - (NSString *)getEndpoint;
+
+- (void) setProject: (NSString *)project;
 
 - (NSString *)getProject;
 
-- (void)ResetSecurityToken:(NSString *) accessKeyID accessKeySecret:(NSString *)accessKeySecret securityToken:(NSString *)securityToken;
+- (void) setLogstore: (NSString *)logstore;
 
-+ (void)Debug;
+- (void) ResetSecurityToken:(NSString *) accessKeyID accessKeySecret:(NSString *)accessKeySecret securityToken:(NSString *)securityToken;
+
+- (void) setAccessKeyId: (NSString *)accessKeyId;
+
+- (void) setAccessKeySecret: (NSString *) accessKeySecret;
+
++ (void) Debug;
 
 @end

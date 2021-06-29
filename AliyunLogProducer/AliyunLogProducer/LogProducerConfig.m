@@ -25,10 +25,7 @@
 
 @implementation LogProducerConfig
 
-static NSString *VERSION = @"sls-ios-sdk_v2.2.15";
-static NSInteger LocalServerDeltaTime = 0;
-NSLock *TimeLock;
-
+static NSString *VERSION = @"sls-ios-sdk_v2.2.23";
 
 static int os_http_post(const char *url,
                 char **header_array,
@@ -86,7 +83,7 @@ static int os_http_post(const char *url,
     else {
         if(error != nil){
             NSString *res = [[NSString alloc] initWithData:resData encoding:NSUTF8StringEncoding];
-            SLSLog(@"%@: %@ %@", VERSION, error, res);
+            SLSLog(@"%@: error: %@, res:%@", VERSION, error, res);
             if (error.code == kCFURLErrorUserCancelledAuthentication)
                 return 401;
             if (error.code == kCFURLErrorBadServerResponse)
@@ -105,10 +102,8 @@ static int os_http_post(const char *url,
     if (self = [super init])
     {
         self = [self initWithEndpoint:endpoint project:project logstore:logstore];
-        const char *accesskeyidChar=[accessKeyID UTF8String];
-        log_producer_config_set_access_id(self->config, accesskeyidChar);
-        const char *accesskeysecretChar=[accessKeySecret UTF8String];
-        log_producer_config_set_access_key(self->config, accesskeysecretChar);
+        [self setAccessKeyId:accessKeyID];
+        [self setAccessKeySecret:accessKeySecret];
     }
 
     return self;
@@ -119,10 +114,9 @@ static int os_http_post(const char *url,
     if (self = [super init])
     {
         self = [self initWithEndpoint:endpoint project:project logstore:logstore];
-        const char *accesskeyidChar=[accessKeyID UTF8String];
-        const char *accesskeysecretChar=[accessKeySecret UTF8String];
-        const char *securityTokenChar=[securityToken UTF8String];
-        log_producer_config_reset_security_token(self->config, accesskeyidChar, accesskeysecretChar, securityTokenChar);
+        [self setAccessKeyId:accessKeyID];
+        [self setAccessKeySecret:accessKeySecret];
+        [self ResetSecurityToken:accessKeyID accessKeySecret:accessKeySecret securityToken:securityToken];
     }
 
     return self;
@@ -133,18 +127,11 @@ static int os_http_post(const char *url,
     if (self = [super init])
     {
         self->endpoint = endpoint;
-        self->project = project;
         self->config = create_log_producer_config();
         
-        if ([endpoint length] != 0 && [project length] != 0 && [logstore length] != 0) {
-            const char *endpointChar=[endpoint UTF8String];
-            log_producer_config_set_endpoint(self->config, endpointChar);
-            const char *projectChar=[project UTF8String];
-            log_producer_config_set_project(self->config, projectChar);
-            const char *logstoreChar=[logstore UTF8String];
-            log_producer_config_set_logstore(self->config, logstoreChar);
-        }
-        
+        [self setEndpoint:endpoint];
+        [self setProject:project];
+        [self setLogstore:logstore];
         
         const char *sourceChar = "iOS";
         log_producer_config_set_source(self->config, sourceChar);
@@ -163,6 +150,43 @@ static int os_http_post(const char *url,
 unsigned int time_func() {
     NSInteger timeInMillis = [TimeUtils getTimeInMilliis];
     return timeInMillis;
+}
+
+- (void)setEndpoint:(NSString *)endpoint
+{
+    if ([endpoint length] == 0) {
+        endpoint = @"please_set_endpoint";
+    }
+    self->endpoint = endpoint;
+    log_producer_config_set_endpoint(self->config, [endpoint UTF8String]);
+}
+
+- (NSString *)getEndpoint
+{
+    return self->endpoint;
+}
+
+- (void)setProject:(NSString *)project
+{
+    if ([project length] == 0) {
+        project = @"please_set_project";
+    }
+    self->project = project;
+    log_producer_config_set_project(self->config, [project UTF8String]);
+}
+
+- (NSString *)getProject
+{
+    return self->project;
+}
+
+- (void)setLogstore:(NSString *)logstore
+{
+    if ([logstore length] == 0) {
+        logstore = @"please_set_logstore";
+    }
+    self->logstore = logstore;
+    log_producer_config_set_logstore(self->config, [logstore UTF8String]);
 }
 
 - (void)SetTopic:(NSString *) topic
@@ -311,6 +335,22 @@ unsigned int time_func() {
     return log_producer_persistent_config_is_enabled(self->config);
 }
 
+- (void)setAccessKeyId:(NSString *)accessKeyId
+{
+    if ([accessKeyId length] == 0) {
+        accessKeyId = @"please_set_accesskeyid";
+    }
+    log_producer_config_set_access_id(self->config, [accessKeyId UTF8String]);
+}
+
+- (void)setAccessKeySecret:(NSString *)accessKeySecret
+{
+    if ([accessKeySecret length] == 0){
+        accessKeySecret = @"please_set_accesskeysecret";
+    }
+    log_producer_config_set_access_key(self->config, [accessKeySecret UTF8String]);
+}
+
 - (void)ResetSecurityToken:(NSString *) accessKeyID accessKeySecret:(NSString *)accessKeySecret securityToken:(NSString *)securityToken
 {
     if ([accessKeyID length] == 0 || [accessKeySecret length] == 0 || [securityToken length] == 0) {
@@ -321,16 +361,6 @@ unsigned int time_func() {
     const char *accessKeySecretChar=[accessKeySecret UTF8String];
     const char *securityTokenChar=[securityToken UTF8String];
     log_producer_config_reset_security_token(self->config, accessKeyIDChar, accessKeySecretChar, securityTokenChar);
-}
-
-- (NSString *)getEndpoint
-{
-    return self->endpoint;
-}
-
-- (NSString *)getProject
-{
-    return self->project;
 }
 
 + (void)Debug
