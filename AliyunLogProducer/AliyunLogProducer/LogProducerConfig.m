@@ -97,13 +97,22 @@ static int os_http_post(const char *url,
     log_set_http_post_func(os_http_post);
 }
 
+
+- (id) initWithEndpoint:(NSString *) endpoint project:(NSString *)project logstore:(NSString *)logstore
+{
+    if (self = [super init])
+    {
+        self = [self initWithEndpoint:endpoint project:project logstore:logstore accessKeyID:nil accessKeySecret:nil];
+    }
+
+    return self;
+}
+
 - (id) initWithEndpoint:(NSString *) endpoint project:(NSString *)project logstore:(NSString *)logstore accessKeyID:(NSString *)accessKeyID accessKeySecret:(NSString *)accessKeySecret
 {
     if (self = [super init])
     {
-        self = [self initWithEndpoint:endpoint project:project logstore:logstore];
-        [self setAccessKeyId:accessKeyID];
-        [self setAccessKeySecret:accessKeySecret];
+        self = [self initWithEndpoint:endpoint project:project logstore:logstore accessKeyID:accessKeyID accessKeySecret:accessKeySecret securityToken:nil];
     }
 
     return self;
@@ -113,35 +122,25 @@ static int os_http_post(const char *url,
 {
     if (self = [super init])
     {
-        self = [self initWithEndpoint:endpoint project:project logstore:logstore];
-        [self setAccessKeyId:accessKeyID];
-        [self setAccessKeySecret:accessKeySecret];
-        [self ResetSecurityToken:accessKeyID accessKeySecret:accessKeySecret securityToken:securityToken];
-    }
-
-    return self;
-}
-
-- (id) initWithEndpoint:(NSString *) endpoint project:(NSString *)project logstore:(NSString *)logstore
-{
-    if (self = [super init])
-    {
-        self->endpoint = endpoint;
         self->config = create_log_producer_config();
-        
-        [self setEndpoint:endpoint];
-        [self setProject:project];
-        [self setLogstore:logstore];
-        
         const char *sourceChar = "iOS";
         log_producer_config_set_source(self->config, sourceChar);
-
         log_producer_config_set_packet_timeout(self->config, 3000);
         log_producer_config_set_packet_log_count(self->config, 1024);
         log_producer_config_set_packet_log_bytes(self->config, 1024*1024);
         log_producer_config_set_send_thread_count(self->config, 1);
-        
+        log_producer_config_set_drop_unauthorized_log(self->config, 0);
+        log_producer_config_set_drop_delay_log(self->config, 0);
         log_set_get_time_unix_func(time_func);
+
+        [self setEndpoint:endpoint];
+        [self setProject:project];
+        [self setLogstore:logstore];
+        [self setAccessKeyId:accessKeyID];
+        [self setAccessKeySecret:accessKeySecret];
+        if ([securityToken length] != 0) {
+            [self ResetSecurityToken:accessKeyID accessKeySecret:accessKeySecret securityToken:securityToken];
+        }
     }
 
     return self;
