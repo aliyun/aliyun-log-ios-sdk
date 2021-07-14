@@ -41,7 +41,7 @@
 
 ## Podfile
 ```
-pod 'AliyunLogProducer', '~> 2.2.15'
+pod 'AliyunLogProducer', '~> 2.2.25'
 ```
 
 ## swift 配置说明
