@@ -32,3 +32,6 @@ FOUNDATION_EXPORT const unsigned char AliyunLogProducerVersionString[];
 #import <AliyunLogProducer/LogProducerConfig.h>
 #import <AliyunLogProducer/Log.h>
 #import <AliyunLogProducer/TimeUtils.h>
+#import <AliyunLogProducer/SLSAdapter.h>
+#import <AliyunLogProducer/SLSConfig.h>
+#import <AliyunLogProducer/TCData.h>

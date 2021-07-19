@@ -70,6 +70,7 @@
 		F80DF34226A56C6A00151F7C /* TCData.m in Sources */ = {isa = PBXBuildFile; fileRef = F80DF34026A56C6A00151F7C /* TCData.m */; };
 		F80DF34526A56DCD00151F7C /* SLSAdapter.h in Headers */ = {isa = PBXBuildFile; fileRef = F80DF34326A56DCD00151F7C /* SLSAdapter.h */; };
 		F80DF34626A56DCD00151F7C /* SLSAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = F80DF34426A56DCD00151F7C /* SLSAdapter.m */; };
+		F80DF3F926A5B07200151F7C /* AliyunLogProducer.podspec in Resources */ = {isa = PBXBuildFile; fileRef = F80DF3F826A5B07200151F7C /* AliyunLogProducer.podspec */; };
 		F87A2451266F3FE000499D4D /* TimeUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = F87A244F266F3FE000499D4D /* TimeUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F87A2452266F3FE000499D4D /* TimeUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = F87A2450266F3FE000499D4D /* TimeUtils.m */; };
 /* End PBXBuildFile section */
@@ -140,6 +141,7 @@
 		F80DF34026A56C6A00151F7C /* TCData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCData.m; sourceTree = "<group>"; };
 		F80DF34326A56DCD00151F7C /* SLSAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLSAdapter.h; sourceTree = "<group>"; };
 		F80DF34426A56DCD00151F7C /* SLSAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLSAdapter.m; sourceTree = "<group>"; };
+		F80DF3F826A5B07200151F7C /* AliyunLogProducer.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = AliyunLogProducer.podspec; path = ../AliyunLogProducer.podspec; sourceTree = "<group>"; };
 		F87A244F266F3FE000499D4D /* TimeUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TimeUtils.h; sourceTree = "<group>"; };
 		F87A2450266F3FE000499D4D /* TimeUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimeUtils.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -221,6 +223,7 @@
 		9D984DA82520A9B7009DE4FE = {
 			isa = PBXGroup;
 			children = (
+				F80DF3F826A5B07200151F7C /* AliyunLogProducer.podspec */,
 				9D2467612577732D0031EB1F /* aliyun-log-c-sdk */,
 				9D984DB42520A9B7009DE4FE /* AliyunLogProducer */,
 				9D984DB32520A9B7009DE4FE /* Products */,
@@ -411,6 +414,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F80DF3F926A5B07200151F7C /* AliyunLogProducer.podspec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
