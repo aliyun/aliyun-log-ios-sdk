@@ -14,6 +14,18 @@ FOUNDATION_EXPORT double AliyunLogProducerVersionNumber;
 //! Project version string for AliyunLogProducer.
 FOUNDATION_EXPORT const unsigned char AliyunLogProducerVersionString[];
 
+#ifndef AliyunlogCommon_h
+#define AliyunlogCommon_h
+
+#define SLSLog(fmt, ...) NSLog((@"[SLSiOS] %s " fmt), __FUNCTION__, ##__VA_ARGS__);
+#ifdef DEBUG
+    #define SLSLogV(fmt, ...) NSLog((@"[SLSiOS] %s:%d: " fmt), __FUNCTION__, __LINE__, ##__VA_ARGS__);
+#else
+    #define SLSLogV(...);
+#endif
+
+#endif /* AliyunlogCommon_h */
+
 // In this header, you should import all the public headers of your framework using statements like #import <AliyunLogProducer/PublicHeader.h>
 
 #import <AliyunLogProducer/LogProducerClient.h>
