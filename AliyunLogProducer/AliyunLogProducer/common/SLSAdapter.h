@@ -8,7 +8,7 @@
 #import <Foundation/Foundation.h>
 #import "SLSConfig.h"
 #import "AliyunLogProducer.h"
-#import "plugin/IPlugin.h"
+#import "IPlugin.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
