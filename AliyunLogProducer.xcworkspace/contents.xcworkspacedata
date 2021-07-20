@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:AliyunLogCrashReporter/AliyunLogCrashReporter.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:AliyunLogProducer/AliyunLogProducer.xcodeproj">
    </FileRef>
    <FileRef
