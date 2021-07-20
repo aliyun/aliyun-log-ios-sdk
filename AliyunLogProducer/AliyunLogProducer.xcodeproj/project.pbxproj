@@ -71,6 +71,10 @@
 		F80DF34526A56DCD00151F7C /* SLSAdapter.h in Headers */ = {isa = PBXBuildFile; fileRef = F80DF34326A56DCD00151F7C /* SLSAdapter.h */; };
 		F80DF34626A56DCD00151F7C /* SLSAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = F80DF34426A56DCD00151F7C /* SLSAdapter.m */; };
 		F80DF3F926A5B07200151F7C /* AliyunLogProducer.podspec in Resources */ = {isa = PBXBuildFile; fileRef = F80DF3F826A5B07200151F7C /* AliyunLogProducer.podspec */; };
+		F80DF45326A6CBCC00151F7C /* LogProducerClient+Bricks.h in Headers */ = {isa = PBXBuildFile; fileRef = F80DF45126A6CBCC00151F7C /* LogProducerClient+Bricks.h */; };
+		F80DF45426A6CBCC00151F7C /* LogProducerClient+Bricks.m in Sources */ = {isa = PBXBuildFile; fileRef = F80DF45226A6CBCC00151F7C /* LogProducerClient+Bricks.m */; };
+		F80DF45726A6EB8D00151F7C /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = F80DF45526A6EB8D00151F7C /* LICENSE */; };
+		F80DF45826A6EB8D00151F7C /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = F80DF45626A6EB8D00151F7C /* README.md */; };
 		F87A2451266F3FE000499D4D /* TimeUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = F87A244F266F3FE000499D4D /* TimeUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F87A2452266F3FE000499D4D /* TimeUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = F87A2450266F3FE000499D4D /* TimeUtils.m */; };
 /* End PBXBuildFile section */
@@ -141,7 +145,11 @@
 		F80DF34026A56C6A00151F7C /* TCData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCData.m; sourceTree = "<group>"; };
 		F80DF34326A56DCD00151F7C /* SLSAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLSAdapter.h; sourceTree = "<group>"; };
 		F80DF34426A56DCD00151F7C /* SLSAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLSAdapter.m; sourceTree = "<group>"; };
-		F80DF3F826A5B07200151F7C /* AliyunLogProducer.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = AliyunLogProducer.podspec; path = ../AliyunLogProducer.podspec; sourceTree = "<group>"; };
+		F80DF3F826A5B07200151F7C /* AliyunLogProducer.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = AliyunLogProducer.podspec; path = ../AliyunLogProducer.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		F80DF45126A6CBCC00151F7C /* LogProducerClient+Bricks.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LogProducerClient+Bricks.h"; sourceTree = "<group>"; };
+		F80DF45226A6CBCC00151F7C /* LogProducerClient+Bricks.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LogProducerClient+Bricks.m"; sourceTree = "<group>"; };
+		F80DF45526A6EB8D00151F7C /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		F80DF45626A6EB8D00151F7C /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		F87A244F266F3FE000499D4D /* TimeUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TimeUtils.h; sourceTree = "<group>"; };
 		F87A2450266F3FE000499D4D /* TimeUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimeUtils.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -223,6 +231,8 @@
 		9D984DA82520A9B7009DE4FE = {
 			isa = PBXGroup;
 			children = (
+				F80DF45526A6EB8D00151F7C /* LICENSE */,
+				F80DF45626A6EB8D00151F7C /* README.md */,
 				F80DF3F826A5B07200151F7C /* AliyunLogProducer.podspec */,
 				9D2467612577732D0031EB1F /* aliyun-log-c-sdk */,
 				9D984DB42520A9B7009DE4FE /* AliyunLogProducer */,
@@ -270,6 +280,8 @@
 				F80DF34026A56C6A00151F7C /* TCData.m */,
 				F80DF34326A56DCD00151F7C /* SLSAdapter.h */,
 				F80DF34426A56DCD00151F7C /* SLSAdapter.m */,
+				F80DF45126A6CBCC00151F7C /* LogProducerClient+Bricks.h */,
+				F80DF45226A6CBCC00151F7C /* LogProducerClient+Bricks.m */,
 			);
 			path = common;
 			sourceTree = "<group>";
@@ -347,6 +359,7 @@
 				9D2468A52577848D0031EB1F /* log_persistent_manager.h in Headers */,
 				9D24689B2577848D0031EB1F /* log_builder.h in Headers */,
 				F80DF33D26A56C3C00151F7C /* SLSDeviceUtils.h in Headers */,
+				F80DF45326A6CBCC00151F7C /* LogProducerClient+Bricks.h in Headers */,
 				9D984F042520D796009DE4FE /* LogProducerClient.h in Headers */,
 				9D2468A72577848D0031EB1F /* inner_log.h in Headers */,
 				9D2468B72577848E0031EB1F /* log_ring_file.h in Headers */,
@@ -414,6 +427,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F80DF45826A6EB8D00151F7C /* README.md in Resources */,
+				F80DF45726A6EB8D00151F7C /* LICENSE in Resources */,
 				F80DF3F926A5B07200151F7C /* AliyunLogProducer.podspec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -432,6 +447,7 @@
 				9D2468B02577848D0031EB1F /* log_util.c in Sources */,
 				F80DF34226A56C6A00151F7C /* TCData.m in Sources */,
 				9D2468952577848D0031EB1F /* sha1.c in Sources */,
+				F80DF45426A6CBCC00151F7C /* LogProducerClient+Bricks.m in Sources */,
 				F80DF32E26A56B7200151F7C /* SLSConfig.m in Sources */,
 				9D24689F2577848D0031EB1F /* log_queue.c in Sources */,
 				F80DF32526A56AF600151F7C /* Storage.m in Sources */,
