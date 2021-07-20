@@ -28,14 +28,22 @@ FOUNDATION_EXPORT const unsigned char AliyunLogProducerVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <AliyunLogProducer/PublicHeader.h>
 
-#import <AliyunLogProducer/LogProducerClient.h>
-#import <AliyunLogProducer/LogProducerConfig.h>
-#import <AliyunLogProducer/Log.h>
-#import <AliyunLogProducer/TimeUtils.h>
+#import "LogProducerClient.h"
+#import "LogProducerConfig.h"
+#import "Log.h"
+#import "TimeUtils.h"
 
-#if __has_include(<AliyunLogProducer/LogProducerClient+Bricks.h>)
-#import <AliyunLogProducer/LogProducerClient+Bricks.h>
-#import <AliyunLogProducer/SLSAdapter.h>
-#import <AliyunLogProducer/SLSConfig.h>
-#import <AliyunLogProducer/TCData.h>
+#if __has_include("LogProducerClient+Bricks.h")
+#import "LogProducerClient+Bricks.h"
+#import "SLSAdapter.h"
+#import "SLSConfig.h"
+#import "TCData.h"
+#import "IPlugin.h"
 #endif
+
+#if __has_include(<AliyunLogProducer/SLSCrashReporterPlugin.h>)
+#import "SLSCrashReporterPlugin.h"
+#import "IReporterSender.h"
+#import "IFileParser.h"
+#endif
+

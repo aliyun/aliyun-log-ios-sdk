@@ -68,5 +68,18 @@ https://help.aliyun.com/product/28958.html
       b.frameworks = "SystemConfiguration"
   end
   
+  s.subspec 'CrashReporter' do |c|
+      c.dependency 'AliyunLogProducer/Bricks'
+      c.source_files = 'AliyunLogProducer/CrashReporter/**/*.{m,h}'
+      c.vendored_frameworks = 'AliyunLogProducer/CrashReporter/WPKMobi.framework'
+      c.frameworks = "SystemConfiguration", "CoreGraphics"
+      c.libraries = "z", "c++"
+      c.pod_target_xcconfig = {
+          'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64',
+          'OTHER_LDFLAGS' => '-ObjC'
+      }
+      c.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
+  end
+  
 end
 
