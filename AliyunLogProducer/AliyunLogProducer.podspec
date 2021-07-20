@@ -37,34 +37,34 @@ https://help.aliyun.com/product/28958.html
   
   s.subspec 'Core' do |c|
       c.source_files =
-          'AliyunLogProducer/AliyunLogProducer/*.{h,m}',
-          'AliyunLogProducer/aliyun-log-c-sdk/src/*.{c,h}',
-          'AliyunLogProducer/AliyunLogProducer/utils/*.{m,h}'
+          'AliyunLogProducer/*.{h,m}',
+          'aliyun-log-c-sdk/src/*.{c,h}',
+          'AliyunLogProducer/utils/*.{m,h}'
       
       c.public_header_files =
-          'AliyunLogProducer/AliyunLogProducer/*.h',
-          'AliyunLogProducer/AliyunLogProducer/utils/*.h',
-          'AliyunLogProducer/*/src/log_define.h',
-          'AliyunLogProducer/*/src/log_http_interface.h',
-          'AliyunLogProducer/*/src/log_inner_include.h',
-          'AliyunLogProducer/*/src/log_multi_thread.h',
-          'AliyunLogProducer/*/src/log_producer_client.h',
-          'AliyunLogProducer/*/src/log_producer_common.h',
-          'AliyunLogProducer/*/src/log_producer_config.h'
+          'AliyunLogProducer/*.h',
+          'AliyunLogProducer/utils/*.h',
+          '**/*/src/log_define.h',
+          '**/*/src/log_http_interface.h',
+          '**/*/src/log_inner_include.h',
+          '**/*/src/log_multi_thread.h',
+          '**/*/src/log_producer_client.h',
+          '**/*/src/log_producer_common.h',
+          '**/*/src/log_producer_config.h'
   end
   
   s.subspec 'Bricks' do |b|
       b.dependency 'AliyunLogProducer/Core'
       b.source_files =
-      'AliyunLogProducer/AliyunLogProducer/common/*.{m,h}',
-      'AliyunLogProducer/AliyunLogProducer/common/plugin/*.{m,h}',
-      'AliyunLogProducer/AliyunLogProducer/common/utdid/*.{m,h}',
-      'AliyunLogProducer/AliyunLogProducer/common/reachable/*.{m,h}'
+      'AliyunLogProducer/common/**/*.{m,h}',
+      'AliyunLogProducer/common/**/*.{m,h}',
+      'AliyunLogProducer/common/**/*.{m,h}',
+      'AliyunLogProducer/common/**/*.{m,h}'
       b.public_header_files =
-      'AliyunLogProducer/AliyunLogProducer/common/*.h',
-      'AliyunLogProducer/AliyunLogProducer/common/plugin/*.h',
-      'AliyunLogProducer/AliyunLogProducer/common/utdid/*.h',
-      'AliyunLogProducer/AliyunLogProducer/common/reachable/*.h'
+      'AliyunLogProducer/common/**/*.h',
+      'AliyunLogProducer/common/**/*.h',
+      'AliyunLogProducer/common/**/*.h',
+      'AliyunLogProducer/common/**/*.h'
       b.frameworks = "SystemConfiguration"
   end
   
