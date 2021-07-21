@@ -60,7 +60,7 @@
     NSMutableDictionary *logContents = log->content;
     
 #if __has_include("LogProducerClient+Bricks.h")
-    if (self.enableTrack) {
+    if (self->_enableTrack) {
         TCData *data = [TCData createDefault];
         NSDictionary *fields = [data toDictionary] ;
         for (id key in fields) {

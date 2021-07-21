@@ -16,11 +16,11 @@
 
 
 - (void)setEnableTrack:(bool)enable {
-    self.enableTrack = enable;
+    self->_enableTrack = enable;
 }
 
 - (bool)enableTrack {
-    return self.enableTrack;
+    return self->_enableTrack;
 }
 
 @end
