@@ -23,6 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
     NSMutableArray * _plugins;
 }
 
++ (instancetype) sharedInstance;
 - (void) setChannel: (NSString *)channel;
 - (void) setChannelName: (NSString *)channelName;
 - (void) setUserNick: (NSString *)userNick;
