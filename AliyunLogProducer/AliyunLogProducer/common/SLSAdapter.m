@@ -25,6 +25,15 @@
     _loginType = loginType;
 }
 
++ (instancetype)sharedInstance {
+    static SLSAdapter * ins = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        ins = [[SLSAdapter alloc] init];
+    });
+    return ins;
+}
+
 - (instancetype)init
 {
     self = [super init];
