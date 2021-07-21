@@ -72,9 +72,6 @@
 		F80DF34626A56DCD00151F7C /* SLSAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = F80DF34426A56DCD00151F7C /* SLSAdapter.m */; };
 		F80DF45326A6CBCC00151F7C /* LogProducerClient+Bricks.h in Headers */ = {isa = PBXBuildFile; fileRef = F80DF45126A6CBCC00151F7C /* LogProducerClient+Bricks.h */; };
 		F80DF45426A6CBCC00151F7C /* LogProducerClient+Bricks.m in Sources */ = {isa = PBXBuildFile; fileRef = F80DF45226A6CBCC00151F7C /* LogProducerClient+Bricks.m */; };
-		F80DF45C26A6F59C00151F7C /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = F80DF45926A6F59C00151F7C /* README.md */; };
-		F80DF45D26A6F59C00151F7C /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = F80DF45A26A6F59C00151F7C /* LICENSE */; };
-		F80DF45E26A6F59C00151F7C /* AliyunLogProducer.podspec in Resources */ = {isa = PBXBuildFile; fileRef = F80DF45B26A6F59C00151F7C /* AliyunLogProducer.podspec */; };
 		F80DF46126A6FDEF00151F7C /* WPKMobi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F80DF46026A6FDEF00151F7C /* WPKMobi.framework */; };
 		F80DF46626A6FEFD00151F7C /* IReporterSender.h in Headers */ = {isa = PBXBuildFile; fileRef = F80DF46426A6FEFC00151F7C /* IReporterSender.h */; };
 		F80DF46726A6FEFD00151F7C /* IReporterSender.m in Sources */ = {isa = PBXBuildFile; fileRef = F80DF46526A6FEFD00151F7C /* IReporterSender.m */; };
@@ -89,6 +86,7 @@
 		F80DF47926A7034E00151F7C /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F80DF47826A7034E00151F7C /* libc++.tbd */; };
 		F80DF47B26A7035E00151F7C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F80DF47A26A7035E00151F7C /* SystemConfiguration.framework */; };
 		F80DF47D26A7037000151F7C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F80DF47C26A7037000151F7C /* CoreGraphics.framework */; };
+		F80DF47F26A7DE9000151F7C /* AliyunLogProducer.podspec in Resources */ = {isa = PBXBuildFile; fileRef = F80DF47E26A7DE9000151F7C /* AliyunLogProducer.podspec */; };
 		F87A2451266F3FE000499D4D /* TimeUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = F87A244F266F3FE000499D4D /* TimeUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F87A2452266F3FE000499D4D /* TimeUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = F87A2450266F3FE000499D4D /* TimeUtils.m */; };
 /* End PBXBuildFile section */
@@ -161,9 +159,6 @@
 		F80DF34426A56DCD00151F7C /* SLSAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLSAdapter.m; sourceTree = "<group>"; };
 		F80DF45126A6CBCC00151F7C /* LogProducerClient+Bricks.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LogProducerClient+Bricks.h"; sourceTree = "<group>"; };
 		F80DF45226A6CBCC00151F7C /* LogProducerClient+Bricks.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LogProducerClient+Bricks.m"; sourceTree = "<group>"; };
-		F80DF45926A6F59C00151F7C /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		F80DF45A26A6F59C00151F7C /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		F80DF45B26A6F59C00151F7C /* AliyunLogProducer.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AliyunLogProducer.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		F80DF46026A6FDEF00151F7C /* WPKMobi.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WPKMobi.framework; sourceTree = "<group>"; };
 		F80DF46426A6FEFC00151F7C /* IReporterSender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IReporterSender.h; sourceTree = "<group>"; };
 		F80DF46526A6FEFD00151F7C /* IReporterSender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IReporterSender.m; sourceTree = "<group>"; };
@@ -178,6 +173,7 @@
 		F80DF47826A7034E00151F7C /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk/usr/lib/libc++.tbd"; sourceTree = DEVELOPER_DIR; };
 		F80DF47A26A7035E00151F7C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
 		F80DF47C26A7037000151F7C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
+		F80DF47E26A7DE9000151F7C /* AliyunLogProducer.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = AliyunLogProducer.podspec; path = ../AliyunLogProducer.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		F87A244F266F3FE000499D4D /* TimeUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TimeUtils.h; sourceTree = "<group>"; };
 		F87A2450266F3FE000499D4D /* TimeUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimeUtils.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -266,9 +262,7 @@
 		9D984DA82520A9B7009DE4FE = {
 			isa = PBXGroup;
 			children = (
-				F80DF45B26A6F59C00151F7C /* AliyunLogProducer.podspec */,
-				F80DF45A26A6F59C00151F7C /* LICENSE */,
-				F80DF45926A6F59C00151F7C /* README.md */,
+				F80DF47E26A7DE9000151F7C /* AliyunLogProducer.podspec */,
 				9D2467612577732D0031EB1F /* aliyun-log-c-sdk */,
 				9D984DB42520A9B7009DE4FE /* AliyunLogProducer */,
 				9D984DB32520A9B7009DE4FE /* Products */,
@@ -502,9 +496,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F80DF45E26A6F59C00151F7C /* AliyunLogProducer.podspec in Resources */,
-				F80DF45D26A6F59C00151F7C /* LICENSE in Resources */,
-				F80DF45C26A6F59C00151F7C /* README.md in Resources */,
+				F80DF47F26A7DE9000151F7C /* AliyunLogProducer.podspec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
