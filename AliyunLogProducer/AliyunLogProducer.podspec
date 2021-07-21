@@ -56,29 +56,24 @@ https://help.aliyun.com/product/28958.html
   s.subspec 'Bricks' do |b|
       b.dependency 'AliyunLogProducer/Core'
       b.source_files =
-      'AliyunLogProducer/common/**/*.{m,h}',
-      'AliyunLogProducer/common/**/*.{m,h}',
-      'AliyunLogProducer/common/**/*.{m,h}',
       'AliyunLogProducer/common/**/*.{m,h}'
       b.public_header_files =
-      'AliyunLogProducer/common/**/*.h',
-      'AliyunLogProducer/common/**/*.h',
-      'AliyunLogProducer/common/**/*.h',
       'AliyunLogProducer/common/**/*.h'
       b.frameworks = "SystemConfiguration"
   end
   
-  s.subspec 'CrashReporter' do |c|
-      c.dependency 'AliyunLogProducer/Bricks'
-      c.source_files = 'AliyunLogProducer/CrashReporter/**/*.{m,h}'
-      c.vendored_frameworks = 'AliyunLogProducer/CrashReporter/WPKMobi.framework'
-      c.frameworks = "SystemConfiguration", "CoreGraphics"
-      c.libraries = "z", "c++"
-      c.pod_target_xcconfig = {
+  s.subspec 'CrashReporter' do |r|
+      r.dependency 'AliyunLogProducer/Bricks'
+      r.source_files = 'AliyunLogProducer/CrashReporter/**/*.{m,h}'
+      r.public_header_files = "AliyunLogProducer/CrashReporter/**/*.h"
+      r.vendored_frameworks = 'AliyunLogProducer/CrashReporter/WPKMobi.framework'
+      r.frameworks = "SystemConfiguration", "CoreGraphics"
+      r.libraries = "z", "c++"
+      r.pod_target_xcconfig = {
           'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64',
           'OTHER_LDFLAGS' => '-ObjC'
       }
-      c.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
+      r.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
   end
   
 end
