@@ -23,6 +23,7 @@ typedef void (^AddLogInterceptor)(Log *log);
     @private log_producer* producer;
     @private log_producer_client* client;
     @private AddLogInterceptor addLogInterceptor;
+    @private BOOL _enableTrack;
 }
 
 typedef NS_ENUM(NSInteger, LogProducerResult) {

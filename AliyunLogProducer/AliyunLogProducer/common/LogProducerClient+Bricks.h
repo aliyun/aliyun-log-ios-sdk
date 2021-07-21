@@ -12,9 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LogProducerClient (Bricks)
 
-- (void) setEnableTrack: (bool) enable;
+- (void) setEnableTrack: (BOOL) enable;
 
-- (bool) enableTrack;
+- (BOOL) enableTrack;
 
 @end
 
