@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9D0CAEEF252177D800A4985A /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D0CAEEE252177D800A4985A /* libz.tbd */; };
 		9D0CAEF325217AA400A4985A /* LogProducerConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D984F022520B137009DE4FE /* LogProducerConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9D2468922577848D0031EB1F /* sha1.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D24686B2577848C0031EB1F /* sha1.h */; };
 		9D2468932577848D0031EB1F /* log_producer_sender.c in Sources */ = {isa = PBXBuildFile; fileRef = 9D24686C2577848C0031EB1F /* log_producer_sender.c */; };
@@ -59,7 +58,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		9D0CAEEE252177D800A4985A /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/lib/libz.tbd; sourceTree = DEVELOPER_DIR; };
+		00B8E93126B9162000011A9C /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk/usr/lib/libz.tbd; sourceTree = DEVELOPER_DIR; };
 		9D24686B2577848C0031EB1F /* sha1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sha1.h; sourceTree = "<group>"; };
 		9D24686C2577848C0031EB1F /* log_producer_sender.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = log_producer_sender.c; sourceTree = "<group>"; };
 		9D24686D2577848C0031EB1F /* inner_log.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = inner_log.c; sourceTree = "<group>"; };
@@ -117,7 +116,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9D0CAEEF252177D800A4985A /* libz.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -127,7 +125,7 @@
 		9D0CAEED252177D800A4985A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				9D0CAEEE252177D800A4985A /* libz.tbd */,
+				00B8E93126B9162000011A9C /* libz.tbd */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
