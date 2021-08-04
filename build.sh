@@ -28,7 +28,7 @@ then
     rm -rf "${INSTALL_DIR}"
 fi
 
-mkdir -p ${SRCROOT}/Products
+mkdir -p ${SRCROOT}/Products/${FMK_NAME}.xcframework
 
 cp -R "${DEVICE_DIR_LOGSDK}" "${INSTALL_DIR_LOGSDK}"
 
@@ -38,5 +38,5 @@ cp -R "${DEVICE_DIR_LOGSDK}" "${INSTALL_DIR_LOGSDK}"
 #echo "${SIMULATOR_DIR_LOGSDK}/${FMK_NAME}"
 
 #lipo -create "${DEVICE_DIR_LOGSDK}/${FMK_NAME}" "${SIMULATOR_DIR_LOGSDK}/${FMK_NAME}" -output "${INSTALL_DIR_LOGSDK}/${FMK_NAME}"
-xcodebuild -create-xcframework -framework ${DEVICE_DIR_LOGSDK} -framework ${SIMULATOR_DIR_LOGSDK} -output ${INSTALL_DIR_LOGSDK}/${FMK_NAME}.xcframework
+xcodebuild -create-xcframework -framework ${DEVICE_DIR_LOGSDK} -framework ${SIMULATOR_DIR_LOGSDK} -output ${SRCROOT}/Products/${FMK_NAME}.xcframework
 #rm -r "${WRK_DIR}"
