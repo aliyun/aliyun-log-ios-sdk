@@ -34,9 +34,9 @@ cp -R "${DEVICE_DIR_LOGSDK}" "${INSTALL_DIR_LOGSDK}"
 
 # Uses the Lipo Tool to merge both binary files (i386 + armv6/armv7) into one Universal final product.
 
-# echo "${DEVICE_DIR_LOGSDK}/${FMK_NAME}"
-# echo "${SIMULATOR_DIR_LOGSDK}/${FMK_NAME}"
+#echo "${DEVICE_DIR_LOGSDK}/${FMK_NAME}"
+#echo "${SIMULATOR_DIR_LOGSDK}/${FMK_NAME}"
 
-lipo -create "${DEVICE_DIR_LOGSDK}/${FMK_NAME}" "${SIMULATOR_DIR_LOGSDK}/${FMK_NAME}" -output "${INSTALL_DIR_LOGSDK}/${FMK_NAME}"
-
-rm -r "${WRK_DIR}"
+#lipo -create "${DEVICE_DIR_LOGSDK}/${FMK_NAME}" "${SIMULATOR_DIR_LOGSDK}/${FMK_NAME}" -output "${INSTALL_DIR_LOGSDK}/${FMK_NAME}"
+xcodebuild -create-xcframework -framework ${DEVICE_DIR_LOGSDK} -framework ${SIMULATOR_DIR_LOGSDK} -output ${INSTALL_DIR_LOGSDK}/${FMK_NAME}.xcframework
+#rm -r "${WRK_DIR}"
