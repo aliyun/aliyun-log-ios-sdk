@@ -16,7 +16,7 @@
 #import "log_http_interface.h"
 
 
-@interface LogProducerConfig : NSObject
+@interface AliyunLogProducerConfig : NSObject
 {
     @package log_producer_config* config;
     @private NSString *endpoint;

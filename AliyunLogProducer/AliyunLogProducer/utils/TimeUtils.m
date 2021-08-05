@@ -7,7 +7,7 @@
 //
 
 #import "TimeUtils.h"
-#import "LogProducerConfig.h"
+#import "AliyunLogProducerConfig.h"
 #import <sys/sysctl.h>
 
 @interface TimeUtils ()
@@ -63,7 +63,7 @@ static NSTimeInterval elapsedRealtime = 0;
     
     return serverTime + delta;
 }
-+(void) fixTime: (Log *)log
++(void) fixTime: (AliyunLog *)log
 {
     if(!log) {
         return;

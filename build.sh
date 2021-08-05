@@ -39,4 +39,4 @@ cp -R "${DEVICE_DIR_LOGSDK}" "${INSTALL_DIR_LOGSDK}"
 
 #lipo -create "${DEVICE_DIR_LOGSDK}/${FMK_NAME}" "${SIMULATOR_DIR_LOGSDK}/${FMK_NAME}" -output "${INSTALL_DIR_LOGSDK}/${FMK_NAME}"
 xcodebuild -create-xcframework -framework ${DEVICE_DIR_LOGSDK} -framework ${SIMULATOR_DIR_LOGSDK} -output ${SRCROOT}/Products/${FMK_NAME}.xcframework
-#rm -r "${WRK_DIR}"
+rm -r "${WRK_DIR}"

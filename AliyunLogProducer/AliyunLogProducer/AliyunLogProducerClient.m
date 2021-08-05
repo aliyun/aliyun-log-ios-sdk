@@ -7,24 +7,24 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "LogProducerClient.h"
-#import "LogProducerConfig.h"
-#import "Log.h"
+#import "AliyunLogProducerClient.h"
+#import "AliyunLogProducerConfig.h"
+#import "AliyunLog.h"
 #import "TimeUtils.h"
 
 
-@interface LogProducerClient ()
+@interface AliyunLogProducerClient ()
 
 @end
 
-@implementation LogProducerClient
+@implementation AliyunLogProducerClient
 
-- (id) initWithLogProducerConfig:(LogProducerConfig *)logProducerConfig
+- (id) initWithLogProducerConfig:(AliyunLogProducerConfig *)logProducerConfig
 {
     return [self initWithLogProducerConfig:logProducerConfig callback:nil];
 }
 
-- (id) initWithLogProducerConfig:(LogProducerConfig *)logProducerConfig callback:(on_log_producer_send_done_function)callback
+- (id) initWithLogProducerConfig:(AliyunLogProducerConfig *)logProducerConfig callback:(on_log_producer_send_done_function)callback
 {
     if (self = [super init])
     {
@@ -42,12 +42,12 @@
     destroy_log_producer(self->producer);
 }
 
-- (LogProducerResult)AddLog:(Log *) log
+- (AliyunLogProducerResult)AddLog:(AliyunLog *) log
 {
     return [self AddLog:log flush:0];
 }
 
-- (LogProducerResult)AddLog:(Log *) log flush:(int) flush
+- (AliyunLogProducerResult)AddLog:(AliyunLog *) log flush:(int) flush
 {
     if (self->client == NULL || log == nil) {
         return LogProducerInvalid;

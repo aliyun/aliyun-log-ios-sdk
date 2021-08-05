@@ -13,17 +13,17 @@
 #endif
 
 #import <Foundation/Foundation.h>
-#import "LogProducerConfig.h"
+#import "AliyunLogProducerConfig.h"
 #import "inner_log.h"
 #import "TimeUtils.h"
 
 
 
-@interface LogProducerConfig ()
+@interface AliyunLogProducerConfig ()
 
 @end
 
-@implementation LogProducerConfig
+@implementation AliyunLogProducerConfig
 
 static NSString *VERSION = @"sls-ios-sdk_v2.2.25";
 

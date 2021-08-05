@@ -64,7 +64,7 @@ int x = 0;
 //    [config SetGetTimeUnixFunc:time];
 
     client = [[LogProducerClient alloc] initWithLogProducerConfig:config callback:on_log_send_done];
-    AddLogInterceptor interceptor = ^(Log *log) {
+    AddLogInterceptor interceptor = ^(AliyunLog *log) {
         [log PutContent:@"DEBUGGGG" value:@"test"];
     };
     [client setAddLogInterceptor:&interceptor];
@@ -85,7 +85,7 @@ void on_log_send_done(const char * config_name, log_producer_result result, size
 
 
 -(void)sendOneLog {
-    Log* log = [self getOneLog];
+    AliyunLog* log = [self getOneLog];
     [log PutContent:@"index" value:[@(x) stringValue]];
     x = x + 1;
     LogProducerResult res = [client AddLog:log];
@@ -97,7 +97,7 @@ void on_log_send_done(const char * config_name, log_producer_result result, size
     while(true) {
        double time1 = [[NSDate date] timeIntervalSince1970];
        for( int i = 0; i < num; i++) {
-           Log* log = [self getOneLog];
+           AliyunLog* log = [self getOneLog];
            [log PutContent:@"index" value:[@(x) stringValue]];
            x = x + 1;
            LogProducerResult res = [client AddLog:log];
@@ -110,8 +110,8 @@ void on_log_send_done(const char * config_name, log_producer_result result, size
     }
 }
 
--(Log*)getOneLog {
-    Log* log = [[Log alloc] init];
+-(AliyunLog*)getOneLog {
+    AliyunLog* log = [[AliyunLog alloc] init];
     int logTime = [[NSDate date] timeIntervalSince1970];
     [log SetTime:logTime];
     [log PutContent:@"content_key_1" value:@"1abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+"];

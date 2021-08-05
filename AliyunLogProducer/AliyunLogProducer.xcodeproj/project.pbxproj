@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9D0CAEF325217AA400A4985A /* LogProducerConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D984F022520B137009DE4FE /* LogProducerConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9D0CAEF325217AA400A4985A /* AliyunLogProducerConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D984F022520B137009DE4FE /* AliyunLogProducerConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9D2468922577848D0031EB1F /* sha1.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D24686B2577848C0031EB1F /* sha1.h */; };
 		9D2468932577848D0031EB1F /* log_producer_sender.c in Sources */ = {isa = PBXBuildFile; fileRef = 9D24686C2577848C0031EB1F /* log_producer_sender.c */; };
 		9D2468942577848D0031EB1F /* inner_log.c in Sources */ = {isa = PBXBuildFile; fileRef = 9D24686D2577848C0031EB1F /* inner_log.c */; };
@@ -48,11 +48,11 @@
 		9D2468B72577848E0031EB1F /* log_ring_file.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D2468902577848D0031EB1F /* log_ring_file.h */; };
 		9D2468B82577848E0031EB1F /* log_define.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D2468912577848D0031EB1F /* log_define.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9D984DB72520A9B7009DE4FE /* AliyunLogProducer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D984DB52520A9B7009DE4FE /* AliyunLogProducer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		9D984EFF2520AE17009DE4FE /* LogProducerConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D984EFE2520AE17009DE4FE /* LogProducerConfig.m */; };
-		9D984F012520AF44009DE4FE /* LogProducerClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D984F002520AF44009DE4FE /* LogProducerClient.m */; };
-		9D984F042520D796009DE4FE /* LogProducerClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D984F032520D796009DE4FE /* LogProducerClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		9D984F062520E110009DE4FE /* Log.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D984F052520E110009DE4FE /* Log.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		9D984F082520E121009DE4FE /* Log.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D984F072520E120009DE4FE /* Log.m */; };
+		9D984EFF2520AE17009DE4FE /* AliyunLogProducerConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D984EFE2520AE17009DE4FE /* AliyunLogProducerConfig.m */; };
+		9D984F012520AF44009DE4FE /* AliyunLogProducerClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D984F002520AF44009DE4FE /* AliyunLogProducerClient.m */; };
+		9D984F042520D796009DE4FE /* AliyunLogProducerClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D984F032520D796009DE4FE /* AliyunLogProducerClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9D984F062520E110009DE4FE /* AliyunLog.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D984F052520E110009DE4FE /* AliyunLog.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9D984F082520E121009DE4FE /* AliyunLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D984F072520E120009DE4FE /* AliyunLog.m */; };
 		F87A2451266F3FE000499D4D /* TimeUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = F87A244F266F3FE000499D4D /* TimeUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F87A2452266F3FE000499D4D /* TimeUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = F87A2450266F3FE000499D4D /* TimeUtils.m */; };
 /* End PBXBuildFile section */
@@ -101,12 +101,12 @@
 		9D984DB22520A9B7009DE4FE /* AliyunLogProducer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AliyunLogProducer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D984DB52520A9B7009DE4FE /* AliyunLogProducer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AliyunLogProducer.h; sourceTree = "<group>"; };
 		9D984DB62520A9B7009DE4FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9D984EFE2520AE17009DE4FE /* LogProducerConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LogProducerConfig.m; sourceTree = "<group>"; };
-		9D984F002520AF44009DE4FE /* LogProducerClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LogProducerClient.m; sourceTree = "<group>"; };
-		9D984F022520B137009DE4FE /* LogProducerConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogProducerConfig.h; sourceTree = "<group>"; };
-		9D984F032520D796009DE4FE /* LogProducerClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogProducerClient.h; sourceTree = "<group>"; };
-		9D984F052520E110009DE4FE /* Log.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Log.h; sourceTree = "<group>"; };
-		9D984F072520E120009DE4FE /* Log.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Log.m; sourceTree = "<group>"; };
+		9D984EFE2520AE17009DE4FE /* AliyunLogProducerConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AliyunLogProducerConfig.m; sourceTree = "<group>"; };
+		9D984F002520AF44009DE4FE /* AliyunLogProducerClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AliyunLogProducerClient.m; sourceTree = "<group>"; };
+		9D984F022520B137009DE4FE /* AliyunLogProducerConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AliyunLogProducerConfig.h; sourceTree = "<group>"; };
+		9D984F032520D796009DE4FE /* AliyunLogProducerClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AliyunLogProducerClient.h; sourceTree = "<group>"; };
+		9D984F052520E110009DE4FE /* AliyunLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AliyunLog.h; sourceTree = "<group>"; };
+		9D984F072520E120009DE4FE /* AliyunLog.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AliyunLog.m; sourceTree = "<group>"; };
 		F87A244F266F3FE000499D4D /* TimeUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TimeUtils.h; sourceTree = "<group>"; };
 		F87A2450266F3FE000499D4D /* TimeUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimeUtils.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -208,12 +208,12 @@
 				F87A244E266F3FCD00499D4D /* utils */,
 				9D984DB52520A9B7009DE4FE /* AliyunLogProducer.h */,
 				9D984DB62520A9B7009DE4FE /* Info.plist */,
-				9D984F022520B137009DE4FE /* LogProducerConfig.h */,
-				9D984EFE2520AE17009DE4FE /* LogProducerConfig.m */,
-				9D984F032520D796009DE4FE /* LogProducerClient.h */,
-				9D984F002520AF44009DE4FE /* LogProducerClient.m */,
-				9D984F052520E110009DE4FE /* Log.h */,
-				9D984F072520E120009DE4FE /* Log.m */,
+				9D984F022520B137009DE4FE /* AliyunLogProducerConfig.h */,
+				9D984EFE2520AE17009DE4FE /* AliyunLogProducerConfig.m */,
+				9D984F032520D796009DE4FE /* AliyunLogProducerClient.h */,
+				9D984F002520AF44009DE4FE /* AliyunLogProducerClient.m */,
+				9D984F052520E110009DE4FE /* AliyunLog.h */,
+				9D984F072520E120009DE4FE /* AliyunLog.m */,
 			);
 			path = AliyunLogProducer;
 			sourceTree = "<group>";
@@ -246,16 +246,16 @@
 				9D2468B32577848E0031EB1F /* log_inner_include.h in Headers */,
 				9D2468A12577848D0031EB1F /* sds.h in Headers */,
 				F87A2451266F3FE000499D4D /* TimeUtils.h in Headers */,
-				9D984F062520E110009DE4FE /* Log.h in Headers */,
+				9D984F062520E110009DE4FE /* AliyunLog.h in Headers */,
 				9D2468AF2577848D0031EB1F /* log_queue.h in Headers */,
 				9D2468B12577848E0031EB1F /* log_api.h in Headers */,
 				9D2468A62577848D0031EB1F /* hmac-sha.h in Headers */,
 				9D2468A92577848D0031EB1F /* md5.h in Headers */,
 				9D2468B22577848E0031EB1F /* lz4.h in Headers */,
-				9D0CAEF325217AA400A4985A /* LogProducerConfig.h in Headers */,
+				9D0CAEF325217AA400A4985A /* AliyunLogProducerConfig.h in Headers */,
 				9D2468A52577848D0031EB1F /* log_persistent_manager.h in Headers */,
 				9D24689B2577848D0031EB1F /* log_builder.h in Headers */,
-				9D984F042520D796009DE4FE /* LogProducerClient.h in Headers */,
+				9D984F042520D796009DE4FE /* AliyunLogProducerClient.h in Headers */,
 				9D2468A72577848D0031EB1F /* inner_log.h in Headers */,
 				9D2468B72577848E0031EB1F /* log_ring_file.h in Headers */,
 				9D2468AD2577848D0031EB1F /* log_producer_sender.h in Headers */,
@@ -343,11 +343,11 @@
 				9D2468972577848D0031EB1F /* log_ring_file.c in Sources */,
 				9D2468A32577848D0031EB1F /* md5.c in Sources */,
 				9D2468942577848D0031EB1F /* inner_log.c in Sources */,
-				9D984F082520E121009DE4FE /* Log.m in Sources */,
+				9D984F082520E121009DE4FE /* AliyunLog.m in Sources */,
 				9D24689C2577848D0031EB1F /* log_http_interface.c in Sources */,
-				9D984EFF2520AE17009DE4FE /* LogProducerConfig.m in Sources */,
+				9D984EFF2520AE17009DE4FE /* AliyunLogProducerConfig.m in Sources */,
 				9D2468982577848D0031EB1F /* log_persistent_manager.c in Sources */,
-				9D984F012520AF44009DE4FE /* LogProducerClient.m in Sources */,
+				9D984F012520AF44009DE4FE /* AliyunLogProducerClient.m in Sources */,
 				9D2468932577848D0031EB1F /* log_producer_sender.c in Sources */,
 				9D24689D2577848D0031EB1F /* log_producer_client.c in Sources */,
 				9D2468B62577848E0031EB1F /* log_producer_common.c in Sources */,

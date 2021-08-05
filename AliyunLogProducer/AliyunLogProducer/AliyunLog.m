@@ -1,5 +1,5 @@
 //
-//  Log.m
+//  AliyunLog.m
 //  AliyunLogProducer
 //
 //  Created by lichao on 2020/9/27.
@@ -7,14 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Log.h"
+#import "AliyunLog.h"
 #import "TimeUtils.h"
 
-@interface Log ()
+@interface AliyunLog ()
 
 @end
 
-@implementation Log
+@implementation AliyunLog
 
 - (id) init
 {

@@ -13,19 +13,19 @@
 #endif /* LogProducerClient_h */
 
 #import "log_producer_client.h"
-#import "LogProducerConfig.h"
-#import "Log.h"
+#import "AliyunLogProducerConfig.h"
+#import "AliyunLog.h"
 
-typedef void (^AddLogInterceptor)(Log *log);
+typedef void (^AddLogInterceptor)(AliyunLog *log);
 
-@interface LogProducerClient : NSObject
+@interface AliyunLogProducerClient : NSObject
 {
     @private log_producer* producer;
     @private log_producer_client* client;
     @private AddLogInterceptor addLogInterceptor;
 }
 
-typedef NS_ENUM(NSInteger, LogProducerResult) {
+typedef NS_ENUM(NSInteger, AliyunLogProducerResult) {
     LogProducerOK = 0,
     LogProducerInvalid,
     LogProducerWriteError,
@@ -40,15 +40,15 @@ typedef NS_ENUM(NSInteger, LogProducerResult) {
     LogProducerPERSISTENT_Error = 99
 };
 
-- (id) initWithLogProducerConfig:(LogProducerConfig *)logProducerConfig;
+- (id) initWithLogProducerConfig:(AliyunLogProducerConfig *)logProducerConfig;
 
-- (id) initWithLogProducerConfig:(LogProducerConfig *)logProducerConfig callback:(on_log_producer_send_done_function)callback;
+- (id) initWithLogProducerConfig:(AliyunLogProducerConfig *)logProducerConfig callback:(on_log_producer_send_done_function)callback;
 
 - (void)DestroyLogProducer;
 
-- (LogProducerResult)AddLog:(Log *) log;
+- (AliyunLogProducerResult)AddLog:(AliyunLog *) log;
 
-- (LogProducerResult)AddLog:(Log *) log flush:(int) flush;
+- (AliyunLogProducerResult)AddLog:(AliyunLog *) log flush:(int) flush;
 
 - (void) setAddLogInterceptor: (AddLogInterceptor *) addLogInterceptor;
 
