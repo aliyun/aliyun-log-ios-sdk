@@ -10,7 +10,7 @@ import AliyunLogProducer
 
 class ViewController: UIViewController {
 
-    fileprivate var client:     LogProducerClient!
+    fileprivate var client:     AliyunLogProducerClient!
     // endpoint前需要加 https://
     fileprivate let endpoint = "https://cn-hangzhou.log.aliyuncs.com"
     fileprivate let project = "test-hangzhou-b"
@@ -25,7 +25,7 @@ class ViewController: UIViewController {
         let file = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).first
         let path = file! + "/log.dat"
         
-        let config = LogProducerConfig(endpoint:endpoint, project:project, logstore:logstore, accessKeyID:accesskeyid, accessKeySecret:accesskeysecret)!
+        let config = AliyunLogProducerConfig(endpoint:endpoint, project:project, logstore:logstore, accessKeyID:accesskeyid, accessKeySecret:accesskeysecret)!
         // 指定sts token 创建config，过期之前调用ResetSecurityToken重置token
 //        let config = LogProducerConfig(endpoint:endpoint, project:project, logstore:logstore, accessKeyID:accesskeyid, accessKeySecret:accesskeysecret, securityToken:securityToken)
         
@@ -89,7 +89,7 @@ class ViewController: UIViewController {
         })
         
         let callbackFunc: on_log_producer_send_done_function = {config_name,result,log_bytes,compressed_bytes,req_id,error_message,raw_buffer,user_param in
-            let res = LogProducerResult(rawValue: Int(result))
+            let res = AliyunLogProducerResult(rawValue: Int(result))
 //            print(res!)
 //            let reqId = req_id == nil ? "":String(cString: req_id!)
 //            print(reqId)
@@ -98,7 +98,7 @@ class ViewController: UIViewController {
 //            print(log_bytes)
 //            print(compressed_bytes)
         }
-        client = LogProducerClient(logProducerConfig:config, callback:callbackFunc)
+        client = AliyunLogProducerClient(logProducerConfig:config, callback:callbackFunc)
 //        client = LogProducerClient(logProducerConfig:config)
     }
 
@@ -131,8 +131,8 @@ class ViewController: UIViewController {
         }
     }
     
-    func getOneLog() -> Log {
-        let log = Log()
+    func getOneLog() -> AliyunLog {
+        let log = AliyunLog()
         let logTime = Date().timeIntervalSince1970
         log.setTime(useconds_t(logTime))
         log.putContent("content_key_1", value:"1abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+")

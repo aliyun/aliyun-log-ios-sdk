@@ -16,7 +16,7 @@
 
 @implementation ViewController
 
-LogProducerClient* client = nil;
+AliyunLogProducerClient* client = nil;
 // endpoint前需要加 https://
 NSString* endpoint = @"https://cn-hangzhou.log.aliyuncs.com";
 NSString* project = @"test-hangzhou-b";
@@ -34,7 +34,7 @@ int x = 0;
     NSArray  *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *Path = [[paths lastObject] stringByAppendingString:@"/log.dat"];
     
-    LogProducerConfig* config = [[LogProducerConfig alloc] initWithEndpoint:endpoint project:project logstore:logstore accessKeyID:accesskeyid accessKeySecret:accesskeysecret];
+    AliyunLogProducerConfig* config = [[AliyunLogProducerConfig alloc] initWithEndpoint:endpoint project:project logstore:logstore accessKeyID:accesskeyid accessKeySecret:accesskeysecret];
     // 指定sts token 创建config，过期之前调用ResetSecurityToken重置token
 //    LogProducerConfig* config = [[LogProducerConfig alloc] initWithEndpoint:endpoint project:project logstore:logstore accessKeyID:accesskeyid accessKeySecret:accesskeysecret securityToken:securityToken];
     [config SetTopic:@"test_topic"];
@@ -63,7 +63,7 @@ int x = 0;
     [config SetDropUnauthorizedLog:0];
 //    [config SetGetTimeUnixFunc:time];
 
-    client = [[LogProducerClient alloc] initWithLogProducerConfig:config callback:on_log_send_done];
+    client = [[AliyunLogProducerClient alloc] initWithLogProducerConfig:config callback:on_log_send_done];
     AddLogInterceptor interceptor = ^(AliyunLog *log) {
         [log PutContent:@"DEBUGGGG" value:@"test"];
     };
@@ -88,7 +88,7 @@ void on_log_send_done(const char * config_name, log_producer_result result, size
     AliyunLog* log = [self getOneLog];
     [log PutContent:@"index" value:[@(x) stringValue]];
     x = x + 1;
-    LogProducerResult res = [client AddLog:log];
+    AliyunLogProducerResult res = [client AddLog:log];
 
     NSLog(@"%ld", res);
 }
@@ -100,7 +100,7 @@ void on_log_send_done(const char * config_name, log_producer_result result, size
            AliyunLog* log = [self getOneLog];
            [log PutContent:@"index" value:[@(x) stringValue]];
            x = x + 1;
-           LogProducerResult res = [client AddLog:log];
+           AliyunLogProducerResult res = [client AddLog:log];
 //           NSLog(@"%ld", res);
        }
        double time2 = [[NSDate date] timeIntervalSince1970];
