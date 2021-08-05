@@ -64,9 +64,9 @@ let logstore = "logstore_name";
 let accesskeyid = "your_accesskey_id";
 let accesskeysecret = "your_accesskey_secret";
 
-let config = LogProducerConfig(endpoint:endpoint, project:project, logstore:logstore, accessKeyID:accesskeyid, accessKeySecret:accesskeysecret)!
+let config = AliyunLogProducerConfig(endpoint:endpoint, project:project, logstore:logstore, accessKeyID:accesskeyid, accessKeySecret:accesskeysecret)!
 // 指定sts token 创建config，过期之前调用ResetSecurityToken重置token
-// let config = LogProducerConfig(endpoint:endpoint, project:project, logstore:logstore, accessKeyID:accesskeyid, accessKeySecret:accesskeysecret, securityToken:securityToken)
+// let config = AliyunLogProducerConfig(endpoint:endpoint, project:project, logstore:logstore, accessKeyID:accesskeyid, accessKeySecret:accesskeysecret, securityToken:securityToken)
 ```
 
 ### 配置config & 创建client
@@ -108,21 +108,21 @@ config.setGetTimeUnixFunc({ () -> UInt32 in
     return UInt32(time);
 })
 let callbackFunc: on_log_producer_send_done_function = {config_name,result,log_bytes,compressed_bytes,req_id,error_message,raw_buffer,user_param in
-          let res = LogProducerResult(rawValue: Int(result))
+          let res = AliyunLogProducerResult(rawValue: Int(result))
 //            print(res!)
 //            let req = String(cString: req_id!)
 //            print(req)
 //            print(log_bytes)
 //            print(compressed_bytes)
 }
-client = LogProducerClient(logProducerConfig:config, callback:callbackFunc)
-//        client = LogProducerClient(logProducerConfig:config)
+client = AliyunLogProducerClient(logProducerConfig:config, callback:callbackFunc)
+//        client = AliyunLogProducerClient(logProducerConfig:config)
 ```
 
 ### 写数据
 
 ```
-let log = Log()
+let log = AliyunLog()
 let logTime = Date().timeIntervalSince1970
 //不设置默认当前时间
 log.setTime(useconds_t(logTime))
@@ -153,9 +153,9 @@ NSString* logstore = @"logstore_name";
 NSString* accesskeyid = @"your_accesskey_id";
 NSString* accesskeysecret = @"your_accesskey_secret";
 
-LogProducerConfig* config = [[LogProducerConfig alloc] initWithEndpoint:endpoint project:project logstore:logstore accessKeyID:accesskeyid accessKeySecret:accesskeysecret];
+AliyunLogProducerConfig* config = [[AliyunLogProducerConfig alloc] initWithEndpoint:endpoint project:project logstore:logstore accessKeyID:accesskeyid accessKeySecret:accesskeysecret];
 // 指定sts token 创建config，过期之前调用ResetSecurityToken重置token
-// LogProducerConfig* config = [[LogProducerConfig alloc] initWithEndpoint:endpoint project:project logstore:logstore accessKeyID:accesskeyid accessKeySecret:accesskeysecret securityToken:securityToken];
+// AliyunLogProducerConfig* config = [[AliyunLogProducerConfig alloc] initWithEndpoint:endpoint project:project logstore:logstore accessKeyID:accesskeyid accessKeySecret:accesskeysecret securityToken:securityToken];
 ```
 
 ### 配置config & 创建client
@@ -195,13 +195,13 @@ LogProducerConfig* config = [[LogProducerConfig alloc] initWithEndpoint:endpoint
 [config SetGetTimeUnixFunc:time];
 
 //创建client
-client = [[LogProducerClient alloc] initWithLogProducerConfig:config];
+client = [[AliyunLogProducerClient alloc] initWithLogProducerConfig:config];
 ```
 
 ### 写数据
 
 ```
-Log* log = [[Log alloc] init];
+AliyunLog* log = [[AliyunLog alloc] init];
 int logTime = [[NSDate date] timeIntervalSince1970];
 //不设置默认当前时间
 [log SetTime:logTime];
@@ -209,7 +209,7 @@ int logTime = [[NSDate date] timeIntervalSince1970];
 [log PutContent:@"k2" value:@"v2"];
 
 // addLog第二个参数flush，是否立即发送，1代表立即发送，不设置时默认为0
-LogProducerResult res = [client AddLog:log flush:0];
+AliyunLogProducerResult res = [client AddLog:log flush:0];
 ```
 
 ## config其他参数说明
