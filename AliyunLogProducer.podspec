@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'AliyunLogProducer'
-  s.version          = '2.4.beta.3'
+  s.version          = '2.4.beta.4'
   s.summary          = 'aliyun log service ios producer.'
 
 # This description is used to generate tags and improve search results.
@@ -79,8 +79,8 @@ https://help.aliyun.com/product/28958.html
   s.subspec 'Trace' do |t|
       t.ios.deployment_target = '10.0'
       t.dependency 'AliyunLogProducer/Bricks'
-      t.dependency "OpenTelemetryApi", "0.0.2"
-      t.dependency "OpenTelemetrySdk", "0.0.2"
+      t.dependency "OpenTelemetryApi", "0.0.3"
+      t.dependency "OpenTelemetrySdk", "0.0.3"
       t.source_files = 'AliyunLogProducer/AliyunLogProducer/Trace/**/*.{m,h}'
       t.public_header_files = "AliyunLogProducer/AliyunLogProducer/Trace/**/*.h"
 #      t.exclude_files = 'AliyunLogProducer/AliyunLogProducer/Trace/**/OpenTelemetrySdk-Swift.h'
