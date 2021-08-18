@@ -21,9 +21,12 @@
 }
 
 - (BOOL)initWithSLSConfig:(SLSConfig *)config {
-//    _exporter = [[SLSSpanExporter alloc] init];
-//    TelemetrySDK *sdk = [TelemetrySDK instance];
-//    [sdk addSpanProcessor:_exporter];
+    _exporter = [[SLSSpanExporter alloc] init];
+    [_exporter resetProject:[config endpoint] project:[config pluginLogproject] logstore:[config pluginLogstore]];
+    [_exporter resetSecurityToken:[config accessKeyId] secret:[config accessKeySecret] token:[config securityToken]];
+    
+    TelemetrySDK *sdk = [TelemetrySDK instance];
+    [sdk addSpanProcessor:_exporter];
     return YES;
 }
 
