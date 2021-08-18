@@ -89,6 +89,10 @@
 		F80DF47F26A7DE9000151F7C /* AliyunLogProducer.podspec in Resources */ = {isa = PBXBuildFile; fileRef = F80DF47E26A7DE9000151F7C /* AliyunLogProducer.podspec */; };
 		F87A2451266F3FE000499D4D /* TimeUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = F87A244F266F3FE000499D4D /* TimeUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F87A2452266F3FE000499D4D /* TimeUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = F87A2450266F3FE000499D4D /* TimeUtils.m */; };
+		F8B76C5326CB963F0053D234 /* SLSTracePlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = F8B76C5126CB963F0053D234 /* SLSTracePlugin.h */; };
+		F8B76C5426CB963F0053D234 /* SLSTracePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = F8B76C5226CB963F0053D234 /* SLSTracePlugin.m */; };
+		F8B76C5826CB977A0053D234 /* SLSSpanExporter.h in Headers */ = {isa = PBXBuildFile; fileRef = F8B76C5626CB977A0053D234 /* SLSSpanExporter.h */; };
+		F8B76C5926CB977A0053D234 /* SLSSpanExporter.m in Sources */ = {isa = PBXBuildFile; fileRef = F8B76C5726CB977A0053D234 /* SLSSpanExporter.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -176,6 +180,10 @@
 		F80DF47E26A7DE9000151F7C /* AliyunLogProducer.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = AliyunLogProducer.podspec; path = ../AliyunLogProducer.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		F87A244F266F3FE000499D4D /* TimeUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TimeUtils.h; sourceTree = "<group>"; };
 		F87A2450266F3FE000499D4D /* TimeUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimeUtils.m; sourceTree = "<group>"; };
+		F8B76C5126CB963F0053D234 /* SLSTracePlugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLSTracePlugin.h; sourceTree = "<group>"; };
+		F8B76C5226CB963F0053D234 /* SLSTracePlugin.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLSTracePlugin.m; sourceTree = "<group>"; };
+		F8B76C5626CB977A0053D234 /* SLSSpanExporter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLSSpanExporter.h; sourceTree = "<group>"; };
+		F8B76C5726CB977A0053D234 /* SLSSpanExporter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLSSpanExporter.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -281,6 +289,7 @@
 		9D984DB42520A9B7009DE4FE /* AliyunLogProducer */ = {
 			isa = PBXGroup;
 			children = (
+				F8B76C4826CB8F0D0053D234 /* Trace */,
 				F80DF45F26A6FDCF00151F7C /* CrashReporter */,
 				F80DF2EF26A55F4700151F7C /* common */,
 				F87A244E266F3FCD00499D4D /* utils */,
@@ -388,6 +397,25 @@
 			path = utils;
 			sourceTree = "<group>";
 		};
+		F8B76C4826CB8F0D0053D234 /* Trace */ = {
+			isa = PBXGroup;
+			children = (
+				F8B76C5526CB97660053D234 /* exporter */,
+				F8B76C5126CB963F0053D234 /* SLSTracePlugin.h */,
+				F8B76C5226CB963F0053D234 /* SLSTracePlugin.m */,
+			);
+			path = Trace;
+			sourceTree = "<group>";
+		};
+		F8B76C5526CB97660053D234 /* exporter */ = {
+			isa = PBXGroup;
+			children = (
+				F8B76C5626CB977A0053D234 /* SLSSpanExporter.h */,
+				F8B76C5726CB977A0053D234 /* SLSSpanExporter.m */,
+			);
+			path = exporter;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -396,10 +424,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				9D2468B52577848E0031EB1F /* log_producer_manager.h in Headers */,
+				F8B76C5326CB963F0053D234 /* SLSTracePlugin.h in Headers */,
 				F80DF32426A56AF600151F7C /* Storage.h in Headers */,
 				9D2468922577848D0031EB1F /* sha1.h in Headers */,
 				9D984DB72520A9B7009DE4FE /* AliyunLogProducer.h in Headers */,
 				9D2468B42577848E0031EB1F /* log_http_interface.h in Headers */,
+				F8B76C5826CB977A0053D234 /* SLSSpanExporter.h in Headers */,
 				9D2468AC2577848D0031EB1F /* log_producer_client.h in Headers */,
 				9D2468992577848D0031EB1F /* log_producer_common.h in Headers */,
 				F80DF31A26A56AAC00151F7C /* Rechable.h in Headers */,
@@ -470,6 +500,7 @@
 				TargetAttributes = {
 					9D984DB12520A9B7009DE4FE = {
 						CreatedOnToolsVersion = 11.2.1;
+						LastSwiftMigration = 1250;
 					};
 				};
 			};
@@ -522,6 +553,7 @@
 				9D2468A02577848D0031EB1F /* lz4.c in Sources */,
 				9D2468AA2577848D0031EB1F /* log_api.c in Sources */,
 				F80DF46F26A6FFAE00151F7C /* UCTraceFileParser.m in Sources */,
+				F8B76C5926CB977A0053D234 /* SLSSpanExporter.m in Sources */,
 				9D2468A22577848D0031EB1F /* log_builder.c in Sources */,
 				F80DF47626A702AE00151F7C /* SLSCrashReporterPlugin.m in Sources */,
 				9D2468972577848D0031EB1F /* log_ring_file.c in Sources */,
@@ -537,6 +569,7 @@
 				9D984F012520AF44009DE4FE /* LogProducerClient.m in Sources */,
 				9D2468932577848D0031EB1F /* log_producer_sender.c in Sources */,
 				F80DF34626A56DCD00151F7C /* SLSAdapter.m in Sources */,
+				F8B76C5426CB963F0053D234 /* SLSTracePlugin.m in Sources */,
 				9D24689D2577848D0031EB1F /* log_producer_client.c in Sources */,
 				9D2468B62577848E0031EB1F /* log_producer_common.c in Sources */,
 				9D2468AE2577848D0031EB1F /* log_producer_manager.c in Sources */,
@@ -670,6 +703,7 @@
 		9D984DBB2520A9B7009DE4FE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
 				DEFINES_MODULE = YES;
@@ -680,6 +714,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/AliyunLogProducer/CrashReporter",
+					"$(PROJECT_DIR)/AliyunLogProducer/Trace",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				HEADER_SEARCH_PATHS = "";
@@ -695,6 +730,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = lichao.AliyunLogProducer;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				SYSTEM_HEADER_SEARCH_PATHS = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -703,6 +740,7 @@
 		9D984DBC2520A9B7009DE4FE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -715,6 +753,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/AliyunLogProducer/CrashReporter",
+					"$(PROJECT_DIR)/AliyunLogProducer/Trace",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
@@ -731,6 +770,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = lichao.AliyunLogProducer;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
 				SYSTEM_HEADER_SEARCH_PATHS = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
