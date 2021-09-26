@@ -24,15 +24,23 @@ static void _set_default_producer_config(log_producer_config * pConfig)
     pConfig->using_https = 0;
     pConfig->maxLogDelayTime = 7*24*3600;
     pConfig->dropDelayLog = 1;
+    pConfig->callbackFromSenderThread = 1;
 }
 
 
 static void _copy_config_string(const char * value, sds * src_value)
 {
-    if (value == NULL || src_value == NULL)
+    if (src_value == NULL)
     {
         return;
     }
+
+    if (value == NULL)
+    {
+        *src_value = NULL;
+        return;
+    }
+
     size_t strLen = strlen(value);
     if (*src_value == NULL)
     {
@@ -277,6 +285,11 @@ void log_producer_config_add_tag(log_producer_config * pConfig, const char * key
 
 void log_producer_config_set_endpoint(log_producer_config * config, const char * endpoint)
 {
+    if (!endpoint) {
+        _copy_config_string(NULL, &config->endpoint);
+        return;
+    }
+
     if (strlen(endpoint) < 8) {
         return;
     }
@@ -361,12 +374,12 @@ int log_producer_config_is_valid(log_producer_config * config)
     if (config->endpoint == NULL || config->project == NULL || config->logstore == NULL)
     {
         aos_error_log("invalid producer config destination params");
-        return 0;
+//        return 0;
     }
     if (config->accessKey == NULL || config->accessKeyId == NULL)
     {
         aos_error_log("invalid producer config authority params");
-        return 0;
+//        return 0;
     }
     if (config->packageTimeoutInMS < 0 || config->maxBufferBytes < 0 || config->logCountPerPackage < 0 || config->logBytesPerPackage < 0)
     {
@@ -480,3 +493,13 @@ void log_producer_config_set_drop_unauthorized_log(log_producer_config *config,
         return;
     config->dropUnauthorizedLog = drop_or_not;
 }
+
+void log_producer_config_set_callback_from_sender_thread(log_producer_config * config,
+                                                         int32_t callback_from_sender_thread)
+                                                         {
+    if (NULL == config) {
+        return;
+    }
+
+    config->callbackFromSenderThread = callback_from_sender_thread;
+                                                         }

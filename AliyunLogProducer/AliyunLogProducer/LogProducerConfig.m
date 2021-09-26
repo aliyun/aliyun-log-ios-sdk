@@ -153,9 +153,6 @@ unsigned int time_func() {
 
 - (void)setEndpoint:(NSString *)endpoint
 {
-    if ([endpoint length] == 0) {
-        endpoint = @"please_set_endpoint";
-    }
     self->endpoint = endpoint;
     log_producer_config_set_endpoint(self->config, [endpoint UTF8String]);
 }
@@ -167,9 +164,6 @@ unsigned int time_func() {
 
 - (void)setProject:(NSString *)project
 {
-    if ([project length] == 0) {
-        project = @"please_set_project";
-    }
     self->project = project;
     log_producer_config_set_project(self->config, [project UTF8String]);
 }
@@ -181,9 +175,6 @@ unsigned int time_func() {
 
 - (void)setLogstore:(NSString *)logstore
 {
-    if ([logstore length] == 0) {
-        logstore = @"please_set_logstore";
-    }
     self->logstore = logstore;
     log_producer_config_set_logstore(self->config, [logstore UTF8String]);
 }
@@ -336,17 +327,11 @@ unsigned int time_func() {
 
 - (void)setAccessKeyId:(NSString *)accessKeyId
 {
-    if ([accessKeyId length] == 0) {
-        accessKeyId = @"please_set_accesskeyid";
-    }
     log_producer_config_set_access_id(self->config, [accessKeyId UTF8String]);
 }
 
 - (void)setAccessKeySecret:(NSString *)accessKeySecret
 {
-    if ([accessKeySecret length] == 0){
-        accessKeySecret = @"please_set_accesskeysecret";
-    }
     log_producer_config_set_access_key(self->config, [accessKeySecret UTF8String]);
 }
 
