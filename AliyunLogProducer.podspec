@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'AliyunLogProducer'
-  s.version          = '2.5.0.beta.4'
+  s.version          = '2.5.0.beta.5'
   s.summary          = 'aliyun log service ios producer.'
 
 # This description is used to generate tags and improve search results.
@@ -63,40 +63,92 @@ https://help.aliyun.com/product/28958.html
       b.frameworks = "SystemConfiguration"
   end
   
-  s.subspec 'CrashReporter' do |r|
-      r.dependency 'AliyunLogProducer/Bricks'
+#  s.subspec 'CrashReporter' do |i|
+#      i.dependency 'AliyunLogProducer/Bricks'
+#
+#      i.ios.source_files = 'AliyunLogProducer/AliyunLogProducer/CrashReporter/**/*.{m,h}'
+#      i.ios.public_header_files = "AliyunLogProducer/AliyunLogProducer/CrashReporter/**/*.h"
+#      i.ios.vendored_frameworks = 'AliyunLogProducer/AliyunLogProducer/CrashReporter/iOS/WPKMobi.framework'
+#      i.ios.frameworks = "SystemConfiguration", "CoreGraphics"
+#      i.ios.libraries = "z", "c++"
+#      i.ios.pod_target_xcconfig = {
+#          'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64',
+#          'OTHER_LDFLAGS' => '-ObjC'
+#      }
+#      i.ios.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
+#  end
+  
+#  s.subspec 'CrashReporter_tvOS' do |tv|
+#    tv.dependency 'AliyunLogProducer/Bricks'
+#    tv.tvos.source_files = 'AliyunLogProducer/AliyunLogProducer/CrashReporter/**/*.{m,h}'
+#    tv.tvos.public_header_files = "AliyunLogProducer/AliyunLogProducer/CrashReporter/**/*.h"
+#    tv.tvos.vendored_frameworks = 'AliyunLogProducer/AliyunLogProducer/CrashReporter/tvOS/WPKMobi.framework'
+#    tv.tvos.frameworks = "SystemConfiguration", "CoreGraphics"
+#    tv.tvos.libraries = "z", "c++"
+#
+#    tv.tvos.pod_target_xcconfig = {
+#        'EXCLUDED_ARCHS[sdk=appletvsimulator*]' => 'arm64',
+#        'OTHER_LDFLAGS' => '-ObjC'
+#    }
+#    tv.tvos.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=appletvsimulator*]' => 'arm64' }
+#
+#  end
 
-      r.subspec 'iOS' do |i|
-#          i.dependency 'AliyunLogProducer/CrashReporter'
-          
-          i.ios.source_files = 'AliyunLogProducer/AliyunLogProducer/CrashReporter/**/*.{m,h}'
-          i.ios.public_header_files = "AliyunLogProducer/AliyunLogProducer/CrashReporter/**/*.h"
-          i.ios.vendored_frameworks = 'AliyunLogProducer/AliyunLogProducer/CrashReporter/iOS/WPKMobi.framework'
-          i.ios.frameworks = "SystemConfiguration", "CoreGraphics"
-          i.ios.libraries = "z", "c++"
-          i.ios.pod_target_xcconfig = {
-              'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64',
-              'OTHER_LDFLAGS' => '-ObjC'
-          }
-          i.ios.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
-      end
+
+#  s.subspec 'CrashReporter' do |r|
+#      r.dependency 'AliyunLogProducer/Bricks'
+#
+#      r.subspec 'iOS' do |i|
+#
+#          i.ios.source_files = 'AliyunLogProducer/AliyunLogProducer/CrashReporter/**/*.{m,h}'
+#          i.ios.public_header_files = "AliyunLogProducer/AliyunLogProducer/CrashReporter/**/*.h"
+#          i.ios.vendored_frameworks = 'AliyunLogProducer/AliyunLogProducer/CrashReporter/iOS/WPKMobi.framework'
+#          i.ios.frameworks = "SystemConfiguration", "CoreGraphics"
+#          i.ios.libraries = "z", "c++"
+#          i.ios.pod_target_xcconfig = {
+#              'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64',
+#              'OTHER_LDFLAGS' => '-ObjC'
+#          }
+#          i.ios.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
+#      end
+#
+#      r.subspec 'tvOS' do |t|
+#
+#         t.tvos.source_files = 'AliyunLogProducer/AliyunLogProducer/CrashReporter/**/*.{m,h}'
+#         t.tvos.public_header_files = "AliyunLogProducer/AliyunLogProducer/CrashReporter/**/*.h"
+#         t.tvos.vendored_frameworks = 'AliyunLogProducer/AliyunLogProducer/CrashReporter/tvOS/WPKMobi.framework'
+#         t.tvos.frameworks = "SystemConfiguration", "CoreGraphics"
+#         t.tvos.libraries = "z", "c++"
+#
+#         t.tvos.pod_target_xcconfig = {
+#             'EXCLUDED_ARCHS[sdk=appletvsimulator*]' => 'arm64',
+#             'OTHER_LDFLAGS' => '-ObjC'
+#         }
+#         t.tvos.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=appletvsimulator*]' => 'arm64' }
+#      end
+#
+#  end
+
+
+  s.subspec 'CrashReporter' do |i|
+      i.dependency 'AliyunLogProducer/Bricks'
+
+      i.source_files = 'AliyunLogProducer/AliyunLogProducer/CrashReporter/**/*.{m,h}'
+      i.public_header_files = "AliyunLogProducer/AliyunLogProducer/CrashReporter/**/*.h"
+      i.vendored_frameworks = 'AliyunLogProducer/AliyunLogProducer/CrashReporter/WPKMobi.xcframework'
+      i.frameworks = "SystemConfiguration", "CoreGraphics"
+      i.libraries = "z", "c++"
+      i.ios.pod_target_xcconfig = {
+          'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64',
+          'OTHER_LDFLAGS' => '-ObjC'
+      }
+      i.ios.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
       
-      r.subspec 'tvOS' do |t|
-#         t.dependency 'AliyunLogProducer/CrashReporter'
-         
-         t.tvos.source_files = 'AliyunLogProducer/AliyunLogProducer/CrashReporter/**/*.{m,h}'
-         t.tvos.public_header_files = "AliyunLogProducer/AliyunLogProducer/CrashReporter/**/*.h"
-         t.tvos.vendored_frameworks = 'AliyunLogProducer/AliyunLogProducer/CrashReporter/tvOS/WPKMobi.framework'
-         t.tvos.frameworks = "SystemConfiguration", "CoreGraphics"
-         t.tvos.libraries = "z", "c++"
-         
-         t.tvos.pod_target_xcconfig = {
-             'EXCLUDED_ARCHS[sdk=appletvsimulator*]' => 'arm64',
-             'OTHER_LDFLAGS' => '-ObjC'
-         }
-         t.tvos.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=appletvsimulator*]' => 'arm64' }
-      end
-      
+      i.tvos.pod_target_xcconfig = {
+         'EXCLUDED_ARCHS[sdk=appletvsimulator*]' => 'arm64',
+         'OTHER_LDFLAGS' => '-ObjC'
+      }
+      i.tvos.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=appletvsimulator*]' => 'arm64' }
   end
   
 end
