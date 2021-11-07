@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -169,8 +169,8 @@
 		F86AAB0C2737E90200FE9871 /* AliyunLogProducer.podspec in Resources */ = {isa = PBXBuildFile; fileRef = F80DF47E26A7DE9000151F7C /* AliyunLogProducer.podspec */; };
 		F87A2451266F3FE000499D4D /* TimeUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = F87A244F266F3FE000499D4D /* TimeUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F87A2452266F3FE000499D4D /* TimeUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = F87A2450266F3FE000499D4D /* TimeUtils.m */; };
-		F8A73D8C273813C500DC53A3 /* WPKMobi.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8A73D8B273813C500DC53A3 /* WPKMobi.xcframework */; };
-		F8A73D8D273813C500DC53A3 /* WPKMobi.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8A73D8B273813C500DC53A3 /* WPKMobi.xcframework */; };
+		F8E939662738249800E6535A /* WPKMobi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8E939652738249800E6535A /* WPKMobi.framework */; };
+		F8E93968273824A600E6535A /* WPKMobi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8E93967273824A600E6535A /* WPKMobi.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -258,7 +258,8 @@
 		F86AAB102737E90200FE9871 /* AliyunLogProducer_TVOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AliyunLogProducer_TVOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F87A244F266F3FE000499D4D /* TimeUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TimeUtils.h; sourceTree = "<group>"; };
 		F87A2450266F3FE000499D4D /* TimeUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimeUtils.m; sourceTree = "<group>"; };
-		F8A73D8B273813C500DC53A3 /* WPKMobi.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = WPKMobi.xcframework; sourceTree = "<group>"; };
+		F8E939652738249800E6535A /* WPKMobi.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WPKMobi.framework; sourceTree = "<group>"; };
+		F8E93967273824A600E6535A /* WPKMobi.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WPKMobi.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -267,10 +268,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				F80DF47D26A7037000151F7C /* CoreGraphics.framework in Frameworks */,
+				F8E939662738249800E6535A /* WPKMobi.framework in Frameworks */,
 				F80DF47B26A7035E00151F7C /* SystemConfiguration.framework in Frameworks */,
 				F80DF47926A7034E00151F7C /* libc++.tbd in Frameworks */,
 				9D0CAEEF252177D800A4985A /* libz.tbd in Frameworks */,
-				F8A73D8C273813C500DC53A3 /* WPKMobi.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -279,10 +280,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				F86AAB062737E90200FE9871 /* CoreGraphics.framework in Frameworks */,
+				F8E93968273824A600E6535A /* WPKMobi.framework in Frameworks */,
 				F86AAB072737E90200FE9871 /* SystemConfiguration.framework in Frameworks */,
 				F86AAB082737E90200FE9871 /* libc++.tbd in Frameworks */,
 				F86AAB0A2737E90200FE9871 /* libz.tbd in Frameworks */,
-				F8A73D8D273813C500DC53A3 /* WPKMobi.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -444,7 +445,8 @@
 		F80DF45F26A6FDCF00151F7C /* CrashReporter */ = {
 			isa = PBXGroup;
 			children = (
-				F8A73D8B273813C500DC53A3 /* WPKMobi.xcframework */,
+				F8E939622738242D00E6535A /* tvOS */,
+				F8E939612738242500E6535A /* iOS */,
 				F80DF46226A6FED000151F7C /* parser */,
 				F80DF46326A6FED900151F7C /* sender */,
 				F80DF46426A6FEFC00151F7C /* IReporterSender.h */,
@@ -482,6 +484,22 @@
 				F87A2450266F3FE000499D4D /* TimeUtils.m */,
 			);
 			path = utils;
+			sourceTree = "<group>";
+		};
+		F8E939612738242500E6535A /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				F8E939652738249800E6535A /* WPKMobi.framework */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
+		F8E939622738242D00E6535A /* tvOS */ = {
+			isa = PBXGroup;
+			children = (
+				F8E93967273824A600E6535A /* WPKMobi.framework */,
+			);
+			path = tvOS;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
