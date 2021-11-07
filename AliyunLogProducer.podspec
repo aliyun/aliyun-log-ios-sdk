@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'AliyunLogProducer'
-  s.version          = '2.5.0.beta.1'
+  s.version          = '2.5.0.beta.2'
   s.summary          = 'aliyun log service ios producer.'
 
 # This description is used to generate tags and improve search results.
@@ -67,17 +67,20 @@ https://help.aliyun.com/product/28958.html
       r.dependency 'AliyunLogProducer/Bricks'
       r.source_files = 'AliyunLogProducer/AliyunLogProducer/CrashReporter/**/*.{m,h}'
       r.public_header_files = "AliyunLogProducer/AliyunLogProducer/CrashReporter/**/*.h"
-      r.ios.vendored_frameworks = 'AliyunLogProducer/AliyunLogProducer/CrashReporter/WPKMobi.framework'
-      r.ios.frameworks = "SystemConfiguration", "CoreGraphics"
-      r.ios.libraries = "z", "c++"
-      r.ios.pod_target_xcconfig = {
-          'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64',
-          'OTHER_LDFLAGS' => '-ObjC'
-      }
-      r.ios.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
+
+      r.subspec 'iOS' do |i|
+          i.ios.vendored_frameworks = 'AliyunLogProducer/AliyunLogProducer/CrashReporter/WPKMobi.framework'
+          i.ios.frameworks = "SystemConfiguration", "CoreGraphics"
+          i.ios.libraries = "z", "c++"
+          i.ios.pod_target_xcconfig = {
+              'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64',
+              'OTHER_LDFLAGS' => '-ObjC'
+          }
+          i.ios.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
+      end
+      
       
       r.subspec 'TVOS' do |t|
-#         t.dependency 'CrashReporter'
          t.tvos.vendored_frameworks = 'AliyunLogProducer/AliyunLogProducer/CrashReporter/WPKMobi_TVOS.framework'
          t.tvos.frameworks = "SystemConfiguration", "CoreGraphics"
          t.tvos.libraries = "z", "c++"
