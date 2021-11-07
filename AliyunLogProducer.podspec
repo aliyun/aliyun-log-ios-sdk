@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'AliyunLogProducer'
-  s.version          = '2.5.0.beta.3'
+  s.version          = '2.5.0.beta.4'
   s.summary          = 'aliyun log service ios producer.'
 
 # This description is used to generate tags and improve search results.
@@ -66,14 +66,12 @@ https://help.aliyun.com/product/28958.html
   s.subspec 'CrashReporter' do |r|
       r.dependency 'AliyunLogProducer/Bricks'
 
-      r.subspec 'Core' do |i|
-          r.source_files = 'AliyunLogProducer/AliyunLogProducer/CrashReporter/**/*.{m,h}'
-          r.public_header_files = "AliyunLogProducer/AliyunLogProducer/CrashReporter/**/*.h"
-      end
-
       r.subspec 'iOS' do |i|
-          i.dependency 'AliyunLogProducer/CrashReporter/Core'
-          i.ios.vendored_frameworks = 'AliyunLogProducer/AliyunLogProducer/CrashReporter/WPKMobi.framework'
+#          i.dependency 'AliyunLogProducer/CrashReporter'
+          
+          i.ios.source_files = 'AliyunLogProducer/AliyunLogProducer/CrashReporter/**/*.{m,h}'
+          i.ios.public_header_files = "AliyunLogProducer/AliyunLogProducer/CrashReporter/**/*.h"
+          i.ios.vendored_frameworks = 'AliyunLogProducer/AliyunLogProducer/CrashReporter/iOS/WPKMobi.framework'
           i.ios.frameworks = "SystemConfiguration", "CoreGraphics"
           i.ios.libraries = "z", "c++"
           i.ios.pod_target_xcconfig = {
@@ -84,8 +82,11 @@ https://help.aliyun.com/product/28958.html
       end
       
       r.subspec 'tvOS' do |t|
-         t.dependency 'AliyunLogProducer/CrashReporter/Core'
-         t.tvos.vendored_frameworks = 'AliyunLogProducer/AliyunLogProducer/CrashReporter/WPKMobi_TVOS.framework'
+#         t.dependency 'AliyunLogProducer/CrashReporter'
+         
+         t.tvos.source_files = 'AliyunLogProducer/AliyunLogProducer/CrashReporter/**/*.{m,h}'
+         t.tvos.public_header_files = "AliyunLogProducer/AliyunLogProducer/CrashReporter/**/*.h"
+         t.tvos.vendored_frameworks = 'AliyunLogProducer/AliyunLogProducer/CrashReporter/tvOS/WPKMobi.framework'
          t.tvos.frameworks = "SystemConfiguration", "CoreGraphics"
          t.tvos.libraries = "z", "c++"
          
