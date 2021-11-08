@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'AliyunLogProducer'
-  s.version          = '2.3.1'
+  s.version          = '2.5.0.alpha.1'
   s.summary          = 'aliyun log service ios producer.'
 
 # This description is used to generate tags and improve search results.
@@ -30,6 +30,7 @@ https://help.aliyun.com/product/28958.html
   s.social_media_url = 'http://t.cn/AiRpol8C'
 
   s.ios.deployment_target = '8.0'
+  s.tvos.deployment_target = '9.0'
   s.default_subspec = 'Core'
 
   s.requires_arc  = true
@@ -62,18 +63,25 @@ https://help.aliyun.com/product/28958.html
       b.frameworks = "SystemConfiguration"
   end
   
-  s.subspec 'CrashReporter' do |r|
-      r.dependency 'AliyunLogProducer/Bricks'
-      r.source_files = 'AliyunLogProducer/AliyunLogProducer/CrashReporter/**/*.{m,h}'
-      r.public_header_files = "AliyunLogProducer/AliyunLogProducer/CrashReporter/**/*.h"
-      r.vendored_frameworks = 'AliyunLogProducer/AliyunLogProducer/CrashReporter/WPKMobi.framework'
-      r.frameworks = "SystemConfiguration", "CoreGraphics"
-      r.libraries = "z", "c++"
-      r.pod_target_xcconfig = {
+  s.subspec 'CrashReporter' do |i|
+      i.dependency 'AliyunLogProducer/Bricks'
+
+      i.source_files = 'AliyunLogProducer/AliyunLogProducer/CrashReporter/**/*.{m,h}'
+      i.public_header_files = "AliyunLogProducer/AliyunLogProducer/CrashReporter/**/*.h"
+      i.vendored_frameworks = 'AliyunLogProducer/AliyunLogProducer/CrashReporter/WPKMobi.xcframework'
+      i.frameworks = "SystemConfiguration", "CoreGraphics"
+      i.libraries = "z", "c++"
+      i.ios.pod_target_xcconfig = {
           'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64',
           'OTHER_LDFLAGS' => '-ObjC'
       }
-      r.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
+      i.ios.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
+
+      i.tvos.pod_target_xcconfig = {
+         'EXCLUDED_ARCHS[sdk=appletvsimulator*]' => 'arm64',
+         'OTHER_LDFLAGS' => '-ObjC'
+      }
+      i.tvos.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=appletvsimulator*]' => 'arm64' }
   end
   
 end

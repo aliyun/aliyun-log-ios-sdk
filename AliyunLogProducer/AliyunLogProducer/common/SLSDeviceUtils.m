@@ -8,8 +8,13 @@
 #import "SLSDeviceUtils.h"
 #import <sys/utsname.h>
 #import <UIKit/UIKit.h>
-#import <CoreTelephony/CTTelephonyNetworkInfo.h>
-#import <CoreTelephony/CTCarrier.h>
+#if TARGET_OS_IOS
+    #import <CoreTelephony/CTTelephonyNetworkInfo.h>
+    #import <CoreTelephony/CTCarrier.h>
+#else //TARGET_OS_TV
+
+#endif
+
 #import <sys/stat.h>
 #import <dlfcn.h>
 #import "reachable/Rechable.h"
@@ -172,6 +177,7 @@
 }
 
 + (NSString *)getCarrier {
+#if TARGET_OS_IOS
     CTTelephonyNetworkInfo *info = [[CTTelephonyNetworkInfo alloc] init];
     CTCarrier *carrier = [info subscriberCellularProvider];
     NSString *carrierName;
@@ -180,8 +186,11 @@
     } else {
         carrierName = [carrier carrierName];
     }
-    
+
     return carrierName;
+#else //TARGET_OS_TV
+    return @"无运营商";
+#endif
 }
 
 + (NSString *)getReachabilityStatus {
@@ -201,17 +210,22 @@
 }
 
 + (NSString *)getNetworkType {
+#if TARGET_OS_IOS
     CTTelephonyNetworkInfo *networkInfo = [[CTTelephonyNetworkInfo alloc] init];
     NSString *currentStatus = networkInfo.currentRadioAccessTechnology;
     return currentStatus;
+#else //TARGET_OS_TV
+    return @"Unknown";
+#endif
 }
 
 + (NSString *)getNetworkTypeName {
+#if TARGET_OS_IOS
     NSString *currentReachabilityStatus = [self getReachabilityStatus];
     if(![@"WWAN" isEqual:currentReachabilityStatus]) {
         return currentReachabilityStatus;
     }
-    
+
     NSString *currentStatus = [self getNetworkType];
 
     if ([currentStatus isEqualToString:CTRadioAccessTechnologyLTE]) {
@@ -224,7 +238,7 @@
             return @"5G";
         }
     }
-    
+
     if ([currentStatus isEqualToString:CTRadioAccessTechnologyWCDMA]
        || [currentStatus isEqualToString:CTRadioAccessTechnologyHSDPA]
        || [currentStatus isEqualToString:CTRadioAccessTechnologyHSUPA]
@@ -234,17 +248,21 @@
        || [currentStatus isEqualToString:CTRadioAccessTechnologyeHRPD]) {
         return @"3G";
     }
-    
+
     if ([currentStatus isEqualToString:CTRadioAccessTechnologyGPRS]
         || [currentStatus isEqualToString:CTRadioAccessTechnologyEdge]
         || [currentStatus isEqualToString:CTRadioAccessTechnologyCDMA1x]) {
         return @"2G";
     }
-    
+
     return @"Unknown";
+#else //TARGET_OS_TV
+    return @"Unknown";
+#endif
 }
 
 + (NSString *)getNetworkSubTypeName {
+#if TARGET_OS_IOS
     NSString *currentReachabilityStatus = [self getReachabilityStatus];
     if(![@"WWAN" isEqual:currentReachabilityStatus]) {
         return @"Unknown";
@@ -305,6 +323,9 @@
     }
     
     return @"Unknown";
+#else //TARGET_OS_TV
+    return @"Unknown";
+#endif
 }
 
 @end

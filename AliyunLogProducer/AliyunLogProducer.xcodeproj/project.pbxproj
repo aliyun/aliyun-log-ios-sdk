@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -72,7 +72,6 @@
 		F80DF34626A56DCD00151F7C /* SLSAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = F80DF34426A56DCD00151F7C /* SLSAdapter.m */; };
 		F80DF45326A6CBCC00151F7C /* LogProducerClient+Bricks.h in Headers */ = {isa = PBXBuildFile; fileRef = F80DF45126A6CBCC00151F7C /* LogProducerClient+Bricks.h */; };
 		F80DF45426A6CBCC00151F7C /* LogProducerClient+Bricks.m in Sources */ = {isa = PBXBuildFile; fileRef = F80DF45226A6CBCC00151F7C /* LogProducerClient+Bricks.m */; };
-		F80DF46126A6FDEF00151F7C /* WPKMobi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F80DF46026A6FDEF00151F7C /* WPKMobi.framework */; };
 		F80DF46626A6FEFD00151F7C /* IReporterSender.h in Headers */ = {isa = PBXBuildFile; fileRef = F80DF46426A6FEFC00151F7C /* IReporterSender.h */; };
 		F80DF46726A6FEFD00151F7C /* IReporterSender.m in Sources */ = {isa = PBXBuildFile; fileRef = F80DF46526A6FEFD00151F7C /* IReporterSender.m */; };
 		F80DF46A26A6FF8700151F7C /* IFileParser.m in Sources */ = {isa = PBXBuildFile; fileRef = F80DF46826A6FF8700151F7C /* IFileParser.m */; };
@@ -87,8 +86,90 @@
 		F80DF47B26A7035E00151F7C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F80DF47A26A7035E00151F7C /* SystemConfiguration.framework */; };
 		F80DF47D26A7037000151F7C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F80DF47C26A7037000151F7C /* CoreGraphics.framework */; };
 		F80DF47F26A7DE9000151F7C /* AliyunLogProducer.podspec in Resources */ = {isa = PBXBuildFile; fileRef = F80DF47E26A7DE9000151F7C /* AliyunLogProducer.podspec */; };
+		F86AAAB82737E90200FE9871 /* log_producer_manager.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D24688E2577848D0031EB1F /* log_producer_manager.h */; };
+		F86AAAB92737E90200FE9871 /* Storage.h in Headers */ = {isa = PBXBuildFile; fileRef = F80DF32226A56AF600151F7C /* Storage.h */; };
+		F86AAABA2737E90200FE9871 /* sha1.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D24686B2577848C0031EB1F /* sha1.h */; };
+		F86AAABB2737E90200FE9871 /* AliyunLogProducer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D984DB52520A9B7009DE4FE /* AliyunLogProducer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F86AAABC2737E90200FE9871 /* log_http_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D24688D2577848D0031EB1F /* log_http_interface.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F86AAABD2737E90200FE9871 /* log_producer_client.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D2468852577848D0031EB1F /* log_producer_client.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F86AAABE2737E90200FE9871 /* log_producer_common.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D2468722577848C0031EB1F /* log_producer_common.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F86AAABF2737E90200FE9871 /* Rechable.h in Headers */ = {isa = PBXBuildFile; fileRef = F80DF31826A56AAC00151F7C /* Rechable.h */; };
+		F86AAAC02737E90200FE9871 /* log_producer_config.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D24687D2577848C0031EB1F /* log_producer_config.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F86AAAC12737E90200FE9871 /* log_define.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D2468912577848D0031EB1F /* log_define.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F86AAAC22737E90200FE9871 /* log_multi_thread.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D24686F2577848C0031EB1F /* log_multi_thread.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F86AAAC32737E90200FE9871 /* SLSConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = F80DF32B26A56B7200151F7C /* SLSConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F86AAAC42737E90200FE9871 /* SLSAdapter.h in Headers */ = {isa = PBXBuildFile; fileRef = F80DF34326A56DCD00151F7C /* SLSAdapter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F86AAAC52737E90200FE9871 /* TCData.h in Headers */ = {isa = PBXBuildFile; fileRef = F80DF33F26A56C6A00151F7C /* TCData.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F86AAAC62737E90200FE9871 /* SLSCrashReporterPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = F80DF47526A702AE00151F7C /* SLSCrashReporterPlugin.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F86AAAC72737E90200FE9871 /* log_inner_include.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D24688C2577848D0031EB1F /* log_inner_include.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F86AAAC82737E90200FE9871 /* sds.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D24687A2577848C0031EB1F /* sds.h */; };
+		F86AAAC92737E90200FE9871 /* SLSReporterSender.h in Headers */ = {isa = PBXBuildFile; fileRef = F80DF47026A7004900151F7C /* SLSReporterSender.h */; };
+		F86AAACA2737E90200FE9871 /* TimeUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = F87A244F266F3FE000499D4D /* TimeUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F86AAACB2737E90200FE9871 /* Log.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D984F052520E110009DE4FE /* Log.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F86AAACC2737E90200FE9871 /* log_queue.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D2468882577848D0031EB1F /* log_queue.h */; };
+		F86AAACD2737E90200FE9871 /* log_api.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D24688A2577848D0031EB1F /* log_api.h */; };
+		F86AAACE2737E90200FE9871 /* hmac-sha.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D24687F2577848C0031EB1F /* hmac-sha.h */; };
+		F86AAACF2737E90200FE9871 /* UCTraceFileParser.h in Headers */ = {isa = PBXBuildFile; fileRef = F80DF46C26A6FFAE00151F7C /* UCTraceFileParser.h */; };
+		F86AAAD02737E90200FE9871 /* md5.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D2468822577848D0031EB1F /* md5.h */; };
+		F86AAAD12737E90200FE9871 /* IPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = F80DF32726A56B4600151F7C /* IPlugin.h */; };
+		F86AAAD22737E90200FE9871 /* IFileParser.h in Headers */ = {isa = PBXBuildFile; fileRef = F80DF46926A6FF8700151F7C /* IFileParser.h */; };
+		F86AAAD32737E90200FE9871 /* lz4.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D24688B2577848D0031EB1F /* lz4.h */; };
+		F86AAAD42737E90200FE9871 /* IReporterSender.h in Headers */ = {isa = PBXBuildFile; fileRef = F80DF46426A6FEFC00151F7C /* IReporterSender.h */; };
+		F86AAAD52737E90200FE9871 /* LogProducerConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D984F022520B137009DE4FE /* LogProducerConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F86AAAD62737E90200FE9871 /* log_persistent_manager.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D24687E2577848C0031EB1F /* log_persistent_manager.h */; };
+		F86AAAD72737E90200FE9871 /* log_builder.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D2468742577848C0031EB1F /* log_builder.h */; };
+		F86AAAD82737E90200FE9871 /* SLSDeviceUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = F80DF33B26A56C3C00151F7C /* SLSDeviceUtils.h */; };
+		F86AAAD92737E90200FE9871 /* LogProducerClient+Bricks.h in Headers */ = {isa = PBXBuildFile; fileRef = F80DF45126A6CBCC00151F7C /* LogProducerClient+Bricks.h */; };
+		F86AAADA2737E90200FE9871 /* LogProducerClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D984F032520D796009DE4FE /* LogProducerClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F86AAADB2737E90200FE9871 /* inner_log.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D2468802577848C0031EB1F /* inner_log.h */; };
+		F86AAADC2737E90200FE9871 /* log_ring_file.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D2468902577848D0031EB1F /* log_ring_file.h */; };
+		F86AAADD2737E90200FE9871 /* log_producer_sender.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D2468862577848D0031EB1F /* log_producer_sender.h */; };
+		F86AAADE2737E90200FE9871 /* log_util.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D2468732577848C0031EB1F /* log_util.h */; };
+		F86AAADF2737E90200FE9871 /* Utdid.h in Headers */ = {isa = PBXBuildFile; fileRef = F80DF31D26A56AD900151F7C /* Utdid.h */; };
+		F86AAAE12737E90200FE9871 /* log_producer_config.c in Sources */ = {isa = PBXBuildFile; fileRef = 9D2468812577848D0031EB1F /* log_producer_config.c */; };
+		F86AAAE22737E90200FE9871 /* sds.c in Sources */ = {isa = PBXBuildFile; fileRef = 9D2468772577848C0031EB1F /* sds.c */; };
+		F86AAAE32737E90200FE9871 /* Rechable.m in Sources */ = {isa = PBXBuildFile; fileRef = F80DF31926A56AAC00151F7C /* Rechable.m */; };
+		F86AAAE42737E90200FE9871 /* TimeUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = F87A2450266F3FE000499D4D /* TimeUtils.m */; };
+		F86AAAE52737E90200FE9871 /* log_util.c in Sources */ = {isa = PBXBuildFile; fileRef = 9D2468892577848D0031EB1F /* log_util.c */; };
+		F86AAAE62737E90200FE9871 /* TCData.m in Sources */ = {isa = PBXBuildFile; fileRef = F80DF34026A56C6A00151F7C /* TCData.m */; };
+		F86AAAE72737E90200FE9871 /* sha1.c in Sources */ = {isa = PBXBuildFile; fileRef = 9D24686E2577848C0031EB1F /* sha1.c */; };
+		F86AAAE82737E90200FE9871 /* LogProducerClient+Bricks.m in Sources */ = {isa = PBXBuildFile; fileRef = F80DF45226A6CBCC00151F7C /* LogProducerClient+Bricks.m */; };
+		F86AAAE92737E90200FE9871 /* SLSConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = F80DF32C26A56B7200151F7C /* SLSConfig.m */; };
+		F86AAAEA2737E90200FE9871 /* IReporterSender.m in Sources */ = {isa = PBXBuildFile; fileRef = F80DF46526A6FEFD00151F7C /* IReporterSender.m */; };
+		F86AAAEB2737E90200FE9871 /* log_queue.c in Sources */ = {isa = PBXBuildFile; fileRef = 9D2468782577848C0031EB1F /* log_queue.c */; };
+		F86AAAEC2737E90200FE9871 /* Storage.m in Sources */ = {isa = PBXBuildFile; fileRef = F80DF32326A56AF600151F7C /* Storage.m */; };
+		F86AAAED2737E90200FE9871 /* lz4.c in Sources */ = {isa = PBXBuildFile; fileRef = 9D2468792577848C0031EB1F /* lz4.c */; };
+		F86AAAEE2737E90200FE9871 /* log_api.c in Sources */ = {isa = PBXBuildFile; fileRef = 9D2468832577848D0031EB1F /* log_api.c */; };
+		F86AAAEF2737E90200FE9871 /* UCTraceFileParser.m in Sources */ = {isa = PBXBuildFile; fileRef = F80DF46D26A6FFAE00151F7C /* UCTraceFileParser.m */; };
+		F86AAAF02737E90200FE9871 /* log_builder.c in Sources */ = {isa = PBXBuildFile; fileRef = 9D24687B2577848C0031EB1F /* log_builder.c */; };
+		F86AAAF12737E90200FE9871 /* SLSCrashReporterPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = F80DF47426A702AE00151F7C /* SLSCrashReporterPlugin.m */; };
+		F86AAAF22737E90200FE9871 /* log_ring_file.c in Sources */ = {isa = PBXBuildFile; fileRef = 9D2468702577848C0031EB1F /* log_ring_file.c */; };
+		F86AAAF32737E90200FE9871 /* md5.c in Sources */ = {isa = PBXBuildFile; fileRef = 9D24687C2577848C0031EB1F /* md5.c */; };
+		F86AAAF42737E90200FE9871 /* Utdid.m in Sources */ = {isa = PBXBuildFile; fileRef = F80DF31E26A56AD900151F7C /* Utdid.m */; };
+		F86AAAF52737E90200FE9871 /* inner_log.c in Sources */ = {isa = PBXBuildFile; fileRef = 9D24686D2577848C0031EB1F /* inner_log.c */; };
+		F86AAAF62737E90200FE9871 /* Log.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D984F072520E120009DE4FE /* Log.m */; };
+		F86AAAF72737E90200FE9871 /* IFileParser.m in Sources */ = {isa = PBXBuildFile; fileRef = F80DF46826A6FF8700151F7C /* IFileParser.m */; };
+		F86AAAF82737E90200FE9871 /* log_http_interface.c in Sources */ = {isa = PBXBuildFile; fileRef = 9D2468752577848C0031EB1F /* log_http_interface.c */; };
+		F86AAAF92737E90200FE9871 /* LogProducerConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D984EFE2520AE17009DE4FE /* LogProducerConfig.m */; };
+		F86AAAFA2737E90200FE9871 /* IPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = F80DF32826A56B4600151F7C /* IPlugin.m */; };
+		F86AAAFB2737E90200FE9871 /* log_persistent_manager.c in Sources */ = {isa = PBXBuildFile; fileRef = 9D2468712577848C0031EB1F /* log_persistent_manager.c */; };
+		F86AAAFC2737E90200FE9871 /* LogProducerClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D984F002520AF44009DE4FE /* LogProducerClient.m */; };
+		F86AAAFD2737E90200FE9871 /* log_producer_sender.c in Sources */ = {isa = PBXBuildFile; fileRef = 9D24686C2577848C0031EB1F /* log_producer_sender.c */; };
+		F86AAAFE2737E90200FE9871 /* SLSAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = F80DF34426A56DCD00151F7C /* SLSAdapter.m */; };
+		F86AAAFF2737E90200FE9871 /* log_producer_client.c in Sources */ = {isa = PBXBuildFile; fileRef = 9D2468762577848C0031EB1F /* log_producer_client.c */; };
+		F86AAB002737E90200FE9871 /* log_producer_common.c in Sources */ = {isa = PBXBuildFile; fileRef = 9D24688F2577848D0031EB1F /* log_producer_common.c */; };
+		F86AAB012737E90200FE9871 /* log_producer_manager.c in Sources */ = {isa = PBXBuildFile; fileRef = 9D2468872577848D0031EB1F /* log_producer_manager.c */; };
+		F86AAB022737E90200FE9871 /* SLSDeviceUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = F80DF33C26A56C3C00151F7C /* SLSDeviceUtils.m */; };
+		F86AAB032737E90200FE9871 /* SLSReporterSender.m in Sources */ = {isa = PBXBuildFile; fileRef = F80DF47126A7004900151F7C /* SLSReporterSender.m */; };
+		F86AAB042737E90200FE9871 /* hmac-sha.c in Sources */ = {isa = PBXBuildFile; fileRef = 9D2468842577848D0031EB1F /* hmac-sha.c */; };
+		F86AAB062737E90200FE9871 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F80DF47C26A7037000151F7C /* CoreGraphics.framework */; };
+		F86AAB072737E90200FE9871 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F80DF47A26A7035E00151F7C /* SystemConfiguration.framework */; };
+		F86AAB082737E90200FE9871 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F80DF47826A7034E00151F7C /* libc++.tbd */; };
+		F86AAB0A2737E90200FE9871 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D0CAEEE252177D800A4985A /* libz.tbd */; };
+		F86AAB0C2737E90200FE9871 /* AliyunLogProducer.podspec in Resources */ = {isa = PBXBuildFile; fileRef = F80DF47E26A7DE9000151F7C /* AliyunLogProducer.podspec */; };
 		F87A2451266F3FE000499D4D /* TimeUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = F87A244F266F3FE000499D4D /* TimeUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F87A2452266F3FE000499D4D /* TimeUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = F87A2450266F3FE000499D4D /* TimeUtils.m */; };
+		F8E93987273902BC00E6535A /* WPKMobi.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8E93986273902BC00E6535A /* WPKMobi.xcframework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -159,7 +240,6 @@
 		F80DF34426A56DCD00151F7C /* SLSAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLSAdapter.m; sourceTree = "<group>"; };
 		F80DF45126A6CBCC00151F7C /* LogProducerClient+Bricks.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LogProducerClient+Bricks.h"; sourceTree = "<group>"; };
 		F80DF45226A6CBCC00151F7C /* LogProducerClient+Bricks.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LogProducerClient+Bricks.m"; sourceTree = "<group>"; };
-		F80DF46026A6FDEF00151F7C /* WPKMobi.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WPKMobi.framework; sourceTree = "<group>"; };
 		F80DF46426A6FEFC00151F7C /* IReporterSender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IReporterSender.h; sourceTree = "<group>"; };
 		F80DF46526A6FEFD00151F7C /* IReporterSender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IReporterSender.m; sourceTree = "<group>"; };
 		F80DF46826A6FF8700151F7C /* IFileParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFileParser.m; sourceTree = "<group>"; };
@@ -174,8 +254,10 @@
 		F80DF47A26A7035E00151F7C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
 		F80DF47C26A7037000151F7C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
 		F80DF47E26A7DE9000151F7C /* AliyunLogProducer.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = AliyunLogProducer.podspec; path = ../AliyunLogProducer.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		F86AAB102737E90200FE9871 /* AliyunLogProducer_TVOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AliyunLogProducer_TVOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F87A244F266F3FE000499D4D /* TimeUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TimeUtils.h; sourceTree = "<group>"; };
 		F87A2450266F3FE000499D4D /* TimeUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimeUtils.m; sourceTree = "<group>"; };
+		F8E93986273902BC00E6535A /* WPKMobi.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = WPKMobi.xcframework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,9 +267,20 @@
 			files = (
 				F80DF47D26A7037000151F7C /* CoreGraphics.framework in Frameworks */,
 				F80DF47B26A7035E00151F7C /* SystemConfiguration.framework in Frameworks */,
+				F8E93987273902BC00E6535A /* WPKMobi.xcframework in Frameworks */,
 				F80DF47926A7034E00151F7C /* libc++.tbd in Frameworks */,
-				F80DF46126A6FDEF00151F7C /* WPKMobi.framework in Frameworks */,
 				9D0CAEEF252177D800A4985A /* libz.tbd in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F86AAB052737E90200FE9871 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F86AAB062737E90200FE9871 /* CoreGraphics.framework in Frameworks */,
+				F86AAB072737E90200FE9871 /* SystemConfiguration.framework in Frameworks */,
+				F86AAB082737E90200FE9871 /* libc++.tbd in Frameworks */,
+				F86AAB0A2737E90200FE9871 /* libz.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,6 +367,7 @@
 			isa = PBXGroup;
 			children = (
 				9D984DB22520A9B7009DE4FE /* AliyunLogProducer.framework */,
+				F86AAB102737E90200FE9871 /* AliyunLogProducer_TVOS.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -348,7 +442,7 @@
 		F80DF45F26A6FDCF00151F7C /* CrashReporter */ = {
 			isa = PBXGroup;
 			children = (
-				F80DF46026A6FDEF00151F7C /* WPKMobi.framework */,
+				F8E93986273902BC00E6535A /* WPKMobi.xcframework */,
 				F80DF46226A6FED000151F7C /* parser */,
 				F80DF46326A6FED900151F7C /* sender */,
 				F80DF46426A6FEFC00151F7C /* IReporterSender.h */,
@@ -438,6 +532,53 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F86AAAB72737E90200FE9871 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F86AAAB82737E90200FE9871 /* log_producer_manager.h in Headers */,
+				F86AAAB92737E90200FE9871 /* Storage.h in Headers */,
+				F86AAABA2737E90200FE9871 /* sha1.h in Headers */,
+				F86AAABB2737E90200FE9871 /* AliyunLogProducer.h in Headers */,
+				F86AAABC2737E90200FE9871 /* log_http_interface.h in Headers */,
+				F86AAABD2737E90200FE9871 /* log_producer_client.h in Headers */,
+				F86AAABE2737E90200FE9871 /* log_producer_common.h in Headers */,
+				F86AAABF2737E90200FE9871 /* Rechable.h in Headers */,
+				F86AAAC02737E90200FE9871 /* log_producer_config.h in Headers */,
+				F86AAAC12737E90200FE9871 /* log_define.h in Headers */,
+				F86AAAC22737E90200FE9871 /* log_multi_thread.h in Headers */,
+				F86AAAC32737E90200FE9871 /* SLSConfig.h in Headers */,
+				F86AAAC42737E90200FE9871 /* SLSAdapter.h in Headers */,
+				F86AAAC52737E90200FE9871 /* TCData.h in Headers */,
+				F86AAAC62737E90200FE9871 /* SLSCrashReporterPlugin.h in Headers */,
+				F86AAAC72737E90200FE9871 /* log_inner_include.h in Headers */,
+				F86AAAC82737E90200FE9871 /* sds.h in Headers */,
+				F86AAAC92737E90200FE9871 /* SLSReporterSender.h in Headers */,
+				F86AAACA2737E90200FE9871 /* TimeUtils.h in Headers */,
+				F86AAACB2737E90200FE9871 /* Log.h in Headers */,
+				F86AAACC2737E90200FE9871 /* log_queue.h in Headers */,
+				F86AAACD2737E90200FE9871 /* log_api.h in Headers */,
+				F86AAACE2737E90200FE9871 /* hmac-sha.h in Headers */,
+				F86AAACF2737E90200FE9871 /* UCTraceFileParser.h in Headers */,
+				F86AAAD02737E90200FE9871 /* md5.h in Headers */,
+				F86AAAD12737E90200FE9871 /* IPlugin.h in Headers */,
+				F86AAAD22737E90200FE9871 /* IFileParser.h in Headers */,
+				F86AAAD32737E90200FE9871 /* lz4.h in Headers */,
+				F86AAAD42737E90200FE9871 /* IReporterSender.h in Headers */,
+				F86AAAD52737E90200FE9871 /* LogProducerConfig.h in Headers */,
+				F86AAAD62737E90200FE9871 /* log_persistent_manager.h in Headers */,
+				F86AAAD72737E90200FE9871 /* log_builder.h in Headers */,
+				F86AAAD82737E90200FE9871 /* SLSDeviceUtils.h in Headers */,
+				F86AAAD92737E90200FE9871 /* LogProducerClient+Bricks.h in Headers */,
+				F86AAADA2737E90200FE9871 /* LogProducerClient.h in Headers */,
+				F86AAADB2737E90200FE9871 /* inner_log.h in Headers */,
+				F86AAADC2737E90200FE9871 /* log_ring_file.h in Headers */,
+				F86AAADD2737E90200FE9871 /* log_producer_sender.h in Headers */,
+				F86AAADE2737E90200FE9871 /* log_util.h in Headers */,
+				F86AAADF2737E90200FE9871 /* Utdid.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
@@ -457,6 +598,24 @@
 			name = AliyunLogProducer;
 			productName = AliyunLogProducer;
 			productReference = 9D984DB22520A9B7009DE4FE /* AliyunLogProducer.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		F86AAAB62737E90200FE9871 /* AliyunLogProducer_TVOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F86AAB0D2737E90200FE9871 /* Build configuration list for PBXNativeTarget "AliyunLogProducer_TVOS" */;
+			buildPhases = (
+				F86AAAB72737E90200FE9871 /* Headers */,
+				F86AAAE02737E90200FE9871 /* Sources */,
+				F86AAB052737E90200FE9871 /* Frameworks */,
+				F86AAB0B2737E90200FE9871 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AliyunLogProducer_TVOS;
+			productName = AliyunLogProducer;
+			productReference = F86AAB102737E90200FE9871 /* AliyunLogProducer_TVOS.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -487,6 +646,7 @@
 			projectRoot = "";
 			targets = (
 				9D984DB12520A9B7009DE4FE /* AliyunLogProducer */,
+				F86AAAB62737E90200FE9871 /* AliyunLogProducer_TVOS */,
 			);
 		};
 /* End PBXProject section */
@@ -497,6 +657,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				F80DF47F26A7DE9000151F7C /* AliyunLogProducer.podspec in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F86AAB0B2737E90200FE9871 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F86AAB0C2737E90200FE9871 /* AliyunLogProducer.podspec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -543,6 +711,49 @@
 				F80DF33E26A56C3C00151F7C /* SLSDeviceUtils.m in Sources */,
 				F80DF47326A7004900151F7C /* SLSReporterSender.m in Sources */,
 				9D2468AB2577848D0031EB1F /* hmac-sha.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F86AAAE02737E90200FE9871 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F86AAAE12737E90200FE9871 /* log_producer_config.c in Sources */,
+				F86AAAE22737E90200FE9871 /* sds.c in Sources */,
+				F86AAAE32737E90200FE9871 /* Rechable.m in Sources */,
+				F86AAAE42737E90200FE9871 /* TimeUtils.m in Sources */,
+				F86AAAE52737E90200FE9871 /* log_util.c in Sources */,
+				F86AAAE62737E90200FE9871 /* TCData.m in Sources */,
+				F86AAAE72737E90200FE9871 /* sha1.c in Sources */,
+				F86AAAE82737E90200FE9871 /* LogProducerClient+Bricks.m in Sources */,
+				F86AAAE92737E90200FE9871 /* SLSConfig.m in Sources */,
+				F86AAAEA2737E90200FE9871 /* IReporterSender.m in Sources */,
+				F86AAAEB2737E90200FE9871 /* log_queue.c in Sources */,
+				F86AAAEC2737E90200FE9871 /* Storage.m in Sources */,
+				F86AAAED2737E90200FE9871 /* lz4.c in Sources */,
+				F86AAAEE2737E90200FE9871 /* log_api.c in Sources */,
+				F86AAAEF2737E90200FE9871 /* UCTraceFileParser.m in Sources */,
+				F86AAAF02737E90200FE9871 /* log_builder.c in Sources */,
+				F86AAAF12737E90200FE9871 /* SLSCrashReporterPlugin.m in Sources */,
+				F86AAAF22737E90200FE9871 /* log_ring_file.c in Sources */,
+				F86AAAF32737E90200FE9871 /* md5.c in Sources */,
+				F86AAAF42737E90200FE9871 /* Utdid.m in Sources */,
+				F86AAAF52737E90200FE9871 /* inner_log.c in Sources */,
+				F86AAAF62737E90200FE9871 /* Log.m in Sources */,
+				F86AAAF72737E90200FE9871 /* IFileParser.m in Sources */,
+				F86AAAF82737E90200FE9871 /* log_http_interface.c in Sources */,
+				F86AAAF92737E90200FE9871 /* LogProducerConfig.m in Sources */,
+				F86AAAFA2737E90200FE9871 /* IPlugin.m in Sources */,
+				F86AAAFB2737E90200FE9871 /* log_persistent_manager.c in Sources */,
+				F86AAAFC2737E90200FE9871 /* LogProducerClient.m in Sources */,
+				F86AAAFD2737E90200FE9871 /* log_producer_sender.c in Sources */,
+				F86AAAFE2737E90200FE9871 /* SLSAdapter.m in Sources */,
+				F86AAAFF2737E90200FE9871 /* log_producer_client.c in Sources */,
+				F86AAB002737E90200FE9871 /* log_producer_common.c in Sources */,
+				F86AAB012737E90200FE9871 /* log_producer_manager.c in Sources */,
+				F86AAB022737E90200FE9871 /* SLSDeviceUtils.m in Sources */,
+				F86AAB032737E90200FE9871 /* SLSReporterSender.m in Sources */,
+				F86AAB042737E90200FE9871 /* hmac-sha.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -677,9 +888,11 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/AliyunLogProducer/CrashReporter",
+					"$(PROJECT_DIR)/AliyunLogProducer/CrashReporter/iOS",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				HEADER_SEARCH_PATHS = "";
@@ -712,9 +925,11 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/AliyunLogProducer/CrashReporter",
+					"$(PROJECT_DIR)/AliyunLogProducer/CrashReporter/iOS",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
@@ -736,6 +951,83 @@
 			};
 			name = Release;
 		};
+		F86AAB0E2737E90200FE9871 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = YES;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = QWPJRHMG6U;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				"EXCLUDED_ARCHS[sdk=appletvsimulator*]" = arm64;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AliyunLogProducer/CrashReporter",
+					"$(PROJECT_DIR)/AliyunLogProducer/CrashReporter/tvOS",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = AliyunLogProducer/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = lichao.AliyunLogProducer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				SYSTEM_HEADER_SEARCH_PATHS = "";
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Debug;
+		};
+		F86AAB0F2737E90200FE9871 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DEPLOYMENT_POSTPROCESSING = YES;
+				DEVELOPMENT_TEAM = QWPJRHMG6U;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				"EXCLUDED_ARCHS[sdk=appletvsimulator*]" = arm64;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AliyunLogProducer/CrashReporter",
+					"$(PROJECT_DIR)/AliyunLogProducer/CrashReporter/tvOS",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = AliyunLogProducer/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = lichao.AliyunLogProducer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				SYSTEM_HEADER_SEARCH_PATHS = "";
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -753,6 +1045,15 @@
 			buildConfigurations = (
 				9D984DBB2520A9B7009DE4FE /* Debug */,
 				9D984DBC2520A9B7009DE4FE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F86AAB0D2737E90200FE9871 /* Build configuration list for PBXNativeTarget "AliyunLogProducer_TVOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F86AAB0E2737E90200FE9871 /* Debug */,
+				F86AAB0F2737E90200FE9871 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
