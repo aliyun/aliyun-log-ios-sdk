@@ -123,7 +123,11 @@ static int os_http_post(const char *url,
     if (self = [super init])
     {
         self->config = create_log_producer_config();
+#if TARGET_OS_TV
+        const char *sourceChar = "tvOS";
+#else
         const char *sourceChar = "iOS";
+#endif
         log_producer_config_set_source(self->config, sourceChar);
         log_producer_config_set_packet_timeout(self->config, 3000);
         log_producer_config_set_packet_log_count(self->config, 1024);

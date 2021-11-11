@@ -160,7 +160,12 @@ void monitorDirectory(SLSCrashReporterPlugin* plugin, dispatch_source_t _source,
     // AppData/Library/.WPKLog/CrashLog
     // AppData/Library/.WPKLog/CrashStatLog
     SLSLog(@"start");
+#if TARGET_OS_TV
+    SLSLog(@"tvOS");
+    NSString *libraryPath = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES).firstObject;
+#else
     NSString *libraryPath = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES).firstObject;
+#endif
     SLSLogV(@"libraryPath: %@", libraryPath);
     
     NSString *wpkLogpath = [libraryPath stringByAppendingPathComponent:@".WPKLog"];

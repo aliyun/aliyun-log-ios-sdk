@@ -49,7 +49,13 @@
     scheme.imsi = @"-";
     scheme.brand = [scheme returnDashIfNull: [[UIDevice currentDevice] model]];
     scheme.device_model = [scheme returnDashIfNull:[SLSDeviceUtils getDeviceModel]];
+
+#if TARGET_OS_TV
+    scheme.os = @"tvOS";
+#else
     scheme.os = @"iOS";
+#endif
+
     scheme.os_version = [scheme returnDashIfNull:[[UIDevice currentDevice] systemVersion]];
     scheme.carrier = [scheme returnDashIfNull:[SLSDeviceUtils getCarrier]];
     scheme.access = [scheme returnDashIfNull:[SLSDeviceUtils getNetworkTypeName]];
@@ -62,8 +68,13 @@
 
 + (TCData *) createDefaultWithSLSConfig:(SLSConfig *)config {
     TCData *data = [self createDefault];
-    
+
+#if TARGET_OS_TV
+    [data setApp_id:[NSString stringWithFormat:@"%@@tvOS", config.pluginAppId]];
+#else
     [data setApp_id:[NSString stringWithFormat:@"%@@iOS", config.pluginAppId]];
+#endif
+
     [data setChannel:[data returnDashIfNull:config.channel]];
     [data setChannel_name:[data returnDashIfNull:config.channelName]];
     [data setUser_nick:[data returnDashIfNull:config.userNick]];

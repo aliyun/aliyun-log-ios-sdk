@@ -14,23 +14,7 @@
 		9D984EEC2520AACF009DE4FE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9D984EEB2520AACF009DE4FE /* Assets.xcassets */; };
 		9D984EEF2520AACF009DE4FE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D984EED2520AACF009DE4FE /* LaunchScreen.storyboard */; };
 		9D984EF22520AACF009DE4FE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D984EF12520AACF009DE4FE /* main.m */; };
-		9DA1A71E253D3A3900E85477 /* AliyunLogProducer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DA1A71D253D3A3900E85477 /* AliyunLogProducer.framework */; };
-		9DA1A720253D3A6500E85477 /* AliyunLogProducer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9DA1A71D253D3A3900E85477 /* AliyunLogProducer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		9D1F6F842539A50600D1606F /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				9DA1A720253D3A6500E85477 /* AliyunLogProducer.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		9D984EDC2520AACA009DE4FE /* AliyunLogProducerSampleOC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AliyunLogProducerSampleOC.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -56,7 +40,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9DA1A71E253D3A3900E85477 /* AliyunLogProducer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -127,7 +110,6 @@
 				9D984ED82520AACA009DE4FE /* Sources */,
 				9D984ED92520AACA009DE4FE /* Frameworks */,
 				9D984EDA2520AACA009DE4FE /* Resources */,
-				9D1F6F842539A50600D1606F /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

@@ -6,15 +6,16 @@
 	<array>
 		<dict>
 			<key>LibraryIdentifier</key>
-			<string>tvos-x86_64-simulator</string>
+			<string>ios-i386_x86_64-simulator</string>
 			<key>LibraryPath</key>
 			<string>WPKMobi.framework</string>
 			<key>SupportedArchitectures</key>
 			<array>
+				<string>i386</string>
 				<string>x86_64</string>
 			</array>
 			<key>SupportedPlatform</key>
-			<string>tvos</string>
+			<string>ios</string>
 			<key>SupportedPlatformVariant</key>
 			<string>simulator</string>
 		</dict>
@@ -45,16 +46,15 @@
 		</dict>
 		<dict>
 			<key>LibraryIdentifier</key>
-			<string>ios-i386_x86_64-simulator</string>
+			<string>tvos-x86_64-simulator</string>
 			<key>LibraryPath</key>
 			<string>WPKMobi.framework</string>
 			<key>SupportedArchitectures</key>
 			<array>
-				<string>i386</string>
 				<string>x86_64</string>
 			</array>
 			<key>SupportedPlatform</key>
-			<string>ios</string>
+			<string>tvos</string>
 			<key>SupportedPlatformVariant</key>
 			<string>simulator</string>
 		</dict>
