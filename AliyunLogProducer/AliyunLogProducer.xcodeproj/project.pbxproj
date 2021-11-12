@@ -60,7 +60,7 @@
 		F80DF32026A56AD900151F7C /* Utdid.m in Sources */ = {isa = PBXBuildFile; fileRef = F80DF31E26A56AD900151F7C /* Utdid.m */; };
 		F80DF32426A56AF600151F7C /* Storage.h in Headers */ = {isa = PBXBuildFile; fileRef = F80DF32226A56AF600151F7C /* Storage.h */; };
 		F80DF32526A56AF600151F7C /* Storage.m in Sources */ = {isa = PBXBuildFile; fileRef = F80DF32326A56AF600151F7C /* Storage.m */; };
-		F80DF32926A56B4600151F7C /* IPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = F80DF32726A56B4600151F7C /* IPlugin.h */; };
+		F80DF32926A56B4600151F7C /* IPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = F80DF32726A56B4600151F7C /* IPlugin.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F80DF32A26A56B4600151F7C /* IPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = F80DF32826A56B4600151F7C /* IPlugin.m */; };
 		F80DF32D26A56B7200151F7C /* SLSConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = F80DF32B26A56B7200151F7C /* SLSConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F80DF32E26A56B7200151F7C /* SLSConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = F80DF32C26A56B7200151F7C /* SLSConfig.m */; };
@@ -70,13 +70,13 @@
 		F80DF34226A56C6A00151F7C /* TCData.m in Sources */ = {isa = PBXBuildFile; fileRef = F80DF34026A56C6A00151F7C /* TCData.m */; };
 		F80DF34526A56DCD00151F7C /* SLSAdapter.h in Headers */ = {isa = PBXBuildFile; fileRef = F80DF34326A56DCD00151F7C /* SLSAdapter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F80DF34626A56DCD00151F7C /* SLSAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = F80DF34426A56DCD00151F7C /* SLSAdapter.m */; };
-		F80DF45326A6CBCC00151F7C /* LogProducerClient+Bricks.h in Headers */ = {isa = PBXBuildFile; fileRef = F80DF45126A6CBCC00151F7C /* LogProducerClient+Bricks.h */; };
+		F80DF45326A6CBCC00151F7C /* LogProducerClient+Bricks.h in Headers */ = {isa = PBXBuildFile; fileRef = F80DF45126A6CBCC00151F7C /* LogProducerClient+Bricks.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F80DF45426A6CBCC00151F7C /* LogProducerClient+Bricks.m in Sources */ = {isa = PBXBuildFile; fileRef = F80DF45226A6CBCC00151F7C /* LogProducerClient+Bricks.m */; };
 		F80DF46126A6FDEF00151F7C /* WPKMobi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F80DF46026A6FDEF00151F7C /* WPKMobi.framework */; };
-		F80DF46626A6FEFD00151F7C /* IReporterSender.h in Headers */ = {isa = PBXBuildFile; fileRef = F80DF46426A6FEFC00151F7C /* IReporterSender.h */; };
+		F80DF46626A6FEFD00151F7C /* IReporterSender.h in Headers */ = {isa = PBXBuildFile; fileRef = F80DF46426A6FEFC00151F7C /* IReporterSender.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F80DF46726A6FEFD00151F7C /* IReporterSender.m in Sources */ = {isa = PBXBuildFile; fileRef = F80DF46526A6FEFD00151F7C /* IReporterSender.m */; };
 		F80DF46A26A6FF8700151F7C /* IFileParser.m in Sources */ = {isa = PBXBuildFile; fileRef = F80DF46826A6FF8700151F7C /* IFileParser.m */; };
-		F80DF46B26A6FF8700151F7C /* IFileParser.h in Headers */ = {isa = PBXBuildFile; fileRef = F80DF46926A6FF8700151F7C /* IFileParser.h */; };
+		F80DF46B26A6FF8700151F7C /* IFileParser.h in Headers */ = {isa = PBXBuildFile; fileRef = F80DF46926A6FF8700151F7C /* IFileParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F80DF46E26A6FFAE00151F7C /* UCTraceFileParser.h in Headers */ = {isa = PBXBuildFile; fileRef = F80DF46C26A6FFAE00151F7C /* UCTraceFileParser.h */; };
 		F80DF46F26A6FFAE00151F7C /* UCTraceFileParser.m in Sources */ = {isa = PBXBuildFile; fileRef = F80DF46D26A6FFAE00151F7C /* UCTraceFileParser.m */; };
 		F80DF47226A7004900151F7C /* SLSReporterSender.h in Headers */ = {isa = PBXBuildFile; fileRef = F80DF47026A7004900151F7C /* SLSReporterSender.h */; };
@@ -407,7 +407,11 @@
 				9D2468B82577848E0031EB1F /* log_define.h in Headers */,
 				9D2468962577848D0031EB1F /* log_multi_thread.h in Headers */,
 				F80DF32D26A56B7200151F7C /* SLSConfig.h in Headers */,
+				F80DF46626A6FEFD00151F7C /* IReporterSender.h in Headers */,
 				F80DF34526A56DCD00151F7C /* SLSAdapter.h in Headers */,
+				F80DF46B26A6FF8700151F7C /* IFileParser.h in Headers */,
+				F80DF45326A6CBCC00151F7C /* LogProducerClient+Bricks.h in Headers */,
+				F80DF32926A56B4600151F7C /* IPlugin.h in Headers */,
 				F80DF34126A56C6A00151F7C /* TCData.h in Headers */,
 				F80DF47726A702AE00151F7C /* SLSCrashReporterPlugin.h in Headers */,
 				9D2468B32577848E0031EB1F /* log_inner_include.h in Headers */,
@@ -420,15 +424,11 @@
 				9D2468A62577848D0031EB1F /* hmac-sha.h in Headers */,
 				F80DF46E26A6FFAE00151F7C /* UCTraceFileParser.h in Headers */,
 				9D2468A92577848D0031EB1F /* md5.h in Headers */,
-				F80DF32926A56B4600151F7C /* IPlugin.h in Headers */,
-				F80DF46B26A6FF8700151F7C /* IFileParser.h in Headers */,
 				9D2468B22577848E0031EB1F /* lz4.h in Headers */,
-				F80DF46626A6FEFD00151F7C /* IReporterSender.h in Headers */,
 				9D0CAEF325217AA400A4985A /* LogProducerConfig.h in Headers */,
 				9D2468A52577848D0031EB1F /* log_persistent_manager.h in Headers */,
 				9D24689B2577848D0031EB1F /* log_builder.h in Headers */,
 				F80DF33D26A56C3C00151F7C /* SLSDeviceUtils.h in Headers */,
-				F80DF45326A6CBCC00151F7C /* LogProducerClient+Bricks.h in Headers */,
 				9D984F042520D796009DE4FE /* LogProducerClient.h in Headers */,
 				9D2468A72577848D0031EB1F /* inner_log.h in Headers */,
 				9D2468B72577848E0031EB1F /* log_ring_file.h in Headers */,
