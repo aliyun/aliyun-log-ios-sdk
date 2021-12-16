@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'AliyunLogProducer'
-  s.version          = '2.3.1'
+  s.version          = '2.3.2'
   s.summary          = 'aliyun log service ios producer.'
 
 # This description is used to generate tags and improve search results.
@@ -60,6 +60,7 @@ https://help.aliyun.com/product/28958.html
       b.public_header_files =
       'AliyunLogProducer/AliyunLogProducer/common/**/*.h'
       b.frameworks = "SystemConfiguration"
+      b.dependency 'Reachability', '~> 3.2'
   end
   
   s.subspec 'CrashReporter' do |r|

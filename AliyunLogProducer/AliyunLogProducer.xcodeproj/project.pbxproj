@@ -54,8 +54,6 @@
 		9D984F042520D796009DE4FE /* LogProducerClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D984F032520D796009DE4FE /* LogProducerClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9D984F062520E110009DE4FE /* Log.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D984F052520E110009DE4FE /* Log.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9D984F082520E121009DE4FE /* Log.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D984F072520E120009DE4FE /* Log.m */; };
-		F80DF31A26A56AAC00151F7C /* Rechable.h in Headers */ = {isa = PBXBuildFile; fileRef = F80DF31826A56AAC00151F7C /* Rechable.h */; };
-		F80DF31B26A56AAC00151F7C /* Rechable.m in Sources */ = {isa = PBXBuildFile; fileRef = F80DF31926A56AAC00151F7C /* Rechable.m */; };
 		F80DF31F26A56AD900151F7C /* Utdid.h in Headers */ = {isa = PBXBuildFile; fileRef = F80DF31D26A56AD900151F7C /* Utdid.h */; };
 		F80DF32026A56AD900151F7C /* Utdid.m in Sources */ = {isa = PBXBuildFile; fileRef = F80DF31E26A56AD900151F7C /* Utdid.m */; };
 		F80DF32426A56AF600151F7C /* Storage.h in Headers */ = {isa = PBXBuildFile; fileRef = F80DF32226A56AF600151F7C /* Storage.h */; };
@@ -152,8 +150,6 @@
 		9D984F032520D796009DE4FE /* LogProducerClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogProducerClient.h; sourceTree = "<group>"; };
 		9D984F052520E110009DE4FE /* Log.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Log.h; sourceTree = "<group>"; };
 		9D984F072520E120009DE4FE /* Log.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Log.m; sourceTree = "<group>"; };
-		F80DF31826A56AAC00151F7C /* Rechable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Rechable.h; sourceTree = "<group>"; };
-		F80DF31926A56AAC00151F7C /* Rechable.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Rechable.m; sourceTree = "<group>"; };
 		F80DF31D26A56AD900151F7C /* Utdid.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Utdid.h; sourceTree = "<group>"; };
 		F80DF31E26A56AD900151F7C /* Utdid.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Utdid.m; sourceTree = "<group>"; };
 		F80DF32226A56AF600151F7C /* Storage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Storage.h; sourceTree = "<group>"; };
@@ -311,7 +307,6 @@
 			children = (
 				F80DF32626A56B3800151F7C /* plugin */,
 				F80DF31C26A56AC700151F7C /* utdid */,
-				F80DF31326A56A6500151F7C /* reachable */,
 				F80DF32B26A56B7200151F7C /* SLSConfig.h */,
 				F80DF32C26A56B7200151F7C /* SLSConfig.m */,
 				F80DF33B26A56C3C00151F7C /* SLSDeviceUtils.h */,
@@ -324,15 +319,6 @@
 				F80DF45226A6CBCC00151F7C /* LogProducerClient+Bricks.m */,
 			);
 			path = common;
-			sourceTree = "<group>";
-		};
-		F80DF31326A56A6500151F7C /* reachable */ = {
-			isa = PBXGroup;
-			children = (
-				F80DF31826A56AAC00151F7C /* Rechable.h */,
-				F80DF31926A56AAC00151F7C /* Rechable.m */,
-			);
-			path = reachable;
 			sourceTree = "<group>";
 		};
 		F80DF31C26A56AC700151F7C /* utdid */ = {
@@ -412,7 +398,6 @@
 				9D2468B42577848E0031EB1F /* log_http_interface.h in Headers */,
 				9D2468AC2577848D0031EB1F /* log_producer_client.h in Headers */,
 				9D2468992577848D0031EB1F /* log_producer_common.h in Headers */,
-				F80DF31A26A56AAC00151F7C /* Rechable.h in Headers */,
 				9D2468A42577848D0031EB1F /* log_producer_config.h in Headers */,
 				9D2468B82577848E0031EB1F /* log_define.h in Headers */,
 				9D2468962577848D0031EB1F /* log_multi_thread.h in Headers */,
@@ -519,7 +504,6 @@
 			files = (
 				9D2468A82577848D0031EB1F /* log_producer_config.c in Sources */,
 				9D24689E2577848D0031EB1F /* sds.c in Sources */,
-				F80DF31B26A56AAC00151F7C /* Rechable.m in Sources */,
 				F87A2452266F3FE000499D4D /* TimeUtils.m in Sources */,
 				9D2468B02577848D0031EB1F /* log_util.c in Sources */,
 				F80DF34226A56C6A00151F7C /* TCData.m in Sources */,
