@@ -38,6 +38,7 @@ typedef NS_ENUM(NSInteger, LogProducerResult) {
     LogProducerSendDiscardError,
     LogProducerSendTimeError,
     LogProducerSendExitBufferdF,
+    LogProducerParametersInvalid,
     LogProducerPERSISTENT_Error = 99
 };
 

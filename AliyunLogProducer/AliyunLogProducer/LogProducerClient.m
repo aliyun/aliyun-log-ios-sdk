@@ -36,7 +36,11 @@
         self->producer = create_log_producer(logProducerConfig->config, *callback, nil);
         self->client = get_log_producer_client(self->producer, nil);
         
-        [TimeUtils startUpdateServerTime:[logProducerConfig getEndpoint] project:[logProducerConfig getProject]];
+        NSString *endpoint = [logProducerConfig getEndpoint];
+        NSString *project = [logProducerConfig getProject];
+        if ([endpoint length] != 0 && [project length] != 0) {
+            [TimeUtils startUpdateServerTime:endpoint project:project];
+        }
     }
 
     return self;
