@@ -12,7 +12,8 @@
 #import <CoreTelephony/CTCarrier.h>
 #import <sys/stat.h>
 #import <dlfcn.h>
-#import "reachable/Rechable.h"
+//#import "reachable/Rechable.h"
+#import <Reachability/Reachability.h>
 
 @interface SLSDeviceUtils ()
 + (NSString *) getNetworkType;
@@ -185,7 +186,7 @@
 }
 
 + (NSString *)getReachabilityStatus {
-    Reachable *reachability = [Reachable reachabilityWithHostname:@"www.aliyun.com"];
+    Reachability *reachability = [Reachability reachabilityWithHostname:@"www.aliyun.com"];
     switch ([reachability currentReachabilityStatus]) {
         case NotReachable:
             return @"Unknown";
