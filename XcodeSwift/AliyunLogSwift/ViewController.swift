@@ -1,31 +1,26 @@
 //
 //  ViewController.swift
-//  AliyunLogProducerSampleSwift
+//  AliyunLogSwift
 //
-//  Created by lichao on 2020/10/15.
+//  Created by gordon on 2021/12/17.
 //
 
 import UIKit
 import AliyunLogProducer
 
 class ViewController: UIViewController {
-
     fileprivate var client:     LogProducerClient!
-    // endpoint前需要加 https://
-    fileprivate let endpoint = "https://cn-hangzhou.log.aliyuncs.com"
-    fileprivate let project = "test-hangzhou-b"
-    fileprivate let logstore = "002"
-    fileprivate let accesskeyid = ""
-    fileprivate let accesskeysecret = ""
     
     var x : Int = 0
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Do any additional setup after loading the view.
+        let utils = DemoUtils.shared
         let file = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).first
         let path = file! + "/log.dat"
         
-        let config = LogProducerConfig(endpoint:endpoint, project:project, logstore:logstore, accessKeyID:accesskeyid, accessKeySecret:accesskeysecret)!
+        let config = LogProducerConfig(endpoint:utils.endpoint, project:utils.project, logstore:utils.logstore, accessKeyID:utils.accessKeyId, accessKeySecret:utils.accessKeySecret)!
         // 指定sts token 创建config，过期之前调用ResetSecurityToken重置token
 //        let config = LogProducerConfig(endpoint:endpoint, project:project, logstore:logstore, accessKeyID:accesskeyid, accessKeySecret:accesskeysecret, securityToken:securityToken)
         
@@ -101,11 +96,6 @@ class ViewController: UIViewController {
         client = LogProducerClient(logProducerConfig:config, callback:callbackFunc)
 //        client = LogProducerClient(logProducerConfig:config)
     }
-
-    @IBAction func test(_ sender: UIButton) {
-//        sendOneLog()
-        sendMulLog(2048)
-    }
     
     func sendOneLog() {
         let log = getOneLog()
@@ -149,4 +139,15 @@ class ViewController: UIViewController {
         return log
     }
 
+    @IBAction func sendLog(_ sender: Any) {
+        sendOneLog()
+    }
+    
+    
+    @IBAction func mockCrash(_ sender: Any) {
+        let numbers = [0]
+        let _ = numbers[1]
+    }
+    
 }
+
