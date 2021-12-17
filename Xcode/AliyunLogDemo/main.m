@@ -1,9 +1,8 @@
 //
 //  main.m
-//  AliyunLogProducerSampleOC
+//  AliyunLogDemo
 //
-//  Created by lichao on 2020/9/27.
-//  Copyright © 2020 lichao. All rights reserved.
+//  Created by gordon on 2021/12/17.
 //
 
 #import <UIKit/UIKit.h>
