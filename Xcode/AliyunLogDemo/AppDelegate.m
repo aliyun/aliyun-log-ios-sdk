@@ -7,6 +7,7 @@
 
 #import "AppDelegate.h"
 #import "DemoUtils.h"
+#import "MainViewController.h"
 
 #import <AliyunLogProducer/AliyunLogProducer.h>
 @interface AppDelegate ()
@@ -18,6 +19,17 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    self.window=[[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+
+    MainViewController *viewController = [[MainViewController alloc] init];
+    
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
+    [navigationController.navigationBar setBarTintColor:[UIColor blueColor]];
+    navigationController.view.tintColor = [UIColor whiteColor];
+    self.window.rootViewController = navigationController;
+    [self.window makeKeyAndVisible];
+
+
     DemoUtils *utils = [DemoUtils sharedInstance];
     
     NSDictionary<NSString*, NSString*> *environment = [[NSProcessInfo processInfo] environment];
@@ -62,23 +74,6 @@
 //    [slsAdapter addPlugin:[[SLSTracePlugin alloc] init]];
     [slsAdapter initWithSLSConfig:config];
     return YES;
-}
-
-
-#pragma mark - UISceneSession lifecycle
-
-
-- (UISceneConfiguration *)application:(UIApplication *)application configurationForConnectingSceneSession:(UISceneSession *)connectingSceneSession options:(UISceneConnectionOptions *)options {
-    // Called when a new scene session is being created.
-    // Use this method to select a configuration to create the new scene with.
-    return [[UISceneConfiguration alloc] initWithName:@"Default Configuration" sessionRole:connectingSceneSession.role];
-}
-
-
-- (void)application:(UIApplication *)application didDiscardSceneSessions:(NSSet<UISceneSession *> *)sceneSessions {
-    // Called when the user discards a scene session.
-    // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
-    // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
 }
 
 
