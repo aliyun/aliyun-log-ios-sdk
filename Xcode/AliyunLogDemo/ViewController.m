@@ -20,7 +20,11 @@
 }
 
 - (UIButton *) createButton: (NSString *) title andAction: (SEL) action andX: (CGFloat) x andY: (CGFloat) y {
-    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(SLPadding + x, SLNavBarAndStatusBarHeight + SLPadding * 2 + y, SLCellWidth, SLCellHeight)];
+    return [self createButton:title andAction:action andX:x andY:y andWidth:SLCellWidth andHeight:SLCellHeight];
+}
+
+- (UIButton *) createButton: (NSString *) title andAction: (SEL) action andX: (CGFloat) x andY: (CGFloat) y andWidth: (CGFloat) width andHeight: (CGFloat) height {
+    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(SLPadding + x, SLNavBarAndStatusBarHeight + SLPadding * 2 + y, width, height)];
     button.backgroundColor = [UIColor systemBlueColor];
     button.layer.cornerRadius = 4;
     [button addTarget:self action:action forControlEvents:UIControlEventTouchUpInside];

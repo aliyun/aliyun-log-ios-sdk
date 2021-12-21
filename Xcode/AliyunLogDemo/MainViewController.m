@@ -12,6 +12,7 @@
 #import "ProducerExampleDynamicController.h"
 #import "ProducerExampleClientsController.h"
 #import "ProducerExampleImmediateController.h"
+#import "CrashExampController.h"
 
 @interface MainViewController ()
 
@@ -44,7 +45,7 @@
     [self createButton:@"立即发送" andAction:@selector(gotoImediatePage) andX: SLCellWidth + SLPadding andY:  SLCellHeight + 10];
     
     
-    [self createButton:@"崩溃监控" andAction:@selector(gotoNoCachePage) andX: 0 andY: (SLCellHeight + 30) * 2];
+    [self createButton:@"崩溃监控" andAction:@selector(gotoCrashMockPage) andX: 0 andY: (SLCellHeight + 30) * 2];
     [self createButton:@"trace" andAction:@selector(gotoNoCachePage) andX: SLCellWidth + SLPadding andY:  (SLCellHeight + 30) * 2];
     
 }
@@ -67,6 +68,10 @@
 
 - (void) gotoImediatePage {
     [self gotoPageWithPage:[[ProducerExampleImmediateController alloc] init]];
+}
+
+- (void) gotoCrashMockPage {
+    [self gotoPageWithPage:[[CrashExampController alloc] init]];
 }
 
 - (void) gotoPageWithPage: (ViewController *) controller {

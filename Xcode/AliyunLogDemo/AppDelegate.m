@@ -55,24 +55,6 @@
     SLSLogV(@"pluginAppId: %@", [utils pluginAppId]);
     SLSLogV(@"accessKeyId: %@", [utils accessKeyId]);
     SLSLogV(@"accessKeySecret: %@", [utils accessKeySecret]);
-    
-    SLSConfig *config = [[SLSConfig alloc] init];
-    [config setDebuggable:YES];
-    
-    [config setEndpoint: [utils endpoint]];
-    [config setAccessKeyId: [utils accessKeyId]];
-    [config setAccessKeySecret: [utils accessKeySecret]];
-    [config setPluginAppId: [utils pluginAppId]];
-    [config setPluginLogproject: [utils project]];
-    
-    [config setUserId:@"test_userid"];
-    [config setChannel:@"test_channel"];
-    [config addCustomWithKey:@"customKey" andValue:@"testValue"];
-    
-    SLSAdapter *slsAdapter = [SLSAdapter sharedInstance];
-    [slsAdapter addPlugin:[[SLSCrashReporterPlugin alloc]init]];
-//    [slsAdapter addPlugin:[[SLSTracePlugin alloc] init]];
-    [slsAdapter initWithSLSConfig:config];
     return YES;
 }
 
