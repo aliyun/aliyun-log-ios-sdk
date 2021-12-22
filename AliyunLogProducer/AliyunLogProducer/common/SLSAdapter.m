@@ -6,6 +6,7 @@
 //
 
 #import "SLSAdapter.h"
+#import "HttpConfigProxy.h"
 //#import "SLSLog.h"
 
 @implementation SLSAdapter
@@ -79,10 +80,12 @@
 - (BOOL) initWithSLSConfig:(SLSConfig *)config {
     SLSLog(@"start.");
     
+    NSString *version = [[[NSBundle bundleForClass:HttpConfigProxy.self] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
     [_plugins enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         IPlugin *plugin = obj;
         SLSLogV(@"start init plugin: %@", [plugin name]);
         [plugin initWithSLSConfig:config];
+        [[HttpConfigProxy sharedInstance] addPluginUserAgent:[plugin name] value:version];
         SLSLogV(@"end init plugin: %@", [plugin name]);
     }];
 
