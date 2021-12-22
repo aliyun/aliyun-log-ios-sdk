@@ -13,6 +13,7 @@
 #import "ProducerExampleClientsController.h"
 #import "ProducerExampleImmediateController.h"
 #import "CrashExampController.h"
+#import "ProducerExampleDestroyController.h"
 
 @interface MainViewController ()
 
@@ -43,6 +44,7 @@
     
     [self createButton:@"多个实例" andAction:@selector(gotoClientsPage) andX: 0 andY: SLCellHeight + 10];
     [self createButton:@"立即发送" andAction:@selector(gotoImediatePage) andX: SLCellWidth + SLPadding andY:  SLCellHeight + 10];
+    [self createButton:@"销毁配置" andAction:@selector(gotoDestroyPage) andX: (SLCellWidth + SLPadding) * 2 andY: SLCellHeight + 10];
     
     
     [self createButton:@"崩溃监控" andAction:@selector(gotoCrashMockPage) andX: 0 andY: (SLCellHeight + 30) * 2];
@@ -68,6 +70,10 @@
 
 - (void) gotoImediatePage {
     [self gotoPageWithPage:[[ProducerExampleImmediateController alloc] init]];
+}
+
+- (void) gotoDestroyPage {
+    [self gotoPageWithPage:[[ProducerExampleDestroyController alloc] init]];
 }
 
 - (void) gotoCrashMockPage {
