@@ -16,7 +16,7 @@
 #import "LogProducerConfig.h"
 #import "inner_log.h"
 #import "TimeUtils.h"
-
+#import "HttpConfigProxy.h"
 
 
 @interface LogProducerConfig ()
@@ -25,7 +25,7 @@
 
 @implementation LogProducerConfig
 
-static NSString *VERSION = @"sls-ios-sdk_v2.2.25";
+//static NSString *VERSION = @"sls-ios-sdk_v2.2.25";
 
 static int os_http_post(const char *url,
                 char **header_array,
@@ -54,6 +54,7 @@ static int os_http_post(const char *url,
         }
     }
 
+    NSString *VERSION = [HttpConfigProxy sharedInstance].userAgent;
     [request setValue:VERSION forHTTPHeaderField:@"User-Agent"];
 
     // set body
