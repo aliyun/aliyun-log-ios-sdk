@@ -30,6 +30,7 @@ NSString *securityToken;
     [logConfig SetPacketLogBytes:(1024 * 1024 * 5)];
     [logConfig SetPacketLogCount: 4096];
     [logConfig SetMaxBufferLimit:(64*1024*1024)];
+    [logConfig SetPacketTimeout:100];
     [logConfig SetSendThreadCount:1];
     
     [logConfig SetPersistent:1];
