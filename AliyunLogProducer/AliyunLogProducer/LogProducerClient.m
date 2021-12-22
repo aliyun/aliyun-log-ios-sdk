@@ -41,6 +41,7 @@
         if ([endpoint length] != 0 && [project length] != 0) {
             [TimeUtils startUpdateServerTime:endpoint project:project];
         }
+        enable = YES;
     }
 
     return self;
@@ -48,6 +49,10 @@
 
 - (void)DestroyLogProducer
 {
+    if (!enable) {
+        return;
+    }
+    enable = NO;
     destroy_log_producer(self->producer);
 }
 
@@ -58,7 +63,7 @@
 
 - (LogProducerResult)AddLog:(Log *) log flush:(int) flush
 {
-    if (self->client == NULL || log == nil) {
+    if (!enable || self->client == NULL || log == nil) {
         return LogProducerInvalid;
     }
     NSMutableDictionary *logContents = log->content;

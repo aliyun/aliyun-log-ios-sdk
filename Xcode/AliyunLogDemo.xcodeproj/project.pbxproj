@@ -14,6 +14,7 @@
 		F816EED32771A6040024B85E /* ProducerExampleImmediateController.m in Sources */ = {isa = PBXBuildFile; fileRef = F816EED22771A6040024B85E /* ProducerExampleImmediateController.m */; };
 		F816EEDC2771B4C60024B85E /* CppExceptionFaker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F816EEDA2771B4C60024B85E /* CppExceptionFaker.cpp */; };
 		F816EEDE2771C0360024B85E /* CrashExampController.mm in Sources */ = {isa = PBXBuildFile; fileRef = F816EEDD2771C0360024B85E /* CrashExampController.mm */; };
+		F816EEE52772D5BA0024B85E /* ProducerExampleDestroyController.m in Sources */ = {isa = PBXBuildFile; fileRef = F816EEE42772D5BA0024B85E /* ProducerExampleDestroyController.m */; };
 		F8E43599276C3CA400F805D7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F8E43598276C3CA400F805D7 /* AppDelegate.m */; };
 		F8E4359F276C3CA400F805D7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F8E4359E276C3CA400F805D7 /* ViewController.m */; };
 		F8E435A2276C3CA400F805D7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8E435A0276C3CA400F805D7 /* Main.storyboard */; };
@@ -42,6 +43,8 @@
 		F816EEDA2771B4C60024B85E /* CppExceptionFaker.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CppExceptionFaker.cpp; sourceTree = "<group>"; };
 		F816EEDB2771B4C60024B85E /* CppExceptionFaker.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CppExceptionFaker.hpp; sourceTree = "<group>"; };
 		F816EEDD2771C0360024B85E /* CrashExampController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CrashExampController.mm; sourceTree = "<group>"; };
+		F816EEE32772D5BA0024B85E /* ProducerExampleDestroyController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProducerExampleDestroyController.h; sourceTree = "<group>"; };
+		F816EEE42772D5BA0024B85E /* ProducerExampleDestroyController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProducerExampleDestroyController.m; sourceTree = "<group>"; };
 		F8E43594276C3CA400F805D7 /* AliyunLogDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AliyunLogDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8E43597276C3CA400F805D7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		F8E43598276C3CA400F805D7 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -164,6 +167,8 @@
 				F816EECF27717FC60024B85E /* ProducerExampleClientsController.m */,
 				F816EED12771A6030024B85E /* ProducerExampleImmediateController.h */,
 				F816EED22771A6040024B85E /* ProducerExampleImmediateController.m */,
+				F816EEE32772D5BA0024B85E /* ProducerExampleDestroyController.h */,
+				F816EEE42772D5BA0024B85E /* ProducerExampleDestroyController.m */,
 			);
 			path = Producer;
 			sourceTree = "<group>";
@@ -298,6 +303,7 @@
 				F8E435E4276DAB0000F805D7 /* MainViewController.m in Sources */,
 				F816EECA277172A70024B85E /* ProducerExampleNoCacheController.m in Sources */,
 				F816EED027717FC60024B85E /* ProducerExampleClientsController.m in Sources */,
+				F816EEE52772D5BA0024B85E /* ProducerExampleDestroyController.m in Sources */,
 				F816EED32771A6040024B85E /* ProducerExampleImmediateController.m in Sources */,
 				F8E435B2276C54EF00F805D7 /* DemoUtils.m in Sources */,
 				F8E43599276C3CA400F805D7 /* AppDelegate.m in Sources */,
