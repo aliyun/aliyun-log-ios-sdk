@@ -27,6 +27,10 @@ xcuserdata
 *.moved-aside
 *.xcuserstate
 *.xcscmblueprint
+# CocoaPods
+**/*.xcworkspace/
+Pods/
+Podfile.lock
 
 ## Obj-C/Swift specific
 *.hmap

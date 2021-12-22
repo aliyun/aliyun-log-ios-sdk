@@ -70,7 +70,7 @@ void monitorDirectory(SLSCrashReporterPlugin* plugin, dispatch_source_t _source,
 }
 
 - (NSString *)name{
-    return @"SLSCrashReporterPlugin";
+    return @"crash_reporter";
 }
 
 - (BOOL) initWithSLSConfig: (SLSConfig *) config {
