@@ -21,7 +21,7 @@
     NSString *storeName = @"central-logsotre";
     SLSLogV(@"endpoint: %@, project: %@, store: %@", endpoint, project, storeName);
     
-    _config = [[LogProducerConfig alloc] initWithEndpoint:endpoint project:project logstore:storeName accessKeyID:config.accessKeyId accessKeySecret:config.accessKeySecret securityToken:config.securityToken];
+    _config = [[LogProducerConfig alloc] initWithEndpoint:endpoint project:project logstore:storeName];
     
     [_config SetTopic:@"network_monitor"];
     [_config SetPacketLogBytes:(1024 * 1024 * 5)];
@@ -41,6 +41,8 @@
     [_config SetDropDelayLog:0];
     [_config SetDropUnauthorizedLog:0];
     
+    [_config setUseWebtracking:YES];
+
     _client = [[LogProducerClient alloc]initWithLogProducerConfig:_config callback:_on_log_send_done];
 }
 
