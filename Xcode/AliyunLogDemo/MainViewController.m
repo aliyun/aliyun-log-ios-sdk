@@ -14,6 +14,7 @@
 #import "ProducerExampleImmediateController.h"
 #import "CrashExampController.h"
 #import "ProducerExampleDestroyController.h"
+#import "NetworkDiagnosisController.h"
 
 @interface MainViewController ()
 
@@ -48,7 +49,7 @@
     
     
     [self createButton:@"崩溃监控" andAction:@selector(gotoCrashMockPage) andX: 0 andY: (SLCellHeight + 30) * 2];
-    [self createButton:@"trace" andAction:@selector(gotoNoCachePage) andX: SLCellWidth + SLPadding andY:  (SLCellHeight + 30) * 2];
+    [self createButton:@"网络监控" andAction:@selector(gotoNetworkDiagnosisPage) andX: SLCellWidth + SLPadding andY:  (SLCellHeight + 30) * 2];
     
 }
 
@@ -78,6 +79,10 @@
 
 - (void) gotoCrashMockPage {
     [self gotoPageWithPage:[[CrashExampController alloc] init]];
+}
+
+- (void) gotoNetworkDiagnosisPage {
+    [self gotoPageWithPage:[[NetworkDiagnosisController alloc]init]];
 }
 
 - (void) gotoPageWithPage: (ViewController *) controller {
