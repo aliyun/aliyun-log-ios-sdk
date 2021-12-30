@@ -56,94 +56,83 @@
     _sender = sender;
 }
 
-- (void) ping: (NSString *) domain callback: (SLSNetworkDiagnosisCallBack) callback {
-    [AliPing start:domain size:10 traceID:[self generateId] context:[self class] output:nil complete:^(id context, NSString *traceID, AliPingResult *result) {
-        NSDictionary *dictionary = @{
-            @"code": [NSString stringWithFormat:@"%lu", result.code],
-            @"traceID": result.traceID ? result.traceID : @"",
-            @"networkInterface": result.networkInterface,
-            @"ip": result.ip ? result.ip : @"",
-            @"size": [NSString stringWithFormat:@"%lu", result.size],
-            @"maxRtt": [NSString stringWithFormat:@"%f", result.maxRtt],
-            @"minRtt": [NSString stringWithFormat:@"%f", result.minRtt],
-            @"avgRtt": [NSString stringWithFormat:@"%f", result.avgRtt],
-            @"loss": [NSString stringWithFormat:@"%lu", result.loss],
-            @"count": [NSString stringWithFormat:@"%lu", result.count],
-            @"totalTime": [NSString stringWithFormat:@"%f", result.totalTime],
-            @"stddev": [NSString stringWithFormat:@"%f", result.stddev],
-            @"errMsg": result.errMsg ? result.errMsg : @"",
-        };
-        SLSLogV(@"ping result: %@", dictionary);
-        [self report:dictionary method:@"PING"];
+- (void) ping: (NSString *) domain {
+    [self ping:domain callback:^(SLSNetworkDiagnosisResult * _Nonnull result) {
         
-        callback([SLSNetworkDiagnosisResult successWithDict:dictionary]);
+    }];
+}
+
+- (void) ping: (NSString *) domain callback: (SLSNetworkDiagnosisCallBack) callback {
+    [self ping:domain size:10 callback:callback];
+}
+
+- (void) ping: (NSString *) domain size:(int) size callback: (SLSNetworkDiagnosisCallBack) callback {
+    [AliPing start:domain size:size traceID:[self generateId] context:[self class] output:nil complete:^(id context, NSString *traceID, AliPingResult *result) {
+        SLSLogV(@"ping result: %@", result.content);
+        [self reportWithString:result.content method:@"PING"];
+        
+        if (callback) {
+         callback([SLSNetworkDiagnosisResult success:result.content]);
+        }
+    }];
+}
+
+- (void) tcpPing: (NSString *) host port: (int) port {
+    [self tcpPing:host port:port callback:^(SLSNetworkDiagnosisResult * _Nonnull result) {
+        
     }];
 }
 
 - (void) tcpPing: (NSString *) host port: (int) port callback: (SLSNetworkDiagnosisCallBack) callback {
-    [AliTcpPing start:host port:port count:10 traceID:[self generateId] context:[self class] complete:^(id context, NSString *traceID, NSMutableArray<AliTcpPingResult *> *results) {
-        NSMutableArray *array = [NSMutableArray arrayWithCapacity:results.count];
-        for (AliTcpPingResult *result in results) {
-            NSDictionary *dictionary = @{
-                @"code": [NSString stringWithFormat:@"%lu", result.code],
-                @"ip": result.ip ? result.ip : @"",
-                @"traceID": result.traceID ? result.traceID : @"",
-                @"networkInterface": result.networkInterface,
-                @"maxTime": [NSString stringWithFormat:@"%f", result.maxTime],
-                @"minTime": [NSString stringWithFormat:@"%f", result.minTime],
-                @"avgTime": [NSString stringWithFormat:@"%f", result.avgTime],
-                @"loss": [NSString stringWithFormat:@"%lu", result.loss],
-                @"count": [NSString stringWithFormat:@"%lu", result.count],
-                @"totalTime": [NSString stringWithFormat:@"%f", result.totalTime],
-                @"stddev": [NSString stringWithFormat:@"%f", result.stddev],
-                @"errMsg": result.errMsg ? result.errMsg : @"",
-            };
-            SLSLogV(@"tcp ping result: %@", dictionary);
-            [array addObject:dictionary];
-            [self report:dictionary method:@"TCPPING"];
-        }
-        
-        callback([SLSNetworkDiagnosisResult successWithArray:array]);
-    }];
+    [self tcpPing:host port:port count:10 callback:callback];
 }
 
-- (void) mtr: (NSString *) host callback: (SLSNetworkDiagnosisCallBack) callback {
-    [AliMTR start:host maxTtl:30 maxPaths:1 maxTimesEachIP:10 timeout:1*1000 context:[self class] traceID:[self generateId] complete:^(id context, NSString *traceID, NSMutableArray<AliMTRResult *> *results) {
-        for (AliMTRResult * result in results) {
-            SLSLogV(@"mtr result: %@", result.content);
-
-            [self reportWithString:result.content method:@"MTR"];
+- (void) tcpPing: (NSString *) host port: (int) port count: (int) count callback: (SLSNetworkDiagnosisCallBack) callback {
+    [AliTcpPing start:host port:port count:count traceID:[self generateId] context:[self class] output:nil complete:^(id context, NSString *traceID, AliTcpPingResult *result) {
+        SLSLogV(@"tcp ping result: %@", result.content);
+        [self reportWithString:result.content method:@"TCPPING"];
+        if (callback) {
             callback([SLSNetworkDiagnosisResult success:result.content]);
         }
     }];
 }
 
+- (void) mtr: (NSString *) host {
+    [self mtr:host maxTtl:30 callback:^(SLSNetworkDiagnosisResult * _Nonnull result) {
+        
+    }];
+}
+
+- (void) mtr: (NSString *) host callback: (SLSNetworkDiagnosisCallBack) callback {
+    [self mtr:host maxTtl:30 callback:callback];
+}
+
+- (void) mtr: (NSString *) host maxTtl: (int) ttl callback: (SLSNetworkDiagnosisCallBack) callback {
+    [AliMTR start:host maxTtl:ttl context:[self class] traceID:[self generateId] output:nil complete:^(id context, NSString *traceID, AliMTRResult *result) {
+        SLSLogV(@"mtr result: %@", result.content);
+        [self reportWithString:result.content method:@"MTR"];
+        
+        if (callback) {
+            callback([SLSNetworkDiagnosisResult success:result.content]);
+        }
+    }];
+}
+
+- (void) httpPing: (NSString *)domain {
+    [self httpPing:domain callback:^(SLSNetworkDiagnosisResult * _Nonnull result) {
+        
+    }];
+}
+
 - (void) httpPing: (NSString *)domain callback: (SLSNetworkDiagnosisCallBack) callback {
     [AliHttpPing start:domain traceId:[self generateId] context:[self class] complete:^(id context, NSString *traceID, AliHttpPingResult *result) {
-        NSDictionary *dictionary = @{
-            @"startDate": [NSString stringWithFormat:@"%llu", result.startDate],
-            @"waitDnsTime": [NSString stringWithFormat:@"%d", result.waitDnsTime],
-            @"dnsTime": [NSString stringWithFormat:@"%d", result.dnsTime],
-            @"tcpTime": [NSString stringWithFormat:@"%d", result.tcpTime],
-            @"sslTime": [NSString stringWithFormat:@"%d", result.sslTime],
-            @"firstByteTime": [NSString stringWithFormat:@"%d", result.firstByteTime],
-            @"allByteTime": [NSString stringWithFormat:@"%d", result.allByteTime],
-            @"requestTime": [NSString stringWithFormat:@"%d", result.requestTime],
-            @"httpCode": [NSString stringWithFormat:@"%ld", result.httpCode],
-            @"reusedConnection": result.reusedConnection ? @"true": @"false",
-            @"sendBytes": [NSString stringWithFormat:@"%d", result.sendBytes],
-            @"receiveBytes": [NSString stringWithFormat:@"%d", result.receiveBytes],
-            @"httpProtocol": result.httpProtocol ? result.httpProtocol : @"",
-            @"remoteAddr": result.remoteAddr ? result.remoteAddr : @"",
-            @"errCode": [NSString stringWithFormat:@"%ld", result.errCode],
-            @"errDomain": result.errDomain ? result.errDomain : @"",
-            @"errDesc": result.errDesc ? result.errDesc : @""
-        };
-        SLSLogV(@"http ping result: %@", dictionary);
+        SLSLogV(@"http ping result: %@", result.content);
         
-        [self report:dictionary method:@"HTTP"];
+        [self reportWithString:result.content method:@"HTTP"];
         
-        callback([SLSNetworkDiagnosisResult successWithDict:dictionary]);
+        if (callback) {
+            callback([SLSNetworkDiagnosisResult success:result.content]);
+        }
     }];
 }
 

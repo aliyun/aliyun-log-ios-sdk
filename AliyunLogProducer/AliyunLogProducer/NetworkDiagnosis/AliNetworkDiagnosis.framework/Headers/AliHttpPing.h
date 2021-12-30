@@ -35,7 +35,7 @@
 
 @property (nonatomic, strong) NSString *httpProtocol;
 @property (nonatomic, strong) NSString *remoteAddr;
-
+@property (nonatomic, strong) NSString *rdr_location;
 @property (nonatomic, strong) NSString *content;
 
 @property (nonatomic, assign) NSUInteger errCode;
