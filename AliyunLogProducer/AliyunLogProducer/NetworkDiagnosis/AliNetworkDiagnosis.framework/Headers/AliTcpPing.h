@@ -23,6 +23,7 @@
 @property (readonly) NSTimeInterval totalTime;
 @property (readonly) NSTimeInterval stddev;
 @property (nonatomic,strong) NSString* errMsg;
+@property (nonatomic,strong) NSString* content;
 - (NSString*)description;
 
 @end

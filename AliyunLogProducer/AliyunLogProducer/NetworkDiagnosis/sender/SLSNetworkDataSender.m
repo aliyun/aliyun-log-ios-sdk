@@ -17,13 +17,13 @@
 @implementation SLSNetworkDataSender
 - (void) initWithSLSConfig: (SLSConfig *)config {
     NSString *endpoint = @"https://cn-shanghai.log.aliyuncs.com";
-    NSString *project = @"sls-aysls-network-monitor";
+    NSString *project = @"sls-aysls-network-diagnosis";
     NSString *storeName = @"central-logsotre";
     SLSLogV(@"endpoint: %@, project: %@, store: %@", endpoint, project, storeName);
     
     _config = [[LogProducerConfig alloc] initWithEndpoint:endpoint project:project logstore:storeName];
     
-    [_config SetTopic:@"network_monitor"];
+    [_config SetTopic:@"network_diagnosis"];
     [_config SetPacketLogBytes:(1024 * 1024 * 5)];
     [_config SetPacketLogCount: 4096];
     [_config SetMaxBufferLimit:(64*1024*1024)];

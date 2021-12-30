@@ -27,11 +27,25 @@ typedef void (^SLSNetworkDiagnosisCallBack)(SLSNetworkDiagnosisResult *result);
 
 - (void) initWithConfig: (SLSConfig *)config sender: (ISender *)sender;
 
+- (void) ping: (NSString *) domain;
+
 - (void) ping: (NSString *) domain callback: (SLSNetworkDiagnosisCallBack) callback;
+
+- (void) ping: (NSString *) domain size:(int) size callback: (SLSNetworkDiagnosisCallBack) callback;
+
+- (void) tcpPing: (NSString *) host port: (int) port;
 
 - (void) tcpPing: (NSString *) host port: (int) port callback: (SLSNetworkDiagnosisCallBack) callback;
 
+- (void) tcpPing: (NSString *) host port: (int) port count: (int) count callback: (SLSNetworkDiagnosisCallBack) callback;
+
+- (void) mtr: (NSString *) host;
+
 - (void) mtr: (NSString *) host callback: (SLSNetworkDiagnosisCallBack) callback;
+
+- (void) mtr: (NSString *) host maxTtl: (int) ttl callback: (SLSNetworkDiagnosisCallBack) callback;
+
+- (void) httpPing: (NSString *)domain;
 
 - (void) httpPing: (NSString *)domain callback: (SLSNetworkDiagnosisCallBack) callback;
 
