@@ -11,6 +11,7 @@
 
 @interface NetworkDiagnosisController ()
 @property(nonatomic, strong) UITextView *statusTextView;
+@property (strong,nonatomic)NSTimer *timer;
 @end
 
 @implementation NetworkDiagnosisController
@@ -20,6 +21,9 @@ static NetworkDiagnosisController *selfClzz;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    _timer = [NSTimer scheduledTimerWithTimeInterval:15.0 target:self selector:@selector(atoMethods) userInfo:nil repeats:YES];
+    [[NSRunLoop mainRunLoop] addTimer:_timer forMode:NSDefaultRunLoopMode];
+
     selfClzz = self;
     self.title = @"网络监控";
     [self initViews];
@@ -51,12 +55,16 @@ static NetworkDiagnosisController *selfClzz;
     [self.statusTextView setEditable:NO];
     [self.statusTextView setContentOffset:CGPointMake(0, 0)];
     
+    CGFloat lx = ((SLScreenW - SLPadding * 2) / 4 - SLCellWidth / 2);
+    CGFloat rx = ((SLScreenW - SLPadding * 2) / 4 * 3 - SLCellWidth / 2);
+
+    [self createButton:@"PING" andAction:@selector(ping) andX:lx andY:SLCellHeight * 11];
+    [self createButton:@"TCPPING" andAction:@selector(tcpPing) andX:rx andY:SLCellHeight * 11];
     
-    [self createButton:@"PING" andAction:@selector(ping) andX:((SLScreenW - SLPadding * 2) / 4 - SLCellWidth / 2) andY:SLCellHeight * 11];
-    [self createButton:@"TCPPING" andAction:@selector(tcpPing) andX:((SLScreenW - SLPadding * 2) / 4 * 3 - SLCellWidth / 2) andY:SLCellHeight * 11];
+    [self createButton:@"HTTPPING" andAction:@selector(httpPing) andX:lx andY:SLCellHeight * 12 + SLPadding];
+    [self createButton:@"MTR" andAction:@selector(mtr) andX:rx andY:SLCellHeight * 12 + SLPadding];
     
-    [self createButton:@"HTTPPING" andAction:@selector(httpPing) andX:((SLScreenW - SLPadding * 2) / 4 - SLCellWidth / 2) andY:SLCellHeight * 12 + SLPadding];
-    [self createButton:@"MTR" andAction:@selector(mtr) andX:((SLScreenW - SLPadding * 2) / 4 * 3 - SLCellWidth / 2) andY:SLCellHeight * 12 + SLPadding];
+    [self createButton:@"AUTO" andAction:@selector(ato) andX:lx andY:SLCellHeight * 13 + SLPadding * 2 andWidth:SLScreenW - (lx * 2 + SLPadding * 2) andHeight:SLCellHeight];
 }
 
 - (void) updateStatus: (NSString *)append {
@@ -93,6 +101,18 @@ static NetworkDiagnosisController *selfClzz;
     [[SLSNetworkDiagnosis sharedInstance] mtr:@"www.aliyun.com" callback:^(SLSNetworkDiagnosisResult * _Nonnull result) {
         [self updateStatus:[NSString stringWithFormat:@"mtr result, success: %d, data: %@", result.success, result.data]];
     }];
+}
+
+- (void) ato {
+    [self updateStatus:@"start mtr..."];
+    [_timer fire];
+}
+
+- (void) atoMethods {
+    [[SLSNetworkDiagnosis sharedInstance] ping:@"www.aliyun.com"];
+    [[SLSNetworkDiagnosis sharedInstance] tcpPing:@"www.aliyun.com" port:80];
+    [[SLSNetworkDiagnosis sharedInstance] httpPing:@"https://www.aliyun.com"];
+    [[SLSNetworkDiagnosis sharedInstance] mtr:@"www.aliyun.com"];
 }
 
 - (void) initNetworkDiagnosis {
