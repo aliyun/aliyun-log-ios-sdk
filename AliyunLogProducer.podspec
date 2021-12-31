@@ -29,7 +29,7 @@ https://help.aliyun.com/product/28958.html
   s.source           = { :git => 'https://github.com/aliyun/aliyun-log-ios-sdk.git', :tag => s.version.to_s }
   s.social_media_url = 'http://t.cn/AiRpol8C'
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '9.0'
   s.default_subspec = 'Core'
 
   s.requires_arc  = true
@@ -86,10 +86,10 @@ https://help.aliyun.com/product/28958.html
     n.frameworks = "SystemConfiguration", "CoreGraphics"
     n.libraries = "z", "c++"
     n.pod_target_xcconfig = {
-        'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64',
-        'OTHER_LDFLAGS' => '-ObjC'
+        'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64 i386',
+        'OTHER_LDFLAGS' => '-ObjC',
     }
-    n.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
+    n.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64 i386'  }
   end
   
 end
