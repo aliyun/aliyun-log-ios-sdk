@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'AliyunLogProducer'
-  s.version          = '2.3.5.beta.2'
+  s.version          = '2.3.5.beta.3'
   s.summary          = 'aliyun log service ios producer.'
 
 # This description is used to generate tags and improve search results.
@@ -86,10 +86,10 @@ https://help.aliyun.com/product/28958.html
     n.frameworks = "SystemConfiguration", "CoreGraphics"
     n.libraries = "z", "c++"
     n.pod_target_xcconfig = {
-        'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64 i386',
+        'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64',
         'OTHER_LDFLAGS' => '-ObjC',
     }
-    n.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64 i386'  }
+    n.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'  }
   end
   
 end
