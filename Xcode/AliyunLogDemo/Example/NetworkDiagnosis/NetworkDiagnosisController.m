@@ -21,9 +21,6 @@ static NetworkDiagnosisController *selfClzz;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    _timer = [NSTimer scheduledTimerWithTimeInterval:15.0 target:self selector:@selector(atoMethods) userInfo:nil repeats:YES];
-    [[NSRunLoop mainRunLoop] addTimer:_timer forMode:NSDefaultRunLoopMode];
-
     selfClzz = self;
     self.title = @"网络监控";
     [self initViews];
@@ -105,14 +102,14 @@ static NetworkDiagnosisController *selfClzz;
 
 - (void) ato {
     [self updateStatus:@"start mtr..."];
-    [_timer fire];
+    _timer = [NSTimer scheduledTimerWithTimeInterval:15.0 target:self selector:@selector(atoMethods) userInfo:nil repeats:YES];
 }
 
 - (void) atoMethods {
-    [[SLSNetworkDiagnosis sharedInstance] ping:@"www.aliyun.com"];
-    [[SLSNetworkDiagnosis sharedInstance] tcpPing:@"www.aliyun.com" port:80];
-    [[SLSNetworkDiagnosis sharedInstance] httpPing:@"https://www.aliyun.com"];
-    [[SLSNetworkDiagnosis sharedInstance] mtr:@"www.aliyun.com"];
+    [self ping];
+    [self tcpPing];
+    [self httpPing];
+    [self mtr];
 }
 
 - (void) initNetworkDiagnosis {
@@ -135,6 +132,14 @@ static NetworkDiagnosisController *selfClzz;
 //    [slsAdapter addPlugin:[[SLSCrashReporterPlugin alloc]init]];
     [slsAdapter addPlugin:[[SLSNetworkDiagnosisPlugin alloc] init]];
     [slsAdapter initWithSLSConfig:config];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    if (_timer && [_timer isValid]) {
+        [_timer invalidate];
+    }
 }
 
 @end
