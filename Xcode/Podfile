@@ -9,8 +9,19 @@ target 'AliyunLogDemo' do
   # Pods for Demo
 #  pod 'AliyunLogProducer', :path =>'../' , :subspecs => ['Core', 'Bricks', 'CrashReporter']
 #  pod 'AliyunLogProducer', '2.5.0.alpha.2' , :subspecs => ['Core', 'Bricks', 'CrashReporter']
-  # pod 'AliyunLogProducer', '2.3.2' , :subspecs => ['Core', 'Bricks', 'CrashReporter']
+# pod 'AliyunLogProducer', '2.3.2' , :subspecs => ['Core', 'Bricks', 'CrashReporter']
   pod 'AliyunLogProducer/Core', :path =>'../'
   pod 'AliyunLogProducer/Bricks', :path =>'../'
   pod 'AliyunLogProducer/CrashReporter', :path =>'../'
+  pod 'AliyunLogProducer/NetworkDiagnosis', :path =>'../'
+end
+
+post_install do |installer|
+    installer.pods_project.targets.each do |target|
+        if target.name == 'Reachability'
+            target.build_configurations.each do |config|
+                config.build_settings['EXCLUDED_ARCHS[sdk=iphonesimulator*]'] = 'arm64'
+            end
+        end
+    end
 end

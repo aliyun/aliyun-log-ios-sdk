@@ -102,6 +102,8 @@
 
 - (void) setAccessKeySecret: (NSString *) accessKeySecret;
 
+- (void) setUseWebtracking: (BOOL) enable;
+
 + (void) Debug;
 
 @end

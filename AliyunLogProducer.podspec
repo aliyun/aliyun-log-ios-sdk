@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'AliyunLogProducer'
-  s.version          = '2.3.4'
+  s.version          = '2.3.5.beta.3'
   s.summary          = 'aliyun log service ios producer.'
 
 # This description is used to generate tags and improve search results.
@@ -29,7 +29,7 @@ https://help.aliyun.com/product/28958.html
   s.source           = { :git => 'https://github.com/aliyun/aliyun-log-ios-sdk.git', :tag => s.version.to_s }
   s.social_media_url = 'http://t.cn/AiRpol8C'
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '9.0'
   s.default_subspec = 'Core'
 
   s.requires_arc  = true
@@ -75,6 +75,21 @@ https://help.aliyun.com/product/28958.html
           'OTHER_LDFLAGS' => '-ObjC'
       }
       r.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
+  end
+  
+  s.subspec 'NetworkDiagnosis' do |n|
+    n.dependency 'AliyunLogProducer/Bricks'
+    n.source_files = 'AliyunLogProducer/AliyunLogProducer/NetworkDiagnosis/**/*.{m,h}'
+    n.public_header_files = "AliyunLogProducer/AliyunLogProducer/NetworkDiagnosis/**/*.h"
+    n.vendored_frameworks = 'AliyunLogProducer/AliyunLogProducer/NetworkDiagnosis/AliNetworkDiagnosis.framework'
+    n.project_header_files = 'AliyunLogProducer/AliyunLogProducer/NetworkDiagnosis/AliNetworkDiagnosis.framework/Headers/**/*.h'
+    n.frameworks = "SystemConfiguration", "CoreGraphics"
+    n.libraries = "z", "c++"
+    n.pod_target_xcconfig = {
+        'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64',
+        'OTHER_LDFLAGS' => '-ObjC',
+    }
+    n.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'  }
   end
   
 end
