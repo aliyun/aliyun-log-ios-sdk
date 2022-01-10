@@ -15,6 +15,7 @@
 		F816EEDC2771B4C60024B85E /* CppExceptionFaker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F816EEDA2771B4C60024B85E /* CppExceptionFaker.cpp */; };
 		F816EEDE2771C0360024B85E /* CrashExampController.mm in Sources */ = {isa = PBXBuildFile; fileRef = F816EEDD2771C0360024B85E /* CrashExampController.mm */; };
 		F816EEE52772D5BA0024B85E /* ProducerExampleDestroyController.m in Sources */ = {isa = PBXBuildFile; fileRef = F816EEE42772D5BA0024B85E /* ProducerExampleDestroyController.m */; };
+		F84B73F4278C74640075CD7A /* TraceExampleController.m in Sources */ = {isa = PBXBuildFile; fileRef = F84B73F3278C74640075CD7A /* TraceExampleController.m */; };
 		F86A9D09277990E500387C32 /* NetworkDiagnosisController.m in Sources */ = {isa = PBXBuildFile; fileRef = F86A9D08277990E500387C32 /* NetworkDiagnosisController.m */; };
 		F8E43599276C3CA400F805D7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F8E43598276C3CA400F805D7 /* AppDelegate.m */; };
 		F8E4359F276C3CA400F805D7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F8E4359E276C3CA400F805D7 /* ViewController.m */; };
@@ -46,6 +47,8 @@
 		F816EEDD2771C0360024B85E /* CrashExampController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CrashExampController.mm; sourceTree = "<group>"; };
 		F816EEE32772D5BA0024B85E /* ProducerExampleDestroyController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProducerExampleDestroyController.h; sourceTree = "<group>"; };
 		F816EEE42772D5BA0024B85E /* ProducerExampleDestroyController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProducerExampleDestroyController.m; sourceTree = "<group>"; };
+		F84B73F2278C74640075CD7A /* TraceExampleController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TraceExampleController.h; sourceTree = "<group>"; };
+		F84B73F3278C74640075CD7A /* TraceExampleController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TraceExampleController.m; sourceTree = "<group>"; };
 		F86A9D07277990E500387C32 /* NetworkDiagnosisController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkDiagnosisController.h; sourceTree = "<group>"; };
 		F86A9D08277990E500387C32 /* NetworkDiagnosisController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetworkDiagnosisController.m; sourceTree = "<group>"; };
 		F8E43594276C3CA400F805D7 /* AliyunLogDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AliyunLogDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -96,6 +99,15 @@
 				5EFC3A688264C8814F787559 /* Pods_AliyunLogDemo.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F84B73EE278C73FF0075CD7A /* Trace */ = {
+			isa = PBXGroup;
+			children = (
+				F84B73F2278C74640075CD7A /* TraceExampleController.h */,
+				F84B73F3278C74640075CD7A /* TraceExampleController.m */,
+			);
+			path = Trace;
 			sourceTree = "<group>";
 		};
 		F86A9D06277990AA00387C32 /* NetworkDiagnosis */ = {
@@ -156,6 +168,7 @@
 				F86A9D06277990AA00387C32 /* NetworkDiagnosis */,
 				F8E435DD276DA89D00F805D7 /* Producer */,
 				F8E435DE276DA8A700F805D7 /* Crash */,
+				F84B73EE278C73FF0075CD7A /* Trace */,
 			);
 			path = Example;
 			sourceTree = "<group>";
@@ -313,6 +326,7 @@
 			files = (
 				F816EEDE2771C0360024B85E /* CrashExampController.mm in Sources */,
 				F8E4359F276C3CA400F805D7 /* ViewController.m in Sources */,
+				F84B73F4278C74640075CD7A /* TraceExampleController.m in Sources */,
 				F8E435E4276DAB0000F805D7 /* MainViewController.m in Sources */,
 				F816EECA277172A70024B85E /* ProducerExampleNoCacheController.m in Sources */,
 				F816EED027717FC60024B85E /* ProducerExampleClientsController.m in Sources */,
