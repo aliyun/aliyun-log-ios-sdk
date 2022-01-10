@@ -336,6 +336,10 @@ unsigned int time_func() {
     log_producer_config_set_access_key(self->config, [accessKeySecret UTF8String]);
 }
 
+- (void) setUseWebtracking: (BOOL) enable {
+    log_producer_config_set_use_webtracking(self->config, enable ? 1 : 0);
+}
+
 - (void)ResetSecurityToken:(NSString *) accessKeyID accessKeySecret:(NSString *)accessKeySecret securityToken:(NSString *)securityToken
 {
     if ([accessKeyID length] == 0 || [accessKeySecret length] == 0 || [securityToken length] == 0) {
