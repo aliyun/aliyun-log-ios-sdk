@@ -73,7 +73,7 @@
         }
         
         LogProducerResult res = [[self client] AddLog:log];
-        NSLog(@"test. %d", res);
+        NSLog(@"test. %ld", res);
        
     }
     // TODO force success

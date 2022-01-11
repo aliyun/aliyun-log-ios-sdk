@@ -95,8 +95,8 @@ https://help.aliyun.com/product/28958.html
   s.subspec 'Trace' do |t|
       t.ios.deployment_target = '10.0'
       t.dependency 'AliyunLogProducer/Bricks'
-      t.dependency "OpenTelemetryApi", "0.0.3"
-      t.dependency "OpenTelemetrySdk", "0.0.4"
+      t.dependency "OpenTelemetryApi", "0.0.7"
+      t.dependency "OpenTelemetrySdk", "0.0.11"
       t.source_files = 'AliyunLogProducer/AliyunLogProducer/Trace/**/*.{m,h}'
       t.public_header_files = "AliyunLogProducer/AliyunLogProducer/Trace/**/*.h"
 #      t.exclude_files = 'AliyunLogProducer/AliyunLogProducer/Trace/**/OpenTelemetrySdk-Swift.h'
