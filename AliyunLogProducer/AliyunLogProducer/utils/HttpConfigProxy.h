@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong) NSString *userAgent;
 
 - (void) addPluginUserAgent: (NSString *) key value: (NSString *) value;
+- (NSString *) getVersion;
 
 + (instancetype) sharedInstance;
 
