@@ -43,7 +43,7 @@
         @"os.type": [[TelemetryAttributeValue alloc] initWithStringValue:@"darwin"],
         @"os.description": [[TelemetryAttributeValue alloc] initWithStringValue:[NSString stringWithFormat:@"%@ %@", systemName, systemVersion]],
         @"os.version": [[TelemetryAttributeValue alloc] initWithStringValue:systemVersion],
-        @"os.sdk": [[TelemetryAttributeValue alloc] initWithStringValue:@"iOS"],
+//        @"os.sdk": [[TelemetryAttributeValue alloc] initWithStringValue:@"iOS"],
         
         @"host.name": [[TelemetryAttributeValue alloc] initWithStringValue:@"iOS"],
         @"host.id": [[TelemetryAttributeValue alloc] initWithStringValue:[Utdid getUtdid]],

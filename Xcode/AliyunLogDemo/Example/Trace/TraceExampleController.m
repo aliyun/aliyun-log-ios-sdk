@@ -7,6 +7,15 @@
 
 #import "TraceExampleController.h"
 
+@interface Setter : NSObject  <TelemetrySetter>
+@end
+
+@implementation Setter
+- (void)set:(NSMutableDictionary * _Nonnull)dict :(NSString * _Nonnull)key :(NSString * _Nonnull)value {
+    [dict setObject:value forKey:key];
+}
+@end
+
 @interface TraceExampleController ()
 @property(nonatomic, strong) UITextView *statusTextView;
 @property(nonatomic, strong) LogProducerConfig *config;
@@ -52,7 +61,13 @@ static TraceExampleController *selfClzz;
     [self.statusTextView setEditable:NO];
     [self.statusTextView setContentOffset:CGPointMake(0, 0)];
 
-    [self createButton:@"Send" andAction:@selector(send) andX:((SLScreenW - SLPadding * 2 - SLCellWidth) / 2) andY:SLCellHeight * 11];
+    CGFloat lx = ((SLScreenW - SLPadding * 2) / 4 - SLCellWidth / 2);
+    CGFloat rx = ((SLScreenW - SLPadding * 2) / 4 * 3 - SLCellWidth / 2);
+
+    [self createButton:@"span" andAction:@selector(span) andX:lx andY:SLCellHeight * 11];
+    [self createButton:@"trace" andAction:@selector(trace) andX:rx andY:SLCellHeight * 11];
+    
+    [self createButton:@"inject" andAction:@selector(inject) andX:lx andY:SLCellHeight * 12 + SLPadding];
 }
 
 - (void) updateStatus: (NSString *)append {
@@ -63,9 +78,37 @@ static TraceExampleController *selfClzz;
     });
 }
 
-- (void) send {
+- (void) span {
     TelemetrySDK *sdk = [TelemetrySDK instance];
     [[[[sdk getTracer:@"demo"] spanBuilderWithSpanName:@"test"] startSpan] end];
+    [self updateStatus:@"单个 span 节点"];
+}
+
+- (void) trace {
+    TelemetrySDK *sdk = [TelemetrySDK instance];
+    TelemetryTracer *tracer = [sdk getTracer:@"demo"];
+    TelemetrySpan *span = [[tracer spanBuilderWithSpanName:@"test"] startSpan];
+    
+    TelemetrySpan *span2 = [[[tracer spanBuilderWithSpanName:@"test2"] setParent:span] startSpan];
+    [span2 end];
+    
+    TelemetrySpan *span3 = [[[tracer spanBuilderWithSpanName:@"test2"] setParent:span] startSpan];
+    [span3 end];
+    
+    [span end];
+    [self updateStatus:@"多个 span 进行关联"];
+}
+
+- (void) inject {
+    TelemetrySDK *sdk = [TelemetrySDK instance];
+    TelemetrySpan *span = [[[sdk getTracer:@"demo"] spanBuilderWithSpanName:@"test"] startSpan];
+
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [[sdk activeTextMapPropagator] injectWithContext:span.context carrier:dict setter:[[Setter alloc] init]];
+    [span setAttributeWithKey:@"inject-traceparent" value:[[TelemetryAttributeValue alloc] initWithStringValue:[[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:dict options:kNilOptions error:nil] encoding:NSUTF8StringEncoding]]];
+    [span end];
+    
+    [self updateStatus:@"span 和 traceparent header 进行关联，用于前后端打通"];
 }
 
 - (void) initTrace {
