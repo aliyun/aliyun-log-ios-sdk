@@ -7,6 +7,7 @@
 //
 
 #import "SLSSpanExporter.h"
+#import "HttpConfigProxy.h"
 #import "OpenTelemetrySdk/OpenTelemetrySdk-Swift.h"
 
 @interface SLSSpanExporter () <TelemetrySpanExporter>
@@ -14,8 +15,10 @@
 @property(nonatomic, strong) LogProducerConfig *config;
 
 - (Log *) spanToLog: (TelemetrySpanData *)span;
+- (NSArray *) linksToArray: (NSArray<TelemetryLink *> *) links;
 - (NSDictionary *) eventsToArray: (NSArray<TelemetryEvent *> *)events;
 - (NSDictionary *) attributeToDictionaray: (NSDictionary<NSString *, TelemetryAttributeValue *> *) attributes;
+- (NSDictionary *) contextToDictionaray: (TelemetrySpanContext *) context;
 - (NSString *) toJSON: (NSObject *) data;
 - (NSTimeInterval) toTime: (NSDate *) date;
 - (NSString *) toTimeStringValue: (NSDate *) date;
@@ -107,7 +110,7 @@
     }
     
     [log PutContent:@"otlp.name" value:@"ios-sdk"];
-    [log PutContent:@"otlp.version" value:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]];
+    [log PutContent:@"otlp.version" value:[[HttpConfigProxy sharedInstance] getVersion]];
 
     [log PutContent:@"name" value:[span name]];
     [log PutContent:@"kind" value:[[span kind] name]];
@@ -119,11 +122,10 @@
         [log PutContent:@"parentSpanID" value:@"0000000000000000"];
     }
     
+    if ([span links]) {
+        [log PutContent:@"links" value:[self toJSON:[self linksToArray:[span links]]]];
+    }
 
-//    if (null != span.getLinks()) {
-//        put(log, "links", linksToLog(span.getLinks()));
-//    }
-    [log PutContent:@"links" value:@"[]"];
     if ([span events]) {
         [log PutContent:@"logs" value:[self toJSON:[self eventsToArray:[span events]]]];
     }
@@ -132,7 +134,7 @@
 //    if (null != span.getSpanContext()) {
 //        put(log, "traceState", traceStateToLog(span.getSpanContext().getTraceState()));
 //    }
-    [log PutContent:@"traceState" value:@"{}"];
+//    [log PutContent:@"traceState" value:@"{}"];
     [log PutContent:@"start" value:[NSString stringWithFormat:@"%@", [self toTimeStringValue:[span startTime]]]];
     [log PutContent:@"end" value:[NSString stringWithFormat:@"%@", [self toTimeStringValue:[span endTime]]]];
     NSTimeInterval duration = [self toTime:[span endTime]] - [self toTime:[span startTime]];
@@ -146,6 +148,20 @@
     [log PutContent:@"statusMessage" value:span.status.name];
     return log;
 }
+
+- (NSArray *) linksToArray: (NSArray<TelemetryLink *> *) links {
+    NSMutableArray *array = [NSMutableArray array];
+    
+    for (TelemetryLink *link in links) {
+        NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+        [dict setObject:[self contextToDictionaray:[link context]] forKey:@"context"];
+        [dict setObject: [self attributeToDictionaray:[link attributes]] forKey:@"attributes"];
+        [array addObject: dict];
+    }
+    
+    return array;
+}
+
 - (NSArray *)eventsToArray:(NSArray<TelemetryEvent *> *)events {
     NSMutableArray *array = [NSMutableArray array];
     
@@ -169,6 +185,13 @@
     return dictionaray;
 }
 
+- (NSDictionary *) contextToDictionaray: (TelemetrySpanContext *) context {
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setObject:[context traceId] forKey:@"traceId"];
+    [dict setObject:[context spanId] forKey:@"spanId"];
+    [dict setObject:[NSString stringWithFormat:@"%d", [context isRemote]] forKey:@"isRemote"];
+    return dict;
+}
 
 - (NSString *)toJSON:(NSObject *)data {
     return [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:data options:kNilOptions error:nil] encoding:NSUTF8StringEncoding];
