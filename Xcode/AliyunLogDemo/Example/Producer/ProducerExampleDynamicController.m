@@ -94,6 +94,17 @@ static void _on_log_send_done(const char * config_name, log_producer_result resu
     } else {
         NSString *fail = [NSString stringWithFormat:@"send fail   , config : %s, result : %d, log bytes : %d, compressed bytes : %d, request id : %s, error message : %s", config_name, (result), (int)log_bytes, (int)compressed_bytes, req_id, message];
         SLSLogV("%@", fail);
+
+        if (LOG_PRODUCER_PARAMETERS_INVALID == result) {
+            // 参数配置错误
+            // 出现该错误码时，需要重新对 endpoint、project、logstore 进行赋值
+            // AK 没有设置时也会返回这个错误码，需要配置 AK
+        }
+        
+        if (LOG_PRODUCER_SEND_UNAUTHORIZED == result) {
+            // AK授权失效
+            // 出现该错误时，需要重新配置 AK
+        }
         
         [selfClzz updateStatus:fail];
     }
