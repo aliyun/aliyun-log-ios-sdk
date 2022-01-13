@@ -112,6 +112,7 @@ static TraceExampleController *selfClzz;
     [span2 end];
     
     TelemetrySpan *span3 = [[[tracer spanBuilderWithSpanName:@"test-3"] setParent:span] startSpan];
+    [span3 setStatusWithStatus:TelemetryStatus.ERROR];
     [span3 end];
     
     [span end];
