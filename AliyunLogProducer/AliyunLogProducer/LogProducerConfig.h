@@ -27,6 +27,8 @@
 
 - (id) initWithEndpoint:(NSString *) endpoint project:(NSString *)project logstore:(NSString *)logstore;
 
+- (void)SetSource: (NSString *) source;
+
 - (void)SetTopic:(NSString *) topic;
 
 - (void)AddTag:(NSString *) key value:(NSString *)value;

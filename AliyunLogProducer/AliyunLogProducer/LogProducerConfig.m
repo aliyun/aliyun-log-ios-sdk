@@ -126,6 +126,8 @@ static int os_http_post(const char *url,
         log_producer_config_set_project(config, projectChar);
         const char *logstoreChar=[logstore UTF8String];
         log_producer_config_set_logstore(config, logstoreChar);
+        const char *sourceChar = "iOS";
+        log_producer_config_set_source(self->config, sourceChar);
 
         log_producer_config_set_packet_timeout(config, 3000);
         log_producer_config_set_packet_log_count(config, 1024);
@@ -134,6 +136,11 @@ static int os_http_post(const char *url,
     }
 
     return self;
+}
+
+- (void)SetSource: (NSString *) source {
+    const char *sourceChar = [source UTF8String];
+    log_producer_config_set_source(self->config, sourceChar);
 }
 
 - (void)SetTopic:(NSString *) topic
