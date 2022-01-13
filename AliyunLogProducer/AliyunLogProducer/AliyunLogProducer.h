@@ -48,7 +48,6 @@ FOUNDATION_EXPORT const unsigned char AliyunLogProducerVersionString[];
 #endif
 
 #if __has_include(<AliyunLogProducer/SLSTracePlugin.h>)
-#import "SLSSpanExporter.h"
 #import "SLSTracePlugin.h"
 #endif
 

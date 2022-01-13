@@ -7,14 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "AliyunLogProducer/AliyunLogProducer.h"
 #import "OpenTelemetrySdk/OpenTelemetrySdk-Swift.h"
+#import "ISender.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SLSSpanExporter : NSObject<TelemetrySpanExporter>
-- (void) resetSecurityToken:(NSString *)accessKeyId secret:(NSString *)accessKeySecret token:(NSString *)token;
-- (void) resetProject: (NSString*)endpoint project: (NSString *)project logstore:(NSString *)logstore;
+@interface SLSSpanExporter : ISender<TelemetrySpanExporter>
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -9,10 +9,12 @@
 #import "SLSSpanExporter.h"
 #import "HttpConfigProxy.h"
 #import "OpenTelemetrySdk/OpenTelemetrySdk-Swift.h"
+#import "AliyunLogProducer/AliyunLogProducer.h"
 
 @interface SLSSpanExporter () <TelemetrySpanExporter>
 @property(nonatomic, strong) LogProducerClient *client;
 @property(nonatomic, strong) LogProducerConfig *config;
+@property(nonatomic, strong) SLSConfig *slsConfig;
 
 - (Log *) spanToLog: (TelemetrySpanData *)span;
 - (NSArray *) linksToArray: (NSArray<TelemetryLink *> *) links;
@@ -27,32 +29,49 @@
 
 @implementation SLSSpanExporter
 
-- (instancetype)init
-{
-    if ( self = [super init]) {
-        self.config = [[LogProducerConfig alloc] initWithEndpoint:nil project:nil logstore:nil];
-        
-        [self.config SetTopic:@"trace"];
-        [self.config SetPacketLogBytes:(1024 * 1024 * 5)];
-        [self.config SetPacketLogCount: 4096];
-        [self.config SetMaxBufferLimit:(64*1024*1024)];
-        [self.config SetSendThreadCount:1];
-        
-        [self.config SetPersistent:1];
-        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        NSString *path = [[paths lastObject] stringByAppendingString:@"/trace_log.dat"];
-        [self.config SetPersistentFilePath:path];
-        [self.config SetPersistentForceFlush:0];
-        [self.config SetPersistentMaxFileCount:10];
-        [self.config SetPersistentMaxFileSize:(1024*1024*10)];
-        [self.config SetPersistentMaxLogCount:65536];
-        [self.config SetDropDelayLog:0];
-        [self.config SetDropUnauthorizedLog:0];
-        
-        self.client = [[LogProducerClient alloc] initWithLogProducerConfig:self.config];
+- (void) initWithSLSConfig: (SLSConfig *)slsConfig {
+    _slsConfig = slsConfig;
+    
+    NSString *endpoint = slsConfig.traceEndpoint;
+    NSString *logproject = slsConfig.traceLogproject;
+    NSString *logstore = slsConfig.traceLogstore;
+
+    if (!endpoint && !logproject && !logstore) {
+        endpoint = slsConfig.endpoint;
+        logproject = slsConfig.pluginLogproject;
+        logstore = slsConfig.pluginLogstore;
+
+        SLSLog(@"SLSSpanExporter init. use global SLSConfig project configuration.");
     }
-    return self;
+    
+    self.config = [[LogProducerConfig alloc] initWithEndpoint:endpoint project:logproject logstore:logstore accessKeyID:slsConfig.accessKeyId accessKeySecret:slsConfig.accessKeySecret securityToken:slsConfig.securityToken];
+
+    [self.config SetTopic:@"trace"];
+    [self.config SetPacketLogBytes:(1024 * 1024 * 5)];
+    [self.config SetPacketLogCount: 4096];
+    [self.config SetMaxBufferLimit:(64*1024*1024)];
+    [self.config SetSendThreadCount:1];
+
+    [self.config SetPersistent:1];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *path = [[paths lastObject] stringByAppendingString:@"/trace_log.dat"];
+    [self.config SetPersistentFilePath:path];
+    [self.config SetPersistentForceFlush:0];
+    [self.config SetPersistentMaxFileCount:10];
+    [self.config SetPersistentMaxFileSize:(1024*1024*10)];
+    [self.config SetPersistentMaxLogCount:65536];
+    [self.config SetDropDelayLog:0];
+    [self.config SetDropUnauthorizedLog:0];
+
+    self.client = [[LogProducerClient alloc] initWithLogProducerConfig:self.config callback:_on_log_send_done];
 }
+
+- (BOOL) sendDada: (Log *)log {
+    LogProducerResult res = [[self client] AddLog:log];
+    SLSLogV(@"add trace log res: %ld", (long)res);
+    return res == LogProducerOK;
+}
+
 - (void) resetSecurityToken:(NSString *)accessKeyId secret:(NSString *)accessKeySecret token:(NSString *)token {
     if ([token length] == 0) {
         [self.config setAccessKeyId:accessKeyId];
@@ -62,22 +81,47 @@
     }
 }
 
-- (void) resetProject: (NSString*)endpoint project: (NSString *)project logstore:(NSString *)logstore {
-    [self.config setEndpoint:endpoint];
-    [self.config setProject:project];
-    [self.config setLogstore:logstore];
+- (void) resetProject: (NSString *)endpoint project:(NSString *)project logstore:(NSString *)logstore {
+    NSString *_endpoint = _slsConfig.traceEndpoint;
+    NSString *_logproject = _slsConfig.traceLogproject;
+    NSString *_logstore = _slsConfig.traceLogstore;
+
+    if (!_endpoint && !_logproject && !_logstore) {
+        _endpoint = endpoint;
+        _logproject = project;
+        _logstore = logstore;
+
+        SLSLog(@"SLSSpanExporter resetProject. use global SLSConfig project configuration.");
+    }
+    
+    [self.config setEndpoint:_endpoint];
+    [self.config setProject:_logproject];
+    [self.config setLogstore:_logstore];
+}
+
+- (void) updateConfig: (SLSConfig *)config {
+    NSString *_endpoint = _slsConfig.traceEndpoint;
+    NSString *_logproject = _slsConfig.traceLogproject;
+    NSString *_logstore = _slsConfig.traceLogstore;
+
+    if (!_endpoint && !_logproject && !_logstore) {
+        SLSLog(@"SLSSpanExporter updateConfig. use global SLSConfig project configuration.");
+        return;
+    }
+    
+    _endpoint = config.endpoint;
+    _logproject = config.pluginLogproject;
+    _logstore = config.pluginLogstore;
+    
+    [self.config setEndpoint:_endpoint];
+    [self.config setProject:_logproject];
+    [self.config setLogstore:_logstore];
 }
 
 - (TelemetrySpanExporterResultCode *)exportTelemetrySpanWithSpans:(NSArray<TelemetrySpanData *> *)spans {
     for (TelemetrySpanData *span in spans) {
         Log *log  = [self spanToLog: span];
-        for (id key in [log getContent]) {
-            NSLog(@"test. key: %@, value: %@", key, [[log getContent] objectForKey:key]);
-        }
-        
-        LogProducerResult res = [[self client] AddLog:log];
-        NSLog(@"test. %ld", res);
-       
+        [self sendDada:log];
     }
     // TODO force success
     return [[TelemetrySpanExporterResultCode alloc] init:@"success"];
@@ -212,5 +256,13 @@
     [dictionary removeObjectForKey:@"service.name"];
     
     return dictionary;
+}
+
+static void _on_log_send_done(const char * config_name, log_producer_result result, size_t log_bytes, size_t compressed_bytes, const char * req_id, const char * message, const unsigned char * raw_buffer, void * userparams) {
+    if (result == LOG_PRODUCER_OK) {
+        SLSLogV(@"send trace log success. config: %s, result: %d, log bytes: %d, compressed bytes: %d, request id: %s", config_name, (result), (int)log_bytes, (int)compressed_bytes, req_id);
+    } else {
+        SLSLogV(@"send trace log fail. config: %s, result: %d, log bytes: %d, compressed bytes: %d, request id: %s, error message : %s", config_name, (result), (int)log_bytes, (int)compressed_bytes, req_id, message);
+    }
 }
 @end

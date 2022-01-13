@@ -7,15 +7,16 @@
 
 #import <Foundation/Foundation.h>
 #import "SLSConfig.h"
-#import "TCData.h"
+#import "AliyunLogProducer/Log.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ISender : NSObject
 - (void) initWithSLSConfig: (SLSConfig *)config;
-- (BOOL) sendDada: (TCData *)tcdata;
+- (BOOL) sendDada: (Log *)log;
 - (void) resetSecurityToken:(NSString *)accessKeyId secret:(NSString *)accessKeySecret token:(NSString *)token;
 - (void) resetProject: (NSString *)endpoint project:(NSString *)project logstore:(NSString *)logstore;
+- (void) updateConfig: (SLSConfig *)config;
 @end
 
 NS_ASSUME_NONNULL_END

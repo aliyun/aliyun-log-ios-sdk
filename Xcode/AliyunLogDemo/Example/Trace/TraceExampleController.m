@@ -87,12 +87,12 @@ static TraceExampleController *selfClzz;
 - (void) trace {
     TelemetrySDK *sdk = [TelemetrySDK instance];
     TelemetryTracer *tracer = [sdk getTracer:@"demo"];
-    TelemetrySpan *span = [[tracer spanBuilderWithSpanName:@"test"] startSpan];
+    TelemetrySpan *span = [[tracer spanBuilderWithSpanName:@"test-1"] startSpan];
     
-    TelemetrySpan *span2 = [[[tracer spanBuilderWithSpanName:@"test2"] setParent:span] startSpan];
+    TelemetrySpan *span2 = [[[tracer spanBuilderWithSpanName:@"test-2"] setParent:span] startSpan];
     [span2 end];
     
-    TelemetrySpan *span3 = [[[tracer spanBuilderWithSpanName:@"test2"] setParent:span] startSpan];
+    TelemetrySpan *span3 = [[[tracer spanBuilderWithSpanName:@"test-3"] setParent:span] startSpan];
     [span3 end];
     
     [span end];
@@ -123,16 +123,9 @@ static TraceExampleController *selfClzz;
     [config setAccessKeyId: [utils accessKeyId]];
     [config setAccessKeySecret: [utils accessKeySecret]];
     [config setPluginAppId: [utils pluginAppId]];
-    [config setEndpoint:@"https://cn-beijing.log.aliyuncs.com"];
-    [config setPluginLogproject:@"qs-demos"];
-    [config setPluginLogstore:@"sls-mall-traces"];
-//    [config setTraceEndpoint:@"https://cn-beijing.log.aliyuncs.com"];
-//    [config setTraceLogproject:@"qs-demos"];
-//    [config setTraceLogstore:@"sls-mall-traces"];
-
-    [config setUserId:@"test_userid"];
-    [config setChannel:@"test_channel"];
-    [config addCustomWithKey:@"customKey" andValue:@"testValue"];
+    [config setTraceEndpoint:@"https://cn-beijing.log.aliyuncs.com"];
+    [config setTraceLogproject:@"qs-demos"];
+    [config setTraceLogstore:@"sls-mall-traces"];
 
     SLSAdapter *slsAdapter = [SLSAdapter sharedInstance];
     [slsAdapter addPlugin:[[SLSTracePlugin alloc]init]];
