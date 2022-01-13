@@ -82,40 +82,22 @@
 }
 
 - (void) resetProject: (NSString *)endpoint project:(NSString *)project logstore:(NSString *)logstore {
-    NSString *_endpoint = _slsConfig.traceEndpoint;
-    NSString *_logproject = _slsConfig.traceLogproject;
-    NSString *_logstore = _slsConfig.traceLogstore;
-
-    if (!_endpoint && !_logproject && !_logstore) {
-        _endpoint = endpoint;
-        _logproject = project;
-        _logstore = logstore;
-
-        SLSLog(@"SLSSpanExporter resetProject. use global SLSConfig project configuration.");
-    }
-    
-    [self.config setEndpoint:_endpoint];
-    [self.config setProject:_logproject];
-    [self.config setLogstore:_logstore];
+    // ignore, trace span exporter use updateConfig method update the project configuration.
 }
 
 - (void) updateConfig: (SLSConfig *)config {
-    NSString *_endpoint = _slsConfig.traceEndpoint;
-    NSString *_logproject = _slsConfig.traceLogproject;
-    NSString *_logstore = _slsConfig.traceLogstore;
-
-    if (!_endpoint && !_logproject && !_logstore) {
-        SLSLog(@"SLSSpanExporter updateConfig. use global SLSConfig project configuration.");
+    if (!config) {
+        SLSLog(@"invalid config.");
         return;
     }
     
-    _endpoint = config.endpoint;
-    _logproject = config.pluginLogproject;
-    _logstore = config.pluginLogstore;
+    [self.config setEndpoint:config.traceEndpoint];
+    [self.config setProject:config.traceLogproject];
+    [self.config setLogstore:config.traceLogstore];
     
-    [self.config setEndpoint:_endpoint];
-    [self.config setProject:_logproject];
-    [self.config setLogstore:_logstore];
+    if (self.slsConfig.debuggable) {
+        SLSLogV(@"updateConfig, new endpoint: %@, new project: %@, new logstore: %@", config.traceEndpoint, config.traceLogproject, config.traceLogstore);
+    }
 }
 
 - (TelemetrySpanExporterResultCode *)exportTelemetrySpanWithSpans:(NSArray<TelemetrySpanData *> *)spans {

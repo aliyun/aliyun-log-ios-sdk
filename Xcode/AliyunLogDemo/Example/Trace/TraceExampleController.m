@@ -78,9 +78,28 @@ static TraceExampleController *selfClzz;
     });
 }
 
+- (void) initTrace {
+    DemoUtils *utils = [DemoUtils sharedInstance];
+    SLSConfig *config = [[SLSConfig alloc] init];
+    // 正式发布时建议关闭
+    [config setDebuggable:YES];
+
+    [config setAccessKeyId: [utils accessKeyId]];
+    [config setAccessKeySecret: [utils accessKeySecret]];
+    [config setPluginAppId: [utils pluginAppId]];
+    // trace 插件配置时需要使用setTraceXXXX 方法
+    [config setTraceEndpoint:@"https://cn-beijing.log.aliyuncs.com"];
+    [config setTraceLogproject:@"qs-demos"];
+    [config setTraceLogstore:@"sls-mall-traces"];
+
+    SLSAdapter *slsAdapter = [SLSAdapter sharedInstance];
+    [slsAdapter addPlugin:[[SLSTracePlugin alloc]init]];
+    [slsAdapter initWithSLSConfig:config];
+}
+
 - (void) span {
     TelemetrySDK *sdk = [TelemetrySDK instance];
-    [[[[sdk getTracer:@"demo"] spanBuilderWithSpanName:@"test"] startSpan] end];
+    [[[[sdk getTracer:@"demo"] spanBuilderWithSpanName:@"test-span"] startSpan] end];
     [self updateStatus:@"单个 span 节点"];
 }
 
@@ -101,7 +120,7 @@ static TraceExampleController *selfClzz;
 
 - (void) inject {
     TelemetrySDK *sdk = [TelemetrySDK instance];
-    TelemetrySpan *span = [[[sdk getTracer:@"demo"] spanBuilderWithSpanName:@"test"] startSpan];
+    TelemetrySpan *span = [[[sdk getTracer:@"demo"] spanBuilderWithSpanName:@"test-inject"] startSpan];
 
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [[sdk activeTextMapPropagator] injectWithContext:span.context carrier:dict setter:[[Setter alloc] init]];
@@ -109,27 +128,6 @@ static TraceExampleController *selfClzz;
     [span end];
     
     [self updateStatus:@"span 和 traceparent header 进行关联，用于前后端打通"];
-}
-
-- (void) initTrace {
-    DemoUtils *utils = [DemoUtils sharedInstance];
-    SLSConfig *config = [[SLSConfig alloc] init];
-    // 正式发布时建议关闭
-    [config setDebuggable:YES];
-
-//    [config setEndpoint: [utils endpoint]];
-//    [config setPluginLogproject: [utils project]];
-//    [config setPluginLogstore:[utils logstore]];
-    [config setAccessKeyId: [utils accessKeyId]];
-    [config setAccessKeySecret: [utils accessKeySecret]];
-    [config setPluginAppId: [utils pluginAppId]];
-    [config setTraceEndpoint:@"https://cn-beijing.log.aliyuncs.com"];
-    [config setTraceLogproject:@"qs-demos"];
-    [config setTraceLogstore:@"sls-mall-traces"];
-
-    SLSAdapter *slsAdapter = [SLSAdapter sharedInstance];
-    [slsAdapter addPlugin:[[SLSTracePlugin alloc]init]];
-    [slsAdapter initWithSLSConfig:config];
 }
 
 @end
