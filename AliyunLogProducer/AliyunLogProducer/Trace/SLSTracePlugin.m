@@ -26,8 +26,7 @@
 
 - (BOOL)initWithSLSConfig:(SLSConfig *)config {
     _exporter = [[SLSSpanExporter alloc] init];
-    [_exporter resetProject:[config endpoint] project:[config pluginLogproject] logstore:[config pluginLogstore]];
-    [_exporter resetSecurityToken:[config accessKeyId] secret:[config accessKeySecret] token:[config securityToken]];
+    [_exporter initWithSLSConfig:config];
     
     NSString *systemName = [[UIDevice currentDevice] systemName];
     NSString *systemVersion = [[UIDevice currentDevice] systemVersion];
@@ -68,7 +67,7 @@
 }
 
 - (void)updateConfig:(SLSConfig *)config {
-    
+    [_exporter updateConfig:config];
 }
 
 @end
