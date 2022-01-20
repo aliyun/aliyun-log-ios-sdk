@@ -156,7 +156,11 @@
     NSData *json = [NSJSONSerialization dataWithJSONObject:reserves options:0 error:nil];
     tcdata.reserves = [[NSString alloc] initWithData:json encoding:NSUTF8StringEncoding];
     
-    BOOL result = [_sender sendDada:tcdata];
+    __block Log *log = [[Log alloc] init];
+    [[tcdata toDictionary] enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+        [log PutContent:key value:obj];
+    }];
+    BOOL result = [_sender sendDada:log];
     
     return result;
 }

@@ -54,19 +54,14 @@ static void _on_log_send_done(const char * config_name, log_producer_result resu
     }
 }
 
-- (BOOL) sendDada: (TCData *)tcdata {
+- (BOOL) sendDada: (Log *)log {
     if(nil == _client) {
         return NO;
     }
     
-    if(nil == tcdata) {
+    if(nil == log) {
         return NO;
     }
-    
-    __block Log *log = [[Log alloc] init];
-    [[tcdata toDictionary] enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
-        [log PutContent:key value:obj];
-    }];
     
     [TimeUtils fixTime:log];
     
@@ -74,10 +69,14 @@ static void _on_log_send_done(const char * config_name, log_producer_result resu
 }
 
 - (void) resetSecurityToken:(NSString *)accessKeyId secret:(NSString *)accessKeySecret token:(NSString *)token {
-    
+    // ignore, network idagnosis use webtracking
 }
 
 - (void) resetProject: (NSString *)endpoint project:(NSString *)project logstore:(NSString *)logstore {
-    
+    // ignore, network idagnosis hardcode project info
+}
+
+- (void) updateConfig: (SLSConfig *)config {
+    // ignore
 }
 @end

@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'AliyunLogProducer'
-  s.version          = '2.3.5'
+  s.version          = '2.3.6.2'
   s.summary          = 'aliyun log service ios producer.'
 
 # This description is used to generate tags and improve search results.
@@ -92,5 +92,27 @@ https://help.aliyun.com/product/28958.html
     n.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'  }
   end
   
+  s.subspec 'Trace' do |t|
+      t.ios.deployment_target = '10.0'
+      t.dependency 'AliyunLogProducer/Bricks'
+      t.dependency "OpenTelemetryApi", "0.0.7"
+      t.dependency "OpenTelemetrySdk", "0.0.16"
+      t.source_files = 'AliyunLogProducer/AliyunLogProducer/Trace/**/*.{m,h}'
+      t.public_header_files = "AliyunLogProducer/AliyunLogProducer/Trace/**/*.h"
+#      t.exclude_files = 'AliyunLogProducer/AliyunLogProducer/Trace/**/OpenTelemetrySdk-Swift.h'
+#      t.vendored_frameworks = 'AliyunLogProducer/AliyunLogProducer/Trace/*.{xcframework}'
+#      t.vendored_frameworks = 'AliyunLogProducer/AliyunLogProducer/Trace/OpenTelemetryApi.xcframework'
+#      t.vendored_frameworks = 'AliyunLogProducer/AliyunLogProducer/Trace/OpenTelemetrySdk.framework'
+#      t.frameworks = "SystemConfiguration", "CoreGraphics"
+#      t.libraries = "z", "c++"
+      t.pod_target_xcconfig = {
+          'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64',
+          'DEFINES_MODULE' => 'YES',
+          'OTHER_LDFLAGS' => '-ObjC'
+      }
+      t.user_target_xcconfig = {
+          'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
+      }
+  end
 end
 

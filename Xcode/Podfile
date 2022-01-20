@@ -14,6 +14,7 @@ target 'AliyunLogDemo' do
   pod 'AliyunLogProducer/Bricks', :path =>'../'
   pod 'AliyunLogProducer/CrashReporter', :path =>'../'
   pod 'AliyunLogProducer/NetworkDiagnosis', :path =>'../'
+  pod 'AliyunLogProducer/Trace', :path =>'../'
 end
 
 post_install do |installer|
