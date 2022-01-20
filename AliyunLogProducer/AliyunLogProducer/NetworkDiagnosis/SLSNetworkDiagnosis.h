@@ -27,6 +27,8 @@ typedef void (^SLSNetworkDiagnosisCallBack)(SLSNetworkDiagnosisResult *result);
 
 - (void) initWithConfig: (SLSConfig *)config sender: (ISender *)sender;
 
+- (void) updateConfig: (SLSConfig *)confg;
+
 - (void) ping: (NSString *) domain;
 
 - (void) ping: (NSString *) domain callback: (SLSNetworkDiagnosisCallBack) callback;

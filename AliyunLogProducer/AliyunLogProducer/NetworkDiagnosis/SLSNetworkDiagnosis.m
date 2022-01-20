@@ -56,6 +56,10 @@
     _sender = sender;
 }
 
+- (void) updateConfig: (SLSConfig *)confg {
+    _config = confg;
+}
+
 - (void) ping: (NSString *) domain {
     [self ping:domain callback:^(SLSNetworkDiagnosisResult * _Nonnull result) {
         
@@ -141,7 +145,7 @@
 }
 
 - (BOOL) reportWithString: (NSString *) data method: (NSString *) method {
-    TCData *tcdata = [TCData createDefaultWithSLSConfig:self.config];
+    TCData *tcdata = [TCData createDefaultWithSLSConfig:_config];
     if (tcdata.app_id && [tcdata.app_id containsString:@"@"]) {
         NSRange atRange = [tcdata.app_id rangeOfString:@"@"];
         [tcdata setApp_id:[tcdata.app_id substringWithRange:NSMakeRange(0, atRange.location)]];
@@ -149,15 +153,22 @@
     
     [tcdata setReserve6: data];
 
-    NSDictionary *reserves = @{
-        @"method": [method uppercaseString]
-    };
+    NSMutableDictionary *reserves = [NSMutableDictionary dictionary];
+    [reserves setObject:[method uppercaseString] forKey:@"method"];
+
+    // put ext fields to reserves
+    if (_config.ext) {
+        for (NSString *key in _config.ext) {
+            [reserves setObject:_config.ext[key] forKey:key];
+        }
+    }
     
     NSData *json = [NSJSONSerialization dataWithJSONObject:reserves options:0 error:nil];
     tcdata.reserves = [[NSString alloc] initWithData:json encoding:NSUTF8StringEncoding];
     
     __block Log *log = [[Log alloc] init];
-    [[tcdata toDictionary] enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+    // ignore ext fields
+    [[tcdata toDictionaryWithIgnoreExt: YES] enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
         [log PutContent:key value:obj];
     }];
     BOOL result = [_sender sendDada:log];

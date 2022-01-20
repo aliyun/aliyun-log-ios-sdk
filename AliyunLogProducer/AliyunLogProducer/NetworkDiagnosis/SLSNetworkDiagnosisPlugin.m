@@ -9,6 +9,12 @@
 #import "SLSNetworkDataSender.h"
 #import "SLSNetworkDiagnosis.h"
 
+@interface SLSNetworkDiagnosisPlugin ()
+@property(nonatomic, strong) ISender *sender;
+@property(nonatomic, strong) SLSNetworkDiagnosis *networkDiagnosis;
+
+@end
+
 @implementation SLSNetworkDiagnosisPlugin
 
 
@@ -17,23 +23,24 @@
 }
 
 - (BOOL) initWithSLSConfig: (SLSConfig *) config {
-    SLSNetworkDataSender *sender = [[SLSNetworkDataSender alloc] init];
-    [sender initWithSLSConfig:config];
+    _sender = [[SLSNetworkDataSender alloc] init];
+    [_sender initWithSLSConfig:config];
     
-    [[SLSNetworkDiagnosis sharedInstance] initWithConfig:config sender:sender];
+    _networkDiagnosis = [SLSNetworkDiagnosis sharedInstance];
+    [_networkDiagnosis initWithConfig:config sender:_sender];
     return YES;
 }
 
 - (void) resetSecurityToken:(NSString *)accessKeyId secret:(NSString *)accessKeySecret token:(NSString *)token {
-    
+    // ignore, network idagnosis use webtracking
 }
 
 - (void) resetProject: (NSString*)endpoint project: (NSString *)project logstore:(NSString *)logstore {
-    
+    // ignore, network idagnosis hardcode project info
 }
 
 - (void) updateConfig: (SLSConfig *)config {
-    
+    [_networkDiagnosis updateConfig:config];
 }
 
 @end
