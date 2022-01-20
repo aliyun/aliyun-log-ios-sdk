@@ -21,6 +21,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic, strong) NSString * pluginAppId;
 @property(nonatomic, strong) NSString * pluginLogproject;
+@property(nonatomic, strong) NSString * pluginLogstore;
+
+@property(nonatomic, strong) NSString * traceEndpoint;
+@property(nonatomic, strong) NSString * traceLogproject;
+@property(nonatomic, strong) NSString * traceLogstore;
 
 @property(nonatomic, strong) NSString * channel;
 @property(nonatomic, strong) NSString * channelName;

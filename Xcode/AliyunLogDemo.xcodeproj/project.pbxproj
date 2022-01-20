@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BFBF0274751986262562F1B8 /* Pods_AliyunLogDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EFC3A688264C8814F787559 /* Pods_AliyunLogDemo.framework */; };
+		033716AE26732D412710EEE1 /* Pods_AliyunLogDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF9A9EA8BE3A067FC179115B /* Pods_AliyunLogDemo.framework */; };
 		F816EECA277172A70024B85E /* ProducerExampleNoCacheController.m in Sources */ = {isa = PBXBuildFile; fileRef = F816EEC9277172A70024B85E /* ProducerExampleNoCacheController.m */; };
 		F816EECD277173870024B85E /* ProducerExampleDynamicController.m in Sources */ = {isa = PBXBuildFile; fileRef = F816EECC277173870024B85E /* ProducerExampleDynamicController.m */; };
 		F816EED027717FC60024B85E /* ProducerExampleClientsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F816EECF27717FC60024B85E /* ProducerExampleClientsController.m */; };
@@ -15,6 +15,7 @@
 		F816EEDC2771B4C60024B85E /* CppExceptionFaker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F816EEDA2771B4C60024B85E /* CppExceptionFaker.cpp */; };
 		F816EEDE2771C0360024B85E /* CrashExampController.mm in Sources */ = {isa = PBXBuildFile; fileRef = F816EEDD2771C0360024B85E /* CrashExampController.mm */; };
 		F816EEE52772D5BA0024B85E /* ProducerExampleDestroyController.m in Sources */ = {isa = PBXBuildFile; fileRef = F816EEE42772D5BA0024B85E /* ProducerExampleDestroyController.m */; };
+		F84B73F4278C74640075CD7A /* TraceExampleController.m in Sources */ = {isa = PBXBuildFile; fileRef = F84B73F3278C74640075CD7A /* TraceExampleController.m */; };
 		F86A9D09277990E500387C32 /* NetworkDiagnosisController.m in Sources */ = {isa = PBXBuildFile; fileRef = F86A9D08277990E500387C32 /* NetworkDiagnosisController.m */; };
 		F8E43599276C3CA400F805D7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F8E43598276C3CA400F805D7 /* AppDelegate.m */; };
 		F8E4359F276C3CA400F805D7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F8E4359E276C3CA400F805D7 /* ViewController.m */; };
@@ -29,9 +30,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4A763F7764B17A8C969B628C /* Pods-AliyunLogDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AliyunLogDemo.debug.xcconfig"; path = "Target Support Files/Pods-AliyunLogDemo/Pods-AliyunLogDemo.debug.xcconfig"; sourceTree = "<group>"; };
-		5405F3B30D8094E38C14C64C /* Pods-AliyunLogDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AliyunLogDemo.release.xcconfig"; path = "Target Support Files/Pods-AliyunLogDemo/Pods-AliyunLogDemo.release.xcconfig"; sourceTree = "<group>"; };
-		5EFC3A688264C8814F787559 /* Pods_AliyunLogDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AliyunLogDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		63143B2CDED7E36167767026 /* Pods-AliyunLogDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AliyunLogDemo.release.xcconfig"; path = "Target Support Files/Pods-AliyunLogDemo/Pods-AliyunLogDemo.release.xcconfig"; sourceTree = "<group>"; };
+		DF9A9EA8BE3A067FC179115B /* Pods_AliyunLogDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AliyunLogDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F816EEC8277172A70024B85E /* ProducerExampleNoCacheController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProducerExampleNoCacheController.h; sourceTree = "<group>"; };
 		F816EEC9277172A70024B85E /* ProducerExampleNoCacheController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProducerExampleNoCacheController.m; sourceTree = "<group>"; };
 		F816EECB277173870024B85E /* ProducerExampleDynamicController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProducerExampleDynamicController.h; sourceTree = "<group>"; };
@@ -46,6 +46,8 @@
 		F816EEDD2771C0360024B85E /* CrashExampController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CrashExampController.mm; sourceTree = "<group>"; };
 		F816EEE32772D5BA0024B85E /* ProducerExampleDestroyController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProducerExampleDestroyController.h; sourceTree = "<group>"; };
 		F816EEE42772D5BA0024B85E /* ProducerExampleDestroyController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProducerExampleDestroyController.m; sourceTree = "<group>"; };
+		F84B73F2278C74640075CD7A /* TraceExampleController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TraceExampleController.h; sourceTree = "<group>"; };
+		F84B73F3278C74640075CD7A /* TraceExampleController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TraceExampleController.m; sourceTree = "<group>"; };
 		F86A9D07277990E500387C32 /* NetworkDiagnosisController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkDiagnosisController.h; sourceTree = "<group>"; };
 		F86A9D08277990E500387C32 /* NetworkDiagnosisController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetworkDiagnosisController.m; sourceTree = "<group>"; };
 		F8E43594276C3CA400F805D7 /* AliyunLogDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AliyunLogDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -67,6 +69,7 @@
 		F8E435E3276DAB0000F805D7 /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		F8E435E5276E04E700F805D7 /* ExampleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExampleViewController.h; sourceTree = "<group>"; };
 		F8E435E6276E04E700F805D7 /* ExampleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExampleViewController.m; sourceTree = "<group>"; };
+		FD3A3DC494FFC96ADBB3973F /* Pods-AliyunLogDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AliyunLogDemo.debug.xcconfig"; path = "Target Support Files/Pods-AliyunLogDemo/Pods-AliyunLogDemo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,7 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BFBF0274751986262562F1B8 /* Pods_AliyunLogDemo.framework in Frameworks */,
+				033716AE26732D412710EEE1 /* Pods_AliyunLogDemo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,18 +87,27 @@
 		985ADDE21D8CA187A24CEA2C /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				4A763F7764B17A8C969B628C /* Pods-AliyunLogDemo.debug.xcconfig */,
-				5405F3B30D8094E38C14C64C /* Pods-AliyunLogDemo.release.xcconfig */,
+				FD3A3DC494FFC96ADBB3973F /* Pods-AliyunLogDemo.debug.xcconfig */,
+				63143B2CDED7E36167767026 /* Pods-AliyunLogDemo.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		D59D0CC9AEB35BCB167C93E1 /* Frameworks */ = {
+		C9B7EBD8B1D2B62842D82CB4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				5EFC3A688264C8814F787559 /* Pods_AliyunLogDemo.framework */,
+				DF9A9EA8BE3A067FC179115B /* Pods_AliyunLogDemo.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F84B73EE278C73FF0075CD7A /* Trace */ = {
+			isa = PBXGroup;
+			children = (
+				F84B73F2278C74640075CD7A /* TraceExampleController.h */,
+				F84B73F3278C74640075CD7A /* TraceExampleController.m */,
+			);
+			path = Trace;
 			sourceTree = "<group>";
 		};
 		F86A9D06277990AA00387C32 /* NetworkDiagnosis */ = {
@@ -114,7 +126,7 @@
 				F8E43596276C3CA400F805D7 /* AliyunLogDemo */,
 				F8E43595276C3CA400F805D7 /* Products */,
 				985ADDE21D8CA187A24CEA2C /* Pods */,
-				D59D0CC9AEB35BCB167C93E1 /* Frameworks */,
+				C9B7EBD8B1D2B62842D82CB4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -156,6 +168,7 @@
 				F86A9D06277990AA00387C32 /* NetworkDiagnosis */,
 				F8E435DD276DA89D00F805D7 /* Producer */,
 				F8E435DE276DA8A700F805D7 /* Crash */,
+				F84B73EE278C73FF0075CD7A /* Trace */,
 			);
 			path = Example;
 			sourceTree = "<group>";
@@ -204,11 +217,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F8E435AD276C3CA500F805D7 /* Build configuration list for PBXNativeTarget "AliyunLogDemo" */;
 			buildPhases = (
-				6E44389A0C81FD44732640F3 /* [CP] Check Pods Manifest.lock */,
+				EC8354D6071F83ED301C2BF3 /* [CP] Check Pods Manifest.lock */,
 				F8E43590276C3CA400F805D7 /* Sources */,
 				F8E43591276C3CA400F805D7 /* Frameworks */,
 				F8E43592276C3CA400F805D7 /* Resources */,
-				D04687E3E30335E020D5C158 /* [CP] Embed Pods Frameworks */,
+				967A0D3E9F2E6CD175C55B6B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -265,7 +278,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		6E44389A0C81FD44732640F3 /* [CP] Check Pods Manifest.lock */ = {
+		967A0D3E9F2E6CD175C55B6B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AliyunLogDemo/Pods-AliyunLogDemo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AliyunLogDemo/Pods-AliyunLogDemo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AliyunLogDemo/Pods-AliyunLogDemo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EC8354D6071F83ED301C2BF3 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -287,23 +317,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D04687E3E30335E020D5C158 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AliyunLogDemo/Pods-AliyunLogDemo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AliyunLogDemo/Pods-AliyunLogDemo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AliyunLogDemo/Pods-AliyunLogDemo-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -313,6 +326,7 @@
 			files = (
 				F816EEDE2771C0360024B85E /* CrashExampController.mm in Sources */,
 				F8E4359F276C3CA400F805D7 /* ViewController.m in Sources */,
+				F84B73F4278C74640075CD7A /* TraceExampleController.m in Sources */,
 				F8E435E4276DAB0000F805D7 /* MainViewController.m in Sources */,
 				F816EECA277172A70024B85E /* ProducerExampleNoCacheController.m in Sources */,
 				F816EED027717FC60024B85E /* ProducerExampleClientsController.m in Sources */,
@@ -465,7 +479,7 @@
 		};
 		F8E435AE276C3CA500F805D7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4A763F7764B17A8C969B628C /* Pods-AliyunLogDemo.debug.xcconfig */;
+			baseConfigurationReference = FD3A3DC494FFC96ADBB3973F /* Pods-AliyunLogDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -497,7 +511,7 @@
 		};
 		F8E435AF276C3CA500F805D7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5405F3B30D8094E38C14C64C /* Pods-AliyunLogDemo.release.xcconfig */;
+			baseConfigurationReference = 63143B2CDED7E36167767026 /* Pods-AliyunLogDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
