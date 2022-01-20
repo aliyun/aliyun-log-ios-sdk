@@ -81,6 +81,10 @@
 }
 
 - (NSDictionary *)toDictionary {
+    return [self toDictionaryWithIgnoreExt: NO];
+}
+
+- (NSDictionary *) toDictionaryWithIgnoreExt: (BOOL) ignore {
     NSMutableDictionary *fields =  [[NSMutableDictionary alloc] init];
     [self putIfNotNull:fields andKey:@"app_id" andValue: [self app_id]];
     [self putIfNotNull:fields andKey:@"app_name" andValue: [self app_name]];
@@ -143,6 +147,11 @@
     [self putIfNotNull:fields andKey:@"city" andValue: [self city]];
     [self putIfNotNull:fields andKey:@"district" andValue: [self district]];
     
+    // ignore ext fields
+    if (ignore) {
+        return fields;
+    }
+
     for (NSString *key in _ext) {
         NSString *value =_ext[key];
         [self put:fields andKey:key andValue:value];

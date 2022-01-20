@@ -77,6 +77,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (TCData *) createDefaultWithSLSConfig: (SLSConfig *) config;
 + (NSString *) fillWithDashIfEmpty: (NSString *) content;
 - (NSDictionary *) toDictionary;
+- (NSDictionary *) toDictionaryWithIgnoreExt: (BOOL) ignore;
 @end
 
 NS_ASSUME_NONNULL_END
