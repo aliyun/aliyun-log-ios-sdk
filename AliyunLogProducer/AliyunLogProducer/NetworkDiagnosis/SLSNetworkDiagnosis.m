@@ -56,8 +56,38 @@
     _sender = sender;
 }
 
-- (void) updateConfig: (SLSConfig *)confg {
-    _config = confg;
+- (void) updateConfig: (SLSConfig *)config {
+    if (config) {
+        if (config.channel && ![@"" isEqual:config.channel]) {
+            [self.config setChannel:config.channel];
+        }
+
+        if (config.channelName && ![@"" isEqual:config.channelName]) {
+            [self.config setChannelName:config.channelName];
+        }
+
+        if (config.userNick && ![@"" isEqual:config.userNick]) {
+            [self.config setUserNick:config.userNick];
+        }
+
+        if (config.longLoginNick && ![@"" isEqual:config.longLoginNick]) {
+            [self.config setLongLoginNick:config.longLoginNick];
+        }
+
+        if (config.userId && ![@"" isEqual:config.userId]) {
+            [self.config setUserId:config.userId];
+        }
+
+        if (config.longLoginUserId && ![@"" isEqual:config.longLoginUserId]) {
+            [self.config setLongLoginUserId:config.longLoginUserId];
+        }
+
+        if (config.loginType && ![@"" isEqual:config.loginType]) {
+            [self.config setLoginType:config.loginType];
+        }
+
+        [self.config setExt:config.ext];
+    }
 }
 
 - (void) ping: (NSString *) domain {

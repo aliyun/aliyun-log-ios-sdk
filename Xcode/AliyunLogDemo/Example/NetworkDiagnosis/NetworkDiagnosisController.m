@@ -62,6 +62,8 @@ static NetworkDiagnosisController *selfClzz;
     [self createButton:@"MTR" andAction:@selector(mtr) andX:rx andY:SLCellHeight * 12 + SLPadding];
     
     [self createButton:@"AUTO" andAction:@selector(ato) andX:lx andY:SLCellHeight * 13 + SLPadding * 2 andWidth:SLScreenW - (lx * 2 + SLPadding * 2) andHeight:SLCellHeight];
+
+    [self createButton:@"UPDATE CONFIG" andAction:@selector(updateConfig) andX:lx andY:SLCellHeight * 14 + SLPadding * 3 andWidth:SLScreenW - (lx * 2 + SLPadding * 2) andHeight:SLCellHeight];
 }
 
 - (void) updateStatus: (NSString *)append {
@@ -112,6 +114,16 @@ static NetworkDiagnosisController *selfClzz;
     [self mtr];
 }
 
+- (void) updateConfig {
+    SLSAdapter *adapter = [SLSAdapter sharedInstance];
+    SLSConfig *config = [[SLSConfig alloc] init];
+    [config setUserId:@"test_userid_updated"];
+    [config setUserNick:@"test_usernick_updated"];
+    [config setLongLoginNick:@"test_long_usernick_updated"];
+    [config addCustomWithKey:@"updated_key" andValue:@"updated_value"];
+    [adapter updateConfig:config];
+}
+
 - (void) initNetworkDiagnosis {
     DemoUtils *utils = [DemoUtils sharedInstance];
     SLSConfig *config = [[SLSConfig alloc] init];
@@ -125,7 +137,9 @@ static NetworkDiagnosisController *selfClzz;
     [config setPluginLogproject: [utils project]];
     
     [config setUserId:@"test_userid"];
+    [config setUserNick:@"user_nick"];
     [config setChannel:@"test_channel"];
+    [config setLongLoginNick:@"test_long_nick"];
     [config addCustomWithKey:@"customKey" andValue:@"testValue"];
     
     SLSAdapter *slsAdapter = [SLSAdapter sharedInstance];
