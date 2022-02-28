@@ -71,7 +71,7 @@
     [data setUser_id:[data returnDashIfNull:config.userId]];
     [data setLong_login_user_id:[data returnDashIfNull:config.longLoginUserId]];
     [data setLogon_type:[data returnDashIfNull:config.loginType]];
-    [data setExt:config.ext];
+    [data setExt:[config.ext mutableCopy]];
     
     return data;
 }

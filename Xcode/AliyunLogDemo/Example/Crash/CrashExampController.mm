@@ -52,6 +52,8 @@
     
     [self createButton:@"Signal SIGSYS" andAction:@selector(onSignalSysCrashBtnClick) andX:((SLScreenW - SLPadding * 2) / 4 - cellWidth / 2) andY:(SLCellHeight + SLPadding) * 7 andWidth:cellWidth andHeight:SLCellHeight].font = [UIFont systemFontOfSize: 13];
     [self createButton:@"Signal SIGPIPE" andAction:@selector(onSignalPipeCrashBtnClick) andX:((SLScreenW - SLPadding * 2) / 4 * 3 - cellWidth / 2) andY:(SLCellHeight + SLPadding) * 7 andWidth:cellWidth andHeight:SLCellHeight].font = [UIFont systemFontOfSize: 13];
+    
+    [self createButton:@"Custom Log" andAction:@selector(onCustomLog) andX:((SLScreenW - SLPadding * 2) / 4 - cellWidth / 2) andY:(SLCellHeight + SLPadding) * 8 andWidth:cellWidth * 2 andHeight:SLCellHeight].font = [UIFont systemFontOfSize: 13];
 }
 
 - (void) initCrash {
@@ -180,6 +182,14 @@
 - (void) onSignalSysCrashBtnClick {
     SLSLogV(@"********** Make a Signal Crash[SIGSYS] now. **********");
     raise(SIGSYS);
+}
+
+- (void) onCustomLog {
+    SLSLogV(@"********** Make a Custom Log now. **********");
+    [[SLSAdapter sharedInstance] reportCustomEvent:@"Clicked" properties:@{
+        @"view_pos": @1,
+        @"view_content": @"click test"
+    }];
 }
 
 - (void) crash {
