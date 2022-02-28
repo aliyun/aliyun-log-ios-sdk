@@ -22,4 +22,8 @@
 - (void) updateConfig:(SLSConfig *)config {
     
 }
+
+- (void)reportCustomEvent:(NSString *)eventId properties:(NSDictionary *)dictionary {
+    
+}
 @end

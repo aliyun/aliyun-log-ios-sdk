@@ -76,6 +76,15 @@
     }];
 }
 
+- (void) reportCustomEvent: (NSString *) eventId properties:(nonnull NSDictionary *)dictionary {
+    [_plugins enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        IPlugin *plugin = obj;
+        if ([[plugin name] isEqualToString:@"crash_reporter"]) {
+            [plugin reportCustomEvent:eventId properties:dictionary];
+        }
+    }];
+}
+
 #pragma mark - init adapter
 - (BOOL) initWithSLSConfig:(SLSConfig *)config {
     SLSLog(@"start.");

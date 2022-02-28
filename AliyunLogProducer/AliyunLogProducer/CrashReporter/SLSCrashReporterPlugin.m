@@ -126,6 +126,37 @@ void monitorDirectory(SLSCrashReporterPlugin* plugin, dispatch_source_t _source,
     }
 }
 
+- (void) reportCustomEvent: (NSString *) eventId properties:(nonnull NSDictionary *)dictionary {
+    [super reportCustomEvent:eventId properties:dictionary];
+    if ([eventId length] == 0) {
+        SLSLog(@"reportCustomEvent. eventId is null or empty.")
+        return;
+    }
+    
+    if (!dictionary) {
+        SLSLog(@"reportCustomEvent. dictionary is null.")
+        return;
+    }
+    
+    TCData *data = [TCData createDefaultWithSLSConfig:self.config];
+    data.event_id = @"99999";
+    data.app_version = [TCData fillWithDashIfEmpty:self.config.appVersion];
+    data.app_name = [TCData fillWithDashIfEmpty:self.config.appName];
+    
+    if (!data.ext) {
+        data.ext = [NSMutableDictionary dictionary];
+    }
+    NSData *json = [NSJSONSerialization dataWithJSONObject:dictionary options:kNilOptions error:nil];
+    [data.ext setObject:[[NSString alloc] initWithData:json encoding:NSUTF8StringEncoding] forKey:eventId];
+    
+    BOOL succ = [_sender sendDada:data];
+    if (succ && _config.debuggable) {
+        SLSLogV(@"reportCustomEvent. send custom event success.");
+    } else {
+        SLSLog(@"reportCustomEvent. send custom event failed.")
+    }
+}
+
 #pragma mark - WPKMobi log directory monitor
 
 - (void) initWPKMobi: (SLSConfig *) config {
