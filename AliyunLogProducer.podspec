@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'AliyunLogProducer'
-  s.version          = '2.3.7.beta.1'
+  s.version          = '2.3.7'
   s.summary          = 'aliyun log service ios producer.'
 
 # This description is used to generate tags and improve search results.
