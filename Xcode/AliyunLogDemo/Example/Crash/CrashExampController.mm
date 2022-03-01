@@ -29,31 +29,35 @@
     self.view.backgroundColor = [UIColor whiteColor];
     CGFloat cellWidth = SLCellWidth * 1.4;
     
-    [self createButton:@"Mach Crash" andAction:@selector(onMachCrash) andX:((SLScreenW - SLPadding * 2) / 4 - cellWidth / 2) andY:0 andWidth:cellWidth andHeight:SLCellHeight].font = [UIFont systemFontOfSize: 13];
-    [self createButton:@"ObjC NSException" andAction:@selector(onObjCCrashFakeBtnClick) andX:((SLScreenW - SLPadding * 2) / 4 * 3 - cellWidth / 2) andY:0 andWidth:cellWidth andHeight:SLCellHeight].font = [UIFont systemFontOfSize: 13];
+    CGFloat lx = ((SLScreenW - SLPadding * 2) / 4 - cellWidth / 2);
+    CGFloat rx = ((SLScreenW - SLPadding * 2) / 4 * 3 - cellWidth / 2);
+    UIFont *font = [UIFont systemFontOfSize:13];;
     
-    [self createButton:@"ObjC DeadLock" andAction:@selector(onOjbCDeadLockFakeBtnClick) andX:((SLScreenW - SLPadding * 2) / 4 - cellWidth / 2) andY:SLCellHeight + SLPadding andWidth:cellWidth andHeight:SLCellHeight].font = [UIFont systemFontOfSize: 13];
-    [self createButton:@"CPP Abort Crash" andAction:@selector(onCppAbortExceptionFakeBtnClick) andX:((SLScreenW - SLPadding * 2) / 4 * 3 - cellWidth / 2) andY:SLCellHeight + SLPadding andWidth:cellWidth andHeight:SLCellHeight].font = [UIFont systemFontOfSize: 13];
+    [self createButton:@"Mach Crash" andAction:@selector(onMachCrash) andX:lx andY:0 andWidth:cellWidth andHeight:SLCellHeight andFont: font];
+    [self createButton:@"ObjC NSException" andAction:@selector(onObjCCrashFakeBtnClick) andX:rx andY:0 andWidth:cellWidth andHeight:SLCellHeight andFont: font];
     
-    [self createButton:@"CPP exit Crash（不可捕获）" andAction:@selector(onCppExitExceptionFakeBtnClick) andX:((SLScreenW - SLPadding * 2) / 4 - cellWidth / 2) andY:(SLCellHeight + SLPadding) * 2 andWidth:cellWidth andHeight:SLCellHeight].font = [UIFont systemFontOfSize: 13];
-    [self createButton:@"CPP NPE Crash" andAction:@selector(onCppNPExceptionFakeBtnClick) andX:((SLScreenW - SLPadding * 2) / 4 * 3 - cellWidth / 2) andY:(SLCellHeight + SLPadding) * 2 andWidth:cellWidth andHeight:SLCellHeight].font = [UIFont systemFontOfSize: 13];
+    [self createButton:@"ObjC DeadLock" andAction:@selector(onOjbCDeadLockFakeBtnClick) andX:lx andY:SLCellHeight + SLPadding andWidth:cellWidth andHeight:SLCellHeight andFont: font];
+    [self createButton:@"CPP Abort Crash" andAction:@selector(onCppAbortExceptionFakeBtnClick) andX:rx andY:SLCellHeight + SLPadding andWidth:cellWidth andHeight:SLCellHeight andFont: font];
     
-    [self createButton:@"CPP Custom Exception" andAction:@selector(onCppCustomExceptionFakeBtnClick) andX:((SLScreenW - SLPadding * 2) / 4 - cellWidth / 2) andY:(SLCellHeight + SLPadding) * 3 andWidth:cellWidth andHeight:SLCellHeight].font = [UIFont systemFontOfSize: 13];
-    [self createButton:@"CPP WildPointer Crash" andAction:@selector(onCppWildPointerExceptionFakeBtnClick) andX:((SLScreenW - SLPadding * 2) / 4 * 3 - cellWidth / 2) andY:(SLCellHeight + SLPadding) * 3 andWidth:cellWidth andHeight:SLCellHeight].font = [UIFont systemFontOfSize: 13];
+    [self createButton:@"CPP exit Crash（不可捕获）" andAction:@selector(onCppExitExceptionFakeBtnClick) andX:lx andY:(SLCellHeight + SLPadding) * 2 andWidth:cellWidth andHeight:SLCellHeight andFont: font];
+    [self createButton:@"CPP NPE Crash" andAction:@selector(onCppNPExceptionFakeBtnClick) andX:rx andY:(SLCellHeight + SLPadding) * 2 andWidth:cellWidth andHeight:SLCellHeight andFont: font];
     
-    [self createButton:@"Signal FPE" andAction:@selector(onSignalFPECrashBtnClick) andX:((SLScreenW - SLPadding * 2) / 4 - cellWidth / 2) andY:(SLCellHeight + SLPadding) * 4 andWidth:cellWidth andHeight:SLCellHeight].font = [UIFont systemFontOfSize: 13];
-    [self createButton:@"Signal SIGILL" andAction:@selector(onSignalILLCrashBtnClick) andX:((SLScreenW - SLPadding * 2) / 4 * 3 - cellWidth / 2) andY:(SLCellHeight + SLPadding) * 4 andWidth:cellWidth andHeight:SLCellHeight].font = [UIFont systemFontOfSize: 13];
+    [self createButton:@"CPP Custom Exception" andAction:@selector(onCppCustomExceptionFakeBtnClick) andX:lx andY:(SLCellHeight + SLPadding) * 3 andWidth:cellWidth andHeight:SLCellHeight andFont: font];
+    [self createButton:@"CPP WildPointer Crash" andAction:@selector(onCppWildPointerExceptionFakeBtnClick) andX:rx andY:(SLCellHeight + SLPadding) * 3 andWidth:cellWidth andHeight:SLCellHeight andFont: font];
     
-    [self createButton:@"Signal SIGINT" andAction:@selector(onSignalINTCrashBtnClick) andX:((SLScreenW - SLPadding * 2) / 4 - cellWidth / 2) andY:(SLCellHeight + SLPadding) * 5 andWidth:cellWidth andHeight:SLCellHeight].font = [UIFont systemFontOfSize: 13];
-    [self createButton:@"Signal SIGEGV" andAction:@selector(onSignalSEGVCrashBtnClick) andX:((SLScreenW - SLPadding * 2) / 4 * 3 - cellWidth / 2) andY:(SLCellHeight + SLPadding) * 5 andWidth:cellWidth andHeight:SLCellHeight].font = [UIFont systemFontOfSize: 13];
+    [self createButton:@"Signal FPE" andAction:@selector(onSignalFPECrashBtnClick) andX:lx andY:(SLCellHeight + SLPadding) * 4 andWidth:cellWidth andHeight:SLCellHeight andFont: font];
+    [self createButton:@"Signal SIGILL" andAction:@selector(onSignalILLCrashBtnClick) andX:rx andY:(SLCellHeight + SLPadding) * 4 andWidth:cellWidth andHeight:SLCellHeight andFont: font];
     
-    [self createButton:@"Signal SIGTRAP" andAction:@selector(onSignalTrapCrashBtnClick) andX:((SLScreenW - SLPadding * 2) / 4 - cellWidth / 2) andY:(SLCellHeight + SLPadding) * 6 andWidth:cellWidth andHeight:SLCellHeight].font = [UIFont systemFontOfSize: 13];
-    [self createButton:@"Signal SIGBUS" andAction:@selector(onSignalBusCrashBtnClick) andX:((SLScreenW - SLPadding * 2) / 4 * 3 - cellWidth / 2) andY:(SLCellHeight + SLPadding) * 6 andWidth:cellWidth andHeight:SLCellHeight].font = [UIFont systemFontOfSize: 13];
+    [self createButton:@"Signal SIGINT" andAction:@selector(onSignalINTCrashBtnClick) andX:lx andY:(SLCellHeight + SLPadding) * 5 andWidth:cellWidth andHeight:SLCellHeight andFont: font];
+    [self createButton:@"Signal SIGEGV" andAction:@selector(onSignalSEGVCrashBtnClick) andX:rx andY:(SLCellHeight + SLPadding) * 5 andWidth:cellWidth andHeight:SLCellHeight andFont: font];
     
-    [self createButton:@"Signal SIGSYS" andAction:@selector(onSignalSysCrashBtnClick) andX:((SLScreenW - SLPadding * 2) / 4 - cellWidth / 2) andY:(SLCellHeight + SLPadding) * 7 andWidth:cellWidth andHeight:SLCellHeight].font = [UIFont systemFontOfSize: 13];
-    [self createButton:@"Signal SIGPIPE" andAction:@selector(onSignalPipeCrashBtnClick) andX:((SLScreenW - SLPadding * 2) / 4 * 3 - cellWidth / 2) andY:(SLCellHeight + SLPadding) * 7 andWidth:cellWidth andHeight:SLCellHeight].font = [UIFont systemFontOfSize: 13];
+    [self createButton:@"Signal SIGTRAP" andAction:@selector(onSignalTrapCrashBtnClick) andX:lx andY:(SLCellHeight + SLPadding) * 6 andWidth:cellWidth andHeight:SLCellHeight andFont: font];
+    [self createButton:@"Signal SIGBUS" andAction:@selector(onSignalBusCrashBtnClick) andX:rx andY:(SLCellHeight + SLPadding) * 6 andWidth:cellWidth andHeight:SLCellHeight andFont: font];
     
-    [self createButton:@"Custom Log" andAction:@selector(onCustomLog) andX:((SLScreenW - SLPadding * 2) / 4 - cellWidth / 2) andY:(SLCellHeight + SLPadding) * 8 andWidth:cellWidth * 2 andHeight:SLCellHeight].font = [UIFont systemFontOfSize: 13];
+    [self createButton:@"Signal SIGSYS" andAction:@selector(onSignalSysCrashBtnClick) andX:lx andY:(SLCellHeight + SLPadding) * 7 andWidth:cellWidth andHeight:SLCellHeight andFont: font];
+    [self createButton:@"Signal SIGPIPE" andAction:@selector(onSignalPipeCrashBtnClick) andX:rx andY:(SLCellHeight + SLPadding) * 7 andWidth:cellWidth andHeight:SLCellHeight andFont: font];
+    
+    [self createButton:@"Custom Log" andAction:@selector(onCustomLog) andX:lx andY:(SLCellHeight + SLPadding) * 8 andWidth:(SLScreenW - lx * 4) andHeight:SLCellHeight andFont: font];
 }
 
 - (void) initCrash {
