@@ -20,10 +20,14 @@
 }
 
 - (UIButton *) createButton: (NSString *) title andAction: (SEL) action andX: (CGFloat) x andY: (CGFloat) y {
-    return [self createButton:title andAction:action andX:x andY:y andWidth:SLCellWidth andHeight:SLCellHeight];
+    return [self createButton:title andAction:action andX:x andY:y andWidth:SLCellWidth andHeight:SLCellHeight andFont:[UIFont systemFontOfSize:15]];
 }
 
 - (UIButton *) createButton: (NSString *) title andAction: (SEL) action andX: (CGFloat) x andY: (CGFloat) y andWidth: (CGFloat) width andHeight: (CGFloat) height {
+    return [self createButton:title andAction:action andX:x andY:y andWidth:width andHeight:height andFont:[UIFont systemFontOfSize:15]];
+}
+
+- (UIButton *) createButton: (NSString *) title andAction: (SEL) action andX: (CGFloat) x andY: (CGFloat) y andWidth: (CGFloat) width andHeight: (CGFloat) height andFont: (UIFont *)font {
     UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(SLPadding + x, SLNavBarAndStatusBarHeight + SLPadding * 2 + y, width, height)];
     button.backgroundColor = [UIColor systemBlueColor];
     button.layer.cornerRadius = 4;
@@ -31,7 +35,7 @@
     [button setTitle:title forState:UIControlStateNormal];
     
     [self.view addSubview:button];
-    
+    button.font = font;
     return button;
 }
 
