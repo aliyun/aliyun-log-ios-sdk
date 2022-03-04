@@ -14,7 +14,6 @@
 
 #if __has_include("LogProducerClient+Bricks.h")
 #import "LogProducerClient+Bricks.h"
-#import "TCData.h"
 #endif
 
 
@@ -70,19 +69,7 @@
     
 #if __has_include("LogProducerClient+Bricks.h")
     if (self->_enableTrack) {
-        TCData *data = [TCData createDefault];
-        NSDictionary *fields = [data toDictionary] ;
-        for (id key in fields) {
-            [logContents setObject:[fields valueForKey:key] forKey:key];
-        }
-    } else {
-        if(self ->addLogInterceptor) {
-            addLogInterceptor(log);
-        }
-    }
-#else
-    if(self ->addLogInterceptor) {
-        addLogInterceptor(log);
+        [self appendScheme:logContents];
     }
 #endif
     
@@ -129,10 +116,6 @@
     char cStr [len];
     [strtemp getCString:cStr maxLength:len encoding:NSUTF8StringEncoding];
     return strdup(cStr);
-}
-
-- (void) setAddLogInterceptor: (AddLogInterceptor *) addLogInterceptor {
-    self -> addLogInterceptor = *addLogInterceptor;
 }
 
 @end
