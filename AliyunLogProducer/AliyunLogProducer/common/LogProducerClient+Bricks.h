@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (BOOL) enableTrack;
 
+- (void) appendScheme: (NSMutableDictionary *)target;
+
 @end
 
 NS_ASSUME_NONNULL_END
