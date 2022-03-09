@@ -5,9 +5,16 @@
 //  Created by gordon on 2021/5/19.
 //
 
+#import "SLSSystemCapabilities.h"
 #import "TCData.h"
 #import "SLSDeviceUtils.h"
+
+#if SLS_HAS_UIKIT
 #import <UIKit/UIKit.h>
+#else
+#import <AppKit/AppKit.h>
+#endif
+
 #import "utdid/Utdid.h"
 #import "TimeUtils.h"
 
@@ -47,10 +54,10 @@
     scheme.utdid = [Utdid getUtdid];
     scheme.imei = @"-";
     scheme.imsi = @"-";
-    scheme.brand = [scheme returnDashIfNull: [[UIDevice currentDevice] model]];
+//    scheme.brand = [scheme returnDashIfNull: [[UIDevice currentDevice] model]];
     scheme.device_model = [scheme returnDashIfNull:[SLSDeviceUtils getDeviceModel]];
     scheme.os = @"iOS";
-    scheme.os_version = [scheme returnDashIfNull:[[UIDevice currentDevice] systemVersion]];
+//    scheme.os_version = [scheme returnDashIfNull:[[UIDevice currentDevice] systemVersion]];
     scheme.carrier = [scheme returnDashIfNull:[SLSDeviceUtils getCarrier]];
     scheme.access = [scheme returnDashIfNull:[SLSDeviceUtils getNetworkTypeName]];
     scheme.access_subtype = [scheme returnDashIfNull:[SLSDeviceUtils getNetworkSubTypeName]];
