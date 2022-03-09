@@ -4,10 +4,16 @@
 //
 //  Created by gordon on 2021/5/31.
 //
-
+#import "SLSSystemCapabilities.h"
 #import "SLSDeviceUtils.h"
 #import <sys/utsname.h>
+
+#if SLS_HAS_UIKIT
 #import <UIKit/UIKit.h>
+#else
+#import <AppKit/AppKit.h>
+#endif
+
 #import <CoreTelephony/CTTelephonyNetworkInfo.h>
 #import <CoreTelephony/CTCarrier.h>
 #import <sys/stat.h>
@@ -235,14 +241,18 @@
 }
 
 + (NSString *)getResolution {
+#if SLS_HAS_UIKT
     CGSize size = [[UIScreen mainScreen] bounds].size;
     CGFloat scale = [[UIScreen mainScreen] scale];
-    
     return [NSString stringWithFormat:@"%.0f*%.0f",size.height * scale, size.width * scale];
-//    return NSStringFromCGSize(CGSizeMake(size.width * scale, size.height * scale));
+#else
+    
+    return @"";
+#endif
 }
 
 + (NSString *)getCarrier {
+#if SLS_HAS_UIKIT
     CTTelephonyNetworkInfo *info = [[CTTelephonyNetworkInfo alloc] init];
     CTCarrier *carrier = [info subscriberCellularProvider];
     NSString *carrierName;
@@ -253,6 +263,9 @@
     }
     
     return carrierName;
+#else
+    return @"";
+#endif
 }
 
 + (NSString *)getReachabilityStatus {
@@ -272,12 +285,17 @@
 }
 
 + (NSString *)getNetworkType {
+#if SLS_HAS_UIKIT
     CTTelephonyNetworkInfo *networkInfo = [[CTTelephonyNetworkInfo alloc] init];
     NSString *currentStatus = networkInfo.currentRadioAccessTechnology;
     return currentStatus;
+#else
+    return @"";
+#endif
 }
 
 + (NSString *)getNetworkTypeName {
+#if SLS_HAS_UIKIT
     NSString *currentReachabilityStatus = [self getReachabilityStatus];
     if(![@"WWAN" isEqual:currentReachabilityStatus]) {
         return currentReachabilityStatus;
@@ -313,9 +331,13 @@
     }
     
     return @"Unknown";
+#else
+    return @"";
+#endif
 }
 
 + (NSString *)getNetworkSubTypeName {
+#if SLS_HAS_UIKIT
     NSString *currentReachabilityStatus = [self getReachabilityStatus];
     if(![@"WWAN" isEqual:currentReachabilityStatus]) {
         return @"Unknown";
@@ -376,6 +398,9 @@
     }
     
     return @"Unknown";
+#else
+    return @"";
+#endif
 }
 
 + (NSString *) getCPUArch {

@@ -1,0 +1,567 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		033716AE26732D412710EEE1 /* Pods_AliyunLogDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF9A9EA8BE3A067FC179115B /* Pods_AliyunLogDemo.framework */; };
+		F816EECA277172A70024B85E /* ProducerExampleNoCacheController.m in Sources */ = {isa = PBXBuildFile; fileRef = F816EEC9277172A70024B85E /* ProducerExampleNoCacheController.m */; };
+		F816EECD277173870024B85E /* ProducerExampleDynamicController.m in Sources */ = {isa = PBXBuildFile; fileRef = F816EECC277173870024B85E /* ProducerExampleDynamicController.m */; };
+		F816EED027717FC60024B85E /* ProducerExampleClientsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F816EECF27717FC60024B85E /* ProducerExampleClientsController.m */; };
+		F816EED32771A6040024B85E /* ProducerExampleImmediateController.m in Sources */ = {isa = PBXBuildFile; fileRef = F816EED22771A6040024B85E /* ProducerExampleImmediateController.m */; };
+		F816EEDC2771B4C60024B85E /* CppExceptionFaker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F816EEDA2771B4C60024B85E /* CppExceptionFaker.cpp */; };
+		F816EEDE2771C0360024B85E /* CrashExampController.mm in Sources */ = {isa = PBXBuildFile; fileRef = F816EEDD2771C0360024B85E /* CrashExampController.mm */; };
+		F816EEE52772D5BA0024B85E /* ProducerExampleDestroyController.m in Sources */ = {isa = PBXBuildFile; fileRef = F816EEE42772D5BA0024B85E /* ProducerExampleDestroyController.m */; };
+		F84B73F4278C74640075CD7A /* TraceExampleController.m in Sources */ = {isa = PBXBuildFile; fileRef = F84B73F3278C74640075CD7A /* TraceExampleController.m */; };
+		F86A9D09277990E500387C32 /* NetworkDiagnosisController.m in Sources */ = {isa = PBXBuildFile; fileRef = F86A9D08277990E500387C32 /* NetworkDiagnosisController.m */; };
+		F8E43599276C3CA400F805D7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F8E43598276C3CA400F805D7 /* AppDelegate.m */; };
+		F8E4359F276C3CA400F805D7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F8E4359E276C3CA400F805D7 /* ViewController.m */; };
+		F8E435A2276C3CA400F805D7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8E435A0276C3CA400F805D7 /* Main.storyboard */; };
+		F8E435A4276C3CA500F805D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F8E435A3276C3CA500F805D7 /* Assets.xcassets */; };
+		F8E435A7276C3CA500F805D7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8E435A5276C3CA500F805D7 /* LaunchScreen.storyboard */; };
+		F8E435AA276C3CA500F805D7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F8E435A9276C3CA500F805D7 /* main.m */; };
+		F8E435B2276C54EF00F805D7 /* DemoUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = F8E435B1276C54EF00F805D7 /* DemoUtils.m */; };
+		F8E435E1276DA9BA00F805D7 /* ProducerExampleController.m in Sources */ = {isa = PBXBuildFile; fileRef = F8E435E0276DA9BA00F805D7 /* ProducerExampleController.m */; };
+		F8E435E4276DAB0000F805D7 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F8E435E3276DAB0000F805D7 /* MainViewController.m */; };
+		F8E435E7276E04E700F805D7 /* ExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F8E435E6276E04E700F805D7 /* ExampleViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		63143B2CDED7E36167767026 /* Pods-AliyunLogDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AliyunLogDemo.release.xcconfig"; path = "Target Support Files/Pods-AliyunLogDemo/Pods-AliyunLogDemo.release.xcconfig"; sourceTree = "<group>"; };
+		DF9A9EA8BE3A067FC179115B /* Pods_AliyunLogDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AliyunLogDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F816EEC8277172A70024B85E /* ProducerExampleNoCacheController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProducerExampleNoCacheController.h; sourceTree = "<group>"; };
+		F816EEC9277172A70024B85E /* ProducerExampleNoCacheController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProducerExampleNoCacheController.m; sourceTree = "<group>"; };
+		F816EECB277173870024B85E /* ProducerExampleDynamicController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProducerExampleDynamicController.h; sourceTree = "<group>"; };
+		F816EECC277173870024B85E /* ProducerExampleDynamicController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProducerExampleDynamicController.m; sourceTree = "<group>"; };
+		F816EECE27717FC60024B85E /* ProducerExampleClientsController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProducerExampleClientsController.h; sourceTree = "<group>"; };
+		F816EECF27717FC60024B85E /* ProducerExampleClientsController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProducerExampleClientsController.m; sourceTree = "<group>"; };
+		F816EED12771A6030024B85E /* ProducerExampleImmediateController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProducerExampleImmediateController.h; sourceTree = "<group>"; };
+		F816EED22771A6040024B85E /* ProducerExampleImmediateController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProducerExampleImmediateController.m; sourceTree = "<group>"; };
+		F816EED42771AAC10024B85E /* CrashExampController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CrashExampController.h; sourceTree = "<group>"; };
+		F816EEDA2771B4C60024B85E /* CppExceptionFaker.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CppExceptionFaker.cpp; sourceTree = "<group>"; };
+		F816EEDB2771B4C60024B85E /* CppExceptionFaker.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CppExceptionFaker.hpp; sourceTree = "<group>"; };
+		F816EEDD2771C0360024B85E /* CrashExampController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CrashExampController.mm; sourceTree = "<group>"; };
+		F816EEE32772D5BA0024B85E /* ProducerExampleDestroyController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProducerExampleDestroyController.h; sourceTree = "<group>"; };
+		F816EEE42772D5BA0024B85E /* ProducerExampleDestroyController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProducerExampleDestroyController.m; sourceTree = "<group>"; };
+		F84B73F2278C74640075CD7A /* TraceExampleController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TraceExampleController.h; sourceTree = "<group>"; };
+		F84B73F3278C74640075CD7A /* TraceExampleController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TraceExampleController.m; sourceTree = "<group>"; };
+		F86A9D07277990E500387C32 /* NetworkDiagnosisController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkDiagnosisController.h; sourceTree = "<group>"; };
+		F86A9D08277990E500387C32 /* NetworkDiagnosisController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetworkDiagnosisController.m; sourceTree = "<group>"; };
+		F8E43594276C3CA400F805D7 /* AliyunLogDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AliyunLogDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F8E43597276C3CA400F805D7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		F8E43598276C3CA400F805D7 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		F8E4359D276C3CA400F805D7 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		F8E4359E276C3CA400F805D7 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		F8E435A1276C3CA400F805D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F8E435A3276C3CA500F805D7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F8E435A6276C3CA500F805D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		F8E435A8276C3CA500F805D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F8E435A9276C3CA500F805D7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		F8E435B0276C54EF00F805D7 /* DemoUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DemoUtils.h; sourceTree = "<group>"; };
+		F8E435B1276C54EF00F805D7 /* DemoUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DemoUtils.m; sourceTree = "<group>"; };
+		F8E435DA276DA4C600F805D7 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		F8E435DF276DA9BA00F805D7 /* ProducerExampleController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProducerExampleController.h; sourceTree = "<group>"; };
+		F8E435E0276DA9BA00F805D7 /* ProducerExampleController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProducerExampleController.m; sourceTree = "<group>"; };
+		F8E435E2276DAB0000F805D7 /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		F8E435E3276DAB0000F805D7 /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		F8E435E5276E04E700F805D7 /* ExampleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExampleViewController.h; sourceTree = "<group>"; };
+		F8E435E6276E04E700F805D7 /* ExampleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExampleViewController.m; sourceTree = "<group>"; };
+		FD3A3DC494FFC96ADBB3973F /* Pods-AliyunLogDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AliyunLogDemo.debug.xcconfig"; path = "Target Support Files/Pods-AliyunLogDemo/Pods-AliyunLogDemo.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F8E43591276C3CA400F805D7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				033716AE26732D412710EEE1 /* Pods_AliyunLogDemo.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		985ADDE21D8CA187A24CEA2C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FD3A3DC494FFC96ADBB3973F /* Pods-AliyunLogDemo.debug.xcconfig */,
+				63143B2CDED7E36167767026 /* Pods-AliyunLogDemo.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		C9B7EBD8B1D2B62842D82CB4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DF9A9EA8BE3A067FC179115B /* Pods_AliyunLogDemo.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F84B73EE278C73FF0075CD7A /* Trace */ = {
+			isa = PBXGroup;
+			children = (
+				F84B73F2278C74640075CD7A /* TraceExampleController.h */,
+				F84B73F3278C74640075CD7A /* TraceExampleController.m */,
+			);
+			path = Trace;
+			sourceTree = "<group>";
+		};
+		F86A9D06277990AA00387C32 /* NetworkDiagnosis */ = {
+			isa = PBXGroup;
+			children = (
+				F86A9D07277990E500387C32 /* NetworkDiagnosisController.h */,
+				F86A9D08277990E500387C32 /* NetworkDiagnosisController.m */,
+			);
+			path = NetworkDiagnosis;
+			sourceTree = "<group>";
+		};
+		F8E4358B276C3CA400F805D7 = {
+			isa = PBXGroup;
+			children = (
+				F8E435DA276DA4C600F805D7 /* PrefixHeader.pch */,
+				F8E43596276C3CA400F805D7 /* AliyunLogDemo */,
+				F8E43595276C3CA400F805D7 /* Products */,
+				985ADDE21D8CA187A24CEA2C /* Pods */,
+				C9B7EBD8B1D2B62842D82CB4 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		F8E43595276C3CA400F805D7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F8E43594276C3CA400F805D7 /* AliyunLogDemo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F8E43596276C3CA400F805D7 /* AliyunLogDemo */ = {
+			isa = PBXGroup;
+			children = (
+				F8E435DB276DA88800F805D7 /* Example */,
+				F8E435DC276DA89400F805D7 /* Settings */,
+				F8E43597276C3CA400F805D7 /* AppDelegate.h */,
+				F8E43598276C3CA400F805D7 /* AppDelegate.m */,
+				F8E435E2276DAB0000F805D7 /* MainViewController.h */,
+				F8E435E3276DAB0000F805D7 /* MainViewController.m */,
+				F8E4359D276C3CA400F805D7 /* ViewController.h */,
+				F8E4359E276C3CA400F805D7 /* ViewController.m */,
+				F8E435E5276E04E700F805D7 /* ExampleViewController.h */,
+				F8E435E6276E04E700F805D7 /* ExampleViewController.m */,
+				F8E435A0276C3CA400F805D7 /* Main.storyboard */,
+				F8E435A3276C3CA500F805D7 /* Assets.xcassets */,
+				F8E435A5276C3CA500F805D7 /* LaunchScreen.storyboard */,
+				F8E435A8276C3CA500F805D7 /* Info.plist */,
+				F8E435A9276C3CA500F805D7 /* main.m */,
+				F8E435B0276C54EF00F805D7 /* DemoUtils.h */,
+				F8E435B1276C54EF00F805D7 /* DemoUtils.m */,
+			);
+			path = AliyunLogDemo;
+			sourceTree = "<group>";
+		};
+		F8E435DB276DA88800F805D7 /* Example */ = {
+			isa = PBXGroup;
+			children = (
+				F86A9D06277990AA00387C32 /* NetworkDiagnosis */,
+				F8E435DD276DA89D00F805D7 /* Producer */,
+				F8E435DE276DA8A700F805D7 /* Crash */,
+				F84B73EE278C73FF0075CD7A /* Trace */,
+			);
+			path = Example;
+			sourceTree = "<group>";
+		};
+		F8E435DC276DA89400F805D7 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		F8E435DD276DA89D00F805D7 /* Producer */ = {
+			isa = PBXGroup;
+			children = (
+				F8E435DF276DA9BA00F805D7 /* ProducerExampleController.h */,
+				F8E435E0276DA9BA00F805D7 /* ProducerExampleController.m */,
+				F816EEC8277172A70024B85E /* ProducerExampleNoCacheController.h */,
+				F816EEC9277172A70024B85E /* ProducerExampleNoCacheController.m */,
+				F816EECB277173870024B85E /* ProducerExampleDynamicController.h */,
+				F816EECC277173870024B85E /* ProducerExampleDynamicController.m */,
+				F816EECE27717FC60024B85E /* ProducerExampleClientsController.h */,
+				F816EECF27717FC60024B85E /* ProducerExampleClientsController.m */,
+				F816EED12771A6030024B85E /* ProducerExampleImmediateController.h */,
+				F816EED22771A6040024B85E /* ProducerExampleImmediateController.m */,
+				F816EEE32772D5BA0024B85E /* ProducerExampleDestroyController.h */,
+				F816EEE42772D5BA0024B85E /* ProducerExampleDestroyController.m */,
+			);
+			path = Producer;
+			sourceTree = "<group>";
+		};
+		F8E435DE276DA8A700F805D7 /* Crash */ = {
+			isa = PBXGroup;
+			children = (
+				F816EED42771AAC10024B85E /* CrashExampController.h */,
+				F816EEDD2771C0360024B85E /* CrashExampController.mm */,
+				F816EEDA2771B4C60024B85E /* CppExceptionFaker.cpp */,
+				F816EEDB2771B4C60024B85E /* CppExceptionFaker.hpp */,
+			);
+			path = Crash;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F8E43593276C3CA400F805D7 /* AliyunLogDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F8E435AD276C3CA500F805D7 /* Build configuration list for PBXNativeTarget "AliyunLogDemo" */;
+			buildPhases = (
+				EC8354D6071F83ED301C2BF3 /* [CP] Check Pods Manifest.lock */,
+				F8E43590276C3CA400F805D7 /* Sources */,
+				F8E43591276C3CA400F805D7 /* Frameworks */,
+				F8E43592276C3CA400F805D7 /* Resources */,
+				967A0D3E9F2E6CD175C55B6B /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AliyunLogDemo;
+			productName = AliyunLogDemo;
+			productReference = F8E43594276C3CA400F805D7 /* AliyunLogDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F8E4358C276C3CA400F805D7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1310;
+				TargetAttributes = {
+					F8E43593276C3CA400F805D7 = {
+						CreatedOnToolsVersion = 13.1;
+					};
+				};
+			};
+			buildConfigurationList = F8E4358F276C3CA400F805D7 /* Build configuration list for PBXProject "AliyunLogDemo" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F8E4358B276C3CA400F805D7;
+			productRefGroup = F8E43595276C3CA400F805D7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F8E43593276C3CA400F805D7 /* AliyunLogDemo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F8E43592276C3CA400F805D7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F8E435A7276C3CA500F805D7 /* LaunchScreen.storyboard in Resources */,
+				F8E435A4276C3CA500F805D7 /* Assets.xcassets in Resources */,
+				F8E435A2276C3CA400F805D7 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		967A0D3E9F2E6CD175C55B6B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AliyunLogDemo/Pods-AliyunLogDemo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AliyunLogDemo/Pods-AliyunLogDemo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AliyunLogDemo/Pods-AliyunLogDemo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EC8354D6071F83ED301C2BF3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AliyunLogDemo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F8E43590276C3CA400F805D7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F816EEDE2771C0360024B85E /* CrashExampController.mm in Sources */,
+				F8E4359F276C3CA400F805D7 /* ViewController.m in Sources */,
+				F84B73F4278C74640075CD7A /* TraceExampleController.m in Sources */,
+				F8E435E4276DAB0000F805D7 /* MainViewController.m in Sources */,
+				F816EECA277172A70024B85E /* ProducerExampleNoCacheController.m in Sources */,
+				F816EED027717FC60024B85E /* ProducerExampleClientsController.m in Sources */,
+				F816EEE52772D5BA0024B85E /* ProducerExampleDestroyController.m in Sources */,
+				F816EED32771A6040024B85E /* ProducerExampleImmediateController.m in Sources */,
+				F8E435B2276C54EF00F805D7 /* DemoUtils.m in Sources */,
+				F86A9D09277990E500387C32 /* NetworkDiagnosisController.m in Sources */,
+				F8E43599276C3CA400F805D7 /* AppDelegate.m in Sources */,
+				F8E435E1276DA9BA00F805D7 /* ProducerExampleController.m in Sources */,
+				F8E435E7276E04E700F805D7 /* ExampleViewController.m in Sources */,
+				F816EEDC2771B4C60024B85E /* CppExceptionFaker.cpp in Sources */,
+				F8E435AA276C3CA500F805D7 /* main.m in Sources */,
+				F816EECD277173870024B85E /* ProducerExampleDynamicController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		F8E435A0276C3CA400F805D7 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F8E435A1276C3CA400F805D7 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		F8E435A5276C3CA500F805D7 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F8E435A6276C3CA500F805D7 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F8E435AB276C3CA500F805D7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		F8E435AC276C3CA500F805D7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F8E435AE276C3CA500F805D7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FD3A3DC494FFC96ADBB3973F /* Pods-AliyunLogDemo.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QWPJRHMG6U;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AliyunLogDemo/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SLSiOSDemo;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = armv7;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.alysls.AliyunLogDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		F8E435AF276C3CA500F805D7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 63143B2CDED7E36167767026 /* Pods-AliyunLogDemo.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QWPJRHMG6U;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AliyunLogDemo/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SLSiOSDemo;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = armv7;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.alysls.AliyunLogDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F8E4358F276C3CA400F805D7 /* Build configuration list for PBXProject "AliyunLogDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F8E435AB276C3CA500F805D7 /* Debug */,
+				F8E435AC276C3CA500F805D7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F8E435AD276C3CA500F805D7 /* Build configuration list for PBXNativeTarget "AliyunLogDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F8E435AE276C3CA500F805D7 /* Debug */,
+				F8E435AF276C3CA500F805D7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F8E4358C276C3CA400F805D7 /* Project object */;
+}
