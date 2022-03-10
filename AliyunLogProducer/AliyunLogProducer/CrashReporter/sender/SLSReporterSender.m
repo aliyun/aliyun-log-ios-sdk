@@ -5,6 +5,7 @@
 //  Created by gordon on 2021/5/19.
 //
 
+#import "SLSSystemCapabilities.h"
 #import "SLSReporterSender.h"
 
 @implementation SLSReporterSender
@@ -26,7 +27,13 @@ NSString *securityToken;
     logConfig = [[LogProducerConfig alloc] initWithEndpoint:endpoint project:project logstore:logstore accessKeyID:config.accessKeyId accessKeySecret:config.accessKeySecret securityToken:config.securityToken];
     
     [logConfig SetTopic:@"crash_report"];
+
+#if SLS_HOST_MAC
+    [logConfig AddTag:@"crash_report" value:@"macOS"];
+#else
     [logConfig AddTag:@"crash_report" value:@"iOS"];
+#endif
+    
     [logConfig SetPacketLogBytes:(1024 * 1024 * 5)];
     [logConfig SetPacketLogCount: 4096];
     [logConfig SetMaxBufferLimit:(64*1024*1024)];

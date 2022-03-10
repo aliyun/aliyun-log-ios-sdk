@@ -241,13 +241,15 @@
 }
 
 + (NSString *)getResolution {
-#if SLS_HAS_UIKT
+#if SLS_HAS_UIKIT
     CGSize size = [[UIScreen mainScreen] bounds].size;
     CGFloat scale = [[UIScreen mainScreen] scale];
     return [NSString stringWithFormat:@"%.0f*%.0f",size.height * scale, size.width * scale];
 #else
-    
-    return @"";
+    NSScreen *screen = [NSScreen mainScreen];
+    NSDictionary *description = [screen deviceDescription];
+    NSSize size = [[description objectForKey:NSDeviceSize] sizeValue];
+    return [NSString stringWithFormat:@"%.0f*%.0f",size.height, size.width];
 #endif
 }
 
@@ -264,7 +266,7 @@
     
     return carrierName;
 #else
-    return @"";
+    return @"Unknown";
 #endif
 }
 
@@ -290,7 +292,7 @@
     NSString *currentStatus = networkInfo.currentRadioAccessTechnology;
     return currentStatus;
 #else
-    return @"";
+    return @"Unknown";
 #endif
 }
 
@@ -332,7 +334,7 @@
     
     return @"Unknown";
 #else
-    return @"";
+    return @"Unknown";
 #endif
 }
 
@@ -399,7 +401,7 @@
     
     return @"Unknown";
 #else
-    return @"";
+    return @"Unknown";
 #endif
 }
 
