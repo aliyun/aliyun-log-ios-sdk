@@ -54,10 +54,25 @@
     scheme.utdid = [Utdid getUtdid];
     scheme.imei = @"-";
     scheme.imsi = @"-";
-//    scheme.brand = [scheme returnDashIfNull: [[UIDevice currentDevice] model]];
+#if SLS_HOST_MAC
+    scheme.brand = @"Apple";
+#else
+    scheme.brand = [scheme returnDashIfNull: [[UIDevice currentDevice] model]];
+#endif
+
     scheme.device_model = [scheme returnDashIfNull:[SLSDeviceUtils getDeviceModel]];
+#if SLS_HOST_MAC
+    scheme.os = @"macOS";
+#else
     scheme.os = @"iOS";
-//    scheme.os_version = [scheme returnDashIfNull:[[UIDevice currentDevice] systemVersion]];
+#endif
+
+#if SLS_HOST_MAC
+    scheme.os_version = [scheme returnDashIfNull:[[NSProcessInfo processInfo] operatingSystemVersionString]];
+#else
+    scheme.os_version = [scheme returnDashIfNull:[[UIDevice currentDevice] systemVersion]];
+#endif
+    
     scheme.carrier = [scheme returnDashIfNull:[SLSDeviceUtils getCarrier]];
     scheme.access = [scheme returnDashIfNull:[SLSDeviceUtils getNetworkTypeName]];
     scheme.access_subtype = [scheme returnDashIfNull:[SLSDeviceUtils getNetworkSubTypeName]];
@@ -70,7 +85,7 @@
 + (TCData *) createDefaultWithSLSConfig:(SLSConfig *)config {
     TCData *data = [self createDefault];
     
-    [data setApp_id:[NSString stringWithFormat:@"%@@iOS", config.pluginAppId]];
+    [data setApp_id:[NSString stringWithFormat:@"%@@%@", config.pluginAppId, data.os]];
     [data setChannel:[data returnDashIfNull:config.channel]];
     [data setChannel_name:[data returnDashIfNull:config.channelName]];
     [data setUser_nick:[data returnDashIfNull:config.userNick]];
