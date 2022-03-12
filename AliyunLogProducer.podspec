@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'AliyunLogProducer'
-  s.version          = '2.3.8.beta.2'
+  s.version          = '2.3.8.beta.3'
   s.summary          = 'aliyun log service ios producer.'
 
 # This description is used to generate tags and improve search results.
@@ -30,7 +30,7 @@ https://help.aliyun.com/product/28958.html
   s.social_media_url = 'http://t.cn/AiRpol8C'
 
   s.ios.deployment_target = '9.0'
-#  s.osx.deployment_target =  '10.8'
+  s.osx.deployment_target =  '10.8'
 #  s.tvos.deployment_target =  '9.0'
 
   s.requires_arc  = true
@@ -81,11 +81,9 @@ https://help.aliyun.com/product/28958.html
     r.exclude_files = 'AliyunLogProducer/AliyunLogProducer/CrashReporter/WPKMobi.xcframework/**/Headers/*.h'
 
     r.ios.frameworks = "SystemConfiguration", "CoreGraphics"
-    r.tvos.frameworks = "SystemConfiguration", "CoreGraphics"
     r.osx.frameworks = "SystemConfiguration", "Cocoa"
 
     r.ios.libraries = "z", "c++"
-    r.tvos.libraries = "z", "c++"
     r.osx.libraries = "z", "c++"
 
     r.ios.pod_target_xcconfig = {
@@ -95,13 +93,6 @@ https://help.aliyun.com/product/28958.html
     r.ios.user_target_xcconfig = {
       'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
     }
-
-#      r.tvos.pod_target_xcconfig = {
-#         'EXCLUDED_ARCHS[sdk=appletvsimulator*]' => 'arm64',
-#         'OTHER_LDFLAGS' => '-ObjC'
-#      }
-#      r.tvos.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=appletvsimulator*]' => 'arm64' }
-      
     r.osx.pod_target_xcconfig = {
        'OTHER_LDFLAGS' => '-ObjC'
     }

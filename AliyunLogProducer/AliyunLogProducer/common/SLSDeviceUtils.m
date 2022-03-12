@@ -254,7 +254,7 @@
 }
 
 + (NSString *)getCarrier {
-#if SLS_HAS_UIKIT
+#if SLS_HAS_CORE_TELEPHONY
     CTTelephonyNetworkInfo *info = [[CTTelephonyNetworkInfo alloc] init];
     CTCarrier *carrier = [info subscriberCellularProvider];
     NSString *carrierName;
@@ -287,7 +287,7 @@
 }
 
 + (NSString *)getNetworkType {
-#if SLS_HAS_UIKIT
+#if SLS_HAS_CORE_TELEPHONY
     CTTelephonyNetworkInfo *networkInfo = [[CTTelephonyNetworkInfo alloc] init];
     NSString *currentStatus = networkInfo.currentRadioAccessTechnology;
     return currentStatus;
@@ -297,7 +297,7 @@
 }
 
 + (NSString *)getNetworkTypeName {
-#if SLS_HAS_UIKIT
+#if SLS_HAS_CORE_TELEPHONY
     NSString *currentReachabilityStatus = [self getReachabilityStatus];
     if(![@"WWAN" isEqual:currentReachabilityStatus]) {
         return currentReachabilityStatus;
@@ -339,7 +339,7 @@
 }
 
 + (NSString *)getNetworkSubTypeName {
-#if SLS_HAS_UIKIT
+#if SLS_HAS_CORE_TELEPHONY
     NSString *currentReachabilityStatus = [self getReachabilityStatus];
     if(![@"WWAN" isEqual:currentReachabilityStatus]) {
         return @"Unknown";
