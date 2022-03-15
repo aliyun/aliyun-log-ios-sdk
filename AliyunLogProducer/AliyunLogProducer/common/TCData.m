@@ -63,6 +63,8 @@
     scheme.device_model = [scheme returnDashIfNull:[SLSDeviceUtils getDeviceModel]];
 #if SLS_HOST_MAC
     scheme.os = @"macOS";
+#elif SLS_HOST_TV
+    scheme.os = @"tvOS";
 #else
     scheme.os = @"iOS";
 #endif

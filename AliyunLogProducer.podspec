@@ -41,6 +41,7 @@ https://help.aliyun.com/product/28958.html
   
   s.subspec 'Core' do |c|
     c.ios.deployment_target = '9.0'
+    c.tvos.deployment_target =  '9.0'
     c.osx.deployment_target =  '10.8'
     c.source_files =
       'AliyunLogProducer/AliyunLogProducer/*.{h,m}',
@@ -61,6 +62,7 @@ https://help.aliyun.com/product/28958.html
   
   s.subspec 'Bricks' do |b|
     b.ios.deployment_target = '9.0'
+    b.tvos.deployment_target =  '9.0'
     b.osx.deployment_target =  '10.8'
     b.dependency 'AliyunLogProducer/Core'
     b.source_files =
@@ -68,11 +70,12 @@ https://help.aliyun.com/product/28958.html
     b.public_header_files =
     'AliyunLogProducer/AliyunLogProducer/common/**/*.h'
     b.frameworks = "SystemConfiguration"
-    b.dependency 'Reachability'
+#    b.dependency 'Reachability'
   end
   
   s.subspec 'CrashReporter' do |r|
     r.ios.deployment_target = '9.0'
+    r.tvos.deployment_target =  '9.0'
     r.osx.deployment_target =  '10.8'
     r.dependency 'AliyunLogProducer/Bricks'
     r.source_files = 'AliyunLogProducer/AliyunLogProducer/CrashReporter/**/*.{m,h}'
@@ -81,9 +84,11 @@ https://help.aliyun.com/product/28958.html
     r.exclude_files = 'AliyunLogProducer/AliyunLogProducer/CrashReporter/WPKMobi.xcframework/**/Headers/*.h'
 
     r.ios.frameworks = "SystemConfiguration", "CoreGraphics"
+    r.tvos.frameworks = "SystemConfiguration", "CoreGraphics"
     r.osx.frameworks = "SystemConfiguration", "Cocoa"
 
     r.ios.libraries = "z", "c++"
+    r.tvos.libraries = "z", "c++"
     r.osx.libraries = "z", "c++"
 
     r.ios.pod_target_xcconfig = {
@@ -93,6 +98,15 @@ https://help.aliyun.com/product/28958.html
     r.ios.user_target_xcconfig = {
       'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
     }
+    
+    r.tvos.pod_target_xcconfig = {
+        'EXCLUDED_ARCHS[sdk=appletvsimulator*]' => 'arm64',
+        'OTHER_LDFLAGS' => '-ObjC'
+    }
+    r.tvos.user_target_xcconfig = {
+      'EXCLUDED_ARCHS[sdk=appletvsimulator*]' => 'arm64'
+    }
+    
     r.osx.pod_target_xcconfig = {
        'OTHER_LDFLAGS' => '-ObjC'
     }

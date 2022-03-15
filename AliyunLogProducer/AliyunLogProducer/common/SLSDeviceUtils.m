@@ -14,12 +14,15 @@
 #import <AppKit/AppKit.h>
 #endif
 
+#if SLS_HAS_CORE_TELEPHONY
 #import <CoreTelephony/CTTelephonyNetworkInfo.h>
 #import <CoreTelephony/CTCarrier.h>
+#endif
+
 #import <sys/stat.h>
 #import <dlfcn.h>
 //#import "reachable/Rechable.h"
-#import <Reachability/Reachability.h>
+#import "SLSReachability.h"
 #include <sys/types.h>
 #include <sys/sysctl.h>
 #include <mach/machine.h>
@@ -271,7 +274,7 @@
 }
 
 + (NSString *)getReachabilityStatus {
-    Reachability *reachability = [Reachability reachabilityWithHostname:@"www.aliyun.com"];
+    SLSReachability *reachability = [SLSReachability reachabilityWithHostname:@"www.aliyun.com"];
     switch ([reachability currentReachabilityStatus]) {
         case NotReachable:
             return @"Unknown";
