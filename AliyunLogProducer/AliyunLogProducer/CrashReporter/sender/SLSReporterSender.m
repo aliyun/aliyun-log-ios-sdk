@@ -43,7 +43,11 @@ NSString *securityToken;
     [logConfig SetSendThreadCount:1];
     
     [logConfig SetPersistent:1];
+#if SLS_HOST_TV
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+#else
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+#endif
     NSString *path = [[paths lastObject] stringByAppendingString:@"/crash_log.dat"];
     [logConfig SetPersistentFilePath:path];
     [logConfig SetPersistentForceFlush:0];
