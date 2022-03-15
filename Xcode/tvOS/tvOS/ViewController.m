@@ -18,5 +18,8 @@
     // Do any additional setup after loading the view.
 }
 
+- (IBAction)click:(id)sender {
+    [self performSelector:@selector(die_die)];
+}
 
 @end
