@@ -127,6 +127,8 @@ static int os_http_post(const char *url,
         self->config = create_log_producer_config();
 #if SLS_HOST_MAC
         log_producer_config_set_source(self->config, "macOS");
+#elif SLS_HOST_TV
+        log_producer_config_set_source(self->config, "tvOS");
 #else
         log_producer_config_set_source(self->config, "iOS");
 #endif

@@ -30,6 +30,8 @@ NSString *securityToken;
 
 #if SLS_HOST_MAC
     [logConfig AddTag:@"crash_report" value:@"macOS"];
+#elif SLS_HOST_TV
+    [logConfig AddTag:@"crash_report" value:@"tvOS"];
 #else
     [logConfig AddTag:@"crash_report" value:@"iOS"];
 #endif
