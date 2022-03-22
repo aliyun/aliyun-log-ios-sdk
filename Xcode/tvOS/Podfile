@@ -7,7 +7,8 @@ target 'tvOS' do
   use_frameworks!
 
   # Pods for Demo
-#  pod 'AliyunLogProducer', '2.3.8.beta.3' , :subspecs => ['Core', 'Bricks', 'CrashReporter', 'NetworkDiagnosis', 'Trace']
+#  pod 'AliyunLogProducer', '2.3.8.beta.4' , :subspecs => ['Core', 'Bricks', 'CrashReporter', 'NetworkDiagnosis', 'Trace']
+#  pod 'AliyunLogProducer', '2.3.8.beta.4' , :subspecs => ['Core', 'Bricks', 'CrashReporter']
   pod 'AliyunLogProducer/Core', :path =>'../../'
   pod 'AliyunLogProducer/Bricks', :path =>'../../'
   pod 'AliyunLogProducer/CrashReporter', :path =>'../../'

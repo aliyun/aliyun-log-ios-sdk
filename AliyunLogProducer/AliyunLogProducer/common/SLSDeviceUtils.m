@@ -276,12 +276,12 @@
 + (NSString *)getReachabilityStatus {
     SLSReachability *reachability = [SLSReachability reachabilityWithHostname:@"www.aliyun.com"];
     switch ([reachability currentReachabilityStatus]) {
-        case NotReachable:
+        case SLSNotReachable:
             return @"Unknown";
-        case ReachableViaWiFi:
+        case SLSReachableViaWiFi:
             return @"Wi-Fi";
             break;
-        case ReachableViaWWAN:
+        case SLSReachableViaWWAN:
             return @"WWAN";
             break;
         default:
