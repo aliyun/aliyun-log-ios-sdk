@@ -164,27 +164,13 @@ static NetworkDiagnosisPolicyController *selfClzz;
     }];
 
     SLSNetPolicyBuilder *builder = [[SLSNetPolicyBuilder alloc] init];
-    if (_enableField.text) {
-        [builder setEnable:[self getBoolFromField:_enableField.text def:YES]];
-    }
-    if (_typeField.text) {
-        [builder setType:_typeField.text];
-    }
-    if (_versionField.text) {
-        [builder setVersion:[self getIntFromField:_versionField.text def:1]];
-    }
-    if (_periodicityField.text) {
-        [builder setPeriodicity:[self getBoolFromField:_periodicityField.text def:YES]];
-    }
-    if (_intervalField.text) {
-        [builder setInternal:[self getIntFromField:_intervalField.text def:30]];
-    }
-    if (_expirationField.text) {
-        [builder setExpiration:[self getLongFromField:_expirationField.text def:[[NSDate date] timeIntervalSince1970] + 5 * 60]];
-    }
-    if (_ratioField.text) {
-        [builder setRatio:[self getIntFromField:_ratioField.text def:1000]];
-    }
+    [builder setEnable:[self getBoolFromField:_enableField.text def:YES]];
+    [builder setType:_typeField.text];
+    [builder setVersion:[self getIntFromField:_versionField.text def:1]];
+    [builder setPeriodicity:[self getBoolFromField:_periodicityField.text def:YES]];
+    [builder setInternal:[self getIntFromField:_intervalField.text def:30]];
+    [builder setExpiration:[self getLongFromField:_expirationField.text def:[[NSDate date] timeIntervalSince1970] + 5 * 60]];
+    [builder setRatio:[self getIntFromField:_ratioField.text def:1000]];
     if (![_whitelistField.text isEqualToString:@""]) {
         [builder setWhiteList:[_whitelistField.text componentsSeparatedByString:@","]];
     }

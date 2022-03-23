@@ -32,14 +32,23 @@ typedef void (^SLSNetworkDiagnosisCallBack2)(SLSNetworkDiagnosisResult *result);
 
 - (void) updateConfig: (SLSConfig *)confg;
 
+/// 注册策略
+/// @param policy json格式的策略描述
 - (void) registerPolicy: (NSString *)policy;
 
+/// 注册策略
+/// @param builder 策略构建器
 - (void) registerPolicyWithBuilder: (SLSNetPolicyBuilder *) builder;
 
+/// 注册全局回调，仅当注册了策略时，该回调才会触发
+/// @param callback 回调
 - (void) registerCallback: (SLSNetworkDiagnosisCallBack2) callback;
 
+/// 移除全局回调
+/// @param callback 回调
 - (void) removeCallback: (SLSNetworkDiagnosisCallBack2) callback;
 
+/// 清空全局回调
 - (void) clearCallback;
 
 - (void) ping: (NSString *) domain;
