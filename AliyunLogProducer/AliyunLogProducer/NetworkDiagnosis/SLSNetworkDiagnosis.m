@@ -8,6 +8,7 @@
 #import "SLSNetworkDiagnosis.h"
 #import "TimeUtils.h"
 #import <Foundation/Foundation.h>
+#import "Utdid.h"
 
 @interface SLSNetworkDiagnosis ()
 @property(nonatomic, strong) NSString *idPrefix;
@@ -16,6 +17,7 @@
 
 @property(nonatomic, strong) SLSConfig *config;
 @property(nonatomic, strong) ISender *sender;
+@property(nonatomic, strong) NSMutableArray *callbacks;
 
 - (NSString *) generateId;
 - (BOOL) reportWithString: (NSString *) data method: (NSString *) method;
@@ -39,6 +41,7 @@
     if (self) {
         _idPrefix = [NSString stringWithFormat:@"%ld", [TimeUtils getTimeInMilliis]];
         _lock = [[NSLock alloc] init];
+        _callbacks = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -54,6 +57,41 @@
 - (void) initWithConfig: (SLSConfig *)config sender: (ISender *)sender {
     _config = config;
     _sender = sender;
+    [AliNetworkDiagnosis init:_config.pluginAppId deviceId:[Utdid getUtdid] withSiteId:@"public"];
+    [AliNetworkDiagnosis registerDelegate: self];
+}
+
+- (void)report:(NSString*)content level:(AliNetDiagLogLevel)level context:(id)context {
+    if (self.class == context) {
+        // ignore
+        return;
+    }
+    
+    if (_config.debuggable) {
+        SLSLogV("report. content: %@", content);
+    }
+    
+    if (!content) {
+        SLSLog("report. content is null");
+        return;
+    }
+    
+    NSDictionary *object = [NSJSONSerialization JSONObjectWithData:[content dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
+    NSString *method = [object objectForKey:@"method"];
+    if (!method) {
+        SLSLog("report. method is null");
+        return;
+    }
+    
+    [self reportWithString:content method:method];
+    
+    for (SLSNetworkDiagnosisCallBack2 callback in _callbacks) {
+        callback([SLSNetworkDiagnosisResult success:content]);
+    }
+}
+
+- (void)log:(NSString*)content level:(AliNetDiagLogLevel)level context:(id)context {
+    SLSLog("log. level: %lu, content: %@", (unsigned long)level, content);
 }
 
 - (void) updateConfig: (SLSConfig *)config {
@@ -90,9 +128,53 @@
     }
 }
 
+- (void) registerPolicy: (NSString *)policy {
+    [AliNetworkDiagnosis handlePushMessage:policy type:@"" context:self.class];
+}
+
+- (void) registerPolicyWithBuilder: (SLSNetPolicyBuilder *) builder {
+    SLSNetPolicy *policy = [builder create];
+    NSMutableDictionary *object = [[NSMutableDictionary alloc] init];
+    [object setObject:policy.enable ? @"on" : @"off" forKey:@"switch"];
+    [object setObject:[NSString stringWithFormat:@"policy_%@", policy.type] forKey:@"type"];
+    [object setObject:[NSString stringWithFormat:@"%d", policy.version] forKey:@"version"];
+    [object setObject:policy.periodicity ? @"true" : @"false"  forKey:@"periodicity"];
+    [object setObject:[NSString stringWithFormat:@"%d", policy.internal] forKey:@"interval"];
+    [object setObject:[NSString stringWithFormat:@"%ld", policy.expiration] forKey:@"expiration"];
+    [object setObject:[NSString stringWithFormat:@"%d", policy.ratio] forKey:@"ratio"];
+    [object setObject:policy.whitelist forKey:@"whitelist"];
+    [object setObject:policy.methods forKey:@"methods"];
+    
+    NSMutableArray *destinationArray = [[NSMutableArray alloc] init];
+    for (SLSDestination *des in policy.destination) {
+        NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+        [dict setObject:@"public" forKey:@"siteId"];
+        [dict setObject:@"public" forKey:@"az"];
+        [dict setObject:des.ips forKey:@"ips"];
+        [dict setObject:des.urls forKey:@"urls"];
+        
+        [destinationArray addObject:dict];
+    }
+    [object setObject:destinationArray forKey:@"destination"];
+    
+    [self registerPolicy:[[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:object options:0 error:nil] encoding:NSUTF8StringEncoding]];
+}
+
+- (void) registerCallback: (SLSNetworkDiagnosisCallBack2) callback {
+    [_callbacks addObject:callback];
+}
+
+- (void) removeCallback: (SLSNetworkDiagnosisCallBack2) callback {
+    [_callbacks removeObject:callback];
+}
+
+- (void) clearCallback {
+    [_callbacks removeAllObjects];
+}
+
 - (void) ping: (NSString *) domain {
     [self ping:domain callback:^(SLSNetworkDiagnosisResult * _Nonnull result) {
-        
+        // ignore
     }];
 }
 
@@ -113,7 +195,7 @@
 
 - (void) tcpPing: (NSString *) host port: (int) port {
     [self tcpPing:host port:port callback:^(SLSNetworkDiagnosisResult * _Nonnull result) {
-        
+        // ignore
     }];
 }
 

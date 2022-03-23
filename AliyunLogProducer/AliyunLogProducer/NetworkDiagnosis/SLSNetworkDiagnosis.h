@@ -12,22 +12,35 @@
 
 #import <AliyunLogProducer/AliyunLogProducer.h>
 #import "SLSNetworkDiagnosisResult.h"
+#import "SLSNetPolicyBuilder.h"
 #import <AliNetworkDiagnosis/AliPing.h>
 #import <AliNetworkDiagnosis/AliHttpPing.h>
 #import <AliNetworkDiagnosis/AliMTR.h>
 #import <AliNetworkDiagnosis/AliTcpPing.h>
+#import <AliNetworkDiagnosis/AliNetworkDiagnosis.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
 typedef void (^SLSNetworkDiagnosisCallBack)(SLSNetworkDiagnosisResult *result);
+typedef void (^SLSNetworkDiagnosisCallBack2)(SLSNetworkDiagnosisResult *result);
 
-@interface SLSNetworkDiagnosis : NSObject
+@interface SLSNetworkDiagnosis : NSObject<AliNetworkDiagnosisDelegate>
 
 + (instancetype) sharedInstance;
 
 - (void) initWithConfig: (SLSConfig *)config sender: (ISender *)sender;
 
 - (void) updateConfig: (SLSConfig *)confg;
+
+- (void) registerPolicy: (NSString *)policy;
+
+- (void) registerPolicyWithBuilder: (SLSNetPolicyBuilder *) builder;
+
+- (void) registerCallback: (SLSNetworkDiagnosisCallBack2) callback;
+
+- (void) removeCallback: (SLSNetworkDiagnosisCallBack2) callback;
+
+- (void) clearCallback;
 
 - (void) ping: (NSString *) domain;
 
