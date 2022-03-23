@@ -64,4 +64,16 @@
     return textView;
 }
 
+- (UITextField *) createTextField: (NSString *) hint andX: (CGFloat) x andY: (CGFloat) y andWidth: (CGFloat) width andHeight: (CGFloat) height andKeyBoard: (UIKeyboardType) keyboard {
+    UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(SLPadding + x, SLNavBarAndStatusBarHeight + SLPadding * 2 + y, width, height)];
+    textField.backgroundColor = [UIColor whiteColor];
+    [textField setPlaceholder:hint];
+    [textField setBorderStyle:UITextBorderStyleLine];
+    [textField setReturnKeyType:UIReturnKeyDone];
+    [textField setKeyboardType:keyboard];
+    
+    [self.view addSubview:textField];
+    return textField;
+}
+
 @end

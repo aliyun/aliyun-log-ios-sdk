@@ -8,15 +8,53 @@
 #import "NetworkDiagnosisController.h"
 #import "SLSNetworkDiagnosisPlugin.h"
 #import "SLSNetworkDiagnosis.h"
+#import "NetworkDiagnosisPolicyController.h"
 
 @interface NetworkDiagnosisController ()
 @property(nonatomic, strong) UITextView *statusTextView;
 @property (strong,nonatomic)NSTimer *timer;
+@property (strong, nonatomic) NSMutableArray<NSString*> *endpoints;
 @end
 
 @implementation NetworkDiagnosisController
 
 static NetworkDiagnosisController *selfClzz;
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        _endpoints = [[NSMutableArray alloc] init];
+        [_endpoints addObject:@"cn-hangzhou.log.aliyuncs.com"];
+        [_endpoints addObject:@"cn-hangzhou-finance.log.aliyuncs.com"];
+        [_endpoints addObject:@"cn-shanghai.log.aliyuncs.com"];
+        [_endpoints addObject:@"cn-shanghai-finance-1.log.aliyuncs.com"];
+        [_endpoints addObject:@"cn-qingdao.log.aliyuncs.com"];
+        [_endpoints addObject:@"cn-beijing.log.aliyuncs.com"];
+        [_endpoints addObject:@"cn-north-2-gov-1.log.aliyuncs.com"];
+        [_endpoints addObject:@"cn-zhangjiakou.log.aliyuncs.com"];
+        [_endpoints addObject:@"cn-huhehaote.log.aliyuncs.com"];
+        [_endpoints addObject:@"cn-wulanchabu.log.aliyuncs.com"];
+        [_endpoints addObject:@"cn-shenzhen.log.aliyuncs.com"];
+        [_endpoints addObject:@"cn-shenzhen-finance.log.aliyuncs.com"];
+        [_endpoints addObject:@"cn-heyuan.log.aliyuncs.com"];
+        [_endpoints addObject:@"cn-guangzhou.log.aliyuncs.com"];
+        [_endpoints addObject:@"cn-chengdu.log.aliyuncs.com"];
+        [_endpoints addObject:@"cn-hongkong.log.aliyuncs.com"];
+        [_endpoints addObject:@"ap-northeast-1.log.aliyuncs.com"];
+        [_endpoints addObject:@"ap-southeast-1.log.aliyuncs.com"];
+        [_endpoints addObject:@"ap-southeast-2.log.aliyuncs.com"];
+        [_endpoints addObject:@"ap-southeast-3.log.aliyuncs.com"];
+        [_endpoints addObject:@"ap-southeast-6.log.aliyuncs.com"];
+        [_endpoints addObject:@"ap-southeast-5.log.aliyuncs.com"];
+        [_endpoints addObject:@"me-east-1.log.aliyuncs.com"];
+        [_endpoints addObject:@"us-west-1.log.aliyuncs.com"];
+        [_endpoints addObject:@"eu-central-1.log.aliyuncs.com"];
+        [_endpoints addObject:@"us-east-1.log.aliyuncs.com"];
+        [_endpoints addObject:@"ap-south-1.log.aliyuncs.com"];
+        [_endpoints addObject:@"eu-west-1.log.aliyuncs.com"];
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -63,7 +101,9 @@ static NetworkDiagnosisController *selfClzz;
     
     [self createButton:@"AUTO" andAction:@selector(ato) andX:lx andY:SLCellHeight * 13 + SLPadding * 2 andWidth:SLScreenW - (lx * 2 + SLPadding * 2) andHeight:SLCellHeight];
 
-    [self createButton:@"UPDATE CONFIG" andAction:@selector(updateConfig) andX:lx andY:SLCellHeight * 14 + SLPadding * 3 andWidth:SLScreenW - (lx * 2 + SLPadding * 2) andHeight:SLCellHeight];
+    [self createButton:@"动态更新配置" andAction:@selector(updateConfig) andX:lx andY:SLCellHeight * 14 + SLPadding * 3 andWidth:SLScreenW - (lx * 2 + SLPadding * 2) andHeight:SLCellHeight];
+
+    [self createButton:@"配置探测策略" andAction:@selector(navToPolicy) andX:lx andY:SLCellHeight * 15 + SLPadding * 4 andWidth:SLScreenW - (lx * 2 + SLPadding * 2) andHeight:SLCellHeight];
 }
 
 - (void) updateStatus: (NSString *)append {
@@ -100,6 +140,10 @@ static NetworkDiagnosisController *selfClzz;
     [[SLSNetworkDiagnosis sharedInstance] mtr:@"www.aliyun.com" callback:^(SLSNetworkDiagnosisResult * _Nonnull result) {
         [self updateStatus:[NSString stringWithFormat:@"mtr result, success: %d, data: %@", result.success, result.data]];
     }];
+}
+
+- (void) navToPolicy {
+    [self.navigationController pushViewController:[[NetworkDiagnosisPolicyController alloc]init] animated:YES];
 }
 
 - (void) ato {

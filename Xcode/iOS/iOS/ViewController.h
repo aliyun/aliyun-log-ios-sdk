@@ -24,5 +24,7 @@
 
 - (UITextView *) createTextView: (NSString *) text andX: (CGFloat) x andY: (CGFloat) y andWidth: (CGFloat) width andHeight: (CGFloat) height;
 
+- (UITextField *) createTextField: (NSString *) hint andX: (CGFloat) x andY: (CGFloat) y andWidth: (CGFloat) width andHeight: (CGFloat) height andKeyBoard: (UIKeyboardType) keyboard;
+
 @end
 
