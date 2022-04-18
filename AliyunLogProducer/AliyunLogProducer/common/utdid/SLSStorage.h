@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface Storage : NSObject
+@interface SLSStorage : NSObject
 + (void) setUtdid: (NSString *)utdid;
 + (NSString *) getUtdid;
 @end

@@ -5,13 +5,13 @@
 //  Created by gordon on 2021/6/1.
 //
 
-#import "Storage.h"
+#import "SLSStorage.h"
 
-@interface Storage ()
+@interface SLSStorage ()
 + (NSString *) getFile;
 @end
 
-@implementation Storage
+@implementation SLSStorage
 + (NSString *) getFile {
     NSString *libraryPath = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES).firstObject;
     NSLog(@"startLogDirectoryMonitor. libraryPath: %@", libraryPath);
