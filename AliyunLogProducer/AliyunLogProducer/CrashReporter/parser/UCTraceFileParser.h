@@ -7,7 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import "IFileParser.h"
-#import "AliyunLogProducer/AliyunLogProducer.h"
+#import <AliyunLogProducer/AliyunLogProducer.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
