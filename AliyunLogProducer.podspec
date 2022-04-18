@@ -65,10 +65,8 @@ https://help.aliyun.com/product/28958.html
     b.tvos.deployment_target =  '9.0'
     b.osx.deployment_target =  '10.8'
     b.dependency 'AliyunLogProducer/Core'
-    b.source_files =
-    'AliyunLogProducer/AliyunLogProducer/common/**/*.{m,h}'
-    b.public_header_files =
-    'AliyunLogProducer/AliyunLogProducer/common/**/*.h'
+    b.source_files = 'AliyunLogProducer/AliyunLogProducer/common/**/*.{m,h}'
+    b.public_header_files = 'AliyunLogProducer/AliyunLogProducer/common/**/*.h'
     b.frameworks = "SystemConfiguration"
   end
   
