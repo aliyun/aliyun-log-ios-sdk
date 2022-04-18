@@ -7,7 +7,7 @@ target 'iOS' do
   use_frameworks!
 
   # Pods for Demo
-#  pod 'AliyunLogProducer', '2.3.8.beta.5' , :subspecs => ['Core', 'Bricks', 'CrashReporter', 'NetworkDiagnosis', 'Trace']
+#  pod 'AliyunLogProducer', '2.3.8.beta.6' , :subspecs => ['Core', 'Bricks', 'CrashReporter', 'NetworkDiagnosis', 'Trace']
   pod 'AliyunLogProducer/Core', :path =>'../../'
   pod 'AliyunLogProducer/Bricks', :path =>'../../'
   pod 'AliyunLogProducer/CrashReporter', :path =>'../../'
