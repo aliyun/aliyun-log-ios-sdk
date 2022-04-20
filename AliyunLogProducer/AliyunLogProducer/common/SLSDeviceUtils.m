@@ -265,11 +265,9 @@
             if ([info respondsToSelector:@selector(serviceSubscriberCellularProviders)]) {
     #pragma clang diagnostic push
     #pragma clang diagnostic ignored "-Wunguarded-availability-new"
-                NSArray *carrierKeysArray =
-                [info.serviceSubscriberCellularProviders.allKeys sortedArrayUsingSelector:@selector(compare:)];
-                carrier = info.serviceSubscriberCellularProviders[carrierKeysArray.firstObject];
+                carrier = info.serviceSubscriberCellularProviders[info.serviceSubscriberCellularProviders.allKeys.firstObject];
                 if (!carrier.mobileNetworkCode) {
-                    carrier = info.serviceSubscriberCellularProviders[carrierKeysArray.lastObject];
+                    carrier = info.serviceSubscriberCellularProviders[info.serviceSubscriberCellularProviders.allKeys.lastObject];
                 }
     #pragma clang diagnostic pop
             }
