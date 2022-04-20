@@ -258,16 +258,39 @@
 
 + (NSString *)getCarrier {
 #if SLS_HAS_CORE_TELEPHONY
-    CTTelephonyNetworkInfo *info = [[CTTelephonyNetworkInfo alloc] init];
-    CTCarrier *carrier = [info subscriberCellularProvider];
-    NSString *carrierName;
-    if(!carrier.isoCountryCode) {
-        carrierName = @"无运营商";
-    } else {
-        carrierName = [carrier carrierName];
+    @try {
+        CTTelephonyNetworkInfo *info = [[CTTelephonyNetworkInfo alloc] init];
+        CTCarrier *carrier = nil;
+        if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 12.1) {
+            if ([info respondsToSelector:@selector(serviceSubscriberCellularProviders)]) {
+    #pragma clang diagnostic push
+    #pragma clang diagnostic ignored "-Wunguarded-availability-new"
+                NSArray *carrierKeysArray =
+                [info.serviceSubscriberCellularProviders.allKeys sortedArrayUsingSelector:@selector(compare:)];
+                carrier = info.serviceSubscriberCellularProviders[carrierKeysArray.firstObject];
+                if (!carrier.mobileNetworkCode) {
+                    carrier = info.serviceSubscriberCellularProviders[carrierKeysArray.lastObject];
+                }
+    #pragma clang diagnostic pop
+            }
+        }
+        if(!carrier) {
+    #pragma clang diagnostic push
+    #pragma clang diagnostic ignored "-Wdeprecated-declarations"
+            carrier = info.subscriberCellularProvider;
+    #pragma clang diagnostic pop
+        }
+        if (carrier != nil) {
+            if (!carrier.isoCountryCode) {
+                return @"无运营商";
+            } else {
+                return [carrier carrierName];
+            }
+        }
+    } @catch (NSException *exception) {
+        return @"Unknown";
     }
     
-    return carrierName;
 #else
     return @"Unknown";
 #endif
@@ -291,9 +314,13 @@
 
 + (NSString *)getNetworkType {
 #if SLS_HAS_CORE_TELEPHONY
-    CTTelephonyNetworkInfo *networkInfo = [[CTTelephonyNetworkInfo alloc] init];
-    NSString *currentStatus = networkInfo.currentRadioAccessTechnology;
-    return currentStatus;
+    @try {
+        CTTelephonyNetworkInfo *networkInfo = [[CTTelephonyNetworkInfo alloc] init];
+        NSString *currentStatus = networkInfo.currentRadioAccessTechnology;
+        return currentStatus;
+    } @catch (NSException *exception) {
+        return @"Unknown";
+    }
 #else
     return @"Unknown";
 #endif

@@ -35,6 +35,7 @@
     scheme.local_timestamp = [NSString stringWithFormat:@"%.0f", [date timeIntervalSince1970] * 1000];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
     [dateFormatter setDateFormat:@"YYYY-MM-dd HH:mm:ss:SSS"];
+    [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
     scheme.local_time = [dateFormatter stringFromDate:date];
     
     date = [NSDate dateWithTimeIntervalSince1970:[[NSString stringWithFormat:@"%ld%@%@", (long)[TimeUtils getTimeInMilliis], @".",[scheme.local_timestamp substringFromIndex:10]] doubleValue]];
