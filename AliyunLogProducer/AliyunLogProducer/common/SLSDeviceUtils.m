@@ -258,6 +258,9 @@
 
 + (NSString *)getCarrier {
 #if SLS_HAS_CORE_TELEPHONY
+#if TARGET_IPHONE_SIMULATOR
+    return @"Unknown";
+#endif
     @try {
         CTTelephonyNetworkInfo *info = [[CTTelephonyNetworkInfo alloc] init];
         CTCarrier *carrier = nil;
