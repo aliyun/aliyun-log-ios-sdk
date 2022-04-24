@@ -5,6 +5,7 @@
 //  Created by gordon on 2021/5/19.
 //
 
+#import "SLSSystemCapabilities.h"
 #import "SLSReporterSender.h"
 
 @implementation SLSReporterSender
@@ -26,7 +27,15 @@ NSString *securityToken;
     logConfig = [[LogProducerConfig alloc] initWithEndpoint:endpoint project:project logstore:logstore accessKeyID:config.accessKeyId accessKeySecret:config.accessKeySecret securityToken:config.securityToken];
     
     [logConfig SetTopic:@"crash_report"];
+
+#if SLS_HOST_MAC
+    [logConfig AddTag:@"crash_report" value:@"macOS"];
+#elif SLS_HOST_TV
+    [logConfig AddTag:@"crash_report" value:@"tvOS"];
+#else
     [logConfig AddTag:@"crash_report" value:@"iOS"];
+#endif
+    
     [logConfig SetPacketLogBytes:(1024 * 1024 * 5)];
     [logConfig SetPacketLogCount: 4096];
     [logConfig SetMaxBufferLimit:(64*1024*1024)];
@@ -34,7 +43,11 @@ NSString *securityToken;
     [logConfig SetSendThreadCount:1];
     
     [logConfig SetPersistent:1];
+#if SLS_HOST_TV
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+#else
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+#endif
     NSString *path = [[paths lastObject] stringByAppendingString:@"/crash_log.dat"];
     [logConfig SetPersistentFilePath:path];
     [logConfig SetPersistentForceFlush:0];
@@ -68,7 +81,7 @@ void on_log_send_done(const char * config_name, log_producer_result result, size
     if (result == LOG_PRODUCER_OK) {
         SLSLogV(@"report success. config: %s, result: %d, log bytes: %d, compressed bytes: %d, request id: %s", config_name, (result), (int)log_bytes, (int)compressed_bytes, req_id);
     } else {
-        SLSLogV(@"report fail. config: %s, result: %d, log bytes: %d, compressed bytes: %d, request id: %s, error message : %s", config_name, (result), (int)log_bytes, (int)compressed_bytes, req_id, message);
+        SLSLog(@"report fail. config: %s, result: %d, log bytes: %d, compressed bytes: %d, request id: %s, error message : %s", config_name, (result), (int)log_bytes, (int)compressed_bytes, req_id, message);
     }
 }
 

@@ -5,9 +5,16 @@
 //  Created by gordon on 2021/5/19.
 //
 
+#import "SLSSystemCapabilities.h"
 #import "TCData.h"
 #import "SLSDeviceUtils.h"
+
+#if SLS_HAS_UIKIT
 #import <UIKit/UIKit.h>
+#else
+#import <AppKit/AppKit.h>
+#endif
+
 #import "utdid/Utdid.h"
 #import "TimeUtils.h"
 
@@ -28,6 +35,7 @@
     scheme.local_timestamp = [NSString stringWithFormat:@"%.0f", [date timeIntervalSince1970] * 1000];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
     [dateFormatter setDateFormat:@"YYYY-MM-dd HH:mm:ss:SSS"];
+    [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
     scheme.local_time = [dateFormatter stringFromDate:date];
     
     date = [NSDate dateWithTimeIntervalSince1970:[[NSString stringWithFormat:@"%ld%@%@", (long)[TimeUtils getTimeInMilliis], @".",[scheme.local_timestamp substringFromIndex:10]] doubleValue]];
@@ -47,10 +55,27 @@
     scheme.utdid = [Utdid getUtdid];
     scheme.imei = @"-";
     scheme.imsi = @"-";
+#if SLS_HOST_MAC
+    scheme.brand = @"Apple";
+#else
     scheme.brand = [scheme returnDashIfNull: [[UIDevice currentDevice] model]];
+#endif
+
     scheme.device_model = [scheme returnDashIfNull:[SLSDeviceUtils getDeviceModel]];
+#if SLS_HOST_MAC
+    scheme.os = @"macOS";
+#elif SLS_HOST_TV
+    scheme.os = @"tvOS";
+#else
     scheme.os = @"iOS";
+#endif
+
+#if SLS_HOST_MAC
+    scheme.os_version = [scheme returnDashIfNull:[[NSProcessInfo processInfo] operatingSystemVersionString]];
+#else
     scheme.os_version = [scheme returnDashIfNull:[[UIDevice currentDevice] systemVersion]];
+#endif
+    
     scheme.carrier = [scheme returnDashIfNull:[SLSDeviceUtils getCarrier]];
     scheme.access = [scheme returnDashIfNull:[SLSDeviceUtils getNetworkTypeName]];
     scheme.access_subtype = [scheme returnDashIfNull:[SLSDeviceUtils getNetworkSubTypeName]];
@@ -63,7 +88,7 @@
 + (TCData *) createDefaultWithSLSConfig:(SLSConfig *)config {
     TCData *data = [self createDefault];
     
-    [data setApp_id:[NSString stringWithFormat:@"%@@iOS", config.pluginAppId]];
+    [data setApp_id:[NSString stringWithFormat:@"%@@%@", config.pluginAppId, data.os]];
     [data setChannel:[data returnDashIfNull:config.channel]];
     [data setChannel_name:[data returnDashIfNull:config.channelName]];
     [data setUser_nick:[data returnDashIfNull:config.userNick]];
