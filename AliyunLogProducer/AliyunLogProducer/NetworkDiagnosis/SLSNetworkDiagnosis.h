@@ -6,17 +6,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SLSConfig.h"
-#import "SLSNetworkDiagnosisResult.h"
-#import "ISender.h"
+#import <AliyunLogProducer/SLSConfig.h>
+#import <AliyunLogProducer/ISender.h>
 
 #import <AliyunLogProducer/AliyunLogProducer.h>
 #import "SLSNetworkDiagnosisResult.h"
 #import "SLSNetPolicyBuilder.h"
-#import <AliNetworkDiagnosis/AliPing.h>
-#import <AliNetworkDiagnosis/AliHttpPing.h>
-#import <AliNetworkDiagnosis/AliMTR.h>
-#import <AliNetworkDiagnosis/AliTcpPing.h>
 #import <AliNetworkDiagnosis/AliNetworkDiagnosis.h>
 
 NS_ASSUME_NONNULL_BEGIN
