@@ -30,7 +30,7 @@ FOUNDATION_EXPORT const unsigned char AliyunLogProducerVersionString[];
 
 #import "LogProducerClient.h"
 #import "LogProducerConfig.h"
-#import "Log.h"
+#import "SLSLog.h"
 #import "TimeUtils.h"
 
 #if __has_include("LogProducerClient+Bricks.h")

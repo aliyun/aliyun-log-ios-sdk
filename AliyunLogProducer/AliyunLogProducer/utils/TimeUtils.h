@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Log.h"
+#import "SLSLog.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 +(void) startUpdateServerTime: (NSString *)endpoint project: (NSString *)project;
 +(void) updateServerTime: (NSInteger) timeInMillis;
 +(NSInteger) getTimeInMilliis;
-+(void) fixTime: (Log *)log;
++(void) fixTime: (SLSLog *)log;
 @end
 
 NS_ASSUME_NONNULL_END

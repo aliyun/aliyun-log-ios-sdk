@@ -16,7 +16,7 @@
 @property(nonatomic, strong) LogProducerConfig *config;
 @property(nonatomic, strong) SLSConfig *slsConfig;
 
-- (Log *) spanToLog: (TelemetrySpanData *)span;
+- (SLSLog *) spanToLog: (TelemetrySpanData *)span;
 - (NSArray *) linksToArray: (NSArray<TelemetryLink *> *) links;
 - (NSDictionary *) eventsToArray: (NSArray<TelemetryEvent *> *)events;
 - (NSDictionary *) attributeToDictionaray: (NSDictionary<NSString *, TelemetryAttributeValue *> *) attributes;
@@ -66,7 +66,7 @@
     self.client = [[LogProducerClient alloc] initWithLogProducerConfig:self.config callback:_on_log_send_done];
 }
 
-- (BOOL) sendDada: (Log *)log {
+- (BOOL) sendDada: (SLSLog *)log {
     LogProducerResult res = [[self client] AddLog:log];
     SLSLogV(@"add trace log res: %ld", (long)res);
     return res == LogProducerOK;
@@ -102,7 +102,7 @@
 
 - (TelemetrySpanExporterResultCode *)exportTelemetrySpanWithSpans:(NSArray<TelemetrySpanData *> *)spans {
     for (TelemetrySpanData *span in spans) {
-        Log *log  = [self spanToLog: span];
+        SLSLog *log  = [self spanToLog: span];
         [self sendDada:log];
     }
     // TODO force success
@@ -117,8 +117,8 @@
     
 }
 
-- (Log *)spanToLog:(TelemetrySpanData *)span {
-    Log *log = [[Log alloc] init];
+- (SLSLog *)spanToLog:(TelemetrySpanData *)span {
+    SLSLog *log = [[SLSLog alloc] init];
     
     if ([span resource]) {
         TelemetryResource *resource = [span resource];

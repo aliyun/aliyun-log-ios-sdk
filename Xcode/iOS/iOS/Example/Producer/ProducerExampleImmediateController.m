@@ -123,8 +123,8 @@ static void _on_log_send_done(const char * config_name, log_producer_result resu
 }
 
 
-- (Log *) oneLog {
-    Log* log = [[Log alloc] init];
+- (SLSLog *) oneLog {
+    SLSLog* log = [[SLSLog alloc] init];
 
     [log PutContent:@"content_key_1" value:@"1abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+"];
     [log PutContent:@"content_key_2" value:@"2abcdefghijklmnopqrstuvwxyz0123456789"];

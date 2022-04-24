@@ -282,7 +282,7 @@
     NSData *json = [NSJSONSerialization dataWithJSONObject:reserves options:0 error:nil];
     tcdata.reserves = [[NSString alloc] initWithData:json encoding:NSUTF8StringEncoding];
     
-    __block Log *log = [[Log alloc] init];
+    __block SLSLog *log = [[SLSLog alloc] init];
     // ignore ext fields
     [[tcdata toDictionaryWithIgnoreExt: YES] enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
         [log PutContent:key value:obj];

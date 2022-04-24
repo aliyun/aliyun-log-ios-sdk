@@ -7,13 +7,13 @@
 
 #import <Foundation/Foundation.h>
 #import "SLSConfig.h"
-#import "Log.h"
+#import "SLSLog.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ISender : NSObject
 - (void) initWithSLSConfig: (SLSConfig *)config;
-- (BOOL) sendDada: (Log *)log;
+- (BOOL) sendDada: (SLSLog *)log;
 - (void) resetSecurityToken:(NSString *)accessKeyId secret:(NSString *)accessKeySecret token:(NSString *)token;
 - (void) resetProject: (NSString *)endpoint project:(NSString *)project logstore:(NSString *)logstore;
 - (void) updateConfig: (SLSConfig *)config;

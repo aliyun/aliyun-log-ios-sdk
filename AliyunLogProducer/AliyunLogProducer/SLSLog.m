@@ -7,14 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Log.h"
+#import "SLSLog.h"
 #import "TimeUtils.h"
 
-@interface Log ()
+@interface SLSLog ()
 
 @end
 
-@implementation Log
+@implementation SLSLog
 
 - (id) init
 {
