@@ -94,7 +94,7 @@ void on_log_send_done(const char * config_name, log_producer_result result, size
         return NO;
     }
     
-    __block Log *log = [[Log alloc] init];
+    __block SLSLog *log = [[SLSLog alloc] init];
     [[tcdata toDictionary] enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
         [log PutContent:key value:obj];
 //        SLSLogV(@"key: %@, value: %@", key, obj);

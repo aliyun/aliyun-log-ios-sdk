@@ -54,7 +54,7 @@ static void _on_log_send_done(const char * config_name, log_producer_result resu
     }
 }
 
-- (BOOL) sendDada: (Log *)log {
+- (BOOL) sendDada: (SLSLog *)log {
     if(nil == _client) {
         return NO;
     }

@@ -12,7 +12,7 @@
 
 #endif /* Log_h */
 
-@interface Log : NSObject
+@interface SLSLog : NSObject
 {
     @package unsigned int logTime;
     @package NSMutableDictionary *content;

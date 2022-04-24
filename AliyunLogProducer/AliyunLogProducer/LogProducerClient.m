@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "LogProducerClient.h"
 #import "LogProducerConfig.h"
-#import "Log.h"
+#import "SLSLog.h"
 #import "TimeUtils.h"
 
 #if __has_include("LogProducerClient+Bricks.h")
@@ -55,12 +55,12 @@
     destroy_log_producer(self->producer);
 }
 
-- (LogProducerResult)AddLog:(Log *) log
+- (LogProducerResult)AddLog:(SLSLog *) log
 {
     return [self AddLog:log flush:0];
 }
 
-- (LogProducerResult)AddLog:(Log *) log flush:(int) flush
+- (LogProducerResult)AddLog:(SLSLog *) log flush:(int) flush
 {
     if (!enable || self->client == NULL || log == nil) {
         return LogProducerInvalid;

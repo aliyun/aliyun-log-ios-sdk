@@ -67,7 +67,7 @@ static NSTimeInterval elapsedRealtime = 0;
     
     return serverTime + delta;
 }
-+(void) fixTime: (Log *)log
++(void) fixTime: (SLSLog *)log
 {
     if(!log) {
         return;
