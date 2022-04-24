@@ -21,6 +21,10 @@ static NSTimeInterval elapsedRealtime = 0;
 @implementation TimeUtils
 +(void) startUpdateServerTime: (NSString *)endpoint project:(nonnull NSString *)project
 {
+    if (!endpoint || endpoint.length <=0 ) {
+        return;
+    }
+    
     NSURL *url = [NSURL URLWithString:endpoint];
     NSString *urlString = [NSString stringWithFormat:@"https://%@.%@/servertime", project, url.host];
 //    NSString *url = @"https://cn-shanghai-staging-share.sls.aliyuncs.com/servertime";

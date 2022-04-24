@@ -5,6 +5,7 @@
 //  Created by gordon on 2021/5/19.
 //
 
+#import "SLSSystemCapabilities.h"
 #import "SLSCrashReporterPlugin.h"
 #import "UCTraceFileParser.h"
 #import "SLSReporterSender.h"
@@ -191,7 +192,11 @@ void monitorDirectory(SLSCrashReporterPlugin* plugin, dispatch_source_t _source,
     // AppData/Library/.WPKLog/CrashLog
     // AppData/Library/.WPKLog/CrashStatLog
     SLSLog(@"start");
+#if SLS_HOST_TV
+    NSString *libraryPath = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES).firstObject;
+#else
     NSString *libraryPath = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES).firstObject;
+#endif
     SLSLogV(@"libraryPath: %@", libraryPath);
     
     NSString *wpkLogpath = [libraryPath stringByAppendingPathComponent:@".WPKLog"];

@@ -6,7 +6,7 @@
 //
 
 #import "Utdid.h"
-#import "Storage.h"
+#import "SLSStorage.h"
 
 @interface Utdid ()
 
@@ -14,13 +14,13 @@
 
 @implementation Utdid
 + (NSString *) getUtdid {
-    NSString *utdid = [Storage getUtdid];
+    NSString *utdid = [SLSStorage getUtdid];
     if(utdid) {
         return utdid;
     }
     
     NSString *uuid = [[NSUUID UUID] UUIDString];
-    [Storage setUtdid:uuid];
+    [SLSStorage setUtdid:uuid];
     
     return uuid;
 }

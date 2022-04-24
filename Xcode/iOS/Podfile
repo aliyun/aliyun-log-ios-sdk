@@ -1,0 +1,26 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+source 'https://github.com/CocoaPods/Specs.git'
+
+target 'iOS' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for Demo
+#  pod 'AliyunLogProducer', '2.3.8' , :subspecs => ['Core', 'Bricks', 'CrashReporter', 'NetworkDiagnosis', 'Trace']
+  pod 'AliyunLogProducer/Core', :path =>'../../'
+  pod 'AliyunLogProducer/Bricks', :path =>'../../'
+  pod 'AliyunLogProducer/CrashReporter', :path =>'../../'
+  pod 'AliyunLogProducer/NetworkDiagnosis', :path =>'../../'
+  pod 'AliyunLogProducer/Trace', :path =>'../../'
+end
+
+post_install do |installer|
+    installer.pods_project.targets.each do |target|
+        if target.name == 'Reachability'
+            target.build_configurations.each do |config|
+                config.build_settings['EXCLUDED_ARCHS[sdk=iphonesimulator*]'] = 'arm64'
+            end
+        end
+    end
+end

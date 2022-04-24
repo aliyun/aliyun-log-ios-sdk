@@ -12,6 +12,7 @@
 #define SLSLog(...)
 #endif
 
+#import "SLSSystemCapabilities.h"
 #import <Foundation/Foundation.h>
 #import "LogProducerConfig.h"
 #import "inner_log.h"
@@ -124,8 +125,13 @@ static int os_http_post(const char *url,
     if (self = [super init])
     {
         self->config = create_log_producer_config();
-        const char *sourceChar = "iOS";
-        log_producer_config_set_source(self->config, sourceChar);
+#if SLS_HOST_MAC
+        log_producer_config_set_source(self->config, "macOS");
+#elif SLS_HOST_TV
+        log_producer_config_set_source(self->config, "tvOS");
+#else
+        log_producer_config_set_source(self->config, "iOS");
+#endif
         log_producer_config_set_packet_timeout(self->config, 3000);
         log_producer_config_set_packet_log_count(self->config, 1024);
         log_producer_config_set_packet_log_bytes(self->config, 1024*1024);

@@ -4,16 +4,25 @@
 //
 //  Created by gordon on 2021/5/31.
 //
-
+#import "SLSSystemCapabilities.h"
 #import "SLSDeviceUtils.h"
 #import <sys/utsname.h>
+
+#if SLS_HAS_UIKIT
 #import <UIKit/UIKit.h>
+#else
+#import <AppKit/AppKit.h>
+#endif
+
+#if SLS_HAS_CORE_TELEPHONY
 #import <CoreTelephony/CTTelephonyNetworkInfo.h>
 #import <CoreTelephony/CTCarrier.h>
+#endif
+
 #import <sys/stat.h>
 #import <dlfcn.h>
 //#import "reachable/Rechable.h"
-#import <Reachability/Reachability.h>
+#import "SLSReachability.h"
 #include <sys/types.h>
 #include <sys/sysctl.h>
 #include <mach/machine.h>
@@ -235,35 +244,68 @@
 }
 
 + (NSString *)getResolution {
+#if SLS_HAS_UIKIT
     CGSize size = [[UIScreen mainScreen] bounds].size;
     CGFloat scale = [[UIScreen mainScreen] scale];
-    
     return [NSString stringWithFormat:@"%.0f*%.0f",size.height * scale, size.width * scale];
-//    return NSStringFromCGSize(CGSizeMake(size.width * scale, size.height * scale));
+#else
+    NSScreen *screen = [NSScreen mainScreen];
+    NSDictionary *description = [screen deviceDescription];
+    NSSize size = [[description objectForKey:NSDeviceSize] sizeValue];
+    return [NSString stringWithFormat:@"%.0f*%.0f",size.height, size.width];
+#endif
 }
 
 + (NSString *)getCarrier {
-    CTTelephonyNetworkInfo *info = [[CTTelephonyNetworkInfo alloc] init];
-    CTCarrier *carrier = [info subscriberCellularProvider];
-    NSString *carrierName;
-    if(!carrier.isoCountryCode) {
-        carrierName = @"无运营商";
-    } else {
-        carrierName = [carrier carrierName];
+#if SLS_HAS_CORE_TELEPHONY
+#if TARGET_IPHONE_SIMULATOR
+    return @"Unknown";
+#endif
+    @try {
+        CTTelephonyNetworkInfo *info = [[CTTelephonyNetworkInfo alloc] init];
+        CTCarrier *carrier = nil;
+        if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 12.1) {
+            if ([info respondsToSelector:@selector(serviceSubscriberCellularProviders)]) {
+    #pragma clang diagnostic push
+    #pragma clang diagnostic ignored "-Wunguarded-availability-new"
+                carrier = info.serviceSubscriberCellularProviders[info.serviceSubscriberCellularProviders.allKeys.firstObject];
+                if (!carrier.mobileNetworkCode) {
+                    carrier = info.serviceSubscriberCellularProviders[info.serviceSubscriberCellularProviders.allKeys.lastObject];
+                }
+    #pragma clang diagnostic pop
+            }
+        }
+        if(!carrier) {
+    #pragma clang diagnostic push
+    #pragma clang diagnostic ignored "-Wdeprecated-declarations"
+            carrier = info.subscriberCellularProvider;
+    #pragma clang diagnostic pop
+        }
+        if (carrier != nil) {
+            if (!carrier.isoCountryCode) {
+                return @"无运营商";
+            } else {
+                return [carrier carrierName];
+            }
+        }
+    } @catch (NSException *exception) {
+        return @"Unknown";
     }
     
-    return carrierName;
+#else
+    return @"Unknown";
+#endif
 }
 
 + (NSString *)getReachabilityStatus {
-    Reachability *reachability = [Reachability reachabilityWithHostname:@"www.aliyun.com"];
+    SLSReachability *reachability = [SLSReachability reachabilityWithHostname:@"www.aliyun.com"];
     switch ([reachability currentReachabilityStatus]) {
-        case NotReachable:
+        case SLSNotReachable:
             return @"Unknown";
-        case ReachableViaWiFi:
+        case SLSReachableViaWiFi:
             return @"Wi-Fi";
             break;
-        case ReachableViaWWAN:
+        case SLSReachableViaWWAN:
             return @"WWAN";
             break;
         default:
@@ -272,12 +314,21 @@
 }
 
 + (NSString *)getNetworkType {
-    CTTelephonyNetworkInfo *networkInfo = [[CTTelephonyNetworkInfo alloc] init];
-    NSString *currentStatus = networkInfo.currentRadioAccessTechnology;
-    return currentStatus;
+#if SLS_HAS_CORE_TELEPHONY
+    @try {
+        CTTelephonyNetworkInfo *networkInfo = [[CTTelephonyNetworkInfo alloc] init];
+        NSString *currentStatus = networkInfo.currentRadioAccessTechnology;
+        return currentStatus;
+    } @catch (NSException *exception) {
+        return @"Unknown";
+    }
+#else
+    return @"Unknown";
+#endif
 }
 
 + (NSString *)getNetworkTypeName {
+#if SLS_HAS_CORE_TELEPHONY
     NSString *currentReachabilityStatus = [self getReachabilityStatus];
     if(![@"WWAN" isEqual:currentReachabilityStatus]) {
         return currentReachabilityStatus;
@@ -313,9 +364,13 @@
     }
     
     return @"Unknown";
+#else
+    return @"Unknown";
+#endif
 }
 
 + (NSString *)getNetworkSubTypeName {
+#if SLS_HAS_CORE_TELEPHONY
     NSString *currentReachabilityStatus = [self getReachabilityStatus];
     if(![@"WWAN" isEqual:currentReachabilityStatus]) {
         return @"Unknown";
@@ -376,6 +431,9 @@
     }
     
     return @"Unknown";
+#else
+    return @"Unknown";
+#endif
 }
 
 + (NSString *) getCPUArch {

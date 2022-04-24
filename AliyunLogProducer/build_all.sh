@@ -3,6 +3,7 @@ BIN_OUTPUT_DIRECTORY=`pwd`
 
 APPLICATION_NAME="AliyunLogProducer"
 SCHEME="AliyunLogProducer"
+SCHEME_CRASH="CrashReporter"
 # SCHEME_TV="KSCrash_static_tvos"
 WORKSPACE="AliyunLogProducer.xcodeproj" 
 PROJECT_BUILDDIR="./build"
@@ -14,6 +15,9 @@ xcodebuild OTHER_CFLAGS="-fembed-bitcode"  -project ${WORKSPACE} -scheme ${SCHEM
 xcodebuild OTHER_CFLAGS="-fembed-bitcode"  -project ${WORKSPACE} -scheme ${SCHEME} -configuration Release -sdk iphonesimulator clean build CONFIGURATION_BUILD_DIR="${PROJECT_BUILDDIR}/iphonesimulator"
 # xcodebuild OTHER_CFLAGS="-fembed-bitcode"  -project ${WORKSPACE} -scheme ${SCHEME_TV} -configuration Release -sdk appletvos clean build CONFIGURATION_BUILD_DIR="${PROJECT_BUILDDIR}/appletvos"
 # xcodebuild OTHER_CFLAGS="-fembed-bitcode"  -project ${WORKSPACE} -scheme ${SCHEME_TV} -configuration Release -sdk appletvsimulator clean build CONFIGURATION_BUILD_DIR="${PROJECT_BUILDDIR}/appletvsimulator"
+
+xcodebuild OTHER_CFLAGS="-fembed-bitcode"  -project ${WORKSPACE} -scheme ${SCHEME_CRASH} -configuration Release -sdk iphoneos clean build CONFIGURATION_BUILD_DIR="${PROJECT_BUILDDIR}/iphoneos"
+xcodebuild OTHER_CFLAGS="-fembed-bitcode"  -project ${WORKSPACE} -scheme ${SCHEME_CRASH} -configuration Release -sdk iphonesimulator clean build CONFIGURATION_BUILD_DIR="${PROJECT_BUILDDIR}/iphonesimulator"
 
 cd ./${PROJECT_BUILDDIR}
 rm -rf iphoneos/AliyunLogProducer.framework/PrivateHeaders
