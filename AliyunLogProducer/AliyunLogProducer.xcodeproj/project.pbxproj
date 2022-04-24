@@ -52,8 +52,6 @@
 		9D984EFF2520AE17009DE4FE /* LogProducerConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D984EFE2520AE17009DE4FE /* LogProducerConfig.m */; };
 		9D984F012520AF44009DE4FE /* LogProducerClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D984F002520AF44009DE4FE /* LogProducerClient.m */; };
 		9D984F042520D796009DE4FE /* LogProducerClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D984F032520D796009DE4FE /* LogProducerClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		9D984F062520E110009DE4FE /* Log.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D984F052520E110009DE4FE /* Log.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		9D984F082520E121009DE4FE /* Log.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D984F072520E120009DE4FE /* Log.m */; };
 		F807EE3A27F170EA0090F52D /* UCTraceFileParser.h in Headers */ = {isa = PBXBuildFile; fileRef = F80DF46C26A6FFAE00151F7C /* UCTraceFileParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F807EE3B27F170ED0090F52D /* SLSReporterSender.h in Headers */ = {isa = PBXBuildFile; fileRef = F80DF47026A7004900151F7C /* SLSReporterSender.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F807EE3C27F170EF0090F52D /* IReporterSender.h in Headers */ = {isa = PBXBuildFile; fileRef = F80DF46426A6FEFC00151F7C /* IReporterSender.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -114,7 +112,6 @@
 		F8696BDA27F0065400EF0020 /* log_inner_include.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D24688C2577848D0031EB1F /* log_inner_include.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F8696BDB27F0065400EF0020 /* sds.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D24687A2577848C0031EB1F /* sds.h */; };
 		F8696BDC27F0065400EF0020 /* TimeUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = F87A244F266F3FE000499D4D /* TimeUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F8696BDD27F0065400EF0020 /* Log.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D984F052520E110009DE4FE /* Log.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F8696BDE27F0065400EF0020 /* HttpConfigProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = F8ECDAE527D2068C002293E5 /* HttpConfigProxy.h */; };
 		F8696BDF27F0065400EF0020 /* log_queue.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D2468882577848D0031EB1F /* log_queue.h */; };
 		F8696BE027F0065400EF0020 /* log_api.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D24688A2577848D0031EB1F /* log_api.h */; };
@@ -142,7 +139,6 @@
 		F8696BF727F0065400EF0020 /* log_ring_file.c in Sources */ = {isa = PBXBuildFile; fileRef = 9D2468702577848C0031EB1F /* log_ring_file.c */; };
 		F8696BF827F0065400EF0020 /* md5.c in Sources */ = {isa = PBXBuildFile; fileRef = 9D24687C2577848C0031EB1F /* md5.c */; };
 		F8696BF927F0065400EF0020 /* inner_log.c in Sources */ = {isa = PBXBuildFile; fileRef = 9D24686D2577848C0031EB1F /* inner_log.c */; };
-		F8696BFA27F0065400EF0020 /* Log.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D984F072520E120009DE4FE /* Log.m */; };
 		F8696BFB27F0065400EF0020 /* log_http_interface.c in Sources */ = {isa = PBXBuildFile; fileRef = 9D2468752577848C0031EB1F /* log_http_interface.c */; };
 		F8696BFC27F0065400EF0020 /* LogProducerConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D984EFE2520AE17009DE4FE /* LogProducerConfig.m */; };
 		F8696BFD27F0065400EF0020 /* log_persistent_manager.c in Sources */ = {isa = PBXBuildFile; fileRef = 9D2468712577848C0031EB1F /* log_persistent_manager.c */; };
@@ -183,6 +179,10 @@
 		F8696C7F27F15BEE00EF0020 /* ISender.m in Sources */ = {isa = PBXBuildFile; fileRef = F8696C7D27F15BEE00EF0020 /* ISender.m */; };
 		F87A2451266F3FE000499D4D /* TimeUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = F87A244F266F3FE000499D4D /* TimeUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F87A2452266F3FE000499D4D /* TimeUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = F87A2450266F3FE000499D4D /* TimeUtils.m */; };
+		F88AE47D2814F28300C3D4C6 /* SLSLog.h in Headers */ = {isa = PBXBuildFile; fileRef = F88AE47B2814F28300C3D4C6 /* SLSLog.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F88AE47E2814F28300C3D4C6 /* SLSLog.h in Headers */ = {isa = PBXBuildFile; fileRef = F88AE47B2814F28300C3D4C6 /* SLSLog.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F88AE47F2814F28300C3D4C6 /* SLSLog.m in Sources */ = {isa = PBXBuildFile; fileRef = F88AE47C2814F28300C3D4C6 /* SLSLog.m */; };
+		F88AE4802814F28300C3D4C6 /* SLSLog.m in Sources */ = {isa = PBXBuildFile; fileRef = F88AE47C2814F28300C3D4C6 /* SLSLog.m */; };
 		F8ECDAE727D2068C002293E5 /* HttpConfigProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = F8ECDAE527D2068C002293E5 /* HttpConfigProxy.h */; };
 		F8ECDAE827D2068C002293E5 /* HttpConfigProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = F8ECDAE627D2068C002293E5 /* HttpConfigProxy.m */; };
 /* End PBXBuildFile section */
@@ -288,8 +288,6 @@
 		9D984F002520AF44009DE4FE /* LogProducerClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LogProducerClient.m; sourceTree = "<group>"; };
 		9D984F022520B137009DE4FE /* LogProducerConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogProducerConfig.h; sourceTree = "<group>"; };
 		9D984F032520D796009DE4FE /* LogProducerClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogProducerClient.h; sourceTree = "<group>"; };
-		9D984F052520E110009DE4FE /* Log.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Log.h; sourceTree = "<group>"; };
-		9D984F072520E120009DE4FE /* Log.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Log.m; sourceTree = "<group>"; };
 		F80DF31D26A56AD900151F7C /* Utdid.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Utdid.h; sourceTree = "<group>"; };
 		F80DF31E26A56AD900151F7C /* Utdid.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Utdid.m; sourceTree = "<group>"; };
 		F80DF32226A56AF600151F7C /* SLSStorage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLSStorage.h; sourceTree = "<group>"; };
@@ -346,6 +344,8 @@
 		F8696C7D27F15BEE00EF0020 /* ISender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISender.m; sourceTree = "<group>"; };
 		F87A244F266F3FE000499D4D /* TimeUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TimeUtils.h; sourceTree = "<group>"; };
 		F87A2450266F3FE000499D4D /* TimeUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimeUtils.m; sourceTree = "<group>"; };
+		F88AE47B2814F28300C3D4C6 /* SLSLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLSLog.h; sourceTree = "<group>"; };
+		F88AE47C2814F28300C3D4C6 /* SLSLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLSLog.m; sourceTree = "<group>"; };
 		F8ECDAE527D2068C002293E5 /* HttpConfigProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpConfigProxy.h; sourceTree = "<group>"; };
 		F8ECDAE627D2068C002293E5 /* HttpConfigProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpConfigProxy.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -497,12 +497,12 @@
 				F87A244E266F3FCD00499D4D /* utils */,
 				9D984DB52520A9B7009DE4FE /* AliyunLogProducer.h */,
 				9D984DB62520A9B7009DE4FE /* Info.plist */,
+				F88AE47B2814F28300C3D4C6 /* SLSLog.h */,
+				F88AE47C2814F28300C3D4C6 /* SLSLog.m */,
 				9D984F022520B137009DE4FE /* LogProducerConfig.h */,
 				9D984EFE2520AE17009DE4FE /* LogProducerConfig.m */,
 				9D984F032520D796009DE4FE /* LogProducerClient.h */,
 				9D984F002520AF44009DE4FE /* LogProducerClient.m */,
-				9D984F052520E110009DE4FE /* Log.h */,
-				9D984F072520E120009DE4FE /* Log.m */,
 				F8696C6127F0078500EF0020 /* SLSSystemCapabilities.h */,
 			);
 			path = AliyunLogProducer;
@@ -661,6 +661,7 @@
 				9D2468922577848D0031EB1F /* sha1.h in Headers */,
 				9D984DB72520A9B7009DE4FE /* AliyunLogProducer.h in Headers */,
 				9D2468B42577848E0031EB1F /* log_http_interface.h in Headers */,
+				F88AE47D2814F28300C3D4C6 /* SLSLog.h in Headers */,
 				9D2468AC2577848D0031EB1F /* log_producer_client.h in Headers */,
 				9D2468992577848D0031EB1F /* log_producer_common.h in Headers */,
 				9D2468A42577848D0031EB1F /* log_producer_config.h in Headers */,
@@ -669,7 +670,6 @@
 				9D2468B32577848E0031EB1F /* log_inner_include.h in Headers */,
 				9D2468A12577848D0031EB1F /* sds.h in Headers */,
 				F87A2451266F3FE000499D4D /* TimeUtils.h in Headers */,
-				9D984F062520E110009DE4FE /* Log.h in Headers */,
 				F84F8B072814E2500038A46E /* SLSNetPolicy.h in Headers */,
 				F8ECDAE727D2068C002293E5 /* HttpConfigProxy.h in Headers */,
 				F84F8B022814E2500038A46E /* SLSNetworkDiagnosisPlugin.h in Headers */,
@@ -714,6 +714,7 @@
 			files = (
 				F8696C5127F0069600EF0020 /* IPlugin.h in Headers */,
 				F8696C7E27F15BEE00EF0020 /* ISender.h in Headers */,
+				F88AE47E2814F28300C3D4C6 /* SLSLog.h in Headers */,
 				F8696BD127F0065400EF0020 /* log_producer_manager.h in Headers */,
 				F8696BD227F0065400EF0020 /* sha1.h in Headers */,
 				F8696BD327F0065400EF0020 /* AliyunLogProducer.h in Headers */,
@@ -734,7 +735,6 @@
 				F8696BDC27F0065400EF0020 /* TimeUtils.h in Headers */,
 				F8696C5327F006C300EF0020 /* SLSStorage.h in Headers */,
 				F8696C5527F006C300EF0020 /* SLSDeviceUtils.h in Headers */,
-				F8696BDD27F0065400EF0020 /* Log.h in Headers */,
 				F8696BDE27F0065400EF0020 /* HttpConfigProxy.h in Headers */,
 				F8696BDF27F0065400EF0020 /* log_queue.h in Headers */,
 				F8696BE027F0065400EF0020 /* log_api.h in Headers */,
@@ -917,6 +917,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F8ECDAE827D2068C002293E5 /* HttpConfigProxy.m in Sources */,
+				F88AE47F2814F28300C3D4C6 /* SLSLog.m in Sources */,
 				9D2468A82577848D0031EB1F /* log_producer_config.c in Sources */,
 				F84F8AFF2814E2500038A46E /* SLSNetworkDiagnosisResult.m in Sources */,
 				9D24689E2577848D0031EB1F /* sds.c in Sources */,
@@ -934,7 +935,6 @@
 				F84F8B062814E2500038A46E /* SLSDestination.m in Sources */,
 				9D2468942577848D0031EB1F /* inner_log.c in Sources */,
 				F84F8B052814E2500038A46E /* SLSNetPolicyBuilder.m in Sources */,
-				9D984F082520E121009DE4FE /* Log.m in Sources */,
 				9D24689C2577848D0031EB1F /* log_http_interface.c in Sources */,
 				9D984EFF2520AE17009DE4FE /* LogProducerConfig.m in Sources */,
 				9D2468982577848D0031EB1F /* log_persistent_manager.c in Sources */,
@@ -971,6 +971,7 @@
 				F8696C5A27F0072200EF0020 /* Utdid.m in Sources */,
 				F8696C5B27F0072200EF0020 /* SLSStorage.m in Sources */,
 				F8696C5C27F0072200EF0020 /* SLSConfig.m in Sources */,
+				F88AE4802814F28300C3D4C6 /* SLSLog.m in Sources */,
 				F8696C5D27F0072200EF0020 /* SLSDeviceUtils.m in Sources */,
 				F8696C5E27F0072200EF0020 /* TCData.m in Sources */,
 				F8696C5F27F0072200EF0020 /* SLSAdapter.m in Sources */,
@@ -990,7 +991,6 @@
 				F8696BF727F0065400EF0020 /* log_ring_file.c in Sources */,
 				F8696BF827F0065400EF0020 /* md5.c in Sources */,
 				F8696BF927F0065400EF0020 /* inner_log.c in Sources */,
-				F8696BFA27F0065400EF0020 /* Log.m in Sources */,
 				F8696BFB27F0065400EF0020 /* log_http_interface.c in Sources */,
 				F8696BFC27F0065400EF0020 /* LogProducerConfig.m in Sources */,
 				F8696BFD27F0065400EF0020 /* log_persistent_manager.c in Sources */,
