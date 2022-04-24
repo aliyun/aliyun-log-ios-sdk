@@ -68,6 +68,40 @@
 		F80DF47B26A7035E00151F7C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F80DF47A26A7035E00151F7C /* SystemConfiguration.framework */; };
 		F80DF47D26A7037000151F7C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F80DF47C26A7037000151F7C /* CoreGraphics.framework */; };
 		F82ED77B27F17B39002D11CE /* WPKMobi.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = F82ED77A27F17B39002D11CE /* WPKMobi.xcframework */; };
+		F84F8ADD2814E1180038A46E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F80DF47C26A7037000151F7C /* CoreGraphics.framework */; };
+		F84F8ADE2814E1180038A46E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F80DF47A26A7035E00151F7C /* SystemConfiguration.framework */; };
+		F84F8AE02814E1180038A46E /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F80DF47826A7034E00151F7C /* libc++.tbd */; };
+		F84F8AE12814E1180038A46E /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D0CAEEE252177D800A4985A /* libz.tbd */; };
+		F84F8AFC2814E2500038A46E /* SLSNetworkDiagnosis.h in Headers */ = {isa = PBXBuildFile; fileRef = F84F8AEA2814E2500038A46E /* SLSNetworkDiagnosis.h */; };
+		F84F8AFD2814E2500038A46E /* AliNetworkDiagnosis.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F84F8AEB2814E2500038A46E /* AliNetworkDiagnosis.framework */; };
+		F84F8AFE2814E2500038A46E /* SLSNetworkDiagnosisResult.h in Headers */ = {isa = PBXBuildFile; fileRef = F84F8AED2814E2500038A46E /* SLSNetworkDiagnosisResult.h */; };
+		F84F8AFF2814E2500038A46E /* SLSNetworkDiagnosisResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F84F8AEE2814E2500038A46E /* SLSNetworkDiagnosisResult.m */; };
+		F84F8B002814E2500038A46E /* SLSNetworkDataSender.h in Headers */ = {isa = PBXBuildFile; fileRef = F84F8AF02814E2500038A46E /* SLSNetworkDataSender.h */; };
+		F84F8B012814E2500038A46E /* SLSNetworkDataSender.m in Sources */ = {isa = PBXBuildFile; fileRef = F84F8AF12814E2500038A46E /* SLSNetworkDataSender.m */; };
+		F84F8B022814E2500038A46E /* SLSNetworkDiagnosisPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = F84F8AF22814E2500038A46E /* SLSNetworkDiagnosisPlugin.h */; };
+		F84F8B032814E2500038A46E /* SLSNetworkDiagnosis.m in Sources */ = {isa = PBXBuildFile; fileRef = F84F8AF32814E2500038A46E /* SLSNetworkDiagnosis.m */; };
+		F84F8B042814E2500038A46E /* SLSNetworkDiagnosisPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = F84F8AF42814E2500038A46E /* SLSNetworkDiagnosisPlugin.m */; };
+		F84F8B052814E2500038A46E /* SLSNetPolicyBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = F84F8AF62814E2500038A46E /* SLSNetPolicyBuilder.m */; };
+		F84F8B062814E2500038A46E /* SLSDestination.m in Sources */ = {isa = PBXBuildFile; fileRef = F84F8AF72814E2500038A46E /* SLSDestination.m */; };
+		F84F8B072814E2500038A46E /* SLSNetPolicy.h in Headers */ = {isa = PBXBuildFile; fileRef = F84F8AF82814E2500038A46E /* SLSNetPolicy.h */; };
+		F84F8B082814E2500038A46E /* SLSNetPolicyBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = F84F8AF92814E2500038A46E /* SLSNetPolicyBuilder.h */; };
+		F84F8B092814E2500038A46E /* SLSDestination.h in Headers */ = {isa = PBXBuildFile; fileRef = F84F8AFA2814E2500038A46E /* SLSDestination.h */; };
+		F84F8B0A2814E2500038A46E /* SLSNetPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = F84F8AFB2814E2500038A46E /* SLSNetPolicy.m */; };
+		F84F8B0B2814E3910038A46E /* SLSNetworkDiagnosis.h in Headers */ = {isa = PBXBuildFile; fileRef = F84F8AEA2814E2500038A46E /* SLSNetworkDiagnosis.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F84F8B0C2814E39F0038A46E /* SLSNetworkDiagnosisPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = F84F8AF22814E2500038A46E /* SLSNetworkDiagnosisPlugin.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F84F8B0D2814E3A70038A46E /* SLSNetworkDiagnosisResult.h in Headers */ = {isa = PBXBuildFile; fileRef = F84F8AED2814E2500038A46E /* SLSNetworkDiagnosisResult.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F84F8B0E2814E3C20038A46E /* SLSNetPolicyBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = F84F8AF92814E2500038A46E /* SLSNetPolicyBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F84F8B0F2814E3D10038A46E /* SLSNetPolicy.h in Headers */ = {isa = PBXBuildFile; fileRef = F84F8AF82814E2500038A46E /* SLSNetPolicy.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F84F8B102814E3DB0038A46E /* SLSDestination.h in Headers */ = {isa = PBXBuildFile; fileRef = F84F8AFA2814E2500038A46E /* SLSDestination.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F84F8B112814E3E60038A46E /* SLSNetworkDataSender.h in Headers */ = {isa = PBXBuildFile; fileRef = F84F8AF02814E2500038A46E /* SLSNetworkDataSender.h */; };
+		F84F8B122814E3FA0038A46E /* SLSNetPolicyBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = F84F8AF62814E2500038A46E /* SLSNetPolicyBuilder.m */; };
+		F84F8B132814E3FA0038A46E /* SLSDestination.m in Sources */ = {isa = PBXBuildFile; fileRef = F84F8AF72814E2500038A46E /* SLSDestination.m */; };
+		F84F8B142814E3FA0038A46E /* SLSNetPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = F84F8AFB2814E2500038A46E /* SLSNetPolicy.m */; };
+		F84F8B152814E3FA0038A46E /* SLSNetworkDiagnosisResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F84F8AEE2814E2500038A46E /* SLSNetworkDiagnosisResult.m */; };
+		F84F8B162814E3FB0038A46E /* SLSNetworkDataSender.m in Sources */ = {isa = PBXBuildFile; fileRef = F84F8AF12814E2500038A46E /* SLSNetworkDataSender.m */; };
+		F84F8B172814E3FB0038A46E /* SLSNetworkDiagnosis.m in Sources */ = {isa = PBXBuildFile; fileRef = F84F8AF32814E2500038A46E /* SLSNetworkDiagnosis.m */; };
+		F84F8B182814E3FB0038A46E /* SLSNetworkDiagnosisPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = F84F8AF42814E2500038A46E /* SLSNetworkDiagnosisPlugin.m */; };
+		F84F8B192814E42B0038A46E /* AliNetworkDiagnosis.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F84F8AEB2814E2500038A46E /* AliNetworkDiagnosis.framework */; };
 		F8696BD127F0065400EF0020 /* log_producer_manager.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D24688E2577848D0031EB1F /* log_producer_manager.h */; };
 		F8696BD227F0065400EF0020 /* sha1.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D24686B2577848C0031EB1F /* sha1.h */; };
 		F8696BD327F0065400EF0020 /* AliyunLogProducer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D984DB52520A9B7009DE4FE /* AliyunLogProducer.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -153,7 +187,27 @@
 		F8ECDAE827D2068C002293E5 /* HttpConfigProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = F8ECDAE627D2068C002293E5 /* HttpConfigProxy.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		F84F8B1F2814E6AF0038A46E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9D984DA92520A9B7009DE4FE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F8696BCF27F0065400EF0020;
+			remoteInfo = AliyunLogProducer_Bricks;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
+		F84F8AE32814E1180038A46E /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F8696C0A27F0065400EF0020 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -267,6 +321,22 @@
 		F80DF47C26A7037000151F7C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
 		F80DF47E26A7DE9000151F7C /* AliyunLogProducer.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = AliyunLogProducer.podspec; path = ../AliyunLogProducer.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		F82ED77A27F17B39002D11CE /* WPKMobi.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = WPKMobi.xcframework; sourceTree = "<group>"; };
+		F84F8AE72814E1180038A46E /* NetworkDiagnosis.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NetworkDiagnosis.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F84F8AEA2814E2500038A46E /* SLSNetworkDiagnosis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLSNetworkDiagnosis.h; sourceTree = "<group>"; };
+		F84F8AEB2814E2500038A46E /* AliNetworkDiagnosis.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AliNetworkDiagnosis.framework; sourceTree = "<group>"; };
+		F84F8AED2814E2500038A46E /* SLSNetworkDiagnosisResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLSNetworkDiagnosisResult.h; sourceTree = "<group>"; };
+		F84F8AEE2814E2500038A46E /* SLSNetworkDiagnosisResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLSNetworkDiagnosisResult.m; sourceTree = "<group>"; };
+		F84F8AF02814E2500038A46E /* SLSNetworkDataSender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLSNetworkDataSender.h; sourceTree = "<group>"; };
+		F84F8AF12814E2500038A46E /* SLSNetworkDataSender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLSNetworkDataSender.m; sourceTree = "<group>"; };
+		F84F8AF22814E2500038A46E /* SLSNetworkDiagnosisPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLSNetworkDiagnosisPlugin.h; sourceTree = "<group>"; };
+		F84F8AF32814E2500038A46E /* SLSNetworkDiagnosis.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLSNetworkDiagnosis.m; sourceTree = "<group>"; };
+		F84F8AF42814E2500038A46E /* SLSNetworkDiagnosisPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLSNetworkDiagnosisPlugin.m; sourceTree = "<group>"; };
+		F84F8AF62814E2500038A46E /* SLSNetPolicyBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLSNetPolicyBuilder.m; sourceTree = "<group>"; };
+		F84F8AF72814E2500038A46E /* SLSDestination.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLSDestination.m; sourceTree = "<group>"; };
+		F84F8AF82814E2500038A46E /* SLSNetPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLSNetPolicy.h; sourceTree = "<group>"; };
+		F84F8AF92814E2500038A46E /* SLSNetPolicyBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLSNetPolicyBuilder.h; sourceTree = "<group>"; };
+		F84F8AFA2814E2500038A46E /* SLSDestination.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLSDestination.h; sourceTree = "<group>"; };
+		F84F8AFB2814E2500038A46E /* SLSNetPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLSNetPolicy.m; sourceTree = "<group>"; };
 		F8696C0E27F0065400EF0020 /* AliyunLogProducer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AliyunLogProducer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8696C4F27F0066D00EF0020 /* CrashReporter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CrashReporter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8696C6127F0078500EF0020 /* SLSSystemCapabilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLSSystemCapabilities.h; sourceTree = "<group>"; };
@@ -287,8 +357,21 @@
 			files = (
 				F80DF47D26A7037000151F7C /* CoreGraphics.framework in Frameworks */,
 				F80DF47B26A7035E00151F7C /* SystemConfiguration.framework in Frameworks */,
+				F84F8AFD2814E2500038A46E /* AliNetworkDiagnosis.framework in Frameworks */,
 				F80DF47926A7034E00151F7C /* libc++.tbd in Frameworks */,
 				9D0CAEEF252177D800A4985A /* libz.tbd in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F84F8ADC2814E1180038A46E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F84F8ADD2814E1180038A46E /* CoreGraphics.framework in Frameworks */,
+				F84F8ADE2814E1180038A46E /* SystemConfiguration.framework in Frameworks */,
+				F84F8B192814E42B0038A46E /* AliNetworkDiagnosis.framework in Frameworks */,
+				F84F8AE02814E1180038A46E /* libc++.tbd in Frameworks */,
+				F84F8AE12814E1180038A46E /* libz.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -400,6 +483,7 @@
 				9D984DB22520A9B7009DE4FE /* AliyunLogProducer.framework */,
 				F8696C0E27F0065400EF0020 /* AliyunLogProducer.framework */,
 				F8696C4F27F0066D00EF0020 /* CrashReporter.framework */,
+				F84F8AE72814E1180038A46E /* NetworkDiagnosis.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -407,6 +491,7 @@
 		9D984DB42520A9B7009DE4FE /* AliyunLogProducer */ = {
 			isa = PBXGroup;
 			children = (
+				F84F8AE92814E2500038A46E /* NetworkDiagnosis */,
 				F80DF45F26A6FDCF00151F7C /* CrashReporter */,
 				F80DF2EF26A55F4700151F7C /* common */,
 				F87A244E266F3FCD00499D4D /* utils */,
@@ -499,6 +584,52 @@
 			path = sender;
 			sourceTree = "<group>";
 		};
+		F84F8AE92814E2500038A46E /* NetworkDiagnosis */ = {
+			isa = PBXGroup;
+			children = (
+				F84F8AEB2814E2500038A46E /* AliNetworkDiagnosis.framework */,
+				F84F8AF52814E2500038A46E /* policy */,
+				F84F8AEC2814E2500038A46E /* result */,
+				F84F8AEF2814E2500038A46E /* sender */,
+				F84F8AEA2814E2500038A46E /* SLSNetworkDiagnosis.h */,
+				F84F8AF22814E2500038A46E /* SLSNetworkDiagnosisPlugin.h */,
+				F84F8AF32814E2500038A46E /* SLSNetworkDiagnosis.m */,
+				F84F8AF42814E2500038A46E /* SLSNetworkDiagnosisPlugin.m */,
+			);
+			path = NetworkDiagnosis;
+			sourceTree = "<group>";
+		};
+		F84F8AEC2814E2500038A46E /* result */ = {
+			isa = PBXGroup;
+			children = (
+				F84F8AED2814E2500038A46E /* SLSNetworkDiagnosisResult.h */,
+				F84F8AEE2814E2500038A46E /* SLSNetworkDiagnosisResult.m */,
+			);
+			path = result;
+			sourceTree = "<group>";
+		};
+		F84F8AEF2814E2500038A46E /* sender */ = {
+			isa = PBXGroup;
+			children = (
+				F84F8AF02814E2500038A46E /* SLSNetworkDataSender.h */,
+				F84F8AF12814E2500038A46E /* SLSNetworkDataSender.m */,
+			);
+			path = sender;
+			sourceTree = "<group>";
+		};
+		F84F8AF52814E2500038A46E /* policy */ = {
+			isa = PBXGroup;
+			children = (
+				F84F8AF62814E2500038A46E /* SLSNetPolicyBuilder.m */,
+				F84F8AF72814E2500038A46E /* SLSDestination.m */,
+				F84F8AF82814E2500038A46E /* SLSNetPolicy.h */,
+				F84F8AF92814E2500038A46E /* SLSNetPolicyBuilder.h */,
+				F84F8AFA2814E2500038A46E /* SLSDestination.h */,
+				F84F8AFB2814E2500038A46E /* SLSNetPolicy.m */,
+			);
+			path = policy;
+			sourceTree = "<group>";
+		};
 		F8696C6327F007A700EF0020 /* Reachability */ = {
 			isa = PBXGroup;
 			children = (
@@ -539,20 +670,41 @@
 				9D2468A12577848D0031EB1F /* sds.h in Headers */,
 				F87A2451266F3FE000499D4D /* TimeUtils.h in Headers */,
 				9D984F062520E110009DE4FE /* Log.h in Headers */,
+				F84F8B072814E2500038A46E /* SLSNetPolicy.h in Headers */,
 				F8ECDAE727D2068C002293E5 /* HttpConfigProxy.h in Headers */,
+				F84F8B022814E2500038A46E /* SLSNetworkDiagnosisPlugin.h in Headers */,
 				9D2468AF2577848D0031EB1F /* log_queue.h in Headers */,
 				9D2468B12577848E0031EB1F /* log_api.h in Headers */,
+				F84F8AFC2814E2500038A46E /* SLSNetworkDiagnosis.h in Headers */,
+				F84F8AFE2814E2500038A46E /* SLSNetworkDiagnosisResult.h in Headers */,
 				9D2468A62577848D0031EB1F /* hmac-sha.h in Headers */,
 				9D2468A92577848D0031EB1F /* md5.h in Headers */,
 				9D2468B22577848E0031EB1F /* lz4.h in Headers */,
 				9D0CAEF325217AA400A4985A /* LogProducerConfig.h in Headers */,
+				F84F8B092814E2500038A46E /* SLSDestination.h in Headers */,
 				9D2468A52577848D0031EB1F /* log_persistent_manager.h in Headers */,
+				F84F8B082814E2500038A46E /* SLSNetPolicyBuilder.h in Headers */,
+				F84F8B002814E2500038A46E /* SLSNetworkDataSender.h in Headers */,
 				9D24689B2577848D0031EB1F /* log_builder.h in Headers */,
 				9D984F042520D796009DE4FE /* LogProducerClient.h in Headers */,
 				9D2468A72577848D0031EB1F /* inner_log.h in Headers */,
 				9D2468B72577848E0031EB1F /* log_ring_file.h in Headers */,
 				9D2468AD2577848D0031EB1F /* log_producer_sender.h in Headers */,
 				9D24689A2577848D0031EB1F /* log_util.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F84F8AD02814E1180038A46E /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F84F8B0B2814E3910038A46E /* SLSNetworkDiagnosis.h in Headers */,
+				F84F8B0C2814E39F0038A46E /* SLSNetworkDiagnosisPlugin.h in Headers */,
+				F84F8B0D2814E3A70038A46E /* SLSNetworkDiagnosisResult.h in Headers */,
+				F84F8B0E2814E3C20038A46E /* SLSNetPolicyBuilder.h in Headers */,
+				F84F8B0F2814E3D10038A46E /* SLSNetPolicy.h in Headers */,
+				F84F8B102814E3DB0038A46E /* SLSDestination.h in Headers */,
+				F84F8B112814E3E60038A46E /* SLSNetworkDataSender.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -635,6 +787,26 @@
 			productReference = 9D984DB22520A9B7009DE4FE /* AliyunLogProducer.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		F84F8ACF2814E1180038A46E /* NetworkDiagnosis */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F84F8AE42814E1180038A46E /* Build configuration list for PBXNativeTarget "NetworkDiagnosis" */;
+			buildPhases = (
+				F84F8AD02814E1180038A46E /* Headers */,
+				F84F8AD62814E1180038A46E /* Sources */,
+				F84F8ADC2814E1180038A46E /* Frameworks */,
+				F84F8AE22814E1180038A46E /* Resources */,
+				F84F8AE32814E1180038A46E /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F84F8B202814E6AF0038A46E /* PBXTargetDependency */,
+			);
+			name = NetworkDiagnosis;
+			productName = AliyunLogProducer;
+			productReference = F84F8AE72814E1180038A46E /* NetworkDiagnosis.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		F8696BCF27F0065400EF0020 /* AliyunLogProducer_Bricks */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F8696C0B27F0065400EF0020 /* Build configuration list for PBXNativeTarget "AliyunLogProducer_Bricks" */;
@@ -680,7 +852,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 1120;
-				ORGANIZATIONNAME = lichao;
+				ORGANIZATIONNAME = com.aysls.ios;
 				TargetAttributes = {
 					9D984DB12520A9B7009DE4FE = {
 						CreatedOnToolsVersion = 11.2.1;
@@ -703,12 +875,20 @@
 				9D984DB12520A9B7009DE4FE /* AliyunLogProducer */,
 				F8696BCF27F0065400EF0020 /* AliyunLogProducer_Bricks */,
 				F8696C1027F0066D00EF0020 /* CrashReporter */,
+				F84F8ACF2814E1180038A46E /* NetworkDiagnosis */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		9D984DB02520A9B7009DE4FE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F84F8AE22814E1180038A46E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -738,27 +918,48 @@
 			files = (
 				F8ECDAE827D2068C002293E5 /* HttpConfigProxy.m in Sources */,
 				9D2468A82577848D0031EB1F /* log_producer_config.c in Sources */,
+				F84F8AFF2814E2500038A46E /* SLSNetworkDiagnosisResult.m in Sources */,
 				9D24689E2577848D0031EB1F /* sds.c in Sources */,
 				F87A2452266F3FE000499D4D /* TimeUtils.m in Sources */,
 				9D2468B02577848D0031EB1F /* log_util.c in Sources */,
 				9D2468952577848D0031EB1F /* sha1.c in Sources */,
 				9D24689F2577848D0031EB1F /* log_queue.c in Sources */,
 				9D2468A02577848D0031EB1F /* lz4.c in Sources */,
+				F84F8B032814E2500038A46E /* SLSNetworkDiagnosis.m in Sources */,
 				9D2468AA2577848D0031EB1F /* log_api.c in Sources */,
+				F84F8B042814E2500038A46E /* SLSNetworkDiagnosisPlugin.m in Sources */,
 				9D2468A22577848D0031EB1F /* log_builder.c in Sources */,
 				9D2468972577848D0031EB1F /* log_ring_file.c in Sources */,
 				9D2468A32577848D0031EB1F /* md5.c in Sources */,
+				F84F8B062814E2500038A46E /* SLSDestination.m in Sources */,
 				9D2468942577848D0031EB1F /* inner_log.c in Sources */,
+				F84F8B052814E2500038A46E /* SLSNetPolicyBuilder.m in Sources */,
 				9D984F082520E121009DE4FE /* Log.m in Sources */,
 				9D24689C2577848D0031EB1F /* log_http_interface.c in Sources */,
 				9D984EFF2520AE17009DE4FE /* LogProducerConfig.m in Sources */,
 				9D2468982577848D0031EB1F /* log_persistent_manager.c in Sources */,
+				F84F8B012814E2500038A46E /* SLSNetworkDataSender.m in Sources */,
 				9D984F012520AF44009DE4FE /* LogProducerClient.m in Sources */,
 				9D2468932577848D0031EB1F /* log_producer_sender.c in Sources */,
 				9D24689D2577848D0031EB1F /* log_producer_client.c in Sources */,
 				9D2468B62577848E0031EB1F /* log_producer_common.c in Sources */,
 				9D2468AE2577848D0031EB1F /* log_producer_manager.c in Sources */,
+				F84F8B0A2814E2500038A46E /* SLSNetPolicy.m in Sources */,
 				9D2468AB2577848D0031EB1F /* hmac-sha.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F84F8AD62814E1180038A46E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F84F8B122814E3FA0038A46E /* SLSNetPolicyBuilder.m in Sources */,
+				F84F8B132814E3FA0038A46E /* SLSDestination.m in Sources */,
+				F84F8B142814E3FA0038A46E /* SLSNetPolicy.m in Sources */,
+				F84F8B152814E3FA0038A46E /* SLSNetworkDiagnosisResult.m in Sources */,
+				F84F8B162814E3FB0038A46E /* SLSNetworkDataSender.m in Sources */,
+				F84F8B172814E3FB0038A46E /* SLSNetworkDiagnosis.m in Sources */,
+				F84F8B182814E3FB0038A46E /* SLSNetworkDiagnosisPlugin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -815,6 +1016,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F84F8B202814E6AF0038A46E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F8696BCF27F0065400EF0020 /* AliyunLogProducer_Bricks */;
+			targetProxy = F84F8B1F2814E6AF0038A46E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		9D984DB82520A9B7009DE4FE /* Debug */ = {
@@ -949,6 +1158,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/AliyunLogProducer/CrashReporter",
+					"$(PROJECT_DIR)/AliyunLogProducer/NetworkDiagnosis",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				HEADER_SEARCH_PATHS = "";
@@ -988,6 +1198,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/AliyunLogProducer/CrashReporter",
+					"$(PROJECT_DIR)/AliyunLogProducer/NetworkDiagnosis",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
@@ -1005,6 +1216,85 @@
 				MACH_O_TYPE = staticlib;
 				PRODUCT_BUNDLE_IDENTIFIER = com.aysls.ios.producer;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SYSTEM_HEADER_SEARCH_PATHS = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_WORKSPACE = YES;
+			};
+			name = Release;
+		};
+		F84F8AE52814E1180038A46E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = YES;
+				DEAD_CODE_STRIPPING = NO;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = QWPJRHMG6U;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AliyunLogProducer/CrashReporter",
+					"$(PROJECT_DIR)/AliyunLogProducer/NetworkDiagnosis",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = AliyunLogProducer/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LINK_WITH_STANDARD_LIBRARIES = NO;
+				MACH_O_TYPE = staticlib;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aysls.ios.networkdiagnosis;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SYSTEM_HEADER_SEARCH_PATHS = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_WORKSPACE = YES;
+			};
+			name = Debug;
+		};
+		F84F8AE62814E1180038A46E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = YES;
+				DEAD_CODE_STRIPPING = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DEPLOYMENT_POSTPROCESSING = YES;
+				DEVELOPMENT_TEAM = QWPJRHMG6U;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AliyunLogProducer/CrashReporter",
+					"$(PROJECT_DIR)/AliyunLogProducer/NetworkDiagnosis",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = AliyunLogProducer/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LINK_WITH_STANDARD_LIBRARIES = NO;
+				MACH_O_TYPE = staticlib;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aysls.ios.networkdiagnosis;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SYSTEM_HEADER_SEARCH_PATHS = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1117,7 +1407,7 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				LINK_WITH_STANDARD_LIBRARIES = NO;
 				MACH_O_TYPE = staticlib;
-				PRODUCT_BUNDLE_IDENTIFIER = com.aysls.ios.producer;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aysls.ios.crashreporter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SYSTEM_HEADER_SEARCH_PATHS = "";
@@ -1157,7 +1447,7 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				LINK_WITH_STANDARD_LIBRARIES = NO;
 				MACH_O_TYPE = staticlib;
-				PRODUCT_BUNDLE_IDENTIFIER = com.aysls.ios.producer;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aysls.ios.crashreporter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SYSTEM_HEADER_SEARCH_PATHS = "";
@@ -1183,6 +1473,15 @@
 			buildConfigurations = (
 				9D984DBB2520A9B7009DE4FE /* Debug */,
 				9D984DBC2520A9B7009DE4FE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F84F8AE42814E1180038A46E /* Build configuration list for PBXNativeTarget "NetworkDiagnosis" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F84F8AE52814E1180038A46E /* Debug */,
+				F84F8AE62814E1180038A46E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

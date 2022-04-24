@@ -9,6 +9,10 @@
 #import "TimeUtils.h"
 #import <Foundation/Foundation.h>
 #import "Utdid.h"
+#import <AliNetworkDiagnosis/AliPing.h>
+#import <AliNetworkDiagnosis/AliHttpPing.h>
+#import <AliNetworkDiagnosis/AliMTR.h>
+#import <AliNetworkDiagnosis/AliTcpPing.h>
 
 @interface SLSNetworkDiagnosis ()
 @property(nonatomic, strong) NSString *idPrefix;
