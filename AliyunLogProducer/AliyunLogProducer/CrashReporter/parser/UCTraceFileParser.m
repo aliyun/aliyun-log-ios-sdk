@@ -105,14 +105,12 @@
     BOOL res = [self.sender sendDada:tcdata];
     SLSLogV(@"internalParseFileWithType. send res: %d", res);
     
-    SLSLogV(@"DEBUGGGG, file will not remove. file: %@", filePath);
-    
-//    if (res) {
-//        res = [[NSFileManager defaultManager] removeItemAtPath:filePath error:nil];
-//        SLSLogV(@"internalParseFileWithType. file remove res: %d", res);
-//    } else {
-//        SLSLog(@"data not sent, file will not be removed. file: %@", filePath);
-//    }
+    if (res) {
+        res = [[NSFileManager defaultManager] removeItemAtPath:filePath error:nil];
+        SLSLogV(@"internalParseFileWithType. file remove res: %d", res);
+    } else {
+        SLSLog(@"data not sent, file will not be removed. file: %@", filePath);
+    }
 }
 
 @end
