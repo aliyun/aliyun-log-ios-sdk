@@ -68,26 +68,6 @@
     // 正式发布时建议关闭
     [config setDebuggable:YES];
     
-//    [config setEndpoint: [utils endpoint]];
-//    [config setAccessKeyId: [utils accessKeyId]];
-//    [config setAccessKeySecret: [utils accessKeySecret]];
-    [config setPluginAppId: [utils pluginAppId]];
-//    [config setPluginLogproject: [utils project]];
-    
-//    [config setUserId:@"test_userid"];
-//    [config setChannel:@"test_channel"];
-//    [config addCustomWithKey:@"customKey" andValue:@"testValue"];
-    
-    SLSAdapter *slsAdapter = [SLSAdapter sharedInstance];
-    [slsAdapter addPlugin:[[SLSCrashReporterPlugin alloc]init]];
-//    [slsAdapter addPlugin:[[SLSTracePlugin alloc] init]];
-    [slsAdapter initWithSLSConfig:config];
-}
-
-- (void) updateConfiguration {
-    DemoUtils *utils = [DemoUtils sharedInstance];
-    SLSConfig *config = [[SLSConfig alloc] init];
-    config.userId = @"test_uuuid";
     [config setEndpoint: [utils endpoint]];
     [config setAccessKeyId: [utils accessKeyId]];
     [config setAccessKeySecret: [utils accessKeySecret]];
@@ -98,10 +78,20 @@
     [config setChannel:@"test_channel"];
     [config addCustomWithKey:@"customKey" andValue:@"testValue"];
     
+    SLSAdapter *slsAdapter = [SLSAdapter sharedInstance];
+    [slsAdapter addPlugin:[[SLSCrashReporterPlugin alloc]init]];
+//    [slsAdapter addPlugin:[[SLSTracePlugin alloc] init]];
+    [slsAdapter initWithSLSConfig:config];
+}
+
+- (void) updateConfiguration {
+    SLSConfig *config = [[SLSConfig alloc] init];
+    config.userId = @"test_uuuid";
+    
     SLSAdapter *adapter = [SLSAdapter sharedInstance];
     [adapter updateConfig:config];
+    DemoUtils *utils = [DemoUtils sharedInstance];
     [adapter resetSecurityToken:utils.accessKeyId secret:utils.accessKeySecret token:nil];
-    [adapter resetProject:utils.endpoint project:utils.project logstore:utils.logstore];
 }
 
 # pragma Mach Crash
@@ -212,11 +202,10 @@
 
 - (void) onCustomLog {
     SLSLogV(@"********** Make a Custom Log now. **********");
-//    [[SLSAdapter sharedInstance] reportCustomEvent:@"Clicked" properties:@{
-//        @"view_pos": @1,
-//        @"view_content": @"click test"
-//    }];
-    [self performSelector:@selector(die_die)];
+    [[SLSAdapter sharedInstance] reportCustomEvent:@"Clicked" properties:@{
+        @"view_pos": @1,
+        @"view_content": @"click test"
+    }];
 }
 
 - (void) crash {
