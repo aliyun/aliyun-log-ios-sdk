@@ -288,6 +288,8 @@
                 return [carrier.carrierName copy];
             }
         }
+
+        return @"无运营商";
     } @catch (NSException *exception) {
         return @"Unknown";
     }
