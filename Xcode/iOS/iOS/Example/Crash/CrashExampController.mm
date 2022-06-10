@@ -58,6 +58,8 @@
     [self createButton:@"Signal SIGPIPE" andAction:@selector(onSignalPipeCrashBtnClick) andX:rx andY:(SLCellHeight + SLPadding) * 7 andWidth:cellWidth andHeight:SLCellHeight andFont: font];
     
     [self createButton:@"Custom Log" andAction:@selector(onCustomLog) andX:lx andY:(SLCellHeight + SLPadding) * 8 andWidth:(SLScreenW - lx * 4) andHeight:SLCellHeight andFont: font];
+    
+    [self createButton:@"动态更新" andAction:@selector(updateConfiguration) andX:lx andY:(SLCellHeight + SLPadding) * 9 andWidth:(SLScreenW - lx * 4) andHeight:SLCellHeight andFont: font];
 }
 
 - (void) initCrash {
@@ -80,6 +82,16 @@
     [slsAdapter addPlugin:[[SLSCrashReporterPlugin alloc]init]];
 //    [slsAdapter addPlugin:[[SLSTracePlugin alloc] init]];
     [slsAdapter initWithSLSConfig:config];
+}
+
+- (void) updateConfiguration {
+    SLSConfig *config = [[SLSConfig alloc] init];
+    config.userId = @"test_uuuid";
+    
+    SLSAdapter *adapter = [SLSAdapter sharedInstance];
+    [adapter updateConfig:config];
+    DemoUtils *utils = [DemoUtils sharedInstance];
+    [adapter resetSecurityToken:utils.accessKeyId secret:utils.accessKeySecret token:nil];
 }
 
 # pragma Mach Crash

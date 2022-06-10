@@ -285,9 +285,11 @@
             if (!carrier.isoCountryCode) {
                 return @"无运营商";
             } else {
-                return [carrier carrierName];
+                return [carrier.carrierName copy];
             }
         }
+
+        return @"无运营商";
     } @catch (NSException *exception) {
         return @"Unknown";
     }
@@ -318,7 +320,7 @@
     @try {
         CTTelephonyNetworkInfo *networkInfo = [[CTTelephonyNetworkInfo alloc] init];
         NSString *currentStatus = networkInfo.currentRadioAccessTechnology;
-        return currentStatus;
+        return [currentStatus copy];
     } @catch (NSException *exception) {
         return @"Unknown";
     }

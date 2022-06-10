@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
-# platform :ios, '9.0'
+platform :ios, '10.0'
 source 'https://github.com/CocoaPods/Specs.git'
 
 target 'iOS' do
@@ -7,7 +7,7 @@ target 'iOS' do
   use_frameworks!
 
   # Pods for Demo
-#  pod 'AliyunLogProducer', '2.3.8' , :subspecs => ['Core', 'Bricks', 'CrashReporter', 'NetworkDiagnosis', 'Trace']
+#  pod 'AliyunLogProducer', '2.3.8.3.beta.2' , :subspecs => ['Core', 'Bricks', 'CrashReporter', 'NetworkDiagnosis', 'Trace']
   pod 'AliyunLogProducer/Core', :path =>'../../'
   pod 'AliyunLogProducer/Bricks', :path =>'../../'
   pod 'AliyunLogProducer/CrashReporter', :path =>'../../'
