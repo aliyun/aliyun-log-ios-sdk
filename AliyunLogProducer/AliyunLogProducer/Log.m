@@ -134,6 +134,11 @@
         return NO;
     }
     
+    if ([value isKindOfClass:[NSNull class]]) {
+        [self putContent:@"data" value:@"null"];
+        return YES;
+    }
+    
     NSError *error = nil;
     id data = [NSJSONSerialization JSONObjectWithData:value
                                               options:kNilOptions
@@ -141,20 +146,16 @@
     ];
     
     if (nil != error) {
-        SLSLog(@"error while deserializing the JSON. error: %@", error.description);
-        return NO;
+//        SLSLog(@"error while deserializing the JSON. error: %@", error.description);
+        NSString *string = [[NSString alloc] initWithData:value encoding:NSUTF8StringEncoding];
+        [self putContent:@"data" value:string];
+        return YES;
     }
     
     if ([data isKindOfClass:[NSDictionary class]]) {
         [self putContents:data];
     } else if ([data isKindOfClass:[NSArray class]]) {
         [self putContent:@"data" arrayValue:data];
-    } else if ([data isKindOfClass: [NSString class]]) {
-        [self putContent:@"data" value:data];
-    } else if ([data isKindOfClass: [NSNumber class]]) {
-        [self putContent:@"data" value:[data stringValue]];
-    } else if ([data isKindOfClass: [NSNull class]]) {
-        [self putContent:@"data" value:@"null"];
     } else {
         SLSLog(@"Class %@ not support convert to JSON.", [data class]);
         return NO;
@@ -164,7 +165,7 @@
 }
 
 - (BOOL) putContent: (NSString *) key dataValue: (NSData *)value {
-    if (key && value) {
+    if (key && value && ![value isKindOfClass:[NSNull class]]) {
         [_content setObject:[[NSString alloc] initWithData:value
                                                   encoding:NSUTF8StringEncoding
                             ]
@@ -175,7 +176,7 @@
 }
 
 - (BOOL) putContent: (NSString *) key arrayValue: (NSArray *) value {
-    if (key && value && [NSJSONSerialization isValidJSONObject:value]) {
+    if (key && [key isKindOfClass:[NSString class]] && value && [NSJSONSerialization isValidJSONObject:value]) {
         NSError *error = nil;
         NSData *data = [NSJSONSerialization dataWithJSONObject:value
                                                        options:kNilOptions
@@ -199,7 +200,7 @@
 
 
 - (BOOL) putContent: (NSString *) key dictValue: (NSDictionary *) value {
-    if (key && value && [NSJSONSerialization isValidJSONObject:value]) {
+    if (key && [key isKindOfClass: [NSString class]] && value && [NSJSONSerialization isValidJSONObject:value]) {
         NSError *error = nil;
         NSData *data = [NSJSONSerialization dataWithJSONObject:value
                                                        options:kNilOptions
