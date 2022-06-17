@@ -116,23 +116,62 @@ static void _on_log_send_done(const char * config_name, log_producer_result resu
     [_config SetDropUnauthorizedLog:0];
 
     _client = [[LogProducerClient alloc] initWithLogProducerConfig:_config callback:_on_log_send_done];
-    [_client setEnableTrack:YES];
+//    [_client setEnableTrack:YES];
 }
 
 
 - (Log *) oneLog {
-    Log* log = [[Log alloc] init];
+    Log* log = [Log log];
+    
+//    - (void) putContents: (NSDictionary *) dict;
 
-    [log PutContent:@"content_key_1" value:@"1abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+"];
-    [log PutContent:@"content_key_2" value:@"2abcdefghijklmnopqrstuvwxyz0123456789"];
-    [log PutContent:@"content_key_3" value:@"3abcdefghijklmnopqrstuvwxyz0123456789"];
-    [log PutContent:@"content_key_4" value:@"4abcdefghijklmnopqrstuvwxyz0123456789"];
-    [log PutContent:@"content_key_5" value:@"5abcdefghijklmnopqrstuvwxyz0123456789"];
-    [log PutContent:@"content_key_6" value:@"6abcdefghijklmnopqrstuvwxyz0123456789"];
-    [log PutContent:@"content_key_7" value:@"7abcdefghijklmnopqrstuvwxyz0123456789"];
-    [log PutContent:@"content_key_8" value:@"8abcdefghijklmnopqrstuvwxyz0123456789"];
-    [log PutContent:@"content_key_9" value:@"9abcdefghijklmnopqrstuvwxyz0123456789"];
-    [log PutContent:@"content" value:@"中文"];
+    NSDictionary *nest = @{
+        @"kkk": @"value",
+        @"kkkarray": @[
+            @"array1"
+        ]
+    };
+    
+    NSDictionary *dict = @{
+        @"int": @22,
+        @"long": @22L,
+        @"float": @22.0f,
+        @"double": @22.22f,
+        @"bool": @YES,
+        @"string": @"string",
+        @"nest": nest,
+        @"array": [NSArray array]
+    };
+    
+    [log putContent: @"1int" intValue: 11];
+    [log putContent: @"1long" longValue: 12L];
+    [log putContent: @"1longlong" longlongValue: 1222222222222222L];
+    [log putContent: @"1float" floatValue: 13.0f];
+    [log putContent: @"1double" doubleValue: 14.44F];
+    [log putContent: @"1boolean" boolValue: YES];
+    [log putContent: @"1string" value: @"string"];
+    
+    [log putContent:@"1json" dictValue:dict];
+    [log putContent:@"1array" arrayValue:[NSArray array]];
+    
+    NSData *data = [NSJSONSerialization dataWithJSONObject:dict options:kNilOptions error:nil];
+    [log putContent:data];
+    [log putContent:@"dataValue" dataValue:data];
+    [log putContents: @{
+        @"2k1": @"2v1"
+    }];
+    
+
+//    [log PutContent:@"content_key_1" value:@"1abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+"];
+//    [log PutContent:@"content_key_2" value:@"2abcdefghijklmnopqrstuvwxyz0123456789"];
+//    [log PutContent:@"content_key_3" value:@"3abcdefghijklmnopqrstuvwxyz0123456789"];
+//    [log PutContent:@"content_key_4" value:@"4abcdefghijklmnopqrstuvwxyz0123456789"];
+//    [log PutContent:@"content_key_5" value:@"5abcdefghijklmnopqrstuvwxyz0123456789"];
+//    [log PutContent:@"content_key_6" value:@"6abcdefghijklmnopqrstuvwxyz0123456789"];
+//    [log PutContent:@"content_key_7" value:@"7abcdefghijklmnopqrstuvwxyz0123456789"];
+//    [log PutContent:@"content_key_8" value:@"8abcdefghijklmnopqrstuvwxyz0123456789"];
+//    [log PutContent:@"content_key_9" value:@"9abcdefghijklmnopqrstuvwxyz0123456789"];
+//    [log PutContent:@"content" value:@"中文"];
 
     return log;
 }
