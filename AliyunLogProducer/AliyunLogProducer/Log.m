@@ -9,9 +9,11 @@
 #import <Foundation/Foundation.h>
 #import "Log.h"
 #import "TimeUtils.h"
+#import "AliyunLogProducer.h"
 
 @interface Log ()
-
+@property (nonatomic, assign) unsigned int logTime;
+@property (nonatomic, strong) NSMutableDictionary *content;
 @end
 
 @implementation Log
@@ -20,34 +22,218 @@
 {
     if (self = [super init])
     {
-        self->logTime = [TimeUtils getTimeInMilliis];
-        self->content = [NSMutableDictionary dictionary];
-
+        _logTime = (unsigned int) [TimeUtils getTimeInMilliis];
+        _content = [NSMutableDictionary dictionary];
     }
-
+    
     return self;
+}
+
++ (instancetype) log {
+    return [[Log alloc] init];
 }
 
 - (void)PutContent:(NSString *) key value:(NSString *)value
 {
     if (key && value) {
-        [self->content setObject:value forKey:key];
+        [_content setObject:value forKey:key];
     }
+}
+
+- (void) putContent: (NSString *) key value: (NSString *) value {
+    if (key && value) {
+        [_content setObject:value forKey:key];
+    }
+}
+
+- (BOOL) putContents: (NSDictionary *) dict {
+    if (!dict) {
+        return NO;
+    }
+    
+    NSDictionary *tmp = [NSDictionary dictionaryWithDictionary:dict];
+    NSMutableDictionary *newDict = [NSMutableDictionary dictionary];
+    
+    BOOL error = NO;
+    id value = nil;
+    for (id key in tmp.allKeys) {
+        if (![key isKindOfClass:[NSString class]]) {
+            error = YES;
+            break;
+        }
+        
+        value = [tmp objectForKey:key];
+        if ([value isKindOfClass:[NSString class]]) {
+            [newDict setObject:value forKey:key];
+        } else if ([value isKindOfClass:[NSNumber class]]) {
+            [newDict setObject:[value stringValue] forKey:key];
+        } else if ([value isKindOfClass:[NSNull class]]) {
+            [newDict setObject:@"null" forKey:key];
+        } else if (([value isKindOfClass:[NSDictionary class]] || [value isKindOfClass:[NSArray class]])
+                   && [NSJSONSerialization isValidJSONObject:value]) {
+            [newDict setObject:[[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:value
+                                                                                              options:kNilOptions
+                                                                                                error:nil
+                                                              ]
+                                                     encoding:NSUTF8StringEncoding]
+                        forKey:key
+            ];
+        } else {
+            error = YES;
+            break;
+        }
+    }
+    
+    SLSLog(@"Your NSDictionary is not support convert to JSON, all values will not be added, please check your data.");
+    
+    if (!error) {
+        [_content addEntriesFromDictionary:newDict];
+    }
+    
+    return error;
+}
+
+- (void) putContent: (NSString *) key intValue: (int) value {
+    if (key) {
+        [_content setObject:[NSString stringWithFormat:@"%d", value] forKey:key];
+    }
+}
+
+- (void) putContent: (NSString *) key longValue: (long) value {
+    if (key) {
+        [_content setObject:[NSString stringWithFormat:@"%ld", value] forKey:key];
+    }
+}
+
+- (void) putContent: (NSString *) key longlongValue: (long long) value {
+    if (key) {
+        [_content setObject:[NSString stringWithFormat:@"%lld", value] forKey:key];
+    }
+}
+
+- (void) putContent: (NSString *) key floatValue: (float) value {
+    if (key) {
+        [_content setObject:[NSString stringWithFormat:@"%f", value] forKey:key];
+    }
+}
+
+- (void) putContent: (NSString *) key doubleValue: (double) value {
+    if (key) {
+        [_content setObject:[NSString stringWithFormat:@"%f", value] forKey:key];
+    }
+}
+
+- (void) putContent: (NSString *) key boolValue: (BOOL) value {
+    if (key) {
+        [_content setObject:(YES == value ? @"true" : @"false") forKey:key];
+    }
+}
+
+- (BOOL) putContent: (NSData *) value {
+    if (!value) {
+        return NO;
+    }
+    
+    NSError *error = nil;
+    id data = [NSJSONSerialization JSONObjectWithData:value
+                                              options:kNilOptions
+                                                error:&error
+    ];
+    
+    if (nil != error) {
+        SLSLog(@"error while deserializing the JSON. error: %@", error.description);
+        return NO;
+    }
+    
+    if ([data isKindOfClass:[NSDictionary class]]) {
+        [self putContents:data];
+    } else if ([data isKindOfClass:[NSArray class]]) {
+        [self putContent:@"data" arrayValue:data];
+    } else if ([data isKindOfClass: [NSString class]]) {
+        [self putContent:@"data" value:data];
+    } else if ([data isKindOfClass: [NSNumber class]]) {
+        [self putContent:@"data" value:[data stringValue]];
+    } else if ([data isKindOfClass: [NSNull class]]) {
+        [self putContent:@"data" value:@"null"];
+    } else {
+        SLSLog(@"Class %@ not support convert to JSON.", [data class]);
+        return NO;
+    }
+    
+    return YES;
+}
+
+- (BOOL) putContent: (NSString *) key dataValue: (NSData *)value {
+    if (key && value) {
+        [_content setObject:[[NSString alloc] initWithData:value
+                                                  encoding:NSUTF8StringEncoding
+                            ]
+                     forKey:key];
+        return YES;
+    }
+    return NO;
+}
+
+- (BOOL) putContent: (NSString *) key arrayValue: (NSArray *) value {
+    if (key && value && [NSJSONSerialization isValidJSONObject:value]) {
+        NSError *error = nil;
+        NSData *data = [NSJSONSerialization dataWithJSONObject:value
+                                                       options:kNilOptions
+                                                         error:&error
+        ];
+        
+        if (nil != error) {
+            SLSLog(@"error while deserializing NSArray to JSON. error: %@", error.description);
+            return NO;
+        }
+        
+        [_content setObject:[[NSString alloc] initWithData:data
+                                                  encoding:NSUTF8StringEncoding
+                            ]
+                     forKey:key];
+        return YES;
+    }
+    
+    return NO;
+}
+
+
+- (BOOL) putContent: (NSString *) key dictValue: (NSDictionary *) value {
+    if (key && value && [NSJSONSerialization isValidJSONObject:value]) {
+        NSError *error = nil;
+        NSData *data = [NSJSONSerialization dataWithJSONObject:value
+                                                       options:kNilOptions
+                                                         error:&error
+        ];
+        
+        if (nil != error) {
+            SLSLog(@"error while deserializing NSDictionary to JSON. error: %@", error.description);
+            return NO;
+        }
+        
+        [_content setObject:[[NSString alloc] initWithData:data
+                                                  encoding:NSUTF8StringEncoding
+                            ]
+                     forKey:key];
+        return YES;
+    }
+    
+    return NO;
 }
 
 - (NSMutableDictionary *)getContent
 {
-    return self->content;
+    return _content;
 }
 
 - (void)SetTime:(unsigned int) logTime
 {
-    self->logTime = logTime;
+    _logTime = logTime;
 }
 
 - (unsigned int)getTime
 {
-    return self->logTime;
+    return _logTime;
 }
 
 @end
