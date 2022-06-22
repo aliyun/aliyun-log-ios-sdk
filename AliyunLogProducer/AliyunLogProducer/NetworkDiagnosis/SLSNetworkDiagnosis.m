@@ -61,7 +61,13 @@
 - (void) initWithConfig: (SLSConfig *)config sender: (ISender *)sender {
     _config = config;
     _sender = sender;
-    [AliNetworkDiagnosis init:_config.pluginAppId deviceId:[Utdid getUtdid] withSiteId:@"public"];
+
+    NSString *siteId = @"public";
+    if (_config.siteId.length > 0) {
+        siteId = _config.siteId;
+    }
+    
+    [AliNetworkDiagnosis init:_config.pluginAppId deviceId:[Utdid getUtdid] withSiteId:siteId];
     [AliNetworkDiagnosis registerDelegate: self];
 }
 
