@@ -43,7 +43,7 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        _idPrefix = [NSString stringWithFormat:@"%ld", [TimeUtils getTimeInMilliis]];
+        _idPrefix = [NSString stringWithFormat:@"%ld", (long) [TimeUtils getTimeInMilliis]];
         _lock = [[NSLock alloc] init];
         _callbacks = [[NSMutableArray alloc] init];
     }
@@ -61,7 +61,13 @@
 - (void) initWithConfig: (SLSConfig *)config sender: (ISender *)sender {
     _config = config;
     _sender = sender;
-    [AliNetworkDiagnosis init:_config.pluginAppId deviceId:[Utdid getUtdid] withSiteId:@"public"];
+
+    NSString *siteId = @"public";
+    if (_config.siteId.length > 0) {
+        siteId = _config.siteId;
+    }
+    
+    [AliNetworkDiagnosis init:_config.pluginAppId deviceId:[Utdid getUtdid] withSiteId:siteId];
     [AliNetworkDiagnosis registerDelegate: self];
 }
 
@@ -187,12 +193,15 @@
 }
 
 - (void) ping: (NSString *) domain size:(int) size callback: (SLSNetworkDiagnosisCallBack) callback {
+    __weak typeof(self) weakSelf = self;
+    SLSNetworkDiagnosisCallBack copyedCallback = [callback copy];
     [AliPing start:domain size:size traceID:[self generateId] context:[self class] output:nil complete:^(id context, NSString *traceID, AliPingResult *result) {
-        SLSLogV(@"ping result: %@", result.content);
-        [self reportWithString:result.content method:@"PING"];
+//        SLSLogV(@"ping result: %@", result.content);
+        SLSNetworkDiagnosis *strongSelf = weakSelf;
+        [strongSelf reportWithString:[result.content copy] method:@"PING"];
         
-        if (callback) {
-         callback([SLSNetworkDiagnosisResult success:result.content]);
+        if (copyedCallback) {
+            copyedCallback([SLSNetworkDiagnosisResult success:result.content]);
         }
     }];
 }
@@ -208,11 +217,14 @@
 }
 
 - (void) tcpPing: (NSString *) host port: (int) port count: (int) count callback: (SLSNetworkDiagnosisCallBack) callback {
+    __weak typeof(self) weakSelf = self;
+    SLSNetworkDiagnosisCallBack copyedCallback = [callback copy];
     [AliTcpPing start:host port:port count:count traceID:[self generateId] context:[self class] output:nil complete:^(id context, NSString *traceID, AliTcpPingResult *result) {
-        SLSLogV(@"tcp ping result: %@", result.content);
-        [self reportWithString:result.content method:@"TCPPING"];
-        if (callback) {
-            callback([SLSNetworkDiagnosisResult success:result.content]);
+//        SLSLogV(@"tcp ping result: %@", result.content);
+        SLSNetworkDiagnosis *strongSelf = weakSelf;
+        [strongSelf reportWithString:[result.content copy] method:@"TCPPING"];
+        if (copyedCallback) {
+            copyedCallback([SLSNetworkDiagnosisResult success:result.content]);
         }
     }];
 }
@@ -228,12 +240,15 @@
 }
 
 - (void) mtr: (NSString *) host maxTtl: (int) ttl callback: (SLSNetworkDiagnosisCallBack) callback {
+    __weak typeof(self) weakSelf = self;
+    SLSNetworkDiagnosisCallBack copyedCallback = [callback copy];
     [AliMTR start:host maxTtl:ttl context:[self class] traceID:[self generateId] output:nil complete:^(id context, NSString *traceID, AliMTRResult *result) {
-        SLSLogV(@"mtr result: %@", result.content);
-        [self reportWithString:result.content method:@"MTR"];
+//        SLSLogV(@"mtr result: %@", result.content);
+        SLSNetworkDiagnosis *strongSelf = weakSelf;
+        [strongSelf reportWithString:[result.content copy] method:@"MTR"];
         
-        if (callback) {
-            callback([SLSNetworkDiagnosisResult success:result.content]);
+        if (copyedCallback) {
+            copyedCallback([SLSNetworkDiagnosisResult success:result.content]);
         }
     }];
 }
@@ -245,13 +260,15 @@
 }
 
 - (void) httpPing: (NSString *)domain callback: (SLSNetworkDiagnosisCallBack) callback {
+    __weak typeof(self) weakSelf = self;
+    SLSNetworkDiagnosisCallBack copyedCallback = [callback copy];
     [AliHttpPing start:domain traceId:[self generateId] context:[self class] complete:^(id context, NSString *traceID, AliHttpPingResult *result) {
-        SLSLogV(@"http ping result: %@", result.content);
+//        SLSLogV(@"http ping result: %@", result.content);
+        SLSNetworkDiagnosis *strongSelf = weakSelf;
+        [strongSelf reportWithString:[result.content copy] method:@"HTTP"];
         
-        [self reportWithString:result.content method:@"HTTP"];
-        
-        if (callback) {
-            callback([SLSNetworkDiagnosisResult success:result.content]);
+        if (copyedCallback) {
+            copyedCallback([SLSNetworkDiagnosisResult success:result.content]);
         }
     }];
 }
@@ -281,12 +298,12 @@
     
     NSData *json = [NSJSONSerialization dataWithJSONObject:reserves options:0 error:nil];
     tcdata.reserves = [[NSString alloc] initWithData:json encoding:NSUTF8StringEncoding];
-    
-    __block SLSLog *log = [[SLSLog alloc] init];
-    // ignore ext fields
-    [[tcdata toDictionaryWithIgnoreExt: YES] enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
-        [log PutContent:key value:obj];
-    }];
+
+    SLSLog *log = [[SLSLog alloc] init];
+    NSDictionary *dict = [tcdata toDictionaryWithIgnoreExt:YES];
+    for (NSString *key in dict.allKeys) {
+        [log PutContent:key value:[dict objectForKey:key]];
+    }
     BOOL result = [_sender sendDada:log];
     
     return result;
