@@ -65,7 +65,7 @@
     if (!enable || self->client == NULL || log == nil) {
         return LogProducerInvalid;
     }
-    NSMutableDictionary *logContents = log->content;
+    NSMutableDictionary *logContents = [log getContent];
     
 #if __has_include("LogProducerClient+Bricks.h")
     if (self->_enableTrack) {
@@ -84,10 +84,18 @@
     
     int ids = 0;
     for (NSString *key in logContents) {
-        NSString *value = logContents[key];
-
+        NSString *string = nil;
+        id value = logContents[key];
+        if ([value isKindOfClass:[NSNumber class]]) {
+            string = [value stringValue];
+        } else if ([value isKindOfClass: [NSString class]]){
+            string = value;
+        } else {
+            continue;
+        }
+        
         char* keyChar=[self convertToChar:key];
-        char* valueChar=[self convertToChar:value];
+        char* valueChar=[self convertToChar:string];
 
         keyArray[ids] = keyChar;
         valueArray[ids] = valueChar;
@@ -96,7 +104,7 @@
         
         ids = ids + 1;
     }
-    log_producer_result res = log_producer_client_add_log_with_len_time_int32(self->client, log->logTime, pairCount, keyArray, keyCountArray, valueArray, valueCountArray, flush);
+    log_producer_result res = log_producer_client_add_log_with_len_time_int32(self->client, [log getTime], pairCount, keyArray, keyCountArray, valueArray, valueCountArray, flush);
     
     for(int i=0;i<pairCount;i++) {
         free(keyArray[i]);
