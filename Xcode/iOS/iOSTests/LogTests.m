@@ -9,26 +9,13 @@
 #import <AliyunLogProducer/AliyunLogProducer.h>
 #import "Log+Test.h"
 
-@interface iOSTests : XCTestCase
+@interface LogTests : XCTestCase
 //@property(nonatomic, strong) LogProducerConfig *config;
 //@property(nonatomic, strong) LogProducerClient *client;
 @property(nonatomic, strong) Log *log;
 @end
 
-@implementation iOSTests
-//- (void) PutContent: (NSString *) key value: (NSString *) value;
-//- (void) putContent: (NSString *) key value: (NSString *) value;
-//- (void) putContent: (NSString *) key intValue: (int) value;
-//- (void) putContent: (NSString *) key longValue: (long) value;
-//- (void) putContent: (NSString *) key longlongValue: (long long) value;
-//- (void) putContent: (NSString *) key floatValue: (float) value;
-//- (void) putContent: (NSString *) key doubleValue: (double) value;
-//- (void) putContent: (NSString *) key boolValue: (BOOL) value;
-//- (BOOL) putContent: (NSData *) value;
-//- (BOOL) putContent: (NSString *) key dataValue: (NSData *) value;
-//- (BOOL) putContent: (NSString *) key arrayValue: (NSArray *) value;
-//- (BOOL) putContent: (NSString *) key dictValue: (NSDictionary *) value;
-//- (BOOL) putContents: (NSDictionary *) dict;
+@implementation LogTests
 
 - (void)setUp {
     // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -91,7 +78,11 @@
     [_log clear];
     
     // nsdata is nsnull
-    //    data = [NSNull null];
+    data = [NSNull null];
+    [_log putContent:data];
+    XCTAssertEqual(_log.getContent.count, 1, "dict count not 1.");
+    XCTAssertTrue([_log.getContent[@"data"] isEqualToString:@"null"], @"value is not equal to %@", _log.getContent[@"data"]);
+    [_log clear];
 }
 
 - (void) test_log$putContent$dataValue {
@@ -109,9 +100,9 @@
     };
     
     data = [NSJSONSerialization dataWithJSONObject:dict options:kNilOptions error:nil];
-    [_log putContent:data];
+    [_log putContent:@"data" dataValue:data];
     XCTAssertEqual(_log.getContent.count, 1, "dict count not 1.");
-    XCTAssertTrue([_log.getContent[@"key"] isEqualToString:@"value"], @"value is not equal to %@", _log.getContent[@"key"]);
+    XCTAssertTrue([_log.getContent[@"data"] isEqualToString:[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]], @"value is not equal to %@", _log.getContent[@"data"]);
     [_log clear];
     
     // nsdata is json array
@@ -119,7 +110,7 @@
         @"array"
     ];
     data = [NSJSONSerialization dataWithJSONObject:array options:kNilOptions error:nil];
-    [_log putContent:data];
+    [_log putContent:@"data" dataValue:data];[_log putContent:data];
     XCTAssertEqual(_log.getContent.count, 1, "dict count not 1.");
     XCTAssertTrue([_log.getContent[@"data"] isEqualToString:[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]], @"value is not equal to %@", _log.getContent[@"data"]);
     [_log clear];
@@ -173,7 +164,7 @@
         @"key1": [NSNull null],
     };
     BOOL ret = [_log putContent:@"data" dictValue:dict];
-    XCTAssertTrue(NO == ret, @"NSNull insert sucess");
+    XCTAssertTrue(YES == ret, @"NSNull insert sucess");
     [_log clear];
 }
 
