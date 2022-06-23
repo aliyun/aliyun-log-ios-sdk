@@ -9,6 +9,7 @@
 #import "TimeUtils.h"
 #import "LogProducerConfig.h"
 #import <sys/sysctl.h>
+#import "NSDateFormatter+SLS.h"
 
 @interface TimeUtils ()
 +(NSTimeInterval) elapsedRealtime;
@@ -21,6 +22,10 @@ static NSTimeInterval elapsedRealtime = 0;
 @implementation TimeUtils
 +(void) startUpdateServerTime: (NSString *)endpoint project:(nonnull NSString *)project
 {
+    if (!endpoint || endpoint.length <=0 ) {
+        return;
+    }
+    
     NSURL *url = [NSURL URLWithString:endpoint];
     NSString *urlString = [NSString stringWithFormat:@"https://%@.%@/servertime", project, url.host];
 //    NSString *url = @"https://cn-shanghai-staging-share.sls.aliyuncs.com/servertime";
@@ -86,11 +91,10 @@ static NSTimeInterval elapsedRealtime = 0;
     NSString *timestampMillisPart = [[NSString stringWithFormat:@"%.0f", [date timeIntervalSince1970] * 1000] substringFromIndex:10];
     local_timestamp = [timestamp stringByAppendingString:timestampMillisPart];
     
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-    [dateFormatter setDateFormat:@"YYYY-MM-dd HH:mm:ss:SSS"];
+    NSDateFormatter *dateFormatter = [NSDateFormatter sharedInstance];
     
     date = [NSDate dateWithTimeIntervalSince1970:[local_timestamp doubleValue] / 1000];
-    NSString *local_time = [dateFormatter stringFromDate:date];
+    NSString *local_time = [dateFormatter fromDate:date];
     
     [log PutContent:@"local_timestamp_fixed" value:local_timestamp];
     [log PutContent:@"local_time_fixed" value:local_time];

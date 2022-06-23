@@ -7,6 +7,7 @@
 //
 
 #import "LogProducerClient+Bricks.h"
+#import "TCData.h"
 
 @interface LogProducerClient (Bricks)
 @property (nonatomic, assign) bool enableTrack;
@@ -21,6 +22,14 @@
 
 - (bool)enableTrack {
     return self->_enableTrack;
+}
+
+- (void) appendScheme: (NSMutableDictionary *)target {
+    TCData *data = [TCData createDefault];
+    NSDictionary *fields = [data toDictionary] ;
+    for (id key in fields) {
+        [target setObject:[fields valueForKey:key] forKey:key];
+    }
 }
 
 @end

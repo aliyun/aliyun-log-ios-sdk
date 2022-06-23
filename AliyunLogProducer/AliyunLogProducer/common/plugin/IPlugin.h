@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void) resetSecurityToken:(NSString *)accessKeyId secret:(NSString *)accessKeySecret token:(NSString *)token;
 - (void) resetProject: (NSString*)endpoint project: (NSString *)project logstore:(NSString *)logstore;
 - (void) updateConfig: (SLSConfig *)config;
+- (void) reportCustomEvent: (NSString *)eventId properties: (NSDictionary *)dictionary;
 
 @end
 

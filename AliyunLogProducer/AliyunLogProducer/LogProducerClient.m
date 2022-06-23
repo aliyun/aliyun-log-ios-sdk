@@ -14,7 +14,6 @@
 
 #if __has_include("LogProducerClient+Bricks.h")
 #import "LogProducerClient+Bricks.h"
-#import "TCData.h"
 #endif
 
 
@@ -41,6 +40,7 @@
         if ([endpoint length] != 0 && [project length] != 0) {
             [TimeUtils startUpdateServerTime:endpoint project:project];
         }
+        enable = YES;
     }
 
     return self;
@@ -48,6 +48,10 @@
 
 - (void)DestroyLogProducer
 {
+    if (!enable) {
+        return;
+    }
+    enable = NO;
     destroy_log_producer(self->producer);
 }
 
@@ -58,26 +62,14 @@
 
 - (LogProducerResult)AddLog:(Log *) log flush:(int) flush
 {
-    if (self->client == NULL || log == nil) {
+    if (!enable || self->client == NULL || log == nil) {
         return LogProducerInvalid;
     }
-    NSMutableDictionary *logContents = log->content;
+    NSMutableDictionary *logContents = [log getContent];
     
 #if __has_include("LogProducerClient+Bricks.h")
     if (self->_enableTrack) {
-        TCData *data = [TCData createDefault];
-        NSDictionary *fields = [data toDictionary] ;
-        for (id key in fields) {
-            [logContents setObject:[fields valueForKey:key] forKey:key];
-        }
-    } else {
-        if(self ->addLogInterceptor) {
-            addLogInterceptor(log);
-        }
-    }
-#else
-    if(self ->addLogInterceptor) {
-        addLogInterceptor(log);
+        [self appendScheme:logContents];
     }
 #endif
     
@@ -92,10 +84,18 @@
     
     int ids = 0;
     for (NSString *key in logContents) {
-        NSString *value = logContents[key];
-
+        NSString *string = nil;
+        id value = logContents[key];
+        if ([value isKindOfClass:[NSNumber class]]) {
+            string = [value stringValue];
+        } else if ([value isKindOfClass: [NSString class]]){
+            string = value;
+        } else {
+            continue;
+        }
+        
         char* keyChar=[self convertToChar:key];
-        char* valueChar=[self convertToChar:value];
+        char* valueChar=[self convertToChar:string];
 
         keyArray[ids] = keyChar;
         valueArray[ids] = valueChar;
@@ -104,7 +104,7 @@
         
         ids = ids + 1;
     }
-    log_producer_result res = log_producer_client_add_log_with_len_time_int32(self->client, log->logTime, pairCount, keyArray, keyCountArray, valueArray, valueCountArray, flush);
+    log_producer_result res = log_producer_client_add_log_with_len_time_int32(self->client, [log getTime], pairCount, keyArray, keyCountArray, valueArray, valueCountArray, flush);
     
     for(int i=0;i<pairCount;i++) {
         free(keyArray[i]);
@@ -124,10 +124,6 @@
     char cStr [len];
     [strtemp getCString:cStr maxLength:len encoding:NSUTF8StringEncoding];
     return strdup(cStr);
-}
-
-- (void) setAddLogInterceptor: (AddLogInterceptor *) addLogInterceptor {
-    self -> addLogInterceptor = *addLogInterceptor;
 }
 
 @end

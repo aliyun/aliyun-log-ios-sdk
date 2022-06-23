@@ -21,6 +21,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic, strong) NSString * pluginAppId;
 @property(nonatomic, strong) NSString * pluginLogproject;
+@property(nonatomic, strong) NSString * pluginLogstore;
+
+@property(nonatomic, strong) NSString * traceEndpoint;
+@property(nonatomic, strong) NSString * traceLogproject;
+@property(nonatomic, strong) NSString * traceLogstore;
 
 @property(nonatomic, strong) NSString * channel;
 @property(nonatomic, strong) NSString * channelName;
@@ -29,7 +34,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong) NSString * userId;
 @property(nonatomic, strong) NSString * longLoginUserId;
 @property(nonatomic, strong) NSString * loginType;
-@property(nonatomic, strong, readonly) NSMutableDictionary * ext;
+@property(nonatomic, strong) NSMutableDictionary * ext;
+@property(nonatomic, strong) NSString * siteId;
 
 - (void) addCustomWithKey: (nullable NSString *)key andValue: (nullable NSString *)value;
 @end

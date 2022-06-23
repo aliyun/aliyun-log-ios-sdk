@@ -5,11 +5,19 @@
 //  Created by gordon on 2021/5/19.
 //
 
+#import "SLSSystemCapabilities.h"
 #import "TCData.h"
 #import "SLSDeviceUtils.h"
+
+#if SLS_HAS_UIKIT
 #import <UIKit/UIKit.h>
+#else
+#import <AppKit/AppKit.h>
+#endif
+
 #import "utdid/Utdid.h"
 #import "TimeUtils.h"
+#import "NSDateFormatter+SLS.h"
 
 @interface TCData ()
 -(void) putIfNotNull:(NSMutableDictionary *)dictionay andKey:(NSString *)key andValue:(NSString *)value;
@@ -26,13 +34,12 @@
     
     NSDate *date = [NSDate date];
     scheme.local_timestamp = [NSString stringWithFormat:@"%.0f", [date timeIntervalSince1970] * 1000];
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-    [dateFormatter setDateFormat:@"YYYY-MM-dd HH:mm:ss:SSS"];
-    scheme.local_time = [dateFormatter stringFromDate:date];
+    NSDateFormatter *dateFormatter = [NSDateFormatter sharedInstance];
+    scheme.local_time = [dateFormatter fromDate:date];
     
     date = [NSDate dateWithTimeIntervalSince1970:[[NSString stringWithFormat:@"%ld%@%@", (long)[TimeUtils getTimeInMilliis], @".",[scheme.local_timestamp substringFromIndex:10]] doubleValue]];
     scheme.local_timestamp_fixed = [NSString stringWithFormat:@"%.0f%@", [date timeIntervalSince1970], [scheme.local_timestamp substringFromIndex:10]];
-    scheme.local_time_fixed = [dateFormatter stringFromDate:date];
+    scheme.local_time_fixed = [dateFormatter fromDate:date];
     
 
     NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
@@ -47,10 +54,27 @@
     scheme.utdid = [Utdid getUtdid];
     scheme.imei = @"-";
     scheme.imsi = @"-";
+#if SLS_HOST_MAC
+    scheme.brand = @"Apple";
+#else
     scheme.brand = [scheme returnDashIfNull: [[UIDevice currentDevice] model]];
+#endif
+
     scheme.device_model = [scheme returnDashIfNull:[SLSDeviceUtils getDeviceModel]];
+#if SLS_HOST_MAC
+    scheme.os = @"macOS";
+#elif SLS_HOST_TV
+    scheme.os = @"tvOS";
+#else
     scheme.os = @"iOS";
+#endif
+
+#if SLS_HOST_MAC
+    scheme.os_version = [scheme returnDashIfNull:[[NSProcessInfo processInfo] operatingSystemVersionString]];
+#else
     scheme.os_version = [scheme returnDashIfNull:[[UIDevice currentDevice] systemVersion]];
+#endif
+    
     scheme.carrier = [scheme returnDashIfNull:[SLSDeviceUtils getCarrier]];
     scheme.access = [scheme returnDashIfNull:[SLSDeviceUtils getNetworkTypeName]];
     scheme.access_subtype = [scheme returnDashIfNull:[SLSDeviceUtils getNetworkSubTypeName]];
@@ -63,7 +87,7 @@
 + (TCData *) createDefaultWithSLSConfig:(SLSConfig *)config {
     TCData *data = [self createDefault];
     
-    [data setApp_id:[NSString stringWithFormat:@"%@@iOS", config.pluginAppId]];
+    [data setApp_id:[NSString stringWithFormat:@"%@@%@", config.pluginAppId, data.os]];
     [data setChannel:[data returnDashIfNull:config.channel]];
     [data setChannel_name:[data returnDashIfNull:config.channelName]];
     [data setUser_nick:[data returnDashIfNull:config.userNick]];
@@ -71,7 +95,7 @@
     [data setUser_id:[data returnDashIfNull:config.userId]];
     [data setLong_login_user_id:[data returnDashIfNull:config.longLoginUserId]];
     [data setLogon_type:[data returnDashIfNull:config.loginType]];
-    [data setExt:config.ext];
+    [data setExt:[config.ext mutableCopy]];
     
     return data;
 }
@@ -81,6 +105,10 @@
 }
 
 - (NSDictionary *)toDictionary {
+    return [self toDictionaryWithIgnoreExt: NO];
+}
+
+- (NSDictionary *) toDictionaryWithIgnoreExt: (BOOL) ignore {
     NSMutableDictionary *fields =  [[NSMutableDictionary alloc] init];
     [self putIfNotNull:fields andKey:@"app_id" andValue: [self app_id]];
     [self putIfNotNull:fields andKey:@"app_name" andValue: [self app_name]];
@@ -143,6 +171,11 @@
     [self putIfNotNull:fields andKey:@"city" andValue: [self city]];
     [self putIfNotNull:fields andKey:@"district" andValue: [self district]];
     
+    // ignore ext fields
+    if (ignore) {
+        return fields;
+    }
+
     for (NSString *key in _ext) {
         NSString *value =_ext[key];
         [self put:fields andKey:key andValue:value];

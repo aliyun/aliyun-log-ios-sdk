@@ -11,12 +11,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SLSDeviceUtils : NSObject
 
++ (NSString *) getDeviceModelIdentifier;
 + (NSString *) getDeviceModel;
 + (NSString *) isJailBreak;
 + (NSString *) getResolution;
 + (NSString *) getCarrier;
 + (NSString *) getNetworkTypeName;
 + (NSString *) getNetworkSubTypeName;
++ (NSString *) getCPUArch;
+
 @end
 
 NS_ASSUME_NONNULL_END

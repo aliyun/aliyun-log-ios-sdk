@@ -8,7 +8,6 @@
 #import "HttpConfigProxy.h"
 
 @interface HttpConfigProxy ()
-- (NSString *) getVersion;
 @end
 
 @implementation HttpConfigProxy

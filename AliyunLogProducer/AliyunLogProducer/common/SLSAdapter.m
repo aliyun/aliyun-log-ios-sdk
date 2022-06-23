@@ -52,10 +52,10 @@
     __block NSString *keySecret = accessKeySecret;
     __block NSString *keyToken = token;
     
-    [_plugins enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        IPlugin *plugin = obj;
+    for (int i = 0; i < _plugins.count; i++) {
+        IPlugin *plugin = _plugins[i];
         [plugin resetSecurityToken:keyId secret:keySecret token:keyToken];
-    }];
+    }
 }
 
 - (void)resetProject:(NSString *)endpoint project:(NSString *)project logstore:(NSString *)logstore
@@ -70,10 +70,19 @@
     SLSLogV(@"config: %@", config);
     __block SLSConfig *conf = config;
     
-    [_plugins enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        IPlugin *plugin = obj;
+    for (int i = 0; i < _plugins.count; i++) {
+        IPlugin *plugin = _plugins[i];
         [plugin updateConfig:conf];
-    }];
+    }
+}
+
+- (void) reportCustomEvent: (NSString *) eventId properties:(nonnull NSDictionary *)dictionary {
+    for (int i = 0; i < _plugins.count; i++) {
+        IPlugin *plugin = _plugins[i];
+        if ([[plugin name] isEqualToString:@"crash_reporter"]) {
+            [plugin reportCustomEvent:eventId properties:dictionary];
+        }
+    }
 }
 
 #pragma mark - init adapter
@@ -81,13 +90,13 @@
     SLSLog(@"start.");
     
     NSString *version = [[[NSBundle bundleForClass:HttpConfigProxy.self] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
-    [_plugins enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        IPlugin *plugin = obj;
+    for (int i = 0; i < _plugins.count; i++) {
+        IPlugin *plugin = _plugins[i];
         SLSLogV(@"start init plugin: %@", [plugin name]);
         [plugin initWithSLSConfig:config];
         [[HttpConfigProxy sharedInstance] addPluginUserAgent:[plugin name] value:version];
         SLSLogV(@"end init plugin: %@", [plugin name]);
-    }];
+    }
 
     SLSLog(@"end.");
     return YES;

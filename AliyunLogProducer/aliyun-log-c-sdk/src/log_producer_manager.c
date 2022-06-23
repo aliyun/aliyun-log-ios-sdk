@@ -7,6 +7,13 @@
 #include "md5.h"
 #include "sds.h"
 #include <sys/time.h>
+#include <time.h>
+#include <stdio.h>
+
+#ifdef __MACH__
+#include <mach/clock.h>
+#include <mach/mach.h>
+#endif
 
 // change from 100ms to 1000s, reduce wake up when app switch to back
 #define LOG_PRODUCER_FLUSH_INTERVAL_MS 1000
@@ -24,10 +31,24 @@ DWORD WINAPI log_producer_send_thread(LPVOID param);
 void * log_producer_send_thread(void * param);
 #endif
 
+void current_utc_time(struct timespec *ts) {
+#ifdef __MACH__ // OS X does not have clock_gettime, use clock_get_time
+  clock_serv_t cclock;
+  mach_timespec_t mts;
+  host_get_clock_service(mach_host_self(), CALENDAR_CLOCK, &cclock);
+  clock_get_time(cclock, &mts);
+  mach_port_deallocate(mach_task_self(), cclock);
+  ts->tv_sec = mts.tv_sec;
+  ts->tv_nsec = mts.tv_nsec;
+#else
+  clock_gettime(CLOCK_REALTIME, ts);
+#endif
+}
+
 void _generate_pack_id_timestamp(long *timestamp)
 {
     struct timespec ts;
-    clock_gettime(CLOCK_MONOTONIC, &ts);
+    current_utc_time(&ts);
     *(timestamp) = ts.tv_nsec;
 }
 
@@ -51,6 +72,7 @@ char * _get_pack_id(const char * configName, const char * ip)
         val[loop<<1] = a > 9 ? (a - 10 + 'A') : (a + '0');
         val[(loop<<1)|1] = b > 9 ? (b - 10 + 'A') : (b + '0');
     }
+    free(prefix);
     return val;
 }
 

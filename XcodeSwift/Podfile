@@ -9,7 +9,7 @@ target 'AliyunLogSwift' do
   # Pods for Demo
 #  pod 'AliyunLogProducer', :path =>'../' , :subspecs => ['Core', 'Bricks', 'CrashReporter']
 #  pod 'AliyunLogProducer', '2.5.0.alpha.2' , :subspecs => ['Core', 'Bricks', 'CrashReporter']
-  # pod 'AliyunLogProducer', '2.3.2' , :subspecs => ['Core', 'Bricks', 'CrashReporter']
+#   pod 'AliyunLogProducer', '2.3.7' , :subspecs => ['Core', 'Bricks', 'CrashReporter']
   pod 'AliyunLogProducer/Core', :path =>'../'
   pod 'AliyunLogProducer/Bricks', :path =>'../'
   pod 'AliyunLogProducer/CrashReporter', :path =>'../'
