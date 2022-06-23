@@ -186,6 +186,8 @@ static NetworkDiagnosisController *selfClzz;
     [config setLongLoginNick:@"test_long_nick"];
     [config addCustomWithKey:@"customKey" andValue:@"testValue"];
     
+    [config setSiteId:@"cn"];
+    
     SLSAdapter *slsAdapter = [SLSAdapter sharedInstance];
 //    [slsAdapter addPlugin:[[SLSCrashReporterPlugin alloc]init]];
     [slsAdapter addPlugin:[[SLSNetworkDiagnosisPlugin alloc] init]];

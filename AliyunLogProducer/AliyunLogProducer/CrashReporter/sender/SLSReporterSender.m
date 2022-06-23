@@ -94,11 +94,11 @@ void on_log_send_done(const char * config_name, log_producer_result result, size
         return NO;
     }
     
-    __block Log *log = [[Log alloc] init];
-    [[tcdata toDictionary] enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
-        [log PutContent:key value:obj];
-//        SLSLogV(@"key: %@, value: %@", key, obj);
-    }];
+    Log *log = [[Log alloc] init];
+    NSDictionary *dict = [tcdata toDictionary];
+    for (NSString *key in dict.allKeys) {
+        [log PutContent:key value:[dict objectForKey:key]];
+    }
     
     [TimeUtils fixTime:log];
     

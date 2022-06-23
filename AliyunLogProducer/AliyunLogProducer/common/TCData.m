@@ -17,6 +17,7 @@
 
 #import "utdid/Utdid.h"
 #import "TimeUtils.h"
+#import "NSDateFormatter+SLS.h"
 
 @interface TCData ()
 -(void) putIfNotNull:(NSMutableDictionary *)dictionay andKey:(NSString *)key andValue:(NSString *)value;
@@ -33,14 +34,12 @@
     
     NSDate *date = [NSDate date];
     scheme.local_timestamp = [NSString stringWithFormat:@"%.0f", [date timeIntervalSince1970] * 1000];
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-    [dateFormatter setDateFormat:@"YYYY-MM-dd HH:mm:ss:SSS"];
-    [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
-    scheme.local_time = [dateFormatter stringFromDate:date];
+    NSDateFormatter *dateFormatter = [NSDateFormatter sharedInstance];
+    scheme.local_time = [dateFormatter fromDate:date];
     
     date = [NSDate dateWithTimeIntervalSince1970:[[NSString stringWithFormat:@"%ld%@%@", (long)[TimeUtils getTimeInMilliis], @".",[scheme.local_timestamp substringFromIndex:10]] doubleValue]];
     scheme.local_timestamp_fixed = [NSString stringWithFormat:@"%.0f%@", [date timeIntervalSince1970], [scheme.local_timestamp substringFromIndex:10]];
-    scheme.local_time_fixed = [dateFormatter stringFromDate:date];
+    scheme.local_time_fixed = [dateFormatter fromDate:date];
     
 
     NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
