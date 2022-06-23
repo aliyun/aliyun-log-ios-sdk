@@ -121,7 +121,46 @@ static void _on_log_send_done(const char * config_name, log_producer_result resu
 
 
 - (Log *) oneLog {
-    Log* log = [[Log alloc] init];
+    Log* log = [Log log];
+    
+//    - (void) putContents: (NSDictionary *) dict;
+
+    NSDictionary *nest = @{
+        @"kkk": @"value",
+        @"kkkarray": @[
+            @"array1"
+        ]
+    };
+    
+    NSDictionary *dict = @{
+        @"int": @22,
+        @"long": @22L,
+        @"float": @22.0f,
+        @"double": @22.22f,
+        @"bool": @YES,
+        @"string": @"string",
+        @"nest": nest,
+        @"array": [NSArray array]
+    };
+    
+    [log putContent: @"1int" intValue: 11];
+    [log putContent: @"1long" longValue: 12L];
+    [log putContent: @"1longlong" longlongValue: 1222222222222222L];
+    [log putContent: @"1float" floatValue: 13.0f];
+    [log putContent: @"1double" doubleValue: 14.44F];
+    [log putContent: @"1boolean" boolValue: YES];
+    [log putContent: @"1string" value: @"string"];
+    
+    [log putContent:@"1json" dictValue:dict];
+    [log putContent:@"1array" arrayValue:[NSArray array]];
+    
+    NSData *data = [NSJSONSerialization dataWithJSONObject:dict options:kNilOptions error:nil];
+    [log putContent:data];
+    [log putContent:@"dataValue" dataValue:data];
+    [log putContents: @{
+        @"2k1": @"2v1"
+    }];
+    
 
     [log PutContent:@"content_key_1" value:@"1abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+"];
     [log PutContent:@"content_key_2" value:@"2abcdefghijklmnopqrstuvwxyz0123456789"];
