@@ -155,7 +155,7 @@ static int os_http_post(const char *url,
 
 unsigned int time_func() {
     NSInteger timeInMillis = [TimeUtils getTimeInMilliis];
-    return timeInMillis;
+    return (unsigned int) timeInMillis;
 }
 
 - (void)setEndpoint:(NSString *)endpoint

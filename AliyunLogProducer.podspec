@@ -46,7 +46,8 @@ https://help.aliyun.com/product/28958.html
     c.source_files =
       'AliyunLogProducer/AliyunLogProducer/*.{h,m}',
       'AliyunLogProducer/aliyun-log-c-sdk/src/*.{c,h}',
-      'AliyunLogProducer/AliyunLogProducer/utils/*.{m,h}'
+      'AliyunLogProducer/AliyunLogProducer/utils/*.{m,h}',
+      'AliyunLogProducer/AliyunLogProducer/Category/*.{m,h}'
 
     c.public_header_files =
       'AliyunLogProducer/AliyunLogProducer/*.h',
