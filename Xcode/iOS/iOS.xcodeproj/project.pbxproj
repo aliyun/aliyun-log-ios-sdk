@@ -16,7 +16,7 @@
 		F816EEDC2771B4C60024B85E /* CppExceptionFaker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F816EEDA2771B4C60024B85E /* CppExceptionFaker.cpp */; };
 		F816EEDE2771C0360024B85E /* CrashExampController.mm in Sources */ = {isa = PBXBuildFile; fileRef = F816EEDD2771C0360024B85E /* CrashExampController.mm */; };
 		F816EEE52772D5BA0024B85E /* ProducerExampleDestroyController.m in Sources */ = {isa = PBXBuildFile; fileRef = F816EEE42772D5BA0024B85E /* ProducerExampleDestroyController.m */; };
-		F825D488285C62AE0081C9DA /* iOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F825D487285C62AE0081C9DA /* iOSTests.m */; };
+		F825D488285C62AE0081C9DA /* LogTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F825D487285C62AE0081C9DA /* LogTests.m */; };
 		F825D492285C6D570081C9DA /* Log+Test.m in Sources */ = {isa = PBXBuildFile; fileRef = F825D491285C6D570081C9DA /* Log+Test.m */; };
 		F84B73F4278C74640075CD7A /* TraceExampleController.m in Sources */ = {isa = PBXBuildFile; fileRef = F84B73F3278C74640075CD7A /* TraceExampleController.m */; };
 		F86A9D09277990E500387C32 /* NetworkDiagnosisController.m in Sources */ = {isa = PBXBuildFile; fileRef = F86A9D08277990E500387C32 /* NetworkDiagnosisController.m */; };
@@ -65,7 +65,7 @@
 		F816EEE32772D5BA0024B85E /* ProducerExampleDestroyController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProducerExampleDestroyController.h; sourceTree = "<group>"; };
 		F816EEE42772D5BA0024B85E /* ProducerExampleDestroyController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProducerExampleDestroyController.m; sourceTree = "<group>"; };
 		F825D485285C62AD0081C9DA /* iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F825D487285C62AE0081C9DA /* iOSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iOSTests.m; sourceTree = "<group>"; };
+		F825D487285C62AE0081C9DA /* LogTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LogTests.m; sourceTree = "<group>"; };
 		F825D490285C6D570081C9DA /* Log+Test.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Log+Test.h"; sourceTree = "<group>"; };
 		F825D491285C6D570081C9DA /* Log+Test.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Log+Test.m"; sourceTree = "<group>"; };
 		F84B73F2278C74640075CD7A /* TraceExampleController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TraceExampleController.h; sourceTree = "<group>"; };
@@ -139,7 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				F825D48F285C6BEB0081C9DA /* Category */,
-				F825D487285C62AE0081C9DA /* iOSTests.m */,
+				F825D487285C62AE0081C9DA /* LogTests.m */,
 			);
 			path = iOSTests;
 			sourceTree = "<group>";
@@ -452,7 +452,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F825D492285C6D570081C9DA /* Log+Test.m in Sources */,
-				F825D488285C62AE0081C9DA /* iOSTests.m in Sources */,
+				F825D488285C62AE0081C9DA /* LogTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
