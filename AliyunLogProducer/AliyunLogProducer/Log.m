@@ -14,7 +14,7 @@
 @interface Log ()
 @property (nonatomic, assign) unsigned int logTime;
 @property (nonatomic, strong) NSMutableDictionary *content;
-- (BOOL) checkKey: (NSString *)key;
+- (BOOL) checkValue: (NSString *)value;
 @end
 
 @implementation Log
@@ -34,8 +34,8 @@
     return [[Log alloc] init];
 }
 
-- (BOOL) checkKey:(NSString *)key {
-    return key && [key isKindOfClass:[NSString class]];
+- (BOOL) checkValue:(NSString *)value {
+    return value && [value isKindOfClass:[NSString class]];
 }
 
 - (void)PutContent:(NSString *) key value:(NSString *)value
@@ -44,7 +44,7 @@
 }
 
 - (void) putContent: (NSString *) key value: (NSString *) value {
-    if ([self checkKey:key] && value) {
+    if ([self checkValue:key] && [self checkValue:value]) {
         [_content setObject:value forKey:key];
     }
 }
@@ -97,37 +97,37 @@
 }
 
 - (void) putContent: (NSString *) key intValue: (int) value {
-    if ([self checkKey:key]) {
+    if ([self checkValue:key]) {
         [_content setObject:[NSString stringWithFormat:@"%d", value] forKey:key];
     }
 }
 
 - (void) putContent: (NSString *) key longValue: (long) value {
-    if ([self checkKey:key]) {
+    if ([self checkValue:key]) {
         [_content setObject:[NSString stringWithFormat:@"%ld", value] forKey:key];
     }
 }
 
 - (void) putContent: (NSString *) key longlongValue: (long long) value {
-    if ([self checkKey:key]) {
+    if ([self checkValue:key]) {
         [_content setObject:[NSString stringWithFormat:@"%lld", value] forKey:key];
     }
 }
 
 - (void) putContent: (NSString *) key floatValue: (float) value {
-    if ([self checkKey:key]) {
+    if ([self checkValue:key]) {
         [_content setObject:[NSString stringWithFormat:@"%f", value] forKey:key];
     }
 }
 
 - (void) putContent: (NSString *) key doubleValue: (double) value {
-    if ([self checkKey:key]) {
+    if ([self checkValue:key]) {
         [_content setObject:[NSString stringWithFormat:@"%f", value] forKey:key];
     }
 }
 
 - (void) putContent: (NSString *) key boolValue: (BOOL) value {
-    if ([self checkKey:key]) {
+    if ([self checkValue:key]) {
         [_content setObject:(YES == value ? @"YES" : @"NO") forKey:key];
     }
 }
@@ -167,7 +167,7 @@
 }
 
 - (BOOL) putContent: (NSString *) key dataValue: (NSData *)value {
-    if ([self checkKey:key] && value && ![value isKindOfClass:[NSNull class]]) {
+    if ([self checkValue:key] && value && ![value isKindOfClass:[NSNull class]]) {
         [_content setObject:[[NSString alloc] initWithData:value
                                                   encoding:NSUTF8StringEncoding
                             ]
@@ -178,7 +178,7 @@
 }
 
 - (BOOL) putContent: (NSString *) key arrayValue: (NSArray *) value {
-    if ([self checkKey:key] && value && [NSJSONSerialization isValidJSONObject:value]) {
+    if ([self checkValue:key] && value && [NSJSONSerialization isValidJSONObject:value]) {
         NSError *error = nil;
         NSData *data = [NSJSONSerialization dataWithJSONObject:value
                                                        options:kNilOptions
@@ -202,7 +202,7 @@
 
 
 - (BOOL) putContent: (NSString *) key dictValue: (NSDictionary *) value {
-    if ([self checkKey:key] && value && [NSJSONSerialization isValidJSONObject:value]) {
+    if ([self checkValue:key] && value && [NSJSONSerialization isValidJSONObject:value]) {
         NSError *error = nil;
         NSData *data = [NSJSONSerialization dataWithJSONObject:value
                                                        options:kNilOptions
