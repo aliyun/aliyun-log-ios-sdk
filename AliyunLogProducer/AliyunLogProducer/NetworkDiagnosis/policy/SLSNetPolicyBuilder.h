@@ -75,6 +75,13 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param urls Url地址列表，仅当探测方式为http时生效
 - (SLSNetPolicyBuilder *) addDestination: (NSArray<NSString*> *) ips urls: (NSArray<NSString*> *) urls;
 
+/// 增加目的地信息
+/// @param siteId siteId, 默认为public
+/// @param az az, 默认为空
+/// @param ips IP地址列表，可以为域名。如：10.10.0.2:443/80/8080，表示tcp探测时会同时探测443/80/8080这三个端口。
+/// @param urls Url地址列表，仅当探测方式为http时生效
+- (SLSNetPolicyBuilder *) addDestination: (NSString *) siteId az: (NSString *)az ips: (NSArray<NSString *> *) ips url: (NSArray<NSString *> *) urls;
+
 /// 构建
 - (SLSNetPolicy *) create;
 @end
