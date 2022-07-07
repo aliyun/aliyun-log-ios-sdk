@@ -7,17 +7,12 @@
 #include "md5.h"
 #include "sds.h"
 #include <sys/time.h>
-#include <time.h>
-#include <stdio.h>
 
 #ifdef __MACH__
+#include <stdio.h>
 #include <mach/clock.h>
 #include <mach/mach.h>
 #endif
-
-// change from 100ms to 1000s, reduce wake up when app switch to back
-#define LOG_PRODUCER_FLUSH_INTERVAL_MS 1000
-
 
 #define MAX_LOGGROUP_QUEUE_SIZE 1024
 #define MIN_LOGGROUP_QUEUE_SIZE 32
@@ -31,24 +26,20 @@ DWORD WINAPI log_producer_send_thread(LPVOID param);
 void * log_producer_send_thread(void * param);
 #endif
 
-void current_utc_time(struct timespec *ts) {
-#ifdef __MACH__ // OS X does not have clock_gettime, use clock_get_time
-  clock_serv_t cclock;
-  mach_timespec_t mts;
-  host_get_clock_service(mach_host_self(), CALENDAR_CLOCK, &cclock);
-  clock_get_time(cclock, &mts);
-  mach_port_deallocate(mach_task_self(), cclock);
-  ts->tv_sec = mts.tv_sec;
-  ts->tv_nsec = mts.tv_nsec;
-#else
-  clock_gettime(CLOCK_REALTIME, ts);
-#endif
-}
-
 void _generate_pack_id_timestamp(long *timestamp)
 {
     struct timespec ts;
-    current_utc_time(&ts);
+#ifdef __MACH__ // OS X does not have clock_gettime, use clock_get_time
+    clock_serv_t cclock;
+    mach_timespec_t mts;
+    host_get_clock_service(mach_host_self(), CALENDAR_CLOCK, &cclock);
+    clock_get_time(cclock, &mts);
+    mach_port_deallocate(mach_task_self(), cclock);
+    ts.tv_sec = mts.tv_sec;
+    ts.tv_nsec = mts.tv_nsec;
+#else
+    clock_gettime(CLOCK_REALTIME, ts);
+#endif
     *(timestamp) = ts.tv_nsec;
 }
 
@@ -72,6 +63,7 @@ char * _get_pack_id(const char * configName, const char * ip)
         val[loop<<1] = a > 9 ? (a - 10 + 'A') : (a + '0');
         val[(loop<<1)|1] = b > 9 ? (b - 10 + 'A') : (b + '0');
     }
+
     free(prefix);
     return val;
 }
@@ -119,21 +111,15 @@ void * log_producer_flush_thread(void * param)
 #endif
 {
     log_producer_manager * root_producer_manager = (log_producer_manager*)param;
-    aos_info_log("start run flusher thread, config : %s", root_producer_manager->producer_config->logstore);
+    int32_t interval = root_producer_manager->producer_config->flushIntervalInMS;
+    aos_info_log("[flusher] start run flusher thread, config : %s, flush interval: %d", root_producer_manager->producer_config->logstore, interval);
     while (root_producer_manager->shutdown == 0)
     {
-
         CS_ENTER(root_producer_manager->lock);
         COND_WAIT_TIME(root_producer_manager->triger_cond,
                        root_producer_manager->lock,
-                       LOG_PRODUCER_FLUSH_INTERVAL_MS);
+                       interval);
         CS_LEAVE(root_producer_manager->lock);
-
-
-//        aos_debug_log("run flusher thread, config : %s, now loggroup size : %d, delta time : %d",
-//                      producer_manager->producer_config->configName,
-//                      producer_manager->builder != NULL ? (int)producer_manager->builder->loggroup_size : 0,
-//                      (int)(now_time - producer_manager->firstLogTime));
 
         // try read queue
         do
@@ -187,7 +173,7 @@ void * log_producer_flush_thread(void * param)
 
                 if (lz4_buf == NULL)
                 {
-                    aos_error_log("serialize loggroup to proto buf with lz4 failed");
+                    aos_error_log("[flusher] serialize loggroup to proto buf with lz4 failed");
                     if (producer_manager->send_done_function)
                     {
                           producer_manager->send_done_function(producer_manager->producer_config->logstore, LOG_PRODUCER_DROP_ERROR, builder->loggroup_size, 0,
@@ -213,7 +199,7 @@ void * log_producer_flush_thread(void * param)
                     producer_manager->totalBufferSize += lz4_buf->length;
                     CS_LEAVE(root_producer_manager->lock);
 
-                    aos_debug_log("push loggroup to sender, config %s, loggroup size %d, lz4 size %d, now buffer size %d",
+                    aos_debug_log("[flusher] push loggroup to sender, config %s, loggroup size %d, lz4 size %d, now buffer size %d",
                                   config->logstore, (int)lz4_buf->raw_length, (int)lz4_buf->length, (int)producer_manager->totalBufferSize);
                     // if use multi thread, should change producer_manager->send_pool to NULL
                     //apr_pool_t * pool = config->sendThreadCount == 1 ? producer_manager->send_pool : NULL;
@@ -247,7 +233,7 @@ void * log_producer_flush_thread(void * param)
             log_producer_send_data(send_param);
         }
     }
-    aos_info_log("exit flusher thread, config : %s", root_producer_manager->producer_config->logstore);
+    aos_info_log("[flusher] exit flusher thread, config : %s", root_producer_manager->producer_config->logstore);
     return 0;
 }
 
@@ -391,7 +377,9 @@ void destroy_log_producer_manager(log_producer_manager * manager)
     // destroy root resources
     COND_SIGNAL(manager->triger_cond);
     aos_info_log("join flush thread begin");
-    THREAD_JOIN(manager->flush_thread);
+    if (manager->flush_thread) {
+        THREAD_JOIN(manager->flush_thread);
+    }
     aos_info_log("join flush thread success");
     if (manager->send_threads != NULL)
     {
@@ -399,7 +387,9 @@ void destroy_log_producer_manager(log_producer_manager * manager)
         int32_t threadId = 0;
         for (; threadId < manager->producer_config->sendThreadCount; ++threadId)
         {
-            THREAD_JOIN(manager->send_threads[threadId]);
+            if (manager->send_threads[threadId]) {
+                THREAD_JOIN(manager->send_threads[threadId]);
+            }
         }
         free(manager->send_threads);
         aos_info_log("join sender thread pool success");

@@ -30,6 +30,8 @@ const char* LOGE_TIME_EXPIRED = "RequestTimeExpired";
 #define BASE_NETWORK_ERROR_SLEEP_MS 300
 #define MAX_QUOTA_ERROR_SLEEP_MS 10000
 #define BASE_QUOTA_ERROR_SLEEP_MS 500
+#define MAX_PARAMETER_ERROR_SLEEP_MS 3000
+#define BASE_PARAMETER_ERROR_SLEEP_MS 300
 #define INVALID_TIME_TRY_INTERVAL 500
 
 #define DROP_FAIL_DATA_TIME_SECOND 86400
@@ -49,12 +51,12 @@ int32_t log_producer_on_send_done(log_producer_send_param * send_param, post_log
 
 void pb_to_webtracking(lz4_log_buf *lz4_buf, lz4_log_buf **new_lz4_buf)
 {
-    aos_debug_log("pb_to_webtracking start.");
+    aos_debug_log("[sender] pb_to_webtracking start.");
     char * buf = (char *)malloc(lz4_buf->raw_length);
     if (LZ4_decompress_safe((const char* )lz4_buf->data, buf, lz4_buf->length, lz4_buf->raw_length) <= 0)
     {
         free(buf);
-        aos_fatal_log("pb_to_webtracking, LZ4_decompress_safe error");
+        aos_fatal_log("[sender] pb_to_webtracking, LZ4_decompress_safe error");
         return;
     }
 
@@ -65,7 +67,7 @@ void pb_to_webtracking(lz4_log_buf *lz4_buf, lz4_log_buf **new_lz4_buf)
     int compressed_size = LZ4_compress_default((char *)buf, compress_data, len, compress_bound);
     if(compressed_size <= 0)
     {
-        aos_fatal_log("pb_to_webtracking, LZ4_compress_default error");
+        aos_fatal_log("[sender] pb_to_webtracking, LZ4_compress_default error");
         free(buf);
         free(compress_data);
         return;
@@ -76,17 +78,17 @@ void pb_to_webtracking(lz4_log_buf *lz4_buf, lz4_log_buf **new_lz4_buf)
     memcpy((*new_lz4_buf)->data, compress_data, compressed_size);
     free(buf);
     free(compress_data);
-    aos_debug_log("pb_to_webtracking end.");
+    aos_debug_log("[sender] pb_to_webtracking end.");
 }
 
 void _rebuild_time(lz4_log_buf * lz4_buf, lz4_log_buf ** new_lz4_buf)
 {
-    aos_debug_log("rebuild log.");
+    aos_debug_log("[sender] rebuild log.");
     char * buf = (char *)malloc(lz4_buf->raw_length);
     if (LZ4_decompress_safe((const char* )lz4_buf->data, buf, lz4_buf->length, lz4_buf->raw_length) <= 0)
     {
         free(buf);
-        aos_fatal_log("LZ4_decompress_safe error");
+        aos_fatal_log("[sender] LZ4_decompress_safe error");
         return;
     }
     uint32_t nowTime = LOG_GET_TIME();
@@ -97,7 +99,7 @@ void _rebuild_time(lz4_log_buf * lz4_buf, lz4_log_buf ** new_lz4_buf)
     int compressed_size = LZ4_compress_default((char *)buf, compress_data, lz4_buf->raw_length, compress_bound);
     if(compressed_size <= 0)
     {
-        aos_fatal_log("LZ4_compress_default error");
+        aos_fatal_log("[sender] LZ4_compress_default error");
         free(buf);
         free(compress_data);
         return;
@@ -126,10 +128,11 @@ void * log_producer_send_thread(void * param)
         return 0;
     }
 
+    int32_t interval = producer_manager->producer_config->logQueuePopIntervalInMS;
     while (!producer_manager->shutdown)
     {
         // change from 30ms to 1000s, reduce wake up when app switch to back
-        void * send_param = log_queue_pop(producer_manager->sender_data_queue, 1000);
+        void * send_param = log_queue_pop(producer_manager->sender_data_queue, interval);
         if (send_param != NULL)
         {
             ATOMICINT_INC(&producer_manager->multi_thread_send_count);
@@ -143,11 +146,11 @@ void * log_producer_send_thread(void * param)
 
 void * log_producer_send_fun(void * param)
 {
-    aos_info_log("start send log data.");
+    aos_info_log("[sender] start send log data.");
     log_producer_send_param * send_param = (log_producer_send_param *)param;
     if (send_param->magic_num != LOG_PRODUCER_SEND_MAGIC_NUM)
     {
-        aos_fatal_log("invalid send param, magic num not found, num 0x%x", send_param->magic_num);
+        aos_fatal_log("[sender] invalid send param, magic num not found, num 0x%x", send_param->magic_num);
         log_producer_manager * producer_manager = (log_producer_manager *)send_param->producer_manager;
         if (producer_manager && producer_manager->send_done_function != NULL)
         {
@@ -181,7 +184,7 @@ void * log_producer_send_fun(void * param)
     {
         if (producer_manager->shutdown)
         {
-            aos_info_log("send fail but shutdown signal received, force exit");
+            aos_info_log("[sender] send fail but shutdown signal received, force exit");
             if (producer_manager->send_done_function != NULL)
             {
               producer_manager->send_done_function(producer_manager->producer_config->logstore, LOG_PRODUCER_SEND_EXIT_BUFFERED, send_param->log_buf->raw_length, send_param->log_buf->length,
@@ -223,6 +226,9 @@ void * log_producer_send_fun(void * param)
             sdsfree(accessKey);
             sdsfree(stsToken);
         }
+
+        aos_debug_log("[sender] send data result: statusCode: %d, errorMessage: %s, requestID :%s",
+                      rst->statusCode, rst->errorMessage, rst->requestID);
 
         int32_t sleepMs = log_producer_on_send_done(send_param, rst, &error_info);
 
@@ -333,7 +339,7 @@ int32_t log_producer_on_send_done(log_producer_send_param * send_param, post_log
                     break;
                 }
             }
-            aos_warn_log("send quota error, project : %s, logstore : %s, buffer len : %d, raw len : %d, code : %d, error msg : %s",
+            aos_warn_log("[sender] send quota error, project : %s, logstore : %s, buffer len : %d, raw len : %d, code : %d, error msg : %s",
                          send_param->producer_config->project,
                          send_param->producer_config->logstore,
                          (int)send_param->log_buf->length,
@@ -343,7 +349,6 @@ int32_t log_producer_on_send_done(log_producer_send_param * send_param, post_log
             return error_info->last_sleep_ms;
         case LOG_SEND_SERVER_ERROR :
         case LOG_SEND_NETWORK_ERROR:
-        case LOG_SEND_PARAMETERS_ERROR:
             if (error_info->last_send_error != LOG_SEND_NETWORK_ERROR)
             {
                 error_info->last_send_error = LOG_SEND_NETWORK_ERROR;
@@ -361,7 +366,33 @@ int32_t log_producer_on_send_done(log_producer_send_param * send_param, post_log
                     break;
                 }
             }
-            aos_warn_log("send network error, project : %s, logstore : %s, buffer len : %d, raw len : %d, code : %d, error msg : %s",
+            aos_warn_log("[sender] send network error, project : %s, logstore : %s, buffer len : %d, raw len : %d, code : %d, error msg : %s",
+                         send_param->producer_config->project,
+                         send_param->producer_config->logstore,
+                         (int)send_param->log_buf->length,
+                         (int)send_param->log_buf->raw_length,
+                         result->statusCode,
+                         result->errorMessage);
+            return error_info->last_sleep_ms;
+        case LOG_SEND_PARAMETERS_ERROR:
+            if (error_info->last_send_error != LOG_SEND_PARAMETERS_ERROR)
+            {
+                error_info->last_send_error = LOG_SEND_PARAMETERS_ERROR;
+                error_info->last_sleep_ms = BASE_PARAMETER_ERROR_SLEEP_MS;
+                error_info->first_error_time = time(NULL);
+            }
+            else
+            {
+                if (error_info->last_sleep_ms < MAX_PARAMETER_ERROR_SLEEP_MS)
+                {
+                    error_info->last_sleep_ms *= 2;
+                }
+                if (time(NULL) - error_info->first_error_time > DROP_FAIL_DATA_TIME_SECOND)
+                {
+                    break;
+                }
+            }
+            aos_warn_log("[sender] send parameters error, project : %s, logstore : %s, buffer len : %d, raw len : %d, code : %d, error msg : %s",
                          send_param->producer_config->project,
                          send_param->producer_config->logstore,
                          (int)send_param->log_buf->length,
@@ -381,7 +412,7 @@ int32_t log_producer_on_send_done(log_producer_send_param * send_param, post_log
         error_info->last_send_error = LOG_SEND_DISCARD_ERROR;
         error_info->last_sleep_ms = BASE_NETWORK_ERROR_SLEEP_MS;
         error_info->first_error_time = time(NULL);
-        aos_warn_log("send fail, the error is discard data, retry once, project : %s, logstore : %s, buffer len : %d, raw len : %d, total buffer : %d,code : %d, error msg : %s",
+        aos_warn_log("[sender] send fail, the error is discard data, retry once, project : %s, logstore : %s, buffer len : %d, raw len : %d, total buffer : %d,code : %d, error msg : %s",
                      send_param->producer_config->project,
                      send_param->producer_config->logstore,
                      (int)send_param->log_buf->length,
@@ -397,7 +428,7 @@ int32_t log_producer_on_send_done(log_producer_send_param * send_param, post_log
     CS_LEAVE(producer_manager->lock);
     if (send_result == LOG_SEND_OK)
     {
-        aos_debug_log("send success, project : %s, logstore : %s, buffer len : %d, raw len : %d, total buffer : %d,code : %d, error msg : %s",
+        aos_debug_log("[sender] send success, project : %s, logstore : %s, buffer len : %d, raw len : %d, total buffer : %d,code : %d, error msg : %s",
                       send_param->producer_config->project,
                       send_param->producer_config->logstore,
                       (int)send_param->log_buf->length,
@@ -408,7 +439,7 @@ int32_t log_producer_on_send_done(log_producer_send_param * send_param, post_log
     }
     else
     {
-        aos_warn_log("send fail, discard data, project : %s, logstore : %s, buffer len : %d, raw len : %d, total buffer : %d,code : %d, error msg : %s",
+        aos_warn_log("[sender] send fail, discard data, project : %s, logstore : %s, buffer len : %d, raw len : %d, total buffer : %d,code : %d, error msg : %s",
                       send_param->producer_config->project,
                       send_param->producer_config->logstore,
                       (int)send_param->log_buf->length,
