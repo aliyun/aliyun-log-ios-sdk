@@ -29,13 +29,23 @@
 - (void) test_log$PutContent$value {
     [_log PutContent:@"stringValue" value:@"stringValue"];
     XCTAssertEqual(_log.getContent[@"stringValue"], @"stringValue", "string value not stringValue");
-    [_log remove:@"stringValue"];
+    [_log clear];
     
     [_log PutContent:@"stringValue" value:nil];
     XCTAssertNil(_log.getContent[@"stringValue"], "string value not nil");
+    [_log clear];
     
     [_log PutContent:@"stringValue" value:@""];
     XCTAssertEqual(_log.getContent[@"stringValue"], @"", "string value not \"\"");
+    [_log clear];
+    
+    [_log PutContent:@"stringValue" value:[NSNull null]];
+    XCTAssertEqual(_log.getContent.count, 0, "dict count not 0.");
+    [_log clear];
+    
+    [_log PutContent:@"stringValue" value:@1];
+    XCTAssertEqual(_log.getContent.count, 0, "dict count not 0.");
+    [_log clear];
 }
 
 - (void) test_log$putContent$intValue {

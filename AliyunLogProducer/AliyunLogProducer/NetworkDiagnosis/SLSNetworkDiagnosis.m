@@ -158,8 +158,8 @@
     NSMutableArray *destinationArray = [[NSMutableArray alloc] init];
     for (SLSDestination *des in policy.destination) {
         NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
-        [dict setObject:@"public" forKey:@"siteId"];
-        [dict setObject:@"public" forKey:@"az"];
+        [dict setObject:des.siteId forKey:@"siteId"];
+        [dict setObject:des.az forKey:@"az"];
         [dict setObject:des.ips forKey:@"ips"];
         [dict setObject:des.urls forKey:@"urls"];
         

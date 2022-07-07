@@ -150,9 +150,13 @@
 }
 
 - (SLSNetPolicyBuilder *) addDestination: (NSArray<NSString*> *) ips urls: (NSArray<NSString*> *) urls {
+    return [self addDestination:@"public" az:@"public" ips:ips url:urls];
+}
+
+- (SLSNetPolicyBuilder *) addDestination: (NSString *) siteId az: (NSString *)az ips: (NSArray<NSString *> *) ips url: (NSArray<NSString *> *) urls {
     SLSDestination *destination = [[SLSDestination alloc] init];
-    [destination setSiteId:@"public"];
-    [destination setAz:@"public"];
+    [destination setSiteId:(siteId && siteId.length > 0) ? siteId : @"public"];
+    [destination setAz:(az && az.length > 0) ? az : @"public"];
     [destination setIps:ips];
     [destination setUrls:urls];
     
