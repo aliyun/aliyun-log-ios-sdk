@@ -87,10 +87,10 @@
         }
     }
     
-    SLSLog(@"Your NSDictionary is not support convert to JSON, all values will not be added, please check your data.");
-    
     if (!error) {
         [_content addEntriesFromDictionary:newDict];
+    } else {
+        SLSLog(@"Your NSDictionary is not support convert to JSON, all values will not be added, please check your data.");
     }
     
     return error;
