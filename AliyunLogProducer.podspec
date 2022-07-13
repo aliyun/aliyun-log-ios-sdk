@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'AliyunLogProducer'
-  s.version          = '2.3.9.2-conflict'
+  s.version          = '2.3.10.3-conflict'
   s.summary          = 'aliyun log service ios producer.'
 
 # This description is used to generate tags and improve search results.
@@ -46,7 +46,8 @@ https://help.aliyun.com/product/28958.html
     c.source_files =
       'AliyunLogProducer/AliyunLogProducer/*.{h,m}',
       'AliyunLogProducer/aliyun-log-c-sdk/src/*.{c,h}',
-      'AliyunLogProducer/AliyunLogProducer/utils/*.{m,h}'
+      'AliyunLogProducer/AliyunLogProducer/utils/*.{m,h}',
+      'AliyunLogProducer/AliyunLogProducer/Category/*.{m,h}'
 
     c.public_header_files =
       'AliyunLogProducer/AliyunLogProducer/*.h',

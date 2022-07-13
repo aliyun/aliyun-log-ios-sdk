@@ -6,6 +6,7 @@
 //
 
 #import "UCTraceFileParser.h"
+#import "NSDateFormatter+SLS.h"
 
 
 @interface UCTraceFileParser ()
@@ -22,13 +23,13 @@
     SLSLogV(@"start. tpye: %@, path: %@", type, filePath);
     
     if(type.length == 0) {
-        SLSLog(@"type is empty.");
+        SLSLogd(@"type is empty.");
         return;
     }
     
     BOOL isDirectory;
     if(filePath.length == 0 || ![[NSFileManager defaultManager] fileExistsAtPath:filePath isDirectory: &isDirectory]) {
-        SLSLog(@"file path is empty or file not exists.");
+        SLSLogd(@"file path is empty or file not exists.");
         return;
     }
     
@@ -80,13 +81,11 @@
         if ([time length] != 0) {
             time = [time stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
             // time format: 2021-06-09 19:32:17.341 +0800
-            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-            [dateFormatter setDateFormat:@"YYYY-MM-dd HH:mm:ss.SSS Z"];
-            NSDate *date = [dateFormatter dateFromString:time];
+            NSDateFormatter *dateFormatter = [NSDateFormatter sharedInstance];
+            NSDate *date = [dateFormatter fromStringZ:time];
             
             tcdata.local_timestamp = [NSString stringWithFormat:@"%0.f", [date timeIntervalSince1970] * 1000];
-            [dateFormatter setDateFormat:@"YYYY-MM-dd HH:mm:ss:SSS"];
-            tcdata.local_time = [dateFormatter stringFromDate:date];
+            tcdata.local_time = [dateFormatter fromDate:date];
         }
     } else if ([type isEqual:@"crash_stat"]) {
         tcdata.event_id = @"61030";
@@ -109,7 +108,7 @@
         res = [[NSFileManager defaultManager] removeItemAtPath:filePath error:nil];
         SLSLogV(@"internalParseFileWithType. file remove res: %d", res);
     } else {
-        SLSLog(@"data not sent, file will not be removed. file: %@", filePath);
+        SLSLogd(@"data not sent, file will not be removed. file: %@", filePath);
     }
 }
 

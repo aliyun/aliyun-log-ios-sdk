@@ -17,7 +17,7 @@ FOUNDATION_EXPORT const unsigned char AliyunLogProducerVersionString[];
 #ifndef AliyunlogCommon_h
 #define AliyunlogCommon_h
 
-#define SLSLog(fmt, ...) NSLog((@"[SLSiOS] %s " fmt), __FUNCTION__, ##__VA_ARGS__);
+#define SLSLogd(fmt, ...) NSLog((@"[SLSiOS] %s " fmt), __FUNCTION__, ##__VA_ARGS__);
 #ifdef DEBUG
     #define SLSLogV(fmt, ...) NSLog((@"[SLSiOS] %s:%d: " fmt), __FUNCTION__, __LINE__, ##__VA_ARGS__);
 #else

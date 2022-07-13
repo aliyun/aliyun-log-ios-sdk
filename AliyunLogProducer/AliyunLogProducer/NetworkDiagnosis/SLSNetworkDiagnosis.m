@@ -82,14 +82,14 @@
     }
     
     if (!content) {
-        SLSLog("report. content is null");
+        SLSLogd("report. content is null");
         return;
     }
     
     NSDictionary *object = [NSJSONSerialization JSONObjectWithData:[content dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
     NSString *method = [object objectForKey:@"method"];
     if (!method) {
-        SLSLog("report. method is null");
+        SLSLogd("report. method is null");
         return;
     }
     
@@ -101,7 +101,7 @@
 }
 
 - (void)log:(NSString*)content level:(AliNetDiagLogLevel)level context:(id)context {
-    SLSLog("log. level: %lu, content: %@", (unsigned long)level, content);
+    SLSLogd("log. level: %lu, content: %@", (unsigned long)level, content);
 }
 
 - (void) updateConfig: (SLSConfig *)config {
@@ -158,8 +158,8 @@
     NSMutableArray *destinationArray = [[NSMutableArray alloc] init];
     for (SLSDestination *des in policy.destination) {
         NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
-        [dict setObject:@"public" forKey:@"siteId"];
-        [dict setObject:@"public" forKey:@"az"];
+        [dict setObject:des.siteId forKey:@"siteId"];
+        [dict setObject:des.az forKey:@"az"];
         [dict setObject:des.ips forKey:@"ips"];
         [dict setObject:des.urls forKey:@"urls"];
         

@@ -35,7 +35,7 @@ void monitorDirectory(SLSCrashReporterPlugin* plugin, dispatch_source_t _source,
     NSURL *dirURL = [NSURL URLWithString:path];
     int const fd = open([[dirURL path]fileSystemRepresentation], O_EVTONLY);
     if (fd < 0) {
-        SLSLog(@"unable to open the path: %@", [dirURL path]);
+        SLSLogd(@"unable to open the path: %@", [dirURL path]);
         return;
     }
     
@@ -130,12 +130,12 @@ void monitorDirectory(SLSCrashReporterPlugin* plugin, dispatch_source_t _source,
 - (void) reportCustomEvent: (NSString *) eventId properties:(nonnull NSDictionary *)dictionary {
     [super reportCustomEvent:eventId properties:dictionary];
     if ([eventId length] == 0) {
-        SLSLog(@"reportCustomEvent. eventId is null or empty.")
+        SLSLogd(@"reportCustomEvent. eventId is null or empty.")
         return;
     }
     
     if (!dictionary) {
-        SLSLog(@"reportCustomEvent. dictionary is null.")
+        SLSLogd(@"reportCustomEvent. dictionary is null.")
         return;
     }
     
@@ -154,7 +154,7 @@ void monitorDirectory(SLSCrashReporterPlugin* plugin, dispatch_source_t _source,
     if (succ && _config.debuggable) {
         SLSLogV(@"reportCustomEvent. send custom event success.");
     } else {
-        SLSLog(@"reportCustomEvent. send custom event failed.")
+        SLSLogd(@"reportCustomEvent. send custom event failed.")
     }
 }
 
@@ -181,7 +181,7 @@ void monitorDirectory(SLSCrashReporterPlugin* plugin, dispatch_source_t _source,
         SLSLogV(@"%@ path not exists.", dir);
         BOOL res = [fileManager createDirectoryAtPath:dir withIntermediateDirectories:YES attributes:nil error:nil];
         if (!res) {
-            SLSLog(@"create directory %@ error.", dir);
+            SLSLogd(@"create directory %@ error.", dir);
         }
         return res;
     }
@@ -191,7 +191,7 @@ void monitorDirectory(SLSCrashReporterPlugin* plugin, dispatch_source_t _source,
 - (void) startLogDirectoryMonitor {
     // AppData/Library/.WPKLog/CrashLog
     // AppData/Library/.WPKLog/CrashStatLog
-    SLSLog(@"start");
+    SLSLogd(@"start");
 #if SLS_HOST_TV
     NSString *libraryPath = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES).firstObject;
 #else
@@ -217,7 +217,7 @@ void monitorDirectory(SLSCrashReporterPlugin* plugin, dispatch_source_t _source,
     }
     SLSLogV(@"CrashStatLogPath: %@", crashStatLogPath);
     
-    SLSLog(@"scan files in crash directory and report if file exsits");
+    SLSLogd(@"scan files in crash directory and report if file exsits");
     [self scanAndReport:crashLogPath andType:@"crash"];
     [self scanAndReport:crashStatLogPath andType:@"crash_stat"];
     

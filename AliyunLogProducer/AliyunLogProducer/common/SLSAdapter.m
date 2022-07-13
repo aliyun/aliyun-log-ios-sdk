@@ -87,7 +87,7 @@
 
 #pragma mark - init adapter
 - (BOOL) initWithSLSConfig:(SLSConfig *)config {
-    SLSLog(@"start.");
+    SLSLogd(@"start.");
     
     NSString *version = [[[NSBundle bundleForClass:HttpConfigProxy.self] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
     for (int i = 0; i < _plugins.count; i++) {
@@ -98,7 +98,7 @@
         SLSLogV(@"end init plugin: %@", [plugin name]);
     }
 
-    SLSLog(@"end.");
+    SLSLogd(@"end.");
     return YES;
 }
 

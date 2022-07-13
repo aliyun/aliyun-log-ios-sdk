@@ -41,7 +41,7 @@
         logproject = slsConfig.pluginLogproject;
         logstore = slsConfig.pluginLogstore;
 
-        SLSLog(@"SLSSpanExporter init. use global SLSConfig project configuration.");
+        SLSLogd(@"SLSSpanExporter init. use global SLSConfig project configuration.");
     }
     
     self.config = [[LogProducerConfig alloc] initWithEndpoint:endpoint project:logproject logstore:logstore accessKeyID:slsConfig.accessKeyId accessKeySecret:slsConfig.accessKeySecret securityToken:slsConfig.securityToken];
@@ -87,7 +87,7 @@
 
 - (void) updateConfig: (SLSConfig *)config {
     if (!config) {
-        SLSLog(@"invalid config.");
+        SLSLogd(@"invalid config.");
         return;
     }
     

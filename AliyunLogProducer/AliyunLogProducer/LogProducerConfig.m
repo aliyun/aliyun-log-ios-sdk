@@ -7,9 +7,13 @@
 //
 
 #ifdef DEBUG
-#define SLSLog(...) NSLog(__VA_ARGS__)
+#ifndef SLSLogd
+    #define SLSLogd(...) NSLog(__VA_ARGS__)
+#endif
 #else
-#define SLSLog(...)
+#ifndef SLSLogd
+    #define SLSLogd(...)
+#endif
 #endif
 
 #import "SLSSystemCapabilities.h"
@@ -78,14 +82,14 @@ static int os_http_post(const char *url,
         }
         if (responseCode != 200) {
             NSString *res = [[NSString alloc] initWithData:resData encoding:NSUTF8StringEncoding];
-            SLSLog(@"%@: %ld %@ %@", VERSION, [response statusCode], [response allHeaderFields], res);
+            SLSLogd(@"%@: %ld %@ %@", VERSION, [response statusCode], [response allHeaderFields], res);
         }
         return responseCode;
     }
     else {
         if(error != nil){
             NSString *res = [[NSString alloc] initWithData:resData encoding:NSUTF8StringEncoding];
-            SLSLog(@"%@: error: %@, res:%@", VERSION, error, res);
+            SLSLogd(@"%@: error: %@, res:%@", VERSION, error, res);
             if (error.code == kCFURLErrorUserCancelledAuthentication)
                 return 401;
             if (error.code == kCFURLErrorBadServerResponse)
@@ -155,7 +159,7 @@ static int os_http_post(const char *url,
 
 unsigned int time_func() {
     NSInteger timeInMillis = [TimeUtils getTimeInMilliis];
-    return timeInMillis;
+    return (unsigned int) timeInMillis;
 }
 
 - (void)setEndpoint:(NSString *)endpoint
