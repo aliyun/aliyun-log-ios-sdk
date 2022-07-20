@@ -245,7 +245,10 @@ static void observeDirectory(dispatch_source_t _source, NSString *path, director
          nil
     ];
     
-    [[builder build] end];
+    BOOL ret = [[builder build] end];
+    if (ret) {
+        [[NSFileManager defaultManager] removeItemAtPath:file error:nil];
+    }
 }
 
 - (void) reportCrash: (NSString *) file {
@@ -301,7 +304,10 @@ static void observeDirectory(dispatch_source_t _source, NSString *path, director
         [buidler setStart:[date timeIntervalSince1970] * 1000000000];
     }
     
-    [[buidler build] end];
+    BOOL ret = [[buidler build] end];
+    if (ret) {
+        [[NSFileManager defaultManager] removeItemAtPath:file error:nil];
+    }
 }
 
 @end
