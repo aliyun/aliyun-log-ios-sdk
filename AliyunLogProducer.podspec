@@ -71,6 +71,25 @@ https://help.aliyun.com/product/28958.html
     b.frameworks = "SystemConfiguration"
   end
   
+  s.subspec 'Core2' do |c|
+    c.ios.deployment_target = '9.0'
+    c.tvos.deployment_target =  '9.0'
+    c.osx.deployment_target =  '10.8'
+    c.dependency 'AliyunLogProducer/Core'
+    c.dependency 'AliyunLogProducer/OT'
+    c.source_files = 'Core/**/*.{m,h}'
+    c.public_header_files = 'Core/**/*.h'
+  end
+  
+  s.subspec 'OT' do |o|
+    o.ios.deployment_target = '9.0'
+    o.tvos.deployment_target =  '9.0'
+    o.osx.deployment_target =  '10.8'
+    o.source_files = 'OT/**/*.{m,h}'
+    o.public_header_files = 'OT/**/*.h'
+  end
+  
+  
   s.subspec 'CrashReporter' do |r|
     r.ios.deployment_target = '9.0'
     r.tvos.deployment_target =  '9.0'
