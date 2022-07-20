@@ -155,7 +155,7 @@
 }
 
 + (instancetype) provider: (SLSConfiguration *)configuration credentials: (SLSCredentials *) credentials {
-    return [[SLSSpanProviderDelegate alloc] initWithConfiguration:configuration credentials:nil];
+    return [[SLSSpanProviderDelegate alloc] initWithConfiguration:configuration credentials:credentials];
 }
 
 
