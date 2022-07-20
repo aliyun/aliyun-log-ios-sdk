@@ -18,6 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong) NSString *accessKeySecret;
 @property(nonatomic, strong) NSString *securityToken;
 
++ (instancetype) credentials;
+
 @end
 
 NS_ASSUME_NONNULL_END
