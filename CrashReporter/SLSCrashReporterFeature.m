@@ -9,6 +9,7 @@
 #import "WPKMobi/WPKSetup.h"
 #import "Utdid.h"
 #import "NSDateFormatter+SLS.h"
+#import "SLSCrashReporter.h"
 
 typedef void(^directory_changed_block)(NSString*);
 
@@ -44,6 +45,8 @@ typedef void(^directory_changed_block)(NSString*);
     
     [self observeDirectoryChanged];
     [self initWPKMobi: credentials];
+    
+    [[SLSCrashReporter sharedInstance] setCrashReporterFeature:self];
 }
 - (void) onPostInitialize {
     [super onPostInitialize];
@@ -56,6 +59,34 @@ typedef void(^directory_changed_block)(NSString*);
 - (void) onPostStop {
     [super onPostStop];
 }
+
+- (void)addCustom:(NSString *)eventId properties:(NSDictionary<NSString *,NSString *> *)proterties {
+    [super addCustom:eventId properties:proterties];
+    
+    SLSSpanBuilder *buidler = [self newSpanBuilder:@"custom_error"];
+    [buidler addAttribute:
+         [SLSAttribute of:@"t" value:@"error"],
+         [SLSAttribute of:@"ex.type" value:@"custom"],
+         [SLSAttribute of:@"ex.event_id" value:eventId],
+         nil
+    ];
+    
+    if (proterties && [NSJSONSerialization isValidJSONObject:proterties]) {
+        [buidler addAttribute:
+             [SLSAttribute of:@"ex.custom" value:[[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:proterties
+                                                                                                                options:kNilOptions
+                                                                                                                  error:nil
+                                                                                ]
+                                                                       encoding:NSUTF8StringEncoding
+                                                 ]
+             ],
+             nil
+        ];
+    }
+    [[buidler build] end];
+    
+}
+
 
 - (void) initWPKMobi: (SLSCredentials *) credentials {
     [WPKSetup setIsEncryptLog:NO];
