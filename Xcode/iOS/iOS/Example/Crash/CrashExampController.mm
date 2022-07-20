@@ -8,6 +8,7 @@
 #import "CrashExampController.h"
 #include "CppExceptionFaker.hpp"
 #import "SLSCocoa.h"
+#import "SLSCrashReporter.h"
 
 @interface CrashExampController ()
 @property(nonatomic, strong) NSLock *lock;
@@ -215,8 +216,12 @@
 
 - (void) onCustomLog {
     SLSLogV(@"********** Make a Custom Log now. **********");
-    [[SLSAdapter sharedInstance] reportCustomEvent:@"Clicked" properties:@{
-        @"view_pos": @1,
+//    [[SLSAdapter sharedInstance] reportCustomEvent:@"Clicked" properties:@{
+//        @"view_pos": @1,
+//        @"view_content": @"click test"
+//    }];
+    [[SLSCrashReporter sharedInstance] addCustomError:@"Clicked" properties:@{
+        @"view_pos": @"1",
         @"view_content": @"click test"
     }];
 }
