@@ -89,6 +89,18 @@ https://help.aliyun.com/product/28958.html
     o.public_header_files = 'OT/**/*.h'
   end
   
+  s.subspec 'CrashReporter2' do |c|
+    c.ios.deployment_target = '9.0'
+    c.tvos.deployment_target =  '9.0'
+    c.osx.deployment_target =  '10.8'
+    c.dependency 'AliyunLogProducer/Core2'
+    c.dependency 'AliyunLogProducer/OT'
+    c.source_files = 'CrashReporter/**/*.{m,h}'
+    c.public_header_files = 'CrashReporter/**/*.h'
+    c.vendored_frameworks = 'CrashReporter/WPKMobi.xcframework'
+    c.exclude_files = 'CrashReporter/WPKMobi.xcframework/**/Headers/*.h'
+  end
+  
   
   s.subspec 'CrashReporter' do |r|
     r.ios.deployment_target = '9.0'

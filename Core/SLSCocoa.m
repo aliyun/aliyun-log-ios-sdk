@@ -19,7 +19,7 @@
 - (void) initializeDefaultSpanProvider;
 - (void) initializeSdkSender;
 
-- (void) initFeatures;
+- (void) initFeature: (NSString *) clazzName;
 @end
 
 @implementation SLSCocoa
@@ -57,7 +57,7 @@
     [self initializeDefaultSpanProvider];
     [self initializeSdkSender];
     
-    [self initFeatures];
+    [self initFeature: @"SLSCrashReporterFeature"];
     
     _hasInitialize = YES;
     return YES;
@@ -72,8 +72,24 @@
     [sender initialize: _credentials];
 }
 
-- (void) initFeatures {
+- (void) initFeature: (NSString *) clazzName {
+    if (!clazzName || clazzName.length <= 0) {
+        return;
+    }
     
+    Class clazz = NSClassFromString(clazzName);
+    if (!clazz || ![clazz conformsToProtocol:@protocol(SLSFeatureProtocol)]) {
+        return;
+    }
+    
+    id<SLSFeatureProtocol> feature = [[clazz alloc] init];
+    if (!feature) {
+        return;
+    }
+    
+    [feature initialize:_credentials configuration:_configuration];
+    
+    [_features addObject:feature];
 }
 
 - (void) setCredentials: (SLSCredentials *) credentials {
@@ -109,7 +125,11 @@
     
 }
 - (void) setUserInfo: (SLSUserInfo *) userInfo {
+    if (!_configuration || !userInfo) {
+        return;
+    }
     
+    _configuration.userInfo = userInfo;
 }
 
 @end

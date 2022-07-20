@@ -8,5 +8,7 @@
 #import "SLSCredentials.h"
 
 @implementation SLSCredentials
-
++ (instancetype) credentials {
+    return [[SLSCredentials alloc] init];
+}
 @end

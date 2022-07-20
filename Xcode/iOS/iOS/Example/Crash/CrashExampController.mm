@@ -7,6 +7,7 @@
 
 #import "CrashExampController.h"
 #include "CppExceptionFaker.hpp"
+#import "SLSCocoa.h"
 
 @interface CrashExampController ()
 @property(nonatomic, strong) NSLock *lock;
@@ -64,24 +65,36 @@
 
 - (void) initCrash {
     DemoUtils *utils = [DemoUtils sharedInstance];
-    SLSConfig *config = [[SLSConfig alloc] init];
-    // 正式发布时建议关闭
-    [config setDebuggable:YES];
+//    SLSConfig *config = [[SLSConfig alloc] init];
+//    // 正式发布时建议关闭
+//    [config setDebuggable:YES];
+//
+//    [config setEndpoint: [utils endpoint]];
+//    [config setAccessKeyId: [utils accessKeyId]];
+//    [config setAccessKeySecret: [utils accessKeySecret]];
+//    [config setPluginAppId: [utils pluginAppId]];
+//    [config setPluginLogproject: [utils project]];
+//
+//    [config setUserId:@"test_userid"];
+//    [config setChannel:@"test_channel"];
+//    [config addCustomWithKey:@"customKey" andValue:@"testValue"];
     
-    [config setEndpoint: [utils endpoint]];
-    [config setAccessKeyId: [utils accessKeyId]];
-    [config setAccessKeySecret: [utils accessKeySecret]];
-    [config setPluginAppId: [utils pluginAppId]];
-    [config setPluginLogproject: [utils project]];
+//    SLSAdapter *slsAdapter = [SLSAdapter sharedInstance];
+////    [slsAdapter addPlugin:[[SLSCrashReporterPlugin alloc]init]];
+////    [slsAdapter addPlugin:[[SLSTracePlugin alloc] init]];
+//    [slsAdapter initWithSLSConfig:config];
     
-    [config setUserId:@"test_userid"];
-    [config setChannel:@"test_channel"];
-    [config addCustomWithKey:@"customKey" andValue:@"testValue"];
+    SLSCredentials *credentials = [SLSCredentials credentials];
+    credentials.endpoint = @"https://cn-hangzhou.log.aliyuncs.com";
+    credentials.project = @"yuanbo-test-1";
+    credentials.accessKeyId = utils.accessKeyId;
+    credentials.accessKeySecret = utils.accessKeySecret;
+    credentials.instanceId = @"yuanbo-test-1111";
     
-    SLSAdapter *slsAdapter = [SLSAdapter sharedInstance];
-    [slsAdapter addPlugin:[[SLSCrashReporterPlugin alloc]init]];
-//    [slsAdapter addPlugin:[[SLSTracePlugin alloc] init]];
-    [slsAdapter initWithSLSConfig:config];
+    [[SLSCocoa sharedInstance] initialize:credentials configuration:^(SLSConfiguration * _Nonnull configuration) {
+        configuration.enableCrashReporter = YES;
+    }];
+    
 }
 
 - (void) updateConfiguration {

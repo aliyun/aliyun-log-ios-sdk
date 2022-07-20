@@ -13,11 +13,12 @@ targets.each do |t|
 #      pod 'AliyunLogProducer', '2.3.10.3' , :subspecs => ['Core', 'Bricks', 'CrashReporter', 'NetworkDiagnosis', 'Trace']
       pod 'AliyunLogProducer/Core', :path =>'../../'
       pod 'AliyunLogProducer/Bricks', :path =>'../../'
-      pod 'AliyunLogProducer/CrashReporter', :path =>'../../'
+#      pod 'AliyunLogProducer/CrashReporter', :path =>'../../'
       pod 'AliyunLogProducer/NetworkDiagnosis', :path =>'../../'
       pod 'AliyunLogProducer/Trace', :path =>'../../'
       pod 'AliyunLogProducer/OT', :path =>'../../'
       pod 'AliyunLogProducer/Core2', :path =>'../../'
+      pod 'AliyunLogProducer/CrashReporter2', :path =>'../../'
 #      pod 'AliyunLogProducer/Producer', :path =>'../../'
     end
 
