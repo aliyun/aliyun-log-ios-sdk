@@ -180,12 +180,37 @@ static void observeDirectory(dispatch_source_t _source, NSString *path, director
         return;
     }
     
+    NSArray *lines = [content componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+    if (!lines) {
+        return;
+    }
+    
+    NSString *utdid = [Utdid getUtdid];
+    
+    for (NSString *line in lines) {
+        if ([line containsString:@"dn"]) {
+            NSArray *chunks = [line componentsSeparatedByString:@"`"];
+            if (!chunks) {
+                return;
+            }
+            content = [NSString string];
+            for (NSString *chunk in chunks) {
+                if ([chunk containsString:@"dn"]) {
+                    content = [content stringByAppendingFormat: @"dn=%@`", utdid];
+                } else if (chunk.length > 0){
+                    content = [content stringByAppendingFormat: @"%@`", chunk];
+                }
+            }
+            break;
+        }
+    }
+    
     SLSSpanBuilder *builder = [self newSpanBuilder:@"state"];
     [builder addAttribute:
          [SLSAttribute of:@"t" value:@"error"],
          [SLSAttribute of:@"ex.type" value:@"state"],
          [SLSAttribute of:@"ex.origin" value:content],
-         [SLSAttribute of:@"ex.uuid" value:[Utdid getUtdid]] ,
+         [SLSAttribute of:@"ex.uuid" value:utdid],
          nil
     ];
     
@@ -208,13 +233,19 @@ static void observeDirectory(dispatch_source_t _source, NSString *path, director
     }
     
     NSString *time = @"";
+    content = [NSString string];
     for (NSString *line in lines) {
         if ([line containsString:@"Date/Time:"]) {
             NSArray *chunks = [line componentsSeparatedByString:@"Time:"];
             if (chunks && [chunks count] == 2) {
                 time = [chunks objectAtIndex:1];
             }
-            break;
+        }
+        
+        if ([line containsString:@"UDID:"]) {
+            content = [content stringByAppendingFormat:@"UDID:      %@\n", [Utdid getUtdid]];
+        } else {
+            content = [content stringByAppendingFormat:@"%@\n", line];
         }
     }
     
@@ -236,7 +267,7 @@ static void observeDirectory(dispatch_source_t _source, NSString *path, director
         
 //        tcdata.local_timestamp = [NSString stringWithFormat:@"%0.f", [date timeIntervalSince1970] * 1000];
 //        tcdata.local_time = [dateFormatter fromDate:date];
-        [buidler setStart:[date timeIntervalSince1970] * 1000];
+        [buidler setStart:[date timeIntervalSince1970] * 1000000000];
     }
     
     [[buidler build] end];
