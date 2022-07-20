@@ -99,13 +99,20 @@
 }
 
 - (void) updateConfiguration {
-    SLSConfig *config = [[SLSConfig alloc] init];
-    config.userId = @"test_uuuid";
+//    SLSConfig *config = [[SLSConfig alloc] init];
+//    config.userId = @"test_uuuid";
+//
+//    SLSAdapter *adapter = [SLSAdapter sharedInstance];
+//    [adapter updateConfig:config];
+//    DemoUtils *utils = [DemoUtils sharedInstance];
+//    [adapter resetSecurityToken:utils.accessKeyId secret:utils.accessKeySecret token:nil];
     
-    SLSAdapter *adapter = [SLSAdapter sharedInstance];
-    [adapter updateConfig:config];
-    DemoUtils *utils = [DemoUtils sharedInstance];
-    [adapter resetSecurityToken:utils.accessKeyId secret:utils.accessKeySecret token:nil];
+    
+    SLSCredentials *credentials = [SLSCredentials credentials];
+    credentials.instanceId = @"yuanbo-test-1111";
+    credentials.accessKeyId = [DemoUtils sharedInstance].accessKeyId;
+    credentials.accessKeySecret = [DemoUtils sharedInstance].accessKeySecret;
+    [[SLSCocoa sharedInstance] setCredentials:credentials];
 }
 
 # pragma Mach Crash
@@ -220,6 +227,7 @@
 //        @"view_pos": @1,
 //        @"view_content": @"click test"
 //    }];
+    
     [[SLSCrashReporter sharedInstance] addCustomError:@"Clicked" properties:@{
         @"view_pos": @"1",
         @"view_content": @"click test"

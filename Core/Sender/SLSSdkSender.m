@@ -73,6 +73,36 @@
     return [self send:log];
 }
 - (void) setCredentials: (SLSCredentials *) credentials {
+    if (!_config || !credentials) {
+        return;
+    }
+    
+    if (credentials.securityToken && credentials.securityToken.length > 0) {
+        if (credentials.accessKeyId && credentials.accessKeyId.length > 0
+            && credentials.accessKeySecret && credentials.accessKeySecret.length > 0) {
+            [_config ResetSecurityToken:credentials.accessKeyId
+                        accessKeySecret:credentials.accessKeySecret
+                          securityToken:credentials.securityToken
+            ];
+        }
+    } else {
+        if (credentials.accessKeyId && credentials.accessKeyId.length > 0
+            && credentials.accessKeySecret && credentials.accessKeySecret.length > 0) {
+            [_config setAccessKeyId:credentials.accessKeyId];
+            [_config setAccessKeySecret:credentials.accessKeySecret];
+        }
+
+    }
+    
+    if (credentials.endpoint && credentials.endpoint.length > 0) {
+        [_config setEndpoint:credentials.endpoint];
+    }
+    if (credentials.project && credentials.project.length > 0) {
+        [_config setProject:credentials.project];
+    }
+    if (credentials.instanceId && credentials.instanceId.length > 0) {
+        [_config setLogstore:[self getLogstoreByInstanceId:credentials.instanceId]];
+    }
     
 }
 
