@@ -35,10 +35,6 @@ FOUNDATION_EXPORT const unsigned char AliyunLogProducerVersionString[];
 
 #if __has_include("LogProducerClient+Bricks.h")
 #import "LogProducerClient+Bricks.h"
-#import "SLSAdapter.h"
-#import "SLSConfig.h"
-#import "TCData.h"
-#import "IPlugin.h"
 #endif
 
 #if __has_include(<AliyunLogProducer/SLSCrashReporterPlugin.h>)
