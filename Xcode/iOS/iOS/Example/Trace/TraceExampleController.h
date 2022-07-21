@@ -1,16 +1,16 @@
+////
+////  TraceExampleController.h
+////  AliyunLogDemo
+////
+////  Created by gordon on 2022/1/10.
+////
 //
-//  TraceExampleController.h
-//  AliyunLogDemo
+//#import "ExampleViewController.h"
 //
-//  Created by gordon on 2022/1/10.
+//NS_ASSUME_NONNULL_BEGIN
 //
-
-#import "ExampleViewController.h"
-
-NS_ASSUME_NONNULL_BEGIN
-
-@interface TraceExampleController : ExampleViewController
-
-@end
-
-NS_ASSUME_NONNULL_END
+//@interface TraceExampleController : ExampleViewController
+//
+//@end
+//
+//NS_ASSUME_NONNULL_END

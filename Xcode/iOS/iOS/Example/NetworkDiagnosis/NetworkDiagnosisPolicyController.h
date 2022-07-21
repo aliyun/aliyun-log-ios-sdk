@@ -1,16 +1,16 @@
+////
+////  NetworkDiagnosisPolicyController.h
+////  iOS
+////
+////  Created by gordon on 2022/3/22.
+////
 //
-//  NetworkDiagnosisPolicyController.h
-//  iOS
+//#import "ExampleViewController.h"
 //
-//  Created by gordon on 2022/3/22.
+//NS_ASSUME_NONNULL_BEGIN
 //
-
-#import "ExampleViewController.h"
-
-NS_ASSUME_NONNULL_BEGIN
-
-@interface NetworkDiagnosisPolicyController : ExampleViewController
-
-@end
-
-NS_ASSUME_NONNULL_END
+//@interface NetworkDiagnosisPolicyController : ExampleViewController
+//
+//@end
+//
+//NS_ASSUME_NONNULL_END

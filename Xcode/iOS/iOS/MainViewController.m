@@ -84,11 +84,11 @@
 }
 
 - (void) gotoNetworkDiagnosisPage {
-    [self gotoPageWithPage:[[NetworkDiagnosisController alloc]init]];
+//    [self gotoPageWithPage:[[NetworkDiagnosisController alloc]init]];
 }
 
 - (void) gotoTracePage {
-    [self gotoPageWithPage:[[TraceExampleController alloc] init]];
+//    [self gotoPageWithPage:[[TraceExampleController alloc] init]];
 }
 
 - (void) gotoPageWithPage: (ViewController *) controller {
