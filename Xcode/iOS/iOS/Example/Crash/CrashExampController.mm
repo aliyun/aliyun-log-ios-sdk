@@ -62,6 +62,8 @@
     [self createButton:@"Custom Log" andAction:@selector(onCustomLog) andX:lx andY:(SLCellHeight + SLPadding) * 8 andWidth:(SLScreenW - lx * 4) andHeight:SLCellHeight andFont: font];
     
     [self createButton:@"动态更新" andAction:@selector(updateConfiguration) andX:lx andY:(SLCellHeight + SLPadding) * 9 andWidth:(SLScreenW - lx * 4) andHeight:SLCellHeight andFont: font];
+    
+    [self createButton:@"Jank" andAction:@selector(onJank) andX:lx andY:(SLCellHeight + SLPadding) * 10 andWidth:(SLScreenW - lx * 4) andHeight:SLCellHeight andFont: font];
 }
 
 - (void) initCrash {
@@ -90,7 +92,7 @@
     credentials.project = @"yuanbo-test-1";
     credentials.accessKeyId = utils.accessKeyId;
     credentials.accessKeySecret = utils.accessKeySecret;
-    credentials.instanceId = @"yuanbo-test-1111";
+    credentials.instanceId = @"yuanbo-ios";
     
     [[SLSCocoa sharedInstance] initialize:credentials configuration:^(SLSConfiguration * _Nonnull configuration) {
         configuration.enableCrashReporter = YES;
@@ -232,6 +234,25 @@
         @"view_pos": @"1",
         @"view_content": @"click test"
     }];
+}
+
+- (void) onJank {
+    dispatch_queue_t queue = dispatch_queue_create("com.xxx.queue", DISPATCH_QUEUE_SERIAL);
+    // 任务 1
+    dispatch_sync(queue, ^{
+        sleep(3);                                       // 模拟耗时操作
+        NSLog(@"任务1---%@",[NSThread currentThread]);   // 打印当前线程
+    });
+    // 任务 2
+    dispatch_sync(queue, ^{
+        sleep(3);                                       // 模拟耗时操作
+        NSLog(@"任务2---%@",[NSThread currentThread]);  // 打印当前线程
+    });
+    // 任务 3
+    dispatch_sync(queue, ^{
+        sleep(3);                                       // 模拟耗时操作
+        NSLog(@"任务3---%@",[NSThread currentThread]);  // 打印当前线程
+    });
 }
 
 - (void) crash {

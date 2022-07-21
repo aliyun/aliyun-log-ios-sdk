@@ -14,6 +14,7 @@
     self = [super init];
     if (self) {
         _enableCrashReporter = YES;
+        _enableBlockDetection = YES;
     }
     return self;
 }
