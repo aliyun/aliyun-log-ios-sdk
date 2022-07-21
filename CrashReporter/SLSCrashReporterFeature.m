@@ -7,13 +7,14 @@
 
 #import "SLSCrashReporterFeature.h"
 #import "WPKMobi/WPKSetup.h"
+#import "WPKMobi/WPKThreadBlockChecker.h"
 #import "Utdid.h"
 #import "NSDateFormatter+SLS.h"
 #import "SLSCrashReporter.h"
 
 typedef void(^directory_changed_block)(NSString*);
 
-@interface SLSCrashReporterFeature ()
+@interface SLSCrashReporterFeature ()<WPKThreadBlockCheckerDelegate>
 @property(nonatomic, strong) NSString *wpkStatLogPath;
 @property(nonatomic, strong) NSString *wpkCrashLogPath;
 
@@ -21,7 +22,8 @@ typedef void(^directory_changed_block)(NSString*);
 @property(nonatomic, strong) dispatch_source_t crashStatLogSource;
 
 - (void) observeDirectoryChanged;
-- (void) initWPKMobi: (SLSCredentials *) credentials;
+- (void) initWPKMobi: (SLSCredentials *) credentials configuration: (SLSConfiguration *) configuration;
+- (NSString *) getAppIdByInstanceId: (NSString *) instanceId;
 
 - (void) reportState;
 - (void) reportCrash;
@@ -44,7 +46,7 @@ typedef void(^directory_changed_block)(NSString*);
     [super onInitialize:credentials configuration:configuration];
     
     [self observeDirectoryChanged];
-    [self initWPKMobi: credentials];
+    [self initWPKMobi: credentials configuration:configuration];
     
     [[SLSCrashReporter sharedInstance] setCrashReporterFeature:self];
 }
@@ -88,16 +90,34 @@ typedef void(^directory_changed_block)(NSString*);
 }
 
 
-- (void) initWPKMobi: (SLSCredentials *) credentials {
-    [WPKSetup setIsEncryptLog:NO];
-    [WPKSetup enableDebugLog:NO];
-    [WPKSetup setUTDID:[Utdid getUtdid]];
-    [WPKSetup startWithAppName:credentials.instanceId];
+- (void) initWPKMobi: (SLSCredentials *) credentials configuration: (SLSConfiguration *) configuration {
+    if (configuration.enableCrashReporter) {
+        [WPKSetup setIsEncryptLog:NO];
+        [WPKSetup enableDebugLog:NO];
+        [WPKSetup startWithAppName:[self getAppIdByInstanceId:credentials.instanceId]];
+    }
+    
+    if (configuration.enableBlockDetection) {
+        WPKThreadBlockChecker *blockChecker = [WPKSetup threadBlockCheckerWithDelegate:self];
+        
+        WPKThreadBlockCheckerConfig *blockConfig = [[WPKThreadBlockCheckerConfig alloc] init];
+        blockConfig.sendBeatInterval = 2;
+        blockConfig.checkBeatInterval = 2;
+        blockConfig.toleranceBeatMissingCount = 1;
+        
+        [blockChecker startWithConfig:blockConfig];
+    }
+    
     [WPKSetup sendAllReports];
+}
+
+- (NSString *) getAppIdByInstanceId: (NSString *) instanceId {
+    return [NSString stringWithFormat:@"sls-%@", instanceId];
 }
 
 - (void) observeDirectoryChanged {
     NSString *libraryPath = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES).firstObject;
+    SLSLogV(@"library path: %@", libraryPath);
     
     NSString *wpkLogpath = [libraryPath stringByAppendingPathComponent:@".WPKLog"];
     if (![self checkAndCreateDirectory:wpkLogpath]) {
@@ -226,7 +246,7 @@ static void observeDirectory(dispatch_source_t _source, NSString *path, director
             }
             content = [NSString string];
             for (NSString *chunk in chunks) {
-                if ([chunk containsString:@"dn"]) {
+                if ([chunk containsString:@"dn="]) {
                     content = [content stringByAppendingFormat: @"dn=%@`", utdid];
                 } else if (chunk.length > 0){
                     content = [content stringByAppendingFormat: @"%@`", chunk];
@@ -283,13 +303,18 @@ static void observeDirectory(dispatch_source_t _source, NSString *path, director
         }
     }
     
-    SLSSpanBuilder *buidler = [self newSpanBuilder:@"crash"];
+    NSString *type = @"crash";
+    if ([[file pathExtension] isEqualToString:@"block"]) {
+        type = @"block";
+    }
+    
+    SLSSpanBuilder *buidler = [self newSpanBuilder:type];
     [buidler addAttribute:
          [SLSAttribute of:@"t" value:@"error"],
-         [SLSAttribute of:@"ex.type" value:@"crash"],
-//         [SLSAttribute of:@"ex.sub_type" value:@""],
+         [SLSAttribute of:@"ex.type" value:type],
+         [SLSAttribute of:@"ex.sub_type" value:type],
          [SLSAttribute of:@"ex.origin" value:content],
-         [SLSAttribute of:@"ex.file" value:[file lastPathComponent]],
+         [SLSAttribute of:@"ex.file" value: [file lastPathComponent]],
          nil
     ];
     
@@ -306,8 +331,33 @@ static void observeDirectory(dispatch_source_t _source, NSString *path, director
     
     BOOL ret = [[buidler build] end];
     if (ret) {
-        [[NSFileManager defaultManager] removeItemAtPath:file error:nil];
+//        [[NSFileManager defaultManager] removeItemAtPath:file error:nil];
     }
+}
+
+/* @brief 检测到一次卡顿
+ * @param blockTime 卡顿的时长
+ */
+- (void)onMainThreadBlockedWithBlockInterval:(NSTimeInterval)blockInterval {
+    SLSLogV(@"onMainThreadBlockedWithBlockInterval, block interval: %f", blockInterval);
+}
+
+/* @biref 检测持续发生卡顿（第一次卡顿后，下个检测心跳又一次触发卡顿）。可以在这里做些统计等。
+ */
+- (void)onMainThreadKeepOnBlocking {
+    SLSLogV(@"onMainThreadKeepOnBlocking");
+}
+
+/* @brief 心跳正常。两种情况表示正常：1、心跳正常（主线程正常）； 2、APP被置入后台。
+ */
+- (void)onMainThreadStayHealthy:(BOOL)mainThreadRespond {
+//    SLSLogV(@"onMainThreadStayHealthy");
+}
+
+/* @brief 重新启动一轮心跳检测（卡顿计数重置）。
+ */
+- (void)onMainThreadCheckingReset {
+//    SLSLogV(@"onMainThreadCheckingReset");
 }
 
 @end

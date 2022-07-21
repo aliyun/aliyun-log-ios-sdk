@@ -57,7 +57,9 @@
     [self initializeDefaultSpanProvider];
     [self initializeSdkSender];
     
-    [self initFeature: @"SLSCrashReporterFeature"];
+    if (_configuration.enableCrashReporter || _configuration.enableBlockDetection) {
+        [self initFeature: @"SLSCrashReporterFeature"];
+    }
     
     _hasInitialize = YES;
     return YES;

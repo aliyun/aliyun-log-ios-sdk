@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SLSConfiguration : NSObject
 @property(atomic, assign) bool enableCrashReporter;
+@property(atomic, assign) bool enableBlockDetection;
 
 @property(nonatomic, copy) NSString *env;
 
