@@ -117,20 +117,23 @@ typedef void(^directory_changed_block)(NSString*);
 
 - (void) observeDirectoryChanged {
     NSString *libraryPath = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES).firstObject;
-    SLSLogV(@"library path: %@", libraryPath);
+    SLSLogV(@"start observe directory changed start. library path: %@", libraryPath);
     
     NSString *wpkLogpath = [libraryPath stringByAppendingPathComponent:@".WPKLog"];
     if (![self checkAndCreateDirectory:wpkLogpath]) {
+        SLSLog(@"create wpklog directory fail.");
         return;
     }
     
     _wpkCrashLogPath = [wpkLogpath stringByAppendingPathComponent:@"CrashLog"];
     if (![self checkAndCreateDirectory:_wpkCrashLogPath]) {
+        SLSLog(@"create CrashLog directory fail.");
         return;
     }
     
     _wpkStatLogPath = [wpkLogpath stringByAppendingPathComponent:@"CrashStatLog"];
     if (![self checkAndCreateDirectory:_wpkStatLogPath]) {
+        SLSLog(@"create CrashStatLog directory fail.");
         return;
     }
     
@@ -138,14 +141,13 @@ typedef void(^directory_changed_block)(NSString*);
     [self reportState];
     [self reportCrash];
     
-    observeDirectory(_crashLogSource, _wpkCrashLogPath, ^(NSString *path) {
-        [self reportCrash: path];
+    observeDirectory(self.crashLogSource, self.wpkCrashLogPath, ^(NSString *path) {
+        [self reportCrash];
     });
-    observeDirectory(_crashStatLogSource, _wpkStatLogPath, ^(NSString *path) {
-        [self reportState: path];
+    observeDirectory(self.crashStatLogSource, self.wpkStatLogPath, ^(NSString *path) {
+        [self reportState];
     });
-    
-    //    [self.crashFileHelper scanAndReport: crashLogPath];
+    SLSLogV(@"observe directory changed end. ");
 }
 
 - (BOOL) checkAndCreateDirectory: (NSString*) dir {
@@ -170,7 +172,7 @@ static void observeDirectory(dispatch_source_t _source, NSString *path, director
     NSURL *dirURL = [NSURL URLWithString:path];
     int const fd = open([[dirURL path]fileSystemRepresentation], O_EVTONLY);
     if (fd < 0) {
-        SLSLog(@"unable to open the path: %@", [dirURL path]);
+        SLSLog(@"SLSCrashReporterFeature, unable to open the path: %@", [dirURL path]);
         return;
     }
     
@@ -179,7 +181,7 @@ static void observeDirectory(dispatch_source_t _source, NSString *path, director
         unsigned long const type = dispatch_source_get_data(source);
         switch (type) {
             case DISPATCH_VNODE_WRITE: {
-                SLSLogV(@"directory changed. %@", path);
+                SLSLogV(@"SLSCrashReporterFeature, directory changed. %@", path);
                 hander(path);
                 break;
             }
@@ -202,7 +204,8 @@ static void observeDirectory(dispatch_source_t _source, NSString *path, director
     }
     
     NSArray *contents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:_wpkStatLogPath error:nil];
-    if (contents) {
+    if (contents && contents.count > 0) {
+        SLSLogV(@"report existing state file. count: %lu", (unsigned long)contents.count);
         for (NSString *content in contents) {
             [self reportState:[_wpkStatLogPath stringByAppendingPathComponent:content]];
         }
@@ -214,7 +217,8 @@ static void observeDirectory(dispatch_source_t _source, NSString *path, director
     }
     
     NSArray *contents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:_wpkCrashLogPath error:nil];
-    if (contents) {
+    if (contents && contents.count > 0) {
+        SLSLogV(@"report existing crash file. count: %lu", (unsigned long)contents.count);
         for (NSString *content in contents) {
             [self reportCrash:[_wpkCrashLogPath stringByAppendingPathComponent:content]];
         }
@@ -222,6 +226,7 @@ static void observeDirectory(dispatch_source_t _source, NSString *path, director
 }
 
 - (void) reportState: (NSString *) file {
+    SLSLogV(@"start report state file. file: %@", file);
     if (!file || file.length <= 0 || ![[NSFileManager defaultManager] fileExistsAtPath:file isDirectory:nil]) {
         return;
     }
@@ -268,10 +273,14 @@ static void observeDirectory(dispatch_source_t _source, NSString *path, director
     BOOL ret = [[builder build] end];
     if (ret) {
         [[NSFileManager defaultManager] removeItemAtPath:file error:nil];
+        SLSLogV(@"report state file success.");
+    } else {
+        SLSLogV(@"report state file fail.");
     }
 }
 
 - (void) reportCrash: (NSString *) file {
+    SLSLogV(@"start report crash file. file: %@", file);
     if (!file || file.length <= 0 || ![[NSFileManager defaultManager] fileExistsAtPath:file isDirectory:nil]) {
         return;
     }
@@ -287,7 +296,7 @@ static void observeDirectory(dispatch_source_t _source, NSString *path, director
     }
     
     NSString *time = @"";
-    content = [NSString string];
+    content = [NSMutableString string];
     for (NSString *line in lines) {
         if ([line containsString:@"Date/Time:"]) {
             NSArray *chunks = [line componentsSeparatedByString:@"Time:"];
@@ -297,9 +306,9 @@ static void observeDirectory(dispatch_source_t _source, NSString *path, director
         }
         
         if ([line containsString:@"UDID:"]) {
-            content = [content stringByAppendingFormat:@"UDID:      %@\n", [Utdid getUtdid]];
+            [((NSMutableString *) content) appendFormat:@"UDID:      %@\n", [Utdid getUtdid]];
         } else {
-            content = [content stringByAppendingFormat:@"%@\n", line];
+            [((NSMutableString *) content) appendFormat:@"%@\n", line];
         }
     }
     
@@ -331,7 +340,10 @@ static void observeDirectory(dispatch_source_t _source, NSString *path, director
     
     BOOL ret = [[buidler build] end];
     if (ret) {
-//        [[NSFileManager defaultManager] removeItemAtPath:file error:nil];
+        [[NSFileManager defaultManager] removeItemAtPath:file error:nil];
+        SLSLogV(@"report crash file success.");
+    } else {
+        SLSLogV(@"report crash file fail.");
     }
 }
 
