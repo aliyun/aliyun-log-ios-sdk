@@ -243,39 +243,40 @@ static void observeDirectory(dispatch_source_t _source, NSString *path, director
     
     NSString *utdid = [Utdid getUtdid];
     
+    // lines 可能存在多行的情况
     for (NSString *line in lines) {
         if ([line containsString:@"dn"]) {
             NSArray *chunks = [line componentsSeparatedByString:@"`"];
             if (!chunks) {
                 return;
             }
-            content = [NSString string];
+            content = [NSMutableString string];
             for (NSString *chunk in chunks) {
                 if ([chunk containsString:@"dn="]) {
-                    content = [content stringByAppendingFormat: @"dn=%@`", utdid];
+                    [((NSMutableString *) content) appendFormat: @"dn=%@`", utdid];
                 } else if (chunk.length > 0){
-                    content = [content stringByAppendingFormat: @"%@`", chunk];
+                    [((NSMutableString *) content) appendFormat: @"%@`", chunk];
                 }
             }
-            break;
+            
+            // 每一行单独上报
+            SLSSpanBuilder *builder = [self newSpanBuilder:@"state"];
+            [builder addAttribute:
+                 [SLSAttribute of:@"t" value:@"error"],
+                 [SLSAttribute of:@"ex.type" value:@"state"],
+                 [SLSAttribute of:@"ex.origin" value:content],
+                 [SLSAttribute of:@"ex.uuid" value:utdid],
+                 nil
+            ];
+            
+            BOOL ret = [[builder build] end];
+            if (ret) {
+                [[NSFileManager defaultManager] removeItemAtPath:file error:nil];
+                SLSLogV(@"report state file success.");
+            } else {
+                SLSLogV(@"report state file fail.");
+            }
         }
-    }
-    
-    SLSSpanBuilder *builder = [self newSpanBuilder:@"state"];
-    [builder addAttribute:
-         [SLSAttribute of:@"t" value:@"error"],
-         [SLSAttribute of:@"ex.type" value:@"state"],
-         [SLSAttribute of:@"ex.origin" value:content],
-         [SLSAttribute of:@"ex.uuid" value:utdid],
-         nil
-    ];
-    
-    BOOL ret = [[builder build] end];
-    if (ret) {
-        [[NSFileManager defaultManager] removeItemAtPath:file error:nil];
-        SLSLogV(@"report state file success.");
-    } else {
-        SLSLogV(@"report state file fail.");
     }
 }
 
