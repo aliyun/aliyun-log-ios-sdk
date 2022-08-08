@@ -87,16 +87,16 @@
 ////    [slsAdapter addPlugin:[[SLSTracePlugin alloc] init]];
 //    [slsAdapter initWithSLSConfig:config];
     
-    SLSCredentials *credentials = [SLSCredentials credentials];
-    credentials.endpoint = @"https://cn-hangzhou.log.aliyuncs.com";
-    credentials.project = @"yuanbo-test-1";
-    credentials.accessKeyId = utils.accessKeyId;
-    credentials.accessKeySecret = utils.accessKeySecret;
-    credentials.instanceId = @"yuanbo-ios";
-    
-    [[SLSCocoa sharedInstance] initialize:credentials configuration:^(SLSConfiguration * _Nonnull configuration) {
-        configuration.enableCrashReporter = YES;
-    }];
+//    SLSCredentials *credentials = [SLSCredentials credentials];
+//    credentials.endpoint = @"https://cn-hangzhou.log.aliyuncs.com";
+//    credentials.project = @"yuanbo-test-1";
+//    credentials.accessKeyId = utils.accessKeyId;
+//    credentials.accessKeySecret = utils.accessKeySecret;
+//    credentials.instanceId = @"yuanbo-ios";
+//
+//    [[SLSCocoa sharedInstance] initialize:credentials configuration:^(SLSConfiguration * _Nonnull configuration) {
+//        configuration.enableCrashReporter = YES;
+//    }];
     
 }
 

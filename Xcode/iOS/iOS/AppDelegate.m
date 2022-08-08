@@ -10,6 +10,9 @@
 #import "MainViewController.h"
 
 #import <AliyunLogProducer/AliyunLogProducer.h>
+
+#import "SLSCocoa.h"
+#import "SLSCrashReporter.h"
 @interface AppDelegate ()
 
 @end
@@ -55,6 +58,17 @@
     SLSLogV(@"pluginAppId: %@", [utils pluginAppId]);
     SLSLogV(@"accessKeyId: %@", [utils accessKeyId]);
     SLSLogV(@"accessKeySecret: %@", [utils accessKeySecret]);
+    
+    SLSCredentials *credentials = [SLSCredentials credentials];
+    credentials.endpoint = @"https://cn-hangzhou.log.aliyuncs.com";
+    credentials.project = @"yuanbo-test-1";
+    credentials.accessKeyId = utils.accessKeyId;
+    credentials.accessKeySecret = utils.accessKeySecret;
+    credentials.instanceId = @"yuanbo-ios";
+    
+    [[SLSCocoa sharedInstance] initialize:credentials configuration:^(SLSConfiguration * _Nonnull configuration) {
+        configuration.enableCrashReporter = YES;
+    }];
     return YES;
 }
 
