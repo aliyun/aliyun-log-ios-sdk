@@ -80,21 +80,7 @@
 		F84F8ADE2814E1180038A46E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F80DF47A26A7035E00151F7C /* SystemConfiguration.framework */; };
 		F84F8AE02814E1180038A46E /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F80DF47826A7034E00151F7C /* libc++.tbd */; };
 		F84F8AE12814E1180038A46E /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D0CAEEE252177D800A4985A /* libz.tbd */; };
-		F84F8AFC2814E2500038A46E /* SLSNetworkDiagnosis.h in Headers */ = {isa = PBXBuildFile; fileRef = F84F8AEA2814E2500038A46E /* SLSNetworkDiagnosis.h */; };
 		F84F8AFD2814E2500038A46E /* AliNetworkDiagnosis.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F84F8AEB2814E2500038A46E /* AliNetworkDiagnosis.framework */; };
-		F84F8AFE2814E2500038A46E /* SLSNetworkDiagnosisResult.h in Headers */ = {isa = PBXBuildFile; fileRef = F84F8AED2814E2500038A46E /* SLSNetworkDiagnosisResult.h */; };
-		F84F8AFF2814E2500038A46E /* SLSNetworkDiagnosisResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F84F8AEE2814E2500038A46E /* SLSNetworkDiagnosisResult.m */; };
-		F84F8B002814E2500038A46E /* SLSNetworkDataSender.h in Headers */ = {isa = PBXBuildFile; fileRef = F84F8AF02814E2500038A46E /* SLSNetworkDataSender.h */; };
-		F84F8B012814E2500038A46E /* SLSNetworkDataSender.m in Sources */ = {isa = PBXBuildFile; fileRef = F84F8AF12814E2500038A46E /* SLSNetworkDataSender.m */; };
-		F84F8B022814E2500038A46E /* SLSNetworkDiagnosisPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = F84F8AF22814E2500038A46E /* SLSNetworkDiagnosisPlugin.h */; };
-		F84F8B032814E2500038A46E /* SLSNetworkDiagnosis.m in Sources */ = {isa = PBXBuildFile; fileRef = F84F8AF32814E2500038A46E /* SLSNetworkDiagnosis.m */; };
-		F84F8B042814E2500038A46E /* SLSNetworkDiagnosisPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = F84F8AF42814E2500038A46E /* SLSNetworkDiagnosisPlugin.m */; };
-		F84F8B052814E2500038A46E /* SLSNetPolicyBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = F84F8AF62814E2500038A46E /* SLSNetPolicyBuilder.m */; };
-		F84F8B062814E2500038A46E /* SLSDestination.m in Sources */ = {isa = PBXBuildFile; fileRef = F84F8AF72814E2500038A46E /* SLSDestination.m */; };
-		F84F8B072814E2500038A46E /* SLSNetPolicy.h in Headers */ = {isa = PBXBuildFile; fileRef = F84F8AF82814E2500038A46E /* SLSNetPolicy.h */; };
-		F84F8B082814E2500038A46E /* SLSNetPolicyBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = F84F8AF92814E2500038A46E /* SLSNetPolicyBuilder.h */; };
-		F84F8B092814E2500038A46E /* SLSDestination.h in Headers */ = {isa = PBXBuildFile; fileRef = F84F8AFA2814E2500038A46E /* SLSDestination.h */; };
-		F84F8B0A2814E2500038A46E /* SLSNetPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = F84F8AFB2814E2500038A46E /* SLSNetPolicy.m */; };
 		F84F8B0B2814E3910038A46E /* SLSNetworkDiagnosis.h in Headers */ = {isa = PBXBuildFile; fileRef = F84F8AEA2814E2500038A46E /* SLSNetworkDiagnosis.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F84F8B0C2814E39F0038A46E /* SLSNetworkDiagnosisPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = F84F8AF22814E2500038A46E /* SLSNetworkDiagnosisPlugin.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F84F8B0D2814E3A70038A46E /* SLSNetworkDiagnosisResult.h in Headers */ = {isa = PBXBuildFile; fileRef = F84F8AED2814E2500038A46E /* SLSNetworkDiagnosisResult.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -691,21 +677,14 @@
 				9D2468A12577848D0031EB1F /* sds.h in Headers */,
 				F87A2451266F3FE000499D4D /* TimeUtils.h in Headers */,
 				9D984F062520E110009DE4FE /* Log.h in Headers */,
-				F84F8B072814E2500038A46E /* SLSNetPolicy.h in Headers */,
 				F8ECDAE727D2068C002293E5 /* HttpConfigProxy.h in Headers */,
-				F84F8B022814E2500038A46E /* SLSNetworkDiagnosisPlugin.h in Headers */,
 				9D2468AF2577848D0031EB1F /* log_queue.h in Headers */,
 				9D2468B12577848E0031EB1F /* log_api.h in Headers */,
-				F84F8AFC2814E2500038A46E /* SLSNetworkDiagnosis.h in Headers */,
-				F84F8AFE2814E2500038A46E /* SLSNetworkDiagnosisResult.h in Headers */,
 				9D2468A62577848D0031EB1F /* hmac-sha.h in Headers */,
 				9D2468A92577848D0031EB1F /* md5.h in Headers */,
 				9D2468B22577848E0031EB1F /* lz4.h in Headers */,
 				9D0CAEF325217AA400A4985A /* LogProducerConfig.h in Headers */,
-				F84F8B092814E2500038A46E /* SLSDestination.h in Headers */,
 				9D2468A52577848D0031EB1F /* log_persistent_manager.h in Headers */,
-				F84F8B082814E2500038A46E /* SLSNetPolicyBuilder.h in Headers */,
-				F84F8B002814E2500038A46E /* SLSNetworkDataSender.h in Headers */,
 				9D24689B2577848D0031EB1F /* log_builder.h in Headers */,
 				9D984F042520D796009DE4FE /* LogProducerClient.h in Headers */,
 				9D2468A72577848D0031EB1F /* inner_log.h in Headers */,
@@ -942,34 +921,27 @@
 			files = (
 				F8ECDAE827D2068C002293E5 /* HttpConfigProxy.m in Sources */,
 				9D2468A82577848D0031EB1F /* log_producer_config.c in Sources */,
-				F84F8AFF2814E2500038A46E /* SLSNetworkDiagnosisResult.m in Sources */,
 				9D24689E2577848D0031EB1F /* sds.c in Sources */,
 				F87A2452266F3FE000499D4D /* TimeUtils.m in Sources */,
 				9D2468B02577848D0031EB1F /* log_util.c in Sources */,
 				9D2468952577848D0031EB1F /* sha1.c in Sources */,
 				9D24689F2577848D0031EB1F /* log_queue.c in Sources */,
 				9D2468A02577848D0031EB1F /* lz4.c in Sources */,
-				F84F8B032814E2500038A46E /* SLSNetworkDiagnosis.m in Sources */,
 				9D2468AA2577848D0031EB1F /* log_api.c in Sources */,
-				F84F8B042814E2500038A46E /* SLSNetworkDiagnosisPlugin.m in Sources */,
 				9D2468A22577848D0031EB1F /* log_builder.c in Sources */,
 				9D2468972577848D0031EB1F /* log_ring_file.c in Sources */,
 				9D2468A32577848D0031EB1F /* md5.c in Sources */,
 				F813E0D928A1EE8400BF14AB /* NSDateFormatter+SLS.m in Sources */,
-				F84F8B062814E2500038A46E /* SLSDestination.m in Sources */,
 				9D2468942577848D0031EB1F /* inner_log.c in Sources */,
-				F84F8B052814E2500038A46E /* SLSNetPolicyBuilder.m in Sources */,
 				9D984F082520E121009DE4FE /* Log.m in Sources */,
 				9D24689C2577848D0031EB1F /* log_http_interface.c in Sources */,
 				9D984EFF2520AE17009DE4FE /* LogProducerConfig.m in Sources */,
 				9D2468982577848D0031EB1F /* log_persistent_manager.c in Sources */,
-				F84F8B012814E2500038A46E /* SLSNetworkDataSender.m in Sources */,
 				9D984F012520AF44009DE4FE /* LogProducerClient.m in Sources */,
 				9D2468932577848D0031EB1F /* log_producer_sender.c in Sources */,
 				9D24689D2577848D0031EB1F /* log_producer_client.c in Sources */,
 				9D2468B62577848E0031EB1F /* log_producer_common.c in Sources */,
 				9D2468AE2577848D0031EB1F /* log_producer_manager.c in Sources */,
-				F84F8B0A2814E2500038A46E /* SLSNetPolicy.m in Sources */,
 				9D2468AB2577848D0031EB1F /* hmac-sha.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
