@@ -67,26 +67,20 @@
 		F80DF47926A7034E00151F7C /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F80DF47826A7034E00151F7C /* libc++.tbd */; };
 		F80DF47B26A7035E00151F7C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F80DF47A26A7035E00151F7C /* SystemConfiguration.framework */; };
 		F80DF47D26A7037000151F7C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F80DF47C26A7037000151F7C /* CoreGraphics.framework */; };
+		F813E0D528A1EE8400BF14AB /* NSDateFormatter+SLS.h in Headers */ = {isa = PBXBuildFile; fileRef = F813E0D328A1EE8400BF14AB /* NSDateFormatter+SLS.h */; };
+		F813E0D628A1EE8400BF14AB /* NSDateFormatter+SLS.h in Headers */ = {isa = PBXBuildFile; fileRef = F813E0D328A1EE8400BF14AB /* NSDateFormatter+SLS.h */; };
+		F813E0D728A1EE8400BF14AB /* NSDateFormatter+SLS.h in Headers */ = {isa = PBXBuildFile; fileRef = F813E0D328A1EE8400BF14AB /* NSDateFormatter+SLS.h */; };
+		F813E0D828A1EE8400BF14AB /* NSDateFormatter+SLS.h in Headers */ = {isa = PBXBuildFile; fileRef = F813E0D328A1EE8400BF14AB /* NSDateFormatter+SLS.h */; };
+		F813E0D928A1EE8400BF14AB /* NSDateFormatter+SLS.m in Sources */ = {isa = PBXBuildFile; fileRef = F813E0D428A1EE8400BF14AB /* NSDateFormatter+SLS.m */; };
+		F813E0DA28A1EE8400BF14AB /* NSDateFormatter+SLS.m in Sources */ = {isa = PBXBuildFile; fileRef = F813E0D428A1EE8400BF14AB /* NSDateFormatter+SLS.m */; };
+		F813E0DB28A1EE8400BF14AB /* NSDateFormatter+SLS.m in Sources */ = {isa = PBXBuildFile; fileRef = F813E0D428A1EE8400BF14AB /* NSDateFormatter+SLS.m */; };
+		F813E0DC28A1EE8400BF14AB /* NSDateFormatter+SLS.m in Sources */ = {isa = PBXBuildFile; fileRef = F813E0D428A1EE8400BF14AB /* NSDateFormatter+SLS.m */; };
 		F82ED77B27F17B39002D11CE /* WPKMobi.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = F82ED77A27F17B39002D11CE /* WPKMobi.xcframework */; };
 		F84F8ADD2814E1180038A46E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F80DF47C26A7037000151F7C /* CoreGraphics.framework */; };
 		F84F8ADE2814E1180038A46E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F80DF47A26A7035E00151F7C /* SystemConfiguration.framework */; };
 		F84F8AE02814E1180038A46E /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F80DF47826A7034E00151F7C /* libc++.tbd */; };
 		F84F8AE12814E1180038A46E /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D0CAEEE252177D800A4985A /* libz.tbd */; };
-		F84F8AFC2814E2500038A46E /* SLSNetworkDiagnosis.h in Headers */ = {isa = PBXBuildFile; fileRef = F84F8AEA2814E2500038A46E /* SLSNetworkDiagnosis.h */; };
 		F84F8AFD2814E2500038A46E /* AliNetworkDiagnosis.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F84F8AEB2814E2500038A46E /* AliNetworkDiagnosis.framework */; };
-		F84F8AFE2814E2500038A46E /* SLSNetworkDiagnosisResult.h in Headers */ = {isa = PBXBuildFile; fileRef = F84F8AED2814E2500038A46E /* SLSNetworkDiagnosisResult.h */; };
-		F84F8AFF2814E2500038A46E /* SLSNetworkDiagnosisResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F84F8AEE2814E2500038A46E /* SLSNetworkDiagnosisResult.m */; };
-		F84F8B002814E2500038A46E /* SLSNetworkDataSender.h in Headers */ = {isa = PBXBuildFile; fileRef = F84F8AF02814E2500038A46E /* SLSNetworkDataSender.h */; };
-		F84F8B012814E2500038A46E /* SLSNetworkDataSender.m in Sources */ = {isa = PBXBuildFile; fileRef = F84F8AF12814E2500038A46E /* SLSNetworkDataSender.m */; };
-		F84F8B022814E2500038A46E /* SLSNetworkDiagnosisPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = F84F8AF22814E2500038A46E /* SLSNetworkDiagnosisPlugin.h */; };
-		F84F8B032814E2500038A46E /* SLSNetworkDiagnosis.m in Sources */ = {isa = PBXBuildFile; fileRef = F84F8AF32814E2500038A46E /* SLSNetworkDiagnosis.m */; };
-		F84F8B042814E2500038A46E /* SLSNetworkDiagnosisPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = F84F8AF42814E2500038A46E /* SLSNetworkDiagnosisPlugin.m */; };
-		F84F8B052814E2500038A46E /* SLSNetPolicyBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = F84F8AF62814E2500038A46E /* SLSNetPolicyBuilder.m */; };
-		F84F8B062814E2500038A46E /* SLSDestination.m in Sources */ = {isa = PBXBuildFile; fileRef = F84F8AF72814E2500038A46E /* SLSDestination.m */; };
-		F84F8B072814E2500038A46E /* SLSNetPolicy.h in Headers */ = {isa = PBXBuildFile; fileRef = F84F8AF82814E2500038A46E /* SLSNetPolicy.h */; };
-		F84F8B082814E2500038A46E /* SLSNetPolicyBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = F84F8AF92814E2500038A46E /* SLSNetPolicyBuilder.h */; };
-		F84F8B092814E2500038A46E /* SLSDestination.h in Headers */ = {isa = PBXBuildFile; fileRef = F84F8AFA2814E2500038A46E /* SLSDestination.h */; };
-		F84F8B0A2814E2500038A46E /* SLSNetPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = F84F8AFB2814E2500038A46E /* SLSNetPolicy.m */; };
 		F84F8B0B2814E3910038A46E /* SLSNetworkDiagnosis.h in Headers */ = {isa = PBXBuildFile; fileRef = F84F8AEA2814E2500038A46E /* SLSNetworkDiagnosis.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F84F8B0C2814E39F0038A46E /* SLSNetworkDiagnosisPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = F84F8AF22814E2500038A46E /* SLSNetworkDiagnosisPlugin.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F84F8B0D2814E3A70038A46E /* SLSNetworkDiagnosisResult.h in Headers */ = {isa = PBXBuildFile; fileRef = F84F8AED2814E2500038A46E /* SLSNetworkDiagnosisResult.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -320,6 +314,8 @@
 		F80DF47A26A7035E00151F7C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
 		F80DF47C26A7037000151F7C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
 		F80DF47E26A7DE9000151F7C /* AliyunLogProducer.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = AliyunLogProducer.podspec; path = ../AliyunLogProducer.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		F813E0D328A1EE8400BF14AB /* NSDateFormatter+SLS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDateFormatter+SLS.h"; sourceTree = "<group>"; };
+		F813E0D428A1EE8400BF14AB /* NSDateFormatter+SLS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDateFormatter+SLS.m"; sourceTree = "<group>"; };
 		F82ED77A27F17B39002D11CE /* WPKMobi.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = WPKMobi.xcframework; sourceTree = "<group>"; };
 		F84F8AE72814E1180038A46E /* NetworkDiagnosis.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NetworkDiagnosis.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F84F8AEA2814E2500038A46E /* SLSNetworkDiagnosis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLSNetworkDiagnosis.h; sourceTree = "<group>"; };
@@ -491,6 +487,7 @@
 		9D984DB42520A9B7009DE4FE /* AliyunLogProducer */ = {
 			isa = PBXGroup;
 			children = (
+				F813E0D228A1EE8400BF14AB /* Category */,
 				F84F8AE92814E2500038A46E /* NetworkDiagnosis */,
 				F80DF45F26A6FDCF00151F7C /* CrashReporter */,
 				F80DF2EF26A55F4700151F7C /* common */,
@@ -584,6 +581,15 @@
 			path = sender;
 			sourceTree = "<group>";
 		};
+		F813E0D228A1EE8400BF14AB /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				F813E0D328A1EE8400BF14AB /* NSDateFormatter+SLS.h */,
+				F813E0D428A1EE8400BF14AB /* NSDateFormatter+SLS.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
 		F84F8AE92814E2500038A46E /* NetworkDiagnosis */ = {
 			isa = PBXGroup;
 			children = (
@@ -666,25 +672,19 @@
 				9D2468A42577848D0031EB1F /* log_producer_config.h in Headers */,
 				9D2468B82577848E0031EB1F /* log_define.h in Headers */,
 				9D2468962577848D0031EB1F /* log_multi_thread.h in Headers */,
+				F813E0D528A1EE8400BF14AB /* NSDateFormatter+SLS.h in Headers */,
 				9D2468B32577848E0031EB1F /* log_inner_include.h in Headers */,
 				9D2468A12577848D0031EB1F /* sds.h in Headers */,
 				F87A2451266F3FE000499D4D /* TimeUtils.h in Headers */,
 				9D984F062520E110009DE4FE /* Log.h in Headers */,
-				F84F8B072814E2500038A46E /* SLSNetPolicy.h in Headers */,
 				F8ECDAE727D2068C002293E5 /* HttpConfigProxy.h in Headers */,
-				F84F8B022814E2500038A46E /* SLSNetworkDiagnosisPlugin.h in Headers */,
 				9D2468AF2577848D0031EB1F /* log_queue.h in Headers */,
 				9D2468B12577848E0031EB1F /* log_api.h in Headers */,
-				F84F8AFC2814E2500038A46E /* SLSNetworkDiagnosis.h in Headers */,
-				F84F8AFE2814E2500038A46E /* SLSNetworkDiagnosisResult.h in Headers */,
 				9D2468A62577848D0031EB1F /* hmac-sha.h in Headers */,
 				9D2468A92577848D0031EB1F /* md5.h in Headers */,
 				9D2468B22577848E0031EB1F /* lz4.h in Headers */,
 				9D0CAEF325217AA400A4985A /* LogProducerConfig.h in Headers */,
-				F84F8B092814E2500038A46E /* SLSDestination.h in Headers */,
 				9D2468A52577848D0031EB1F /* log_persistent_manager.h in Headers */,
-				F84F8B082814E2500038A46E /* SLSNetPolicyBuilder.h in Headers */,
-				F84F8B002814E2500038A46E /* SLSNetworkDataSender.h in Headers */,
 				9D24689B2577848D0031EB1F /* log_builder.h in Headers */,
 				9D984F042520D796009DE4FE /* LogProducerClient.h in Headers */,
 				9D2468A72577848D0031EB1F /* inner_log.h in Headers */,
@@ -701,6 +701,7 @@
 				F84F8B0B2814E3910038A46E /* SLSNetworkDiagnosis.h in Headers */,
 				F84F8B0C2814E39F0038A46E /* SLSNetworkDiagnosisPlugin.h in Headers */,
 				F84F8B0D2814E3A70038A46E /* SLSNetworkDiagnosisResult.h in Headers */,
+				F813E0D828A1EE8400BF14AB /* NSDateFormatter+SLS.h in Headers */,
 				F84F8B0E2814E3C20038A46E /* SLSNetPolicyBuilder.h in Headers */,
 				F84F8B0F2814E3D10038A46E /* SLSNetPolicy.h in Headers */,
 				F84F8B102814E3DB0038A46E /* SLSDestination.h in Headers */,
@@ -744,6 +745,7 @@
 				F8696BE427F0065400EF0020 /* LogProducerConfig.h in Headers */,
 				F8696BE527F0065400EF0020 /* log_persistent_manager.h in Headers */,
 				F8696BE627F0065400EF0020 /* log_builder.h in Headers */,
+				F813E0D628A1EE8400BF14AB /* NSDateFormatter+SLS.h in Headers */,
 				F8696BE727F0065400EF0020 /* LogProducerClient.h in Headers */,
 				F8696BE827F0065400EF0020 /* inner_log.h in Headers */,
 				F8696BE927F0065400EF0020 /* log_ring_file.h in Headers */,
@@ -762,6 +764,7 @@
 				F807EE3C27F170EF0090F52D /* IReporterSender.h in Headers */,
 				F807EE3D27F170F20090F52D /* IFileParser.h in Headers */,
 				F807EE3E27F170F50090F52D /* SLSCrashReporterPlugin.h in Headers */,
+				F813E0D728A1EE8400BF14AB /* NSDateFormatter+SLS.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -918,33 +921,27 @@
 			files = (
 				F8ECDAE827D2068C002293E5 /* HttpConfigProxy.m in Sources */,
 				9D2468A82577848D0031EB1F /* log_producer_config.c in Sources */,
-				F84F8AFF2814E2500038A46E /* SLSNetworkDiagnosisResult.m in Sources */,
 				9D24689E2577848D0031EB1F /* sds.c in Sources */,
 				F87A2452266F3FE000499D4D /* TimeUtils.m in Sources */,
 				9D2468B02577848D0031EB1F /* log_util.c in Sources */,
 				9D2468952577848D0031EB1F /* sha1.c in Sources */,
 				9D24689F2577848D0031EB1F /* log_queue.c in Sources */,
 				9D2468A02577848D0031EB1F /* lz4.c in Sources */,
-				F84F8B032814E2500038A46E /* SLSNetworkDiagnosis.m in Sources */,
 				9D2468AA2577848D0031EB1F /* log_api.c in Sources */,
-				F84F8B042814E2500038A46E /* SLSNetworkDiagnosisPlugin.m in Sources */,
 				9D2468A22577848D0031EB1F /* log_builder.c in Sources */,
 				9D2468972577848D0031EB1F /* log_ring_file.c in Sources */,
 				9D2468A32577848D0031EB1F /* md5.c in Sources */,
-				F84F8B062814E2500038A46E /* SLSDestination.m in Sources */,
+				F813E0D928A1EE8400BF14AB /* NSDateFormatter+SLS.m in Sources */,
 				9D2468942577848D0031EB1F /* inner_log.c in Sources */,
-				F84F8B052814E2500038A46E /* SLSNetPolicyBuilder.m in Sources */,
 				9D984F082520E121009DE4FE /* Log.m in Sources */,
 				9D24689C2577848D0031EB1F /* log_http_interface.c in Sources */,
 				9D984EFF2520AE17009DE4FE /* LogProducerConfig.m in Sources */,
 				9D2468982577848D0031EB1F /* log_persistent_manager.c in Sources */,
-				F84F8B012814E2500038A46E /* SLSNetworkDataSender.m in Sources */,
 				9D984F012520AF44009DE4FE /* LogProducerClient.m in Sources */,
 				9D2468932577848D0031EB1F /* log_producer_sender.c in Sources */,
 				9D24689D2577848D0031EB1F /* log_producer_client.c in Sources */,
 				9D2468B62577848E0031EB1F /* log_producer_common.c in Sources */,
 				9D2468AE2577848D0031EB1F /* log_producer_manager.c in Sources */,
-				F84F8B0A2814E2500038A46E /* SLSNetPolicy.m in Sources */,
 				9D2468AB2577848D0031EB1F /* hmac-sha.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -953,6 +950,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F813E0DC28A1EE8400BF14AB /* NSDateFormatter+SLS.m in Sources */,
 				F84F8B122814E3FA0038A46E /* SLSNetPolicyBuilder.m in Sources */,
 				F84F8B132814E3FA0038A46E /* SLSDestination.m in Sources */,
 				F84F8B142814E3FA0038A46E /* SLSNetPolicy.m in Sources */,
@@ -989,6 +987,7 @@
 				F8696BF627F0065400EF0020 /* log_builder.c in Sources */,
 				F8696BF727F0065400EF0020 /* log_ring_file.c in Sources */,
 				F8696BF827F0065400EF0020 /* md5.c in Sources */,
+				F813E0DA28A1EE8400BF14AB /* NSDateFormatter+SLS.m in Sources */,
 				F8696BF927F0065400EF0020 /* inner_log.c in Sources */,
 				F8696BFA27F0065400EF0020 /* Log.m in Sources */,
 				F8696BFB27F0065400EF0020 /* log_http_interface.c in Sources */,
@@ -1009,6 +1008,7 @@
 			files = (
 				F807EE3F27F171090090F52D /* UCTraceFileParser.m in Sources */,
 				F807EE4027F1710B0090F52D /* SLSReporterSender.m in Sources */,
+				F813E0DB28A1EE8400BF14AB /* NSDateFormatter+SLS.m in Sources */,
 				F807EE4127F1710E0090F52D /* IReporterSender.m in Sources */,
 				F807EE4227F171110090F52D /* IFileParser.m in Sources */,
 				F807EE4327F171130090F52D /* SLSCrashReporterPlugin.m in Sources */,
