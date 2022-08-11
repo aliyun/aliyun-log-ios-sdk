@@ -111,7 +111,7 @@ static void _on_log_send_done(const char * config_name, log_producer_result resu
 }
 
 - (void) initLogProducer {
-    DemoUtils *utils = [DemoUtils sharedInstance];
+//    DemoUtils *utils = [DemoUtils sharedInstance];
 
     _config = [[LogProducerConfig alloc] initWithEndpoint:@"" project:@"" logstore:@""];
     [_config SetTopic:@"test_topic"];

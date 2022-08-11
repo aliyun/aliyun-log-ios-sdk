@@ -61,6 +61,10 @@
         [self initFeature: @"SLSCrashReporterFeature"];
     }
     
+    if (_configuration.enableNetworkDiagnosis) { 
+        [self initFeature: @"SLSNetworkDiagnosisFeature"];
+    }
+    
     _hasInitialize = YES;
     return YES;
 }
@@ -162,7 +166,7 @@
 
 
 - (SLSResource *)provideResource {
-    return [SLSResource getDefault];
+    return [SLSResource resource];
 }
 
 - (NSArray<SLSAttribute *> *)provideAttribute{

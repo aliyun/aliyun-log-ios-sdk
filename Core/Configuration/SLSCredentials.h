@@ -8,6 +8,7 @@
 #import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
+@class SLSNetworkDiagnosisCredentials;
 
 @interface SLSCredentials : NSObject
 @property(nonatomic, strong) NSString *instanceId;
@@ -18,7 +19,32 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong) NSString *accessKeySecret;
 @property(nonatomic, strong) NSString *securityToken;
 
+@property(nonatomic, strong) SLSNetworkDiagnosisCredentials *networkDiagnosisCredentials;
+
 + (instancetype) credentials;
+
+- (SLSNetworkDiagnosisCredentials *) createNetworkDiagnosisCredentials;
+
+@end
+
+@interface SLSLogstoreCredentials : SLSCredentials
+@property(nonatomic, strong) NSString *logstore;
+
+- (instancetype) initWithCredentials: (SLSCredentials *) credentials;
++ (instancetype) credentials: (SLSCredentials *) credentials;
+
+@end
+
+@interface SLSNetworkDiagnosisCredentials : SLSLogstoreCredentials
+
+@property(nonatomic, strong) NSString *secretKey;
+@property(nonatomic, strong) NSString *siteId;
+@property(nonatomic, strong, readonly) NSMutableDictionary<NSString *, NSString *> *extension;
+
+- (instancetype) initWithCredentials: (SLSCredentials *) credentials;
++ (instancetype) credentials: (SLSCredentials *) credentials;
+
+- (void) putExtension: (NSString *) value forKey: (NSString *) key;
 
 @end
 

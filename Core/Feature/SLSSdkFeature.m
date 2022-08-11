@@ -10,7 +10,6 @@
 @interface SLSSdkFeature ()
 
 @property(atomic, assign) bool hasInitialize;
-@property(nonatomic, strong) SLSConfiguration *configuration;
 
 @end
 

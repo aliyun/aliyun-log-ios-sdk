@@ -21,18 +21,44 @@
     return [[SLSSdkSender alloc] init];
 }
 
+- (NSString *) provideLogFileName: (SLSCredentials *) credentials {
+    return @"data.dat";
+}
+- (NSString *) provideEndpoint: (SLSCredentials *) credentials {
+    return credentials.endpoint;
+}
+- (NSString *) provideProjectName: (SLSCredentials *) credentials {
+    return credentials.project;
+}
+- (NSString *) provideLogstoreName: (SLSCredentials *) credentials {
+    return [self getLogstoreByInstanceId:credentials.instanceId];
+}
+- (NSString *) provideAccessKeyId: (SLSCredentials *) credentials {
+    return credentials.accessKeyId;
+}
+- (NSString *) provideAccessKeySecret: (SLSCredentials *) credentials {
+    return credentials.accessKeySecret;
+}
+- (NSString *) provideSecurityToken: (SLSCredentials *) credentials {
+    return credentials.securityToken;
+}
+
 - (void) initialize: (SLSCredentials *) credentials {
-    NSString *endpoint = credentials.endpoint;
-    NSString *project = credentials.project;
-    NSString *logstore = [self getLogstoreByInstanceId:credentials.instanceId];
+    NSString *endpoint = [self provideEndpoint:credentials];
+    NSString *project = [self provideProjectName:credentials];
+    NSString *logstore = [self provideLogstoreName:credentials];
+    
+    NSString *accessKeyId = [self provideAccessKeyId:credentials];
+    NSString *accessKeySecret = [self provideAccessKeySecret:credentials];
+    NSString *securityToken = [self provideSecurityToken:credentials];
     
     _config = [[LogProducerConfig alloc]
                initWithEndpoint:endpoint
                project:project
                logstore:logstore
-               accessKeyID:credentials.accessKeyId
-               accessKeySecret:credentials.accessKeySecret
-               securityToken:credentials.securityToken
+               accessKeyID:accessKeyId
+               accessKeySecret:accessKeySecret
+               securityToken:securityToken
     ];
     
     [_config SetTopic:@"sls_ios"];
@@ -42,10 +68,16 @@
     [_config SetMaxBufferLimit:(64*1024*1024)];
     [_config SetSendThreadCount:1];
     
-    [_config SetPersistent:1];
+    NSString *fileName = [self provideLogFileName:credentials];
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *path = [[paths lastObject] stringByAppendingString:@"/sls_ios.dat"];
-    [_config SetPersistentFilePath:path];
+    NSString *path = [[[paths lastObject] stringByAppendingPathComponent:@"sls"] stringByAppendingPathComponent:@"logs"];
+    BOOL isDir = FALSE;
+    if (![[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDir]) {
+        [[NSFileManager defaultManager] createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:nil];
+    }
+    
+    [_config SetPersistent:1];
+    [_config SetPersistentFilePath:[path stringByAppendingPathComponent:fileName]];
     [_config SetPersistentForceFlush:0];
     [_config SetPersistentMaxFileCount:10];
     [_config SetPersistentMaxFileSize:(1024*1024*10)];

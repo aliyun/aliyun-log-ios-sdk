@@ -67,7 +67,7 @@
 }
 
 - (void) initCrash {
-    DemoUtils *utils = [DemoUtils sharedInstance];
+//    DemoUtils *utils = [DemoUtils sharedInstance];
 //    SLSConfig *config = [[SLSConfig alloc] init];
 //    // 正式发布时建议关闭
 //    [config setDebuggable:YES];
