@@ -117,6 +117,14 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
     return traceId;
 }
 
+- (void) disableExNetworkInfo {
+    [AliNetworkDiagnosis disableExNetInfo];
+}
+
+- (void) setPolicyDomain: (NSString *) policyDomain {
+    [AliNetworkDiagnosis setPolicyDomain:policyDomain];
+}
+
 #pragma mark - dns
 - (void)dns:(nonnull NSString *)domain {
     [self dns:domain callback:nil];
@@ -372,6 +380,10 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
 
 - (void)setCredentials:(nonnull SLSCredentials *)credentials {
     [super setCredentials:credentials.networkDiagnosisCredentials];
+    
+    if (credentials.networkDiagnosisCredentials && [credentials.networkDiagnosisCredentials.secretKey length] > 0) {
+        [AliNetworkDiagnosis refreshSecretKey:credentials.networkDiagnosisCredentials.secretKey];
+    }
 }
 
 @end

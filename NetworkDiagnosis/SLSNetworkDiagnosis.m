@@ -26,6 +26,22 @@
     _feature = feature;
 }
 
+- (void) disableExNetworkInfo {
+    if (!_feature) {
+        return;
+    }
+    
+    [_feature disableExNetworkInfo];
+}
+
+- (void) setPolicyDomain: (NSString *) policyDomain {
+    if (!_feature) {
+        return;
+    }
+    
+    [_feature setPolicyDomain:policyDomain];
+}
+
 - (void)dns:(nonnull NSString *)domain {
     if (!_feature) {
         return;
