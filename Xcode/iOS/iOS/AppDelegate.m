@@ -66,8 +66,20 @@
     credentials.accessKeySecret = utils.accessKeySecret;
     credentials.instanceId = @"yuanbo-ios";
     
+    SLSNetworkDiagnosisCredentials *networkDiagnosisCredentials = [credentials createNetworkDiagnosisCredentials];
+    networkDiagnosisCredentials.secretKey = @"eyJhbGl5dW5fdWlkIjoiMTI0NTA0Nzg0OTYwMTY2MCIsImlwYV9hcHBfaWQiOiI5em9FclVNTHB4RjRTSGNKclBNNW5SIiwic2VjX2tleSI6ImZlZjAyZjM0ZTRlMDA0NWU5NDc4Mzg1MjY1MDM2YjhjMWIyOGEzZGJhZTM1N2M5NzA4M2QyOTVlMWE5MjlmZDJhZjk2NThlMDc4ZDFlN2FhN2UxYzE0NmRiMmI1YThkYWFkZWM4ZjRjZDkxMzY2YWY0ZTc5ZjEwOTEyMzBmNjkxIiwic2lnbiI6Ijc4MGFlMzYwMjMzNzA1N2UyY2Q5YTYyMzIwMjE3NDViZGNkNzZkNDAyOWY4YTIyYzA0ZjY2ODIwOGY5NmQ5NTI0Njk5MmI4ZjdlYmE5YTA4NGI0MzJjZDEzMWI5NmRlYmEwMDNhZThjNTc1NDA2Y2VjNGE4ZDBhMWNmNmE1YTBkIn0=";
+    networkDiagnosisCredentials.siteId = @"cn";
+    [networkDiagnosisCredentials putExtension:@"value" forKey:@"key"];
+    networkDiagnosisCredentials.endpoint = @"https://cn-hangzhou.log.aliyuncs.com";
+    networkDiagnosisCredentials.project = @"yuanbo-network-diagnosis-test-1";
+    networkDiagnosisCredentials.logstore = @"yuanbo-test-1-network-diagnosis";
+    networkDiagnosisCredentials.accessKeyId = @"";
+    networkDiagnosisCredentials.accessKeySecret = @"";
+    
+    
     [[SLSCocoa sharedInstance] initialize:credentials configuration:^(SLSConfiguration * _Nonnull configuration) {
-        configuration.enableCrashReporter = YES;
+        configuration.enableCrashReporter = NO;
+        configuration.enableNetworkDiagnosis = YES;
     }];
     return YES;
 }

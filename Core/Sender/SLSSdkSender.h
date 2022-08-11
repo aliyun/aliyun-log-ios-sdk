@@ -13,6 +13,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SLSSdkSender : SLSNoOpSender<SLSSpanProcessorProtocol>
 + (instancetype) sender;
+
+- (NSString *) provideLogFileName: (SLSCredentials *) credentials;
+- (NSString *) provideEndpoint: (SLSCredentials *) credentials;
+- (NSString *) provideProjectName: (SLSCredentials *) credentials;
+- (NSString *) provideLogstoreName: (SLSCredentials *) credentials;
+- (NSString *) provideAccessKeyId: (SLSCredentials *) credentials;
+- (NSString *) provideAccessKeySecret: (SLSCredentials *) credentials;
+- (NSString *) provideSecurityToken: (SLSCredentials *) credentials;
+
 @end
 
 NS_ASSUME_NONNULL_END

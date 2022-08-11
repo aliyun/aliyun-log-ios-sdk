@@ -40,16 +40,16 @@
 + (NSString *) getUtdid {
     NSString *files = [self getFile];
     if(!files) {
-        return nil;
+        return @"";
     }
     
     NSString *content = [NSString stringWithContentsOfFile:files encoding:NSUTF8StringEncoding error:nil];
     if(!content) {
-        return nil;
+        return @"";
     }
     
     NSArray *lines = [content componentsSeparatedByString:@"\n"];
-    NSString *utdid = nil;
+    NSString *utdid = @"";
     for (NSString *line in lines) {
         utdid = line;
         break;

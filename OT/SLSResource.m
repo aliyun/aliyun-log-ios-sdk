@@ -94,6 +94,10 @@ static SLSResource *DEFAULT = nil;
 }
 
 - (void) merge: (SLSResource *)resource {
+    if (!resource || !resource.attributes) {
+        return;
+    }
+    
     NSMutableArray<SLSAttribute*> *array = (NSMutableArray<SLSAttribute*>*) _attributes;
     [array addObjectsFromArray:resource.attributes];
 }
@@ -112,7 +116,7 @@ static SLSResource *DEFAULT = nil;
     SLSKeyValue *arg;
     va_start(args, keyValue);
     while ((arg = va_arg(args, SLSKeyValue*))) {
-        [resource add:keyValue.key value:keyValue.value];
+        [resource add:arg.key value:arg.value];
     }
     va_end(args);
     
@@ -126,6 +130,19 @@ static SLSResource *DEFAULT = nil;
 }
 
 + (SLSResource*) getDefault {
-    return DEFAULT;
+    return [DEFAULT copy];
 }
+
+- (id)copyWithZone:(nullable NSZone *)zone {
+    SLSResource *r = [SLSResource resource];
+    r.attributes = [NSMutableArray arrayWithArray:self.attributes];
+    return r;
+}
+
+- (id)mutableCopyWithZone:(nullable NSZone *)zone {
+    SLSResource *r = [SLSResource resource];
+    r.attributes = [NSMutableArray arrayWithArray:self.attributes];
+    return r;
+}
+
 @end

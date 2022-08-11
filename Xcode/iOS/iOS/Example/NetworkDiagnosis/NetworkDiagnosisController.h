@@ -1,16 +1,16 @@
-////
-////  NetworkDiagnosisController.h
-////  AliyunLogDemo
-////
-////  Created by gordon on 2021/12/27.
-////
 //
-//#import "ExampleViewController.h"
+//  NetworkDiagnosisController.h
+//  AliyunLogDemo
 //
-//NS_ASSUME_NONNULL_BEGIN
+//  Created by gordon on 2021/12/27.
 //
-//@interface NetworkDiagnosisController : ExampleViewController
-//
-//@end
-//
-//NS_ASSUME_NONNULL_END
+
+#import "ExampleViewController.h"
+
+NS_ASSUME_NONNULL_BEGIN
+
+@interface NetworkDiagnosisController : ExampleViewController
+
+@end
+
+NS_ASSUME_NONNULL_END

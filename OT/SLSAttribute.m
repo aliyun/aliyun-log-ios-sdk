@@ -27,4 +27,18 @@
     va_end(args);
     return  array;
 }
+
+- (id)copyWithZone:(nullable NSZone *)zone {
+    SLSAttribute *attr = [[SLSAttribute alloc] init];
+    attr.key = [self.key copy];
+    attr.value = [self.value copy];
+    return attr;
+}
+
+- (id)mutableCopyWithZone:(nullable NSZone *)zone {
+    SLSAttribute *attr = [[SLSAttribute alloc] init];
+    attr.key = [self.key copy];
+    attr.value = [self.value copy];
+    return attr;
+}
 @end
