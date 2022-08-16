@@ -9,11 +9,13 @@
 #import "SLSNetworkDiagnosis.h"
 //#import "SLSNetworkDiagnosis.h"
 #import "NetworkDiagnosisPolicyController.h"
+#import "SLSCocoa.h"
 
 @interface NetworkDiagnosisController ()
 @property(nonatomic, strong) UITextView *statusTextView;
-@property (strong,nonatomic)NSTimer *timer;
+@property (strong,nonatomic) NSTimer *timer;
 @property (strong, nonatomic) NSMutableArray<NSString*> *endpoints;
+@property (assign, atomic) long index;
 @end
 
 @implementation NetworkDiagnosisController
@@ -98,12 +100,11 @@ static NetworkDiagnosisController *selfClzz;
     
     [self createButton:@"HTTPPING" andAction:@selector(httpPing) andX:lx andY:SLCellHeight * 12 + SLPadding];
     [self createButton:@"MTR" andAction:@selector(mtr) andX:rx andY:SLCellHeight * 12 + SLPadding];
+    [self createButton:@"DNS" andAction:@selector(dns) andX:lx andY:SLCellHeight * 13 + SLPadding * 2 andWidth:SLScreenW - (lx * 2 + SLPadding * 2) andHeight:SLCellHeight];
     
-    [self createButton:@"AUTO" andAction:@selector(ato) andX:lx andY:SLCellHeight * 13 + SLPadding * 2 andWidth:SLScreenW - (lx * 2 + SLPadding * 2) andHeight:SLCellHeight];
-
-    [self createButton:@"动态更新配置" andAction:@selector(updateConfig) andX:lx andY:SLCellHeight * 14 + SLPadding * 3 andWidth:SLScreenW - (lx * 2 + SLPadding * 2) andHeight:SLCellHeight];
-
-    [self createButton:@"配置探测策略" andAction:@selector(navToPolicy) andX:lx andY:SLCellHeight * 15 + SLPadding * 4 andWidth:SLScreenW - (lx * 2 + SLPadding * 2) andHeight:SLCellHeight];
+    [self createButton:@"AUTO" andAction:@selector(ato) andX:lx andY:SLCellHeight * 14 + SLPadding * 3 andWidth:SLScreenW - (lx * 2 + SLPadding * 2) andHeight:SLCellHeight];
+    [self createButton:@"动态更新配置" andAction:@selector(updateConfig) andX:lx andY:SLCellHeight * 15 + SLPadding * 4 andWidth:SLScreenW - (lx * 2 + SLPadding * 2) andHeight:SLCellHeight];
+    [self createButton:@"Extra" andAction:@selector(updateExtra) andX:lx andY:SLCellHeight * 16 + SLPadding * 5 andWidth:SLScreenW - (lx * 2 + SLPadding * 2) andHeight:SLCellHeight];
 }
 
 - (void) updateStatus: (NSString *)append {
@@ -140,6 +141,13 @@ static NetworkDiagnosisController *selfClzz;
     [self updateStatus:@"start mtr..."];
     [[SLSNetworkDiagnosis sharedInstance] mtr:@"www.aliyun.com" callback:^(NSString * _Nonnull result) {
         [self updateStatus:[NSString stringWithFormat:@"mtr result, data: %@", result]];
+    }];
+}
+
+- (void) dns {
+    [self updateStatus:@"start dns..."];
+    [[SLSNetworkDiagnosis sharedInstance] dns:@"www.aliyun.com" callback:^(NSString * _Nonnull result) {
+        [self updateStatus:[NSString stringWithFormat:@"dns result, data: %@", result]];
     }];
 }
 
@@ -193,6 +201,15 @@ static NetworkDiagnosisController *selfClzz;
 ////    [slsAdapter addPlugin:[[SLSCrashReporterPlugin alloc]init]];
 //    [slsAdapter addPlugin:[[SLSNetworkDiagnosisPlugin alloc] init]];
 //    [slsAdapter initWithSLSConfig:config];
+}
+
+- (void) updateExtra {
+    _index += 1;
+    
+    [[SLSCocoa sharedInstance] setExtra:[NSString stringWithFormat:@"extra_key_%ld", _index] value:[NSString stringWithFormat:@"extra_value_%ld", _index]];
+    [[SLSCocoa sharedInstance] setExtra:[NSString stringWithFormat:@"extra_dict_key_%ld", _index] dictValue:@{
+        [NSString stringWithFormat:@"extra_dict_key_%ld", _index]: [NSString stringWithFormat:@"extra_dict_value_%ld", _index]
+    }];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
