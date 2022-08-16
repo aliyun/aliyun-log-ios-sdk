@@ -21,6 +21,7 @@ targets.each do |t|
 #      pod 'AliyunLogProducer/CrashReporter2', :path =>'../../'
 ##      pod 'AliyunLogProducer/Producer', :path =>'../../'
 
+#      pod 'AliyunLogProducer', '2.4.0.0.beta.1', :subspecs => ['Producer', 'Core', 'OT', 'CrashReporter', 'NetworkDiagnosis']
       pod 'AliyunLogProducer/Producer', :path =>'../../'
       pod 'AliyunLogProducer/Core', :path =>'../../'
       pod 'AliyunLogProducer/OT', :path =>'../../'
