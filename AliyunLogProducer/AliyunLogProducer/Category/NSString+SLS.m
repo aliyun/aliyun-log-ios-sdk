@@ -34,4 +34,24 @@
     
     return dict;
 }
+
++ (NSString *) stringWithDictionary: (NSDictionary *) dictionary {
+    if (![NSJSONSerialization isValidJSONObject:dictionary]) {
+        return [NSString string];
+    }
+    
+    NSError *error = nil;
+    NSData *data = [NSJSONSerialization dataWithJSONObject:dictionary
+                                                   options:kNilOptions
+                                                     error:&error
+    ];
+    
+    if (nil != error) {
+        return [NSString string];
+    }
+    
+    return [[NSString alloc] initWithData:data
+                                 encoding:NSUTF8StringEncoding
+    ];
+}
 @end

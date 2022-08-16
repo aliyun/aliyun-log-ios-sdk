@@ -79,7 +79,12 @@
     
     [[SLSCocoa sharedInstance] initialize:credentials configuration:^(SLSConfiguration * _Nonnull configuration) {
         configuration.enableCrashReporter = YES;
-//        configuration.enableNetworkDiagnosis = YES;
+        configuration.enableNetworkDiagnosis = YES;
+    }];
+    
+    [[SLSCocoa sharedInstance] setExtra:@"key_e1" value:@"value_e1"];
+    [[SLSCocoa sharedInstance] setExtra:@"key_e2" dictValue:@{
+        @"e2_k1": @"e2_va1"
     }];
     return YES;
 }

@@ -18,12 +18,14 @@
 #import "Utdid.h"
 #import "SLSDeviceUtils.h"
 #import "HttpConfigProxy.h"
+#import "NSString+SLS.h"
 
 @interface SLSCocoa ()
 @property(atomic, assign) BOOL hasInitialize;
 @property(nonatomic, copy) SLSCredentials *credentials;
 @property(nonatomic, strong) SLSConfiguration *configuration;
-@property(nonatomic, strong) NSMutableArray<id<SLSFeatureProtocol>> * features;
+@property(nonatomic, strong) NSMutableArray<id<SLSFeatureProtocol>> *features;
+@property(nonatomic, strong) SLSExtraProvider *extraProvider;
 
 - (void) initializeDefaultSpanProvider;
 - (void) initializeSdkSender;
@@ -33,6 +35,7 @@
 
 @implementation SLSCocoa
 
+#pragma mark - instance
 + (instancetype) sharedInstance {
     static SLSCocoa * ins = nil;
     static dispatch_once_t onceToken;
@@ -42,11 +45,13 @@
     return ins;
 }
 
+#pragma mark - initialize
 - (instancetype)init
 {
     self = [super init];
     if (self) {
         _features = [NSMutableArray array];
+        _extraProvider = [[SLSExtraProvider alloc] init];
     }
     return self;
 }
@@ -79,7 +84,7 @@
 }
 
 - (void) initializeDefaultSpanProvider {
-    SLSSpanProviderDelegate *delegate = [SLSSpanProviderDelegate provider:_configuration credentials:_credentials];
+    SLSSpanProviderDelegate *delegate = [SLSSpanProviderDelegate provider:_configuration credentials:_credentials extraProvider:_extraProvider];
     _configuration.spanProvider = delegate;
 }
 - (void) initializeSdkSender {
@@ -107,6 +112,7 @@
     [_features addObject:feature];
 }
 
+#pragma mark - setter
 - (void) setCredentials: (SLSCredentials *) credentials {
     if (!credentials) {
         return;
@@ -147,26 +153,43 @@
     _configuration.userInfo = userInfo;
 }
 
+#pragma mark - extras
+- (void) setExtra: (NSString *)key value: (NSString *)value {
+    [_extraProvider setExtra:key value:value];
+}
+- (void) setExtra: (NSString *)key dictValue: (NSDictionary<NSString *, NSString *> *)value {
+    [_extraProvider setExtra:key dictValue:value];
+}
+- (void) removeExtra: (NSString *)key {
+    [_extraProvider removeExtra:key];
+}
+- (void) clearExtras {
+    [_extraProvider clearExtras];
+}
+
 @end
 
+#pragma mark - SLSSpanProviderDelegate
 @interface SLSSpanProviderDelegate ()
 @property(nonatomic, strong) SLSConfiguration *configuration;
 @property(nonatomic, strong) SLSCredentials *credentials;
 @property(nonatomic, strong) id<SLSSpanProviderProtocol> spanProvider;
-- (instancetype) initWithConfiguration: (SLSConfiguration *)configuration credentials: (SLSCredentials *) credentials;
+@property(nonatomic, strong) SLSExtraProvider *extraProvider;
+- (instancetype) initWithConfiguration: (SLSConfiguration *)configuration credentials: (SLSCredentials *) credentials extraProvider: (SLSExtraProvider *)extraProvider;
+- (void) provideExtra: (NSMutableArray<SLSAttribute *> *)attributes;
 @end
 
 static SLSResource *DEFAULT_RESOURCE;
 
 @implementation SLSSpanProviderDelegate
 
-
-- (instancetype) initWithConfiguration: (SLSConfiguration *)configuration credentials: (SLSCredentials *) credentials {
+- (instancetype) initWithConfiguration: (SLSConfiguration *)configuration credentials: (SLSCredentials *) credentials extraProvider: (SLSExtraProvider *)extraProvider {
     self = [super init];
     if (self) {
         _configuration = configuration;
         _credentials = credentials;
         _spanProvider = configuration.spanProvider;
+        _extraProvider = extraProvider;
         
         if (!DEFAULT_RESOURCE) {
             DEFAULT_RESOURCE = [[SLSResource alloc] init];
@@ -224,8 +247,8 @@ static SLSResource *DEFAULT_RESOURCE;
     return self;
 }
 
-+ (instancetype) provider: (SLSConfiguration *)configuration credentials: (SLSCredentials *) credentials {
-    return [[SLSSpanProviderDelegate alloc] initWithConfiguration:configuration credentials:credentials];
++ (instancetype) provider: (SLSConfiguration *)configuration credentials: (SLSCredentials *) credentials extraProvider: (SLSExtraProvider *)extraProvider {
+    return [[SLSSpanProviderDelegate alloc] initWithConfiguration:configuration credentials:credentials extraProvider:extraProvider];
 }
 
 
@@ -234,12 +257,16 @@ static SLSResource *DEFAULT_RESOURCE;
 }
 
 - (NSArray<SLSAttribute *> *)provideAttribute{
-    NSMutableArray<SLSAttribute*> *attributes =  (NSMutableArray<SLSAttribute*> *) [SLSAttribute of:
-//            [SLSKeyValue create:@"page.name" value:([SLSAppUtils sharedInstance].foreground ? @"true" : @"false")],
-            [SLSKeyValue create:@"foreground" value:([SLSAppUtils sharedInstance].foreground ? @"true" : @"false")],
-            [SLSKeyValue create:@"instance" value:_credentials.instanceId],
-            [SLSKeyValue create:@"env" value:(_configuration.env ? _configuration.env : @"")],
-            nil];
+    NSMutableArray<SLSAttribute*> *attributes =
+    (NSMutableArray<SLSAttribute*> *) [SLSAttribute of:
+                                               //            [SLSKeyValue create:@"page.name" value:([SLSAppUtils sharedInstance].foreground ? @"true" : @"false")],
+                                           [SLSKeyValue create:@"foreground" value:([SLSAppUtils sharedInstance].foreground ? @"true" : @"false")],
+                                           [SLSKeyValue create:@"instance" value:_credentials.instanceId],
+                                           [SLSKeyValue create:@"env" value:(_configuration.env ? _configuration.env : @"")],
+                                           nil
+    ];
+    
+    [self provideExtra:attributes];
     
     NSArray<SLSAttribute *> *userAttributes = [_spanProvider provideAttribute];
     if (userAttributes) {
@@ -249,5 +276,60 @@ static SLSResource *DEFAULT_RESOURCE;
     return attributes;
 }
 
+- (void) provideExtra: (NSMutableArray<SLSAttribute *> *)attributes {
+    NSDictionary<NSString *, NSString *> *extras = [_extraProvider getExtras];
+    if (!extras) {
+        return;
+    }
+    
+    for (NSString *k in extras) {
+        NSString *key = [NSString stringWithFormat:@"extras.%@", k];
+        if ([[extras valueForKey:k] isKindOfClass:[NSDictionary<NSString *, NSString *> class]]) {
+            [attributes addObject:[SLSAttribute of:key
+                                             value:[NSString stringWithDictionary:(NSDictionary *)[extras valueForKey:k]]
+                                  ]
+            ];
+        } else {
+            [attributes addObject:[SLSAttribute of:key
+                                             value:[extras valueForKey:k]
+                                  ]
+            ];
+        }
+    }
+}
 @end
 
+#pragma mark - SLSExtraProvider
+@interface SLSExtraProvider()
+@property(nonatomic, strong, readonly) NSMutableDictionary *dict;
+@end
+
+@implementation SLSExtraProvider : NSObject
+
+- (instancetype)init {
+    if (self = [super init]) {
+        _dict = [NSMutableDictionary dictionary];
+    }
+    return self;
+}
+
+- (void) setExtra: (NSString *)key value: (NSString *)value {
+    [_dict setObject:value forKey:key];
+}
+- (void) setExtra: (NSString *)key dictValue: (NSDictionary<NSString *, NSString *> *)value {
+    if (![value isKindOfClass:[NSDictionary<NSString *, NSString *> class]]) {
+        return;
+    }
+
+    [_dict setObject:value forKey:key];
+}
+- (void) removeExtra: (NSString *)key {
+    [_dict removeObjectForKey:key];
+}
+- (void) clearExtras {
+    [_dict removeAllObjects];
+}
+- (NSDictionary<NSString *, NSString *> *) getExtras {
+    return [_dict copy];
+}
+@end
