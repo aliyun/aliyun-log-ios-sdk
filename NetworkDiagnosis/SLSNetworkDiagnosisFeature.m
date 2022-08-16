@@ -93,6 +93,10 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
     [[SLSNetworkDiagnosis sharedInstance] setNetworkDiagnosisFeature:self];
 }
 
+- (void)setCredentials:(SLSCredentials *)credentials {
+    [_sender setCredentials:credentials];
+}
+
 - (NSString *) getIPAIdBySecretKey: (NSString *) secretKey {
     NSString *decode = [secretKey base64Decode];
     if (!decode) {

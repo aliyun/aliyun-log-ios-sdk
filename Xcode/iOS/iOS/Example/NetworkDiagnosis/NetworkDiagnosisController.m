@@ -64,7 +64,6 @@ static NetworkDiagnosisController *selfClzz;
     selfClzz = self;
     self.title = @"网络监控";
     [self initViews];
-    [self initNetworkDiagnosis];
 }
 
 - (void) initViews {
@@ -168,39 +167,12 @@ static NetworkDiagnosisController *selfClzz;
 }
 
 - (void) updateConfig {
-//    SLSAdapter *adapter = [SLSAdapter sharedInstance];
-//    SLSConfig *config = [[SLSConfig alloc] init];
-//    [config setUserId:@"test_userid_updated"];
-//    [config setUserNick:@"test_usernick_updated"];
-//    [config setLongLoginNick:@"test_long_usernick_updated"];
-//    [config addCustomWithKey:@"updated_key" andValue:@"updated_value"];
-//    [adapter updateConfig:config];
-}
-
-- (void) initNetworkDiagnosis {
-//    DemoUtils *utils = [DemoUtils sharedInstance];
-//    SLSConfig *config = [[SLSConfig alloc] init];
-//    // 正式发布时建议关闭
-//    [config setDebuggable:YES];
-//
-//    [config setEndpoint: [utils endpoint]];
-//    [config setAccessKeyId: [utils accessKeyId]];
-//    [config setAccessKeySecret: [utils accessKeySecret]];
-//    [config setPluginAppId: [utils pluginAppId]];
-//    [config setPluginLogproject: [utils project]];
-//
-//    [config setUserId:@"test_userid"];
-//    [config setUserNick:@"user_nick"];
-//    [config setChannel:@"test_channel"];
-//    [config setLongLoginNick:@"test_long_nick"];
-//    [config addCustomWithKey:@"customKey" andValue:@"testValue"];
-//
-//    [config setSiteId:@"cn"];
-//
-//    SLSAdapter *slsAdapter = [SLSAdapter sharedInstance];
-////    [slsAdapter addPlugin:[[SLSCrashReporterPlugin alloc]init]];
-//    [slsAdapter addPlugin:[[SLSNetworkDiagnosisPlugin alloc] init]];
-//    [slsAdapter initWithSLSConfig:config];
+    SLSCredentials *credentials = [SLSCredentials credentials];
+    credentials.networkDiagnosisCredentials = [credentials createNetworkDiagnosisCredentials];
+    credentials.networkDiagnosisCredentials.accessKeyId = @"";
+    credentials.networkDiagnosisCredentials.accessKeySecret = @"";
+    
+    [[SLSCocoa sharedInstance] setCredentials:credentials];
 }
 
 - (void) updateExtra {
