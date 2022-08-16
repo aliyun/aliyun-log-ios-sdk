@@ -103,7 +103,7 @@
         }
     }
     
-    SLSResource *r = SLSResource.getDefault;
+    SLSResource *r = [SLSResource resource];
     if (nil != _spanProvider) {
         [r merge:[_spanProvider provideResource]];
     }

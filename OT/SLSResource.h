@@ -23,7 +23,6 @@ NS_ASSUME_NONNULL_BEGIN
 + (SLSResource*) of: (NSString *)key value: (NSString *)value;
 + (SLSResource*) of: (SLSKeyValue*)keyValue, ...NS_REQUIRES_NIL_TERMINATION;
 + (SLSResource *) ofAttributes: (NSArray<SLSAttribute *> *)attributes;
-+ (SLSResource*) getDefault;
 
 @end
 

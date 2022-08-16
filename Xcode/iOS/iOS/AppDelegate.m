@@ -78,8 +78,8 @@
     
     
     [[SLSCocoa sharedInstance] initialize:credentials configuration:^(SLSConfiguration * _Nonnull configuration) {
-        configuration.enableCrashReporter = NO;
-        configuration.enableNetworkDiagnosis = YES;
+        configuration.enableCrashReporter = YES;
+//        configuration.enableNetworkDiagnosis = YES;
     }];
     return YES;
 }
