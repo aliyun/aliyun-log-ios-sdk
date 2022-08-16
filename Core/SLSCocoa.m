@@ -4,11 +4,20 @@
 //
 //  Created by gordon on 2022/7/20.
 //
+#import "SLSSystemCapabilities.h"
+#if SLS_HAS_UIKIT
+#import <UIKit/UIKit.h>
+#else
+#import <AppKit/AppKit.h>
+#endif
 
 #import "SLSCocoa.h"
 #import "SLSSdkSender.h"
 #import "SLSAppUtils.h"
 #import "SLSFeatureProtocol.h"
+#import "Utdid.h"
+#import "SLSDeviceUtils.h"
+#import "HttpConfigProxy.h"
 
 @interface SLSCocoa ()
 @property(atomic, assign) BOOL hasInitialize;
@@ -147,6 +156,8 @@
 - (instancetype) initWithConfiguration: (SLSConfiguration *)configuration credentials: (SLSCredentials *) credentials;
 @end
 
+static SLSResource *DEFAULT_RESOURCE;
+
 @implementation SLSSpanProviderDelegate
 
 
@@ -156,6 +167,59 @@
         _configuration = configuration;
         _credentials = credentials;
         _spanProvider = configuration.spanProvider;
+        
+        if (!DEFAULT_RESOURCE) {
+            DEFAULT_RESOURCE = [[SLSResource alloc] init];
+            [DEFAULT_RESOURCE add:@"sdk.language" value:@"Objective-C"];
+            [DEFAULT_RESOURCE add:@"host.name" value:@"iOS"];
+            
+            // device specification, ref: https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/resource/semantic_conventions/device.md
+            [DEFAULT_RESOURCE add:@"device.id" value:[Utdid getUtdid]];
+            [DEFAULT_RESOURCE add:@"device.model.identifier" value:[SLSDeviceUtils getDeviceModelIdentifier]];
+            [DEFAULT_RESOURCE add:@"device.model.name" value:[SLSDeviceUtils getDeviceModelIdentifier]];
+            [DEFAULT_RESOURCE add:@"device.manufacturer" value:@"Apple"];
+            [DEFAULT_RESOURCE add:@"device.resolution" value:[SLSDeviceUtils getResolution]];
+            
+            // os specification, ref: https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/resource/semantic_conventions/os.md
+    #if SLS_HAS_UIKIT
+            NSString *systemName = [[UIDevice currentDevice] systemName];
+            NSString *systemVersion = [[UIDevice currentDevice] systemVersion];
+    #else
+            NSString *systemName = [[NSProcessInfo processInfo] operatingSystemName];
+            NSString *systemVersion = [[NSProcessInfo processInfo] operatingSystemVersionString];
+    #endif
+            [DEFAULT_RESOURCE add:@"os.type" value: @"darwin"];
+            [DEFAULT_RESOURCE add:@"os.description" value: [NSString stringWithFormat:@"%@ %@", systemName, systemVersion]];
+            [DEFAULT_RESOURCE add:@"os.name" value: @"iOS"];
+            [DEFAULT_RESOURCE add:@"os.version" value: systemVersion];
+            [DEFAULT_RESOURCE add:@"os.root" value: [SLSDeviceUtils isJailBreak]];
+        //        @"os.sdk": [[TelemetryAttributeValue alloc] initWithStringValue:@"iOS"],
+            
+            // host specification, ref: https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/resource/semantic_conventions/host.md
+            [DEFAULT_RESOURCE add:@"host.name" value: @"iOS"];
+            [DEFAULT_RESOURCE add:@"host.type" value: systemName];
+            [DEFAULT_RESOURCE add:@"host.arch" value: [SLSDeviceUtils getCPUArch]];
+            
+            [DEFAULT_RESOURCE add:@"sls.sdk.language" value: @"Objective-C"];
+            [DEFAULT_RESOURCE add:@"sls.sdk.name" value: @"tracesdk"];
+            [DEFAULT_RESOURCE add:@"sls.sdk.version" value: [[HttpConfigProxy sharedInstance] getVersion]];
+            
+            NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+            NSString *appName = [infoDictionary objectForKey:@"CFBundleDisplayName"];
+            if (!appName) {
+                appName = [infoDictionary objectForKey:@"CFBundleName"];
+            }
+            NSString *appVersion = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
+            NSString *buildCode = [infoDictionary objectForKey:@"CFBundleVersion"];
+            
+            [DEFAULT_RESOURCE add:@"app.version" value:(!appVersion ? @"-" : appVersion)];
+            [DEFAULT_RESOURCE add:@"app.build_code" value:(!buildCode ? @"-" : buildCode)];
+            [DEFAULT_RESOURCE add:@"app.name" value:(!appName ? @"-" : appName)];
+            
+            [DEFAULT_RESOURCE add:@"net.access" value: [SLSDeviceUtils getNetworkTypeName]];
+            [DEFAULT_RESOURCE add:@"net.access_subtype" value: [SLSDeviceUtils getNetworkSubTypeName]];
+            [DEFAULT_RESOURCE add:@"carrier" value: [SLSDeviceUtils getCarrier]];
+        }
     }
     return self;
 }
@@ -166,7 +230,7 @@
 
 
 - (SLSResource *)provideResource {
-    return [SLSResource resource];
+    return [DEFAULT_RESOURCE copy];
 }
 
 - (NSArray<SLSAttribute *> *)provideAttribute{
