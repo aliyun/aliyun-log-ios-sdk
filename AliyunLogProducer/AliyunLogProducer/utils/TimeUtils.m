@@ -82,11 +82,14 @@ static NSTimeInterval elapsedRealtime = 0;
     if (![dictionary objectForKey:@"local_timestamp"]) {
         return;
     }
+    NSString *local_timestamp = [NSString stringWithString:[[log getContent] objectForKey:@"local_timestamp"]];
+    if ([local_timestamp length] < 10) {
+        return;
+    }
     
     NSLog(@"log.getTime: %d", [log getTime]);
     
     NSDate *date = [NSDate date];
-    NSString *local_timestamp = [NSString stringWithString:[[log getContent] objectForKey:@"local_timestamp"]];
     NSString *timestamp = [local_timestamp substringWithRange:NSMakeRange(0, 10)];
     NSString *timestampMillisPart = [[NSString stringWithFormat:@"%.0f", [date timeIntervalSince1970] * 1000] substringFromIndex:10];
     local_timestamp = [timestamp stringByAppendingString:timestampMillisPart];
