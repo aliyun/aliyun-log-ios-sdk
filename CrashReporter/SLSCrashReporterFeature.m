@@ -5,6 +5,7 @@
 //  Created by gordon on 2022/7/20.
 //
 
+#import "SLSSystemCapabilities.h"
 #import "SLSCrashReporterFeature.h"
 #import "WPKMobi/WPKSetup.h"
 #import "WPKMobi/WPKThreadBlockChecker.h"
@@ -116,7 +117,11 @@ typedef void(^directory_changed_block)(NSString*);
 }
 
 - (void) observeDirectoryChanged {
+#if SLS_HOST_TV
+    NSString *libraryPath = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES).firstObject;
+#else
     NSString *libraryPath = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES).firstObject;
+#endif
     SLSLogV(@"start observe directory changed start. library path: %@", libraryPath);
     
     NSString *wpkLogpath = [libraryPath stringByAppendingPathComponent:@".WPKLog"];

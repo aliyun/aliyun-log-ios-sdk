@@ -72,7 +72,8 @@
     [dict setObject:_statusCode == UNSET ? @"UNSET" : (_statusCode == OK ? @"OK" : @"ERROR" ) forKey:@"statusCode"];
     [dict setObject:_statusMessage ? _statusMessage : @"" forKey:@"statusMessage"];
     [dict setObject:_host ? _host : @"" forKey:@"host"];
-    [dict setObject:@"iOS" forKey:@"service"];
+    // service name default: iOS
+    [dict setObject:_service ? _service : @"iOS" forKey:@"service"];
     
     NSMutableDictionary<NSString*, NSString*> *attributeDict = [NSMutableDictionary<NSString*, NSString*> dictionary];
     for (NSString* key in [_attribute allKeys]) {

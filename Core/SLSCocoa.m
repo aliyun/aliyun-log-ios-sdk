@@ -194,7 +194,6 @@ static SLSResource *DEFAULT_RESOURCE;
         if (!DEFAULT_RESOURCE) {
             DEFAULT_RESOURCE = [[SLSResource alloc] init];
             [DEFAULT_RESOURCE add:@"sdk.language" value:@"Objective-C"];
-            [DEFAULT_RESOURCE add:@"host.name" value:@"iOS"];
             
             // device specification, ref: https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/resource/semantic_conventions/device.md
             [DEFAULT_RESOURCE add:@"device.id" value:[Utdid getUtdid]];
@@ -204,22 +203,35 @@ static SLSResource *DEFAULT_RESOURCE;
             [DEFAULT_RESOURCE add:@"device.resolution" value:[SLSDeviceUtils getResolution]];
             
             // os specification, ref: https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/resource/semantic_conventions/os.md
-    #if SLS_HAS_UIKIT
+#if SLS_HAS_UIKIT
             NSString *systemName = [[UIDevice currentDevice] systemName];
             NSString *systemVersion = [[UIDevice currentDevice] systemVersion];
-    #else
+#else
             NSString *systemName = [[NSProcessInfo processInfo] operatingSystemName];
             NSString *systemVersion = [[NSProcessInfo processInfo] operatingSystemVersionString];
-    #endif
+#endif
             [DEFAULT_RESOURCE add:@"os.type" value: @"darwin"];
             [DEFAULT_RESOURCE add:@"os.description" value: [NSString stringWithFormat:@"%@ %@", systemName, systemVersion]];
+            
+#if SLS_HOST_MAC
+            [DEFAULT_RESOURCE add:@"os.name" value: @"macOS"];
+#elif SLS_HOST_TV
+            [DEFAULT_RESOURCE add:@"os.name" value: @"tvOS"];
+#else
             [DEFAULT_RESOURCE add:@"os.name" value: @"iOS"];
+#endif
             [DEFAULT_RESOURCE add:@"os.version" value: systemVersion];
             [DEFAULT_RESOURCE add:@"os.root" value: [SLSDeviceUtils isJailBreak]];
         //        @"os.sdk": [[TelemetryAttributeValue alloc] initWithStringValue:@"iOS"],
             
             // host specification, ref: https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/resource/semantic_conventions/host.md
+#if SLS_HOST_MAC
+            [DEFAULT_RESOURCE add:@"host.name" value: @"macOS"];
+#elif SLS_HOST_TV
+            [DEFAULT_RESOURCE add:@"host.name" value: @"tvOS"];
+#else
             [DEFAULT_RESOURCE add:@"host.name" value: @"iOS"];
+#endif
             [DEFAULT_RESOURCE add:@"host.type" value: systemName];
             [DEFAULT_RESOURCE add:@"host.arch" value: [SLSDeviceUtils getCPUArch]];
             

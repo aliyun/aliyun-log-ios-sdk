@@ -61,7 +61,7 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
     return @"network_diagnosis";
 }
 
-- (SLSSpanBuilder *)newSpanBuilder:(NSString *)spanName {
+- (SLSSpanBuilder *) newSpanBuilder: (NSString *)spanName provider: (id<SLSSpanProviderProtocol>) provider processor: (id<SLSSpanProcessorProtocol>) processor {
     return [[SLSSpanBuilder builder] initWithName:spanName
                                          provider:self.configuration.spanProvider
                                         processor:(id<SLSSpanProcessorProtocol>)_sender

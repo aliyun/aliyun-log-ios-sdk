@@ -61,7 +61,7 @@
                securityToken:securityToken
     ];
     
-    [_config SetTopic:@"sls_ios"];
+    [_config SetTopic:@"sls_cocoa"];
     [_config SetPacketLogBytes:(1024 * 1024)];
     [_config SetPacketLogCount: 4096];
     [_config SetPacketTimeout:2000];

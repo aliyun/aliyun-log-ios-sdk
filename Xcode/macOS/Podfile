@@ -7,10 +7,11 @@ target 'macOS' do
   use_frameworks!
 
   # Pods for Demo
-  pod 'AliyunLogProducer', '3.0.0.beta.1', :subspecs => ['Producer', 'Core', 'OT', 'CrashReporter']
-#  pod 'AliyunLogProducer/Core', :path =>'../../'
-#  pod 'AliyunLogProducer/Bricks', :path =>'../../'
-#  pod 'AliyunLogProducer/CrashReporter', :path =>'../../'
+#  pod 'AliyunLogProducer', '3.0.0.beta.1', :subspecs => ['Producer', 'Core', 'OT', 'CrashReporter']
+  pod 'AliyunLogProducer/Producer', :path =>'../../'
+  pod 'AliyunLogProducer/Core', :path =>'../../'
+  pod 'AliyunLogProducer/OT', :path =>'../../'
+  pod 'AliyunLogProducer/CrashReporter', :path =>'../../'
 
 end
 

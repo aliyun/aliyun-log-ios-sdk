@@ -23,6 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (SLSSpanBuilder *) addAttributes: (NSArray<SLSAttribute *> *) attributes;
 - (SLSSpanBuilder *) setStart: (long) start;
 - (SLSSpanBuilder *) setResource: (SLSResource *) resource;
+- (SLSSpanBuilder *) setServiceName: (NSString *)service;
+
 - (SLSSpan *) build;
 @end
 

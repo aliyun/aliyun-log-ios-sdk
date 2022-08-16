@@ -31,7 +31,7 @@ typedef NS_ENUM(NSInteger, SLSStatusCode){
 @property(nonatomic, strong) NSString *statusMessage;
 @property(nonatomic, strong) NSString *host;
 @property(nonatomic, strong) SLSResource *resource;
-@property(nonatomic, strong, readonly) NSString *service;
+@property(nonatomic, strong) NSString *service;
 @property(nonatomic, strong) NSString *sessionId;
 @property(nonatomic, strong) NSString *transactionId;
 @property(atomic, assign) BOOL finished;

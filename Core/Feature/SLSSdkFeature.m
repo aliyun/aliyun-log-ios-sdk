@@ -5,6 +5,7 @@
 //  Created by gordon on 2022/7/20.
 //
 
+#import "SLSSystemCapabilities.h"
 #import "SLSSdkFeature.h"
 
 @interface SLSSdkFeature ()
@@ -15,8 +16,22 @@
 
 @implementation SLSSdkFeature
 
+- (SLSSpanBuilder *) newSpanBuilder: (NSString *)spanName provider: (id<SLSSpanProviderProtocol>) provider processor: (id<SLSSpanProcessorProtocol>) processor {
+    return [[SLSSpanBuilder builder] initWithName:spanName provider:provider processor:processor];
+}
+
 - (SLSSpanBuilder *) newSpanBuilder: (NSString *) spanName {
-    return [[SLSSpanBuilder builder] initWithName:spanName provider:_configuration.spanProvider processor:_configuration.spanProcessor];
+    SLSSpanBuilder *builder = [self newSpanBuilder:spanName provider:_configuration.spanProvider processor:_configuration.spanProcessor];
+
+#if SLS_HOST_MAC
+    [builder setServiceName:@"macOS"];
+#elif SLS_HOST_TV
+    [builder setServiceName:@"tvOS"];
+#else
+    [builder setServiceName:@"iOS"];
+#endif
+    
+    return builder;
 }
 
 - (void) initialize: (SLSCredentials *) credentials configuration: (SLSConfiguration *) configuration {

@@ -18,6 +18,7 @@
 @property(nonatomic, strong) NSMutableArray<SLSAttribute*> *attributes;
 @property(nonatomic, strong, readonly) SLSResource *resource;
 @property(nonatomic, assign, readonly) long start;
+@property(nonatomic, strong) NSString *service;
 @end
 
 @implementation SLSSpanBuilder
@@ -76,9 +77,14 @@
     _resource = resource;
     return self;
 }
+- (SLSSpanBuilder *) setServiceName: (NSString *)service {
+    _service = service;
+    return self;
+}
 - (SLSSpan *) build {
     SLSRecordableSpan *span = [[SLSRecordableSpan alloc] initWithSpanProcessor:_spanProcessor];
     span.name = _name;
+    span.service = _service;
     span.spanID = SLSIdGenerator.generateSpanId;
     
     SLSSpan *parentSpan = nil;

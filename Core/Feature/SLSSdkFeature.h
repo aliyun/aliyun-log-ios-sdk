@@ -14,7 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SLSSdkFeature : SLSNoOpFeature
 @property(nonatomic, strong, readonly) SLSConfiguration *configuration;
 
-- (SLSSpanBuilder *) newSpanBuilder: (NSString *) spanName;
+- (SLSSpanBuilder *) newSpanBuilder: (NSString *)spanName;
+- (SLSSpanBuilder *) newSpanBuilder: (NSString *)spanName provider: (id<SLSSpanProviderProtocol>) provider processor: (id<SLSSpanProcessorProtocol>) processor;
 
 - (void) onInitializeSender: (SLSCredentials *) credentials configuration: (SLSConfiguration *) configuration;
 - (void) onInitialize: (SLSCredentials *) credentials configuration: (SLSConfiguration *) configuration;
