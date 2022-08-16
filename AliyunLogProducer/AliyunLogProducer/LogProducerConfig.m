@@ -161,6 +161,10 @@ unsigned int time_func() {
 
 - (void)setEndpoint:(NSString *)endpoint
 {
+    if (endpoint.length > 0 && ![[endpoint lowercaseString] hasPrefix:@"http"]) {
+        endpoint = [NSString stringWithFormat:@"https://%@", endpoint];
+    }
+    
     self->endpoint = endpoint;
     log_producer_config_set_endpoint(self->config, [endpoint UTF8String]);
 }
