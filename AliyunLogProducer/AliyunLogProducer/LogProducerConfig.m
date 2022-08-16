@@ -18,6 +18,7 @@
 #import "inner_log.h"
 #import "TimeUtils.h"
 #import "HttpConfigProxy.h"
+#import "NSURLSession+SLS.h"
 
 
 @interface LogProducerConfig ()
@@ -65,7 +66,7 @@ static int os_http_post(const char *url,
     // send
     NSError *error = nil;
     NSHTTPURLResponse *response = nil;
-    NSData *resData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    NSData *resData = [NSURLSession sendSynchronousRequest:request returningResponse:&response error:&error];
     if(response != nil){
         int responseCode = (int)[response statusCode];
         NSDictionary *fields = [response allHeaderFields];
