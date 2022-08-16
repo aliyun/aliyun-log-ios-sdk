@@ -118,6 +118,7 @@ static NetworkDiagnosisController *selfClzz;
     [self updateStatus:@"start ping..."];
     
     [[SLSNetworkDiagnosis sharedInstance] ping:@"www.aliyun.con" callback:^(NSString * _Nonnull result) {
+        NSLog(@"ping result: %@", result);
         [self updateStatus:[NSString stringWithFormat:@"ping result, data: %@", result]];
     }];
 }
