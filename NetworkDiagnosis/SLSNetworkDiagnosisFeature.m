@@ -9,6 +9,7 @@
 #import "Utdid.h"
 #import "NSString+SLS.h"
 #import "SLSNetworkDiagnosis.h"
+#import "TimeUtils.h"
 
 #import "AliNetworkDiagnosis/AliDns.h"
 #import "AliNetworkDiagnosis/AliHttpPing.h"

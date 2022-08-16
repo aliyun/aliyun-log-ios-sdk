@@ -1,16 +1,15 @@
 //
-//  NSURLSession+SLS.m
+//  SLSURLSession.m
 //  AliyunLogProducer
 //
 //  Created by gordon on 2022/8/16.
 //
 
-#import "NSURLSession+SLS.h"
+#import "SLSURLSession.h"
 
-@implementation NSURLSession (SLS)
-
+@implementation SLSURLSession
 + (NSData *)sendSynchronousRequest:(NSURLRequest *)request
-                 returningResponse:(NSURLResponse **)response
+                 returningResponse:(NSURLResponse *_Nullable*_Nullable)response
                              error:(NSError **)error {
     // ref: https://stackoverflow.com/a/37829399/1760982
     
