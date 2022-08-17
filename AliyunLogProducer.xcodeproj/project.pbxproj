@@ -210,6 +210,7 @@
 		F88FAFE228ACECCC00F8792A /* build-crashreporter.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = "build-crashreporter.sh"; path = "publish/build-crashreporter.sh"; sourceTree = "<group>"; };
 		F88FAFE328ACECCC00F8792A /* build-ot.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = "build-ot.sh"; path = "publish/build-ot.sh"; sourceTree = "<group>"; };
 		F88FAFE528ACF07A00F8792A /* build-all.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = "build-all.sh"; path = "publish/build-all.sh"; sourceTree = "<group>"; };
+		F8ACED2628AD32FD004DC16B /* build-pub.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = "build-pub.sh"; path = "publish/build-pub.sh"; sourceTree = "<group>"; };
 		F8E74BA428ACAE71000609C3 /* SLSCrashReporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLSCrashReporter.m; sourceTree = "<group>"; };
 		F8E74BA528ACAE71000609C3 /* SLSCrashReporterFeature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLSCrashReporterFeature.m; sourceTree = "<group>"; };
 		F8E74BA628ACAE71000609C3 /* WPKMobi.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = WPKMobi.xcframework; sourceTree = "<group>"; };
@@ -423,6 +424,7 @@
 			isa = PBXGroup;
 			children = (
 				F88FAFE128ACECCC00F8792A /* AliyunLogProducer.podspec */,
+				F8ACED2628AD32FD004DC16B /* build-pub.sh */,
 				F88FAFE528ACF07A00F8792A /* build-all.sh */,
 				F88FAFDE28ACECCC00F8792A /* build-core.sh */,
 				F88FAFE228ACECCC00F8792A /* build-crashreporter.sh */,

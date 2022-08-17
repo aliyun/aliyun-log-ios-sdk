@@ -6,7 +6,6 @@
 //
 
 #import "ProducerExampleClientsController.h"
-#import "LogProducerClient+Bricks.h"
 
 @interface ProducerExampleClientsController ()
 
