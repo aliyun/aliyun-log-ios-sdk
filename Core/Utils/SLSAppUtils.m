@@ -1,6 +1,6 @@
 //
 //  SLSAppUtils.m
-//  AliyunLogProducer
+//  AliyunLogCore
 //
 //  Created by gordon on 2022/4/28.
 //

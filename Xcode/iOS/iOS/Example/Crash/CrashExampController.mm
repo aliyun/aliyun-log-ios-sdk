@@ -7,8 +7,7 @@
 
 #import "CrashExampController.h"
 #include "CppExceptionFaker.hpp"
-#import "SLSCocoa.h"
-#import "SLSCrashReporter.h"
+#import <AliyunLogProducer/AliyunLogProducer.h>
 
 @interface CrashExampController ()
 @property(nonatomic, strong) NSLock *lock;

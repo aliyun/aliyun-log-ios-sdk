@@ -7,7 +7,6 @@
 
 #import "ViewController.h"
 #import "DemoUtils.h"
-#import <AliyunLogProducer/LogProducerClient+Bricks.h>
 
 @interface ViewController ()
 

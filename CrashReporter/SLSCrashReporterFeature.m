@@ -12,6 +12,7 @@
 #import "Utdid.h"
 #import "NSDateFormatter+SLS.h"
 #import "SLSCrashReporter.h"
+#import <AliyunLogProducer/AliyunLogProducer.h>
 
 typedef void(^directory_changed_block)(NSString*);
 

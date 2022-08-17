@@ -12,11 +12,6 @@
 #import "Log.h"
 #import "TimeUtils.h"
 
-#if __has_include("LogProducerClient+Bricks.h")
-#import "LogProducerClient+Bricks.h"
-#endif
-
-
 @interface LogProducerClient ()
 
 @end
@@ -66,13 +61,6 @@
         return LogProducerInvalid;
     }
     NSMutableDictionary *logContents = [log getContent];
-    
-#if __has_include("LogProducerClient+Bricks.h")
-    if (self->_enableTrack) {
-        [self appendScheme:logContents];
-    }
-#endif
-    
     int pairCount = (int)[logContents count];
         
     char **keyArray = (char **)malloc(sizeof(char *)*(pairCount));

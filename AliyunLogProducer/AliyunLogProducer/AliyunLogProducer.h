@@ -31,19 +31,24 @@ FOUNDATION_EXPORT const unsigned char AliyunLogProducerVersionString[];
 #import "LogProducerClient.h"
 #import "LogProducerConfig.h"
 #import "Log.h"
-//#import "TimeUtils.h"
-//
-#if __has_include("LogProducerClient+Bricks.h")
-#import "LogProducerClient+Bricks.h"
-#endif
-//
-//#if __has_include(<AliyunLogProducer/SLSCrashReporterPlugin.h>)
-//#import "SLSCrashReporterPlugin.h"
-//#import "IReporterSender.h"
-//#import "IFileParser.h"
-//#endif
-//
-//#if __has_include(<AliyunLogProducer/SLSTracePlugin.h>)
-//#import "SLSTracePlugin.h"
-//#endif
 
+// AliyunLogCore
+#if __has_include("AliyunLogCore/AliyunLogCore.h")
+#import "AliyunLogCore/AliyunLogCore.h"
+#elif __has_include("AliyunLogCore.h")
+#import "AliyunLogCore.h"
+#endif
+
+// AliyunLogCrashReporter
+#if __has_include("AliyunLogCrashReporter/AliyunLogCrashReporter.h")
+#import "AliyunLogCrashReporter/AliyunLogCrashReporter.h"
+#elif __has_include("AliyunLogCrashReporter.h")
+#import "AliyunLogCrashReporter.h"
+#endif
+
+// AliyunLogNetworkDiagnosis
+#if __has_include("AliyunLogNetworkDiagnosis/AliyunLogNetworkDiagnosis")
+#import "AliyunLogNetworkDiagnosis/AliyunLogNetworkDiagnosis.h"
+#elif __has_include("AliyunLogNetworkDiagnosis.h")
+#import "AliyunLogNetworkDiagnosis.h"
+#endif

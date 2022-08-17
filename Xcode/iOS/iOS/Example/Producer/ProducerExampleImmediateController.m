@@ -119,7 +119,6 @@ static void _on_log_send_done(const char * config_name, log_producer_result resu
     [_config SetDropUnauthorizedLog:0];
 
     _client = [[LogProducerClient alloc] initWithLogProducerConfig:_config callback:_on_log_send_done];
-    [_client setEnableTrack:YES];
 }
 
 

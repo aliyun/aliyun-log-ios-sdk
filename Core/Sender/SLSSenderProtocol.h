@@ -1,14 +1,15 @@
 //
 //  SLSSenderProtocol.h
-//  AliyunLogProducer
+//  AliyunLogCore
 //
 //  Created by gordon on 2022/7/20.
 //
 
 #import <Foundation/Foundation.h>
 #import "SLSCredentials.h"
-#import "AliyunLogProducer/Log.h"
+//#import "AliyunLogProducer/Log.h"
 
+@class Log;
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol SLSSenderProtocol <NSObject>

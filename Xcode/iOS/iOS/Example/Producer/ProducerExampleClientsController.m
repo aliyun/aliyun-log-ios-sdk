@@ -6,6 +6,7 @@
 //
 
 #import "ProducerExampleClientsController.h"
+#import "LogProducerClient+Bricks.h"
 
 @interface ProducerExampleClientsController ()
 
@@ -103,13 +104,9 @@ static void _on_log_send_done(const char * config_name, log_producer_result resu
     
     _config = [self createLogProducerConfig:path andLogstore:[utils logstore]];
     _client = [[LogProducerClient alloc] initWithLogProducerConfig:_config callback:_on_log_send_done];
-    // 开启采集设备基础信息，默认不开启
-    [_client setEnableTrack:YES];
     
     _config2 = [self createLogProducerConfig:path2 andLogstore:@"test2"];
     _client2 = [[LogProducerClient alloc] initWithLogProducerConfig:_config2 callback:_on_log_send_done];
-    // 开启采集设备基础信息，默认不开启
-    [_client2 setEnableTrack:YES];
     
 }
 

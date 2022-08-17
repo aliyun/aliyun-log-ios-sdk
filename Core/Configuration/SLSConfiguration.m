@@ -1,6 +1,6 @@
 //
 //  SLSConfiguration.m
-//  AliyunLogProducer
+//  AliyunLogCore
 //
 //  Created by gordon on 2022/7/20.
 //

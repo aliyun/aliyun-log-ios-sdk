@@ -6,10 +6,7 @@
 //
 
 #import "NetworkDiagnosisController.h"
-#import "SLSNetworkDiagnosis.h"
-//#import "SLSNetworkDiagnosis.h"
-#import "NetworkDiagnosisPolicyController.h"
-#import "SLSCocoa.h"
+#import <AliyunLogProducer/AliyunLogProducer.h>
 
 @interface NetworkDiagnosisController ()
 @property(nonatomic, strong) UITextView *statusTextView;

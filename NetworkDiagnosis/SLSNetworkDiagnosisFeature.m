@@ -5,6 +5,7 @@
 //  Created by gordon on 2022/8/10.
 //
 
+#import <AliyunLogProducer/AliyunLogProducer.h>
 #import "SLSNetworkDiagnosisFeature.h"
 #import "Utdid.h"
 #import "NSString+SLS.h"

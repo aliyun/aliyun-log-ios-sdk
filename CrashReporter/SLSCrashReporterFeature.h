@@ -5,8 +5,11 @@
 //  Created by gordon on 2022/7/20.
 //
 
-#import <AliyunLogProducer/AliyunLogProducer.h>
+#if __has_include("AliyunLogCore/SLSSdkFeature.h")
+#import "AliyunLogCore/SLSSdkFeature.h"
+#else
 #import "SLSSdkFeature.h"
+#endif
 
 NS_ASSUME_NONNULL_BEGIN
 

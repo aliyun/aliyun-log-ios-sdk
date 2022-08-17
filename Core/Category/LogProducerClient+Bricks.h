@@ -1,18 +1,19 @@
+////
+////  LogProducerClient+Bricks.h
+////  AliyunLogProducer
+////
+////  Created by gordon on 2022/7/21.
+////
 //
-//  LogProducerClient+Bricks.h
-//  AliyunLogProducer
+//#import <Foundation/Foundation.h>
+//#import <AliyunLogProducer/AliyunLogProducer.h>
 //
-//  Created by gordon on 2022/7/21.
+//NS_ASSUME_NONNULL_BEGIN
 //
-
-#import <AliyunLogProducer/AliyunLogProducer.h>
-
-NS_ASSUME_NONNULL_BEGIN
-
-@interface LogProducerClient (Bricks)
-- (void) setEnableTrack: (BOOL) enable;
-- (BOOL) enableTrack;
-- (void) appendScheme: (NSMutableDictionary *)target;
-@end
-
-NS_ASSUME_NONNULL_END
+//@interface LogProducerClient (Bricks)
+//- (void) setEnableTrack: (BOOL) enable;
+//- (BOOL) enableTrack;
+//- (void) appendScheme: (NSMutableDictionary *)target;
+//@end
+//
+//NS_ASSUME_NONNULL_END

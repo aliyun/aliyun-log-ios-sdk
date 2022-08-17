@@ -5,8 +5,6 @@
 //  Created by gordon on 2022/8/10.
 //
 
-#import <AliyunLogProducer/AliyunLogProducer.h>
-
 #if __has_include("AliyunLogCore/SLSSdkFeature.h")
 #import "AliyunLogCore/SLSSdkFeature.h"
 #else
