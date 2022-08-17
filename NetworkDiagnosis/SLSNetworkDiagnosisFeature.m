@@ -11,6 +11,9 @@
 #import "SLSNetworkDiagnosis.h"
 #import "TimeUtils.h"
 
+#import "SLSSdkSender.h"
+#import "SLSCredentials.h"
+
 #import "AliNetworkDiagnosis/AliDns.h"
 #import "AliNetworkDiagnosis/AliHttpPing.h"
 #import "AliNetworkDiagnosis/AliMTR.h"
@@ -77,7 +80,7 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
         return;
     }
     
-    if (networkCredentials.secretKey) {
+    if (networkCredentials.secretKey.length > 0) {
         networkCredentials.instanceId = [self getIPAIdBySecretKey:networkCredentials.secretKey];
     }
     
