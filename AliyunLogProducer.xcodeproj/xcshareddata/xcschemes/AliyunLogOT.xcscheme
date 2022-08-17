@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "F8F6A96428ABBB730070B023"
-               BuildableName = "OT.framework"
-               BlueprintName = "OT"
+               BuildableName = "AliyunLogOT.framework"
+               BlueprintName = "AliyunLogOT"
                ReferencedContainer = "container:AliyunLogProducer.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -51,8 +51,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F8F6A96428ABBB730070B023"
-            BuildableName = "OT.framework"
-            BlueprintName = "OT"
+            BuildableName = "AliyunLogOT.framework"
+            BlueprintName = "AliyunLogOT"
             ReferencedContainer = "container:AliyunLogProducer.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

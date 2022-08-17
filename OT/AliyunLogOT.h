@@ -1,5 +1,5 @@
 //
-//  OT.h
+//  AliyunLogOT.h
 //  Pods
 //
 //  Created by gordon on 2022/8/16.
@@ -7,11 +7,11 @@
 
 #import <Foundation/Foundation.h>
 
-//! Project version number for OT.
-FOUNDATION_EXPORT double OTVersionNumber;
+//! Project version number for AliyunLogOT.
+FOUNDATION_EXPORT double AliyunLogOTVersionNumber;
 
-//! Project version string for OT.
-FOUNDATION_EXPORT const unsigned char OTVersionString[];
+//! Project version string for AliyunLogOT.
+FOUNDATION_EXPORT const unsigned char AliyunLogOTVersionString[];
 
 #import "SLSAttribute.h"
 #import "SLSKeyValue.h"

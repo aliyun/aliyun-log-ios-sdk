@@ -2,7 +2,7 @@
 BIN_OUTPUT_DIRECTORY=`pwd`
 
 APPLICATION_NAME="AliyunLogProducer"
-SCHEME="AliyunLogOT"
+SCHEME="AliyunLogCore"
 WORKSPACE="AliyunLogProducer.xcodeproj"
 PROJECT_BUILDDIR="./build"
 

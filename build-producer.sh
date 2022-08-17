@@ -13,10 +13,10 @@ xcodebuild OTHER_CFLAGS="-fembed-bitcode"  -project ${WORKSPACE} -scheme ${SCHEM
 
 cd ./${PROJECT_BUILDDIR}
 rm -rf iphoneos/AliyunLogProducer.framework/PrivateHeaders
-rm -rf iphoneos/AliyunLogProducer.framework/Modules
+#rm -rf iphoneos/AliyunLogProducer.framework/Modules
 rm -rf iphoneos/AliyunLogProducer.framework/_CodeSignature
 rm -rf iphonesimulator/AliyunLogProducer.framework/PrivateHeaders
-rm -rf iphonesimulator/AliyunLogProducer.framework/Modules
+#rm -rf iphonesimulator/AliyunLogProducer.framework/Modules
 rm -rf iphonesimulator/AliyunLogProducer.framework/_CodeSignature
 
 cp -r iphoneos/AliyunLogProducer.framework ./

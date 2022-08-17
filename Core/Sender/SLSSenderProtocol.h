@@ -7,7 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import "SLSCredentials.h"
-#import "Log.h"
+#import "AliyunLogProducer/Log.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

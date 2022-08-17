@@ -7,7 +7,11 @@
 
 #import <Foundation/Foundation.h>
 #import "SLSNoOpFeature.h"
+#if __has_include("AliyunLogOT/SLSSpanBuilder.h")
+#import "AliyunLogOT/SLSSpanBuilder.h"
+#else
 #import "SLSSpanBuilder.h"
+#endif
 
 NS_ASSUME_NONNULL_BEGIN
 

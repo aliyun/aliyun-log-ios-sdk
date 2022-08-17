@@ -7,8 +7,11 @@
 
 #import <Foundation/Foundation.h>
 #import "SLSUserInfo.h"
-#import "SLSSpanProcessorProtocol.h"
-#import "SLSSpanProviderProtocol.h"
+#if __has_include("AliyunLogOT/AliyunLogOT.h")
+#import "AliyunLogOT/AliyunLogOT.h"
+#else
+#import "AliyunLogOT.h"
+#endif
 
 NS_ASSUME_NONNULL_BEGIN
 
