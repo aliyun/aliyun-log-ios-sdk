@@ -11,6 +11,7 @@
 #import <AppKit/AppKit.h>
 #endif
 
+#import "AliyunLogProducer/AliyunLogProducer.h"
 #import "SLSCocoa.h"
 #import "SLSSdkSender.h"
 #import "SLSAppUtils.h"
@@ -97,19 +98,24 @@
         return;
     }
     
+    SLSLog(@"initFeature, start init: %@", clazzName);
+    
     Class clazz = NSClassFromString(clazzName);
     if (!clazz || ![clazz conformsToProtocol:@protocol(SLSFeatureProtocol)]) {
+        SLSLog(@"initFeature, feature class not found.");
         return;
     }
     
     id<SLSFeatureProtocol> feature = [[clazz alloc] init];
     if (!feature) {
+        SLSLog(@"initFeature, feature init error.");
         return;
     }
     
     [feature initialize:_credentials configuration:_configuration];
     
     [_features addObject:feature];
+    SLSLog(@"initFeature, init: %@ success.", clazzName);
 }
 
 #pragma mark - setter

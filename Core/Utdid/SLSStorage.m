@@ -14,7 +14,7 @@
 @implementation SLSStorage
 + (NSString *) getFile {
     NSString *libraryPath = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES).firstObject;
-    NSLog(@"startLogDirectoryMonitor. libraryPath: %@", libraryPath);
+    NSLog(@"SLSStorage. libraryPath: %@", libraryPath);
 
     NSString *slsRootDir = [libraryPath stringByAppendingPathComponent:@"sls-ios"];
     NSFileManager *fileManager = [NSFileManager defaultManager];
