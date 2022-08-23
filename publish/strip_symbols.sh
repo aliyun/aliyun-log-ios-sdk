@@ -37,7 +37,6 @@ do_fix()
     # `cat hidden_symbols >> tmp_symbols`
     # `sort tmp_symbols|uniq -u > real_hidden_symbols`
 
-    echo "pwd: " `pwd`
     # 重新连接隐藏符号
     ld -x -r -exported_symbols_list ${EXPORTED_SYMBOLS_LIST} combine.o -o hidden.o
     nm -g hidden.o > exist_symbols
@@ -46,8 +45,14 @@ do_fix()
     ar -rv "fix.a" hidden.o
 
     cd ..
-
 }
+
+echo "start strip symbols, lib name: ${1}, symboles list: ${2}"
+
+LIB_NAME=$1
+EXPORTED_SYMBOLS_LIST=$2
+
+cd "./build"
 
 for ((i=0; i < ${ARCH_COUNT}; i++))
 do
@@ -59,3 +64,10 @@ LIB_PATHS=( ${LIB_PATHS[@]/%//fix.a} )
 echo "combine all thin lib to ${LIB_NAME}.framework/${LIB_NAME}"
 lipo ${LIB_PATHS[@]} -create -output fix_combine.a
 mv fix_combine.a ${LIB_NAME}.framework/${LIB_NAME}
+
+for ((i=0; i < ${ARCH_COUNT}; i++))
+do
+rm -rf ${ARCH_LIST[i]}
+done
+
+cd ..

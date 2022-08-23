@@ -4,7 +4,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'AliyunLogProducer'
-  s.version          = '3.0.0.beta.1'
+  s.version          = '3.0.0'
   s.summary          = 'aliyun log service ios producer.'
 
 # This description is used to generate tags and improve search results.
@@ -21,7 +21,7 @@ https://help.aliyun.com/product/28958.html
 
   s.homepage         = 'https://github.com/aliyun/aliyun-log-ios-sdk'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'aliyun-log' => 'davidzhang.zc@alibaba-inc.com' }
+  s.author           = { 'aliyun-log' => 'yulong.gyl@alibaba-inc.com' }
   s.source           = { :git => 'https://github.com/aliyun/aliyun-log-ios-sdk.git', :tag => s.version.to_s }
   s.social_media_url = 'http://t.cn/AiRpol8C'
 
@@ -54,17 +54,7 @@ https://help.aliyun.com/product/28958.html
       'AliyunLogProducer/aliyun-log-c-sdk/src/log_producer_common.h',
       'AliyunLogProducer/aliyun-log-c-sdk/src/log_producer_config.h'
   end
-  
-#  s.subspec 'Bricks' do |b|
-#    b.ios.deployment_target = '9.0'
-#    b.tvos.deployment_target =  '9.0'
-#    b.osx.deployment_target =  '10.8'
-#    b.dependency 'AliyunLogProducer/Core'
-#    b.source_files = 'AliyunLogProducer/AliyunLogProducer/common/**/*.{m,h}'
-#    b.public_header_files = 'AliyunLogProducer/AliyunLogProducer/common/**/*.h'
-#    b.frameworks = "SystemConfiguration"
-#  end
-  
+
   s.subspec 'Core' do |c|
     c.ios.deployment_target = '9.0'
     c.tvos.deployment_target =  '9.0'
@@ -141,86 +131,5 @@ https://help.aliyun.com/product/28958.html
         'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
       }
     end
-  
-  
-#  s.subspec 'CrashReporter' do |r|
-#    r.ios.deployment_target = '9.0'
-#    r.tvos.deployment_target =  '9.0'
-#    r.osx.deployment_target =  '10.8'
-#    r.dependency 'AliyunLogProducer/Bricks'
-#    r.source_files = 'AliyunLogProducer/AliyunLogProducer/CrashReporter/**/*.{m,h}'
-#    r.public_header_files = "AliyunLogProducer/AliyunLogProducer/CrashReporter/**/*.h"
-#    r.vendored_frameworks = 'AliyunLogProducer/AliyunLogProducer/CrashReporter/WPKMobi.xcframework'
-#    r.exclude_files = 'AliyunLogProducer/AliyunLogProducer/CrashReporter/WPKMobi.xcframework/**/Headers/*.h'
-#
-#    r.ios.frameworks = "SystemConfiguration", "CoreGraphics"
-#    r.tvos.frameworks = "SystemConfiguration", "CoreGraphics"
-#    r.osx.frameworks = "SystemConfiguration", "Cocoa"
-#
-#    r.ios.libraries = "z", "c++"
-#    r.tvos.libraries = "z", "c++"
-#    r.osx.libraries = "z", "c++"
-#
-#    r.ios.pod_target_xcconfig = {
-#        'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64',
-#        'OTHER_LDFLAGS' => '-ObjC'
-#    }
-#    r.ios.user_target_xcconfig = {
-#      'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
-#    }
-#
-#    r.tvos.pod_target_xcconfig = {
-#        'EXCLUDED_ARCHS[sdk=appletvsimulator*]' => 'arm64',
-#        'OTHER_LDFLAGS' => '-ObjC'
-#    }
-#    r.tvos.user_target_xcconfig = {
-#      'EXCLUDED_ARCHS[sdk=appletvsimulator*]' => 'arm64'
-#    }
-#
-#    r.osx.pod_target_xcconfig = {
-#       'OTHER_LDFLAGS' => '-ObjC'
-#    }
-#
-#  end
-#
-#  s.subspec 'NetworkDiagnosis' do |n|
-#    n.dependency 'AliyunLogProducer/Bricks'
-#    n.source_files = 'AliyunLogProducer/AliyunLogProducer/NetworkDiagnosis/**/*.{m,h}'
-#    n.public_header_files = "AliyunLogProducer/AliyunLogProducer/NetworkDiagnosis/**/*.h"
-#    n.vendored_frameworks = 'AliyunLogProducer/AliyunLogProducer/NetworkDiagnosis/AliNetworkDiagnosis.framework'
-#    n.project_header_files = 'AliyunLogProducer/AliyunLogProducer/NetworkDiagnosis/AliNetworkDiagnosis.framework/Headers/**/*.h'
-#    n.frameworks = "SystemConfiguration", "CoreGraphics"
-#    n.libraries = "z", "c++"
-#    n.pod_target_xcconfig = {
-#      'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64',
-#      'OTHER_LDFLAGS' => '-ObjC',
-#    }
-#    n.user_target_xcconfig = {
-#      'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
-#    }
-#  end
-#
-#  s.subspec 'Trace' do |t|
-#    t.ios.deployment_target = '10.0'
-#    t.ios.dependency 'AliyunLogProducer/Bricks'
-#    t.ios.dependency "OpenTelemetryApi", "0.0.7"
-#    t.ios.dependency "OpenTelemetrySdk", "0.0.16"
-#    t.ios.source_files = 'AliyunLogProducer/AliyunLogProducer/Trace/**/*.{m,h}'
-#    t.ios.public_header_files = "AliyunLogProducer/AliyunLogProducer/Trace/**/*.h"
-##      t.exclude_files = 'AliyunLogProducer/AliyunLogProducer/Trace/**/OpenTelemetrySdk-Swift.h'
-##      t.vendored_frameworks = 'AliyunLogProducer/AliyunLogProducer/Trace/*.{xcframework}'
-##      t.vendored_frameworks = 'AliyunLogProducer/AliyunLogProducer/Trace/OpenTelemetryApi.xcframework'
-##      t.vendored_frameworks = 'AliyunLogProducer/AliyunLogProducer/Trace/OpenTelemetrySdk.framework'
-##      t.frameworks = "SystemConfiguration", "CoreGraphics"
-##      t.libraries = "z", "c++"
-#    t.ios.pod_target_xcconfig = {
-#      'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64',
-#      'DEFINES_MODULE' => 'YES',
-#      'OTHER_LDFLAGS' => '-ObjC'
-#    }
-#    t.ios.user_target_xcconfig = {
-#      'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
-#    }
-#  end
 end
 

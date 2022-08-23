@@ -22,12 +22,12 @@ targets.each do |t|
 #      pod 'AliyunLogProducer/CrashReporter2', :path =>'../../'
 ##      pod 'AliyunLogProducer/Producer', :path =>'../../'
 
-      pod 'AliyunLogProducer', '3.0.0.beta.3', :subspecs => ['Producer', 'Core', 'OT', 'CrashReporter', 'NetworkDiagnosis']
-#      pod 'AliyunLogProducer/Producer', :path =>'../../'
-#      pod 'AliyunLogProducer/Core', :path =>'../../'
-#      pod 'AliyunLogProducer/OT', :path =>'../../'
-#      pod 'AliyunLogProducer/CrashReporter', :path =>'../../'
-#      pod 'AliyunLogProducer/NetworkDiagnosis', :path =>'../../'
+#      pod 'AliyunLogProducer', '3.0.0', :subspecs => ['CrashReporter', 'NetworkDiagnosis']
+      pod 'AliyunLogProducer/Producer', :path =>'../../'
+      pod 'AliyunLogProducer/Core', :path =>'../../'
+      pod 'AliyunLogProducer/OT', :path =>'../../'
+      pod 'AliyunLogProducer/CrashReporter', :path =>'../../'
+      pod 'AliyunLogProducer/NetworkDiagnosis', :path =>'../../'
     end
 
 end

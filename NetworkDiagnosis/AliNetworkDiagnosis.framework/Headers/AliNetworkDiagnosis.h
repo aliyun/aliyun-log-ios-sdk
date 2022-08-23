@@ -31,13 +31,14 @@ typedef NS_ENUM(NSUInteger, AliNetDiagLogLevel){
 
 +(void)registerDelegate:(id<AliNetworkDiagnosisDelegate>)delegate;
 
-+(void)init:(NSString*)appKey;
-+(void)init:(NSString*)appKey deviceId:(NSString*)deviceId withSiteId:(NSString*)siteId;
+//+(void)init:(NSString*)appKey;
+//+(void)init:(NSString*)appKey deviceId:(NSString*)deviceId withSiteId:(NSString*)siteId;
 
 +(void)init:(NSString*)secretKey deviceId:(NSString*)deviceId siteId:(NSString*)siteId extension:(NSDictionary*)extension;
 +(void)setPolicyDomain:(NSString*)domain;
 +(void)refreshSecretKey:(NSString*)secretKey;
 +(void)executeOncePolicy:(NSString*)policy;
 +(void)disableExNetInfo;
++(void)enableDebug:(BOOL)debug;
 @end
 

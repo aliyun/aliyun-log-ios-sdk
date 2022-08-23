@@ -93,6 +93,8 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
                     extension:networkCredentials.extension
     ];
     
+    [AliNetworkDiagnosis enableDebug:NO];
+    
     [AliNetworkDiagnosis registerDelegate:_sender];
     
     [[SLSNetworkDiagnosis sharedInstance] setNetworkDiagnosisFeature:self];

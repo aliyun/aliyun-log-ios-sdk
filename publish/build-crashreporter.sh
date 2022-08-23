@@ -27,5 +27,5 @@ lipo -create iphoneos/${SCHEME}.framework/${SCHEME} iphonesimulator/${SCHEME}.fr
 rm -rf iphoneos
 rm -rf iphonesimulator
 
-open .
-
+# cd ..
+# sh strip_symbols.sh AliyunLogCrashReporter ../../exported_symbols/crash_reporter_symbols.txt
