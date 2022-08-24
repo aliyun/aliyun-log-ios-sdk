@@ -16,6 +16,7 @@
 		F84F8AE02814E1180038A46E /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F80DF47826A7034E00151F7C /* libc++.tbd */; };
 		F84F8AE12814E1180038A46E /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D0CAEEE252177D800A4985A /* libz.tbd */; };
 		F876349E28AC94DC0062BBB5 /* AliyunLogOT.h in Headers */ = {isa = PBXBuildFile; fileRef = F876349D28AC94DC0062BBB5 /* AliyunLogOT.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F87828D328B608CA00F3D2B5 /* Unity4SLSiOS.m in Sources */ = {isa = PBXBuildFile; fileRef = F878289328B6035F00F3D2B5 /* Unity4SLSiOS.m */; };
 		F8E74BA928ACAE71000609C3 /* SLSCrashReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = F8E74BA428ACAE71000609C3 /* SLSCrashReporter.m */; };
 		F8E74BAA28ACAE71000609C3 /* SLSCrashReporterFeature.m in Sources */ = {isa = PBXBuildFile; fileRef = F8E74BA528ACAE71000609C3 /* SLSCrashReporterFeature.m */; };
 		F8E74BAC28ACAE71000609C3 /* SLSCrashReporter.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E74BA728ACAE71000609C3 /* SLSCrashReporter.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -162,6 +163,15 @@
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F87828C828B6089D00F3D2B5 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F89F65CB273E454B00CEE012 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -203,6 +213,10 @@
 		F84F8AE72814E1180038A46E /* AliyunLogNetworkDiagnosis.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AliyunLogNetworkDiagnosis.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8696C4F27F0066D00EF0020 /* AliyunLogCrashReporter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AliyunLogCrashReporter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F876349D28AC94DC0062BBB5 /* AliyunLogOT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AliyunLogOT.h; sourceTree = "<group>"; };
+		F878289228B6035F00F3D2B5 /* Unity4SLSiOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Unity4SLSiOS.h; sourceTree = "<group>"; };
+		F878289328B6035F00F3D2B5 /* Unity4SLSiOS.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Unity4SLSiOS.m; sourceTree = "<group>"; };
+		F87828CA28B6089D00F3D2B5 /* libUnity4SLS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libUnity4SLS.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		F87828DA28B60DE400F3D2B5 /* build-unity4sls.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = "build-unity4sls.sh"; path = "publish/build-unity4sls.sh"; sourceTree = "<group>"; };
 		F88FAFDE28ACECCC00F8792A /* build-core.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = "build-core.sh"; path = "publish/build-core.sh"; sourceTree = "<group>"; };
 		F88FAFDF28ACECCC00F8792A /* build-producer.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = "build-producer.sh"; path = "publish/build-producer.sh"; sourceTree = "<group>"; };
 		F88FAFE028ACECCC00F8792A /* build-networkdiagnosis.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = "build-networkdiagnosis.sh"; path = "publish/build-networkdiagnosis.sh"; sourceTree = "<group>"; };
@@ -380,6 +394,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F87828C728B6089D00F3D2B5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F8F6A9A228ABBB730070B023 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -431,11 +452,13 @@
 				F88FAFE028ACECCC00F8792A /* build-networkdiagnosis.sh */,
 				F88FAFE328ACECCC00F8792A /* build-ot.sh */,
 				F88FAFDF28ACECCC00F8792A /* build-producer.sh */,
+				F87828DA28B60DE400F3D2B5 /* build-unity4sls.sh */,
 				F8FC419728AB9B1300618273 /* AliyunLogProducer */,
 				F8F6A9AE28ABBBDB0070B023 /* OT */,
 				F8F6AA5328AC7BCC0070B023 /* Core */,
 				F8E74BA328ACAE71000609C3 /* CrashReporter */,
 				F8F09C1228ACC48C0086A714 /* NetworkDiagnosis */,
+				F878289028B5FC3800F3D2B5 /* Unity4SLS */,
 				9D984DB32520A9B7009DE4FE /* Products */,
 				9D0CAEED252177D800A4985A /* Frameworks */,
 			);
@@ -449,8 +472,18 @@
 				F84F8AE72814E1180038A46E /* AliyunLogNetworkDiagnosis.framework */,
 				F8F6A9AC28ABBB730070B023 /* AliyunLogOT.framework */,
 				F8F6AA5128AC7B6F0070B023 /* AliyunLogCore.framework */,
+				F87828CA28B6089D00F3D2B5 /* libUnity4SLS.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		F878289028B5FC3800F3D2B5 /* Unity4SLS */ = {
+			isa = PBXGroup;
+			children = (
+				F878289228B6035F00F3D2B5 /* Unity4SLSiOS.h */,
+				F878289328B6035F00F3D2B5 /* Unity4SLSiOS.m */,
+			);
+			path = Unity4SLS;
 			sourceTree = "<group>";
 		};
 		F8E74BA328ACAE71000609C3 /* CrashReporter */ = {
@@ -882,6 +915,23 @@
 			productReference = F8696C4F27F0066D00EF0020 /* AliyunLogCrashReporter.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		F87828C928B6089D00F3D2B5 /* Unity4SLS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F87828D028B6089D00F3D2B5 /* Build configuration list for PBXNativeTarget "Unity4SLS" */;
+			buildPhases = (
+				F87828C628B6089D00F3D2B5 /* Sources */,
+				F87828C728B6089D00F3D2B5 /* Frameworks */,
+				F87828C828B6089D00F3D2B5 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Unity4SLS;
+			productName = Unity4SLSiOS;
+			productReference = F87828CA28B6089D00F3D2B5 /* libUnity4SLS.a */;
+			productType = "com.apple.product-type.library.static";
+		};
 		F8F6A96428ABBB730070B023 /* AliyunLogOT */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F8F6A9A928ABBB730070B023 /* Build configuration list for PBXNativeTarget "AliyunLogOT" */;
@@ -932,6 +982,9 @@
 					9D984DB12520A9B7009DE4FE = {
 						CreatedOnToolsVersion = 11.2.1;
 					};
+					F87828C928B6089D00F3D2B5 = {
+						CreatedOnToolsVersion = 13.3.1;
+					};
 				};
 			};
 			buildConfigurationList = 9D984DAC2520A9B7009DE4FE /* Build configuration list for PBXProject "AliyunLogProducer" */;
@@ -952,6 +1005,7 @@
 				F8F6AA3128AC7B6F0070B023 /* AliyunLogCore */,
 				F8696C1027F0066D00EF0020 /* AliyunLogCrashReporter */,
 				F84F8ACF2814E1180038A46E /* AliyunLogNetworkDiagnosis */,
+				F87828C928B6089D00F3D2B5 /* Unity4SLS */,
 			);
 		};
 /* End PBXProject section */
@@ -1044,6 +1098,14 @@
 			files = (
 				F8E74BAA28ACAE71000609C3 /* SLSCrashReporterFeature.m in Sources */,
 				F8E74BA928ACAE71000609C3 /* SLSCrashReporter.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F87828C628B6089D00F3D2B5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F87828D328B608CA00F3D2B5 /* Unity4SLSiOS.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1461,6 +1523,36 @@
 			};
 			name = Release;
 		};
+		F87828D128B6089D00F3D2B5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QWPJRHMG6U;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F87828D228B6089D00F3D2B5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QWPJRHMG6U;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		F8F6A9AA28ABBB730070B023 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1680,6 +1772,15 @@
 			buildConfigurations = (
 				F8696C4D27F0066D00EF0020 /* Debug */,
 				F8696C4E27F0066D00EF0020 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F87828D028B6089D00F3D2B5 /* Build configuration list for PBXNativeTarget "Unity4SLS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F87828D128B6089D00F3D2B5 /* Debug */,
+				F87828D228B6089D00F3D2B5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
