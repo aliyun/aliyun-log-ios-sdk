@@ -16,6 +16,9 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SLSSdkFeature : SLSNoOpFeature
+{
+    @protected CredentialsCallback _callback;
+}
 @property(nonatomic, strong, readonly) SLSConfiguration *configuration;
 
 - (SLSSpanBuilder *) newSpanBuilder: (NSString *)spanName;

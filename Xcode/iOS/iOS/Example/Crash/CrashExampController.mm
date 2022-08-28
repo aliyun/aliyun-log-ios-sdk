@@ -252,6 +252,21 @@
         sleep(3);                                       // 模拟耗时操作
         NSLog(@"任务3---%@",[NSThread currentThread]);  // 打印当前线程
     });
+    // 任务 4
+    dispatch_sync(queue, ^{
+        sleep(3);                                       // 模拟耗时操作
+        NSLog(@"任务4---%@",[NSThread currentThread]);  // 打印当前线程
+    });
+    // 任务 5
+    dispatch_sync(queue, ^{
+        sleep(3);                                       // 模拟耗时操作
+        NSLog(@"任务5---%@",[NSThread currentThread]);  // 打印当前线程
+    });
+    // 任务 6
+    dispatch_sync(queue, ^{
+        sleep(3);                                       // 模拟耗时操作
+        NSLog(@"任务6---%@",[NSThread currentThread]);  // 打印当前线程
+    });
 }
 
 - (void) crash {

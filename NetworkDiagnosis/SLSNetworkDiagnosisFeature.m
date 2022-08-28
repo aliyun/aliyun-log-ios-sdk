@@ -104,6 +104,13 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
     [_sender setCredentials:credentials];
 }
 
+- (void)setCallback:(CredentialsCallback)callback {
+    [super setCallback:callback];
+    if (_sender) {
+        [_sender setCallback:callback];
+    }
+}
+
 - (NSString *) getIPAIdBySecretKey: (NSString *) secretKey {
     NSString *decode = [secretKey base64Decode];
     if (!decode) {
@@ -317,6 +324,10 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
         _feature = feature;
     }
     return self;
+}
+
+- (NSString *)provideFeatureName {
+    return [_feature name];
 }
 
 - (NSString *)provideLogFileName:(SLSCredentials *)credentials {

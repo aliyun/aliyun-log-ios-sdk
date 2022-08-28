@@ -8,6 +8,7 @@
 #import "SLSSdkSender.h"
 #import "AliyunLogProducer/AliyunLogProducer.h"
 
+SLSSdkSender *_ref_sls_sdk_sender;
 @interface SLSSdkSender ()
 
 @property(nonatomic, strong) LogProducerClient *client;
@@ -16,11 +17,21 @@
 @end
 
 @implementation SLSSdkSender
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        _ref_sls_sdk_sender = self;
+    }
+    return self;
+}
 
 + (instancetype) sender {
     return [[SLSSdkSender alloc] init];
 }
-
+- (NSString *) provideFeatureName {
+    return @"default";
+}
 - (NSString *) provideLogFileName: (SLSCredentials *) credentials {
     return @"data.dat";
 }
@@ -135,7 +146,10 @@
     if (credentials.instanceId && credentials.instanceId.length > 0) {
         [_config setLogstore:[self getLogstoreByInstanceId:credentials.instanceId]];
     }
-    
+}
+
+- (void) setCallback:(nullable CredentialsCallback) callback {
+    _callback = callback;
 }
 
 - (NSString *) getLogstoreByInstanceId: (NSString *) instanceId {
@@ -155,7 +169,15 @@ static void _on_log_send_done(
                               const unsigned char * raw_buffer,
                               void * userparams
                               ) {
-    SLSLogV(@"send success, config : %s, result : %d, log bytes : %zu, compressed bytes : %zu, request id : %s", config_name, result, log_bytes, compressed_bytes, req_id);
+    if (LogProducerOK == result) {
+        SLSLogV(@"result code: %d, errorMessage: %s, logstore: %s", result, message, config_name);
+    } else {
+        SLSLog(@"result code: %d, errorMessage: %s, logstore: %s", result, message, config_name);
+    }
+    
+    if (_ref_sls_sdk_sender && _ref_sls_sdk_sender->_callback) {
+        _ref_sls_sdk_sender->_callback([_ref_sls_sdk_sender provideFeatureName], result);
+    }
 }
 
 @end

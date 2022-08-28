@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void) initialize: (SLSCredentials *) credentials;
 - (BOOL) send: (Log *) log;
 - (void) setCredentials: (SLSCredentials *) credentials;
-
+- (void) setCallback: (nullable CredentialsCallback) callback;
 @end
 
 NS_ASSUME_NONNULL_END

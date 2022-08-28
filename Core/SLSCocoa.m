@@ -158,6 +158,13 @@
     
     _configuration.userInfo = userInfo;
 }
+- (void)registerCredentialsCallback:(CredentialsCallback)callback {
+    [(SLSSdkSender *) _configuration.spanProcessor setCallback: callback];
+    
+    for (id<SLSFeatureProtocol> feature in _features) {
+        [feature setCallback:callback];
+    }
+}
 
 #pragma mark - extras
 - (void) setExtra: (NSString *)key value: (NSString *)value {

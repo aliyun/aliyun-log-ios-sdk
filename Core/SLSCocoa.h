@@ -9,6 +9,7 @@
 #import "SLSCredentials.h"
 #import "SLSConfiguration.h"
 #import "SLSUserInfo.h"
+#import "LogProducerClient.h"
 
 NS_ASSUME_NONNULL_BEGIN
 @class SLSExtraProvider;
@@ -17,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL) initialize: (SLSCredentials *) credentials configuration: (void (^)(SLSConfiguration *configuration)) configuration;
 - (void) setCredentials: (SLSCredentials *) credentials;
 - (void) setUserInfo: (SLSUserInfo *) userInfo;
+- (void) registerCredentialsCallback: (nullable CredentialsCallback) callback;
 - (void) setExtra: (NSString *)key value: (NSString *)value;
 - (void) setExtra: (NSString *)key dictValue: (NSDictionary<NSString *, NSString *> *)value;
 - (void) removeExtra: (NSString *)key;

@@ -105,7 +105,7 @@ typedef void(^directory_changed_block)(NSString*);
         WPKThreadBlockCheckerConfig *blockConfig = [[WPKThreadBlockCheckerConfig alloc] init];
         blockConfig.sendBeatInterval = 2;
         blockConfig.checkBeatInterval = 2;
-        blockConfig.toleranceBeatMissingCount = 1;
+        blockConfig.toleranceBeatMissingCount = 2;
         
         [blockChecker startWithConfig:blockConfig];
     }

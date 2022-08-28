@@ -74,5 +74,8 @@
     
 }
 
+- (void)setCallback:(CredentialsCallback)callback {
+    _callback = callback;
+}
 
 @end
