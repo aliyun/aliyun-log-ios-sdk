@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
     isPodLint = ENV['env'].to_s == 'lint'
     
     s.name             = "AliyunLogProducer"
-    s.version          = "3.0.0"
+    s.version          = "3.0.1"
     s.summary          = "aliyun log service ios producer."
     
     # This description is used to generate tags and improve search results.
@@ -29,8 +29,8 @@ Pod::Spec.new do |s|
         LICENSE
     }
     s.author           = { 'aliyun-log' => 'yulong.gyl@alibaba-inc.com' }
-    s.source           = { :http => "https://ios-repo.oss-cn-shanghai.aliyuncs.com/AliyunLogProducer/3.0.0/AliyunLogProducer.zip" }
-#    s.source           = { :http => "framework_url" }
+#    s.source           = { :http => "https://ios-repo.oss-cn-shanghai.aliyuncs.com/AliyunLogProducer/3.0.1.beta.3/AliyunLogProducer.zip" }
+    s.source           = { :http => "framework_url" }
     s.social_media_url = "http://t.cn/AiRpol8C"
     
     # s.ios.deployment_target = '9.0'

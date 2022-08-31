@@ -1,5 +1,8 @@
 #!/bin/sh
-rm -rf build/zip
+rm -rf build
+mkdir build
+cp -r ../NetworkDiagnosis/AliNetworkDiagnosis.framework build/AliNetworkDiagnosis.framework
+cp -r ../CrashReporter/WPKMobi.xcframework build/WPKMobi.xcframework
 
 sh build-producer.sh
 sh build-ot.sh
@@ -16,6 +19,10 @@ mkdir -p build/zip/AliyunLogNetworkDiagnosis && cp -r build/AliyunLogNetworkDiag
 mkdir -p build/zip/AliyunLogOT && cp -r build/AliyunLogOT.framework build/zip/AliyunLogOT/AliyunLogOT.framework
 mkdir -p build/zip/AliyunLogProducer && cp -r build/AliyunLogProducer.framework build/zip/AliyunLogProducer/AliyunLogProducer.framework
 mkdir -p build/zip/WPKMobi && cp -r build/WPKMobi.xcframework build/zip/WPKMobi/WPKMobi.xcframework
+
+pushd build/zip
+zip -r ../AliyunLogProducer.zip *
+popd
 
 open build/zip
 

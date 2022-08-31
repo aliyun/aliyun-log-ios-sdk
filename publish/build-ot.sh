@@ -26,5 +26,3 @@ lipo -create iphoneos/${SCHEME}.framework/${SCHEME} iphonesimulator/${SCHEME}.fr
 
 rm -rf iphoneos
 rm -rf iphonesimulator
-
-open .

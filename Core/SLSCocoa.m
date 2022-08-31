@@ -287,7 +287,7 @@ static SLSResource *DEFAULT_RESOURCE;
                                                //            [SLSKeyValue create:@"page.name" value:([SLSAppUtils sharedInstance].foreground ? @"true" : @"false")],
                                            [SLSKeyValue create:@"foreground" value:([SLSAppUtils sharedInstance].foreground ? @"true" : @"false")],
                                            [SLSKeyValue create:@"instance" value:_credentials.instanceId],
-                                           [SLSKeyValue create:@"env" value:(_configuration.env ? _configuration.env : @"")],
+                                           [SLSKeyValue create:@"env" value:(_configuration.env ? _configuration.env : @"default")],
                                            nil
     ];
     
