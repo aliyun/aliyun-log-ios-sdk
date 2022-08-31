@@ -15,7 +15,7 @@
 @implementation Utdid
 + (NSString *) getUtdid {
     NSString *utdid = [SLSStorage getUtdid];
-    if(utdid) {
+    if(utdid.length > 0) {
         return utdid;
     }
     

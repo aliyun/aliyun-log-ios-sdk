@@ -11,10 +11,19 @@
 
 @interface CrashExampController ()
 @property(nonatomic, strong) NSLock *lock;
-
+@property(atomic, assign) BOOL enabled;
 @end
 
 @implementation CrashExampController
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        _enabled = YES;
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -63,6 +72,8 @@
     [self createButton:@"动态更新" andAction:@selector(updateConfiguration) andX:lx andY:(SLCellHeight + SLPadding) * 9 andWidth:(SLScreenW - lx * 4) andHeight:SLCellHeight andFont: font];
     
     [self createButton:@"Jank" andAction:@selector(onJank) andX:lx andY:(SLCellHeight + SLPadding) * 10 andWidth:(SLScreenW - lx * 4) andHeight:SLCellHeight andFont: font];
+    
+    [self createButton:@"开启/关闭" andAction:@selector(switchEnabled) andX:lx andY:(SLCellHeight + SLPadding) * 11 andWidth:(SLScreenW - lx * 4) andHeight:SLCellHeight andFont: font];
 }
 
 - (void) initCrash {
@@ -271,6 +282,16 @@
 
 - (void) crash {
     
+}
+
+- (void) switchEnabled {
+    if (_enabled) {
+        _enabled = NO;
+    } else {
+        _enabled = YES;
+    }
+    
+    [[SLSCrashReporter sharedInstance] setEnabled:_enabled];
 }
 
 @end
