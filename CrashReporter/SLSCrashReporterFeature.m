@@ -353,34 +353,6 @@ static void observeDirectory(dispatch_source_t _source, NSString *path, director
 //    SLSLogV(@"onMainThreadCheckingReset");
 }
 
-#pragma mark - add custom
-- (void)addCustom:(NSString *)eventId properties:(NSDictionary<NSString *,NSString *> *)proterties {
-    [super addCustom:eventId properties:proterties];
-    
-    SLSSpanBuilder *buidler = [self newSpanBuilder:@"custom_error"];
-    [buidler addAttribute:
-         [SLSAttribute of:@"t" value:@"error"],
-         [SLSAttribute of:@"ex.type" value:@"custom"],
-         [SLSAttribute of:@"ex.event_id" value:eventId],
-         nil
-    ];
-    
-    if (proterties && [NSJSONSerialization isValidJSONObject:proterties]) {
-        [buidler addAttribute:
-             [SLSAttribute of:@"ex.custom" value:[[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:proterties
-                                                                                                                options:kNilOptions
-                                                                                                                  error:nil
-                                                                                ]
-                                                                       encoding:NSUTF8StringEncoding
-                                                 ]
-             ],
-             nil
-        ];
-    }
-    [[buidler build] end];
-    
-}
-
 #pragma mark - setter
 - (void) setFeatureEnabled: (BOOL) enable {
     if (enable) {

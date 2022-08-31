@@ -13,7 +13,6 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SLSCrashReporter : NSObject
 + (instancetype) sharedInstance;
 - (void) setCrashReporterFeature: (SLSCrashReporterFeature *) feature;
-- (void) addCustomError: (NSString *) eventId properties: (NSDictionary<NSString*, NSString*> *) properties;
 - (void) setEnabled: (BOOL) enable;
 @end
 

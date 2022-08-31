@@ -30,9 +30,6 @@
 - (void)setCallback:(nullable CredentialsCallback) callback {
     
 }
-- (void) addCustom: (NSString *) eventId properties: (NSDictionary<NSString *, NSString *> *) proterties {
-    
-}
 - (void) setFeatureEnabled: (BOOL) enable {
     
 }

@@ -26,20 +26,6 @@
     _feature = feature;
 }
 
-- (void) addCustomError: (NSString *) eventId properties: (NSDictionary<NSString*, NSString*> *) properties {
-    if (!_feature) {
-        return;
-    }
-    if (!eventId || eventId.length <= 0) {
-        return;
-    }
-    if (!properties) {
-        return;
-    }
-    
-    [_feature addCustom:eventId properties:properties];
-}
-
 - (void) setEnabled: (BOOL) enable {
     if (!_feature) {
         return;

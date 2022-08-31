@@ -240,10 +240,10 @@
 //        @"view_content": @"click test"
 //    }];
     
-    [[SLSCrashReporter sharedInstance] addCustomError:@"Clicked" properties:@{
-        @"view_pos": @"1",
-        @"view_content": @"click test"
-    }];
+//    [[SLSCrashReporter sharedInstance] addCustomError:@"Clicked" properties:@{
+//        @"view_pos": @"1",
+//        @"view_content": @"click test"
+//    }];
 }
 
 - (void) onJank {
