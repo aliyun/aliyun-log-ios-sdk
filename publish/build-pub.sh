@@ -25,5 +25,3 @@ zip -r ../AliyunLogProducer.zip *
 popd
 
 open build/zip
-
-
