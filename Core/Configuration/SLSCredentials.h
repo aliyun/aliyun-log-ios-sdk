@@ -6,10 +6,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "LogProducerClient.h"
 
 NS_ASSUME_NONNULL_BEGIN
-typedef void (^CredentialsCallback)(NSString *feature, LogProducerResult result);
+typedef void (^CredentialsCallback)(NSString *feature, NSString *result);
 
 @class SLSNetworkDiagnosisCredentials;
 

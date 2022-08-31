@@ -9,7 +9,6 @@
 #import "SLSCredentials.h"
 #import "SLSConfiguration.h"
 #import "SLSUserInfo.h"
-#import "LogProducerClient.h"
 
 NS_ASSUME_NONNULL_BEGIN
 @class SLSExtraProvider;

@@ -176,8 +176,41 @@ static void _on_log_send_done(
     }
     
     if (_ref_sls_sdk_sender && _ref_sls_sdk_sender->_callback) {
-        _ref_sls_sdk_sender->_callback([_ref_sls_sdk_sender provideFeatureName], result);
+        _ref_sls_sdk_sender->_callback([_ref_sls_sdk_sender provideFeatureName], result2String(result));
     }
+}
+
+static NSString * result2String(log_producer_result result) {
+    switch (result) {
+        case LogProducerOK:
+            return @"LogProducerOK";
+        case LogProducerInvalid:
+            return @"LogProducerInvalid";
+        case LogProducerWriteError:
+            return @"LogProducerWriteError";
+        case LogProducerDropError:
+            return @"LogProducerDropError";
+        case LogProducerSendNetworkError:
+            return @"LogProducerSendNetworkError";
+        case LogProducerSendQuotaError:
+            return @"LogProducerSendQuotaError";
+        case LogProducerSendUnauthorized:
+            return @"LogProducerSendUnauthorized";
+        case LogProducerSendServerError:
+            return @"LogProducerSendServerError";
+        case LogProducerSendDiscardError:
+            return @"LogProducerSendDiscardError";
+        case LogProducerSendTimeError:
+            return @"LogProducerSendTimeError";
+        case LogProducerSendExitBufferdF:
+            return @"LogProducerSendExitBufferdF";
+        case LogProducerParametersInvalid:
+            return @"LogProducerParametersInvalid";
+        case LogProducerPERSISTENT_Error:
+            return @"LogProducerPERSISTENT_Error";
+            
+    }
+    return @"LogProducerUnknown";
 }
 
 @end
