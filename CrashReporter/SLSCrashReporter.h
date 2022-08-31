@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype) sharedInstance;
 - (void) setCrashReporterFeature: (SLSCrashReporterFeature *) feature;
 - (void) addCustomError: (NSString *) eventId properties: (NSDictionary<NSString*, NSString*> *) properties;
+- (void) setEnabled: (BOOL) enable;
 @end
 
 NS_ASSUME_NONNULL_END

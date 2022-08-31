@@ -21,7 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void) setCredentials: (SLSCredentials *) credentials;
 - (void) setCallback: (nullable CredentialsCallback) callback;
 - (void) addCustom: (NSString *) eventId properties: (NSDictionary<NSString *, NSString *> *) proterties;
-
+- (void) setFeatureEnabled: (BOOL) enable;
+- (BOOL) isFeatureEnabled;
 @end
 
 NS_ASSUME_NONNULL_END

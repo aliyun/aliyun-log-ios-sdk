@@ -39,4 +39,12 @@
     
     [_feature addCustom:eventId properties:properties];
 }
+
+- (void) setEnabled: (BOOL) enable {
+    if (!_feature) {
+        return;
+    }
+    
+    [_feature setFeatureEnabled:enable];
+}
 @end

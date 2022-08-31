@@ -14,7 +14,7 @@
 #import "SLSCrashReporter.h"
 #import <AliyunLogProducer/AliyunLogProducer.h>
 
-typedef void(^directory_changed_block)(NSString*);
+typedef void(^directory_changed_block)(NSString *);
 
 @interface SLSCrashReporterFeature ()<WPKThreadBlockCheckerDelegate>
 @property(nonatomic, strong) NSString *wpkStatLogPath;
@@ -37,6 +37,7 @@ typedef void(^directory_changed_block)(NSString*);
 
 @implementation SLSCrashReporterFeature
 
+#pragma mark - init
 - (NSString *)name {
     return @"crash_reporter";
 }
@@ -63,34 +64,6 @@ typedef void(^directory_changed_block)(NSString*);
 - (void) onPostStop {
     [super onPostStop];
 }
-
-- (void)addCustom:(NSString *)eventId properties:(NSDictionary<NSString *,NSString *> *)proterties {
-    [super addCustom:eventId properties:proterties];
-    
-    SLSSpanBuilder *buidler = [self newSpanBuilder:@"custom_error"];
-    [buidler addAttribute:
-         [SLSAttribute of:@"t" value:@"error"],
-         [SLSAttribute of:@"ex.type" value:@"custom"],
-         [SLSAttribute of:@"ex.event_id" value:eventId],
-         nil
-    ];
-    
-    if (proterties && [NSJSONSerialization isValidJSONObject:proterties]) {
-        [buidler addAttribute:
-             [SLSAttribute of:@"ex.custom" value:[[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:proterties
-                                                                                                                options:kNilOptions
-                                                                                                                  error:nil
-                                                                                ]
-                                                                       encoding:NSUTF8StringEncoding
-                                                 ]
-             ],
-             nil
-        ];
-    }
-    [[buidler build] end];
-    
-}
-
 
 - (void) initWPKMobi: (SLSCredentials *) credentials configuration: (SLSConfiguration *) configuration {
     if (configuration.enableCrashReporter) {
@@ -354,6 +327,7 @@ static void observeDirectory(dispatch_source_t _source, NSString *path, director
     }
 }
 
+#pragma mark - block
 /* @brief 检测到一次卡顿
  * @param blockTime 卡顿的时长
  */
@@ -377,6 +351,57 @@ static void observeDirectory(dispatch_source_t _source, NSString *path, director
  */
 - (void)onMainThreadCheckingReset {
 //    SLSLogV(@"onMainThreadCheckingReset");
+}
+
+#pragma mark - add custom
+- (void)addCustom:(NSString *)eventId properties:(NSDictionary<NSString *,NSString *> *)proterties {
+    [super addCustom:eventId properties:proterties];
+    
+    SLSSpanBuilder *buidler = [self newSpanBuilder:@"custom_error"];
+    [buidler addAttribute:
+         [SLSAttribute of:@"t" value:@"error"],
+         [SLSAttribute of:@"ex.type" value:@"custom"],
+         [SLSAttribute of:@"ex.event_id" value:eventId],
+         nil
+    ];
+    
+    if (proterties && [NSJSONSerialization isValidJSONObject:proterties]) {
+        [buidler addAttribute:
+             [SLSAttribute of:@"ex.custom" value:[[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:proterties
+                                                                                                                options:kNilOptions
+                                                                                                                  error:nil
+                                                                                ]
+                                                                       encoding:NSUTF8StringEncoding
+                                                 ]
+             ],
+             nil
+        ];
+    }
+    [[buidler build] end];
+    
+}
+
+#pragma mark - setter
+- (void) setFeatureEnabled: (BOOL) enable {
+    if (enable) {
+        if ([WPKSetup isWPKReporterActive]) {
+            return;
+        }
+        
+        [WPKSetup activeWPKReporter];
+        SLSLog(@"CrashReporterFeature enabled.");
+        return;
+    } else {
+        if ([WPKSetup isWPKReporterActive]) {
+            [WPKSetup disableWPKReporter];
+        }
+        SLSLog(@"CrashReporterFeature disabled.");
+    }
+}
+
+#pragma mark - getter
+- (BOOL) isFeatureEnabled {
+    return [WPKSetup isWPKReporterActive];
 }
 
 @end

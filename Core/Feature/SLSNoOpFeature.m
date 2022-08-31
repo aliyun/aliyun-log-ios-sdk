@@ -33,5 +33,11 @@
 - (void) addCustom: (NSString *) eventId properties: (NSDictionary<NSString *, NSString *> *) proterties {
     
 }
+- (void) setFeatureEnabled: (BOOL) enable {
+    
+}
+- (BOOL) isFeatureEnabled {
+    return YES;
+}
 
 @end
