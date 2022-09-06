@@ -249,7 +249,7 @@ static SLSResource *DEFAULT_RESOURCE;
             [DEFAULT_RESOURCE add:@"host.arch" value: [SLSDeviceUtils getCPUArch]];
             
             [DEFAULT_RESOURCE add:@"sls.sdk.language" value: @"Objective-C"];
-            [DEFAULT_RESOURCE add:@"sls.sdk.name" value: @"tracesdk"];
+            [DEFAULT_RESOURCE add:@"sls.sdk.name" value: @"SLSCocoa"];
             [DEFAULT_RESOURCE add:@"sls.sdk.version" value: [[HttpConfigProxy sharedInstance] getVersion]];
             
             NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];

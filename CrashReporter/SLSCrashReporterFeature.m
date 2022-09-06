@@ -76,8 +76,8 @@ typedef void(^directory_changed_block)(NSString *);
         WPKThreadBlockChecker *blockChecker = [WPKSetup threadBlockCheckerWithDelegate:self];
         
         WPKThreadBlockCheckerConfig *blockConfig = [[WPKThreadBlockCheckerConfig alloc] init];
-        blockConfig.sendBeatInterval = 2;
-        blockConfig.checkBeatInterval = 2;
+        blockConfig.sendBeatInterval = 3;
+        blockConfig.checkBeatInterval = 3;
         blockConfig.toleranceBeatMissingCount = 2;
         
         [blockChecker startWithConfig:blockConfig];
@@ -339,6 +339,7 @@ static void observeDirectory(dispatch_source_t _source, NSString *path, director
  */
 - (void)onMainThreadKeepOnBlocking {
     SLSLogV(@"onMainThreadKeepOnBlocking");
+    [WPKSetup sendAllReports];
 }
 
 /* @brief 心跳正常。两种情况表示正常：1、心跳正常（主线程正常）； 2、APP被置入后台。
