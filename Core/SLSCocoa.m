@@ -293,6 +293,10 @@ static SLSResource *DEFAULT_RESOURCE;
     
     [self provideExtra:attributes];
     
+    if (_configuration.userInfo) {
+        [self provideUserInfo:attributes userinfo:_configuration.userInfo];
+    }
+    
     NSArray<SLSAttribute *> *userAttributes = [_spanProvider provideAttribute];
     if (userAttributes) {
         [attributes addObjectsFromArray:userAttributes];
@@ -321,6 +325,36 @@ static SLSResource *DEFAULT_RESOURCE;
             ];
         }
     }
+}
+
+- (void) provideUserInfo: (NSMutableArray<SLSAttribute *> *) attributes userinfo: (SLSUserInfo *) info {
+    if (info.uid.length > 0) {
+        [attributes addObject:[SLSAttribute of:@"user.uid"
+                                         value:info.uid
+                              ]
+        ];
+    }
+    
+    if (info.channel.length > 0) {
+        [attributes addObject:[SLSAttribute of:@"user.channel"
+                                         value:info.channel
+                              ]
+        ];
+    }
+    
+    if (info.ext) {
+        for (NSString *k in info.ext) {
+            if (k.length == 0) {
+                continue;
+            }
+            
+            [attributes addObject:[SLSAttribute of:[NSString stringWithFormat:@"user.%@", k]
+                                             value:[info.ext valueForKey:k]
+                                   ]
+            ];
+        }
+    }
+    
 }
 @end
 

@@ -13,9 +13,10 @@
 {
     self = [super init];
     if (self) {
-        _enableCrashReporter = YES;
+        _enableCrashReporter = NO;
         _enableBlockDetection = NO;
         _enableNetworkDiagnosis = NO;
+        _debuggable = NO;
     }
     return self;
 }

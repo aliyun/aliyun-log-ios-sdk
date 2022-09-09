@@ -8,10 +8,14 @@
 #import "SLSUserInfo.h"
 
 @interface SLSUserInfo ()
-@property(nonatomic, strong) NSMutableDictionary *ext;
+
 @end
 
 @implementation SLSUserInfo
+
++ (instancetype) userInfo {
+    return [[SLSUserInfo alloc] init];
+}
 
 - (instancetype)init
 {
@@ -26,6 +30,14 @@
     if (key && value) {
         [_ext setObject:value forKey:key];
     }
+}
+
+- (id)copyWithZone:(nullable NSZone *)zone {
+    SLSUserInfo *info = [[SLSUserInfo alloc] init];
+    info.uid = [self.uid copy];
+    info.channel = [self.channel copy];
+    info->_ext = [self.ext copy];
+    return info;
 }
 
 @end

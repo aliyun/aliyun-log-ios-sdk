@@ -20,6 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(atomic, assign) BOOL enableBlockDetection;
 @property(atomic, assign) BOOL enableNetworkDiagnosis;
 
+@property(atomic, assign) BOOL debuggable;
+
 @property(nonatomic, copy) NSString *env;
 
 @property(nonatomic, strong, readonly) id<SLSSpanProcessorProtocol> spanProcessor;
