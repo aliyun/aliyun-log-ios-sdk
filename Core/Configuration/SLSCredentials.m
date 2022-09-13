@@ -17,6 +17,10 @@
     _networkDiagnosisCredentials = [SLSNetworkDiagnosisCredentials credentials:self];
     return _networkDiagnosisCredentials;
 }
+- (SLSTraceCredentials *) createTraceCredentials {
+    _traceCredentials = [SLSTraceCredentials credentials:self];
+    return _traceCredentials;
+}
 @end
 
 #pragma mark - SLSLogstoreCredentials
@@ -61,6 +65,14 @@
         [self.extension setObject:value forKey:key];
     }
 }
+@end
 
-
+#pragma mark - SLS Trace Credentials
+@implementation SLSTraceCredentials
+- (instancetype)initWithCredentials:(SLSCredentials *)credentials {
+    if (self = [super initWithCredentials:credentials]) {
+        
+    }
+    return self;
+}
 @end

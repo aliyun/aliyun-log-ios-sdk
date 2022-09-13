@@ -4,7 +4,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'AliyunLogProducer'
-  s.version          = '3.0.3'
+  s.version          = '3.0.4'
   s.summary          = 'aliyun log service ios producer.'
 
 # This description is used to generate tags and improve search results.
@@ -113,23 +113,38 @@ https://help.aliyun.com/product/28958.html
     }
   end
   
-    s.subspec 'NetworkDiagnosis' do |n|
-      n.dependency 'AliyunLogProducer/Core'
-      n.dependency 'AliyunLogProducer/OT'
-      n.source_files = 'NetworkDiagnosis/**/*.{m,h}'
-      n.public_header_files = "NetworkDiagnosis/**/*.h"
-      n.vendored_frameworks = 'NetworkDiagnosis/AliNetworkDiagnosis.framework'
+  s.subspec 'NetworkDiagnosis' do |n|
+    n.dependency 'AliyunLogProducer/Core'
+    n.dependency 'AliyunLogProducer/OT'
+    n.source_files = 'NetworkDiagnosis/**/*.{m,h}'
+    n.public_header_files = "NetworkDiagnosis/**/*.h"
+    n.vendored_frameworks = 'NetworkDiagnosis/AliNetworkDiagnosis.framework'
 #      n.project_header_files = 'NetworkDiagnosis/AliNetworkDiagnosis.framework/Headers/**/*.h'
-      n.exclude_files = 'NetworkDiagnosis/AliNetworkDiagnosis.framework/**/Headers/*.h'
-      n.frameworks = "SystemConfiguration", "CoreGraphics"
-      n.libraries = "z", "c++", "resolv"
-      n.pod_target_xcconfig = {
-        'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64',
-        'OTHER_LDFLAGS' => '-ObjC',
-      }
-      n.user_target_xcconfig = {
-        'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
-      }
-    end
+    n.exclude_files = 'NetworkDiagnosis/AliNetworkDiagnosis.framework/**/Headers/*.h'
+    n.frameworks = "SystemConfiguration", "CoreGraphics"
+    n.libraries = "z", "c++", "resolv"
+    n.pod_target_xcconfig = {
+      'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64',
+      'OTHER_LDFLAGS' => '-ObjC',
+    }
+    n.user_target_xcconfig = {
+      'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
+    }
+  end
+  
+  s.subspec 'Trace' do |t|
+    t.dependency 'AliyunLogProducer/Producer'
+    t.dependency 'AliyunLogProducer/Core'
+    t.dependency 'AliyunLogProducer/OT'
+    t.source_files = 'Trace/**/*.{m,h}'
+    t.public_header_files = "Trace/**/*.h"
+    t.pod_target_xcconfig = {
+      'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64',
+      'OTHER_LDFLAGS' => '-ObjC',
+    }
+    t.user_target_xcconfig = {
+      'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
+    }
+  end
 end
 

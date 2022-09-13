@@ -80,6 +80,10 @@
         [self initFeature: @"SLSNetworkDiagnosisFeature"];
     }
     
+    if (_configuration.enableTrace) {
+        [self initFeature:@"SLSTraceFeature"];
+    }
+    
     _hasInitialize = YES;
     return YES;
 }

@@ -109,4 +109,25 @@
     return dict;
 }
 
+- (id)copyWithZone:(nullable NSZone *)zone {
+    SLSSpan *span = [[SLSSpan alloc] init];
+    span.name = _name;
+    span.traceID = _traceID;
+    span.spanID = _spanID;
+    span.parentSpanID = _parentSpanID;
+    span.start = _start;
+    span.end = _end;
+    span.duration = _duration;
+    span.attribute = _attribute;
+    span.statusCode = _statusCode;
+    span.statusMessage = _statusMessage;
+    span.host = _host;
+    span.resource = [_resource copy];
+    span.service = _service;
+    span.sessionId = _sessionId;
+    span.transactionId = _transactionId;
+    span.finished = _finished;
+    return span;
+}
+
 @end

@@ -88,7 +88,7 @@
 }
 
 - (void) gotoTracePage {
-//    [self gotoPageWithPage:[[TraceExampleController alloc] init]];
+    [self gotoPageWithPage:[[TraceExampleController alloc] init]];
 }
 
 - (void) gotoPageWithPage: (ViewController *) controller {

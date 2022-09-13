@@ -11,6 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 typedef void (^CredentialsCallback)(NSString *feature, NSString *result);
 
 @class SLSNetworkDiagnosisCredentials;
+@class SLSTraceCredentials;
 
 @interface SLSCredentials : NSObject
 @property(nonatomic, strong) NSString *instanceId;
@@ -22,10 +23,12 @@ typedef void (^CredentialsCallback)(NSString *feature, NSString *result);
 @property(nonatomic, strong) NSString *securityToken;
 
 @property(nonatomic, strong) SLSNetworkDiagnosisCredentials *networkDiagnosisCredentials;
+@property(nonatomic, strong) SLSTraceCredentials *traceCredentials;
 
 + (instancetype) credentials;
 
 - (SLSNetworkDiagnosisCredentials *) createNetworkDiagnosisCredentials;
+- (SLSTraceCredentials *) createTraceCredentials;
 
 @end
 
@@ -47,6 +50,10 @@ typedef void (^CredentialsCallback)(NSString *feature, NSString *result);
 + (instancetype) credentials: (SLSCredentials *) credentials;
 
 - (void) putExtension: (NSString *) value forKey: (NSString *) key;
+
+@end
+
+@interface SLSTraceCredentials : SLSLogstoreCredentials
 
 @end
 

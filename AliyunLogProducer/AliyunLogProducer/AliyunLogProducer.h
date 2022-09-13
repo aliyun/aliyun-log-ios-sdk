@@ -52,3 +52,10 @@ FOUNDATION_EXPORT const unsigned char AliyunLogProducerVersionString[];
 #elif __has_include("AliyunLogNetworkDiagnosis.h")
 #import "AliyunLogNetworkDiagnosis.h"
 #endif
+
+// AliyunLogTrace
+#if __has_include("AliyunLogTrace/AliyunLogTrace.h")
+#import "AliyunLogTrace/AliyunLogTrace.h"
+#elif __has_include("AliyunLogTrace.h")
+#import "AliyunLogTrace.h"
+#endif

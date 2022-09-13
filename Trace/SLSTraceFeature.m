@@ -1,0 +1,120 @@
+//
+//  SLSTraceFeature.m
+//  Pods
+//
+//  Created by gordon on 2022/9/13.
+//
+
+#import "SLSTraceFeature.h"
+#import "SLSSdkSender.h"
+#import "SLSTracer.h"
+
+@class SLSTraceSender;
+
+#pragma mark - SLS Trace Sender
+@interface SLSTraceSender : SLSSdkSender
+@property(nonatomic, strong) SLSSdkFeature *feature;
+
++ (instancetype) sender: (SLSCredentials *) credentials feature: (SLSSdkFeature *) feature;
+- (instancetype) initWithFeature: (SLSSdkFeature *) feature;
+
+@end
+
+#pragma mark - SLS Trace Feature
+@interface SLSTraceFeature ()
+@property(nonatomic, strong) SLSTraceSender *sender;
+@end
+
+@implementation SLSTraceFeature
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        
+    }
+    return self;
+}
+
+- (NSString *)name {
+    return @"trace";
+}
+
+- (void)onInitialize:(SLSCredentials *)credentials configuration:(SLSConfiguration *)configuration {
+    _sender = [SLSTraceSender sender: credentials feature: self];
+    [[SLSTracer sharedInstance] setTraceFeature:self];
+    [[SLSTracer sharedInstance] setSpanProvider:configuration.spanProvider];
+    [[SLSTracer sharedInstance] setSpanProcessor:(id<SLSSpanProcessorProtocol>) _sender];
+}
+
+- (SLSSpanBuilder *)newSpanBuilder:(NSString *)spanName provider:(id<SLSSpanProviderProtocol>)provider processor:(id<SLSSpanProcessorProtocol>)processor {
+    return [[SLSSpanBuilder builder] initWithName:spanName
+                                         provider:self.configuration.spanProvider
+                                        processor:(id<SLSSpanProcessorProtocol>) _sender
+    ];
+}
+
+@end
+
+#pragma mark - SLS Trace Sender
+@interface SLSTraceSender()
+
++ (instancetype) sender: (SLSCredentials *) credentials feature: (SLSSdkFeature *) feature;
+- (instancetype) initWithFeature: (SLSSdkFeature *) feature;
+
+@end
+
+@implementation SLSTraceSender
+
++ (instancetype)sender:(SLSCredentials *)credentials feature:(SLSSdkFeature *)feature {
+    SLSTraceSender *sender = [[SLSTraceSender alloc] initWithFeature:feature];
+    [sender initialize:credentials];
+    return sender;
+}
+
+- (instancetype)initWithFeature: (SLSSdkFeature *) feature {
+    self = [super init];
+    if (self) {
+        _feature = feature;
+    }
+    return self;
+}
+
+- (NSString *)provideFeatureName {
+    return [_feature name];
+}
+
+- (NSString *)provideLogFileName:(SLSCredentials *)credentials {
+    return @"traces";
+}
+
+- (NSString *)provideEndpoint:(SLSCredentials *)credentials {
+    return [super provideEndpoint:credentials.traceCredentials];
+}
+
+- (NSString *)provideProjectName:(SLSCredentials *)credentials {
+    return credentials.traceCredentials.project;
+}
+
+- (NSString *)provideLogstoreName:(SLSCredentials *)credentials {
+    return credentials.traceCredentials.logstore;
+}
+
+- (NSString *)provideAccessKeyId:(SLSCredentials *)credentials {
+    return credentials.traceCredentials.accessKeyId;
+}
+
+- (NSString *)provideAccessKeySecret:(SLSCredentials *)credentials {
+    return credentials.traceCredentials.accessKeySecret;
+}
+
+- (NSString *)provideSecurityToken:(SLSCredentials *)credentials {
+    return credentials.traceCredentials.securityToken;
+}
+
+- (void)setCredentials:(nonnull SLSCredentials *)credentials {
+    [super setCredentials:credentials.traceCredentials];
+}
+
+@end
+

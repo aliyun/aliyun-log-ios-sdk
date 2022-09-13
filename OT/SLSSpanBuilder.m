@@ -9,6 +9,7 @@
 #import "SLSRecordableSpan.h"
 #import "SLSIdGenerator.h"
 #import "SLSTimeUtils.h"
+#import "SLSContextManager.h"
 
 @interface SLSSpanBuilder ()
 @property(nonatomic, strong) NSString *name;
@@ -90,6 +91,8 @@
     SLSSpan *parentSpan = nil;
     if (nil != _parent) {
         parentSpan = _parent;
+    } else {
+        parentSpan = [SLSContextManager activeSpan];
     }
     
     if (nil != parentSpan) {
