@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (SLSKeyValue *) create: (NSString*) key value: (NSString*) value;
 
++ (SLSKeyValue *) key: (NSString *) key value: (NSString *) value;
+
 @end
 
 NS_ASSUME_NONNULL_END

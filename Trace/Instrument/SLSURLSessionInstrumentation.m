@@ -105,7 +105,7 @@ static id<SLSURLSessionInstrumentationDelegate> _delegate;
         return request;
     }
     
-    if (![_delegate shouldInstrument:request]) {
+    if (_delegate && ![_delegate shouldInstrument:request]) {
         return request;
     }
     

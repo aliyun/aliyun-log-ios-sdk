@@ -22,6 +22,10 @@
     return [self createButton:title andAction:action andX:x andY:y andWidth:SLCellWidth andHeight:SLCellHeight andFont:[UIFont systemFontOfSize:15]];
 }
 
+- (UIButton *) createButton: (NSString *) title andAction: (SEL) action andX: (CGFloat) x andY: (CGFloat) y andWidth:(CGFloat)width {
+    return [self createButton:title andAction:action andX:x andY:y andWidth:width andHeight:SLCellHeight andFont:[UIFont systemFontOfSize:15]];
+}
+
 - (UIButton *) createButton: (NSString *) title andAction: (SEL) action andX: (CGFloat) x andY: (CGFloat) y andWidth: (CGFloat) width andHeight: (CGFloat) height {
     return [self createButton:title andAction:action andX:x andY:y andWidth:width andHeight:height andFont:[UIFont systemFontOfSize:15]];
 }

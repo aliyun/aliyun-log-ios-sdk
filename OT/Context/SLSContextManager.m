@@ -33,7 +33,7 @@
     return context;
 }
 
-+ (void) update: (SLSSpan *) span {
++ (void) update: (nullable SLSSpan *) span {
     SLSContext *context = [self current];
     context.span = span;
 }

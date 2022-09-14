@@ -18,7 +18,7 @@ typedef void (^SLSScope)(void);
 @class SLSContext;
 @interface SLSContextManager : NSObject
 + (SLSContext *) current;
-+ (void) update: (SLSSpan *) span;
++ (void) update: (nullable SLSSpan *) span;
 + (SLSSpan *) activeSpan;
 + (SLSScope) makeCurrent: (SLSSpan *) span;
 @end

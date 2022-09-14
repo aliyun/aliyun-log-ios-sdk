@@ -40,7 +40,7 @@ static id<SLSSpanProcessorProtocol> _processor;
 }
 
 + (SLSSpan *) startSpan: (NSString *) spanName active: (BOOL) active {
-    return [[self spanBuilder:spanName] build];
+    return [[[self spanBuilder:spanName] setActive:active] build];
 }
 
 #pragma mark - function block

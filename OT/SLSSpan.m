@@ -6,6 +6,7 @@
 //
 
 #import "SLSSpan.h"
+#import "SLSContextManager.h"
 
 @interface SLSSpan ()
 
@@ -53,6 +54,9 @@
     _finished = YES;
     
     _duration = (_end - _start) / 1000;
+    if ([SLSContextManager activeSpan] == self) {
+        [SLSContextManager update:nil];
+    }
     return YES;
 }
 

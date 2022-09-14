@@ -59,17 +59,80 @@ static TraceExampleController *selfClzz;
     self.statusTextView.layoutManager.allowsNonContiguousLayout = NO;
     [self.statusTextView setEditable:NO];
     [self.statusTextView setContentOffset:CGPointMake(0, 0)];
-
-    CGFloat lx = ((SLScreenW - SLPadding * 2) / 4 - SLCellWidth / 2);
-    CGFloat rx = ((SLScreenW - SLPadding * 2) / 4 * 3 - SLCellWidth / 2);
-
-    [self createButton:@"启动引擎" andAction:@selector(engineStart) andX:lx andY:SLCellHeight * 11];
-    [self createButton:@"打开空调" andAction:@selector(airConditionerOpen) andX:rx andY:SLCellHeight * 11];
     
-    [self createButton:@"test" andAction:@selector(test) andX:lx andY:SLCellHeight * 12];
+    [self createButton:@"启动引擎" action:@selector(engineStart) row: 1 left:YES];
+    [self createButton:@"打开空调" action:@selector(airConditionerOpen) row: 1 left:NO];
     
-//    [self createButton:@"inject" andAction:@selector(inject) andX:lx andY:SLCellHeight * 12 + SLPadding];
-//    [SLSURLSessionInstrumentation registerInstrumentationDelegate:self];
+    [self createButton:@"Simple Trace" action:@selector(simpleTrace) row: 2 left:YES];
+    [self createButton:@"spanBuilder" action:@selector(spanBuilder) row: 2 left:NO];
+    
+    [self createButton:@"startSpan:" action:@selector(startSpan) row: 3 left:YES];
+    [self createButton:@"startSpan:active:" action:@selector(test) row: 3 left:NO];
+    
+    [self createButton:@"withinSpan:block" action:@selector(test) row: 4 left:YES];
+    [self createButton:@"withinSpan:active:block:" action:@selector(test) row: 4 left:NO];
+    
+    [self createButton:@"withinSpan:active:parent:block:" action:@selector(test) row: 5 left:YES];
+}
+
+- (UIButton *) createButton: (NSString *) name action: (SEL) action row: (int) row left: (BOOL) left {
+    CGFloat width = SLCellWidth * 1.5;
+    CGFloat lx = (SLScreenW - width * 2 - SLPadding * 2) / 4;
+    CGFloat rx = width + lx * 3;
+    
+    return [self createButton:name andAction:action andX:left ? lx : rx andY:SLCellHeight * (10 + row) + SLPadding * row andWidth:width];
+}
+
+- (void) simpleTrace {
+    // single span
+    SLSSpan *span = [SLSTracer startSpan:@"span 1"];
+    [span addAttribute:[SLSAttribute of:@"attr_key" value:@"attr_value"], nil];
+    [span setResource:[SLSResource of:@"res_key" value:@"res_value"]];
+    [span end];
+    
+    // span with children
+    span = [SLSTracer startSpan:@"span with children" active:YES];
+    [[SLSTracer startSpan:@"child span 1"] end];
+    [[SLSTracer startSpan:@"child span 2"] end];
+    [span end];
+    
+    // span with function block
+    [SLSTracer withinSpan:@"span with func block" block:^{
+        [[SLSTracer startSpan:@"span within block 1"] end];
+        // nested span with function block
+        [SLSTracer withinSpan:@"nested span with func block" block:^{
+            [[SLSTracer startSpan:@"nested span 1"] end];
+            [[SLSTracer startSpan:@"nested span 2"] end];
+        }];
+        [[SLSTracer startSpan:@"span within block 2"] end];
+    }];
+    
+    // http request with traceid
+    [SLSTracer withinSpan:@"span with http request func" block:^{
+        [[[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:@"http://sls-mall.caa227ac081f24f1a8556f33d69b96c99.cn-beijing.alicontainer.com/catalogue"]] resume];
+    }];
+}
+
+- (void) spanBuilder {
+    SLSSpan *span = [[[[[[SLSTracer spanBuilder:@"spanBuilder"]
+                        addAttribute:[SLSAttribute of:@"attr_key" value:@"attr_value"], nil]
+                        setResource:[SLSResource of:[SLSKeyValue key:@"res_key" value:@"res_value"], nil]]
+                        setActive:YES]
+                        setServiceName:@"spanbuilder_service"]
+                     build];
+    
+    SLSSpan *child = [SLSTracer startSpan:@"child_span"];
+    [child end];
+    
+    [span end];
+}
+
+- (void) startSpan {
+    SLSSpan *span = [SLSTracer startSpan:@"startSpan:"];
+    [span addAttribute:[SLSAttribute of:@"attr_key" value:@"attr_value"], nil];
+    [span setResource:[SLSResource of:@"res_key" value:@"res_value"]];
+    [span setService:@"test_service"];
+    [span end];
 }
 
 - (void) test {

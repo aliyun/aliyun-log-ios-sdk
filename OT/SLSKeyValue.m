@@ -15,4 +15,8 @@
     kv.value = value;
     return kv;
 }
+
++ (SLSKeyValue *) key: (NSString *) key value: (NSString *) value {
+    return [self create:key value:value];
+}
 @end
