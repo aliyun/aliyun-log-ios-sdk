@@ -9,17 +9,19 @@
 #import "SLSTraceFeature.h"
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SLSTracer : NSObject
-+ (instancetype) sharedInstance;
-- (void) setTraceFeature: (SLSTraceFeature *) feature;
-- (void) setSpanProvider: (id<SLSSpanProviderProtocol>) provider;
-- (void) setSpanProcessor: (id<SLSSpanProcessorProtocol>) processor;
+@protocol SLSURLSessionInstrumentationDelegate <NSObject>
+- (BOOL) shouldInstrument: (NSURLRequest *) request;
+- (NSDictionary<NSString *, NSString *> *) injectCustomeHeaders;
+@end
 
-- (SLSSpanBuilder *) spanBuilder: (NSString *) spanName;
-- (SLSSpan *) startSpan: (NSString *) spanName;
-- (void) withinSpan:(NSString *)spanName block:(void (^)(void))block;
-- (void) withinSpan:(NSString *)spanName active:(BOOL)active block:(void (^)(void))block;
-- (void) withinSpan: (NSString *) spanName active: (BOOL) active parent: (nullable SLSSpan *) parent block: (void (^)(void)) block;
+@interface SLSTracer : NSObject
++ (SLSSpanBuilder *) spanBuilder: (NSString *) spanName;
++ (SLSSpan *) startSpan: (NSString *) spanName;
++ (void) withinSpan:(NSString *)spanName block:(void (^)(void))block;
++ (void) withinSpan:(NSString *)spanName active:(BOOL)active block:(void (^)(void))block;
++ (void) withinSpan: (NSString *) spanName active: (BOOL) active parent: (nullable SLSSpan *) parent block: (void (^)(void)) block;
+
++ (void) registerURLSessionInstrumentationDelegate: (id<SLSURLSessionInstrumentationDelegate>) delegate;
 @end
 
 NS_ASSUME_NONNULL_END

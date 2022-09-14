@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface TraceExampleController : ExampleViewController
+@interface TraceExampleController : ExampleViewController <SLSURLSessionInstrumentationDelegate>
 
 @end
 

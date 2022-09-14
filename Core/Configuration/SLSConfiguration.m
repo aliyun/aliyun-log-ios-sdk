@@ -17,6 +17,7 @@
         _enableBlockDetection = NO;
         _enableNetworkDiagnosis = NO;
         _debuggable = NO;
+        _enableInstrumentNSURLSession = NO;
     }
     return self;
 }

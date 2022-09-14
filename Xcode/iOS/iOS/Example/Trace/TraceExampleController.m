@@ -67,6 +67,15 @@ static TraceExampleController *selfClzz;
     [self createButton:@"打开空调" andAction:@selector(airConditionerOpen) andX:rx andY:SLCellHeight * 11];
     
 //    [self createButton:@"inject" andAction:@selector(inject) andX:lx andY:SLCellHeight * 12 + SLPadding];
+//    [SLSURLSessionInstrumentation registerInstrumentationDelegate:self];
+}
+
+- (NSDictionary<NSString *,NSString *> *)injectCustomeHeaders {
+    return @{};
+}
+
+- (BOOL)shouldInstrument:(NSURLRequest *)request {
+    return request;
 }
 
 - (void) updateStatus: (NSString *)append {
@@ -82,22 +91,25 @@ static TraceExampleController *selfClzz;
 }
 
 - (void) startEngine {
-    [[SLSTracer sharedInstance] withinSpan:@"执行启动引擎操作" block:^{
+    [SLSTracer withinSpan:@"执行启动引擎操作" block:^{
         [self connectPower];
-        [[[SLSTracer sharedInstance] startSpan:@"启动引擎"] end];
+        [[SLSTracer startSpan:@"启动引擎"] end];
         // todo 上报状态
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://sls-mall.caa227ac081f24f1a8556f33d69b96c99.cn-beijing.alicontainer.com/catalogue"]];
+        [[[NSURLSession sharedSession] dataTaskWithRequest:request] resume];
+//        [SLSURLSession sendSynchronousRequest:[NSURLRequest requestWithURL:@""] returningResponse:(NSURLResponse * _Nullable __autoreleasing * _Nullable) error:(NSError *__autoreleasing  _Nullable * _Nullable)];
     }];
 }
 
 - (void) connectPower {
-    [[SLSTracer sharedInstance] withinSpan:@"1：接通电源" block:^{
+    [SLSTracer withinSpan:@"1：接通电源" block:^{
         [NSThread sleepForTimeInterval: 2.0];
     }];
-    [[SLSTracer sharedInstance] withinSpan:@"1.1: 电气系统自检" block:^{
-        [[SLSTracer sharedInstance] withinSpan:@"1.1.1: 电池电压检查" block:^{
+    [SLSTracer withinSpan:@"1.1: 电气系统自检" block:^{
+        [SLSTracer withinSpan:@"1.1.1: 电池电压检查" block:^{
             [NSThread sleepForTimeInterval:2.0];
         }];
-        [[SLSTracer sharedInstance] withinSpan:@"1.1.2: 电气信号检查" block:^{
+        [SLSTracer withinSpan:@"1.1.2: 电气信号检查" block:^{
             [NSThread sleepForTimeInterval:2.0];
         }];
     }];
@@ -124,31 +136,34 @@ void * pthread_fun(void * params) {
 
 - (void) openAirConditioner {
     [self updateStatus:[NSString stringWithFormat:@"current thread: %@", [NSThread currentThread]]];
-    [[SLSTracer sharedInstance] withinSpan:@"执行开空调操作" block:^{
-        [[SLSTracer sharedInstance] withinSpan:@"1: 接通电源" block:^{
+    [SLSTracer withinSpan:@"执行开空调操作" block:^{
+        [SLSTracer withinSpan:@"1: 接通电源" block:^{
             [NSThread sleepForTimeInterval:2.0];
         }];
-        [[SLSTracer sharedInstance] withinSpan:@"2. 电气系统自检" block:^{
-            [[SLSTracer sharedInstance] withinSpan:@"2.1 电池检查" block:^{
-                [[[SLSTracer sharedInstance] startSpan:@"电池电压检查"] end];
+        [SLSTracer withinSpan:@"2. 电气系统自检" block:^{
+            [SLSTracer withinSpan:@"2.1 电池检查" block:^{
+                [[SLSTracer startSpan:@"电池电压检查"] end];
                 [NSThread sleepForTimeInterval:2.0];
                 
-                SLSSpan *span = [[SLSTracer sharedInstance] startSpan:@"电池电流检查"];
+                SLSSpan *span = [SLSTracer startSpan:@"电池电流检查"];
                 [span setStatusCode:ERROR];
                 [span setStatusMessage:@"电池电流检查异常"];
                 [span end];
                 [NSThread sleepForTimeInterval:2.0];
                 
-                [[[SLSTracer sharedInstance] startSpan:@"电池温度检查"] end];
+                [[SLSTracer startSpan:@"电池温度检查"] end];
                 
             }];
-            [[SLSTracer sharedInstance] withinSpan:@"2.2 电气信息检查" block:^{
+            [SLSTracer withinSpan:@"2.2 电气信息检查" block:^{
                 [NSThread sleepForTimeInterval:2.0];
             }];
         }];
-        [[SLSTracer sharedInstance] withinSpan:@"3. 启动风扇" block:^{
+        [SLSTracer withinSpan:@"3. 启动风扇" block:^{
             [NSThread sleepForTimeInterval:2.0];
         }];
+        [[[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:@"http://sls-mall.caa227ac081f24f1a8556f33d69b96c99.cn-beijing.alicontainer.com/catalogue"] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+            
+        }] resume];
     }];
     
 }
@@ -158,12 +173,12 @@ void * pthread_fun(void * params) {
 }
 
 //- (void) trace {
-//    [[SLSTracer sharedInstance] withinSpan:@"开空调：子步骤1：电气系统检查" active:YES parent:nil block:^{
-//        [[SLSTracer sharedInstance] withinSpan:@"开空调：1.1 电池检查" active:YES parent:nil block:^{
-//            [[[SLSTracer sharedInstance] startSpan:@"电池电压检查"] end];
-//            [[[SLSTracer sharedInstance] startSpan:@"电池电流检查"] end];
+//    [SLSTracer withinSpan:@"开空调：子步骤1：电气系统检查" active:YES parent:nil block:^{
+//        [SLSTracer withinSpan:@"开空调：1.1 电池检查" active:YES parent:nil block:^{
+//            [[SLSTracer startSpan:@"电池电压检查"] end];
+//            [[SLSTracer startSpan:@"电池电流检查"] end];
 //        }];
-//        [[[SLSTracer sharedInstance] startSpan:@"span name"] end];
+//        [[SLSTracer startSpan:@"span name"] end];
 //    }];
 //}
 

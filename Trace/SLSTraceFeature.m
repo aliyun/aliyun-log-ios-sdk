@@ -7,7 +7,8 @@
 
 #import "SLSTraceFeature.h"
 #import "SLSSdkSender.h"
-#import "SLSTracer.h"
+#import "SLSTracer+Internal.h"
+#import "SLSURLSessionInstrumentation.h"
 
 @class SLSTraceSender;
 
@@ -42,9 +43,14 @@
 
 - (void)onInitialize:(SLSCredentials *)credentials configuration:(SLSConfiguration *)configuration {
     _sender = [SLSTraceSender sender: credentials feature: self];
-    [[SLSTracer sharedInstance] setTraceFeature:self];
-    [[SLSTracer sharedInstance] setSpanProvider:configuration.spanProvider];
-    [[SLSTracer sharedInstance] setSpanProcessor:(id<SLSSpanProcessorProtocol>) _sender];
+    
+    [SLSTracer setTraceFeature:self];
+    [SLSTracer setSpanProvider:configuration.spanProvider];
+    [SLSTracer setSpanProcessor:(id<SLSSpanProcessorProtocol>) _sender];
+    
+    if (configuration.enableInstrumentNSURLSession) {
+        [SLSURLSessionInstrumentation inject];
+    }
 }
 
 - (SLSSpanBuilder *)newSpanBuilder:(NSString *)spanName provider:(id<SLSSpanProviderProtocol>)provider processor:(id<SLSSpanProcessorProtocol>)processor {
