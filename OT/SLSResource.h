@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void) merge: (SLSResource *)resource;
 
 + (SLSResource*) of: (NSString *)key value: (NSString *)value;
-+ (SLSResource*) of: (SLSKeyValue*)keyValue, ...NS_REQUIRES_NIL_TERMINATION;
++ (SLSResource*) of: (SLSKeyValue*)keyValue, ...NS_REQUIRES_NIL_TERMINATION NS_SWIFT_UNAVAILABLE("use of:value: instead.");
 + (SLSResource *) ofAttributes: (NSArray<SLSAttribute *> *)attributes;
 
 @end

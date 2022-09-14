@@ -26,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic, copy) NSString *env;
 
-@property(nonatomic, strong, readonly) id<SLSSpanProcessorProtocol> spanProcessor;
+@property(nonatomic, strong, readonly) id<SLSSpanProcessorProtocol> spanProcessor NS_SWIFT_UNAVAILABLE("property not available int Swift.");
 @property(nonatomic, strong) id<SLSSpanProviderProtocol> spanProvider;
 
 @property(nonatomic, copy) SLSUserInfo *userInfo;

@@ -37,8 +37,11 @@ typedef NS_ENUM(NSInteger, SLSStatusCode){
 @property(atomic, assign) BOOL finished;
 
 
-- (void) addAttribute:(SLSAttribute *)attribute, ... NS_REQUIRES_NIL_TERMINATION;
-- (void) addAttributes:(NSArray<SLSAttribute*> *)attributes;
+- (void) addAttribute:(SLSAttribute *)attribute, ... NS_REQUIRES_NIL_TERMINATION NS_SWIFT_UNAVAILABLE("use addAttributes instead.");
+
+/// Add SLSAttributes to SLSSpan.
+/// @param attributes SLSAttribute array.
+- (void) addAttributes:(NSArray<SLSAttribute*> *)attributes NS_SWIFT_NAME(addAttributes(_:));
 - (BOOL) end;
 - (NSDictionary<NSString*, NSString*> *) toDict;
 

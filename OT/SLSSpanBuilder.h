@@ -20,8 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (SLSSpanBuilder *) initWithName: (NSString *)name provider: (id<SLSSpanProviderProtocol>) provider processor: (id<SLSSpanProcessorProtocol>) processor;
 - (SLSSpanBuilder *) setParent: (SLSSpan *)parent;
 - (SLSSpanBuilder *) setActive: (BOOL) active;
-- (SLSSpanBuilder *) addAttribute: (SLSAttribute *) attribute, ... NS_REQUIRES_NIL_TERMINATION;
-- (SLSSpanBuilder *) addAttributes: (NSArray<SLSAttribute *> *) attributes;
+- (SLSSpanBuilder *) addAttribute: (SLSAttribute *) attribute, ... NS_REQUIRES_NIL_TERMINATION NS_SWIFT_UNAVAILABLE("use addAttributes instead.");
+- (SLSSpanBuilder *) addAttributes: (NSArray<SLSAttribute *> *) attributes NS_SWIFT_NAME(addAttributes(_:));
 - (SLSSpanBuilder *) setStart: (long) start;
 - (SLSSpanBuilder *) setResource: (SLSResource *) resource;
 - (SLSSpanBuilder *) setServiceName: (NSString *)service;

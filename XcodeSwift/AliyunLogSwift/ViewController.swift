@@ -99,7 +99,7 @@ class ViewController: UIViewController {
     
     func sendOneLog() {
         let log = getOneLog()
-        log.putContent("index", value:String(x))
+//        log.putContent("index", value:String(x))
         x = x + 1
         let res = client?.add(log, flush:1)
         print(res!)
@@ -149,5 +149,38 @@ class ViewController: UIViewController {
         let _ = numbers[1]
     }
     
+    @IBAction func simpleTrace(_ sender: Any) {
+        SLSTracer.spanBuilder("span builder")
+            .addAttributes([SLSAttribute.of("attr_key", value: "attr_value")])
+            .setResource(SLSResource.of("res_key", value: "res_value"))
+        
+        
+        // single span
+        var span = SLSTracer.startSpan("span 1")
+        span.addAttributes([SLSAttribute.of("attr_key", value: "attr_value")])
+        span.end()
+
+        // span with children
+        span = SLSTracer.startSpan("span with children", active: true)
+        SLSTracer.startSpan("child span 1").end()
+        SLSTracer.startSpan("child span 2").end()
+        span.end()
+
+        // span with function block
+        SLSTracer.withinSpan("span with func block") {
+            SLSTracer.startSpan("span within block 1").end()
+            SLSTracer.withinSpan("nested span with func block") {
+                SLSTracer.startSpan("nested span 1").end()
+                SLSTracer.startSpan("nested span 2").end()
+            }
+            SLSTracer.startSpan("span within block 2").end()
+        }
+        
+        // http request with traceid
+        SLSTracer.withinSpan("span with http request func") {
+            URLSession.shared.dataTask(with: URL.init(string: "http://sls-mall.caa227ac081f24f1a8556f33d69b96c99.cn-beijing.alicontainer.com/catalogue")!).resume()
+//            URLSession.shared.dataTask(with: URL.init(string: "http://sls-mall.caa227ac081f24f1a8556f33d69b96c99.cn-beijing.alicontainer.com/catalogue")).resume()
+        }
+    }
 }
 

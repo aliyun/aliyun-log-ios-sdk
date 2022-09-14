@@ -19,7 +19,8 @@
 /// Put string value to log with NSString key. This method will be removed in the future.
 /// @param key NSString
 /// @param value BOOL
-- (void) PutContent: (NSString *) key value: (NSString *) value;
+/// swift compile error, ref: https://stackoverflow.com/questions/52557738/objective-c-framework-used-in-swift-ambiguous-use-of-method-error
+- (void) PutContent: (NSString *) key value: (NSString *) value __attribute__((deprecated("use method putContent:value:"))) NS_SWIFT_UNAVAILABLE("deprecated method not available in Swift");
 
 /// Put string value to log with NSString key.
 /// @param key NSString
