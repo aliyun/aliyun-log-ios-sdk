@@ -16,6 +16,7 @@
 @property(nonatomic, strong) id<SLSSpanProcessorProtocol> spanProcessor;
 @property(nonatomic, strong) id<SLSSpanProviderProtocol> spanProvider;
 @property(nonatomic, strong, readonly) SLSSpan *parent;
+@property(atomic, assign, readonly) BOOL active;
 @property(nonatomic, strong) NSMutableArray<SLSAttribute*> *attributes;
 @property(nonatomic, strong, readonly) SLSResource *resource;
 @property(nonatomic, assign, readonly) long start;
@@ -51,6 +52,12 @@
     _parent = parent;
     return self;
 }
+
+- (SLSSpanBuilder *) setActive: (BOOL) active {
+    _active = active;
+    return self;
+}
+
 - (SLSSpanBuilder *) addAttribute: (SLSAttribute *) attribute, ... NS_REQUIRES_NIL_TERMINATION {
     [_attributes addObject:attribute];
     
@@ -125,6 +132,10 @@
         span.start = _start;
     } else {
         span.start = SLSTimeUtils.now;
+    }
+    
+    if (_active) {
+        [SLSContextManager update:span];
     }
     
     return span;

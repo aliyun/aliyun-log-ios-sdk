@@ -66,8 +66,17 @@ static TraceExampleController *selfClzz;
     [self createButton:@"启动引擎" andAction:@selector(engineStart) andX:lx andY:SLCellHeight * 11];
     [self createButton:@"打开空调" andAction:@selector(airConditionerOpen) andX:rx andY:SLCellHeight * 11];
     
+    [self createButton:@"test" andAction:@selector(test) andX:lx andY:SLCellHeight * 12];
+    
 //    [self createButton:@"inject" andAction:@selector(inject) andX:lx andY:SLCellHeight * 12 + SLPadding];
 //    [SLSURLSessionInstrumentation registerInstrumentationDelegate:self];
+}
+
+- (void) test {
+    [SLSTracer withinSpan:@"test" block:^{
+        NSMutableArray *array = [NSMutableArray array];
+        [array removeObjectAtIndex:10];
+    }];
 }
 
 - (NSDictionary<NSString *,NSString *> *)injectCustomeHeaders {
