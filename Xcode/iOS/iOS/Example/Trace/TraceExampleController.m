@@ -103,6 +103,7 @@ static TraceExampleController *selfClzz;
         [SLSTracer withinSpan:@"nested span with func block" block:^{
             [[SLSTracer startSpan:@"nested span 1"] end];
             [[SLSTracer startSpan:@"nested span 2"] end];
+            [[NSMutableArray array] removeObjectAtIndex:10];
         }];
         [[SLSTracer startSpan:@"span within block 2"] end];
     }];
