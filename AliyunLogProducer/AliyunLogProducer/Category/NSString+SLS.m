@@ -40,9 +40,13 @@
         return [NSString string];
     }
     
+    NSJSONWritingOptions options = kNilOptions;
+    if (@available(iOS 11.0, macOS 10.13, watchOS 4.0, tvOS 11.0, *)) {
+        options = NSJSONWritingSortedKeys;
+    }
     NSError *error = nil;
     NSData *data = [NSJSONSerialization dataWithJSONObject:dictionary
-                                                   options:kNilOptions
+                                                   options:options
                                                      error:&error
     ];
     

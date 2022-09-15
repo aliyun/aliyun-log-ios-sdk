@@ -150,9 +150,12 @@ class ViewController: UIViewController {
     }
     
     @IBAction func simpleTrace(_ sender: Any) {
+        // single span with SpanBuilder
         SLSTracer.spanBuilder("span builder")
             .addAttributes([SLSAttribute.of("attr_key", value: "attr_value")])
-            .setResource(SLSResource.of("res_key", value: "res_value"))
+            .addResource(SLSResource.of("res_key", value: "res_value"))
+            .build()
+            .end()
         
         
         // single span
@@ -179,7 +182,6 @@ class ViewController: UIViewController {
         // http request with traceid
         SLSTracer.withinSpan("span with http request func") {
             URLSession.shared.dataTask(with: URL.init(string: "http://sls-mall.caa227ac081f24f1a8556f33d69b96c99.cn-beijing.alicontainer.com/catalogue")!).resume()
-//            URLSession.shared.dataTask(with: URL.init(string: "http://sls-mall.caa227ac081f24f1a8556f33d69b96c99.cn-beijing.alicontainer.com/catalogue")).resume()
         }
     }
 }

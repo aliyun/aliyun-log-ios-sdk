@@ -9,6 +9,12 @@
 #import "SLSResource.h"
 
 NS_ASSUME_NONNULL_BEGIN
+typedef NSString *SLSKind NS_STRING_ENUM;
+FOUNDATION_EXPORT SLSKind const SLSINTERNAL;
+FOUNDATION_EXPORT SLSKind const SLSSERVER;
+FOUNDATION_EXPORT SLSKind const SLSCLIENT;
+FOUNDATION_EXPORT SLSKind const SLSPRODUCER;
+FOUNDATION_EXPORT SLSKind const SLSCONSUMER;
 
 typedef NS_ENUM(NSInteger, SLSStatusCode){
     UNSET = 0,
@@ -19,7 +25,7 @@ typedef NS_ENUM(NSInteger, SLSStatusCode){
 @interface SLSSpan : NSObject
 
 @property(nonatomic, strong) NSString* name;
-@property(nonatomic, strong, readonly) NSString* kind;
+@property(nonatomic, strong) SLSKind kind;
 @property(nonatomic, strong) NSString* traceID;
 @property(nonatomic, strong) NSString* spanID;
 @property(nonatomic, strong) NSString* parentSpanID;
@@ -34,15 +40,25 @@ typedef NS_ENUM(NSInteger, SLSStatusCode){
 @property(nonatomic, strong) NSString *service;
 @property(nonatomic, strong) NSString *sessionId;
 @property(nonatomic, strong) NSString *transactionId;
-@property(atomic, assign) BOOL finished;
+@property(atomic, assign, readonly) BOOL finished;
 
 
+/// Add SLSAttributes to SLSSpan
+/// @param attribute SLSAttribute
 - (void) addAttribute:(SLSAttribute *)attribute, ... NS_REQUIRES_NIL_TERMINATION NS_SWIFT_UNAVAILABLE("use addAttributes instead.");
 
 /// Add SLSAttributes to SLSSpan.
 /// @param attributes SLSAttribute array.
 - (void) addAttributes:(NSArray<SLSAttribute*> *)attributes NS_SWIFT_NAME(addAttributes(_:));
+
+/// Add SLSResource to current SLSSpan.
+/// @param resource SLSResource
+- (void) addResource: (SLSResource *) resource;
+
+/// End current SLSSpan
 - (BOOL) end;
+
+/// Convert current SLSSpan to NSDictionary
 - (NSDictionary<NSString*, NSString*> *) toDict;
 
 @end

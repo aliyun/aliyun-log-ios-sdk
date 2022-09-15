@@ -116,7 +116,7 @@ static TraceExampleController *selfClzz;
 - (void) spanBuilder {
     SLSSpan *span = [[[[[[SLSTracer spanBuilder:@"spanBuilder"]
                         addAttribute:[SLSAttribute of:@"attr_key" value:@"attr_value"], nil]
-                        setResource:[SLSResource of:[SLSKeyValue key:@"res_key" value:@"res_value"], nil]]
+                        addResource:[SLSResource of:[SLSKeyValue key:@"res_key" value:@"res_value"], nil]]
                         setActive:YES]
                         setServiceName:@"spanbuilder_service"]
                      build];

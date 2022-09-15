@@ -7,6 +7,13 @@
 
 #import "SLSSpan.h"
 #import "SLSContextManager.h"
+#import "NSString+SLS.h"
+
+NSString* const SLSINTERNAL = @"INTERNAL";
+NSString* const SLSSERVER = @"SERVER";
+NSString* const SLSCLIENT = @"CLIENT";
+NSString* const SLSPRODUCER = @"PRODUCER";
+NSString* const SLSCONSUMER = @"CONSUMER";
 
 @interface SLSSpan ()
 
@@ -20,7 +27,7 @@
     if (self) {
         _attribute = [NSMutableDictionary<NSString*, NSString*> dictionary];
         _resource = [[SLSResource alloc] init];
-        _kind = @"CLIENT";
+        _kind = SLSCLIENT;
     }
 
     return self;
@@ -45,6 +52,13 @@
         [dict setObject:attr.value forKey:attr.key];
     }
 }
+- (void) addResource: (SLSResource *) resource {
+    if (!resource) {
+        return;
+    }
+    
+    [_resource merge:resource];
+}
 
 
 - (BOOL) end {
@@ -64,7 +78,7 @@
     NSMutableDictionary<NSString*, NSString*> *dict = [NSMutableDictionary dictionary];
     
     [dict setObject:_name forKey:@"name"];
-    [dict setObject:@"CLIENT" forKey:@"kind"];
+    [dict setObject:_kind forKey:@"kind"];
     [dict setObject:_traceID forKey:@"traceID"];
     [dict setObject:_spanID forKey:@"spanID"];
     [dict setObject:_parentSpanID ? _parentSpanID : @"" forKey:@"parentSpanID"];
@@ -74,24 +88,17 @@
     [dict setObject:[NSString stringWithFormat:@"%ld", _duration] forKey:@"duration"];
     [dict setObject:[NSString stringWithFormat:@"%ld", _end] forKey:@"end"];
     [dict setObject:_statusCode == UNSET ? @"UNSET" : (_statusCode == OK ? @"OK" : @"ERROR" ) forKey:@"statusCode"];
-    [dict setObject:_statusMessage ? _statusMessage : @"" forKey:@"statusMessage"];
+    [dict setObject:_statusMessage.length > 0 ? _statusMessage : @"" forKey:@"statusMessage"];
     [dict setObject:_host ? _host : @"" forKey:@"host"];
     // service name default: iOS
-    [dict setObject:_service ? _service : @"iOS" forKey:@"service"];
+    [dict setObject:_service.length > 0 ? _service : @"iOS" forKey:@"service"];
     
     NSMutableDictionary<NSString*, NSString*> *attributeDict = [NSMutableDictionary<NSString*, NSString*> dictionary];
     for (NSString* key in [_attribute allKeys]) {
         [attributeDict setObject:[_attribute valueForKey:key] forKey:key];
     }
     
-    [dict setObject:[[NSString alloc]
-                     initWithData:[NSJSONSerialization
-                                   dataWithJSONObject:attributeDict
-                                   options:kNilOptions
-                                   error:nil]
-                     encoding:NSUTF8StringEncoding]
-             forKey:@"attribute"
-    ];
+    [dict setObject:[NSString stringWithDictionary:attributeDict] forKey:@"attribute"];
     
     if (_resource.attributes) {
         NSMutableDictionary<NSString*, NSString*> *resourceDict = [NSMutableDictionary<NSString*, NSString*> dictionary];
@@ -99,16 +106,8 @@
             [resourceDict setObject:attr.value forKey:attr.key];
         }
 
-        [dict setObject:[[NSString alloc]
-                         initWithData:[NSJSONSerialization
-                                       dataWithJSONObject:resourceDict
-                                       options:kNilOptions
-                                       error:nil]
-                         encoding:NSUTF8StringEncoding]
-                 forKey:@"resource"
-        ];
+        [dict setObject:[NSString stringWithDictionary: resourceDict] forKey:@"resource"];
     }
-    
     
     return dict;
 }
@@ -130,7 +129,7 @@
     span.service = _service;
     span.sessionId = _sessionId;
     span.transactionId = _transactionId;
-    span.finished = _finished;
+    span->_finished = _finished;
     return span;
 }
 

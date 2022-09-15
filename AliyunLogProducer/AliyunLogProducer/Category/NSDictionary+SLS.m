@@ -19,7 +19,7 @@
                                                          options:kNilOptions
                                                            error:&error
     ];
-    if (!error) {
+    if (nil != error) {
         return nil;
     }
     

@@ -17,6 +17,7 @@
 @property(nonatomic, strong) id<SLSSpanProviderProtocol> spanProvider;
 @property(nonatomic, strong, readonly) SLSSpan *parent;
 @property(atomic, assign, readonly) BOOL active;
+@property(nonnull, strong, readonly) SLSKind kind;
 @property(nonatomic, strong) NSMutableArray<SLSAttribute*> *attributes;
 @property(nonatomic, strong, readonly) SLSResource *resource;
 @property(nonatomic, assign, readonly) long start;
@@ -35,6 +36,7 @@
     if (self) {
         _attributes = [NSMutableArray<SLSAttribute*> array];
         _start = 0L;
+        _kind = SLSCLIENT;
     }
     return self;
 }
@@ -55,6 +57,10 @@
 
 - (SLSSpanBuilder *) setActive: (BOOL) active {
     _active = active;
+    return self;
+}
+- (SLSSpanBuilder *) setKind: (SLSKind) kind {
+    _kind = kind;
     return self;
 }
 
@@ -81,7 +87,7 @@
     _start = start;
     return self;
 }
-- (SLSSpanBuilder *) setResource: (SLSResource *) resource {
+- (SLSSpanBuilder *) addResource: (SLSResource *) resource {
     _resource = resource;
     return self;
 }
@@ -93,6 +99,7 @@
     SLSRecordableSpan *span = [[SLSRecordableSpan alloc] initWithSpanProcessor:_spanProcessor];
     span.name = _name;
     span.service = _service;
+    span.kind = _kind;
     span.spanID = SLSIdGenerator.generateSpanId;
     
     SLSSpan *parentSpan = nil;

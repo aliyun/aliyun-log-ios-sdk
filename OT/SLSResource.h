@@ -15,14 +15,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic, strong) NSArray<SLSAttribute*> *attributes;
 
+#pragma mark - instance
 + (instancetype) resource;
-- (void) add: (NSString *)key value: (NSString *)value;
-- (void) add: (NSArray<SLSAttribute *> *)attributes;
-- (void) merge: (SLSResource *)resource;
++ (SLSResource *) of: (NSString *) key value: (NSString *) value;
++ (SLSResource *) of: (SLSKeyValue*) keyValue, ...NS_REQUIRES_NIL_TERMINATION NS_SWIFT_UNAVAILABLE("use of:value: instead.");
++ (SLSResource *) ofAttributes: (NSArray<SLSAttribute *> *) attributes;
 
-+ (SLSResource*) of: (NSString *)key value: (NSString *)value;
-+ (SLSResource*) of: (SLSKeyValue*)keyValue, ...NS_REQUIRES_NIL_TERMINATION NS_SWIFT_UNAVAILABLE("use of:value: instead.");
-+ (SLSResource *) ofAttributes: (NSArray<SLSAttribute *> *)attributes;
+#pragma mark - operation
+- (void) add: (NSString *) key value: (NSString *) value;
+- (void) add: (NSArray<SLSAttribute *> *) attributes;
+- (void) merge: (SLSResource *) resource;
 
 @end
 
