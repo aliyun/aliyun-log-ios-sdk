@@ -109,12 +109,19 @@ static id<SLSURLSessionInstrumentationDelegate> _delegate;
         return request;
     }
     
-    SLSSpanBuilder *builder = [SLSTracer spanBuilder:[NSString stringWithFormat:@"HTTP %@", request.HTTPMethod]];
-    
+    SLSSpanBuilder *builder = [SLSTracer spanBuilder:[NSString stringWithFormat:@"HTTP %@", (request.HTTPMethod.length > 0 ? request.HTTPMethod : @"")]];
+    [builder addAttribute:
+        [SLSAttribute of:@"http.method" value:(request.HTTPMethod.length > 0 ? request.HTTPMethod : @"unknown_method")],
+        [SLSAttribute of:@"http.url" value:request.URL.absoluteString],
+        [SLSAttribute of:@"http.target" value:request.URL.path],
+        [SLSAttribute of:@"net.peer.name" value:request.URL.host],
+        [SLSAttribute of:@"http.scheme" value:request.URL.scheme],
+        [SLSAttribute of:@"net.peer.port" value:request.URL.port.stringValue],
+        nil
+    ];
     SLSSpan *span = [builder build];
     
     NSString *traceparent = [NSString stringWithFormat:@"00-%@-%@-01", span.traceID, span.spanID];
-    NSLog(@"DEBUGGGG, traceID: %@, spanID: %@, traceparent: %@", span.traceID, span.spanID, traceparent);
     NSMutableURLRequest *mutableRequest = [request mutableCopy];
     [mutableRequest setValue:traceparent forHTTPHeaderField:@"traceparent"];
     
