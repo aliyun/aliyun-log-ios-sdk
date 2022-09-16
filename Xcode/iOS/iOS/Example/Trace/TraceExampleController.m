@@ -87,8 +87,16 @@ static TraceExampleController *selfClzz;
     // single span
     SLSSpan *span = [SLSTracer startSpan:@"span 1"];
     [span addAttribute:[SLSAttribute of:@"attr_key" value:@"attr_value"], nil];
-    [span setResource:[SLSResource of:@"res_key" value:@"res_value"]];
+    [span addResource:[SLSResource of:@"res_key" value:@"res_value"]];
     [span end];
+    
+    // single span with SpanBuilder
+    [[[[[[SLSTracer spanBuilder:@"spanBuilder"]
+            setService:@"iOS"]
+            addAttribute:[SLSAttribute of:@"attr_key" value:@"attr_value"], nil]
+            addResource:[SLSResource of:@"res_key" value:@"res_value"]]
+            build]
+     end];
     
     // span with children
     span = [SLSTracer startSpan:@"span with children" active:YES];
@@ -103,6 +111,7 @@ static TraceExampleController *selfClzz;
         [SLSTracer withinSpan:@"nested span with func block" block:^{
             [[SLSTracer startSpan:@"nested span 1"] end];
             [[SLSTracer startSpan:@"nested span 2"] end];
+            // nsexception
             [[NSMutableArray array] removeObjectAtIndex:10];
         }];
         [[SLSTracer startSpan:@"span within block 2"] end];
@@ -119,7 +128,7 @@ static TraceExampleController *selfClzz;
                         addAttribute:[SLSAttribute of:@"attr_key" value:@"attr_value"], nil]
                         addResource:[SLSResource of:[SLSKeyValue key:@"res_key" value:@"res_value"], nil]]
                         setActive:YES]
-                        setServiceName:@"spanbuilder_service"]
+                        setService:@"spanbuilder_service"]
                      build];
     
     SLSSpan *child = [SLSTracer startSpan:@"child_span"];

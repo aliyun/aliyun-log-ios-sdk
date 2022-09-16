@@ -11,6 +11,23 @@
 		F80DF47926A7034E00151F7C /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F80DF47826A7034E00151F7C /* libc++.tbd */; };
 		F80DF47B26A7035E00151F7C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F80DF47A26A7035E00151F7C /* SystemConfiguration.framework */; };
 		F80DF47D26A7037000151F7C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F80DF47C26A7037000151F7C /* CoreGraphics.framework */; };
+		F834A13828D310E200000F72 /* SLSContextManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F834A13628D310E200000F72 /* SLSContextManager.m */; };
+		F834A13D28D3110600000F72 /* SLSSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = F834A13B28D3110600000F72 /* SLSSwizzle.m */; };
+		F834A13E28D3110600000F72 /* SLSSwizzle.h in Headers */ = {isa = PBXBuildFile; fileRef = F834A13C28D3110600000F72 /* SLSSwizzle.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F834A15428D3116300000F72 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F80DF47C26A7037000151F7C /* CoreGraphics.framework */; };
+		F834A15528D3116300000F72 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F80DF47A26A7035E00151F7C /* SystemConfiguration.framework */; };
+		F834A15628D3116300000F72 /* AliNetworkDiagnosis.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8F09C1428ACC48C0086A714 /* AliNetworkDiagnosis.framework */; };
+		F834A15728D3116300000F72 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F80DF47826A7034E00151F7C /* libc++.tbd */; };
+		F834A15828D3116300000F72 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D0CAEEE252177D800A4985A /* libz.tbd */; };
+		F834A16028D311CD00000F72 /* SLSTracer.m in Sources */ = {isa = PBXBuildFile; fileRef = F834A14028D3115C00000F72 /* SLSTracer.m */; };
+		F834A16128D311CF00000F72 /* SLSTraceFeature.m in Sources */ = {isa = PBXBuildFile; fileRef = F834A14128D3115C00000F72 /* SLSTraceFeature.m */; };
+		F834A16228D311D500000F72 /* SLSURLSessionInstrumentation.m in Sources */ = {isa = PBXBuildFile; fileRef = F834A14428D3115C00000F72 /* SLSURLSessionInstrumentation.m */; };
+		F834A16328D311DB00000F72 /* AliyunLogTrace.h in Headers */ = {isa = PBXBuildFile; fileRef = F834A14728D3115C00000F72 /* AliyunLogTrace.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F834A16428D311DF00000F72 /* SLSURLSessionInstrumentation.h in Headers */ = {isa = PBXBuildFile; fileRef = F834A14328D3115C00000F72 /* SLSURLSessionInstrumentation.h */; };
+		F834A16528D311F000000F72 /* SLSTraceFeature.h in Headers */ = {isa = PBXBuildFile; fileRef = F834A14828D3115C00000F72 /* SLSTraceFeature.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F834A16628D311F300000F72 /* SLSTracer.h in Headers */ = {isa = PBXBuildFile; fileRef = F834A14928D3115C00000F72 /* SLSTracer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F834A16728D311F900000F72 /* SLSTracer+Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = F834A14628D3115C00000F72 /* SLSTracer+Internal.h */; };
+		F834A1A828D3169500000F72 /* SLSContextManager.h in Headers */ = {isa = PBXBuildFile; fileRef = F834A13728D310E200000F72 /* SLSContextManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F84F8ADD2814E1180038A46E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F80DF47C26A7037000151F7C /* CoreGraphics.framework */; };
 		F84F8ADE2814E1180038A46E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F80DF47A26A7035E00151F7C /* SystemConfiguration.framework */; };
 		F84F8AE02814E1180038A46E /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F80DF47826A7034E00151F7C /* libc++.tbd */; };
@@ -153,6 +170,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		F834A15A28D3116300000F72 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F84F8AE32814E1180038A46E /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -211,6 +238,21 @@
 		F80DF47A26A7035E00151F7C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
 		F80DF47C26A7037000151F7C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
 		F820294528C5A3AF00A79810 /* strip_symbols.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = strip_symbols.sh; path = publish/strip_symbols.sh; sourceTree = "<group>"; };
+		F834A13628D310E200000F72 /* SLSContextManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLSContextManager.m; sourceTree = "<group>"; };
+		F834A13728D310E200000F72 /* SLSContextManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLSContextManager.h; sourceTree = "<group>"; };
+		F834A13B28D3110600000F72 /* SLSSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLSSwizzle.m; sourceTree = "<group>"; };
+		F834A13C28D3110600000F72 /* SLSSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLSSwizzle.h; sourceTree = "<group>"; };
+		F834A14028D3115C00000F72 /* SLSTracer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLSTracer.m; sourceTree = "<group>"; };
+		F834A14128D3115C00000F72 /* SLSTraceFeature.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLSTraceFeature.m; sourceTree = "<group>"; };
+		F834A14328D3115C00000F72 /* SLSURLSessionInstrumentation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLSURLSessionInstrumentation.h; sourceTree = "<group>"; };
+		F834A14428D3115C00000F72 /* SLSURLSessionInstrumentation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLSURLSessionInstrumentation.m; sourceTree = "<group>"; };
+		F834A14628D3115C00000F72 /* SLSTracer+Internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SLSTracer+Internal.h"; sourceTree = "<group>"; };
+		F834A14728D3115C00000F72 /* AliyunLogTrace.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AliyunLogTrace.h; sourceTree = "<group>"; };
+		F834A14828D3115C00000F72 /* SLSTraceFeature.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLSTraceFeature.h; sourceTree = "<group>"; };
+		F834A14928D3115C00000F72 /* SLSTracer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLSTracer.h; sourceTree = "<group>"; };
+		F834A15E28D3116300000F72 /* AliyunLogTrace.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AliyunLogTrace.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F834A16828D3122A00000F72 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F834A16A28D312CE00000F72 /* build-trace.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = "build-trace.sh"; path = "publish/build-trace.sh"; sourceTree = "<group>"; };
 		F84F8AE72814E1180038A46E /* AliyunLogNetworkDiagnosis.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AliyunLogNetworkDiagnosis.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8696C4F27F0066D00EF0020 /* AliyunLogCrashReporter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AliyunLogCrashReporter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F876349D28AC94DC0062BBB5 /* AliyunLogOT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AliyunLogOT.h; sourceTree = "<group>"; };
@@ -371,6 +413,18 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F834A15328D3116300000F72 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F834A15428D3116300000F72 /* CoreGraphics.framework in Frameworks */,
+				F834A15528D3116300000F72 /* SystemConfiguration.framework in Frameworks */,
+				F834A15628D3116300000F72 /* AliNetworkDiagnosis.framework in Frameworks */,
+				F834A15728D3116300000F72 /* libc++.tbd in Frameworks */,
+				F834A15828D3116300000F72 /* libz.tbd in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F84F8ADC2814E1180038A46E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -453,6 +507,7 @@
 				F88FAFE028ACECCC00F8792A /* build-networkdiagnosis.sh */,
 				F88FAFE328ACECCC00F8792A /* build-ot.sh */,
 				F88FAFDF28ACECCC00F8792A /* build-producer.sh */,
+				F834A16A28D312CE00000F72 /* build-trace.sh */,
 				F87828DA28B60DE400F3D2B5 /* build-unity4sls.sh */,
 				F820294528C5A3AF00A79810 /* strip_symbols.sh */,
 				F8FC419728AB9B1300618273 /* AliyunLogProducer */,
@@ -460,6 +515,7 @@
 				F8F6AA5328AC7BCC0070B023 /* Core */,
 				F8E74BA328ACAE71000609C3 /* CrashReporter */,
 				F8F09C1228ACC48C0086A714 /* NetworkDiagnosis */,
+				F834A13F28D3115C00000F72 /* Trace */,
 				F878289028B5FC3800F3D2B5 /* Unity4SLS */,
 				9D984DB32520A9B7009DE4FE /* Products */,
 				9D0CAEED252177D800A4985A /* Frameworks */,
@@ -475,8 +531,59 @@
 				F8F6A9AC28ABBB730070B023 /* AliyunLogOT.framework */,
 				F8F6AA5128AC7B6F0070B023 /* AliyunLogCore.framework */,
 				F87828CA28B6089D00F3D2B5 /* libUnity4SLS.a */,
+				F834A15E28D3116300000F72 /* AliyunLogTrace.framework */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		F834A13528D310E200000F72 /* Context */ = {
+			isa = PBXGroup;
+			children = (
+				F834A13728D310E200000F72 /* SLSContextManager.h */,
+				F834A13628D310E200000F72 /* SLSContextManager.m */,
+			);
+			path = Context;
+			sourceTree = "<group>";
+		};
+		F834A13A28D3110600000F72 /* Swizzle */ = {
+			isa = PBXGroup;
+			children = (
+				F834A13B28D3110600000F72 /* SLSSwizzle.m */,
+				F834A13C28D3110600000F72 /* SLSSwizzle.h */,
+			);
+			path = Swizzle;
+			sourceTree = "<group>";
+		};
+		F834A13F28D3115C00000F72 /* Trace */ = {
+			isa = PBXGroup;
+			children = (
+				F834A16828D3122A00000F72 /* Info.plist */,
+				F834A14728D3115C00000F72 /* AliyunLogTrace.h */,
+				F834A14228D3115C00000F72 /* Instrument */,
+				F834A14528D3115C00000F72 /* Internal */,
+				F834A14828D3115C00000F72 /* SLSTraceFeature.h */,
+				F834A14128D3115C00000F72 /* SLSTraceFeature.m */,
+				F834A14928D3115C00000F72 /* SLSTracer.h */,
+				F834A14028D3115C00000F72 /* SLSTracer.m */,
+			);
+			path = Trace;
+			sourceTree = "<group>";
+		};
+		F834A14228D3115C00000F72 /* Instrument */ = {
+			isa = PBXGroup;
+			children = (
+				F834A14328D3115C00000F72 /* SLSURLSessionInstrumentation.h */,
+				F834A14428D3115C00000F72 /* SLSURLSessionInstrumentation.m */,
+			);
+			path = Instrument;
+			sourceTree = "<group>";
+		};
+		F834A14528D3115C00000F72 /* Internal */ = {
+			isa = PBXGroup;
+			children = (
+				F834A14628D3115C00000F72 /* SLSTracer+Internal.h */,
+			);
+			path = Internal;
 			sourceTree = "<group>";
 		};
 		F878289028B5FC3800F3D2B5 /* Unity4SLS */ = {
@@ -521,6 +628,7 @@
 			children = (
 				F8F6A9D428ABBC950070B023 /* Info.plist */,
 				F8F6A9B428ABBBDB0070B023 /* Utils */,
+				F834A13528D310E200000F72 /* Context */,
 				F876349D28AC94DC0062BBB5 /* AliyunLogOT.h */,
 				F8F6A9B228ABBBDB0070B023 /* SLSAttribute.h */,
 				F8F6A9BF28ABBBDB0070B023 /* SLSAttribute.m */,
@@ -561,6 +669,7 @@
 				F8F6AA7328AC7BCC0070B023 /* Feature */,
 				F8F6AA7028AC7BCC0070B023 /* Reachability */,
 				F8F6AA6428AC7BCC0070B023 /* Sender */,
+				F834A13A28D3110600000F72 /* Swizzle */,
 				F8F6AA5C28AC7BCC0070B023 /* Utdid */,
 				F8F6AA6A28AC7BCC0070B023 /* Utils */,
 				F8F6AA5428AC7BCC0070B023 /* SLSCocoa.h */,
@@ -795,6 +904,18 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F834A14B28D3116300000F72 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F834A16328D311DB00000F72 /* AliyunLogTrace.h in Headers */,
+				F834A16628D311F300000F72 /* SLSTracer.h in Headers */,
+				F834A16528D311F000000F72 /* SLSTraceFeature.h in Headers */,
+				F834A16728D311F900000F72 /* SLSTracer+Internal.h in Headers */,
+				F834A16428D311DF00000F72 /* SLSURLSessionInstrumentation.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F84F8AD02814E1180038A46E /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -829,6 +950,7 @@
 				F8F6A9C428ABBBDB0070B023 /* SLSKeyValue.h in Headers */,
 				F8F6A9C528ABBBDB0070B023 /* SLSAttribute.h in Headers */,
 				F8F6A9CC28ABBBDB0070B023 /* SLSResource.h in Headers */,
+				F834A1A828D3169500000F72 /* SLSContextManager.h in Headers */,
 				F8F6A9C728ABBBDB0070B023 /* SLSIdGenerator.h in Headers */,
 				F8F6A9CA28ABBBDB0070B023 /* SLSTimeUtils.h in Headers */,
 			);
@@ -850,6 +972,7 @@
 				F8F6AA7928AC7BCC0070B023 /* SLSCocoa.h in Headers */,
 				F8F6AA9528AC7BCC0070B023 /* SLSNoOpFeature.h in Headers */,
 				F8F6AA9228AC7BCC0070B023 /* SLSSdkFeature.h in Headers */,
+				F834A13E28D3110600000F72 /* SLSSwizzle.h in Headers */,
 				F8F6AA8628AC7BCC0070B023 /* SLSNoOpSender.h in Headers */,
 				F8F6AA8E28AC7BCC0070B023 /* SLSDeviceUtils.h in Headers */,
 				F8F6AA9128AC7BCC0070B023 /* SLSReachability.h in Headers */,
@@ -878,6 +1001,25 @@
 			name = AliyunLogProducer;
 			productName = AliyunLogProducer;
 			productReference = 9D984DB22520A9B7009DE4FE /* AliyunLogProducer.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		F834A14A28D3116300000F72 /* AliyunLogTrace */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F834A15B28D3116300000F72 /* Build configuration list for PBXNativeTarget "AliyunLogTrace" */;
+			buildPhases = (
+				F834A14B28D3116300000F72 /* Headers */,
+				F834A15028D3116300000F72 /* Sources */,
+				F834A15328D3116300000F72 /* Frameworks */,
+				F834A15928D3116300000F72 /* Resources */,
+				F834A15A28D3116300000F72 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AliyunLogTrace;
+			productName = AliyunLogProducer;
+			productReference = F834A15E28D3116300000F72 /* AliyunLogTrace.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		F84F8ACF2814E1180038A46E /* AliyunLogNetworkDiagnosis */ = {
@@ -1007,6 +1149,7 @@
 				F8F6AA3128AC7B6F0070B023 /* AliyunLogCore */,
 				F8696C1027F0066D00EF0020 /* AliyunLogCrashReporter */,
 				F84F8ACF2814E1180038A46E /* AliyunLogNetworkDiagnosis */,
+				F834A14A28D3116300000F72 /* AliyunLogTrace */,
 				F87828C928B6089D00F3D2B5 /* Unity4SLS */,
 			);
 		};
@@ -1014,6 +1157,13 @@
 
 /* Begin PBXResourcesBuildPhase section */
 		9D984DB02520A9B7009DE4FE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F834A15928D3116300000F72 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1085,6 +1235,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F834A15028D3116300000F72 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F834A16028D311CD00000F72 /* SLSTracer.m in Sources */,
+				F834A16128D311CF00000F72 /* SLSTraceFeature.m in Sources */,
+				F834A16228D311D500000F72 /* SLSURLSessionInstrumentation.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F84F8AD62814E1180038A46E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1123,6 +1283,7 @@
 				F8F6A9C628ABBBDB0070B023 /* SLSSpan.m in Sources */,
 				F8F6A9C228ABBBDB0070B023 /* SLSResource.m in Sources */,
 				F8F6A9D128ABBBDB0070B023 /* SLSAttribute.m in Sources */,
+				F834A13828D310E200000F72 /* SLSContextManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1139,6 +1300,7 @@
 				F8F6AA8728AC7BCC0070B023 /* SLSSdkSender.m in Sources */,
 				F8F6AA7D28AC7BCC0070B023 /* SLSConfiguration.m in Sources */,
 				F8F6AA8C28AC7BCC0070B023 /* SLSDeviceUtils.m in Sources */,
+				F834A13D28D3110600000F72 /* SLSSwizzle.m in Sources */,
 				F8F6AA9628AC7BCC0070B023 /* SLSSdkFeature.m in Sources */,
 				F8F6AA8328AC7BCC0070B023 /* SLSStorage.m in Sources */,
 				F8F6AA8928AC7BCC0070B023 /* SLSNoOpSender.m in Sources */,
@@ -1273,7 +1435,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 300;
+				CURRENT_PROJECT_VERSION = 310;
 				DEAD_CODE_STRIPPING = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
@@ -1303,7 +1465,7 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				LINK_WITH_STANDARD_LIBRARIES = NO;
 				MACH_O_TYPE = staticlib;
-				MARKETING_VERSION = 3.0.0;
+				MARKETING_VERSION = 3.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.aysls.cocoa.producer;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -1318,7 +1480,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 300;
+				CURRENT_PROJECT_VERSION = 310;
 				DEAD_CODE_STRIPPING = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
@@ -1350,9 +1512,95 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				LINK_WITH_STANDARD_LIBRARIES = NO;
 				MACH_O_TYPE = staticlib;
-				MARKETING_VERSION = 3.0.0;
+				MARKETING_VERSION = 3.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.aysls.cocoa.producer;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SYSTEM_HEADER_SEARCH_PATHS = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_WORKSPACE = YES;
+			};
+			name = Release;
+		};
+		F834A15C28D3116300000F72 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = YES;
+				CURRENT_PROJECT_VERSION = 310;
+				DEAD_CODE_STRIPPING = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = QWPJRHMG6U;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AliyunLogProducer/CrashReporter",
+					"$(PROJECT_DIR)/AliyunLogProducer/NetworkDiagnosis",
+					"$(PROJECT_DIR)/NetworkDiagnosis",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = "$(SRCROOT)/Trace/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LINK_WITH_STANDARD_LIBRARIES = NO;
+				MACH_O_TYPE = staticlib;
+				MARKETING_VERSION = 3.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aysls.cocoa.trace;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SYSTEM_HEADER_SEARCH_PATHS = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_WORKSPACE = YES;
+			};
+			name = Debug;
+		};
+		F834A15D28D3116300000F72 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = YES;
+				CURRENT_PROJECT_VERSION = 310;
+				DEAD_CODE_STRIPPING = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DEPLOYMENT_POSTPROCESSING = YES;
+				DEVELOPMENT_TEAM = QWPJRHMG6U;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AliyunLogProducer/CrashReporter",
+					"$(PROJECT_DIR)/AliyunLogProducer/NetworkDiagnosis",
+					"$(PROJECT_DIR)/NetworkDiagnosis",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = "$(SRCROOT)/Trace/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LINK_WITH_STANDARD_LIBRARIES = NO;
+				MACH_O_TYPE = staticlib;
+				MARKETING_VERSION = 3.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aysls.cocoa.trace;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SYSTEM_HEADER_SEARCH_PATHS = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1365,7 +1613,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 100;
+				CURRENT_PROJECT_VERSION = 310;
 				DEAD_CODE_STRIPPING = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
@@ -1392,7 +1640,7 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				LINK_WITH_STANDARD_LIBRARIES = NO;
 				MACH_O_TYPE = staticlib;
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 3.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.aysls.cocoa.networkdiagnosis;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1407,7 +1655,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 100;
+				CURRENT_PROJECT_VERSION = 310;
 				DEAD_CODE_STRIPPING = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
@@ -1436,7 +1684,7 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				LINK_WITH_STANDARD_LIBRARIES = NO;
 				MACH_O_TYPE = staticlib;
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 3.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.aysls.cocoa.networkdiagnosis;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1451,7 +1699,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 100;
+				CURRENT_PROJECT_VERSION = 310;
 				DEAD_CODE_STRIPPING = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
@@ -1476,7 +1724,7 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				LINK_WITH_STANDARD_LIBRARIES = NO;
 				MACH_O_TYPE = staticlib;
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 3.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.aysls.cocoa.crashreporter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1491,7 +1739,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 100;
+				CURRENT_PROJECT_VERSION = 310;
 				DEAD_CODE_STRIPPING = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
@@ -1518,7 +1766,7 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				LINK_WITH_STANDARD_LIBRARIES = NO;
 				MACH_O_TYPE = staticlib;
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 3.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.aysls.cocoa.crashreporter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1563,7 +1811,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 100;
+				CURRENT_PROJECT_VERSION = 310;
 				DEAD_CODE_STRIPPING = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
@@ -1593,7 +1841,7 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				LINK_WITH_STANDARD_LIBRARIES = NO;
 				MACH_O_TYPE = staticlib;
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 3.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.aysls.cocoa.ot;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1608,7 +1856,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 100;
+				CURRENT_PROJECT_VERSION = 310;
 				DEAD_CODE_STRIPPING = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
@@ -1640,7 +1888,7 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				LINK_WITH_STANDARD_LIBRARIES = NO;
 				MACH_O_TYPE = staticlib;
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 3.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.aysls.cocoa.ot;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1656,7 +1904,7 @@
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 100;
+				CURRENT_PROJECT_VERSION = 310;
 				DEAD_CODE_STRIPPING = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
@@ -1686,7 +1934,7 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				LINK_WITH_STANDARD_LIBRARIES = NO;
 				MACH_O_TYPE = staticlib;
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 3.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.aysls.cocoa.core;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1702,7 +1950,7 @@
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 100;
+				CURRENT_PROJECT_VERSION = 310;
 				DEAD_CODE_STRIPPING = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
@@ -1734,7 +1982,7 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				LINK_WITH_STANDARD_LIBRARIES = NO;
 				MACH_O_TYPE = staticlib;
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 3.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.aysls.cocoa.core;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1761,6 +2009,15 @@
 			buildConfigurations = (
 				9D984DBB2520A9B7009DE4FE /* Debug */,
 				9D984DBC2520A9B7009DE4FE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F834A15B28D3116300000F72 /* Build configuration list for PBXNativeTarget "AliyunLogTrace" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F834A15C28D3116300000F72 /* Debug */,
+				F834A15D28D3116300000F72 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
     isPodLint = ENV['env'].to_s == 'lint'
     
     s.name             = "AliyunLogProducer"
-    s.version          = "3.0.4"
+    s.version          = "3.1.0"
     s.summary          = "aliyun log service ios producer."
     
     # This description is used to generate tags and improve search results.
@@ -20,7 +20,7 @@ Pod::Spec.new do |s|
     https://help.aliyun.com/document_detail/29063.html
     https://help.aliyun.com/product/28958.html
     DESC
-    
+
     s.homepage         = "https://github.com/aliyun/aliyun-log-ios-sdk"
     s.license          = {
         :type => 'Copyright',
@@ -150,6 +150,24 @@ Pod::Spec.new do |s|
             'OTHER_LDFLAGS' => '-ObjC',
         }
         n.user_target_xcconfig = {
+            'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
+        }
+    end
+    
+    s.subspec 'Trace' do |c|
+        c.ios.deployment_target = '9.0'
+#        c.tvos.deployment_target =  '9.0'
+#        c.osx.deployment_target =  '10.8'
+        c.dependency 'AliyunLogProducer/Producer'
+        c.dependency 'AliyunLogProducer/Core'
+        c.dependency 'AliyunLogProducer/OT'
+        if isPodLint
+            c.vendored_frameworks = "build/AliyunLogTrace.framework"
+        else
+            c.vendored_frameworks = "AliyunLogTrace/AliyunLogTrace.framework"
+        end
+        
+        c.user_target_xcconfig = {
             'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
         }
     end

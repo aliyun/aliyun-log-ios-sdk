@@ -152,6 +152,7 @@ class ViewController: UIViewController {
     @IBAction func simpleTrace(_ sender: Any) {
         // single span with SpanBuilder
         SLSTracer.spanBuilder("span builder")
+            .setService("iOS")
             .addAttributes([SLSAttribute.of("attr_key", value: "attr_value")])
             .addResource(SLSResource.of("res_key", value: "res_value"))
             .build()
@@ -176,6 +177,8 @@ class ViewController: UIViewController {
                 SLSTracer.startSpan("nested span 1").end()
                 SLSTracer.startSpan("nested span 2").end()
             }
+            var array = [String]()
+            array.remove(at: 10)
             SLSTracer.startSpan("span within block 2").end()
         }
         

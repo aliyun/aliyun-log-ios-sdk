@@ -65,7 +65,7 @@ static id<SLSSpanProcessorProtocol> _processor;
     } @catch (NSException *exception) {
         [span setStatusCode:ERROR];
         [span setStatusMessage: [NSString stringWithFormat:@"exception: {name: %@, reason: %@}", exception.name, exception.reason]];
-        @throw exception;
+//        @throw exception;
     } @finally {
         [span end];
     }

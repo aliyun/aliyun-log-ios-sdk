@@ -21,7 +21,7 @@
 @property(nonatomic, strong) NSMutableArray<SLSAttribute*> *attributes;
 @property(nonatomic, strong, readonly) SLSResource *resource;
 @property(nonatomic, assign, readonly) long start;
-@property(nonatomic, strong) NSString *service;
+@property(nonatomic, strong, readonly) NSString *service;
 @end
 
 @implementation SLSSpanBuilder
@@ -91,7 +91,7 @@
     _resource = resource;
     return self;
 }
-- (SLSSpanBuilder *) setServiceName: (NSString *)service {
+- (SLSSpanBuilder *) setService: (NSString *)service {
     _service = service;
     return self;
 }

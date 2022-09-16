@@ -62,10 +62,10 @@ NSString* const SLSCONSUMER = @"CONSUMER";
 
 
 - (BOOL) end {
-    if (_finished) {
+    if (_isEnd) {
         return NO;
     }
-    _finished = YES;
+    _isEnd = YES;
     
     _duration = (_end - _start) / 1000;
     if ([SLSContextManager activeSpan] == self) {
@@ -129,7 +129,7 @@ NSString* const SLSCONSUMER = @"CONSUMER";
     span.service = _service;
     span.sessionId = _sessionId;
     span.transactionId = _transactionId;
-    span->_finished = _finished;
+    span->_isEnd = _isEnd;
     return span;
 }
 

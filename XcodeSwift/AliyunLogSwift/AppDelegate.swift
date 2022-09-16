@@ -8,6 +8,16 @@
 import UIKit
 import AliyunLogProducer
 
+@objc class SpanProvider : NSObject, SLSSpanProviderProtocol {
+    func provideResource() -> SLSResource {
+        return SLSResource.of("res_from_swift_key", value: "swift_valu");
+    }
+    
+    func provideAttribute() -> [SLSAttribute] {
+        return [SLSAttribute.of("attr_from _swift_key", value: "swift_value")];
+    }
+}
+
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -54,6 +64,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         tracerCredentials.logstore = "sls-mall-traces";
         
         SLSCocoa.sharedInstance().initialize(credentials) { configuration in
+            configuration.spanProvider = SpanProvider()
             configuration.enableTrace = true
             configuration.enableInstrumentNSURLSession = true
 //            configuration.spanProvider = SpanProvider()

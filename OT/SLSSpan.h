@@ -40,7 +40,7 @@ typedef NS_ENUM(NSInteger, SLSStatusCode){
 @property(nonatomic, strong) NSString *service;
 @property(nonatomic, strong) NSString *sessionId;
 @property(nonatomic, strong) NSString *transactionId;
-@property(atomic, assign, readonly) BOOL finished;
+@property(atomic, assign, readonly) BOOL isEnd;
 
 
 /// Add SLSAttributes to SLSSpan

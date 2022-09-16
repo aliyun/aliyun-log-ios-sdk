@@ -23,25 +23,6 @@ static id<SLSURLSessionInstrumentationDelegate> _delegate;
     _delegate = delegate;
 }
 
-+ (void) injectHttpTraceHeader: (Class) clazz sel: (SEL) sel {
-    Method method = class_getInstanceMethod(clazz, sel);
-    if (nil == method) {
-        return;
-    }
-    
-    SLSSwizzleInstanceMethod(clazz,
-                             sel,
-                             SLSSWReturnType(NSURLSessionTask *),
-                             SLSSWArguments(NSURLRequest *request, SLSCompletionHandler completionHandler),
-                             SLSSWReplacement({
-        
-        NSURLRequest *newRequest = [SLSURLSessionInstrumentation injectHttpTraceHeaderToRequest:request completionHandler:completionHandler];
-        
-        return SLSSWCallOriginal(newRequest, completionHandler);
-    }), SLSSwizzleModeOncePerClassAndSuperclasses, (void *) sel);
-    
-}
-
 + (void) injectDataTaskWithRequest: (Class) clazz {
     SEL sel = NSSelectorFromString(@"dataTaskWithRequest:completionHandler:");
     Method method = class_getInstanceMethod(clazz, sel);

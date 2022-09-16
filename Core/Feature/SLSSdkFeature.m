@@ -24,11 +24,11 @@
     SLSSpanBuilder *builder = [self newSpanBuilder:spanName provider:_configuration.spanProvider processor:_configuration.spanProcessor];
 
 #if SLS_HOST_MAC
-    [builder setServiceName:@"macOS"];
+    [builder setService:@"macOS"];
 #elif SLS_HOST_TV
-    [builder setServiceName:@"tvOS"];
+    [builder setService:@"tvOS"];
 #else
-    [builder setServiceName:@"iOS"];
+    [builder setService:@"iOS"];
 #endif
     
     return builder;
