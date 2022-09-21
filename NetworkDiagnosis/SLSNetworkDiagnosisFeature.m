@@ -22,6 +22,8 @@
 #import "AliNetworkDiagnosis/AliTcpPing.h"
 #import "AliNetworkDiagnosis/AliNetworkDiagnosis.h"
 
+#import "SLSHttpHeader.h"
+
 static int DEFAULT_PING_SIZE = 64;
 static int DEFAULT_TIMEOUT = 2 * 1000;
 static int DEFAULT_MAX_TIMES = 10;
@@ -360,6 +362,12 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
 
 - (NSString *)provideSecurityToken:(SLSCredentials *)credentials {
     return credentials.networkDiagnosisCredentials.securityToken;
+}
+
+- (void)provideLogProducerConfig:(LogProducerConfig *)config {
+    [config setHttpHeaderInjector:^NSArray<NSString *> *(NSArray<NSString *> *srcHeaders) {
+        return [SLSHttpHeader getHeaders:srcHeaders, [NSString stringWithFormat:@"%@/%@", [self->_feature name], [self->_feature version]], nil];
+    }];
 }
 
 

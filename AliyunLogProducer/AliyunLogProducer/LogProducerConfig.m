@@ -17,17 +17,16 @@
 #import "LogProducerConfig.h"
 #import "inner_log.h"
 #import "TimeUtils.h"
-#import "HttpConfigProxy.h"
 #import "SLSURLSession.h"
+#import "SLSHttpHeader.h"
 
 
 @interface LogProducerConfig ()
+@property(nonatomic, strong) SLSHttpHeaderInjector injector;
 
 @end
 
 @implementation LogProducerConfig
-
-//static NSString *VERSION = @"sls-ios-sdk_v2.2.25";
 
 static int os_http_post(const char *url,
                 char **header_array,
@@ -56,9 +55,6 @@ static int os_http_post(const char *url,
         }
     }
 
-    NSString *VERSION = [HttpConfigProxy sharedInstance].userAgent;
-    [request setValue:VERSION forHTTPHeaderField:@"User-Agent"];
-
     // set body
     NSData *postData = [NSData dataWithBytes:data length:data_len];
     [request setHTTPBody:postData];
@@ -82,14 +78,14 @@ static int os_http_post(const char *url,
         }
         if (responseCode != 200) {
             NSString *res = [[NSString alloc] initWithData:resData encoding:NSUTF8StringEncoding];
-            SLSLog(@"%@: %ld %@ %@", VERSION, [response statusCode], [response allHeaderFields], res);
+            SLSLog(@"%ld %@ %@", [response statusCode], [response allHeaderFields], res);
         }
         return responseCode;
     }
     else {
         if(error != nil){
             NSString *res = [[NSString alloc] initWithData:resData encoding:NSUTF8StringEncoding];
-            SLSLog(@"%@: error: %@, res:%@", VERSION, error, res);
+            SLSLog(@"error: %@, res:%@", error, res);
             if (error.code == kCFURLErrorUserCancelledAuthentication)
                 return 401;
             if (error.code == kCFURLErrorBadServerResponse)
@@ -129,6 +125,7 @@ static int os_http_post(const char *url,
     if (self = [super init])
     {
         self->config = create_log_producer_config();
+        self->config->user_params = (__bridge void *)(self);
 #if SLS_HOST_MAC
         log_producer_config_set_source(self->config, "macOS");
 #elif SLS_HOST_TV
@@ -143,7 +140,13 @@ static int os_http_post(const char *url,
         log_producer_config_set_drop_unauthorized_log(self->config, 0);
         log_producer_config_set_drop_delay_log(self->config, 0);
         log_set_get_time_unix_func(time_func);
+        log_set_http_header_inject_func(sls_ios_http_header_inject_func);
+        log_set_http_header_release_inject_func(sls_ios_http_header_release_inject_func);
 
+        [self setHttpHeaderInjector:^NSArray<NSString *> *(NSArray<NSString *> *srcHeaders) {
+            return [SLSHttpHeader getHeaders:srcHeaders, nil];
+        }];
+        
         [self setEndpoint:endpoint];
         [self setProject:project];
         [self setLogstore:logstore];
@@ -155,6 +158,56 @@ static int os_http_post(const char *url,
     }
 
     return self;
+}
+
+void sls_ios_http_header_inject_func(log_producer_config *config, char **src_headers, int src_count, char **dest_headers, int *dest_count) {
+    NSMutableArray<NSString *> *headers = [NSMutableArray array];
+    for (int i = 0; i < src_count; i ++) {
+        char *kv = src_headers[i];
+        if (NULL == kv) {
+            continue;
+        }
+        
+        char *eq = strchr(kv, ':');
+        if (NULL == eq || eq == kv || eq[1] == 0) {
+            continue;
+        }
+        *eq = 0;
+        
+        [headers addObject:[NSString stringWithUTF8String:kv]];
+        [headers addObject:[NSString stringWithUTF8String:(eq+1)]];
+    }
+    
+    LogProducerConfig *producer = (__bridge LogProducerConfig *)(config->user_params);
+    NSArray<NSString *> *injectedHeaders = producer->_injector(headers);
+    if(nil == injectedHeaders || injectedHeaders.count == 0) {
+        return;
+    }
+    
+    NSUInteger count = injectedHeaders.count / 2;
+    for (int i = 0; i < count; i ++) {
+        char *kv = (char *) malloc(sizeof(char) * 256);
+        memset(kv, 0, sizeof(char) * 256);
+        strcat(kv, [injectedHeaders objectAtIndex:2*i].UTF8String);
+        strcat(kv, ":");
+        strcat(kv, [injectedHeaders objectAtIndex:2*i+1].UTF8String);
+        dest_headers[i] = kv;
+        (*dest_count)++;
+    }
+}
+
+void sls_ios_http_header_release_inject_func(log_producer_config *config, char **dest_headers, int dest_count) {
+    if (0 == dest_count) {
+        return;
+    }
+    
+    for (int i = 0; i < dest_count; i ++) {
+        free(dest_headers[i]);
+    }
+}
+
+- (void) setHttpHeaderInjector: (SLSHttpHeaderInjector) injector {
+    _injector = injector;
 }
 
 unsigned int time_func() {

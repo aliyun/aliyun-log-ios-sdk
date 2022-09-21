@@ -15,6 +15,7 @@
 #import "log_producer_config.h"
 #import "log_http_interface.h"
 
+typedef NSArray<NSString *> * (^SLSHttpHeaderInjector) (NSArray<NSString *> *srcHeaders);
 
 @interface LogProducerConfig : NSObject
 {
@@ -103,6 +104,8 @@
 - (void) setAccessKeySecret: (NSString *) accessKeySecret;
 
 - (void) setUseWebtracking: (BOOL) enable;
+
+- (void) setHttpHeaderInjector: (SLSHttpHeaderInjector) injector;
 
 + (void) Debug;
 

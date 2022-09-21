@@ -9,6 +9,7 @@
 #import "SLSSdkSender.h"
 #import "SLSTracer+Internal.h"
 #import "SLSURLSessionInstrumentation.h"
+#import "SLSHttpHeader.h"
 
 @class SLSTraceSender;
 
@@ -116,6 +117,12 @@
 
 - (NSString *)provideSecurityToken:(SLSCredentials *)credentials {
     return credentials.traceCredentials.securityToken;
+}
+
+- (void)provideLogProducerConfig:(LogProducerConfig *)config {
+    [config setHttpHeaderInjector:^NSArray<NSString *> *(NSArray<NSString *> *srcHeaders) {
+        return [SLSHttpHeader getHeaders:srcHeaders, [NSString stringWithFormat:@"%@/%@", [self->_feature name], [self->_feature version]], nil];
+    }];
 }
 
 - (void)setCredentials:(nonnull SLSCredentials *)credentials {

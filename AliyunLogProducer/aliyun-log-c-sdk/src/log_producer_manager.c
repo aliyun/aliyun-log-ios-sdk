@@ -38,7 +38,7 @@ void _generate_pack_id_timestamp(long *timestamp)
     ts.tv_sec = mts.tv_sec;
     ts.tv_nsec = mts.tv_nsec;
 #else
-    clock_gettime(CLOCK_REALTIME, ts);
+    clock_gettime(CLOCK_REALTIME, &ts);
 #endif
     *(timestamp) = ts.tv_nsec;
 }

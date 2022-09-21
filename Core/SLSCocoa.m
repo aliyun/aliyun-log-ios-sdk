@@ -18,8 +18,25 @@
 #import "SLSFeatureProtocol.h"
 #import "Utdid.h"
 #import "SLSDeviceUtils.h"
-#import "HttpConfigProxy.h"
 #import "NSString+SLS.h"
+#import "SLSHttpHeader.h"
+#import "SLSUtils.h"
+
+@interface DefaultSdkSender : SLSSdkSender
++ (instancetype) sender;
+@end
+
+@implementation DefaultSdkSender
++ (instancetype) sender {
+    return [[DefaultSdkSender alloc] init];
+}
+- (void) provideLogProducerConfig:(LogProducerConfig *)config {
+    [config setHttpHeaderInjector:^NSArray<NSString *> *(NSArray<NSString *> *srcHeaders) {
+        return [SLSHttpHeader getHeaders:srcHeaders, [NSString stringWithFormat:@"apm/%@", [SLSUtils getSdkVersion]],nil];
+    }];
+}
+
+@end
 
 @interface SLSCocoa ()
 @property(atomic, assign) BOOL hasInitialize;
@@ -67,7 +84,7 @@
     }
     
     _credentials = credentials;
-    _configuration = [[SLSConfiguration alloc] initWithProcessor:[SLSSdkSender sender]];
+    _configuration = [[SLSConfiguration alloc] initWithProcessor:[DefaultSdkSender sender]];
     configuration(_configuration);
     [self initializeDefaultSpanProvider];
     [self initializeSdkSender];
@@ -254,7 +271,7 @@ static SLSResource *DEFAULT_RESOURCE;
             
             [DEFAULT_RESOURCE add:@"sls.sdk.language" value: @"Objective-C"];
             [DEFAULT_RESOURCE add:@"sls.sdk.name" value: @"SLSCocoa"];
-            [DEFAULT_RESOURCE add:@"sls.sdk.version" value: [[HttpConfigProxy sharedInstance] getVersion]];
+            [DEFAULT_RESOURCE add:@"sls.sdk.version" value: [SLSUtils getSdkVersion]];
             
             NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
             NSString *appName = [infoDictionary objectForKey:@"CFBundleDisplayName"];

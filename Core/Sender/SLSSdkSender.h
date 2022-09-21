@@ -12,6 +12,7 @@
 #else
 #import "SLSSpanProcessorProtocol.h"
 #endif
+#import "AliyunLogProducer/AliyunLogProducer.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -29,6 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSString *) provideAccessKeyId: (SLSCredentials *) credentials;
 - (NSString *) provideAccessKeySecret: (SLSCredentials *) credentials;
 - (NSString *) provideSecurityToken: (SLSCredentials *) credentials;
+- (void) provideLogProducerConfig: (LogProducerConfig *) config;
 
 @end
 

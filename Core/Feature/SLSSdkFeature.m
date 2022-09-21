@@ -7,6 +7,7 @@
 
 #import "SLSSystemCapabilities.h"
 #import "SLSSdkFeature.h"
+#import "SLSUtils.h"
 
 @interface SLSSdkFeature ()
 
@@ -15,6 +16,14 @@
 @end
 
 @implementation SLSSdkFeature
+
+- (NSString *)name {
+    return @"";
+}
+
+- (NSString *)version {
+    return [SLSUtils getSdkVersion];
+}
 
 - (SLSSpanBuilder *) newSpanBuilder: (NSString *)spanName provider: (id<SLSSpanProviderProtocol>) provider processor: (id<SLSSpanProcessorProtocol>) processor {
     return [[SLSSpanBuilder builder] initWithName:spanName provider:provider processor:processor];

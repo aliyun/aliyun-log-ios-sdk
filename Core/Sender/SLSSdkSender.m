@@ -53,6 +53,9 @@ SLSSdkSender *_ref_sls_sdk_sender;
 - (NSString *) provideSecurityToken: (SLSCredentials *) credentials {
     return credentials.securityToken;
 }
+- (void) provideLogProducerConfig: (LogProducerConfig *) config {
+    
+}
 
 - (void) initialize: (SLSCredentials *) credentials {
     NSString *endpoint = [self provideEndpoint:credentials];
@@ -95,6 +98,8 @@ SLSSdkSender *_ref_sls_sdk_sender;
     [_config SetPersistentMaxLogCount:65536];
     [_config SetDropDelayLog:0];
     [_config SetDropUnauthorizedLog:0];
+    
+    [self provideLogProducerConfig:_config];
     
     _client = [[LogProducerClient alloc] initWithLogProducerConfig:self.config callback:_on_log_send_done];
 }
