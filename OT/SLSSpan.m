@@ -33,6 +33,16 @@ NSString* const SLSCONSUMER = @"CONSUMER";
     return self;
 }
 
+- (instancetype) setParent: (SLSSpan *) parent {
+    if (!parent) {
+        return self;
+    }
+    
+    _parentSpanID = parent.spanID;
+    _traceID = parent.traceID;
+    return self;
+}
+
 - (void) addAttribute:(SLSAttribute *)attribute, ... NS_REQUIRES_NIL_TERMINATION {
     NSMutableDictionary<NSString*, NSString*> *dict = (NSMutableDictionary<NSString*, NSString*> *) _attribute;
     [dict setObject:attribute.value forKey:attribute.key];

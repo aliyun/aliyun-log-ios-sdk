@@ -42,6 +42,7 @@ typedef NS_ENUM(NSInteger, SLSStatusCode){
 @property(nonatomic, strong) NSString *transactionId;
 @property(atomic, assign, readonly) BOOL isEnd;
 
+- (instancetype) setParent: (SLSSpan *) parent NS_SWIFT_NAME(setParnet(_:));
 
 /// Add SLSAttributes to SLSSpan
 /// @param attribute SLSAttribute
