@@ -30,7 +30,7 @@
 + (instancetype) sender {
     return [[DefaultSdkSender alloc] init];
 }
-- (void) provideLogProducerConfig:(LogProducerConfig *)config {
+- (void) provideLogProducerConfig: (id) config {
     [config setHttpHeaderInjector:^NSArray<NSString *> *(NSArray<NSString *> *srcHeaders) {
         return [SLSHttpHeader getHeaders:srcHeaders, [NSString stringWithFormat:@"apm/%@", [SLSUtils getSdkVersion]],nil];
     }];

@@ -6,8 +6,10 @@ _OBJC_CLASS_$_LogProducerConfig
 _OBJC_METACLASS_$_LogProducerConfig
 _OBJC_CLASS_$_TimeUtils
 _OBJC_METACLASS_$_TimeUtils
-_OBJC_CLASS_$_HttpConfigProxy
-_OBJC_METACLASS_$_HttpConfigProxy
+_OBJC_CLASS_$_SLSHttpHeader
+_OBJC_METACLASS_$_SLSHttpHeader
+_OBJC_CLASS_$_SLSUtils
+_OBJC_METACLASS_$_SLSUtils
 _OBJC_CLASS_$_Log
 _OBJC_METACLASS_$_Log
 _LOG_PRODUCER_DROP_ERROR

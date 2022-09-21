@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
     isPodLint = ENV['env'].to_s == 'lint'
     
     s.name             = "AliyunLogProducer"
-    s.version          = "3.1.0"
+    s.version          = "3.1.1.beta.1"
     s.summary          = "aliyun log service ios producer."
     
     # This description is used to generate tags and improve search results.
@@ -44,8 +44,8 @@ Pod::Spec.new do |s|
     
     s.subspec 'Producer' do |c|
         c.ios.deployment_target = '9.0'
-#        c.tvos.deployment_target =  '9.0'
-#        c.osx.deployment_target =  '10.8'
+        c.tvos.deployment_target =  '9.0'
+        c.osx.deployment_target =  '10.8'
         if isPodLint
             c.vendored_frameworks = "build/AliyunLogProducer.framework"
         else
@@ -58,8 +58,8 @@ Pod::Spec.new do |s|
     
     s.subspec 'OT' do |o|
         o.ios.deployment_target = '9.0'
-#        o.tvos.deployment_target =  '9.0'
-#        o.osx.deployment_target =  '10.8'
+        o.tvos.deployment_target =  '9.0'
+        o.osx.deployment_target =  '10.8'
         if isPodLint
             o.vendored_frameworks = "build/AliyunLogOT.framework"
         else
@@ -72,8 +72,8 @@ Pod::Spec.new do |s|
 
     s.subspec 'Core' do |c|
         c.ios.deployment_target = '9.0'
-#        c.tvos.deployment_target =  '9.0'
-#        c.osx.deployment_target =  '10.8'
+        c.tvos.deployment_target =  '9.0'
+        c.osx.deployment_target =  '10.8'
         c.dependency 'AliyunLogProducer/Producer'
         c.dependency 'AliyunLogProducer/OT'
         if isPodLint
@@ -89,8 +89,8 @@ Pod::Spec.new do |s|
 
     s.subspec 'CrashReporter' do |c|
         c.ios.deployment_target = '9.0'
-#        c.tvos.deployment_target =  '9.0'
-#        c.osx.deployment_target =  '10.8'
+        c.tvos.deployment_target =  '9.0'
+        c.osx.deployment_target =  '10.8'
         c.dependency 'AliyunLogProducer/Producer'
         c.dependency 'AliyunLogProducer/OT'
         c.dependency 'AliyunLogProducer/Core'
@@ -156,8 +156,8 @@ Pod::Spec.new do |s|
     
     s.subspec 'Trace' do |c|
         c.ios.deployment_target = '9.0'
-#        c.tvos.deployment_target =  '9.0'
-#        c.osx.deployment_target =  '10.8'
+        c.tvos.deployment_target =  '9.0'
+        c.osx.deployment_target =  '10.8'
         c.dependency 'AliyunLogProducer/Producer'
         c.dependency 'AliyunLogProducer/Core'
         c.dependency 'AliyunLogProducer/OT'

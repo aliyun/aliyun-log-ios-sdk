@@ -53,7 +53,7 @@ SLSSdkSender *_ref_sls_sdk_sender;
 - (NSString *) provideSecurityToken: (SLSCredentials *) credentials {
     return credentials.securityToken;
 }
-- (void) provideLogProducerConfig: (LogProducerConfig *) config {
+- (void) provideLogProducerConfig: (id) config {
     
 }
 

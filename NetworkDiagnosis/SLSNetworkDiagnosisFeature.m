@@ -364,7 +364,7 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
     return credentials.networkDiagnosisCredentials.securityToken;
 }
 
-- (void)provideLogProducerConfig:(LogProducerConfig *)config {
+- (void) provideLogProducerConfig: (id) config {
     [config setHttpHeaderInjector:^NSArray<NSString *> *(NSArray<NSString *> *srcHeaders) {
         return [SLSHttpHeader getHeaders:srcHeaders, [NSString stringWithFormat:@"%@/%@", [self->_feature name], [self->_feature version]], nil];
     }];
