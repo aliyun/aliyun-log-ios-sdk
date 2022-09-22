@@ -23,7 +23,7 @@ build_framework()
     PLATFORM=$1;
     echo "start building ${SCHEME} for ${PLATFORM} ..."
 
-#    iphoneos iphonesimulator appletvos appletvsimulator
+#    iphoneos iphonesimulator appletvos appletvsimulator macosx macosx_catalyst
     generic_platform=""
     final_sdk=${PLATFORM}
     case "${PLATFORM}" in
@@ -49,8 +49,9 @@ build_framework()
     PLATFORM_WORKING_DIRECTORY="${PROJECT_BUILDDIR}/${SCHEME}/${PLATFORM}"
 
     echo "building ${PLATFORM} for ${SCHEME}. generic_platform: ${generic_platform}, PLATFORM_WORKING_DIRECTORY: ${PLATFORM_WORKING_DIRECTORY}"
+    # clean
     xcodebuild OTHER_CFLAGS="-fembed-bitcode" clean -project ${WORKSPACE} -scheme ${SCHEME} -configuration Release
-    # clean & archive
+    # archive
     xcodebuild OTHER_CFLAGS="-fembed-bitcode" \
         -project ${WORKSPACE} \
         -scheme ${SCHEME} \
@@ -71,11 +72,15 @@ build_framework()
     then src="${PLATFORM_WORKING_DIRECTORY}/${SCHEME}.xcarchive/Products/Library/Frameworks/${SCHEME}.framework/Versions/A/"
     fi
 
-    echo "src: ${src}"
-    echo "dest: ${dest}"
+    if [[ ${ENABLE_DEBUG} == 1 ]];
+    then
+        echo "src: ${src}"
+        echo "dest: ${dest}"
+    fi
     
     cp -rf ${src} ${dest}
     
+    # macos specified
     if [[ ${PLATFORM} == *"macosx"* ]];
     then
         cp ${dest}/Resources/Info.plist ${dest}/Info.plist
@@ -86,23 +91,6 @@ build_framework()
     # remove invalid info
     rm -rf ${dest}/PrivateHeaders
     rm -rf ${dest}/_CodeSignature
-        
-#    xcodebuild -exportArchive -archivePath "${PROJECT_BUILDDIR}/${SCHEME}/${PLATFORM}.xcarchive" -exportPath "${PROJECT_BUILDDIR}/${SCHEME}/${PLATFORM}" -exportOptionsPlist "build.plist"
-
-    
-#        DWARF_DSYM_FOLDER_PATH="${PLATFORM_WORKING_DIRECTORY}/${SCHEME}" \
-#        -sdk ${final_sdk} \
-#        build \
-#            -sdk ${PLATFORM} build \
-#            DWARF_DSYM_FOLDER_PATH="${PROJECT_BUILDDIR}/${PLATFORM}"
-
-
-#xcodebuild OTHER_CFLAGS="-fembed-bitcode" -configuration Release archive -project ${WORKSPACE} -scheme ${SCHEME} -destination "platform=macOS,variant=Mac Catalyst" -archivePath "${PROJECT_BUILDDIR}/macosx_catalyst" SKIP_INSTALL=NO
-    
-#    xcodebuild OTHER_CFLAGS="-fembed-bitcode" -project ${WORKSPACE} -scheme ${SCHEME} -configuration Release -sdk ${PLATFORM} clean build CONFIGURATION_BUILD_DIR="${PROJECT_BUILDDIR}/${SCHEME}/${PLATFORM}"
-#
-#    rm -rf ${PROJECT_BUILDDIR}/${SCHEME}/${p}/${SCHEME}.framework/PrivateHeaders
-#    rm -rf ${PROJECT_BUILDDIR}/${SCHEME}/${p}/${SCHEME}.framework/_CodeSignature
     
     echo "building ${SCHEME} for ${PLATFORM} end."
 }
@@ -118,7 +106,6 @@ create_xcframework()
     if [[ ${ENABLE_DEBUG} == 1 ]];
     then echo "framworks cmd: ${cmd_frameworks[@]}"
     fi
-#    echo "framworks cmd: ${cmd_frameworks[@]}"
     
     # create xcframework
     xcodebuild -create-xcframework -output ${PROJECT_BUILDDIR}/${SCHEME}.xcframework ${cmd_frameworks[@]}
@@ -126,10 +113,6 @@ create_xcframework()
 
 clean_env()
 {
-#    for ((i=0; i< ${PLATFORM_COUNT}; i++))
-#    do
-#        rm -rf ${PROJECT_BUILDDIR}/${SCHEME}/${PLATFORM_LIST[i]}/${SCHEME}.framework
-#    done
     rm -rf ${PROJECT_BUILDDIR}/${SCHEME}
 }
 
@@ -183,7 +166,7 @@ done
 # create xcframework
 create_xcframework
 
-#if [[ ${ENABLE_DEBUG} != 1 ]];
-#then
+if [[ ${ENABLE_DEBUG} != 1 ]];
+then
     clean_env
-#fi
+fi
