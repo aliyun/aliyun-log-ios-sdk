@@ -47,9 +47,9 @@ Pod::Spec.new do |s|
         c.tvos.deployment_target =  '9.0'
         c.osx.deployment_target =  '10.8'
         if isPodLint
-            c.vendored_frameworks = "build/AliyunLogProducer.framework"
+            c.vendored_frameworks = "build/AliyunLogProducer.xcframework"
         else
-            c.vendored_frameworks = "AliyunLogProducer/AliyunLogProducer.framework"
+            c.vendored_frameworks = "AliyunLogProducer/AliyunLogProducer.xcframework"
         end
         c.user_target_xcconfig = {
             'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
@@ -61,9 +61,9 @@ Pod::Spec.new do |s|
         o.tvos.deployment_target =  '9.0'
         o.osx.deployment_target =  '10.8'
         if isPodLint
-            o.vendored_frameworks = "build/AliyunLogOT.framework"
+            o.vendored_frameworks = "build/AliyunLogOT.xcframework"
         else
-            o.vendored_frameworks = "AliyunLogOT/AliyunLogOT.framework"
+            o.vendored_frameworks = "AliyunLogOT/AliyunLogOT.xcframework"
         end
         o.user_target_xcconfig = {
             'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
@@ -77,9 +77,9 @@ Pod::Spec.new do |s|
         c.dependency 'AliyunLogProducer/Producer'
         c.dependency 'AliyunLogProducer/OT'
         if isPodLint
-            c.vendored_frameworks = "build/AliyunLogCore.framework"
+            c.vendored_frameworks = "build/AliyunLogCore.xcframework"
         else
-            c.vendored_frameworks = "AliyunLogCore/AliyunLogCore.framework"
+            c.vendored_frameworks = "AliyunLogCore/AliyunLogCore.xcframework"
         end
         
         c.user_target_xcconfig = {
@@ -95,10 +95,10 @@ Pod::Spec.new do |s|
         c.dependency 'AliyunLogProducer/OT'
         c.dependency 'AliyunLogProducer/Core'
         if isPodLint
-            c.vendored_frameworks = "build/AliyunLogCrashReporter.framework", "build/WPKMobi.xcframework"
+            c.vendored_frameworks = "build/AliyunLogCrashReporter.xcframework", "build/WPKMobi.xcframework"
             c.exclude_files = "build/WPKMobi.xcframework/**/Headers/*.h"
         else
-            c.vendored_frameworks = "AliyunLogCrashReporter/AliyunLogCrashReporter.framework", "WPKMobi/WPKMobi.xcframework"
+            c.vendored_frameworks = "AliyunLogCrashReporter/AliyunLogCrashReporter.xcframework", "WPKMobi/WPKMobi.xcframework"
             c.exclude_files = "WPKMobi/WPKMobi.xcframework/**/Headers/*.h"
         end
 
@@ -162,9 +162,9 @@ Pod::Spec.new do |s|
         c.dependency 'AliyunLogProducer/Core'
         c.dependency 'AliyunLogProducer/OT'
         if isPodLint
-            c.vendored_frameworks = "build/AliyunLogTrace.framework"
+            c.vendored_frameworks = "build/AliyunLogTrace.xcframework"
         else
-            c.vendored_frameworks = "AliyunLogTrace/AliyunLogTrace.framework"
+            c.vendored_frameworks = "AliyunLogTrace/AliyunLogTrace.xcframework"
         end
         
         c.user_target_xcconfig = {

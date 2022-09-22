@@ -20,7 +20,7 @@
     [super viewDidLoad];
     _config = [[LogProducerConfig alloc] initWithEndpoint:[DemoUtils sharedInstance].endpoint project:[DemoUtils sharedInstance].project logstore:[DemoUtils sharedInstance].logstore];
     _client = [[LogProducerClient alloc] initWithLogProducerConfig:_config];
-    [_client setEnableTrack:YES];
+//    [_client setEnableTrack:YES];
 
     // Do any additional setup after loading the view.
     

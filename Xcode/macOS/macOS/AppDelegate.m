@@ -8,8 +8,6 @@
 #import "AppDelegate.h"
 #import "DemoUtils.h"
 #import <AliyunLogProducer/AliyunLogProducer.h>
-#import <AliyunLogProducer/SLSCocoa.h>
-#import "SLSCrashReporter.h"
 @interface AppDelegate ()
 
 
@@ -50,7 +48,7 @@
     credentials.project = @"yuanbo-test-1";
     credentials.accessKeyId = utils.accessKeyId;
     credentials.accessKeySecret = utils.accessKeySecret;
-    credentials.instanceId = @"yuanbo-ios";
+    credentials.instanceId = @"ios-dev-ea64";
     
     [[SLSCocoa sharedInstance] initialize:credentials configuration:^(SLSConfiguration * _Nonnull configuration) {
         configuration.enableCrashReporter = YES;
