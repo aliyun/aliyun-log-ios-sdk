@@ -6,9 +6,10 @@
 //
 
 #import "SLSUtils.h"
+#import "AliyunLogProducer.h"
 
 @implementation SLSUtils
 + (NSString *) getSdkVersion {
-    return [[[NSBundle bundleForClass:SLSUtils.class] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+    return SLS_SDK_VERSION;
 }
 @end

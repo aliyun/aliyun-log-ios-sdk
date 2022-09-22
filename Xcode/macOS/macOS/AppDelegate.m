@@ -35,6 +35,7 @@
         [utils setAccessKeyId:@""];
         [utils setAccessKeySecret:@""];
     }
+    SLSLogV(@"sdk version: %s", AliyunLogProducerVersionString);
     
     SLSLogV(@"endpoint: %@", [utils endpoint]);
     SLSLogV(@"project: %@", [utils project]);

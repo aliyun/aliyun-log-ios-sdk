@@ -84,7 +84,7 @@
 }
 
 - (void) gotoNetworkDiagnosisPage {
-//    [self gotoPageWithPage:[[NetworkDiagnosisController alloc]init]];
+    [self gotoPageWithPage:[[NetworkDiagnosisController alloc]init]];
 }
 
 - (void) gotoTracePage {

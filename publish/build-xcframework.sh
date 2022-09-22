@@ -8,7 +8,6 @@ PLATFORM_COUNT=0
 
 ENABLE_DEBUG=0
 
-APPLICATION_NAME="AliyunLogProducer"
 SCHEME="AliyunLogProducer"
 WORKSPACE="AliyunLogProducer.xcodeproj"
 PROJECT_BUILDDIR="publish/build"

@@ -11,13 +11,13 @@ targets.each do |t|
       use_frameworks!
 
       # Pods for Demo
-#      pod 'AliyunLogProducer', '3.1.0', :subspecs => ['CrashReporter', 'NetworkDiagnosis', 'Trace']
-      pod 'AliyunLogProducer/Producer', :path =>'../../'
-      pod 'AliyunLogProducer/Core', :path =>'../../'
-      pod 'AliyunLogProducer/OT', :path =>'../../'
-      pod 'AliyunLogProducer/CrashReporter', :path =>'../../'
+      pod 'AliyunLogProducer', '3.1.1.beta.2', :subspecs => ['CrashReporter', 'NetworkDiagnosis', 'Trace']
+#      pod 'AliyunLogProducer/Producer', :path =>'../../'
+#      pod 'AliyunLogProducer/Core', :path =>'../../'
+#      pod 'AliyunLogProducer/OT', :path =>'../../'
+#      pod 'AliyunLogProducer/CrashReporter', :path =>'../../'
 #      pod 'AliyunLogProducer/NetworkDiagnosis', :path =>'../../'
-      pod 'AliyunLogProducer/Trace', :path =>'../../'
+#      pod 'AliyunLogProducer/Trace', :path =>'../../'
     end
 
 end
