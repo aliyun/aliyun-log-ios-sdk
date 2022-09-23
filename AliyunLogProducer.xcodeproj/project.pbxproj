@@ -36,6 +36,16 @@
 		F84F8ADE2814E1180038A46E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F80DF47A26A7035E00151F7C /* SystemConfiguration.framework */; };
 		F84F8AE02814E1180038A46E /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F80DF47826A7034E00151F7C /* libc++.tbd */; };
 		F84F8AE12814E1180038A46E /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D0CAEEE252177D800A4985A /* libz.tbd */; };
+		F85FEBE728DDB97500DD58F1 /* log_hmac-sha.c in Sources */ = {isa = PBXBuildFile; fileRef = F85FEBE528DDB97500DD58F1 /* log_hmac-sha.c */; };
+		F85FEBE828DDB97500DD58F1 /* log_hmac-sha.h in Headers */ = {isa = PBXBuildFile; fileRef = F85FEBE628DDB97500DD58F1 /* log_hmac-sha.h */; };
+		F85FEBF128DDB99F00DD58F1 /* log_sds.c in Sources */ = {isa = PBXBuildFile; fileRef = F85FEBE928DDB99F00DD58F1 /* log_sds.c */; };
+		F85FEBF228DDB99F00DD58F1 /* log_lz4.c in Sources */ = {isa = PBXBuildFile; fileRef = F85FEBEA28DDB99F00DD58F1 /* log_lz4.c */; };
+		F85FEBF328DDB99F00DD58F1 /* log_sha1.c in Sources */ = {isa = PBXBuildFile; fileRef = F85FEBEB28DDB99F00DD58F1 /* log_sha1.c */; };
+		F85FEBF428DDB99F00DD58F1 /* log_md5.c in Sources */ = {isa = PBXBuildFile; fileRef = F85FEBEC28DDB99F00DD58F1 /* log_md5.c */; };
+		F85FEBF528DDB99F00DD58F1 /* log_md5.h in Headers */ = {isa = PBXBuildFile; fileRef = F85FEBED28DDB99F00DD58F1 /* log_md5.h */; };
+		F85FEBF628DDB99F00DD58F1 /* log_sha1.h in Headers */ = {isa = PBXBuildFile; fileRef = F85FEBEE28DDB99F00DD58F1 /* log_sha1.h */; };
+		F85FEBF728DDB99F00DD58F1 /* log_sds.h in Headers */ = {isa = PBXBuildFile; fileRef = F85FEBEF28DDB99F00DD58F1 /* log_sds.h */; };
+		F85FEBF828DDB99F00DD58F1 /* log_lz4.h in Headers */ = {isa = PBXBuildFile; fileRef = F85FEBF028DDB99F00DD58F1 /* log_lz4.h */; };
 		F876349E28AC94DC0062BBB5 /* AliyunLogOT.h in Headers */ = {isa = PBXBuildFile; fileRef = F876349D28AC94DC0062BBB5 /* AliyunLogOT.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F87828D328B608CA00F3D2B5 /* Unity4SLSiOS.m in Sources */ = {isa = PBXBuildFile; fileRef = F878289328B6035F00F3D2B5 /* Unity4SLSiOS.m */; };
 		F8E74BA928ACAE71000609C3 /* SLSCrashReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = F8E74BA428ACAE71000609C3 /* SLSCrashReporter.m */; };
@@ -131,39 +141,29 @@
 		F8FC420E28AB9B1400618273 /* SLSSystemCapabilities.h in Headers */ = {isa = PBXBuildFile; fileRef = F8FC41AF28AB9B1300618273 /* SLSSystemCapabilities.h */; };
 		F8FC420F28AB9B1400618273 /* AliyunLogProducer.h in Headers */ = {isa = PBXBuildFile; fileRef = F8FC41B028AB9B1300618273 /* AliyunLogProducer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F8FC421528AB9B1400618273 /* log_persistent_manager.h in Headers */ = {isa = PBXBuildFile; fileRef = F8FC41B828AB9B1300618273 /* log_persistent_manager.h */; };
-		F8FC421628AB9B1400618273 /* sds.c in Sources */ = {isa = PBXBuildFile; fileRef = F8FC41B928AB9B1300618273 /* sds.c */; };
 		F8FC421728AB9B1400618273 /* log_producer_config.h in Headers */ = {isa = PBXBuildFile; fileRef = F8FC41BA28AB9B1300618273 /* log_producer_config.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F8FC421828AB9B1400618273 /* log_producer_common.c in Sources */ = {isa = PBXBuildFile; fileRef = F8FC41BB28AB9B1300618273 /* log_producer_common.c */; };
 		F8FC421928AB9B1400618273 /* log_api.c in Sources */ = {isa = PBXBuildFile; fileRef = F8FC41BC28AB9B1300618273 /* log_api.c */; };
 		F8FC421A28AB9B1400618273 /* log_producer_client.h in Headers */ = {isa = PBXBuildFile; fileRef = F8FC41BD28AB9B1300618273 /* log_producer_client.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F8FC421B28AB9B1400618273 /* inner_log.h in Headers */ = {isa = PBXBuildFile; fileRef = F8FC41BE28AB9B1300618273 /* inner_log.h */; };
 		F8FC421C28AB9B1400618273 /* log_inner_include.h in Headers */ = {isa = PBXBuildFile; fileRef = F8FC41BF28AB9B1300618273 /* log_inner_include.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F8FC421D28AB9B1400618273 /* hmac-sha.h in Headers */ = {isa = PBXBuildFile; fileRef = F8FC41C028AB9B1300618273 /* hmac-sha.h */; };
 		F8FC421E28AB9B1400618273 /* log_producer_sender.h in Headers */ = {isa = PBXBuildFile; fileRef = F8FC41C128AB9B1300618273 /* log_producer_sender.h */; };
 		F8FC421F28AB9B1400618273 /* log_http_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = F8FC41C228AB9B1300618273 /* log_http_interface.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F8FC422028AB9B1400618273 /* log_builder.c in Sources */ = {isa = PBXBuildFile; fileRef = F8FC41C328AB9B1300618273 /* log_builder.c */; };
-		F8FC422128AB9B1400618273 /* md5.h in Headers */ = {isa = PBXBuildFile; fileRef = F8FC41C428AB9B1300618273 /* md5.h */; };
-		F8FC422228AB9B1400618273 /* lz4.h in Headers */ = {isa = PBXBuildFile; fileRef = F8FC41C528AB9B1300618273 /* lz4.h */; };
-		F8FC422328AB9B1400618273 /* sha1.c in Sources */ = {isa = PBXBuildFile; fileRef = F8FC41C628AB9B1300618273 /* sha1.c */; };
 		F8FC422428AB9B1400618273 /* log_multi_thread.h in Headers */ = {isa = PBXBuildFile; fileRef = F8FC41C728AB9B1300618273 /* log_multi_thread.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F8FC422528AB9B1400618273 /* log_queue.c in Sources */ = {isa = PBXBuildFile; fileRef = F8FC41C828AB9B1300618273 /* log_queue.c */; };
 		F8FC422628AB9B1400618273 /* log_ring_file.c in Sources */ = {isa = PBXBuildFile; fileRef = F8FC41C928AB9B1300618273 /* log_ring_file.c */; };
 		F8FC422728AB9B1400618273 /* log_util.h in Headers */ = {isa = PBXBuildFile; fileRef = F8FC41CA28AB9B1300618273 /* log_util.h */; };
 		F8FC422828AB9B1400618273 /* log_producer_manager.c in Sources */ = {isa = PBXBuildFile; fileRef = F8FC41CB28AB9B1300618273 /* log_producer_manager.c */; };
 		F8FC422928AB9B1400618273 /* log_producer_config.c in Sources */ = {isa = PBXBuildFile; fileRef = F8FC41CC28AB9B1300618273 /* log_producer_config.c */; };
-		F8FC422A28AB9B1400618273 /* sds.h in Headers */ = {isa = PBXBuildFile; fileRef = F8FC41CD28AB9B1300618273 /* sds.h */; };
 		F8FC422B28AB9B1400618273 /* log_persistent_manager.c in Sources */ = {isa = PBXBuildFile; fileRef = F8FC41CE28AB9B1300618273 /* log_persistent_manager.c */; };
 		F8FC422C28AB9B1400618273 /* inner_log.c in Sources */ = {isa = PBXBuildFile; fileRef = F8FC41CF28AB9B1300618273 /* inner_log.c */; };
 		F8FC422D28AB9B1400618273 /* log_producer_client.c in Sources */ = {isa = PBXBuildFile; fileRef = F8FC41D028AB9B1300618273 /* log_producer_client.c */; };
 		F8FC422E28AB9B1400618273 /* log_api.h in Headers */ = {isa = PBXBuildFile; fileRef = F8FC41D128AB9B1300618273 /* log_api.h */; };
 		F8FC422F28AB9B1400618273 /* log_producer_common.h in Headers */ = {isa = PBXBuildFile; fileRef = F8FC41D228AB9B1300618273 /* log_producer_common.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F8FC423028AB9B1400618273 /* sha1.h in Headers */ = {isa = PBXBuildFile; fileRef = F8FC41D328AB9B1300618273 /* sha1.h */; };
-		F8FC423128AB9B1400618273 /* md5.c in Sources */ = {isa = PBXBuildFile; fileRef = F8FC41D428AB9B1300618273 /* md5.c */; };
-		F8FC423228AB9B1400618273 /* lz4.c in Sources */ = {isa = PBXBuildFile; fileRef = F8FC41D528AB9B1300618273 /* lz4.c */; };
 		F8FC423328AB9B1400618273 /* log_http_interface.c in Sources */ = {isa = PBXBuildFile; fileRef = F8FC41D628AB9B1300618273 /* log_http_interface.c */; };
 		F8FC423428AB9B1400618273 /* log_builder.h in Headers */ = {isa = PBXBuildFile; fileRef = F8FC41D728AB9B1300618273 /* log_builder.h */; };
 		F8FC423528AB9B1400618273 /* log_producer_sender.c in Sources */ = {isa = PBXBuildFile; fileRef = F8FC41D828AB9B1300618273 /* log_producer_sender.c */; };
-		F8FC423628AB9B1400618273 /* hmac-sha.c in Sources */ = {isa = PBXBuildFile; fileRef = F8FC41D928AB9B1300618273 /* hmac-sha.c */; };
 		F8FC423728AB9B1400618273 /* log_define.h in Headers */ = {isa = PBXBuildFile; fileRef = F8FC41DA28AB9B1300618273 /* log_define.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F8FC423828AB9B1400618273 /* log_util.c in Sources */ = {isa = PBXBuildFile; fileRef = F8FC41DB28AB9B1300618273 /* log_util.c */; };
 		F8FC423928AB9B1400618273 /* log_producer_manager.h in Headers */ = {isa = PBXBuildFile; fileRef = F8FC41DC28AB9B1300618273 /* log_producer_manager.h */; };
@@ -263,6 +263,16 @@
 		F834A16828D3122A00000F72 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F834A16A28D312CE00000F72 /* build-trace.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = "build-trace.sh"; path = "publish/build-trace.sh"; sourceTree = "<group>"; };
 		F84F8AE72814E1180038A46E /* AliyunLogNetworkDiagnosis.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AliyunLogNetworkDiagnosis.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F85FEBE528DDB97500DD58F1 /* log_hmac-sha.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "log_hmac-sha.c"; sourceTree = "<group>"; };
+		F85FEBE628DDB97500DD58F1 /* log_hmac-sha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "log_hmac-sha.h"; sourceTree = "<group>"; };
+		F85FEBE928DDB99F00DD58F1 /* log_sds.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = log_sds.c; sourceTree = "<group>"; };
+		F85FEBEA28DDB99F00DD58F1 /* log_lz4.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = log_lz4.c; sourceTree = "<group>"; };
+		F85FEBEB28DDB99F00DD58F1 /* log_sha1.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = log_sha1.c; sourceTree = "<group>"; };
+		F85FEBEC28DDB99F00DD58F1 /* log_md5.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = log_md5.c; sourceTree = "<group>"; };
+		F85FEBED28DDB99F00DD58F1 /* log_md5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = log_md5.h; sourceTree = "<group>"; };
+		F85FEBEE28DDB99F00DD58F1 /* log_sha1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = log_sha1.h; sourceTree = "<group>"; };
+		F85FEBEF28DDB99F00DD58F1 /* log_sds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = log_sds.h; sourceTree = "<group>"; };
+		F85FEBF028DDB99F00DD58F1 /* log_lz4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = log_lz4.h; sourceTree = "<group>"; };
 		F8696C4F27F0066D00EF0020 /* AliyunLogCrashReporter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AliyunLogCrashReporter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F876349D28AC94DC0062BBB5 /* AliyunLogOT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AliyunLogOT.h; sourceTree = "<group>"; };
 		F878289228B6035F00F3D2B5 /* Unity4SLSiOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Unity4SLSiOS.h; sourceTree = "<group>"; };
@@ -368,39 +378,29 @@
 		F8FC41B028AB9B1300618273 /* AliyunLogProducer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AliyunLogProducer.h; sourceTree = "<group>"; };
 		F8FC41B128AB9B1300618273 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F8FC41B828AB9B1300618273 /* log_persistent_manager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = log_persistent_manager.h; sourceTree = "<group>"; };
-		F8FC41B928AB9B1300618273 /* sds.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sds.c; sourceTree = "<group>"; };
 		F8FC41BA28AB9B1300618273 /* log_producer_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = log_producer_config.h; sourceTree = "<group>"; };
 		F8FC41BB28AB9B1300618273 /* log_producer_common.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = log_producer_common.c; sourceTree = "<group>"; };
 		F8FC41BC28AB9B1300618273 /* log_api.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = log_api.c; sourceTree = "<group>"; };
 		F8FC41BD28AB9B1300618273 /* log_producer_client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = log_producer_client.h; sourceTree = "<group>"; };
 		F8FC41BE28AB9B1300618273 /* inner_log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = inner_log.h; sourceTree = "<group>"; };
 		F8FC41BF28AB9B1300618273 /* log_inner_include.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = log_inner_include.h; sourceTree = "<group>"; };
-		F8FC41C028AB9B1300618273 /* hmac-sha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "hmac-sha.h"; sourceTree = "<group>"; };
 		F8FC41C128AB9B1300618273 /* log_producer_sender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = log_producer_sender.h; sourceTree = "<group>"; };
 		F8FC41C228AB9B1300618273 /* log_http_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = log_http_interface.h; sourceTree = "<group>"; };
 		F8FC41C328AB9B1300618273 /* log_builder.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = log_builder.c; sourceTree = "<group>"; };
-		F8FC41C428AB9B1300618273 /* md5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = md5.h; sourceTree = "<group>"; };
-		F8FC41C528AB9B1300618273 /* lz4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lz4.h; sourceTree = "<group>"; };
-		F8FC41C628AB9B1300618273 /* sha1.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sha1.c; sourceTree = "<group>"; };
 		F8FC41C728AB9B1300618273 /* log_multi_thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = log_multi_thread.h; sourceTree = "<group>"; };
 		F8FC41C828AB9B1300618273 /* log_queue.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = log_queue.c; sourceTree = "<group>"; };
 		F8FC41C928AB9B1300618273 /* log_ring_file.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = log_ring_file.c; sourceTree = "<group>"; };
 		F8FC41CA28AB9B1300618273 /* log_util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = log_util.h; sourceTree = "<group>"; };
 		F8FC41CB28AB9B1300618273 /* log_producer_manager.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = log_producer_manager.c; sourceTree = "<group>"; };
 		F8FC41CC28AB9B1300618273 /* log_producer_config.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = log_producer_config.c; sourceTree = "<group>"; };
-		F8FC41CD28AB9B1300618273 /* sds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sds.h; sourceTree = "<group>"; };
 		F8FC41CE28AB9B1300618273 /* log_persistent_manager.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = log_persistent_manager.c; sourceTree = "<group>"; };
 		F8FC41CF28AB9B1300618273 /* inner_log.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = inner_log.c; sourceTree = "<group>"; };
 		F8FC41D028AB9B1300618273 /* log_producer_client.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = log_producer_client.c; sourceTree = "<group>"; };
 		F8FC41D128AB9B1300618273 /* log_api.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = log_api.h; sourceTree = "<group>"; };
 		F8FC41D228AB9B1300618273 /* log_producer_common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = log_producer_common.h; sourceTree = "<group>"; };
-		F8FC41D328AB9B1300618273 /* sha1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sha1.h; sourceTree = "<group>"; };
-		F8FC41D428AB9B1300618273 /* md5.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = md5.c; sourceTree = "<group>"; };
-		F8FC41D528AB9B1300618273 /* lz4.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lz4.c; sourceTree = "<group>"; };
 		F8FC41D628AB9B1300618273 /* log_http_interface.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = log_http_interface.c; sourceTree = "<group>"; };
 		F8FC41D728AB9B1300618273 /* log_builder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = log_builder.h; sourceTree = "<group>"; };
 		F8FC41D828AB9B1300618273 /* log_producer_sender.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = log_producer_sender.c; sourceTree = "<group>"; };
-		F8FC41D928AB9B1300618273 /* hmac-sha.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "hmac-sha.c"; sourceTree = "<group>"; };
 		F8FC41DA28AB9B1300618273 /* log_define.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = log_define.h; sourceTree = "<group>"; };
 		F8FC41DB28AB9B1300618273 /* log_util.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = log_util.c; sourceTree = "<group>"; };
 		F8FC41DC28AB9B1300618273 /* log_producer_manager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = log_producer_manager.h; sourceTree = "<group>"; };
@@ -848,8 +848,6 @@
 		F8FC41B728AB9B1300618273 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				F8FC41D928AB9B1300618273 /* hmac-sha.c */,
-				F8FC41C028AB9B1300618273 /* hmac-sha.h */,
 				F8FC41CF28AB9B1300618273 /* inner_log.c */,
 				F8FC41BE28AB9B1300618273 /* inner_log.h */,
 				F8FC41BC28AB9B1300618273 /* log_api.c */,
@@ -879,14 +877,16 @@
 				F8FC41DD28AB9B1300618273 /* log_ring_file.h */,
 				F8FC41DB28AB9B1300618273 /* log_util.c */,
 				F8FC41CA28AB9B1300618273 /* log_util.h */,
-				F8FC41D528AB9B1300618273 /* lz4.c */,
-				F8FC41C528AB9B1300618273 /* lz4.h */,
-				F8FC41D428AB9B1300618273 /* md5.c */,
-				F8FC41C428AB9B1300618273 /* md5.h */,
-				F8FC41B928AB9B1300618273 /* sds.c */,
-				F8FC41CD28AB9B1300618273 /* sds.h */,
-				F8FC41C628AB9B1300618273 /* sha1.c */,
-				F8FC41D328AB9B1300618273 /* sha1.h */,
+				F85FEBE528DDB97500DD58F1 /* log_hmac-sha.c */,
+				F85FEBE628DDB97500DD58F1 /* log_hmac-sha.h */,
+				F85FEBEA28DDB99F00DD58F1 /* log_lz4.c */,
+				F85FEBF028DDB99F00DD58F1 /* log_lz4.h */,
+				F85FEBEC28DDB99F00DD58F1 /* log_md5.c */,
+				F85FEBED28DDB99F00DD58F1 /* log_md5.h */,
+				F85FEBE928DDB99F00DD58F1 /* log_sds.c */,
+				F85FEBEF28DDB99F00DD58F1 /* log_sds.h */,
+				F85FEBEB28DDB99F00DD58F1 /* log_sha1.c */,
+				F85FEBEE28DDB99F00DD58F1 /* log_sha1.h */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -899,19 +899,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				F8FC420F28AB9B1400618273 /* AliyunLogProducer.h in Headers */,
+				F85FEBF828DDB99F00DD58F1 /* log_lz4.h in Headers */,
 				F8FC420B28AB9B1400618273 /* LogProducerConfig.h in Headers */,
 				F8FC420D28AB9B1400618273 /* LogProducerClient.h in Headers */,
 				F8FC420C28AB9B1400618273 /* Log.h in Headers */,
 				F8FC421F28AB9B1400618273 /* log_http_interface.h in Headers */,
 				F8FC421A28AB9B1400618273 /* log_producer_client.h in Headers */,
 				F8FC422F28AB9B1400618273 /* log_producer_common.h in Headers */,
+				F85FEBF628DDB99F00DD58F1 /* log_sha1.h in Headers */,
 				F8FC421728AB9B1400618273 /* log_producer_config.h in Headers */,
 				F8FC423728AB9B1400618273 /* log_define.h in Headers */,
 				F8FC422428AB9B1400618273 /* log_multi_thread.h in Headers */,
 				F8FC421C28AB9B1400618273 /* log_inner_include.h in Headers */,
 				F8FC420E28AB9B1400618273 /* SLSSystemCapabilities.h in Headers */,
 				F81137DA28DB08DC00F5E54C /* SLSHttpHeader.h in Headers */,
-				F8FC422128AB9B1400618273 /* md5.h in Headers */,
 				F8FC423A28AB9B1400618273 /* log_ring_file.h in Headers */,
 				F8F6A95E28ABB9F90070B023 /* SLSURLSession.h in Headers */,
 				F81137DD28DB092700F5E54C /* SLSUtils.h in Headers */,
@@ -919,17 +920,16 @@
 				F8FC41FE28AB9B1300618273 /* NSString+SLS.h in Headers */,
 				F8FC423B28AB9B1400618273 /* log_queue.h in Headers */,
 				F8FC422728AB9B1400618273 /* log_util.h in Headers */,
+				F85FEBF728DDB99F00DD58F1 /* log_sds.h in Headers */,
 				F8FC423928AB9B1400618273 /* log_producer_manager.h in Headers */,
+				F85FEBE828DDB97500DD58F1 /* log_hmac-sha.h in Headers */,
 				F8FC421B28AB9B1400618273 /* inner_log.h in Headers */,
+				F85FEBF528DDB99F00DD58F1 /* log_md5.h in Headers */,
 				F8FC420828AB9B1400618273 /* TimeUtils.h in Headers */,
 				F8FC421528AB9B1400618273 /* log_persistent_manager.h in Headers */,
-				F8FC421D28AB9B1400618273 /* hmac-sha.h in Headers */,
 				F8FC421E28AB9B1400618273 /* log_producer_sender.h in Headers */,
 				F8FC422E28AB9B1400618273 /* log_api.h in Headers */,
 				F8FC423428AB9B1400618273 /* log_builder.h in Headers */,
-				F8FC422228AB9B1400618273 /* lz4.h in Headers */,
-				F8FC423028AB9B1400618273 /* sha1.h in Headers */,
-				F8FC422A28AB9B1400618273 /* sds.h in Headers */,
 				F8FC420128AB9B1400618273 /* NSDateFormatter+SLS.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1235,32 +1235,32 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F8FC423128AB9B1400618273 /* md5.c in Sources */,
+				F85FEBF428DDB99F00DD58F1 /* log_md5.c in Sources */,
 				F8FC422628AB9B1400618273 /* log_ring_file.c in Sources */,
 				F8FC420228AB9B1400618273 /* NSDictionary+SLS.m in Sources */,
 				F8F6A95F28ABB9F90070B023 /* SLSURLSession.m in Sources */,
 				F8FC422028AB9B1400618273 /* log_builder.c in Sources */,
-				F8FC423228AB9B1400618273 /* lz4.c in Sources */,
 				F8FC423528AB9B1400618273 /* log_producer_sender.c in Sources */,
 				F8FC421928AB9B1400618273 /* log_api.c in Sources */,
 				F8FC420628AB9B1400618273 /* LogProducerClient.m in Sources */,
 				F81137D928DB08DC00F5E54C /* SLSHttpHeader.m in Sources */,
 				F8FC422C28AB9B1400618273 /* inner_log.c in Sources */,
-				F8FC422328AB9B1400618273 /* sha1.c in Sources */,
 				F8FC41FD28AB9B1300618273 /* LogProducerConfig.m in Sources */,
+				F85FEBF228DDB99F00DD58F1 /* log_lz4.c in Sources */,
 				F8FC421828AB9B1400618273 /* log_producer_common.c in Sources */,
 				F8FC422828AB9B1400618273 /* log_producer_manager.c in Sources */,
 				F8FC420528AB9B1400618273 /* NSDateFormatter+SLS.m in Sources */,
 				F8FC422528AB9B1400618273 /* log_queue.c in Sources */,
-				F8FC423628AB9B1400618273 /* hmac-sha.c in Sources */,
 				F8FC420A28AB9B1400618273 /* TimeUtils.m in Sources */,
+				F85FEBE728DDB97500DD58F1 /* log_hmac-sha.c in Sources */,
+				F85FEBF328DDB99F00DD58F1 /* log_sha1.c in Sources */,
 				F8FC422928AB9B1400618273 /* log_producer_config.c in Sources */,
 				F81137DE28DB092700F5E54C /* SLSUtils.m in Sources */,
+				F85FEBF128DDB99F00DD58F1 /* log_sds.c in Sources */,
 				F8FC422D28AB9B1400618273 /* log_producer_client.c in Sources */,
 				F8FC420328AB9B1400618273 /* NSString+SLS.m in Sources */,
 				F8FC422B28AB9B1400618273 /* log_persistent_manager.c in Sources */,
 				F8FC423828AB9B1400618273 /* log_util.c in Sources */,
-				F8FC421628AB9B1400618273 /* sds.c in Sources */,
 				F8FC423328AB9B1400618273 /* log_http_interface.c in Sources */,
 				F8FC41FC28AB9B1300618273 /* Log.m in Sources */,
 			);
