@@ -3,7 +3,7 @@
 //
 
 #include "log_ring_file.h"
-#include "sds.h"
+#include "log_sds.h"
 #include "inner_log.h"
 #include <fcntl.h>
 
@@ -55,7 +55,7 @@ log_ring_file_open(const char *filePath, int maxFileCount, int maxFileSize, int 
 {
     log_ring_file * file = (log_ring_file *)malloc(sizeof(log_ring_file));
     memset(file, 0, sizeof(log_ring_file));
-    file->filePath = sdsdup((const sds)filePath);
+    file->filePath = log_sdsdup((const log_sds)filePath);
     file->nowFD = -1;
     file->maxFileCount = maxFileCount;
     file->maxFileSize = maxFileSize;
@@ -277,7 +277,7 @@ int log_ring_file_close(log_ring_file *file)
 {
     if (file != NULL)
     {
-        sdsfree(file->filePath);
+        log_sdsfree(file->filePath);
         if (file->nowFD > 0)
         {
             close(file->nowFD);

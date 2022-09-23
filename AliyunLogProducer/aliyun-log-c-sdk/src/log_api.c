@@ -1,7 +1,7 @@
 #include "log_util.h"
 #include "log_api.h"
 #include <string.h>
-#include "sds.h"
+#include "log_sds.h"
 #include "inner_log.h"
 
 int LOG_OS_HttpPost(const char *url,
@@ -38,12 +38,12 @@ static size_t write_data(void *ptr, size_t size, size_t nmemb, void *stream)
 {
     size_t totalLen = size * nmemb;
     //printf("body  ---->  %d  %s \n", (int) (totalLen, (const char*) ptr);
-    sds * buffer = (sds *)stream;
+    log_sds * buffer = (log_sds *)stream;
     if (*buffer == NULL)
     {
-        *buffer = sdsnewEmpty(256);
+        *buffer = log_sdsnewEmpty(256);
     }
-    *buffer = sdscpylen(*buffer, ptr, totalLen);
+    *buffer = log_sdscpylen(*buffer, ptr, totalLen);
     return totalLen;
 }
 
@@ -51,11 +51,11 @@ static size_t header_callback(void *ptr, size_t size, size_t nmemb, void *stream
 {
     size_t totalLen = size * nmemb;
     //printf("header  ---->  %d  %s \n", (int) (totalLen), (const char*) ptr);
-    sds * buffer = (sds *)stream;
+    log_sds * buffer = (log_sds *)stream;
     // only copy header start with x-log-
     if (totalLen > 6 && memcmp(ptr, "x-log-", 6) == 0)
     {
-        *buffer = sdscpylen(*buffer, ptr, totalLen);
+        *buffer = log_sdscpylen(*buffer, ptr, totalLen);
     }
     return totalLen;
 }
@@ -134,11 +134,11 @@ void post_log_result_destroy(post_log_result * result)
     {
         if (result->errorMessage != NULL)
         {
-            sdsfree(result->errorMessage);
+            log_sdsfree(result->errorMessage);
         }
         if (result->requestID != NULL)
         {
-            sdsfree(result->requestID);
+            log_sdsfree(result->requestID);
         }
         free(result);
     }
@@ -153,35 +153,35 @@ post_log_result * post_logs_from_lz4buf(const char *endpoint, const char * acces
     if (curl != NULL)
     {
         // url
-        sds url = NULL;
+        log_sds url = NULL;
         if (option->using_https) {
-            url = sdsnew("https://");
+            url = log_sdsnew("https://");
         } else {
-            url = sdsnew("http://");
+            url = log_sdsnew("http://");
         }
 
-        url = sdscat(url, project);
-        url = sdscat(url, ".");
-        url = sdscat(url, endpoint);
-        url = sdscat(url, "/logstores/");
-        url = sdscat(url, logstore);
-        url = sdscat(url, "/shards/lb");
+        url = log_sdscat(url, project);
+        url = log_sdscat(url, ".");
+        url = log_sdscat(url, endpoint);
+        url = log_sdscat(url, "/logstores/");
+        url = log_sdscat(url, logstore);
+        url = log_sdscat(url, "/shards/lb");
 
         curl_easy_setopt(curl, CURLOPT_URL, url);
         struct curl_slist *connect_to = NULL;
         if (option->remote_address != NULL)
         {
             // example.com::192.168.1.5:
-            sds connect_to_item = sdsnew(project);
-            connect_to_item = sdscat(connect_to_item, ".");
-            connect_to_item = sdscat(connect_to_item, endpoint);
-            connect_to_item = sdscat(connect_to_item, "::");
-            connect_to_item = sdscat(connect_to_item, option->remote_address);
-            connect_to_item = sdscat(connect_to_item, ":");
+            log_sds connect_to_item = log_sdsnew(project);
+            connect_to_item = log_sdscat(connect_to_item, ".");
+            connect_to_item = log_sdscat(connect_to_item, endpoint);
+            connect_to_item = log_sdscat(connect_to_item, "::");
+            connect_to_item = log_sdscat(connect_to_item, option->remote_address);
+            connect_to_item = log_sdscat(connect_to_item, ":");
 
             connect_to = curl_slist_append(NULL, connect_to_item);
             curl_easy_setopt(curl, CURLOPT_CONNECT_TO, connect_to);
-            sdsfree(connect_to_item);
+            log_sdsfree(connect_to_item);
         }
 
         char nowTime[64];
@@ -206,46 +206,46 @@ post_log_result * post_logs_from_lz4buf(const char *endpoint, const char * acces
         }
         if (stsToken != NULL)
         {
-            sds tokenHeader = sdsnew("x-acs-security-token:");
-            tokenHeader = sdscat(tokenHeader, stsToken);
+            log_sds tokenHeader = log_sdsnew("x-acs-security-token:");
+            tokenHeader = log_sdscat(tokenHeader, stsToken);
             headers=curl_slist_append(headers, tokenHeader);
-            sdsfree(tokenHeader);
+            log_sdsfree(tokenHeader);
         }
         headers=curl_slist_append(headers, "x-log-signaturemethod:hmac-sha1");
-        sds headerTime = sdsnew("Date:");
-        headerTime = sdscat(headerTime, nowTime);
+        log_sds headerTime = log_sdsnew("Date:");
+        headerTime = log_sdscat(headerTime, nowTime);
         headers=curl_slist_append(headers, headerTime);
-        sds headerMD5 = sdsnew("Content-MD5:");
-        headerMD5 = sdscat(headerMD5, md5Buf);
+        log_sds headerMD5 = log_sdsnew("Content-MD5:");
+        headerMD5 = log_sdscat(headerMD5, md5Buf);
         headers=curl_slist_append(headers, headerMD5);
 
-        sds headerLen= sdsnewEmpty(64);
-        headerLen = sdscatprintf(headerLen, "Content-Length:%d", (int)buffer->length);
+        log_sds headerLen= log_sdsnewEmpty(64);
+        headerLen = log_sdscatprintf(headerLen, "Content-Length:%d", (int)buffer->length);
         headers=curl_slist_append(headers, headerLen);
 
-        sds headerRawLen = sdsnewEmpty(64);
-        headerRawLen = sdscatprintf(headerRawLen, "x-log-bodyrawsize:%d", (int)buffer->raw_length);
+        log_sds headerRawLen = log_sdsnewEmpty(64);
+        headerRawLen = log_sdscatprintf(headerRawLen, "x-log-bodyrawsize:%d", (int)buffer->raw_length);
         headers=curl_slist_append(headers, headerRawLen);
 
-        sds headerHost = sdsnewEmpty(128);
-        headerHost = sdscatprintf(headerHost, "Host:%s.%s", project, endpoint);
+        log_sds headerHost = log_sdsnewEmpty(128);
+        headerHost = log_sdscatprintf(headerHost, "Host:%s.%s", project, endpoint);
         headers=curl_slist_append(headers, headerHost);
 
         char sha1Buf[65];
         sha1Buf[64] = '\0';
 
-        sds sigContent = sdsnewEmpty(512);
+        log_sds sigContent = log_sdsnewEmpty(512);
         if (lz4Flag)
         {
             if (stsToken == NULL)
             {
-                sigContent = sdscatprintf(sigContent,
+                sigContent = log_sdscatprintf(sigContent,
                                           "POST\n%s\napplication/x-protobuf\n%s\nx-log-apiversion:0.6.0\nx-log-bodyrawsize:%d\nx-log-compresstype:lz4\nx-log-signaturemethod:hmac-sha1\n/logstores/%s/shards/lb",
                                           md5Buf, nowTime, (int)buffer->raw_length, logstore);
             }
             else
             {
-                sigContent = sdscatprintf(sigContent,
+                sigContent = log_sdscatprintf(sigContent,
                                           "POST\n%s\napplication/x-protobuf\n%s\nx-acs-security-token:%s\nx-log-apiversion:0.6.0\nx-log-bodyrawsize:%d\nx-log-compresstype:lz4\nx-log-signaturemethod:hmac-sha1\n/logstores/%s/shards/lb",
                                           md5Buf, nowTime, stsToken, (int)buffer->raw_length, logstore);
             }
@@ -254,13 +254,13 @@ post_log_result * post_logs_from_lz4buf(const char *endpoint, const char * acces
         {
             if (stsToken == NULL)
             {
-                sigContent = sdscatprintf(sigContent,
+                sigContent = log_sdscatprintf(sigContent,
                                           "POST\n%s\napplication/x-protobuf\n%s\nx-log-apiversion:0.6.0\nx-log-bodyrawsize:%d\nx-log-signaturemethod:hmac-sha1\n/logstores/%s/shards/lb",
                                           md5Buf, nowTime, (int)buffer->raw_length, logstore);
             }
             else
             {
-                sigContent = sdscatprintf(sigContent,
+                sigContent = log_sdscatprintf(sigContent,
                                           "POST\n%s\napplication/x-protobuf\n%s\nx-acs-security-token:%s\nx-log-apiversion:0.6.0\nx-log-bodyrawsize:%d\nx-log-signaturemethod:hmac-sha1\n/logstores/%s/shards/lb",
                                           md5Buf, nowTime, stsToken, (int)buffer->raw_length, logstore);
             }
@@ -270,11 +270,11 @@ post_log_result * post_logs_from_lz4buf(const char *endpoint, const char * acces
         //puts("#######################");
         //puts(sigContent);
 
-        int destLen = signature_to_base64(sigContent, sdslen(sigContent), accessKey, strlen(accessKey), sha1Buf);
+        int destLen = signature_to_base64(sigContent, log_sdslen(sigContent), accessKey, strlen(accessKey), sha1Buf);
         sha1Buf[destLen] = '\0';
         //puts(sha1Buf);
-        sds headerSig = sdsnewEmpty(256);
-        headerSig = sdscatprintf(headerSig, "Authorization:LOG %s:%s", accesskeyId, sha1Buf);
+        log_sds headerSig = log_sdsnewEmpty(256);
+        headerSig = log_sdscatprintf(headerSig, "Authorization:LOG %s:%s", accesskeyId, sha1Buf);
         //puts(headerSig);
         headers=curl_slist_append(headers, headerSig);
 
@@ -317,8 +317,8 @@ post_log_result * post_logs_from_lz4buf(const char *endpoint, const char * acces
 
 
 
-        sds header = sdsnewEmpty(64);
-        sds body = NULL;
+        log_sds header = log_sdsnewEmpty(64);
+        log_sds body = NULL;
 
 
         curl_easy_setopt(curl, CURLOPT_HEADERDATA, &header);
@@ -346,22 +346,22 @@ post_log_result * post_logs_from_lz4buf(const char *endpoint, const char * acces
         {
             if (body == NULL)
             {
-                body = sdsnew(curl_easy_strerror(res));
+                body = log_sdsnew(curl_easy_strerror(res));
             }
             else
             {
-                body = sdscpy(body, curl_easy_strerror(res));
+                body = log_sdscpy(body, curl_easy_strerror(res));
             }
             result->statusCode = -1 * (int)res;
         }
         // header and body 's pointer may be modified in callback (size > 256)
-        if (sdslen(header) > 0)
+        if (log_sdslen(header) > 0)
         {
             result->requestID = header;
         }
         else
         {
-            sdsfree(header);
+            log_sdsfree(header);
             header = NULL;
         }
         // body will be NULL or a error string(net error or request error)
@@ -369,14 +369,14 @@ post_log_result * post_logs_from_lz4buf(const char *endpoint, const char * acces
 
 
         curl_slist_free_all(headers); /* free the list again */
-        sdsfree(url);
-        sdsfree(headerTime);
-        sdsfree(headerMD5);
-        sdsfree(headerLen);
-        sdsfree(headerRawLen);
-        sdsfree(headerHost);
-        sdsfree(sigContent);
-        sdsfree(headerSig);
+        log_sdsfree(url);
+        log_sdsfree(headerTime);
+        log_sdsfree(headerMD5);
+        log_sdsfree(headerLen);
+        log_sdsfree(headerRawLen);
+        log_sdsfree(headerHost);
+        log_sdsfree(sigContent);
+        log_sdsfree(headerSig);
         /* always cleanup */
         curl_easy_cleanup(curl);
         if (connect_to != NULL)
@@ -453,40 +453,40 @@ post_log_result * post_logs_from_lz4buf_with_config(log_producer_config *config,
     if (is_str_empty(endpoint) || is_str_empty(project) || is_str_empty(logstore))
     {
         result->statusCode = 405;
-        result->requestID  =  sdsnewEmpty(64);
-        result->errorMessage = sdsnew("Invalid producer config destination params");
+        result->requestID  =  log_sdsnewEmpty(64);
+        result->errorMessage = log_sdsnew("Invalid producer config destination params");
         return result;
     }
 
     if (is_str_empty(accessKeyId) || is_str_empty(accessKeySecret))
     {
         result->statusCode = 405;
-        result->requestID  =  sdsnewEmpty(64);
-        result->errorMessage = sdsnew("Invalid producer config authority params");
+        result->requestID  =  log_sdsnewEmpty(64);
+        result->errorMessage = log_sdsnew("Invalid producer config authority params");
         return result;
     }
 
     {
         // url
-        sds url = NULL;
+        log_sds url = NULL;
         if (option->using_https) {
-            url = sdsnew("https://");
+            url = log_sdsnew("https://");
         } else {
-            url = sdsnew("http://");
+            url = log_sdsnew("http://");
         }
 
-        url = sdscat(url, project);
-        url = sdscat(url, ".");
-        url = sdscat(url, endpoint);
-        url = sdscat(url, "/logstores/");
-        url = sdscat(url, logstore);
+        url = log_sdscat(url, project);
+        url = log_sdscat(url, ".");
+        url = log_sdscat(url, endpoint);
+        url = log_sdscat(url, "/logstores/");
+        url = log_sdscat(url, logstore);
         int shardkeyMode = option->mode == 1 && !is_str_empty(option->shardKey);
         if (shardkeyMode) {
             aos_info_log("key hash: %s", option->shardKey);
-            url = sdscat(url, "/shards/route?key=");
-            url = sdscat(url, option->shardKey);
+            url = log_sdscat(url, "/shards/route?key=");
+            url = log_sdscat(url, option->shardKey);
         } else {
-            url = sdscat(url, "/shards/lb");
+            url = log_sdscat(url, "/shards/lb");
         }
 
         // TODO: url
@@ -513,45 +513,45 @@ post_log_result * post_logs_from_lz4buf_with_config(log_producer_config *config,
         }
         if (stsToken != NULL)
         {
-            sds tokenHeader = sdsnew("x-acs-security-token:");
-            tokenHeader = sdscat(tokenHeader, stsToken);
+            log_sds tokenHeader = log_sdsnew("x-acs-security-token:");
+            tokenHeader = log_sdscat(tokenHeader, stsToken);
             headers=cur_slist_append(headers, tokenHeader);
-            sdsfree(tokenHeader);
+            log_sdsfree(tokenHeader);
         }
         headers=cur_slist_append(headers, "x-log-signaturemethod:hmac-sha1");
-        sds headerTime = sdsnew("Date:");
-        headerTime = sdscat(headerTime, nowTime);
+        log_sds headerTime = log_sdsnew("Date:");
+        headerTime = log_sdscat(headerTime, nowTime);
         headers=cur_slist_append(headers, headerTime);
-        sds headerMD5 = sdsnew("Content-MD5:");
-        headerMD5 = sdscat(headerMD5, md5Buf);
+        log_sds headerMD5 = log_sdsnew("Content-MD5:");
+        headerMD5 = log_sdscat(headerMD5, md5Buf);
         headers=cur_slist_append(headers, headerMD5);
 
-        sds headerLen= sdsnewEmpty(64);
-        headerLen = sdscatprintf(headerLen, "Content-Length:%d", (int)buffer->length);
+        log_sds headerLen= log_sdsnewEmpty(64);
+        headerLen = log_sdscatprintf(headerLen, "Content-Length:%d", (int)buffer->length);
         headers=cur_slist_append(headers, headerLen);
 
-        sds headerRawLen = sdsnewEmpty(64);
-        headerRawLen = sdscatprintf(headerRawLen, "x-log-bodyrawsize:%d", (int)buffer->raw_length);
+        log_sds headerRawLen = log_sdsnewEmpty(64);
+        headerRawLen = log_sdscatprintf(headerRawLen, "x-log-bodyrawsize:%d", (int)buffer->raw_length);
         headers=cur_slist_append(headers, headerRawLen);
 
-        sds headerHost = sdsnewEmpty(128);
-        headerHost = sdscatprintf(headerHost, "Host:%s.%s", project, endpoint);
+        log_sds headerHost = log_sdsnewEmpty(128);
+        headerHost = log_sdscatprintf(headerHost, "Host:%s.%s", project, endpoint);
         headers=cur_slist_append(headers, headerHost);
 
         char sha1Buf[65];
         sha1Buf[64] = '\0';
 
-        sds sigContent = sdsnewEmpty(512);
+        log_sds sigContent = log_sdsnewEmpty(512);
         if (lz4Flag)
         {
             if (stsToken == NULL)
             {
                 if (shardkeyMode) {
-                    sigContent = sdscatprintf(sigContent,
+                    sigContent = log_sdscatprintf(sigContent,
                                               "POST\n%s\napplication/x-protobuf\n%s\nx-log-apiversion:0.6.0\nx-log-bodyrawsize:%d\nx-log-compresstype:lz4\nx-log-signaturemethod:hmac-sha1\n/logstores/%s/shards/route?key=%s",
                                               md5Buf, nowTime, (int)buffer->raw_length, logstore, option->shardKey);
                 } else {
-                    sigContent = sdscatprintf(sigContent,
+                    sigContent = log_sdscatprintf(sigContent,
                                               "POST\n%s\napplication/x-protobuf\n%s\nx-log-apiversion:0.6.0\nx-log-bodyrawsize:%d\nx-log-compresstype:lz4\nx-log-signaturemethod:hmac-sha1\n/logstores/%s/shards/lb",
                                               md5Buf, nowTime, (int)buffer->raw_length, logstore);
                 }
@@ -559,11 +559,11 @@ post_log_result * post_logs_from_lz4buf_with_config(log_producer_config *config,
             else
             {
                 if (shardkeyMode) {
-                    sigContent = sdscatprintf(sigContent,
+                    sigContent = log_sdscatprintf(sigContent,
                                               "POST\n%s\napplication/x-protobuf\n%s\nx-acs-security-token:%s\nx-log-apiversion:0.6.0\nx-log-bodyrawsize:%d\nx-log-compresstype:lz4\nx-log-signaturemethod:hmac-sha1\n/logstores/%s/shards/route?key=%s",
                                               md5Buf, nowTime, stsToken, (int)buffer->raw_length, logstore, option->shardKey);
                 } else {
-                    sigContent = sdscatprintf(sigContent,
+                    sigContent = log_sdscatprintf(sigContent,
                                               "POST\n%s\napplication/x-protobuf\n%s\nx-acs-security-token:%s\nx-log-apiversion:0.6.0\nx-log-bodyrawsize:%d\nx-log-compresstype:lz4\nx-log-signaturemethod:hmac-sha1\n/logstores/%s/shards/lb",
                                               md5Buf, nowTime, stsToken, (int)buffer->raw_length, logstore);
                 }
@@ -574,11 +574,11 @@ post_log_result * post_logs_from_lz4buf_with_config(log_producer_config *config,
             if (stsToken == NULL)
             {
                 if (shardkeyMode) {
-                    sigContent = sdscatprintf(sigContent,
+                    sigContent = log_sdscatprintf(sigContent,
                                               "POST\n%s\napplication/x-protobuf\n%s\nx-log-apiversion:0.6.0\nx-log-bodyrawsize:%d\nx-log-signaturemethod:hmac-sha1\n/logstores/%s/shards/route?key=%s",
                                               md5Buf, nowTime, (int)buffer->raw_length, logstore, option->shardKey);
                 } else {
-                    sigContent = sdscatprintf(sigContent,
+                    sigContent = log_sdscatprintf(sigContent,
                                               "POST\n%s\napplication/x-protobuf\n%s\nx-log-apiversion:0.6.0\nx-log-bodyrawsize:%d\nx-log-signaturemethod:hmac-sha1\n/logstores/%s/shards/lb",
                                               md5Buf, nowTime, (int)buffer->raw_length, logstore);
                 }
@@ -586,11 +586,11 @@ post_log_result * post_logs_from_lz4buf_with_config(log_producer_config *config,
             else
             {
                 if (shardkeyMode) {
-                    sigContent = sdscatprintf(sigContent,
+                    sigContent = log_sdscatprintf(sigContent,
                                               "POST\n%s\napplication/x-protobuf\n%s\nx-acs-security-token:%s\nx-log-apiversion:0.6.0\nx-log-bodyrawsize:%d\nx-log-signaturemethod:hmac-sha1\n/logstores/%s/shards/route?key=%s",
                                               md5Buf, nowTime, stsToken, (int)buffer->raw_length, logstore, option->shardKey);
                 } else {
-                    sigContent = sdscatprintf(sigContent,
+                    sigContent = log_sdscatprintf(sigContent,
                                               "POST\n%s\napplication/x-protobuf\n%s\nx-acs-security-token:%s\nx-log-apiversion:0.6.0\nx-log-bodyrawsize:%d\nx-log-signaturemethod:hmac-sha1\n/logstores/%s/shards/lb",
                                               md5Buf, nowTime, stsToken, (int)buffer->raw_length, logstore);
                 }
@@ -601,11 +601,11 @@ post_log_result * post_logs_from_lz4buf_with_config(log_producer_config *config,
         //puts("#######################");
         //puts(sigContent);
 
-        int destLen = signature_to_base64(sigContent, sdslen(sigContent), accessKeySecret, strlen(accessKeySecret), sha1Buf);
+        int destLen = signature_to_base64(sigContent, log_sdslen(sigContent), accessKeySecret, strlen(accessKeySecret), sha1Buf);
         sha1Buf[destLen] = '\0';
         //puts(sha1Buf);
-        sds headerSig = sdsnewEmpty(256);
-        headerSig = sdscatprintf(headerSig, "Authorization:LOG %s:%s", accessKeyId, sha1Buf);
+        log_sds headerSig = log_sdsnewEmpty(256);
+        headerSig = log_sdscatprintf(headerSig, "Authorization:LOG %s:%s", accessKeyId, sha1Buf);
         //puts(headerSig);
         headers=cur_slist_append(headers, headerSig);
 
@@ -618,8 +618,8 @@ post_log_result * post_logs_from_lz4buf_with_config(log_producer_config *config,
 //        curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, buffer->length);
 
 
-        sds req = sdsnewEmpty(64);
-        sds err = sdsnew("n/a");
+        log_sds req = log_sdsnewEmpty(64);
+        log_sds err = log_sdsnew("n/a");
 
         const int max_header_count = 50;
         char *header_array[max_header_count];
@@ -646,14 +646,14 @@ post_log_result * post_logs_from_lz4buf_with_config(log_producer_config *config,
         result->errorMessage = err;
 
         cur_slist_free_all(headers); /* free the list again */
-        sdsfree(url);
-        sdsfree(headerTime);
-        sdsfree(headerMD5);
-        sdsfree(headerLen);
-        sdsfree(headerRawLen);
-        sdsfree(headerHost);
-        sdsfree(sigContent);
-        sdsfree(headerSig);
+        log_sdsfree(url);
+        log_sdsfree(headerTime);
+        log_sdsfree(headerMD5);
+        log_sdsfree(headerLen);
+        log_sdsfree(headerRawLen);
+        log_sdsfree(headerHost);
+        log_sdsfree(sigContent);
+        log_sdsfree(headerSig);
         free(dest_count);
     }
 
@@ -671,26 +671,26 @@ post_log_result * post_logs_from_lz4buf_webtracking(const char *endpoint, const 
     if (is_str_empty(endpoint) || is_str_empty(project) || is_str_empty(logstore))
     {
         result->statusCode = 405;
-        result->requestID  =  sdsnewEmpty(64);
-        result->errorMessage = sdsnew("Invalid producer config destination params");
+        result->requestID  =  log_sdsnewEmpty(64);
+        result->errorMessage = log_sdsnew("Invalid producer config destination params");
         return result;
     }
 
     {
         // url
-        sds url = NULL;
+        log_sds url = NULL;
         if (option->using_https) {
-            url = sdsnew("https://");
+            url = log_sdsnew("https://");
         } else {
-            url = sdsnew("http://");
+            url = log_sdsnew("http://");
         }
 
-        url = sdscat(url, project);
-        url = sdscat(url, ".");
-        url = sdscat(url, endpoint);
-        url = sdscat(url, "/logstores/");
-        url = sdscat(url, logstore);
-        url = sdscat(url, "/track");
+        url = log_sdscat(url, project);
+        url = log_sdscat(url, ".");
+        url = log_sdscat(url, endpoint);
+        url = log_sdscat(url, "/logstores/");
+        url = log_sdscat(url, logstore);
+        url = log_sdscat(url, "/track");
 
         char nowTime[64];
         get_now_time_str(nowTime, 64, option->ntp_time_offset);
@@ -705,12 +705,12 @@ post_log_result * post_logs_from_lz4buf_webtracking(const char *endpoint, const 
             headers=cur_slist_append(headers, "x-log-compresstype:lz4");
         }
 
-        sds headerRawLen = sdsnewEmpty(64);
-        headerRawLen = sdscatprintf(headerRawLen, "x-log-bodyrawsize:%d", (int)buffer->raw_length);
+        log_sds headerRawLen = log_sdsnewEmpty(64);
+        headerRawLen = log_sdscatprintf(headerRawLen, "x-log-bodyrawsize:%d", (int)buffer->raw_length);
         headers=cur_slist_append(headers, headerRawLen);
 
-        sds req = sdsnewEmpty(64);
-        sds err = sdsnew("n/a");
+        log_sds req = log_sdsnewEmpty(64);
+        log_sds err = log_sdsnew("n/a");
 
         const int max_header_count = 50;
         char *header_array[max_header_count];
@@ -732,8 +732,8 @@ post_log_result * post_logs_from_lz4buf_webtracking(const char *endpoint, const 
         result->errorMessage = err;
 
         cur_slist_free_all(headers); /* free the list again */
-        sdsfree(url);
-        sdsfree(headerRawLen);
+        log_sdsfree(url);
+        log_sdsfree(headerRawLen);
     }
 
     return result;

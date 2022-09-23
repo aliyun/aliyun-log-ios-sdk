@@ -3,7 +3,7 @@
 //
 
 #include "log_producer_config.h"
-#include "sds.h"
+#include "log_sds.h"
 #include <string.h>
 #include <stdlib.h>
 #include "inner_log.h"
@@ -33,7 +33,7 @@ static void _set_default_producer_config(log_producer_config * pConfig)
 }
 
 
-static void _copy_config_string(const char * value, sds * src_value)
+static void _copy_config_string(const char * value, log_sds * src_value)
 {
     if (src_value == NULL)
     {
@@ -49,9 +49,9 @@ static void _copy_config_string(const char * value, sds * src_value)
     size_t strLen = strlen(value);
     if (*src_value == NULL)
     {
-        *src_value = sdsnewEmpty(strLen);
+        *src_value = log_sdsnewEmpty(strLen);
     }
-    *src_value = sdscpylen(*src_value, value, strLen);
+    *src_value = log_sdscpylen(*src_value, value, strLen);
 }
 
 
@@ -68,39 +68,39 @@ void destroy_log_producer_config(log_producer_config * pConfig)
 {
     if (pConfig->project != NULL)
     {
-        sdsfree(pConfig->project);
+        log_sdsfree(pConfig->project);
     }
     if (pConfig->logstore != NULL)
     {
-        sdsfree(pConfig->logstore);
+        log_sdsfree(pConfig->logstore);
     }
     if (pConfig->endpoint != NULL)
     {
-        sdsfree(pConfig->endpoint);
+        log_sdsfree(pConfig->endpoint);
     }
     if (pConfig->accessKey != NULL)
     {
-        sdsfree(pConfig->accessKey);
+        log_sdsfree(pConfig->accessKey);
     }
     if (pConfig->accessKeyId != NULL)
     {
-        sdsfree(pConfig->accessKeyId);
+        log_sdsfree(pConfig->accessKeyId);
     }
     if (pConfig->topic != NULL)
     {
-        sdsfree(pConfig->topic);
+        log_sdsfree(pConfig->topic);
     }
     if (pConfig->source != NULL)
     {
-        sdsfree(pConfig->source);
+        log_sdsfree(pConfig->source);
     }
     if (pConfig->netInterface != NULL)
     {
-        sdsfree(pConfig->netInterface);
+        log_sdsfree(pConfig->netInterface);
     }
     if (pConfig->securityToken != NULL)
     {
-        sdsfree(pConfig->securityToken);
+        log_sdsfree(pConfig->securityToken);
     }
     if (pConfig->securityTokenLock != NULL)
     {
@@ -111,17 +111,17 @@ void destroy_log_producer_config(log_producer_config * pConfig)
         int i = 0;
         for (; i < pConfig->tagCount; ++i)
         {
-            sdsfree(pConfig->tags[i].key);
-            sdsfree(pConfig->tags[i].value);
+            log_sdsfree(pConfig->tags[i].key);
+            log_sdsfree(pConfig->tags[i].value);
         }
         free(pConfig->tags);
     }
     if (pConfig->persistentFilePath != NULL)
     {
-        sdsfree(pConfig->persistentFilePath);
+        log_sdsfree(pConfig->persistentFilePath);
     }
     if (pConfig->mode == 1 && NULL != pConfig->shardKey) {
-        sdsfree(pConfig->shardKey);
+        log_sdsfree(pConfig->shardKey);
     }
     free(pConfig);
 }
@@ -304,8 +304,8 @@ void log_producer_config_add_tag(log_producer_config * pConfig, const char * key
         pConfig->tags = tagArray;
     }
     int32_t tagIndex = pConfig->tagCount - 1;
-    pConfig->tags[tagIndex].key = sdsnew(key);
-    pConfig->tags[tagIndex].value = sdsnew(value);
+    pConfig->tags[tagIndex].key = log_sdsnew(key);
+    pConfig->tags[tagIndex].value = log_sdsnew(value);
 
 }
 

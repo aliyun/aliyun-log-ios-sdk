@@ -4,8 +4,8 @@
 
 #include "log_producer_manager.h"
 #include "inner_log.h"
-#include "md5.h"
-#include "sds.h"
+#include "log_md5.h"
+#include "log_sds.h"
 #include <sys/time.h>
 
 #ifdef __MACH__
@@ -53,7 +53,7 @@ char * _get_pack_id(const char * configName, const char * ip)
     sprintf(prefix, "%s%ld", prefix, timestamp);
 
     unsigned char md5Buf[16];
-    mbedtls_md5((const unsigned char *)prefix, strlen(prefix), md5Buf);
+    log_mbedtls_md5((const unsigned char *)prefix, strlen(prefix), md5Buf);
     int loop = 0;
     char * val = (char *)malloc(sizeof(char) * 32);
     memset(val, 0, sizeof(char) * 32);
@@ -278,11 +278,11 @@ log_producer_manager * create_log_producer_manager(log_producer_config * produce
 
     if (producer_config->source != NULL)
     {
-        producer_manager->source = sdsnew(producer_config->source);
+        producer_manager->source = log_sdsnew(producer_config->source);
     }
     else
     {
-        producer_manager->source = sdsnew("undefined");
+        producer_manager->source = log_sdsnew("undefined");
     }
 
     if (producer_config->logstore != NULL)
@@ -419,7 +419,7 @@ void destroy_log_producer_manager(log_producer_manager * manager)
     {
         free(manager->send_param_queue);
     }
-    sdsfree(manager->source);
+    log_sdsfree(manager->source);
     free(manager);
 }
 

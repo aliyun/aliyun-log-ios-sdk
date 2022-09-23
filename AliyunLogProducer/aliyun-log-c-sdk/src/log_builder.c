@@ -1,6 +1,6 @@
 #include "log_builder.h"
-#include "lz4.h"
-#include "sds.h"
+#include "log_lz4.h"
+#include "log_sds.h"
 #include <string.h>
 #include <stdio.h>
 #include <assert.h>
@@ -126,11 +126,11 @@ void log_group_destroy(log_group_builder* bder)
     }
     if (group->topic != NULL)
     {
-        sdsfree(group->topic);
+        log_sdsfree(group->topic);
     }
     if (group->source != NULL)
     {
-        sdsfree(group->source);
+        log_sdsfree(group->source);
     }
     // free self
     free(bder);
@@ -240,13 +240,13 @@ void add_log_full(log_group_builder* bder, uint32_t logTime, int32_t pair_count,
 void add_source(log_group_builder* bder,const char* src,size_t len)
 {
     bder->loggroup_size += sizeof(char)*(len) + uint32_size((uint32_t)len) + 1;
-    bder->grp->source = sdsnewlen(src, len);
+    bder->grp->source = log_sdsnewlen(src, len);
 }
 
 void add_topic(log_group_builder* bder,const char* tpc,size_t len)
 {
     bder->loggroup_size += sizeof(char)*(len) + uint32_size((uint32_t)len) + 1;
-    bder->grp->topic = sdsnewlen(tpc, len);
+    bder->grp->topic = log_sdsnewlen(tpc, len);
 }
 
 void add_pack_id(log_group_builder* bder, const char* pack, size_t pack_len, size_t packNum)
@@ -301,17 +301,17 @@ static uint32_t _log_pack(log_group * grp, uint8_t * buf)
     if (grp->topic != NULL)
     {
         *buf++ = 0x1A;
-        buf+= uint32_pack((uint32_t)sdslen(grp->topic), buf);
-        memcpy(buf, grp->topic, sdslen(grp->topic));
-        buf += sdslen(grp->topic);
+        buf+= uint32_pack((uint32_t)log_sdslen(grp->topic), buf);
+        memcpy(buf, grp->topic, log_sdslen(grp->topic));
+        buf += log_sdslen(grp->topic);
     }
 
     if (grp->source != NULL)
     {
         *buf++ = 0x22;
-        buf+= uint32_pack((uint32_t)sdslen(grp->source), buf);
-        memcpy(buf, grp->source, sdslen(grp->source));
-        buf += sdslen(grp->source);
+        buf+= uint32_pack((uint32_t)log_sdslen(grp->source), buf);
+        memcpy(buf, grp->source, log_sdslen(grp->source));
+        buf += log_sdslen(grp->source);
     }
 
     if (grp->tags.buffer != NULL)
@@ -351,75 +351,75 @@ void fix_log_group_time(char * pb_buffer, size_t len, uint32_t new_time)
 
 }
 
-sds put_val(sds s, char* val)
+log_sds put_val(log_sds s, char* val)
 {
-    s = sdscat(s, "\"");
-    s = sdscat(s, val);
-    s = sdscat(s, "\"");
+    s = log_sdscat(s, "\"");
+    s = log_sdscat(s, val);
+    s = log_sdscat(s, "\"");
     return s;
 }
 
-sds put_kv_with_comma(sds s, char *key, char *val, int comma)
+log_sds put_kv_with_comma(log_sds s, char *key, char *val, int comma)
 {
     s = put_val(s, key);
-    s = sdscat(s, ":");
+    s = log_sdscat(s, ":");
     s = put_val(s, val);
     if (comma)
     {
-        s = sdscat(s, ",");
+        s = log_sdscat(s, ",");
     }
     return s;
 }
 
 
-sds escape_json(char **value) {
+log_sds escape_json(char **value) {
     size_t len = strlen(*value);
-    sds result = sdsnewEmpty(len);
+    log_sds result = log_sdsnewEmpty(len);
     for (int i = 0; i < len; i ++) {
         switch ((*value)[i]) {
-            case '"': result = sdscat(result, "\\\""); break;
-            case '\\': result = sdscat(result, "\\\\"); break;
-            case '\b': result = sdscat(result, "\\b"); break;
-            case '\f': result = sdscat(result, "\\f"); break;
-            case '\n': result = sdscat(result, "\\n"); break;
-            case '\r': result = sdscat(result, "\\r"); break;
-            case '\t': result = sdscat(result, "\\t"); break;
+            case '"': result = log_sdscat(result, "\\\""); break;
+            case '\\': result = log_sdscat(result, "\\\\"); break;
+            case '\b': result = log_sdscat(result, "\\b"); break;
+            case '\f': result = log_sdscat(result, "\\f"); break;
+            case '\n': result = log_sdscat(result, "\\n"); break;
+            case '\r': result = log_sdscat(result, "\\r"); break;
+            case '\t': result = log_sdscat(result, "\\t"); break;
             default:
                 if ('\x00' <= (*value)[i] && (*value)[i] <= '\x1f') {
-                    result = sdscatprintf(result, "%s%04X","\\u", (int)(*value)[i]);
+                    result = log_sdscatprintf(result, "%s%04X","\\u", (int)(*value)[i]);
                 } else {
-                    result = sdscatchar(result, (*value)[i]);
+                    result = log_sdscatchar(result, (*value)[i]);
                 }
         }
     }
     return result;
 }
 
-sds put_kv(sds s, char *key, char *val)
+log_sds put_kv(log_sds s, char *key, char *val)
 {
-    sds v = escape_json(&val);
+    log_sds v = escape_json(&val);
     s =  put_kv_with_comma(s, key, v, 1);
-    sdsfree(v);
+    log_sdsfree(v);
 
     return s;
 }
 
-sds put_kv_no_comma(sds s, char *key, char *val)
+log_sds put_kv_no_comma(log_sds s, char *key, char *val)
 {
     return put_kv_with_comma(s, key, val, 0);
 }
 
-sds put_array(sds s, char *key, sds array)
+log_sds put_array(log_sds s, char *key, log_sds array)
 {
     s = put_val(s, key);
-    s = sdscat(s, ":");
-    s = sdscat(s, array);
+    s = log_sdscat(s, ":");
+    s = log_sdscat(s, array);
     return s;
 }
 
-sds remove_comma(sds s) {
-    sds ns = sdsnewlen(s, sdslen(s) - 1);
-    sdsfree(s);
+log_sds remove_comma(log_sds s) {
+    log_sds ns = log_sdsnewlen(s, log_sdslen(s) - 1);
+    log_sdsfree(s);
     return ns;
 }
 
@@ -457,9 +457,9 @@ extern size_t serialize_pb_buffer_to_webtracking(char *pb_buffer, size_t len, ch
         return 0;
     }
 
-    sds root = sdsnew("{");
-    sds _root_logs_ = sdsnew("[");
-    sds _root_tags_ = sdsnew("{");
+    log_sds root = log_sdsnew("{");
+    log_sds _root_logs_ = log_sdsnew("[");
+    log_sds _root_tags_ = log_sdsnew("{");
 
     uint8_t * buf = (uint8_t *)pb_buffer;
     uint8_t * startBuf = (uint8_t *)pb_buffer;
@@ -488,10 +488,10 @@ extern size_t serialize_pb_buffer_to_webtracking(char *pb_buffer, size_t len, ch
             aos_info_log("serialize_pb_buffer_to_webtracking, time: %d", time);
         }
 
-        sds _log_ = sdsnew("{");
+        log_sds _log_ = log_sdsnew("{");
         if (time)
         {
-            _log_ = sdscatprintf(_log_, "\"__time__\":%u,", time);
+            _log_ = log_sdscatprintf(_log_, "\"__time__\":%u,", time);
         }
 
         // Content
@@ -527,16 +527,16 @@ extern size_t serialize_pb_buffer_to_webtracking(char *pb_buffer, size_t len, ch
             free(val);
         }
 
-        if (sdslen(_log_) > 1)
+        if (log_sdslen(_log_) > 1)
         {
             // remove last ','
             _log_ = remove_comma(_log_);
         }
 
-        _log_ = sdscat(_log_, "}");
-        _root_logs_ = sdscat(_root_logs_, _log_);
-        _root_logs_ = sdscat(_root_logs_, ",");
-        sdsfree(_log_);
+        _log_ = log_sdscat(_log_, "}");
+        _root_logs_ = log_sdscat(_root_logs_, _log_);
+        _root_logs_ = log_sdscat(_root_logs_, ",");
+        log_sdsfree(_log_);
 
         // Topic
         if (0x1A == *buf)
@@ -595,29 +595,29 @@ extern size_t serialize_pb_buffer_to_webtracking(char *pb_buffer, size_t len, ch
 
     aos_info_log("serialize_pb_buffer_to_webtracking, log package has been processed.");
 
-    if (sdslen(_root_logs_) > 1)
+    if (log_sdslen(_root_logs_) > 1)
     {
         _root_logs_ = remove_comma(_root_logs_);
     }
-    _root_logs_ = sdscat(_root_logs_, "]");
-    _root_logs_ = sdscat(_root_logs_, ",");
+    _root_logs_ = log_sdscat(_root_logs_, "]");
+    _root_logs_ = log_sdscat(_root_logs_, ",");
     root = put_array(root, "__logs__", _root_logs_);
 
-    if (sdslen(_root_tags_) > 1)
+    if (log_sdslen(_root_tags_) > 1)
     {
         _root_tags_ = remove_comma(_root_tags_);
     }
-    _root_tags_ = sdscat(_root_tags_, "}");
+    _root_tags_ = log_sdscat(_root_tags_, "}");
     root = put_array(root, "__tags__", _root_tags_);
-    root = sdscat(root, "}");
+    root = log_sdscat(root, "}");
 
-    size_t root_len = sdslen(root);
+    size_t root_len = log_sdslen(root);
     *new_buffer = (char *)malloc(sizeof(char) * root_len);
     memcpy(*new_buffer, root, root_len);
 
-    sdsfree(_root_logs_);
-    sdsfree(_root_tags_);
-    sdsfree(root);
+    log_sdsfree(_root_logs_);
+    log_sdsfree(_root_tags_);
+    log_sdsfree(root);
 
     aos_info_log("serialize_pb_buffer_to_webtracking, json: %s", *new_buffer);
     return root_len;
@@ -719,9 +719,9 @@ lz4_log_buf* serialize_to_proto_buf_with_malloc_lz4(log_group_builder* bder)
     //fwrite(log->buffer, 1, length, pFile);
     //fclose(pFile);
     // @debug end
-    int compress_bound = LZ4_compressBound(length);
+    int compress_bound = LOG_LZ4_compressBound(length);
     char *compress_data = (char *)malloc(compress_bound);
-    int compressed_size = LZ4_compress_default((char *)log->buffer, compress_data, length, compress_bound);
+    int compressed_size = LOG_LZ4_compress_default((char *)log->buffer, compress_data, length, compress_bound);
     if(compressed_size <= 0)
     {
         free(compress_data);

@@ -6,8 +6,8 @@
 #include "log_api.h"
 #include "log_producer_manager.h"
 #include "inner_log.h"
-#include "lz4.h"
-#include "sds.h"
+#include "log_lz4.h"
+#include "log_sds.h"
 #include <stdlib.h>
 #include <string.h>
 #ifdef WIN32
@@ -53,21 +53,21 @@ void pb_to_webtracking(lz4_log_buf *lz4_buf, lz4_log_buf **new_lz4_buf)
 {
     aos_debug_log("[sender] pb_to_webtracking start.");
     char * buf = (char *)malloc(lz4_buf->raw_length);
-    if (LZ4_decompress_safe((const char* )lz4_buf->data, buf, lz4_buf->length, lz4_buf->raw_length) <= 0)
+    if (LOG_LZ4_decompress_safe((const char* )lz4_buf->data, buf, lz4_buf->length, lz4_buf->raw_length) <= 0)
     {
         free(buf);
-        aos_fatal_log("[sender] pb_to_webtracking, LZ4_decompress_safe error");
+        aos_fatal_log("[sender] pb_to_webtracking, LOG_LZ4_decompress_safe error");
         return;
     }
 
     size_t len = serialize_pb_buffer_to_webtracking(buf, lz4_buf->raw_length, &buf);
 
-    int compress_bound = LZ4_compressBound(len);
+    int compress_bound = LOG_LZ4_compressBound(len);
     char *compress_data = (char *)malloc(compress_bound);
-    int compressed_size = LZ4_compress_default((char *)buf, compress_data, len, compress_bound);
+    int compressed_size = LOG_LZ4_compress_default((char *)buf, compress_data, len, compress_bound);
     if(compressed_size <= 0)
     {
-        aos_fatal_log("[sender] pb_to_webtracking, LZ4_compress_default error");
+        aos_fatal_log("[sender] pb_to_webtracking, LOG_LZ4_compress_default error");
         free(buf);
         free(compress_data);
         return;
@@ -85,21 +85,21 @@ void _rebuild_time(lz4_log_buf * lz4_buf, lz4_log_buf ** new_lz4_buf)
 {
     aos_debug_log("[sender] rebuild log.");
     char * buf = (char *)malloc(lz4_buf->raw_length);
-    if (LZ4_decompress_safe((const char* )lz4_buf->data, buf, lz4_buf->length, lz4_buf->raw_length) <= 0)
+    if (LOG_LZ4_decompress_safe((const char* )lz4_buf->data, buf, lz4_buf->length, lz4_buf->raw_length) <= 0)
     {
         free(buf);
-        aos_fatal_log("[sender] LZ4_decompress_safe error");
+        aos_fatal_log("[sender] LOG_LZ4_decompress_safe error");
         return;
     }
     uint32_t nowTime = LOG_GET_TIME();
     fix_log_group_time(buf, lz4_buf->raw_length, nowTime);
 
-    int compress_bound = LZ4_compressBound(lz4_buf->raw_length);
+    int compress_bound = LOG_LZ4_compressBound(lz4_buf->raw_length);
     char *compress_data = (char *)malloc(compress_bound);
-    int compressed_size = LZ4_compress_default((char *)buf, compress_data, lz4_buf->raw_length, compress_bound);
+    int compressed_size = LOG_LZ4_compress_default((char *)buf, compress_data, lz4_buf->raw_length, compress_bound);
     if(compressed_size <= 0)
     {
-        aos_fatal_log("[sender] LZ4_compress_default error");
+        aos_fatal_log("[sender] LOG_LZ4_compress_default error");
         free(buf);
         free(compress_data);
         return;
@@ -219,14 +219,14 @@ void * log_producer_send_fun(void * param)
         }
         else
         {
-            sds accessKeyId = NULL;
-            sds accessKey = NULL;
-            sds stsToken = NULL;
+            log_sds accessKeyId = NULL;
+            log_sds accessKey = NULL;
+            log_sds stsToken = NULL;
             log_producer_config_get_security(config, &accessKeyId, &accessKey, &stsToken);
             rst = post_logs_from_lz4buf_with_config(config, config->endpoint, config->project, config->logstore, accessKeyId, accessKey, stsToken, send_buf, &option);
-            sdsfree(accessKeyId);
-            sdsfree(accessKey);
-            sdsfree(stsToken);
+            log_sdsfree(accessKeyId);
+            log_sdsfree(accessKey);
+            log_sdsfree(stsToken);
         }
 
         aos_debug_log("[sender] send data result: statusCode: %d, errorMessage: %s, requestID :%s",

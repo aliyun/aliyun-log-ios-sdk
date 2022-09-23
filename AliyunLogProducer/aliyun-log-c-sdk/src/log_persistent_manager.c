@@ -6,7 +6,7 @@
 #include "log_producer_manager.h"
 #include "inner_log.h"
 #include "log_builder.h"
-#include "sds.h"
+#include "log_sds.h"
 
 #define MAX_CHECKPOINT_FILE_SIZE (sizeof(log_persistent_checkpoint) * 1024)
 #define LOG_PERSISTENT_HEADER_MAGIC (0xf7216a5b76df67f5)
@@ -175,7 +175,7 @@ static void log_persistent_manager_init(log_persistent_manager * manager, log_pr
     manager->config = config;
     manager->lock = CreateCriticalSection();
     manager->in_buffer_log_sizes = (uint32_t *)malloc(sizeof(uint32_t) * config->maxPersistentLogCount);
-    manager->checkpoint_file_path = sdscat(sdsdup(config->persistentFilePath), ".idx");
+    manager->checkpoint_file_path = log_sdscat(log_sdsdup(config->persistentFilePath), ".idx");
     memset(manager->in_buffer_log_sizes, 0, sizeof(uint32_t) * config->maxPersistentLogCount);
     manager->ring_file = log_ring_file_open(config->persistentFilePath, config->maxPersistentFileCount, config->maxPersistentFileSize, config->forceFlushDisk);
 }
@@ -190,7 +190,7 @@ static void log_persistent_manager_clear(log_persistent_manager * manager)
         manager->checkpoint_file_ptr = NULL;
     }
     free(manager->in_buffer_log_sizes);
-    sdsfree(manager->checkpoint_file_path);
+    log_sdsfree(manager->checkpoint_file_path);
     log_ring_file_close(manager->ring_file);
 }
 

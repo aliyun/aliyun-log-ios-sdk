@@ -5,15 +5,15 @@
 #endif
 #include <string.h>
 #include "log_util.h"
-#include "md5.h"
-#include "hmac-sha.h"
+#include "log_md5.h"
+#include "log_hmac-sha.h"
 
 static const char *g_hex_hash = "0123456789ABCDEF";
 
 void md5_to_string(const char * buffer, int bufLen, char * md5)
 {
     unsigned char md5Buf[16];
-    mbedtls_md5((const unsigned char *)buffer, bufLen, md5Buf);
+    log_mbedtls_md5((const unsigned char *)buffer, bufLen, md5Buf);
     int i = 0;
     for(; i < 32; i+=2)
     {
@@ -62,6 +62,6 @@ int aos_base64_encode(const unsigned char *in, int inLen, char *out)
 int signature_to_base64(const char * sig, int sigLen, const char * key, int keyLen, char * base64)
 {
     unsigned char sha1Buf[20];
-    hmac_sha1(sha1Buf, key, keyLen << 3, sig, sigLen << 3);
+    log_hmac_sha1(sha1Buf, key, keyLen << 3, sig, sigLen << 3);
     return aos_base64_encode((const unsigned char *)sha1Buf, 20, base64);
 }

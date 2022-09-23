@@ -1,4 +1,4 @@
-#include "md5.h"
+#include "log_md5.h"
 #include <string.h>
 
 /*
@@ -24,13 +24,13 @@
 }
 #endif
 
-void mbedtls_md5_init( mbedtls_md5_context *ctx )
+void log_mbedtls_md5_init( log_mbedtls_md5_context *ctx )
 {
-    memset( ctx, 0, sizeof( mbedtls_md5_context ) );
+    memset( ctx, 0, sizeof( log_mbedtls_md5_context ) );
 }
 
-void mbedtls_md5_clone( mbedtls_md5_context *dst,
-                        const mbedtls_md5_context *src )
+void log_mbedtls_md5_clone( log_mbedtls_md5_context *dst,
+                        const log_mbedtls_md5_context *src )
 {
     *dst = *src;
 }
@@ -38,7 +38,7 @@ void mbedtls_md5_clone( mbedtls_md5_context *dst,
 /*
  * MD5 context setup
  */
-void mbedtls_md5_starts( mbedtls_md5_context *ctx )
+void log_mbedtls_md5_starts( log_mbedtls_md5_context *ctx )
 {
     ctx->total[0] = 0;
     ctx->total[1] = 0;
@@ -50,7 +50,7 @@ void mbedtls_md5_starts( mbedtls_md5_context *ctx )
 }
 
 #if !defined(MBEDTLS_MD5_PROCESS_ALT)
-void mbedtls_md5_process( mbedtls_md5_context *ctx, const unsigned char data[64] )
+void log_mbedtls_md5_process( log_mbedtls_md5_context *ctx, const unsigned char data[64] )
 {
     uint32_t X[16], A, B, C, D;
 
@@ -177,7 +177,7 @@ void mbedtls_md5_process( mbedtls_md5_context *ctx, const unsigned char data[64]
 /*
  * MD5 process buffer
  */
-void mbedtls_md5_update( mbedtls_md5_context *ctx, const unsigned char *input, size_t ilen )
+void log_mbedtls_md5_update( log_mbedtls_md5_context *ctx, const unsigned char *input, size_t ilen )
 {
     size_t fill;
     uint32_t left;
@@ -197,7 +197,7 @@ void mbedtls_md5_update( mbedtls_md5_context *ctx, const unsigned char *input, s
     if( left && ilen >= fill )
     {
         memcpy( (void *) (ctx->buffer + left), input, fill );
-        mbedtls_md5_process( ctx, ctx->buffer );
+        log_mbedtls_md5_process( ctx, ctx->buffer );
         input += fill;
         ilen  -= fill;
         left = 0;
@@ -205,7 +205,7 @@ void mbedtls_md5_update( mbedtls_md5_context *ctx, const unsigned char *input, s
 
     while( ilen >= 64 )
     {
-        mbedtls_md5_process( ctx, input );
+        log_mbedtls_md5_process( ctx, input );
         input += 64;
         ilen  -= 64;
     }
@@ -227,7 +227,7 @@ static const unsigned char md5_padding[64] =
 /*
  * MD5 final digest
  */
-void mbedtls_md5_finish( mbedtls_md5_context *ctx, unsigned char output[16] )
+void log_mbedtls_md5_finish( log_mbedtls_md5_context *ctx, unsigned char output[16] )
 {
     uint32_t last, padn;
     uint32_t high, low;
@@ -243,8 +243,8 @@ void mbedtls_md5_finish( mbedtls_md5_context *ctx, unsigned char output[16] )
     last = ctx->total[0] & 0x3F;
     padn = ( last < 56 ) ? ( 56 - last ) : ( 120 - last );
 
-    mbedtls_md5_update( ctx, md5_padding, padn );
-    mbedtls_md5_update( ctx, msglen, 8 );
+    log_mbedtls_md5_update( ctx, md5_padding, padn );
+    log_mbedtls_md5_update( ctx, msglen, 8 );
 
     PUT_UINT32_LE( ctx->state[0], output,  0 );
     PUT_UINT32_LE( ctx->state[1], output,  4 );
@@ -256,12 +256,12 @@ void mbedtls_md5_finish( mbedtls_md5_context *ctx, unsigned char output[16] )
 /*
  * output = MD5( input buffer )
  */
-void mbedtls_md5( const unsigned char *input, size_t ilen, unsigned char output[16] )
+void log_mbedtls_md5( const unsigned char *input, size_t ilen, unsigned char output[16] )
 {
-    mbedtls_md5_context ctx;
+    log_mbedtls_md5_context ctx;
 
-    mbedtls_md5_init( &ctx );
-    mbedtls_md5_starts( &ctx );
-    mbedtls_md5_update( &ctx, input, ilen );
-    mbedtls_md5_finish( &ctx, output );
+    log_mbedtls_md5_init( &ctx );
+    log_mbedtls_md5_starts( &ctx );
+    log_mbedtls_md5_update( &ctx, input, ilen );
+    log_mbedtls_md5_finish( &ctx, output );
 }
