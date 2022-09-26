@@ -177,8 +177,8 @@ class ViewController: UIViewController {
                 SLSTracer.startSpan("nested span 1").end()
                 SLSTracer.startSpan("nested span 2").end()
             }
-            var array = [String]()
-            array.remove(at: 10)
+//            var array = [String]()
+//            array.remove(at: 10)
             SLSTracer.startSpan("span within block 2").end()
         }
         
