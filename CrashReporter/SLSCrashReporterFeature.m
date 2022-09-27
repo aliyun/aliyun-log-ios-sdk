@@ -377,4 +377,10 @@ static void observeDirectory(dispatch_source_t _source, NSString *path, director
     return [WPKSetup isWPKReporterActive];
 }
 
+#pragma mark - report error
+- (void) reportError: (NSString *) type level: (SLSLogLevel) level message: (NSString *) message stacktraces: (NSArray<NSString *> *) stacktraces {
+    [WPKSetup reportScriptException:type reason:message stackTrace:stacktraces terminateProgram:NO];
+    [WPKSetup sendAllReports];
+}
+
 @end

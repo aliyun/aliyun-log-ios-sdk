@@ -235,15 +235,16 @@
 
 - (void) onCustomLog {
     SLSLogV(@"********** Make a Custom Log now. **********");
-//    [[SLSAdapter sharedInstance] reportCustomEvent:@"Clicked" properties:@{
-//        @"view_pos": @1,
-//        @"view_content": @"click test"
-//    }];
+    @try {
+        NSMutableArray *array = @[];
+        [array removeObjectAtIndex:10];
+    } @catch (NSException *exception) {
+        [[SLSCrashReporter sharedInstance] reportException:exception];
+//        [[SLSCrashReporter sharedInstance] reportError:@"exception" message:exception.name stacktrace:exception.description];
+    } @finally {
+        
+    }
     
-//    [[SLSCrashReporter sharedInstance] addCustomError:@"Clicked" properties:@{
-//        @"view_pos": @"1",
-//        @"view_content": @"click test"
-//    }];
 }
 
 - (void) onJank {

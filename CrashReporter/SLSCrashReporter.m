@@ -33,4 +33,48 @@
     
     [_feature setFeatureEnabled:enable];
 }
+
+- (void) reportError: (nonnull NSArray<NSString *> *)stacktraces {
+    [self reportError:@"exception" stacktraces: stacktraces];
+}
+
+- (void) reportError: (nonnull NSString *) type stacktrace:(nonnull NSString *)stacktrace {
+    [self reportError:type message:@"" stacktrace:stacktrace];
+}
+
+- (void) reportError: (nonnull NSString *) type stacktraces:(nonnull NSArray<NSString *> *)stacktraces {
+    [self reportError:type message:@"" stacktraces:stacktraces];
+}
+
+- (void) reportError: (nonnull NSString *) type message:(nonnull NSString *)message stacktrace:(nonnull NSString *)stacktrace {
+    [self reportError:type level:LOG_ERROR message:message stacktrace:stacktrace];
+}
+
+- (void) reportError: (nonnull NSString *) type message:(nonnull NSString *)message stacktraces:(nonnull NSArray<NSString *> *)stacktraces {
+    [self reportError:type level:LOG_ERROR message:message stacktraces:stacktraces];
+}
+
+- (void) reportError: (nonnull NSString *) type level: (SLSLogLevel) level message: (nonnull NSString *) message stacktrace: (nonnull NSString *) stacktrace {
+    NSArray *stacktraces = @[stacktrace];
+    [self reportError:type level:level message:message stacktraces:stacktraces];
+}
+
+- (void) reportError: (nonnull NSString *) type level: (SLSLogLevel) level message: (nonnull NSString *) message stacktraces: (nonnull NSArray<NSString *> *) stacktraces {
+    if (!_feature) {
+        return;
+    }
+    
+    [_feature reportError:type level:level message:message stacktraces:stacktraces];
+}
+
+- (void) reportException: (nonnull NSException *)exception {
+    [self reportError:@"exception" exception:exception];
+}
+- (void) reportError: (nonnull NSString *) type exception: (nonnull NSException *)exception {
+    [self reportError:type level:LOG_ERROR exception:exception];
+}
+
+- (void) reportError: (nonnull NSString *) type level: (SLSLogLevel) level exception: (nonnull NSException *)exception {
+    [_feature reportError:type level:level message:exception.reason stacktraces:exception.callStackSymbols];
+}
 @end
