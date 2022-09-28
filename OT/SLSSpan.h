@@ -41,26 +41,29 @@ typedef NS_ENUM(NSInteger, SLSStatusCode){
 @property(nonatomic, strong) NSString *sessionId;
 @property(nonatomic, strong) NSString *transactionId;
 @property(atomic, assign, readonly) BOOL isEnd;
+@property(atomic, assign, readonly) BOOL isGlobal;
 
 - (instancetype) setParent: (SLSSpan *) parent NS_SWIFT_NAME(setParnet(_:));
 
 /// Add SLSAttributes to SLSSpan
 /// @param attribute SLSAttribute
-- (void) addAttribute:(SLSAttribute *)attribute, ... NS_REQUIRES_NIL_TERMINATION NS_SWIFT_UNAVAILABLE("use addAttributes instead.");
+- (SLSSpan *) addAttribute:(SLSAttribute *)attribute, ... NS_REQUIRES_NIL_TERMINATION NS_SWIFT_UNAVAILABLE("use addAttributes instead.");
 
 /// Add SLSAttributes to SLSSpan.
 /// @param attributes SLSAttribute array.
-- (void) addAttributes:(NSArray<SLSAttribute*> *)attributes NS_SWIFT_NAME(addAttributes(_:));
+- (SLSSpan *) addAttributes:(NSArray<SLSAttribute*> *)attributes NS_SWIFT_NAME(addAttributes(_:));
 
 /// Add SLSResource to current SLSSpan.
 /// @param resource SLSResource
-- (void) addResource: (SLSResource *) resource;
+- (SLSSpan *) addResource: (SLSResource *) resource;
 
 /// End current SLSSpan
 - (BOOL) end;
 
 /// Convert current SLSSpan to NSDictionary
 - (NSDictionary<NSString*, NSString*> *) toDict;
+
+- (SLSSpan *) setGlobal: (BOOL) global;
 
 @end
 

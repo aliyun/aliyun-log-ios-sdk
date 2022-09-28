@@ -16,12 +16,32 @@
 
 typedef void(^directory_changed_block)(NSString *);
 
+@interface SLSLastCachedSpan : SLSSpan
++ (SLSLastCachedSpan *) cachedSpan: (SLSSpan *) span;
+@end
+
+@implementation SLSLastCachedSpan
+
++ (SLSLastCachedSpan *) cachedSpan: (SLSSpan *) span {
+    SLSLastCachedSpan *cachedSpan = [[SLSLastCachedSpan alloc] init];
+    [cachedSpan setTraceID:span.traceID];
+    if (span.parentSpanID.length > 0) {
+        [cachedSpan setSpanID:span.parentSpanID];
+    }
+    
+    return cachedSpan;
+}
+
+@end
+
 @interface SLSCrashReporterFeature ()<WPKThreadBlockCheckerDelegate>
 @property(nonatomic, strong) NSString *wpkStatLogPath;
 @property(nonatomic, strong) NSString *wpkCrashLogPath;
 
 @property(nonatomic, strong) dispatch_source_t crashLogSource;
 @property(nonatomic, strong) dispatch_source_t crashStatLogSource;
+
+//@property(nonatomic, strong) SLSConfiguration *configuration;
 
 - (void) observeDirectoryChanged;
 - (void) initWPKMobi: (SLSCredentials *) credentials configuration: (SLSConfiguration *) configuration;
@@ -247,6 +267,7 @@ static void observeDirectory(dispatch_source_t _source, NSString *path, director
                  [SLSAttribute of:@"ex.uuid" value:utdid],
                  nil
             ];
+            [builder setGlobal:NO];
             
             BOOL ret = [[builder build] end];
             if (ret) {
@@ -297,6 +318,14 @@ static void observeDirectory(dispatch_source_t _source, NSString *path, director
         type = @"block";
     }
     
+    SLSLastCachedSpan *lastCachedSpan = nil;
+    if (self.configuration.enableTrace) {
+        SLSSpan *span = [SLSContextManager getLastGlobalActiveSpan];
+        if (nil != span) {
+            lastCachedSpan = [SLSLastCachedSpan cachedSpan:span];
+        }
+    }
+    
     SLSSpanBuilder *buidler = [self newSpanBuilder:type];
     [buidler addAttribute:
          [SLSAttribute of:@"t" value:@"error"],
@@ -306,6 +335,10 @@ static void observeDirectory(dispatch_source_t _source, NSString *path, director
          [SLSAttribute of:@"ex.file" value: [file lastPathComponent]],
          nil
     ];
+    
+    if (nil != lastCachedSpan) {
+        [buidler setParent:lastCachedSpan];
+    }
     
     if (time && time.length >0) {
         time = [time stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
@@ -318,12 +351,30 @@ static void observeDirectory(dispatch_source_t _source, NSString *path, director
         [buidler setStart:[date timeIntervalSince1970] * 1000000000];
     }
     
-    BOOL ret = [[buidler build] end];
+    SLSSpan *crashedSpan = [buidler build];
+    BOOL ret = [crashedSpan end];
     if (ret) {
         [[NSFileManager defaultManager] removeItemAtPath:file error:nil];
         SLSLogV(@"report crash file success.");
     } else {
         SLSLogV(@"report crash file fail.");
+    }
+    
+    if (self.configuration.enableTrace && [@"crash" isEqualToString:type]) {
+        SLSSpan *span = [SLSTracer startSpan:@"application crashed"];
+        [span setSpanID:crashedSpan.spanID];
+        [span addAttribute:
+             [SLSAttribute of:@"ex.file" value:[file lastPathComponent]],
+             [SLSAttribute of:@"ex.type" value:type],
+             nil
+        ];
+        [span setStatusCode:ERROR];
+        
+        if (nil != lastCachedSpan) {
+            [span setParent:lastCachedSpan];
+        }
+        
+        [span end];
     }
 }
 

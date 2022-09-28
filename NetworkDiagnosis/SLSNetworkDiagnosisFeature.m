@@ -408,6 +408,7 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
          [SLSAttribute of:@"net.origin" value:content],
          nil
     ];
+    [builder setGlobal:NO];
     [[builder build] end];
 }
 

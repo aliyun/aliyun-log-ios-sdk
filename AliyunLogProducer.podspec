@@ -79,6 +79,7 @@ https://help.aliyun.com/product/28958.html
     c.osx.deployment_target =  '10.8'
     c.dependency 'AliyunLogProducer/Core'
     c.dependency 'AliyunLogProducer/OT'
+    c.dependency 'AliyunLogProducer/Trace'
     c.source_files = 'CrashReporter/**/*.{m,h}'
     c.public_header_files = 'CrashReporter/**/*.h'
     c.vendored_frameworks = 'CrashReporter/WPKMobi.xcframework'

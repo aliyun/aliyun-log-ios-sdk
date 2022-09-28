@@ -21,6 +21,9 @@ typedef void (^SLSScope)(void);
 + (void) update: (nullable SLSSpan *) span;
 + (SLSSpan *) activeSpan;
 + (SLSScope) makeCurrent: (SLSSpan *) span;
++ (void) setGlobalActiveSpan: (SLSSpan *) span;
++ (SLSSpan *) getGlobalActiveSpan;
++ (SLSSpan *) getLastGlobalActiveSpan;
 @end
 
 NS_ASSUME_NONNULL_END

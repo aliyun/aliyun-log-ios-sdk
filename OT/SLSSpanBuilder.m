@@ -22,6 +22,7 @@
 @property(nonatomic, strong, readonly) SLSResource *resource;
 @property(nonatomic, assign, readonly) long start;
 @property(nonatomic, strong, readonly) NSString *service;
+@property(atomic, assign, readonly) BOOL global;
 @end
 
 @implementation SLSSpanBuilder
@@ -37,6 +38,7 @@
         _attributes = [NSMutableArray<SLSAttribute*> array];
         _start = 0L;
         _kind = SLSCLIENT;
+        _global = YES;
     }
     return self;
 }
@@ -95,6 +97,10 @@
     _service = service;
     return self;
 }
+- (SLSSpanBuilder *) setGlobal: (BOOL) global {
+    _global = global;
+    return self;
+}
 - (SLSSpan *) build {
     SLSRecordableSpan *span = [[SLSRecordableSpan alloc] initWithSpanProcessor:_spanProcessor];
     span.name = _name;
@@ -134,6 +140,7 @@
         [r merge:_resource];
     }
     span.resource = r;
+    [span setGlobal: _global];
     
     if (_start != 0L) {
         span.start = _start;
@@ -143,6 +150,10 @@
     
     if (_active) {
         [SLSContextManager update:span];
+    }
+    
+    if (span.isGlobal) {
+        [SLSContextManager setGlobalActiveSpan:span];
     }
     
     return span;

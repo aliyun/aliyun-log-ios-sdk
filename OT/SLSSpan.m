@@ -28,6 +28,7 @@ NSString* const SLSCONSUMER = @"CONSUMER";
         _attribute = [NSMutableDictionary<NSString*, NSString*> dictionary];
         _resource = [[SLSResource alloc] init];
         _kind = SLSCLIENT;
+        _isGlobal = YES;
     }
 
     return self;
@@ -43,7 +44,7 @@ NSString* const SLSCONSUMER = @"CONSUMER";
     return self;
 }
 
-- (void) addAttribute:(SLSAttribute *)attribute, ... NS_REQUIRES_NIL_TERMINATION {
+- (SLSSpan *) addAttribute:(SLSAttribute *)attribute, ... NS_REQUIRES_NIL_TERMINATION {
     NSMutableDictionary<NSString*, NSString*> *dict = (NSMutableDictionary<NSString*, NSString*> *) _attribute;
     [dict setObject:attribute.value forKey:attribute.key];
     va_list args;
@@ -53,21 +54,25 @@ NSString* const SLSCONSUMER = @"CONSUMER";
         [dict setObject:arg.value forKey:arg.key];
     }
     va_end(args);
+    
+    return self;
 }
 
-- (void) addAttributes:(NSArray<SLSAttribute*> *)attributes {
+- (SLSSpan *) addAttributes:(NSArray<SLSAttribute*> *)attributes {
     NSMutableDictionary<NSString*, NSString*> *dict = (NSMutableDictionary<NSString*, NSString*> *) _attribute;
     
     for (SLSAttribute *attr in attributes) {
         [dict setObject:attr.value forKey:attr.key];
     }
+    
+    return self;
 }
-- (void) addResource: (SLSResource *) resource {
-    if (!resource) {
-        return;
+- (SLSSpan *) addResource: (SLSResource *) resource {
+    if (resource) {
+        [_resource merge:resource];
     }
     
-    [_resource merge:resource];
+    return self;
 }
 
 
@@ -120,6 +125,11 @@ NSString* const SLSCONSUMER = @"CONSUMER";
     }
     
     return dict;
+}
+
+- (SLSSpan *) setGlobal: (BOOL) global {
+    _isGlobal = global;
+    return self;
 }
 
 - (id)copyWithZone:(nullable NSZone *)zone {

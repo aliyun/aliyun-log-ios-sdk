@@ -29,6 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (SLSSpanBuilder *) setStart: (long) start;
 - (SLSSpanBuilder *) addResource: (SLSResource *) resource NS_SWIFT_NAME(addResource(_:));
 - (SLSSpanBuilder *) setService: (NSString *)service;
+- (SLSSpanBuilder *) setGlobal: (BOOL) global;
 #pragma mark - build
 - (SLSSpan *) build;
 @end
