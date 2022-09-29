@@ -12,6 +12,11 @@
 #import "AliyunLog.h"
 #import "TimeUtils.h"
 
+#if __has_include("LogProducerClient+Bricks.h")
+#import "LogProducerClient+Bricks.h"
+#import "TCData.h"
+#endif
+
 
 @interface AliyunLogProducerClient ()
 
@@ -53,11 +58,24 @@
         return LogProducerInvalid;
     }
     NSMutableDictionary *logContents = log->content;
-
+    
+#if __has_include("LogProducerClient+Bricks.h")
+    if (self->_enableTrack) {
+        TCData *data = [TCData createDefault];
+        NSDictionary *fields = [data toDictionary] ;
+        for (id key in fields) {
+            [logContents setObject:[fields valueForKey:key] forKey:key];
+        }
+    } else {
+        if(self ->addLogInterceptor) {
+            addLogInterceptor(log);
+        }
+    }
+#else
     if(self ->addLogInterceptor) {
         addLogInterceptor(log);
-//        [TimeUtils fixTime:log];
     }
+#endif
     
     int pairCount = (int)[logContents count];
         
