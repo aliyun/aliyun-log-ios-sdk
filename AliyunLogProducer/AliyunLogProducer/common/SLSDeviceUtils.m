@@ -12,7 +12,7 @@
 #import <CoreTelephony/CTCarrier.h>
 #import <sys/stat.h>
 #import <dlfcn.h>
-#import "reachable/Rechable.h"
+#import "reachable/Reachable.h"
 
 @interface SLSDeviceUtils ()
 + (NSString *) getNetworkType;

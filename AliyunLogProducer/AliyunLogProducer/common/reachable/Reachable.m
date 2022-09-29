@@ -1,11 +1,11 @@
 //
-//  Rechable.m
+//  Reachable.m
 //  AliyunLogCommon
 //
 //  Created by gordon on 2021/6/7.
 //
 
-#import "Rechable.h"
+#import "Reachable.h"
 
 #import <sys/socket.h>
 #import <netinet/in.h>
