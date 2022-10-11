@@ -128,6 +128,7 @@
 
 - (void) putContent: (NSString *) key boolValue: (BOOL) value {
     if ([self checkValue:key]) {
+        [NSNumber numberWithBool:YES];
         [_content setObject:(YES == value ? @"YES" : @"NO") forKey:key];
     }
 }

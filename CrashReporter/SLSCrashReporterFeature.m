@@ -40,6 +40,7 @@ typedef void(^directory_changed_block)(NSString *);
 
 @property(nonatomic, strong) dispatch_source_t crashLogSource;
 @property(nonatomic, strong) dispatch_source_t crashStatLogSource;
+@property(nonatomic, strong) SLSCredentials *credentials;
 
 //@property(nonatomic, strong) SLSConfiguration *configuration;
 
@@ -67,6 +68,7 @@ typedef void(^directory_changed_block)(NSString *);
 }
 - (void) onInitialize: (SLSCredentials *) credentials configuration: (SLSConfiguration *) configuration {
     [super onInitialize:credentials configuration:configuration];
+    _credentials = credentials;
     
     [self observeDirectoryChanged];
     [self initWPKMobi: credentials configuration:configuration];
@@ -349,6 +351,8 @@ static void observeDirectory(dispatch_source_t _source, NSString *path, director
 //        tcdata.local_timestamp = [NSString stringWithFormat:@"%0.f", [date timeIntervalSince1970] * 1000];
 //        tcdata.local_time = [dateFormatter fromDate:date];
         [buidler setStart:[date timeIntervalSince1970] * 1000000000];
+    } else {
+        time = [[NSDateFormatter sharedInstance] fromDate:[NSDate date] formatter:@"YYYY-MM-dd HH:mm:ss.SSS Z"];
     }
     
     SLSSpan *crashedSpan = [buidler build];
@@ -361,11 +365,19 @@ static void observeDirectory(dispatch_source_t _source, NSString *path, director
     }
     
     if (self.configuration.enableTrace && [@"crash" isEqualToString:type]) {
-        SLSSpan *span = [SLSTracer startSpan:@"application crashed"];
+        NSDate *d = [[NSDateFormatter sharedInstance] fromStringZ:time];
+        NSString *t = [[NSDateFormatter sharedInstance] fromDate:d formatter:@"yyyyMMddHHmmss"];
+
+        SLSSpan *span = [SLSTracer startSpan:@"Application Crashed"];
         [span setSpanID:crashedSpan.spanID];
         [span addAttribute:
              [SLSAttribute of:@"ex.file" value:[file lastPathComponent]],
-             [SLSAttribute of:@"ex.type" value:type],
+             [SLSAttribute of:@"ex.uuid" value:[Utdid getUtdid]],
+             [SLSAttribute of:@"ex.project" value:_credentials.project],
+             [SLSAttribute of:@"ex.time" value:t],
+             [SLSAttribute of:@"ex.filter_time" value:[t substringToIndex:10]],
+             [SLSAttribute of:@"ex.filter_classify" value:@"crash"],
+             [SLSAttribute of:@"ex.filter_type" value:@""],
              nil
         ];
         [span setStatusCode:ERROR];

@@ -14,8 +14,10 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype) sharedInstance;
 
 - (NSDate *) fromString: (NSString *) date;
+- (NSDate *) fromString: (NSString *) date formatter: (NSString *) formatter;
 - (NSDate *) fromStringZ: (NSString *) date;
 - (NSString *) fromDate: (NSDate *) date;
+- (NSString *) fromDate: (NSDate *) date formatter: (NSString *) formatter;
 
 @end
 

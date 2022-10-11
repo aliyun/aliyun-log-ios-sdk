@@ -31,6 +31,11 @@
     return [self dateFromString:date];
 }
 
+- (NSDate *) fromString: (NSString *) date formatter: (NSString *) formatter {
+    [self setDateFormat:formatter];
+    return [self dateFromString:date];
+}
+
 - (NSDate *) fromStringZ: (NSString *) date {
     [self setDateFormat:@"YYYY-MM-dd HH:mm:ss.SSS Z"];
     return [self dateFromString:date];
@@ -38,6 +43,11 @@
 
 - (NSString *) fromDate: (NSDate *) date {
     [self setDateFormat:@"YYYY-MM-dd HH:mm:ss:SSS"];
+    return [self stringFromDate:date];
+}
+
+- (NSString *) fromDate: (NSDate *) date formatter: (NSString *) formatter {
+    [self setDateFormat:formatter];
     return [self stringFromDate:date];
 }
 
