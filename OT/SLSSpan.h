@@ -65,6 +65,8 @@ typedef NS_ENUM(NSInteger, SLSStatusCode){
 
 - (SLSSpan *) setGlobal: (BOOL) global;
 
+- (SLSSpan *) setScope: (void (^)(void)) scope;
+
 @end
 
 NS_ASSUME_NONNULL_END

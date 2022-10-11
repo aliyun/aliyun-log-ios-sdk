@@ -149,7 +149,7 @@
     }
     
     if (_active) {
-        [SLSContextManager update:span];
+        [span setScope:[SLSContextManager makeCurrent:span]];
     }
     
     if (span.isGlobal) {

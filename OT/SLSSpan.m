@@ -15,8 +15,10 @@ NSString* const SLSCLIENT = @"CLIENT";
 NSString* const SLSPRODUCER = @"PRODUCER";
 NSString* const SLSCONSUMER = @"CONSUMER";
 
-@interface SLSSpan ()
+typedef void (^_internal_Scope)(void);
 
+@interface SLSSpan ()
+@property(nonatomic, strong, readonly) _internal_Scope scope;
 @end
 
 @implementation SLSSpan
@@ -83,8 +85,8 @@ NSString* const SLSCONSUMER = @"CONSUMER";
     _isEnd = YES;
     
     _duration = (_end - _start) / 1000;
-    if ([SLSContextManager activeSpan] == self) {
-        [SLSContextManager update:nil];
+    if (nil != _scope) {
+        _scope();
     }
     return YES;
 }
@@ -129,6 +131,11 @@ NSString* const SLSCONSUMER = @"CONSUMER";
 
 - (SLSSpan *) setGlobal: (BOOL) global {
     _isGlobal = global;
+    return self;
+}
+
+- (SLSSpan *) setScope: (void (^)(void)) scope {
+    _scope = scope;
     return self;
 }
 
