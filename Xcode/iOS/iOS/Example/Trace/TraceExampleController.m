@@ -73,6 +73,7 @@ static TraceExampleController *selfClzz;
     [self createButton:@"withinSpan:active:block:" action:@selector(test) row: 4 left:NO];
     
     [self createButton:@"withinSpan:active:parent:block:" action:@selector(test) row: 5 left:YES];
+    [self createButton:@"嵌套trace示例" action:@selector(nestedTraceDemo) row: 5 left:NO];
 }
 
 - (UIButton *) createButton: (NSString *) name action: (SEL) action row: (int) row left: (BOOL) left {
@@ -274,6 +275,39 @@ void * pthread_fun(void * params) {
 //    [span end];
 //
 //    [self updateStatus:@"span 和 traceparent header 进行关联，用于前后端打通"];
+}
+
+- (void) nestedTraceDemo {
+    [self updateStatus:@"嵌套trace示例"];
+    SLSSpan *root = [SLSTracer startSpan:@"root span"];
+    SLSScope scope = [SLSContextManager makeCurrent:root];
+
+    SLSSpan *child1 = [[[SLSTracer spanBuilder:@"nest child span 1"] setActive:YES] build];
+    [[SLSTracer startSpan:@"span in nest child span 1 start"] end];
+    [[SLSTracer startSpan:@"span in nest child span 1 end"] end];
+    [[SLSContextManager activeSpan] addAttribute:[SLSAttribute of:@"child1_key" value:@"child1_value"], nil];
+    [child1 end];
+
+    [[SLSContextManager activeSpan] addAttribute:[SLSAttribute of:@"root_key1" value:@"root_value1"], nil];
+
+    SLSSpan *child2 = [[[SLSTracer spanBuilder:@"nest child span 2"] setActive:YES] build];
+    [[SLSTracer startSpan:@"span in nest child span 2 start"] end];
+    [[SLSTracer startSpan:@"span in nest child span 2 end"] end];
+    [[SLSContextManager activeSpan] addAttribute:[SLSAttribute of:@"child2_key" value:@"child2_value"], nil];
+
+    SLSSpan *child21 = [[[SLSTracer spanBuilder:@"nest child in span2"] setActive:YES] build];
+    [[SLSTracer startSpan:@"span in nest nest child span2 start"] end];
+    [[SLSTracer startSpan:@"span in nest nest child span2 end"] end];
+    [[SLSContextManager activeSpan] addAttribute:[SLSAttribute of:@"child21_key" value:@"child21_value"], nil];
+
+    [child21 end];
+    [child2 end];
+
+    [[SLSContextManager activeSpan] addAttribute:[SLSAttribute of:@"root_key2" value:@"root_value2"], nil];
+
+    [[SLSTracer startSpan:@"root span end"] end];
+    [root end];
+    scope();
 }
 
 @end
