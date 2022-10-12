@@ -150,6 +150,12 @@ typedef void (^OnInactiveMonitorFindCallback)(void);
  */
 + (void)sendAllReports;
 
+/**
+ *  上传崩溃到服务器
+ *  @param withPV 是否上报PV信息
+ */
++ (void)sendAllReports: (BOOL) withPV;
+
 
 /**
   使用啄木鸟的国际集群, 国际版app可以选择启动此开关

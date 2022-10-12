@@ -67,11 +67,11 @@
     [self createButton:@"Signal SIGSYS" andAction:@selector(onSignalSysCrashBtnClick) andX:lx andY:(SLCellHeight + SLPadding) * 7 andWidth:cellWidth andHeight:SLCellHeight andFont: font];
     [self createButton:@"Signal SIGPIPE" andAction:@selector(onSignalPipeCrashBtnClick) andX:rx andY:(SLCellHeight + SLPadding) * 7 andWidth:cellWidth andHeight:SLCellHeight andFont: font];
     
-    [self createButton:@"Custom Log" andAction:@selector(onCustomLog) andX:lx andY:(SLCellHeight + SLPadding) * 8 andWidth:(SLScreenW - lx * 4) andHeight:SLCellHeight andFont: font];
+    [self createButton:@"error" andAction:@selector(onCustomLog) andX:lx andY:(SLCellHeight + SLPadding) * 8 andWidth:(SLScreenW - lx * 4) andHeight:SLCellHeight andFont: font];
     
     [self createButton:@"动态更新" andAction:@selector(updateConfiguration) andX:lx andY:(SLCellHeight + SLPadding) * 9 andWidth:(SLScreenW - lx * 4) andHeight:SLCellHeight andFont: font];
     
-    [self createButton:@"Jank" andAction:@selector(onJank) andX:lx andY:(SLCellHeight + SLPadding) * 10 andWidth:(SLScreenW - lx * 4) andHeight:SLCellHeight andFont: font];
+    [self createButton:@"卡顿" andAction:@selector(onJank) andX:lx andY:(SLCellHeight + SLPadding) * 10 andWidth:(SLScreenW - lx * 4) andHeight:SLCellHeight andFont: font];
     
     [self createButton:@"开启/关闭" andAction:@selector(switchEnabled) andX:lx andY:(SLCellHeight + SLPadding) * 11 andWidth:(SLScreenW - lx * 4) andHeight:SLCellHeight andFont: font];
 }
