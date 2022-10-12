@@ -63,9 +63,9 @@ typedef NS_ENUM(NSInteger, SLSStatusCode){
 - (SLSSpan *) addEvent:(NSString *)name attribute: (SLSAttribute *)attribute, ... NS_REQUIRES_NIL_TERMINATION;
 - (SLSSpan *) addEvent:(NSString *)name attributes:(NSArray<SLSAttribute *> *)attributes;
 
-- (SLSSpan *) recordException:(NSException *)exception;
-- (SLSSpan *) recordException:(NSException *)exception attribute: (SLSAttribute *)attribute, ... NS_REQUIRES_NIL_TERMINATION;
-- (SLSSpan *) recordException:(NSException *)exception attributes:(NSArray<SLSAttribute *> *)attribute;
+- (SLSSpan *) recordException:(NSException *)exception NS_SWIFT_NAME(recordException(_:));
+- (SLSSpan *) recordException:(NSException *)exception attribute: (SLSAttribute *)attribute, ... NS_REQUIRES_NIL_TERMINATION NS_SWIFT_UNAVAILABLE("use recordException(_:attributes) instead.");
+- (SLSSpan *) recordException:(NSException *)exception attributes:(NSArray<SLSAttribute *> *)attribute NS_SWIFT_NAME(recordException(_:attributes:));
 /// End current SLSSpan
 - (BOOL) end;
 
