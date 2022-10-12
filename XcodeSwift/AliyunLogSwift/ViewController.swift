@@ -187,5 +187,30 @@ class ViewController: UIViewController {
             URLSession.shared.dataTask(with: URL.init(string: "http://sls-mall.caa227ac081f24f1a8556f33d69b96c99.cn-beijing.alicontainer.com/catalogue")!).resume()
         }
     }
+    
+    @IBAction func eventAndExceptionDemo(_ sender: Any) {
+        
+        SLSTracer.startSpan("span with event")
+            .addEvent("event name")
+            .end()
+        SLSTracer.startSpan("span with event and attribute")
+            .addEvent("event name with attribute", attributes: [
+                SLSAttribute.of("attr_key", value: "attr_value"),
+                SLSAttribute.of("attr_key2", value: "attr_value2")
+            ])
+            .end()
+        
+        SLSTracer.startSpan("span with exception")
+            .recordException(NSException(name: NSExceptionName("mock exception name"), reason: "mock exception reason"))
+            .end()
+        SLSTracer.startSpan("span with exception and attribute")
+            .recordException(NSException(name: NSExceptionName("mock exception name"), reason: "mock exception reason"), attributes: [
+                SLSAttribute.of("attr_key", value: "attr_value"),
+                SLSAttribute.of("attr_key2", value: "attr_value2")
+            ])
+            .end()
+        
+    }
+    
 }
 

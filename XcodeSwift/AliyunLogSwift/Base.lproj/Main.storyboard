@@ -26,7 +26,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bx6-My-la3">
-                                <rect key="frame" x="151" y="297" width="112" height="44"/>
+                                <rect key="frame" x="151" y="211" width="112" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Crash"/>
@@ -35,12 +35,21 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AyJ-0a-nSn">
-                                <rect key="frame" x="132" y="466" width="150" height="44"/>
+                                <rect key="frame" x="132" y="282" width="150" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Simple Trace"/>
                                 <connections>
                                     <action selector="simpleTrace:" destination="BYZ-38-t0r" eventType="touchUpInside" id="d2R-DU-F3O"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ss4-Wa-z5c">
+                                <rect key="frame" x="132" y="351" width="150" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="event &amp; exception"/>
+                                <connections>
+                                    <action selector="eventAndExceptionDemo:" destination="BYZ-38-t0r" eventType="touchUpInside" id="NGw-4X-VdO"/>
                                 </connections>
                             </button>
                         </subviews>
