@@ -7,6 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import "SLSResource.h"
+#import "SLSEvent.h"
 
 NS_ASSUME_NONNULL_BEGIN
 typedef NSString *SLSKind NS_STRING_ENUM;
@@ -33,6 +34,7 @@ typedef NS_ENUM(NSInteger, SLSStatusCode){
 @property(nonatomic, assign, getter=getEndTime) long end;
 @property(nonatomic, assign) long duration;
 @property(nonatomic, strong) NSDictionary<NSString*, NSString*>* attribute;
+@property(nonatomic, strong, readonly) NSArray<SLSEvent*> *evetns;
 @property(nonatomic, assign) SLSStatusCode statusCode;
 @property(nonatomic, strong) NSString *statusMessage;
 @property(nonatomic, strong) NSString *host;
@@ -57,6 +59,13 @@ typedef NS_ENUM(NSInteger, SLSStatusCode){
 /// @param resource SLSResource
 - (SLSSpan *) addResource: (SLSResource *) resource;
 
+- (SLSSpan *) addEvent:(NSString *)name;
+- (SLSSpan *) addEvent:(NSString *)name attribute: (SLSAttribute *)attribute, ... NS_REQUIRES_NIL_TERMINATION;
+- (SLSSpan *) addEvent:(NSString *)name attributes:(NSArray<SLSAttribute *> *)attributes;
+
+- (SLSSpan *) recordException:(NSException *)exception;
+- (SLSSpan *) recordException:(NSException *)exception attribute: (SLSAttribute *)attribute, ... NS_REQUIRES_NIL_TERMINATION;
+- (SLSSpan *) recordException:(NSException *)exception attributes:(NSArray<SLSAttribute *> *)attribute;
 /// End current SLSSpan
 - (BOOL) end;
 

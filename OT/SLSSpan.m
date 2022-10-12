@@ -19,6 +19,7 @@ typedef void (^_internal_Scope)(void);
 
 @interface SLSSpan ()
 @property(nonatomic, strong, readonly) _internal_Scope scope;
+- (void) addEventInternal:(SLSEvent *)event;
 @end
 
 @implementation SLSSpan
@@ -28,6 +29,7 @@ typedef void (^_internal_Scope)(void);
     self = [super init];
     if (self) {
         _attribute = [NSMutableDictionary<NSString*, NSString*> dictionary];
+        _evetns = [NSMutableArray<SLSEvent*> array];
         _resource = [[SLSResource alloc] init];
         _kind = SLSCLIENT;
         _isGlobal = YES;
@@ -76,7 +78,68 @@ typedef void (^_internal_Scope)(void);
     
     return self;
 }
+- (SLSSpan *) addEvent:(NSString *)name {
+    [self addEventInternal:[SLSEvent eventWithName:name]];
+    return self;
+}
+- (SLSSpan *) addEvent:(NSString *)name attribute: (SLSAttribute *)attribute, ... NS_REQUIRES_NIL_TERMINATION {
+    SLSEvent *event = [SLSEvent eventWithName:name];
+    [event addAttribute:attribute, nil];
 
+    va_list args;
+    SLSAttribute *arg;
+    va_start(args, attribute);
+    while ((arg = va_arg(args, SLSAttribute*))) {
+        [event addAttribute:arg, nil];
+    }
+    va_end(args);
+
+    [self addEventInternal:event];
+    return self;
+}
+- (SLSSpan *) addEvent:(NSString *)name attributes:(NSArray<SLSAttribute *> *)attributes {
+    [self addEventInternal:
+         [[SLSEvent eventWithName:name] addAttributes:attributes]
+    ];
+    return self;
+}
+
+- (SLSSpan *) recordException:(NSException *)exception {
+    return [self recordException:exception attributes:[NSArray array]];
+}
+- (SLSSpan *) recordException:(NSException *)exception attribute: (SLSAttribute *)attribute, ... NS_REQUIRES_NIL_TERMINATION {
+    NSMutableArray<SLSAttribute *> *attr = [NSMutableArray array];
+    if (nil != attribute) {
+        [attr addObject:attribute];
+    }
+
+    va_list args;
+    SLSAttribute *arg;
+    va_start(args, attribute);
+    while ((arg = va_arg(args, SLSAttribute*))) {
+        [attr addObject:arg];
+    }
+    va_end(args);
+
+    return [self recordException:exception attributes:attr];
+}
+- (SLSSpan *) recordException:(NSException *)exception attributes:(NSArray<SLSAttribute *> *)attribute {
+    SLSEvent *event = [[SLSEvent eventWithName:@"exception"] addAttribute:
+                           [SLSAttribute of:@"exception.type" value:exception.name],
+                           [SLSAttribute of:@"exception.message" value:exception.reason],
+                           [SLSAttribute of:@"exception.stacktrace" value:(exception.callStackSymbols ? [[exception.callStackSymbols valueForKey:@"description"] componentsJoinedByString:@"\n"] : @"")],
+                           nil
+    ];
+
+    [event addAttributes:attribute];
+
+    [self addEventInternal:event];
+    return self;
+}
+
+- (void) addEventInternal:(SLSEvent *)event {
+    [((NSMutableArray<SLSEvent*> *) _evetns) addObject:event];
+}
 
 - (BOOL) end {
     if (_isEnd) {
@@ -92,7 +155,7 @@ typedef void (^_internal_Scope)(void);
 }
 
 - (NSDictionary<NSString*, NSString*> *) toDict {
-    NSMutableDictionary<NSString*, NSString*> *dict = [NSMutableDictionary dictionary];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     
     [dict setObject:_name forKey:@"name"];
     [dict setObject:_kind forKey:@"kind"];
@@ -124,6 +187,27 @@ typedef void (^_internal_Scope)(void);
         }
 
         [dict setObject:[NSString stringWithDictionary: resourceDict] forKey:@"resource"];
+    }
+    
+    if (_evetns && [_evetns count] > 0) {
+        NSMutableArray *logs = [NSMutableArray array];
+        for (SLSEvent *event in _evetns) {
+            NSMutableDictionary *object = [NSMutableDictionary dictionary];
+            [object setObject:(event.name.length > 0 ? event.name : @"") forKey:@"name"];
+            [object setObject:[[NSNumber numberWithLong:event.epochNanos] stringValue] forKey:@"epochNanos"];
+            [object setObject:[[NSNumber numberWithInt:event.totalAttributeCount] stringValue] forKey:@"totalAttributeCount"];
+            
+            NSArray<SLSAttribute *> *attributes = event.attributes;
+            NSMutableDictionary<NSString*, NSString*> *attrObject = [NSMutableDictionary dictionary];
+            for (SLSAttribute *attr in attributes) {
+                [attrObject setObject:attr.value forKey:attr.key];
+            }
+            [object setObject:attrObject forKey:@"attributes"];
+            
+            [logs addObject:object];
+        }
+
+        [dict setObject:logs forKey:@"logs"];
     }
     
     return dict;

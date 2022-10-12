@@ -74,6 +74,9 @@ static TraceExampleController *selfClzz;
     
     [self createButton:@"withinSpan:active:parent:block:" action:@selector(test) row: 5 left:YES];
     [self createButton:@"嵌套trace示例" action:@selector(nestedTraceDemo) row: 5 left:NO];
+    
+
+    [self createButton:@"event & exception" action:@selector(eventAndExceptionDemo) row: 6 left:YES];
 }
 
 - (UIButton *) createButton: (NSString *) name action: (SEL) action row: (int) row left: (BOOL) left {
@@ -308,6 +311,25 @@ void * pthread_fun(void * params) {
     [[SLSTracer startSpan:@"root span end"] end];
     [root end];
     scope();
+}
+
+- (void) eventAndExceptionDemo {
+    [self updateStatus:@"addEvent & recordException"];
+
+    NSArray *attributes = @[
+        [SLSAttribute of:@"attrs_key1" value:@"attrs_value1"],
+        [SLSAttribute of:@"attrs_key2" value:@"attrs_value2"],
+        [SLSAttribute of:@"attrs_key3" value:@"attrs_value3"]
+    ];
+
+    [[[SLSTracer startSpan:@"span with event"] addEvent:@"event name"] end];
+    [[[SLSTracer startSpan:@"span with event and attribute"] addEvent:@"event with attribute" attribute:[SLSAttribute of:@"attr_key" value:@"attr_value"], nil] end];
+    [[[SLSTracer startSpan:@"span with event and attributes 2"] addEvent:@"event with attributes" attributes:attributes] end];
+
+    [[[SLSTracer startSpan:@"span with exception"] recordException:[NSException exceptionWithName:@"span exception" reason:@"mock" userInfo:nil]] end];
+    [[[SLSTracer startSpan:@"span with exception and attribute"] recordException:[NSException exceptionWithName:@"span exception" reason:@"mock" userInfo:nil] attribute:[SLSAttribute of:@"attr_key" value:@"attr_value"], nil] end];
+    [[[SLSTracer startSpan:@"span with exception and attributes"] recordException:[NSException exceptionWithName:@"span exception" reason:@"mock" userInfo:nil] attribute:[SLSAttribute of:@"attr_key" value:@"attr_value"], [SLSAttribute of:@"attr_key2" value:@"attr_value2"], nil] end];
+    [[[SLSTracer startSpan:@"span with exception and attributes 2"] recordException:[NSException exceptionWithName:@"span exception" reason:@"mock" userInfo:nil] attributes:attributes] end];
 }
 
 @end
