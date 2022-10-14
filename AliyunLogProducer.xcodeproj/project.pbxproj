@@ -46,6 +46,8 @@
 		F85FEBF628DDB99F00DD58F1 /* log_sha1.h in Headers */ = {isa = PBXBuildFile; fileRef = F85FEBEE28DDB99F00DD58F1 /* log_sha1.h */; };
 		F85FEBF728DDB99F00DD58F1 /* log_sds.h in Headers */ = {isa = PBXBuildFile; fileRef = F85FEBEF28DDB99F00DD58F1 /* log_sds.h */; };
 		F85FEBF828DDB99F00DD58F1 /* log_lz4.h in Headers */ = {isa = PBXBuildFile; fileRef = F85FEBF028DDB99F00DD58F1 /* log_lz4.h */; };
+		F86506E828F7B07E00A2B58F /* SLSEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = F86506E628F7B07E00A2B58F /* SLSEvent.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F86506E928F7B07E00A2B58F /* SLSEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = F86506E728F7B07E00A2B58F /* SLSEvent.m */; };
 		F876349E28AC94DC0062BBB5 /* AliyunLogOT.h in Headers */ = {isa = PBXBuildFile; fileRef = F876349D28AC94DC0062BBB5 /* AliyunLogOT.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F87828D328B608CA00F3D2B5 /* Unity4SLSiOS.m in Sources */ = {isa = PBXBuildFile; fileRef = F878289328B6035F00F3D2B5 /* Unity4SLSiOS.m */; };
 		F8E74BA928ACAE71000609C3 /* SLSCrashReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = F8E74BA428ACAE71000609C3 /* SLSCrashReporter.m */; };
@@ -273,6 +275,8 @@
 		F85FEBEE28DDB99F00DD58F1 /* log_sha1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = log_sha1.h; sourceTree = "<group>"; };
 		F85FEBEF28DDB99F00DD58F1 /* log_sds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = log_sds.h; sourceTree = "<group>"; };
 		F85FEBF028DDB99F00DD58F1 /* log_lz4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = log_lz4.h; sourceTree = "<group>"; };
+		F86506E628F7B07E00A2B58F /* SLSEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLSEvent.h; sourceTree = "<group>"; };
+		F86506E728F7B07E00A2B58F /* SLSEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLSEvent.m; sourceTree = "<group>"; };
 		F8696C4F27F0066D00EF0020 /* AliyunLogCrashReporter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AliyunLogCrashReporter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F876349D28AC94DC0062BBB5 /* AliyunLogOT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AliyunLogOT.h; sourceTree = "<group>"; };
 		F878289228B6035F00F3D2B5 /* Unity4SLSiOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Unity4SLSiOS.h; sourceTree = "<group>"; };
@@ -660,6 +664,8 @@
 				F876349D28AC94DC0062BBB5 /* AliyunLogOT.h */,
 				F8F6A9B228ABBBDB0070B023 /* SLSAttribute.h */,
 				F8F6A9BF28ABBBDB0070B023 /* SLSAttribute.m */,
+				F86506E628F7B07E00A2B58F /* SLSEvent.h */,
+				F86506E728F7B07E00A2B58F /* SLSEvent.m */,
 				F8F6A9B128ABBBDB0070B023 /* SLSKeyValue.h */,
 				F8F6A9BB28ABBBDB0070B023 /* SLSKeyValue.m */,
 				F8F6A9B028ABBBDB0070B023 /* SLSRecordableSpan.h */,
@@ -980,6 +986,7 @@
 				F8F6A9C428ABBBDB0070B023 /* SLSKeyValue.h in Headers */,
 				F8F6A9C528ABBBDB0070B023 /* SLSAttribute.h in Headers */,
 				F8F6A9CC28ABBBDB0070B023 /* SLSResource.h in Headers */,
+				F86506E828F7B07E00A2B58F /* SLSEvent.h in Headers */,
 				F834A1A828D3169500000F72 /* SLSContextManager.h in Headers */,
 				F8F6A9C728ABBBDB0070B023 /* SLSIdGenerator.h in Headers */,
 				F8F6A9CA28ABBBDB0070B023 /* SLSTimeUtils.h in Headers */,
@@ -1309,6 +1316,7 @@
 				F8F6A9CD28ABBBDB0070B023 /* SLSKeyValue.m in Sources */,
 				F8F6A9CE28ABBBDB0070B023 /* SLSRecordableSpan.m in Sources */,
 				F8F6A9C828ABBBDB0070B023 /* SLSTimeUtils.m in Sources */,
+				F86506E928F7B07E00A2B58F /* SLSEvent.m in Sources */,
 				F8F6A9C928ABBBDB0070B023 /* SLSIdGenerator.m in Sources */,
 				F8F6A9CB28ABBBDB0070B023 /* SLSSpanBuilder.m in Sources */,
 				F8F6A9C628ABBBDB0070B023 /* SLSSpan.m in Sources */,
