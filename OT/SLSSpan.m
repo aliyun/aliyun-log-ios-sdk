@@ -19,6 +19,7 @@ typedef void (^_internal_Scope)(void);
 
 @interface SLSSpan ()
 @property(nonatomic, strong, readonly) _internal_Scope scope;
+@property(nonatomic, strong) NSLock *lock;
 - (void) addEventInternal:(SLSEvent *)event;
 @end
 
@@ -33,6 +34,7 @@ typedef void (^_internal_Scope)(void);
         _resource = [[SLSResource alloc] init];
         _kind = SLSCLIENT;
         _isGlobal = YES;
+        _lock = [[NSLock alloc] init];
     }
 
     return self;
@@ -43,12 +45,15 @@ typedef void (^_internal_Scope)(void);
         return self;
     }
     
+    [_lock lock];
     _parentSpanID = parent.spanID;
     _traceID = parent.traceID;
+    [_lock unlock];
     return self;
 }
 
 - (SLSSpan *) addAttribute:(SLSAttribute *)attribute, ... NS_REQUIRES_NIL_TERMINATION {
+    [_lock lock];
     NSMutableDictionary<NSString*, NSString*> *dict = (NSMutableDictionary<NSString*, NSString*> *) _attribute;
     [dict setObject:attribute.value forKey:attribute.key];
     va_list args;
@@ -58,22 +63,25 @@ typedef void (^_internal_Scope)(void);
         [dict setObject:arg.value forKey:arg.key];
     }
     va_end(args);
-    
+    [_lock unlock];
     return self;
 }
 
 - (SLSSpan *) addAttributes:(NSArray<SLSAttribute*> *)attributes {
+    [_lock lock];
     NSMutableDictionary<NSString*, NSString*> *dict = (NSMutableDictionary<NSString*, NSString*> *) _attribute;
     
     for (SLSAttribute *attr in attributes) {
         [dict setObject:attr.value forKey:attr.key];
     }
-    
+    [_lock unlock];
     return self;
 }
 - (SLSSpan *) addResource: (SLSResource *) resource {
     if (resource) {
+        [_lock lock];
         [_resource merge:resource];
+        [_lock unlock];
     }
     
     return self;
@@ -138,10 +146,13 @@ typedef void (^_internal_Scope)(void);
 }
 
 - (void) addEventInternal:(SLSEvent *)event {
+    [_lock lock];
     [((NSMutableArray<SLSEvent*> *) _evetns) addObject:event];
+    [_lock unlock];
 }
 
 - (BOOL) end {
+    [_lock lock];
     if (_isEnd) {
         return NO;
     }
@@ -151,10 +162,12 @@ typedef void (^_internal_Scope)(void);
     if (nil != _scope) {
         _scope();
     }
+    [_lock unlock];
     return YES;
 }
 
 - (NSDictionary<NSString*, NSString*> *) toDict {
+    [_lock lock];
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     
     [dict setObject:_name forKey:@"name"];
@@ -209,22 +222,28 @@ typedef void (^_internal_Scope)(void);
 
         [dict setObject:logs forKey:@"logs"];
     }
-    
+    [_lock unlock];
     return dict;
 }
 
 - (SLSSpan *) setGlobal: (BOOL) global {
+    [_lock lock];
     _isGlobal = global;
+    [_lock unlock];
     return self;
 }
 
 - (SLSSpan *) setScope: (void (^)(void)) scope {
+    [_lock lock];
     _scope = scope;
+    [_lock unlock];
     return self;
 }
 
 - (id)copyWithZone:(nullable NSZone *)zone {
     SLSSpan *span = [[SLSSpan alloc] init];
+
+    [_lock lock];
     span.name = _name;
     span.traceID = _traceID;
     span.spanID = _spanID;
@@ -241,6 +260,7 @@ typedef void (^_internal_Scope)(void);
     span.sessionId = _sessionId;
     span.transactionId = _transactionId;
     span->_isEnd = _isEnd;
+    [_lock unlock];
     return span;
 }
 
