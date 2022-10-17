@@ -8,7 +8,7 @@
 #import "SLSKeyValue.h"
 
 @interface SLSResource()
-
+@property(nonatomic, strong) NSLock *lock;
 @end
 
 @implementation SLSResource
@@ -21,27 +21,34 @@
     self = [super init];
     if (nil != self) {
         _attributes = [NSMutableArray array];
+        _lock = [[NSLock alloc] init];
     }
     return self;
 }
 
 - (void) add: (NSString *)key value: (NSString *)value {
+    [_lock lock];
     NSMutableArray<SLSAttribute*> *array = (NSMutableArray<SLSAttribute*>*) _attributes;
     [array addObject:[SLSAttribute of:key value:value]];
+    
+    [_lock unlock];
 }
 
 - (void) add: (NSArray<SLSAttribute *> *)attributes {
+    [_lock lock];
     NSMutableArray<SLSAttribute*> *array = (NSMutableArray<SLSAttribute*>*) _attributes;
     [array addObjectsFromArray:attributes];
+    [_lock unlock];
 }
 
 - (void) merge: (SLSResource *)resource {
     if (!resource || !resource.attributes) {
         return;
     }
-    
+    [_lock lock];
     NSMutableArray<SLSAttribute*> *array = (NSMutableArray<SLSAttribute*>*) _attributes;
     [array addObjectsFromArray:resource.attributes];
+    [_lock unlock];
 }
 
 + (SLSResource*) of: (NSString *)key value: (NSString *)value {
