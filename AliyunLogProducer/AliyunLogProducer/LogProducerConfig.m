@@ -186,15 +186,21 @@ void sls_ios_http_header_inject_func(log_producer_config *config, char **src_hea
     
     NSUInteger count = injectedHeaders.count / 2;
     for (int i = 0; i < count; i ++) {
-        char *kv = (char *) malloc(sizeof(char) * 256);
-        memset(kv, 0, sizeof(char) * 256);
-        strcat(kv, [injectedHeaders objectAtIndex:2*i].UTF8String);
+        const char *key = [[injectedHeaders objectAtIndex:2*i] UTF8String];
+        const char *value = [[injectedHeaders objectAtIndex:2*i+1] UTF8String];
+        unsigned long len = strlen(key) + strlen(value) + 1;
+        
+        // dynamic alloc 'len' of char* for reduce mem cost
+        char *kv = (char *) malloc(sizeof(char) * len);
+        memset(kv, 0, sizeof(char) * len);
+        strcat(kv, key);
         strcat(kv, ":");
-        strcat(kv, [injectedHeaders objectAtIndex:2*i+1].UTF8String);
+        strcat(kv, value);
         dest_headers[i] = kv;
         (*dest_count)++;
     }
 }
+
 
 void sls_ios_http_header_release_inject_func(log_producer_config *config, char **dest_headers, int dest_count) {
     if (0 == dest_count) {
