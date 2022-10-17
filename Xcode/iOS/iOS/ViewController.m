@@ -61,6 +61,7 @@
     UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(SLPadding + x, SLNavBarAndStatusBarHeight + SLPadding * 2 + y, width, height)];
     textView.backgroundColor = [UIColor whiteColor];
     [textView setTextColor:[UIColor blackColor]];
+    [textView setReturnKeyType:UIReturnKeyDone];
     [textView setText:text];
     
     [self.view addSubview:textView];
