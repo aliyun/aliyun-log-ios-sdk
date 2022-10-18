@@ -188,7 +188,7 @@ void sls_ios_http_header_inject_func(log_producer_config *config, char **src_hea
     for (int i = 0; i < count; i ++) {
         const char *key = [[injectedHeaders objectAtIndex:2*i] UTF8String];
         const char *value = [[injectedHeaders objectAtIndex:2*i+1] UTF8String];
-        unsigned long len = strlen(key) + strlen(value) + 1;
+        unsigned long len = strlen(key) + strlen(value) + strlen(":") + 1;
         
         // dynamic alloc 'len' of char* for reduce mem cost
         char *kv = (char *) malloc(sizeof(char) * len);
