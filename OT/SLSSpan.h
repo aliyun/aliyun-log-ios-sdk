@@ -8,6 +8,7 @@
 #import <Foundation/Foundation.h>
 #import "SLSResource.h"
 #import "SLSEvent.h"
+#import "SLSLink.h"
 
 NS_ASSUME_NONNULL_BEGIN
 typedef NSString *SLSKind NS_STRING_ENUM;
@@ -35,6 +36,7 @@ typedef NS_ENUM(NSInteger, SLSStatusCode){
 @property(nonatomic, assign) long duration;
 @property(nonatomic, strong) NSDictionary<NSString*, NSString*>* attribute;
 @property(nonatomic, strong, readonly) NSArray<SLSEvent*> *evetns;
+@property(nonatomic, strong, readonly) NSArray<SLSLink*> *links;
 @property(nonatomic, assign) SLSStatusCode statusCode;
 @property(nonatomic, strong) NSString *statusMessage;
 @property(nonatomic, strong) NSString *host;
@@ -62,6 +64,9 @@ typedef NS_ENUM(NSInteger, SLSStatusCode){
 - (SLSSpan *) addEvent:(NSString *)name;
 - (SLSSpan *) addEvent:(NSString *)name attribute: (SLSAttribute *)attribute, ... NS_REQUIRES_NIL_TERMINATION;
 - (SLSSpan *) addEvent:(NSString *)name attributes:(NSArray<SLSAttribute *> *)attributes;
+
+- (SLSSpan *) addLink: (SLSLink *)link, ... NS_REQUIRES_NIL_TERMINATION NS_SWIFT_UNAVAILABLE("use addLinks instead.");
+- (SLSSpan *) addLinks: (NSArray<SLSLink *> *)links NS_SWIFT_NAME(addLinks(_:));
 
 - (SLSSpan *) recordException:(NSException *)exception NS_SWIFT_NAME(recordException(_:));
 - (SLSSpan *) recordException:(NSException *)exception attribute: (SLSAttribute *)attribute, ... NS_REQUIRES_NIL_TERMINATION NS_SWIFT_UNAVAILABLE("use recordException(_:attributes) instead.");

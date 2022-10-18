@@ -31,6 +31,7 @@ typedef void (^_internal_Scope)(void);
     if (self) {
         _attribute = [NSMutableDictionary<NSString*, NSString*> dictionary];
         _evetns = [NSMutableArray<SLSEvent*> array];
+        _links = [NSMutableArray<SLSLink*> array];
         _resource = [[SLSResource alloc] init];
         _kind = SLSCLIENT;
         _isGlobal = YES;
@@ -109,6 +110,34 @@ typedef void (^_internal_Scope)(void);
     [self addEventInternal:
          [[SLSEvent eventWithName:name] addAttributes:attributes]
     ];
+    return self;
+}
+
+- (SLSSpan *) addLink: (SLSLink *)link, ... NS_REQUIRES_NIL_TERMINATION {
+    NSMutableArray<SLSLink*> *links = (NSMutableArray<SLSLink*> *)_links;
+    [_lock lock];
+    [links addObject:link];
+    [_lock unlock];
+    
+    va_list args;
+    SLSLink *arg;
+    va_start(args, link);
+    while ((arg = va_arg(args, SLSLink*))) {
+        [_lock lock];
+        [links addObject:arg];
+        [_lock unlock];
+    }
+    va_end(args);
+    
+    return self;
+}
+- (SLSSpan *) addLinks: (NSArray<SLSLink *> *)links {
+    if (nil == links) {
+        return self;
+    }
+    [_lock lock];
+    [((NSMutableArray<SLSLink*> *)_links) addObjectsFromArray:links];
+    [_lock unlock];
     return self;
 }
 
@@ -221,6 +250,26 @@ typedef void (^_internal_Scope)(void);
         }
 
         [dict setObject:logs forKey:@"logs"];
+    }
+    
+    if (_links && _links.count > 0) {
+        NSMutableArray *links = [NSMutableArray array];
+        for (SLSLink *link in _links) {
+            NSMutableDictionary *object = [NSMutableDictionary dictionary];
+            [object setObject:(link.traceId.length > 0 ? link.traceId : @"") forKey:@"traceID"];
+            [object setObject:(link.spanId.length > 0 ? link.spanId : @"") forKey:@"spanID"];
+            
+            NSArray<SLSAttribute *> *attributes = link.attributes;
+            NSMutableDictionary<NSString*, NSString*> *attrObject = [NSMutableDictionary dictionary];
+            for (SLSAttribute *attr in attributes) {
+                [attrObject setObject:attr.value forKey:attr.key];
+            }
+            [object setObject:attrObject forKey:@"attributes"];
+            
+            [links addObject:object];
+        }
+        
+        [dict setObject:links forKey:@"links"];
     }
     [_lock unlock];
     return dict;
