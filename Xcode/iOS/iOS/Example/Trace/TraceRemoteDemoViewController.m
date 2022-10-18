@@ -67,13 +67,14 @@ static TraceRemoteDemoViewController *selfClzz;
 
 - (void) openAirConditioner {
 //    NSString *traceId = self->_consoleTextView.text;
-    NSString *traceId = @"00000019719800330000001282774674";
-    NSString *spanId = @"c8d76205385be771";
+    NSString *traceId = @"00000001027659080000001726600349";
+    NSString *spanId = @"f902e24a478eae17";
 //    [_consoleTextView setText:[NSString stringWithFormat:@"开始打开空调， traceId: %@", traceId]];
     
     SLSSpan *span = [SLSTracer startSpan:@"收到指令<<= 打开空调"];
-    [span setTraceID:traceId];
-    [span setParentSpanID:spanId];
+    [span addLink:[SLSLink linkWithTraceId:traceId spanId:spanId], nil];
+//    [span setTraceID:traceId];
+//    [span setParentSpanID:spanId];
     [span end];
     
     [SLSTracer withinSpan:@"执行打开空调指令" active:YES parent:span block:^{
