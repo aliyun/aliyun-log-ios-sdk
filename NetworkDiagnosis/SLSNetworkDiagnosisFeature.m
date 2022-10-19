@@ -107,6 +107,9 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
 }
 
 - (void)setCredentials:(SLSCredentials *)credentials {
+    if (nil == credentials.networkDiagnosisCredentials) {
+        [credentials createNetworkDiagnosisCredentials];
+    }
     [_sender setCredentials:credentials];
 }
 
