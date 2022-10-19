@@ -365,10 +365,16 @@ static void observeDirectory(dispatch_source_t _source, NSString *path, director
     }
     
     if (self.configuration.enableTrace && [@"crash" isEqualToString:type]) {
+        Class clazz = NSClassFromString(@"SLSTracer");
+        if (!clazz) {
+            return;
+        }
+        
         NSDate *d = [[NSDateFormatter sharedInstance] fromStringZ:time];
         NSString *t = [[NSDateFormatter sharedInstance] fromDate:d formatter:@"yyyyMMddHHmmss"];
 
-        SLSSpan *span = [SLSTracer startSpan:@"Application Crashed"];
+//        SLSSpan *span = [SLSTracer startSpan:@"Application Crashed"];
+        SLSSpan *span = [clazz performSelector:@selector(startSpan:) withObject:@"Application Crashed"];
         [span setSpanID:crashedSpan.spanID];
         [span addAttribute:
              [SLSAttribute of:@"ex.file" value:[file lastPathComponent]],
