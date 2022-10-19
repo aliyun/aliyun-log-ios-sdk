@@ -50,6 +50,8 @@
 		F86506E928F7B07E00A2B58F /* SLSEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = F86506E728F7B07E00A2B58F /* SLSEvent.m */; };
 		F876349E28AC94DC0062BBB5 /* AliyunLogOT.h in Headers */ = {isa = PBXBuildFile; fileRef = F876349D28AC94DC0062BBB5 /* AliyunLogOT.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F87828D328B608CA00F3D2B5 /* Unity4SLSiOS.m in Sources */ = {isa = PBXBuildFile; fileRef = F878289328B6035F00F3D2B5 /* Unity4SLSiOS.m */; };
+		F8C26B0528FE8E4E0008F384 /* SLSLink.m in Sources */ = {isa = PBXBuildFile; fileRef = F8C26B0328FE8E4D0008F384 /* SLSLink.m */; };
+		F8C26B0628FE8E4E0008F384 /* SLSLink.h in Headers */ = {isa = PBXBuildFile; fileRef = F8C26B0428FE8E4E0008F384 /* SLSLink.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F8E74BA928ACAE71000609C3 /* SLSCrashReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = F8E74BA428ACAE71000609C3 /* SLSCrashReporter.m */; };
 		F8E74BAA28ACAE71000609C3 /* SLSCrashReporterFeature.m in Sources */ = {isa = PBXBuildFile; fileRef = F8E74BA528ACAE71000609C3 /* SLSCrashReporterFeature.m */; };
 		F8E74BAC28ACAE71000609C3 /* SLSCrashReporter.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E74BA728ACAE71000609C3 /* SLSCrashReporter.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -291,6 +293,8 @@
 		F88FAFE328ACECCC00F8792A /* build-ot.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = "build-ot.sh"; path = "publish/build-ot.sh"; sourceTree = "<group>"; };
 		F88FAFE528ACF07A00F8792A /* build-all.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = "build-all.sh"; path = "publish/build-all.sh"; sourceTree = "<group>"; };
 		F8ACED2628AD32FD004DC16B /* build-pub.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = "build-pub.sh"; path = "publish/build-pub.sh"; sourceTree = "<group>"; };
+		F8C26B0328FE8E4D0008F384 /* SLSLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLSLink.m; sourceTree = "<group>"; };
+		F8C26B0428FE8E4E0008F384 /* SLSLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLSLink.h; sourceTree = "<group>"; };
 		F8E74BA428ACAE71000609C3 /* SLSCrashReporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLSCrashReporter.m; sourceTree = "<group>"; };
 		F8E74BA528ACAE71000609C3 /* SLSCrashReporterFeature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLSCrashReporterFeature.m; sourceTree = "<group>"; };
 		F8E74BA628ACAE71000609C3 /* WPKMobi.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = WPKMobi.xcframework; sourceTree = "<group>"; };
@@ -668,6 +672,8 @@
 				F86506E728F7B07E00A2B58F /* SLSEvent.m */,
 				F8F6A9B128ABBBDB0070B023 /* SLSKeyValue.h */,
 				F8F6A9BB28ABBBDB0070B023 /* SLSKeyValue.m */,
+				F8C26B0428FE8E4E0008F384 /* SLSLink.h */,
+				F8C26B0328FE8E4D0008F384 /* SLSLink.m */,
 				F8F6A9B028ABBBDB0070B023 /* SLSRecordableSpan.h */,
 				F8F6A9BC28ABBBDB0070B023 /* SLSRecordableSpan.m */,
 				F8F6A9BA28ABBBDB0070B023 /* SLSResource.h */,
@@ -987,6 +993,7 @@
 				F8F6A9C528ABBBDB0070B023 /* SLSAttribute.h in Headers */,
 				F8F6A9CC28ABBBDB0070B023 /* SLSResource.h in Headers */,
 				F86506E828F7B07E00A2B58F /* SLSEvent.h in Headers */,
+				F8C26B0628FE8E4E0008F384 /* SLSLink.h in Headers */,
 				F834A1A828D3169500000F72 /* SLSContextManager.h in Headers */,
 				F8F6A9C728ABBBDB0070B023 /* SLSIdGenerator.h in Headers */,
 				F8F6A9CA28ABBBDB0070B023 /* SLSTimeUtils.h in Headers */,
@@ -1322,6 +1329,7 @@
 				F8F6A9C628ABBBDB0070B023 /* SLSSpan.m in Sources */,
 				F8F6A9C228ABBBDB0070B023 /* SLSResource.m in Sources */,
 				F8F6A9D128ABBBDB0070B023 /* SLSAttribute.m in Sources */,
+				F8C26B0528FE8E4E0008F384 /* SLSLink.m in Sources */,
 				F834A13828D310E200000F72 /* SLSContextManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1507,7 +1515,7 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				LINK_WITH_STANDARD_LIBRARIES = NO;
 				MACH_O_TYPE = staticlib;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				MARKETING_VERSION = 3.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.aysls.cocoa.producer;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
@@ -1563,7 +1571,7 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				LINK_WITH_STANDARD_LIBRARIES = NO;
 				MACH_O_TYPE = staticlib;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				MARKETING_VERSION = 3.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.aysls.cocoa.producer;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
@@ -1612,7 +1620,7 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				LINK_WITH_STANDARD_LIBRARIES = NO;
 				MACH_O_TYPE = staticlib;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				MARKETING_VERSION = 3.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.aysls.cocoa.trace;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1661,7 +1669,7 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				LINK_WITH_STANDARD_LIBRARIES = NO;
 				MACH_O_TYPE = staticlib;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				MARKETING_VERSION = 3.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.aysls.cocoa.trace;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1707,6 +1715,7 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				LINK_WITH_STANDARD_LIBRARIES = NO;
 				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				MARKETING_VERSION = 3.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.aysls.cocoa.networkdiagnosis;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1751,6 +1760,7 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				LINK_WITH_STANDARD_LIBRARIES = NO;
 				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				MARKETING_VERSION = 3.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.aysls.cocoa.networkdiagnosis;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1792,7 +1802,7 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				LINK_WITH_STANDARD_LIBRARIES = NO;
 				MACH_O_TYPE = staticlib;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				MARKETING_VERSION = 3.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.aysls.cocoa.crashreporter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1839,7 +1849,7 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				LINK_WITH_STANDARD_LIBRARIES = NO;
 				MACH_O_TYPE = staticlib;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				MARKETING_VERSION = 3.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.aysls.cocoa.crashreporter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1919,7 +1929,7 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				LINK_WITH_STANDARD_LIBRARIES = NO;
 				MACH_O_TYPE = staticlib;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				MARKETING_VERSION = 3.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.aysls.cocoa.ot;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1971,7 +1981,7 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				LINK_WITH_STANDARD_LIBRARIES = NO;
 				MACH_O_TYPE = staticlib;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				MARKETING_VERSION = 3.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.aysls.cocoa.ot;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2022,7 +2032,7 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				LINK_WITH_STANDARD_LIBRARIES = NO;
 				MACH_O_TYPE = staticlib;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				MARKETING_VERSION = 3.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.aysls.cocoa.core;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2075,7 +2085,7 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				LINK_WITH_STANDARD_LIBRARIES = NO;
 				MACH_O_TYPE = staticlib;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				MARKETING_VERSION = 3.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.aysls.cocoa.core;
 				PRODUCT_NAME = "$(TARGET_NAME)";

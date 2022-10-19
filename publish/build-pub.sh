@@ -1,4 +1,6 @@
 #!/bin/sh
+set -o pipefail
+set -e
 rm -rf build
 mkdir build
 cp -r ../NetworkDiagnosis/AliNetworkDiagnosis.framework build/AliNetworkDiagnosis.framework

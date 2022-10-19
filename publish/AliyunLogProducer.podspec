@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
     isPodLint = ENV['env'].to_s == 'lint'
     
     s.name             = "AliyunLogProducer"
-    s.version          = "3.1.2.beta.1"
+    s.version          = "3.1.2"
     s.summary          = "aliyun log service ios producer."
     
     # This description is used to generate tags and improve search results.
@@ -153,7 +153,7 @@ Pod::Spec.new do |s|
             'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
         }
     end
-    
+
     s.subspec 'Trace' do |c|
         c.ios.deployment_target = '9.0'
         c.tvos.deployment_target =  '9.0'
@@ -166,7 +166,7 @@ Pod::Spec.new do |s|
         else
             c.vendored_frameworks = "AliyunLogTrace/AliyunLogTrace.xcframework"
         end
-        
+
         c.user_target_xcconfig = {
             'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
         }

@@ -22,3 +22,5 @@ FOUNDATION_EXPORT const unsigned char AliyunLogOTVersionString[];
 #import "SLSSpanProcessorProtocol.h"
 #import "SLSSpanProviderProtocol.h"
 #import "SLSContextManager.h"
+#import "SLSEvent.h"
+#import "SLSLink.h"
