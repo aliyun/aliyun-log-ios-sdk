@@ -61,6 +61,17 @@
     ];
 }
 
+- (void)setCredentials:(SLSCredentials *)credentials {
+    if (nil == credentials.traceCredentials) {
+        [credentials createTraceCredentials];
+    }
+    [_sender setCredentials:credentials];
+}
+
+- (void) setCallback:(CredentialsCallback)callback {
+    [_sender setCallback:callback];
+}
+
 @end
 
 #pragma mark - SLS Trace Sender
@@ -104,6 +115,7 @@
 }
 
 - (NSString *)provideLogstoreName:(SLSCredentials *)credentials {
+    return [NSString stringWithFormat:@"%@-traces", credentials.traceCredentials.instanceId];
     return credentials.traceCredentials.logstore;
 }
 
