@@ -147,7 +147,7 @@
         [_config setProject:credentials.project];
     }
     if (credentials.instanceId && credentials.instanceId.length > 0) {
-        [_config setLogstore:[self getLogstoreByInstanceId:credentials.instanceId]];
+        [_config setLogstore:[self provideLogstoreName:credentials]];
     }
 }
 

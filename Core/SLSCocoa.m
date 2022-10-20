@@ -73,9 +73,7 @@
     [_configuration setup];
     
     [self initializeDefaultSpanProvider];
-    if (_configuration.enableCrashReporter || _configuration.enableBlockDetection) {
-        [self initializeSdkSender];
-    }
+    [self initializeSdkSender];
     
     if (_configuration.enableCrashReporter || _configuration.enableBlockDetection) {
         [self initFeature: @"SLSCrashReporterFeature"];
@@ -98,7 +96,7 @@
     _configuration.spanProvider = delegate;
 }
 - (void) initializeSdkSender {
-    SLSSdkSender *sender = (SLSSdkSender *)_configuration.spanProcessor;
+    id<SLSSenderProtocol> sender = (id<SLSSenderProtocol>)_configuration.spanProcessor;
     [sender initialize: _credentials];
 }
 
@@ -153,7 +151,7 @@
         _credentials.securityToken = credentials.securityToken;
     }
     
-    [(SLSSdkSender *) _configuration.spanProcessor setCredentials:credentials];
+    [(id<SLSSenderProtocol>) _configuration.spanProcessor setCredentials:credentials];
     
     for (id<SLSFeatureProtocol> feature in _features) {
         [feature setCredentials:credentials];
