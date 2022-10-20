@@ -46,6 +46,8 @@ typedef NS_ENUM(NSInteger, LogProducerResult) {
 
 - (id) initWithLogProducerConfig:(LogProducerConfig *)logProducerConfig callback:(on_log_producer_send_done_function)callback;
 
+- (id) initWithLogProducerConfig:(LogProducerConfig *)logProducerConfig callback:(on_log_producer_send_done_function)callback userparams: (NSObject *)params;
+
 - (void)DestroyLogProducer;
 
 - (LogProducerResult)AddLog:(Log *) log;

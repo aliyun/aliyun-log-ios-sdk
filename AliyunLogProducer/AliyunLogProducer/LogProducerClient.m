@@ -25,9 +25,14 @@
 
 - (id) initWithLogProducerConfig:(LogProducerConfig *)logProducerConfig callback:(on_log_producer_send_done_function)callback
 {
+    return [self initWithLogProducerConfig:logProducerConfig callback:callback userparams:NULL];
+}
+
+- (id) initWithLogProducerConfig:(LogProducerConfig *)logProducerConfig callback:(on_log_producer_send_done_function)callback userparams: (NSObject *)params
+{
     if (self = [super init])
     {
-        self->producer = create_log_producer(logProducerConfig->config, *callback, nil);
+        self->producer = create_log_producer(logProducerConfig->config, *callback, (nil == params ? nil : (__bridge void *)(params)));
         self->client = get_log_producer_client(self->producer, nil);
         
         NSString *endpoint = [logProducerConfig getEndpoint];
