@@ -101,7 +101,7 @@ SLSSdkSender *_ref_sls_sdk_sender;
     
     [self provideLogProducerConfig:_config];
     
-    _client = [[LogProducerClient alloc] initWithLogProducerConfig:self.config callback:_on_log_send_done];
+    _client = [[LogProducerClient alloc] initWithLogProducerConfig:self.config callback:_on_log_send_done userparams:self];
 }
 - (BOOL) send: (Log *) log {
     if (!_client) {
@@ -180,8 +180,10 @@ static void _on_log_send_done(
         SLSLog(@"result code: %d, errorMessage: %s, logstore: %s", result, message, config_name);
     }
     
-    if (_ref_sls_sdk_sender && _ref_sls_sdk_sender->_callback) {
-        _ref_sls_sdk_sender->_callback([_ref_sls_sdk_sender provideFeatureName], result2String(result));
+    SLSSdkSender *sender = (__bridge SLSSdkSender *)userparams;
+    
+    if (sender && sender->_callback) {
+        sender->_callback([sender provideFeatureName], result2String(result));
     }
 }
 
