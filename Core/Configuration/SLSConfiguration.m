@@ -6,6 +6,27 @@
 //
 
 #import "SLSConfiguration.h"
+#import "SLSSdkSender.h"
+#import "SLSNoOpSender.h"
+#import "AliyunLogProducer/AliyunLogProducer.h"
+#import "SLSHttpHeader.h"
+#import "SLSUtils.h"
+
+@interface DefaultSdkSender : SLSSdkSender
++ (instancetype) sender;
+@end
+
+@implementation DefaultSdkSender
++ (instancetype) sender {
+    return [[DefaultSdkSender alloc] init];
+}
+- (void) provideLogProducerConfig: (id) config {
+    [config setHttpHeaderInjector:^NSArray<NSString *> *(NSArray<NSString *> *srcHeaders) {
+        return [SLSHttpHeader getHeaders:srcHeaders, [NSString stringWithFormat:@"apm/%@", [SLSUtils getSdkVersion]],nil];
+    }];
+}
+
+@end
 
 @implementation SLSConfiguration
 
@@ -29,6 +50,13 @@
     }
 
     return self;
+}
+- (void) setup {
+    if (_enableCrashReporter || _enableBlockDetection) {
+        _spanProcessor = [DefaultSdkSender sender];
+    } else {
+        _spanProcessor = [[SLSNoOpSender alloc] init];
+    }
 }
 
 @end

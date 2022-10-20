@@ -19,24 +19,7 @@
 #import "Utdid.h"
 #import "SLSDeviceUtils.h"
 #import "NSString+SLS.h"
-#import "SLSHttpHeader.h"
 #import "SLSUtils.h"
-
-@interface DefaultSdkSender : SLSSdkSender
-+ (instancetype) sender;
-@end
-
-@implementation DefaultSdkSender
-+ (instancetype) sender {
-    return [[DefaultSdkSender alloc] init];
-}
-- (void) provideLogProducerConfig: (id) config {
-    [config setHttpHeaderInjector:^NSArray<NSString *> *(NSArray<NSString *> *srcHeaders) {
-        return [SLSHttpHeader getHeaders:srcHeaders, [NSString stringWithFormat:@"apm/%@", [SLSUtils getSdkVersion]],nil];
-    }];
-}
-
-@end
 
 @interface SLSCocoa ()
 @property(atomic, assign) BOOL hasInitialize;
@@ -84,10 +67,15 @@
     }
     
     _credentials = credentials;
-    _configuration = [[SLSConfiguration alloc] initWithProcessor:[DefaultSdkSender sender]];
+//    _configuration = [[SLSConfiguration alloc] initWithProcessor:[DefaultSdkSender sender]];
+    _configuration = [[SLSConfiguration alloc] init];
     configuration(_configuration);
+    [_configuration setup];
+    
     [self initializeDefaultSpanProvider];
-    [self initializeSdkSender];
+    if (_configuration.enableCrashReporter || _configuration.enableBlockDetection) {
+        [self initializeSdkSender];
+    }
     
     if (_configuration.enableCrashReporter || _configuration.enableBlockDetection) {
         [self initFeature: @"SLSCrashReporterFeature"];

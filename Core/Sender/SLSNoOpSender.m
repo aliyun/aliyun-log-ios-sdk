@@ -18,5 +18,10 @@
 - (void) setCredentials: (SLSCredentials *) credentials {
     
 }
-
+- (void)setCallback:(nullable CredentialsCallback)callback {
+    
+}
+- (BOOL)onEnd:(nonnull SLSSpan *)span {
+    return NO;
+}
 @end

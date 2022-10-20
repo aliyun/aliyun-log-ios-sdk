@@ -32,6 +32,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, copy) SLSUserInfo *userInfo;
 
 - (instancetype) initWithProcessor: (id<SLSSpanProcessorProtocol>) processor;
+- (void) setup;
 
 @end
 

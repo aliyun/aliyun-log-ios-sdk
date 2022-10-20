@@ -15,7 +15,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SLSSdkSender : SLSNoOpSender<SLSSpanProcessorProtocol>
+@interface SLSSdkSender : SLSNoOpSender
 {
 @protected CredentialsCallback _callback;
 }
