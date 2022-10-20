@@ -8,7 +8,6 @@
 #import "SLSSdkSender.h"
 #import "AliyunLogProducer/AliyunLogProducer.h"
 
-SLSSdkSender *_ref_sls_sdk_sender;
 @interface SLSSdkSender ()
 
 @property(nonatomic, strong) LogProducerClient *client;
@@ -21,7 +20,6 @@ SLSSdkSender *_ref_sls_sdk_sender;
 {
     self = [super init];
     if (self) {
-        _ref_sls_sdk_sender = self;
     }
     return self;
 }
