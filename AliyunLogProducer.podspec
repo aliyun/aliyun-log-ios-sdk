@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'AliyunLogProducer'
-  s.version          = '2.3.10.4'
+  s.version          = '2.3.10.5'
   s.summary          = 'aliyun log service ios producer.'
 
 # This description is used to generate tags and improve search results.
@@ -26,7 +26,7 @@ https://help.aliyun.com/product/28958.html
   s.homepage         = 'https://github.com/aliyun/aliyun-log-ios-sdk'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'aliyun-log' => 'davidzhang.zc@alibaba-inc.com' }
-  s.source           = { :git => 'https://github.com/aliyun/aliyun-log-ios-sdk.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/aliyun-sls/aliyun-log-ios-sdk.git', :tag => s.version.to_s }
   s.social_media_url = 'http://t.cn/AiRpol8C'
 
   s.ios.deployment_target = '9.0'
