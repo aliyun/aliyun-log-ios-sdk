@@ -40,12 +40,12 @@
 
 - (void)PutContent:(NSString *) key value:(NSString *)value
 {
-    [self putContent:key value:value];
+    [self putContent:[key copy] value:[value copy]];
 }
 
 - (void) putContent: (NSString *) key value: (NSString *) value {
     if ([self checkValue:key] && [self checkValue:value]) {
-        [_content setObject:value forKey:key];
+        [_content setObject:[value copy] forKey:[key copy]];
     }
 }
 
