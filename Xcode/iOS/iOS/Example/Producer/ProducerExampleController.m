@@ -160,6 +160,8 @@ static void _on_log_send_done(const char * config_name, log_producer_result resu
     [log putContents: @{
         @"2k1": @"2v1"
     }];
+    [log PutContent:nil value:nil];
+    [log putContent:nil value:nil];
     
 
     [log PutContent:@"content_key_1" value:@"1abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+"];

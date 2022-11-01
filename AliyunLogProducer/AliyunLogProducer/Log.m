@@ -40,7 +40,9 @@
 
 - (void)PutContent:(NSString *) key value:(NSString *)value
 {
-    [self putContent:[[NSString alloc] initWithString:key] value:[[NSString alloc] initWithString:value]];
+    if ([self checkValue:key] && [self checkValue:value]) {
+        [_content setObject:[[NSString alloc] initWithString:value] forKey:[[NSString alloc] initWithString:key]];
+    }
 }
 
 - (void) putContent: (NSString *) key value: (NSString *) value {
