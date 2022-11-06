@@ -47,7 +47,7 @@ static TraceRemoteDemoViewController *selfClzz;
     
     [SLSTracer withinSpan:@"打开车机空调" block:^{
         [[SLSTracer startSpan:@"校验用户权限"] end];
-        [SLSTracer withinSpan:@"发送指令=>> 打开空调" block:^{
+        [SLSTracer withinSpan:@"发送指令 ==>> 打开空调" block:^{
             // http request
             NSError *error = nil;
             NSHTTPURLResponse *response = nil;
