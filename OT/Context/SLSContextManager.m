@@ -7,6 +7,12 @@
 
 #import "SLSContextManager.h"
 
+#if __has_include(<AliyunLogProducer/AliyunLogProducer-Swift.h>)
+#import <AliyunLogProducer/AliyunLogProducer-Swift.h>
+#elif  __has_include(<AliyunLogOT/AliyunLogOT-Swift.h>)
+#import <AliyunLogOT/AliyunLogOT-Swift.h>
+#endif
+
 @interface SLSContext ()
 @property(nonatomic, strong) SLSSpan *span;
 
@@ -27,15 +33,22 @@ NSLock *lock;
 SLSSpan *globalSpan;
 NSString *startupTimestamp;
 NSUserDefaults *userDefaults;
+ActivityContextManager *contextManager;
 
 + (void)initialize {
     lock = [[NSLock alloc] init];
+    
+    contextManager = [[ActivityContextManager alloc] init];
     
     startupTimestamp = [NSString stringWithFormat:@"%lf", [[NSDate date] timeIntervalSince1970]];
     userDefaults = [[NSUserDefaults alloc] initWithSuiteName:@"sls_cached_span"];
 }
 
 + (SLSContext *) current {
+    if (@available(iOS 10.0, macOS 10.12, watchOS 3.0, tvOS 10.0, *)) {
+        return [contextManager getCurrentContextValueForKey:@"context"];
+    }
+    
     SLSContext *context = [[[NSThread currentThread] threadDictionary] objectForKey:@"sls_thread_context"];
     if (nil == context) {
         context = [[SLSContext alloc] init];
@@ -52,25 +65,42 @@ NSUserDefaults *userDefaults;
     return [self current].span;
 }
 + (SLSScope) makeCurrent: (SLSSpan *) span {
-    SLSContext *current = [[[NSThread currentThread] threadDictionary] objectForKey:span];
-    if (nil == current) {
-        current = [[SLSContext alloc] init];
-        current.span = span;
-        [[[NSThread currentThread] threadDictionary] setObject:current forKey:span];
-    }
-    
-    SLSContext *beforeContext = [self current];
-    if (beforeContext == current) {
+    if (nil == span) {
         return ^() {
         };
     }
     
-    [[[NSThread currentThread] threadDictionary] setObject:current forKey:@"sls_thread_context"];
+    SLSContext *beforeContext = [self current];
+    if (beforeContext.span == span) {
+        return ^() {
+        };
+    }
     
-    return ^() {
-        [[[NSThread currentThread] threadDictionary] setObject:beforeContext forKey:@"sls_thread_context"];
-        [[[NSThread currentThread] threadDictionary] removeObjectForKey:span];
-    };
+    if (@available(iOS 10.0, macOS 10.12, watchOS 3.0, tvOS 10.0, *)) {
+        SLSContext *current= [[SLSContext alloc] init];
+        current.span = span;
+        [contextManager setCurrentContextValueForKey:@"context" value:current];
+        
+        return ^() {
+            [contextManager removeContextValueForKey:@"context" value:current];
+            [contextManager setCurrentContextValueForKey:@"context" value:beforeContext];
+        };
+    } else {
+        SLSContext *current = [[[NSThread currentThread] threadDictionary] objectForKey:span];
+        if (nil == current) {
+            current = [[SLSContext alloc] init];
+            current.span = span;
+            [[[NSThread currentThread] threadDictionary] setObject:current forKey:span];
+        }
+    
+        [[[NSThread currentThread] threadDictionary] setObject:current forKey:@"sls_thread_context"];
+    
+        return ^() {
+            [[[NSThread currentThread] threadDictionary] setObject:beforeContext forKey:@"sls_thread_context"];
+            [[[NSThread currentThread] threadDictionary] removeObjectForKey:span];
+        };
+    
+    }
 }
 
 + (void) setGlobalActiveSpan: (SLSSpan *) span {

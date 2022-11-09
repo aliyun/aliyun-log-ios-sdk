@@ -31,6 +31,7 @@ https://help.aliyun.com/product/28958.html
 
   s.requires_arc  = true
   s.libraries = 'z'
+  s.swift_version = "5.5.2"
 #  s.xcconfig = { 'GCC_ENABLE_CPP_EXCEPTIONS' => 'YES' }
 
   s.default_subspec = 'Producer'
@@ -69,7 +70,7 @@ https://help.aliyun.com/product/28958.html
     o.ios.deployment_target = '9.0'
     o.tvos.deployment_target =  '9.0'
     o.osx.deployment_target =  '10.8'
-    o.source_files = 'OT/**/*.{m,h}'
+    o.source_files = 'OT/**/*.{m,h,swift}'
     o.public_header_files = 'OT/**/*.h'
   end
   

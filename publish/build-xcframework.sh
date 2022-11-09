@@ -58,7 +58,7 @@ build_framework()
         -destination "${generic_platform}" \
         -archivePath "${PLATFORM_WORKING_DIRECTORY}/${SCHEME}.xcarchive" \
         archive \
-        SKIP_INSTALL=NO
+        SKIP_INSTALL=NO BUILD_LIBRARY_FOR_DISTRIBUTION=YES
         
     # copy framework to PLATFORM dir
     rm -rf ${PLATFORM_WORKING_DIRECTORY}/${SCHEME}.framework/
