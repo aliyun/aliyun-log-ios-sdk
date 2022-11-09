@@ -34,6 +34,14 @@
     [_feature disableExNetworkInfo];
 }
 
+- (void) setMultiplePortsDetect: (BOOL) enable {
+    if (!_feature) {
+        return;
+    }
+    
+    [_feature setMultiplePortsDetect:enable];
+}
+
 - (void) setPolicyDomain: (NSString *) policyDomain {
     if (!_feature) {
         return;

@@ -14,6 +14,7 @@ typedef void (^Callback)(NSString *result);
 @protocol SLSNetworkDiagnosisProtocol <NSObject>
 - (void) disableExNetworkInfo;
 - (void) setPolicyDomain: (NSString *) policyDomain;
+- (void) setMultiplePortsDetect: (BOOL) enable;
 
 - (void) http: (NSString *) url;
 - (void) http: (NSString *) url callback: (nullable Callback) callback;

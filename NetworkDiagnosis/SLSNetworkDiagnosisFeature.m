@@ -48,6 +48,7 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
 @property(nonatomic, strong) NSString *idPrefix;
 @property(nonatomic, assign) long index;
 @property(nonatomic, strong) NSLock *lock;
+@property(nonatomic, assign) BOOL enableMultiplePortsDetect;
 
 - (NSString *) getIPAIdBySecretKey: (NSString *) secretKey;
 - (NSString *) generateId;
@@ -60,6 +61,7 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
     if (self = [super init]) {
         _idPrefix = [NSString stringWithFormat:@"%ld", (long) [TimeUtils getTimeInMilliis]];
         _lock = [[NSLock alloc] init];
+        _enableMultiplePortsDetect = NO;
     }
     return self;
 }
@@ -152,6 +154,10 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
     [AliNetworkDiagnosis setPolicyDomain:policyDomain];
 }
 
+- (void) setMultiplePortsDetect: (BOOL) enable {
+    _enableMultiplePortsDetect = enable;
+}
+
 #pragma mark - dns
 - (void)dns:(nonnull NSString *)domain {
     [self dns:domain callback:nil];
@@ -175,7 +181,7 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
                                     nameServer:server
                                           type:type
                                        timeout:timeout
-                                 interfaceType:AliNetDiagNetworkInterfaceDefault
+                                 interfaceType:(_enableMultiplePortsDetect ? AliNetDiagNetworkInterfaceDefault : AliNetDiagNetworkInterfaceCurrent)
                                        traceID:[self generateId]
                                       complete:^(id context, NSString *traceID, AliDnsResult *result) {
                                                     if (callback) {
@@ -228,19 +234,34 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
 - (void)mtr:(nonnull NSString *)domain maxTTL:(int)maxTTL maxPaths:(int)maxPaths maxTimes:(int)maxTimes timeout:(int)timeout callback:(nullable Callback)callback {
     [AliMTR start:domain
            maxTtl:maxTTL
+    interfaceType:(_enableMultiplePortsDetect ? AliNetDiagNetworkInterfaceDefault : AliNetDiagNetworkInterfaceCurrent)
          maxPaths:maxPaths
    maxTimesEachIP:DEFAULT_MAX_TIMES
           timeout:timeout
           context:self
           traceID:[self generateId]
-         complete:^(id context, NSString *traceID, NSMutableArray<AliMTRResult *> *results) {
-                    if (callback) {
-                        for (AliMTRResult *result in results) {
-                            callback(result.content);
-                        }
+           output:nil
+         complete:^(id context, NSString *traceID, AliMTRResult *result) {
+                    if (callback && result) {
+                        callback(result.content);
                     }
                 }
     ];
+//    [AliMTR start:domain
+//           maxTtl:maxTTL
+//         maxPaths:maxPaths
+//   maxTimesEachIP:DEFAULT_MAX_TIMES
+//          timeout:timeout
+//          context:self
+//          traceID:[self generateId]
+//         complete:^(id context, NSString *traceID, NSMutableArray<AliMTRResult *> *results) {
+//                    if (callback) {
+//                        for (AliMTRResult *result in results) {
+//                            callback(result.content);
+//                        }
+//                    }
+//                }
+//    ];
 }
 
 #pragma mark - ping
@@ -263,7 +284,7 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
 - (void)ping:(nonnull NSString *)domain size:(int)size maxTimes:(int)maxTimes timeout:(int)timeout callback:(nullable Callback)callback {
     [AliPing execute:[[AliPingConfig alloc] init:domain
                                          timeout:timeout
-                                   interfaceType:AliNetDiagNetworkInterfaceDefault
+                                   interfaceType:(_enableMultiplePortsDetect ? AliNetDiagNetworkInterfaceDefault : AliNetDiagNetworkInterfaceCurrent)
                                           prefer:0
                                          context:self
                                          traceID:[self generateId]
@@ -297,7 +318,7 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
 - (void)tcpPing:(nonnull NSString *)domain port:(int)port maxTimes:(int)maxTimes timeout:(int)timeout callback:(nullable Callback)callback {
     [AliTcpPing execute:[[AliTcpPingConfig alloc] init:domain
                                                timeout:timeout
-                                         interfaceType:AliNetDiagNetworkInterfaceDefault
+                                         interfaceType:(_enableMultiplePortsDetect ? AliNetDiagNetworkInterfaceDefault : AliNetDiagNetworkInterfaceCurrent)
                                                 prefer:0
                                                context:self
                                                traceID:[self generateId]
