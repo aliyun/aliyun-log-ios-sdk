@@ -23,6 +23,7 @@
 
 @interface LogProducerConfig ()
 @property(nonatomic, strong) SLSHttpHeaderInjector injector;
+@property(nonatomic, assign) BOOL enablePersistent;
 
 @end
 
@@ -294,12 +295,19 @@ unsigned int time_func() {
 
 - (void)SetSendThreadCount:(int) num
 {
+    if (_enablePersistent && 1 != num) {
+        num = 1;
+    }
     log_producer_config_set_send_thread_count(self->config, num);
 }
 
 - (void)SetPersistent:(int) num
 {
+    _enablePersistent = 1 == num;
     log_producer_config_set_persistent(self->config, num);
+    if (_enablePersistent) {
+        [self SetSendThreadCount:1];
+    }
 }
 
 - (void)SetPersistentFilePath:(NSString *) path
