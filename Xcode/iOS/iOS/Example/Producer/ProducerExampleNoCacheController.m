@@ -93,7 +93,6 @@ static void _on_log_send_done(const char * config_name, log_producer_result resu
     [_config SetPacketLogCount:1024];
     [_config SetPacketTimeout:3000];
     [_config SetMaxBufferLimit:64*1024*1024];
-    [_config SetSendThreadCount:1];
 
     [_config SetConnectTimeoutSec:10];
     [_config SetSendTimeoutSec:10];

@@ -118,8 +118,6 @@ static void _on_log_send_done(const char * config_name, log_producer_result resu
     [config SetPacketLogCount:1024];
     [config SetPacketTimeout:3000];
     [config SetMaxBufferLimit:64*1024*1024];
-    [config SetSendThreadCount:1];
-
 
     [config SetPersistent:1];
     // 不同的 LogProducerClient 实例必须要配置不同的 path，否则数据必串

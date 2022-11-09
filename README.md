@@ -85,7 +85,8 @@ config.setPacketTimeout(3000)
 // 单个Producer Client实例可以使用的内存的上限，超出缓存时add_log接口会立即返回失败
 // 默认为64 * 1024 * 1024
 config.setMaxBufferLimit(64*1024*1024)
-// 发送线程数，默认为1
+// 发送线程数，默认为1，不建议修改此配置
+// 开启断点续传功能后，sendThreadCount强制为1
 config.setSendThreadCount(1)
 
 // 1 开启断点续传功能， 0 关闭
@@ -174,7 +175,8 @@ LogProducerConfig* config = [[LogProducerConfig alloc] initWithEndpoint:endpoint
 // 单个Producer Client实例可以使用的内存的上限，超出缓存时add_log接口会立即返回失败
 // 默认为64 * 1024 * 1024
 [config SetMaxBufferLimit:64*1024*1024];
-// 发送线程数，默认为1
+// 发送线程数，默认为1，不建议修改此配置
+// 开启断点续传功能后，sendThreadCount强制为1
 [config SetSendThreadCount:1];
      
 // 1 开启断点续传功能， 0 关闭

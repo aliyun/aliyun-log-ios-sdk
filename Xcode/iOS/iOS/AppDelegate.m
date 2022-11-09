@@ -81,6 +81,7 @@
         [utils setPluginAppId:[environment valueForKey:@"PPLUGIN_APPID"]];
         [utils setAccessKeyId:[environment valueForKey:@"PACCESS_KEYID"]];
         [utils setAccessKeySecret:[environment valueForKey:@"PACCESS_KEY_SECRET"]];
+        [utils setSecKey:[environment valueForKey:@"PNETWORK_SECKEY"]];
     } else {
         [utils setEndpoint:@""];
         [utils setProject:@""];
@@ -88,6 +89,7 @@
         [utils setPluginAppId:@""];
         [utils setAccessKeyId:@""];
         [utils setAccessKeySecret:@""];
+        [utils setSecKey:@""];
     }
     
     SLSLogV(@"endpoint: %@", [utils endpoint]);
@@ -104,29 +106,26 @@
 //    credentials.accessKeySecret = utils.accessKeySecret;
     credentials.instanceId = @"ios-dev-ea64";
     
+    // 网络质量分析
     SLSNetworkDiagnosisCredentials *networkDiagnosisCredentials = [credentials createNetworkDiagnosisCredentials];
-    networkDiagnosisCredentials.secretKey = @"";
+    networkDiagnosisCredentials.secretKey = [utils secKey];
     networkDiagnosisCredentials.siteId = @"cn";
     [networkDiagnosisCredentials putExtension:@"value" forKey:@"key"];
     networkDiagnosisCredentials.endpoint = @"https://cn-hangzhou.log.aliyuncs.com";
-    networkDiagnosisCredentials.project = @"yuanbo-test-2";
-//    networkDiagnosisCredentials.logstore = @"yuanbo-test-1-network-diagnosis";
-//    networkDiagnosisCredentials.accessKeyId = @"";
-//    networkDiagnosisCredentials.accessKeySecret = @"";
+    networkDiagnosisCredentials.project = @"zaiyun-test5";
+
+    // Trace
     SLSTraceCredentials *tracerCredentials = [credentials createTraceCredentials];
     tracerCredentials.instanceId = @"sls-mall";
     tracerCredentials.endpoint = @"https://cn-beijing.log.aliyuncs.com";
     tracerCredentials.project = @"qs-demos";
-//    tracerCredentials.logstore = @"sls-mall-traces";
-//    tracerCredentials.createLogCredentials().logstore = "sls-mall-logs";
-    
     
     [[SLSCocoa sharedInstance] initialize:credentials configuration:^(SLSConfiguration * _Nonnull configuration) {
         configuration.spanProvider = [SpanProvider provider];
         configuration.debuggable = YES;
 //        configuration.enableCrashReporter = YES;
 //        configuration.enableBlockDetection = YES;
-//        configuration.enableNetworkDiagnosis = YES;
+        configuration.enableNetworkDiagnosis = YES;
         configuration.enableTrace = YES;
         configuration.enableInstrumentNSURLSession = YES;
     }];

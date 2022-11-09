@@ -6,7 +6,6 @@
 //
 
 #import "TraceRemoteDemoViewController.h"
-#import "SLSURLSession.h"
 
 @interface TraceRemoteDemoViewController ()
 @property(nonatomic, strong) UITextView *consoleTextView;
@@ -49,18 +48,15 @@ static TraceRemoteDemoViewController *selfClzz;
         [[SLSTracer startSpan:@"校验用户权限"] end];
         [SLSTracer withinSpan:@"发送指令 ==>> 打开空调" block:^{
             // http request
-            NSError *error = nil;
-            NSHTTPURLResponse *response = nil;
-            [SLSURLSession sendSynchronousRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://sls-mall.caa227ac081f24f1a8556f33d69b96c99.cn-beijing.alicontainer.com/catalogue"]]
-                                                  returningResponse:&response
-                                                              error:&error
-            ];
             
-            if (response) {
-                NSDictionary *fields = [response allHeaderFields];
-                NSString *traceId = [fields objectForKey:@"trace-id"];
-                [self->_consoleTextView setText:traceId];
-            }
+            [[NSURLSession sharedSession] dataTaskWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://sls-mall.caa227ac081f24f1a8556f33d69b96c99.cn-beijing.alicontainer.com/catalogue"]] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+                if (response) {
+                    NSHTTPURLResponse *res = response;
+                    NSDictionary *fields = [res allHeaderFields];
+                    NSString *traceId = [fields objectForKey:@"trace-id"];
+                    [self->_consoleTextView setText:traceId];
+                }
+            }];
         }];
     }];
 }
