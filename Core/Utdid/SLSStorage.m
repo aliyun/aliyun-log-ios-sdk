@@ -55,6 +55,6 @@
         break;
     }
     
-    return utdid;
+    return [utdid copy];
 }
 @end

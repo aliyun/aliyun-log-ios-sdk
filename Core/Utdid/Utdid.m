@@ -16,13 +16,13 @@
 + (NSString *) getUtdid {
     NSString *utdid = [SLSStorage getUtdid];
     if(utdid.length > 0) {
-        return utdid;
+        return [utdid copy];
     }
     
     NSString *uuid = [[NSUUID UUID] UUIDString];
     [SLSStorage setUtdid:uuid];
     
-    return uuid;
+    return [uuid copy];
 }
 
 @end

@@ -92,7 +92,7 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
     _sender = [SLSNetworkDiagnosisSender sender:credentials feature:self];
     
     [AliNetworkDiagnosis init:networkCredentials.secretKey
-                     deviceId:[Utdid getUtdid]
+                     deviceId:[[Utdid getUtdid] copy]
                        siteId:networkCredentials.siteId
                     extension:networkCredentials.extension
     ];
@@ -185,7 +185,7 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
                                        traceID:[self generateId]
                                       complete:^(id context, NSString *traceID, AliDnsResult *result) {
                                                     if (callback) {
-                                                        callback(result.content);
+                                                        callback([result.content copy]);
                                                     }
                                                 }
                                        context:self
@@ -204,7 +204,7 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
                context:self
               complete:^(id context, NSString *traceID, AliHttpPingResult *result) {
                         if (callback) {
-                            callback(result.content);
+                            callback([result.content copy]);
                         }
                     }
     ];
@@ -243,7 +243,7 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
            output:nil
          complete:^(id context, NSString *traceID, AliMTRResult *result) {
                     if (callback && result) {
-                        callback(result.content);
+                        callback([result.content copy]);
                     }
                 }
     ];
@@ -293,7 +293,7 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
                                         interval:DEFAULT_MAX_INTERVAL
                                         complete:^(id context, NSString *traceID, AliPingResult *result) {
                                                     if (callback) {
-                                                        callback(result.content);
+                                                        callback([result.content copy]);
                                                     }
                                                 }
                                  combineComplete:nil
@@ -327,7 +327,7 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
                                               interval:DEFAULT_MAX_INTERVAL
                                               complete:^(id context, NSString *traceID, AliTcpPingResult *result) {
                                                         if (callback) {
-                                                            callback(result.content);
+                                                            callback([result.content copy]);
                                                         }
                                                     }
                                        combineComplete:nil
@@ -408,15 +408,16 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
         return;
     }
     
+    NSString *finalContent = [content mutableCopy];
     
-    NSData *data = [content dataUsingEncoding:NSUTF8StringEncoding];
+    NSData *data = [finalContent dataUsingEncoding:NSUTF8StringEncoding];
     NSError *error;
     NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data
                                     options:kNilOptions
                                       error:&error
     ];
     if (error) {
-        SLSLog(@"network_diagnosis, content is not valid json. content: %@", content);
+        SLSLog(@"network_diagnosis, content is not valid json. content: %@", finalContent);
         return;
     }
     
@@ -429,7 +430,7 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
     [builder addAttribute:
          [SLSAttribute of:@"t" value:@"net_d"],
          [SLSAttribute of:@"net.type" value:method],
-         [SLSAttribute of:@"net.origin" value:content],
+         [SLSAttribute of:@"net.origin" value:finalContent],
          nil
     ];
     [builder setGlobal:NO];

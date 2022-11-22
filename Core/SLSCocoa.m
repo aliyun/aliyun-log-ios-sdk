@@ -216,7 +216,7 @@ static SLSResource *DEFAULT_RESOURCE;
             [DEFAULT_RESOURCE add:@"sdk.language" value:@"Objective-C"];
             
             // device specification, ref: https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/resource/semantic_conventions/device.md
-            [DEFAULT_RESOURCE add:@"device.id" value:[Utdid getUtdid]];
+            [DEFAULT_RESOURCE add:@"device.id" value:[[Utdid getUtdid] copy]];
             [DEFAULT_RESOURCE add:@"device.model.identifier" value:[SLSDeviceUtils getDeviceModelIdentifier]];
             [DEFAULT_RESOURCE add:@"device.model.name" value:[SLSDeviceUtils getDeviceModelIdentifier]];
             [DEFAULT_RESOURCE add:@"device.manufacturer" value:@"Apple"];
@@ -224,11 +224,11 @@ static SLSResource *DEFAULT_RESOURCE;
             
             // os specification, ref: https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/resource/semantic_conventions/os.md
 #if SLS_HAS_UIKIT
-            NSString *systemName = [[UIDevice currentDevice] systemName];
-            NSString *systemVersion = [[UIDevice currentDevice] systemVersion];
+            NSString *systemName = [[[UIDevice currentDevice] systemName] copy];
+            NSString *systemVersion = [[[UIDevice currentDevice] systemVersion] copy];
 #else
-            NSString *systemName = [[NSProcessInfo processInfo] operatingSystemName];
-            NSString *systemVersion = [[NSProcessInfo processInfo] operatingSystemVersionString];
+            NSString *systemName = [[[NSProcessInfo processInfo] operatingSystemName] copy];
+            NSString *systemVersion = [[[NSProcessInfo processInfo] operatingSystemVersionString] copy];
 #endif
             [DEFAULT_RESOURCE add:@"os.type" value: @"darwin"];
             [DEFAULT_RESOURCE add:@"os.description" value: [NSString stringWithFormat:@"%@ %@", systemName, systemVersion]];
@@ -273,7 +273,7 @@ static SLSResource *DEFAULT_RESOURCE;
             
             [DEFAULT_RESOURCE add:@"net.access" value: [SLSDeviceUtils getNetworkTypeName]];
             [DEFAULT_RESOURCE add:@"net.access_subtype" value: [SLSDeviceUtils getNetworkSubTypeName]];
-            [DEFAULT_RESOURCE add:@"carrier" value: [SLSDeviceUtils getCarrier]];
+            [DEFAULT_RESOURCE add:@"carrier" value: [[SLSDeviceUtils getCarrier] copy]];
         }
     }
     return self;
@@ -337,14 +337,14 @@ static SLSResource *DEFAULT_RESOURCE;
 - (void) provideUserInfo: (NSMutableArray<SLSAttribute *> *) attributes userinfo: (SLSUserInfo *) info {
     if (info.uid.length > 0) {
         [attributes addObject:[SLSAttribute of:@"user.uid"
-                                         value:info.uid
+                                         value:[info.uid copy]
                               ]
         ];
     }
     
     if (info.channel.length > 0) {
         [attributes addObject:[SLSAttribute of:@"user.channel"
-                                         value:info.channel
+                                         value:[info.channel copy]
                               ]
         ];
     }
@@ -356,7 +356,7 @@ static SLSResource *DEFAULT_RESOURCE;
             }
             
             [attributes addObject:[SLSAttribute of:[NSString stringWithFormat:@"user.%@", k]
-                                             value:[info.ext valueForKey:k]
+                                             value:[[info.ext valueForKey:k] copy]
                                    ]
             ];
         }
@@ -380,14 +380,14 @@ static SLSResource *DEFAULT_RESOURCE;
 }
 
 - (void) setExtra: (NSString *)key value: (NSString *)value {
-    [_dict setObject:value forKey:key];
+    [_dict setObject:[value copy] forKey:[key copy]];
 }
 - (void) setExtra: (NSString *)key dictValue: (NSDictionary<NSString *, NSString *> *)value {
     if (![value isKindOfClass:[NSDictionary<NSString *, NSString *> class]]) {
         return;
     }
 
-    [_dict setObject:value forKey:key];
+    [_dict setObject:[value copy] forKey:[key copy]];
 }
 - (void) removeExtra: (NSString *)key {
     [_dict removeObjectForKey:key];
