@@ -378,7 +378,7 @@ static void observeDirectory(dispatch_source_t _source, NSString *path, director
         [span setSpanID:crashedSpan.spanID];
         [span addAttribute:
              [SLSAttribute of:@"ex.file" value:[file lastPathComponent]],
-             [SLSAttribute of:@"ex.uuid" value:[Utdid getUtdid]],
+             [SLSAttribute of:@"ex.uuid" value:[[Utdid getUtdid] copy]],
              [SLSAttribute of:@"ex.project" value:_credentials.project],
              [SLSAttribute of:@"ex.time" value:t],
              [SLSAttribute of:@"ex.filter_time" value:[t substringToIndex:10]],
@@ -448,7 +448,7 @@ static void observeDirectory(dispatch_source_t _source, NSString *path, director
 
 #pragma mark - report error
 - (void) reportError: (NSString *) type level: (SLSLogLevel) level message: (NSString *) message stacktraces: (NSArray<NSString *> *) stacktraces {
-    [WPKSetup reportScriptException:type reason:message stackTrace:stacktraces terminateProgram:NO];
+    [WPKSetup reportScriptException:[type copy] reason:[message copy] stackTrace:[stacktraces copy] terminateProgram:NO];
     [WPKSetup sendAllReports: NO];
 }
 

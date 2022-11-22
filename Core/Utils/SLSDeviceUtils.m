@@ -469,7 +469,7 @@
     } else if (type == CPU_TYPE_ARM64) {
         [cpu appendString:@"ARM64"];
     }
-    return cpu;
+    return [cpu copy];
 }
 
 @end
