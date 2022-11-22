@@ -123,8 +123,8 @@
     [[SLSCocoa sharedInstance] initialize:credentials configuration:^(SLSConfiguration * _Nonnull configuration) {
         configuration.spanProvider = [SpanProvider provider];
         configuration.debuggable = YES;
-//        configuration.enableCrashReporter = YES;
-//        configuration.enableBlockDetection = YES;
+        configuration.enableCrashReporter = YES;
+        configuration.enableBlockDetection = YES;
         configuration.enableNetworkDiagnosis = YES;
         configuration.enableTrace = YES;
         configuration.enableInstrumentNSURLSession = YES;
