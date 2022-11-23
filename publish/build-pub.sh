@@ -8,6 +8,7 @@ cp -r ../CrashReporter/WPKMobi.xcframework build/WPKMobi.xcframework
 
 sh build-producer.sh
 sh build-ot.sh
+sh build-ot-swift.sh
 sh build-core.sh
 sh build-crashreporter.sh
 sh build-networkdiagnosis.sh
@@ -20,6 +21,7 @@ mkdir -p build/zip/WPKMobi && cp -r build/WPKMobi.xcframework build/zip/WPKMobi/
 
 mkdir -p build/zip/AliyunLogProducer && cp -r build/AliyunLogProducer.xcframework build/zip/AliyunLogProducer/AliyunLogProducer.xcframework
 mkdir -p build/zip/AliyunLogOT && cp -r build/AliyunLogOT.xcframework build/zip/AliyunLogOT/AliyunLogOT.xcframework
+mkdir -p build/zip/AliyunLogOTSwift && cp -r build/AliyunLogOTSwift.xcframework build/zip/AliyunLogOTSwift/AliyunLogOTSwift.xcframework
 mkdir -p build/zip/AliyunLogCore && cp -r build/AliyunLogCore.xcframework build/zip/AliyunLogCore/AliyunLogCore.xcframework
 mkdir -p build/zip/AliyunLogCrashReporter && cp -r build/AliyunLogCrashReporter.xcframework build/zip/AliyunLogCrashReporter/AliyunLogCrashReporter.xcframework
 mkdir -p build/zip/AliyunLogNetworkDiagnosis && cp -r build/AliyunLogNetworkDiagnosis.framework build/zip/AliyunLogNetworkDiagnosis/AliyunLogNetworkDiagnosis.framework

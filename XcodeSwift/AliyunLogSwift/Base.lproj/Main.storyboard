@@ -35,7 +35,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AyJ-0a-nSn">
-                                <rect key="frame" x="132" y="282" width="150" height="44"/>
+                                <rect key="frame" x="99" y="282" width="216" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Simple Trace"/>
@@ -43,13 +43,31 @@
                                     <action selector="simpleTrace:" destination="BYZ-38-t0r" eventType="touchUpInside" id="d2R-DU-F3O"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H0y-rG-azY">
+                                <rect key="frame" x="99" y="357" width="216" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="启动引擎"/>
+                                <connections>
+                                    <action selector="startEngine:" destination="BYZ-38-t0r" eventType="touchUpInside" id="BFR-hs-tUM"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ss4-Wa-z5c">
-                                <rect key="frame" x="132" y="351" width="150" height="31"/>
+                                <rect key="frame" x="99" y="500" width="216" height="49"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="event &amp; exception"/>
                                 <connections>
                                     <action selector="eventAndExceptionDemo:" destination="BYZ-38-t0r" eventType="touchUpInside" id="NGw-4X-VdO"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="obE-yn-exV">
+                                <rect key="frame" x="99" y="426" width="216" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="打开空调"/>
+                                <connections>
+                                    <action selector="openAirConditioner:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Oke-cg-bUe"/>
                                 </connections>
                             </button>
                         </subviews>

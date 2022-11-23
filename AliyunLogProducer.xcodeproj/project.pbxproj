@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		9D0CAEEF252177D800A4985A /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D0CAEEE252177D800A4985A /* libz.tbd */; };
+		F809903D292DCC5E0000DEE9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F80DF47C26A7037000151F7C /* CoreGraphics.framework */; };
+		F809903E292DCC5E0000DEE9 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F80DF47A26A7035E00151F7C /* SystemConfiguration.framework */; };
+		F809903F292DCC5E0000DEE9 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F80DF47826A7034E00151F7C /* libc++.tbd */; };
+		F8099040292DCC5E0000DEE9 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D0CAEEE252177D800A4985A /* libz.tbd */; };
+		F809904A292DCCEF0000DEE9 /* ActivityContextManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8099049292DCCEF0000DEE9 /* ActivityContextManager.swift */; };
+		F809904F292DCF9B0000DEE9 /* AliyunLogOTSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8099046292DCC5E0000DEE9 /* AliyunLogOTSwift.framework */; };
 		F80DF47926A7034E00151F7C /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F80DF47826A7034E00151F7C /* libc++.tbd */; };
 		F80DF47B26A7035E00151F7C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F80DF47A26A7035E00151F7C /* SystemConfiguration.framework */; };
 		F80DF47D26A7037000151F7C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F80DF47C26A7037000151F7C /* CoreGraphics.framework */; };
@@ -46,7 +52,6 @@
 		F85FEBF628DDB99F00DD58F1 /* log_sha1.h in Headers */ = {isa = PBXBuildFile; fileRef = F85FEBEE28DDB99F00DD58F1 /* log_sha1.h */; };
 		F85FEBF728DDB99F00DD58F1 /* log_sds.h in Headers */ = {isa = PBXBuildFile; fileRef = F85FEBEF28DDB99F00DD58F1 /* log_sds.h */; };
 		F85FEBF828DDB99F00DD58F1 /* log_lz4.h in Headers */ = {isa = PBXBuildFile; fileRef = F85FEBF028DDB99F00DD58F1 /* log_lz4.h */; };
-		F864DBDE291A86A8002DAE9F /* ActivityContextManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F864DBDD291A86A8002DAE9F /* ActivityContextManager.swift */; };
 		F86506E828F7B07E00A2B58F /* SLSEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = F86506E628F7B07E00A2B58F /* SLSEvent.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F86506E928F7B07E00A2B58F /* SLSEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = F86506E728F7B07E00A2B58F /* SLSEvent.m */; };
 		F876349E28AC94DC0062BBB5 /* AliyunLogOT.h in Headers */ = {isa = PBXBuildFile; fileRef = F876349D28AC94DC0062BBB5 /* AliyunLogOT.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -176,7 +181,34 @@
 		F8FC423B28AB9B1400618273 /* log_queue.h in Headers */ = {isa = PBXBuildFile; fileRef = F8FC41DE28AB9B1300618273 /* log_queue.h */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		F809904C292DCF180000DEE9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9D984DA92520A9B7009DE4FE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F809901F292DCC5E0000DEE9;
+			remoteInfo = AliyunLogOTSwift;
+		};
+		F8099051292DCF9B0000DEE9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9D984DA92520A9B7009DE4FE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F809901F292DCC5E0000DEE9;
+			remoteInfo = AliyunLogOTSwift;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
+		F8099042292DCC5E0000DEE9 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F834A15A28D3116300000F72 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -216,16 +248,6 @@
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F8F6A9A828ABBB730070B023 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		F8F6AA4D28AC7B6F0070B023 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -241,6 +263,10 @@
 /* Begin PBXFileReference section */
 		9D0CAEEE252177D800A4985A /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/lib/libz.tbd; sourceTree = DEVELOPER_DIR; };
 		9D984DB22520A9B7009DE4FE /* AliyunLogProducer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AliyunLogProducer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F8099046292DCC5E0000DEE9 /* AliyunLogOTSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AliyunLogOTSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F8099047292DCC5E0000DEE9 /* AliyunLogOT copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "AliyunLogOT copy-Info.plist"; path = "/Users/gordon/Documents/code/aliyun/iOS/aliyun-log-ios-sdk/AliyunLogOT copy-Info.plist"; sourceTree = "<absolute>"; };
+		F8099049292DCCEF0000DEE9 /* ActivityContextManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityContextManager.swift; sourceTree = "<group>"; };
+		F809904B292DCD680000DEE9 /* build-ot-swift.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = "build-ot-swift.sh"; path = "publish/build-ot-swift.sh"; sourceTree = "<group>"; };
 		F80DF47826A7034E00151F7C /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk/usr/lib/libc++.tbd"; sourceTree = DEVELOPER_DIR; };
 		F80DF47A26A7035E00151F7C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
 		F80DF47C26A7037000151F7C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
@@ -278,7 +304,6 @@
 		F85FEBEE28DDB99F00DD58F1 /* log_sha1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = log_sha1.h; sourceTree = "<group>"; };
 		F85FEBEF28DDB99F00DD58F1 /* log_sds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = log_sds.h; sourceTree = "<group>"; };
 		F85FEBF028DDB99F00DD58F1 /* log_lz4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = log_lz4.h; sourceTree = "<group>"; };
-		F864DBDD291A86A8002DAE9F /* ActivityContextManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityContextManager.swift; sourceTree = "<group>"; };
 		F86506E628F7B07E00A2B58F /* SLSEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLSEvent.h; sourceTree = "<group>"; };
 		F86506E728F7B07E00A2B58F /* SLSEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLSEvent.m; sourceTree = "<group>"; };
 		F8696C4F27F0066D00EF0020 /* AliyunLogCrashReporter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AliyunLogCrashReporter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -430,6 +455,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F809903C292DCC5E0000DEE9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F809903D292DCC5E0000DEE9 /* CoreGraphics.framework in Frameworks */,
+				F809903E292DCC5E0000DEE9 /* SystemConfiguration.framework in Frameworks */,
+				F809903F292DCC5E0000DEE9 /* libc++.tbd in Frameworks */,
+				F8099040292DCC5E0000DEE9 /* libz.tbd in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F834A15328D3116300000F72 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -481,6 +517,7 @@
 				F8F6A9A428ABBB730070B023 /* SystemConfiguration.framework in Frameworks */,
 				F8F6A9A528ABBB730070B023 /* libc++.tbd in Frameworks */,
 				F8F6A9A628ABBB730070B023 /* libz.tbd in Frameworks */,
+				F809904F292DCF9B0000DEE9 /* AliyunLogOTSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -524,6 +561,7 @@
 				F88FAFE228ACECCC00F8792A /* build-crashreporter.sh */,
 				F88FAFE028ACECCC00F8792A /* build-networkdiagnosis.sh */,
 				F88FAFE328ACECCC00F8792A /* build-ot.sh */,
+				F809904B292DCD680000DEE9 /* build-ot-swift.sh */,
 				F88FAFDF28ACECCC00F8792A /* build-producer.sh */,
 				F834A16A28D312CE00000F72 /* build-trace.sh */,
 				F87828DA28B60DE400F3D2B5 /* build-unity4sls.sh */,
@@ -531,6 +569,7 @@
 				F81137E328DB13F200F5E54C /* build-xcframework.sh */,
 				F8FC419728AB9B1300618273 /* AliyunLogProducer */,
 				F8F6A9AE28ABBBDB0070B023 /* OT */,
+				F8099048292DCCEF0000DEE9 /* OTSwift */,
 				F8F6AA5328AC7BCC0070B023 /* Core */,
 				F8E74BA328ACAE71000609C3 /* CrashReporter */,
 				F8F09C1228ACC48C0086A714 /* NetworkDiagnosis */,
@@ -538,6 +577,7 @@
 				F878289028B5FC3800F3D2B5 /* Unity4SLS */,
 				9D984DB32520A9B7009DE4FE /* Products */,
 				9D0CAEED252177D800A4985A /* Frameworks */,
+				F8099047292DCC5E0000DEE9 /* AliyunLogOT copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -551,8 +591,17 @@
 				F8F6AA5128AC7B6F0070B023 /* AliyunLogCore.framework */,
 				F87828CA28B6089D00F3D2B5 /* libUnity4SLS.a */,
 				F834A15E28D3116300000F72 /* AliyunLogTrace.framework */,
+				F8099046292DCC5E0000DEE9 /* AliyunLogOTSwift.framework */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		F8099048292DCCEF0000DEE9 /* OTSwift */ = {
+			isa = PBXGroup;
+			children = (
+				F8099049292DCCEF0000DEE9 /* ActivityContextManager.swift */,
+			);
+			path = OTSwift;
 			sourceTree = "<group>";
 		};
 		F81137D628DB08DC00F5E54C /* Internal */ = {
@@ -577,7 +626,6 @@
 		F834A13528D310E200000F72 /* Context */ = {
 			isa = PBXGroup;
 			children = (
-				F864DBDD291A86A8002DAE9F /* ActivityContextManager.swift */,
 				F834A13728D310E200000F72 /* SLSContextManager.h */,
 				F834A13628D310E200000F72 /* SLSContextManager.m */,
 			);
@@ -949,6 +997,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F8099020292DCC5E0000DEE9 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F834A14B28D3116300000F72 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -1050,6 +1105,25 @@
 			productReference = 9D984DB22520A9B7009DE4FE /* AliyunLogProducer.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		F809901F292DCC5E0000DEE9 /* AliyunLogOTSwift */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F8099043292DCC5E0000DEE9 /* Build configuration list for PBXNativeTarget "AliyunLogOTSwift" */;
+			buildPhases = (
+				F8099020292DCC5E0000DEE9 /* Headers */,
+				F809902F292DCC5E0000DEE9 /* Sources */,
+				F809903C292DCC5E0000DEE9 /* Frameworks */,
+				F8099041292DCC5E0000DEE9 /* Resources */,
+				F8099042292DCC5E0000DEE9 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AliyunLogOTSwift;
+			productName = AliyunLogProducer;
+			productReference = F8099046292DCC5E0000DEE9 /* AliyunLogOTSwift.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		F834A14A28D3116300000F72 /* AliyunLogTrace */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F834A15B28D3116300000F72 /* Build configuration list for PBXNativeTarget "AliyunLogTrace" */;
@@ -1131,11 +1205,12 @@
 				F8F6A98628ABBB730070B023 /* Sources */,
 				F8F6A9A228ABBB730070B023 /* Frameworks */,
 				F8F6A9A728ABBB730070B023 /* Resources */,
-				F8F6A9A828ABBB730070B023 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				F809904D292DCF180000DEE9 /* PBXTargetDependency */,
+				F8099052292DCF9B0000DEE9 /* PBXTargetDependency */,
 			);
 			name = AliyunLogOT;
 			productName = AliyunLogProducer;
@@ -1196,6 +1271,7 @@
 			targets = (
 				9D984DB12520A9B7009DE4FE /* AliyunLogProducer */,
 				F8F6A96428ABBB730070B023 /* AliyunLogOT */,
+				F809901F292DCC5E0000DEE9 /* AliyunLogOTSwift */,
 				F8F6AA3128AC7B6F0070B023 /* AliyunLogCore */,
 				F8696C1027F0066D00EF0020 /* AliyunLogCrashReporter */,
 				F84F8ACF2814E1180038A46E /* AliyunLogNetworkDiagnosis */,
@@ -1207,6 +1283,13 @@
 
 /* Begin PBXResourcesBuildPhase section */
 		9D984DB02520A9B7009DE4FE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F8099041292DCC5E0000DEE9 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1286,6 +1369,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F809902F292DCC5E0000DEE9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F809904A292DCCEF0000DEE9 /* ActivityContextManager.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F834A15028D3116300000F72 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1335,7 +1426,6 @@
 				F8F6A9C628ABBBDB0070B023 /* SLSSpan.m in Sources */,
 				F8F6A9C228ABBBDB0070B023 /* SLSResource.m in Sources */,
 				F8F6A9D128ABBBDB0070B023 /* SLSAttribute.m in Sources */,
-				F864DBDE291A86A8002DAE9F /* ActivityContextManager.swift in Sources */,
 				F8C26B0528FE8E4E0008F384 /* SLSLink.m in Sources */,
 				F834A13828D310E200000F72 /* SLSContextManager.m in Sources */,
 			);
@@ -1364,6 +1454,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F809904D292DCF180000DEE9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F809901F292DCC5E0000DEE9 /* AliyunLogOTSwift */;
+			targetProxy = F809904C292DCF180000DEE9 /* PBXContainerItemProxy */;
+		};
+		F8099052292DCF9B0000DEE9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F809901F292DCC5E0000DEE9 /* AliyunLogOTSwift */;
+			targetProxy = F8099051292DCF9B0000DEE9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		9D984DB82520A9B7009DE4FE /* Debug */ = {
@@ -1590,6 +1693,113 @@
 				SYSTEM_HEADER_SEARCH_PATHS = "";
 				TARGETED_DEVICE_FAMILY = "1,2,3,6";
 				TVOS_DEPLOYMENT_TARGET = 9.0;
+				VALIDATE_WORKSPACE = YES;
+			};
+			name = Release;
+		};
+		F8099044292DCC5E0000DEE9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = YES;
+				CURRENT_PROJECT_VERSION = 311;
+				DEAD_CODE_STRIPPING = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = QWPJRHMG6U;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AliyunLogProducer/CrashReporter",
+					"$(PROJECT_DIR)/AliyunLogProducer/NetworkDiagnosis",
+					"$(PROJECT_DIR)/AliyunLogProducer/build/iphoneos",
+					"$(PROJECT_DIR)/AliyunLogProducer/build/AliyunLogProducer",
+					"$(PROJECT_DIR)/AliyunLogProducer/build",
+					"$(PROJECT_DIR)/AliyunLogProducer/build/iphonesimulator",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = "$(SRCROOT)/OTSwift/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LINK_WITH_STANDARD_LIBRARIES = NO;
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MARKETING_VERSION = 3.1.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aysls.cocoa.ot;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "watchsimulator watchos macosx iphonesimulator iphoneos driverkit appletvsimulator appletvos";
+				SUPPORTS_MACCATALYST = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				SYSTEM_HEADER_SEARCH_PATHS = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TVOS_DEPLOYMENT_TARGET = 10.0;
+				VALIDATE_WORKSPACE = YES;
+			};
+			name = Debug;
+		};
+		F8099045292DCC5E0000DEE9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = YES;
+				CURRENT_PROJECT_VERSION = 311;
+				DEAD_CODE_STRIPPING = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DEPLOYMENT_POSTPROCESSING = YES;
+				DEVELOPMENT_TEAM = QWPJRHMG6U;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AliyunLogProducer/CrashReporter",
+					"$(PROJECT_DIR)/AliyunLogProducer/NetworkDiagnosis",
+					"$(PROJECT_DIR)/AliyunLogProducer/build/iphoneos",
+					"$(PROJECT_DIR)/AliyunLogProducer/build/AliyunLogProducer",
+					"$(PROJECT_DIR)/AliyunLogProducer/build",
+					"$(PROJECT_DIR)/AliyunLogProducer/build/iphonesimulator",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = "$(SRCROOT)/OTSwift/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LINK_WITH_STANDARD_LIBRARIES = NO;
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MARKETING_VERSION = 3.1.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aysls.cocoa.ot;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "watchsimulator watchos macosx iphonesimulator iphoneos driverkit appletvsimulator appletvos";
+				SUPPORTS_MACCATALYST = YES;
+				SWIFT_VERSION = 5.0;
+				SYSTEM_HEADER_SEARCH_PATHS = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TVOS_DEPLOYMENT_TARGET = 10.0;
 				VALIDATE_WORKSPACE = YES;
 			};
 			name = Release;
@@ -1928,7 +2138,7 @@
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "$(SRCROOT)/OT/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1937,7 +2147,7 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				LINK_WITH_STANDARD_LIBRARIES = NO;
 				MACH_O_TYPE = staticlib;
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				MARKETING_VERSION = 3.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.aysls.cocoa.ot;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1948,7 +2158,7 @@
 				SWIFT_VERSION = 5.0;
 				SYSTEM_HEADER_SEARCH_PATHS = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TVOS_DEPLOYMENT_TARGET = 10.0;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
 				VALIDATE_WORKSPACE = YES;
 			};
 			name = Debug;
@@ -1983,7 +2193,7 @@
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "$(SRCROOT)/OT/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1992,7 +2202,7 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				LINK_WITH_STANDARD_LIBRARIES = NO;
 				MACH_O_TYPE = staticlib;
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				MARKETING_VERSION = 3.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.aysls.cocoa.ot;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2002,7 +2212,7 @@
 				SWIFT_VERSION = 5.0;
 				SYSTEM_HEADER_SEARCH_PATHS = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TVOS_DEPLOYMENT_TARGET = 10.0;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
 				VALIDATE_WORKSPACE = YES;
 			};
 			name = Release;
@@ -2128,6 +2338,15 @@
 			buildConfigurations = (
 				9D984DBB2520A9B7009DE4FE /* Debug */,
 				9D984DBC2520A9B7009DE4FE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F8099043292DCC5E0000DEE9 /* Build configuration list for PBXNativeTarget "AliyunLogOTSwift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F8099044292DCC5E0000DEE9 /* Debug */,
+				F8099045292DCC5E0000DEE9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -4,9 +4,12 @@
 
 Pod::Spec.new do |s|
     isPodLint = ENV['env'].to_s == 'lint'
+    IOS_TARGET_VERSION = '9.0'
+    OSX_TARGET_VERSION = '10.9'
+    TVOS_TARGET_VERSION = '9.0'
     
     s.name             = "AliyunLogProducer"
-    s.version          = "3.1.4"
+    s.version          = "3.1.5.beta.1"
     s.summary          = "aliyun log service ios producer."
     
     # This description is used to generate tags and improve search results.
@@ -38,14 +41,16 @@ Pod::Spec.new do |s|
     # s.tvos.deployment_target =  '9.0'
     s.platform     = :ios, "9.0"
     
+    s.swift_version = '5.0'
+    
     s.requires_arc  = true
     s.libraries = "z"
     s.default_subspec = 'Producer'
     
     s.subspec 'Producer' do |c|
-        c.ios.deployment_target = '9.0'
-        c.tvos.deployment_target =  '9.0'
-        c.osx.deployment_target =  '10.8'
+        c.ios.deployment_target = IOS_TARGET_VERSION
+        c.tvos.deployment_target =  TVOS_TARGET_VERSION
+        c.osx.deployment_target =  OSX_TARGET_VERSION
         if isPodLint
             c.vendored_frameworks = "build/AliyunLogProducer.xcframework"
         else
@@ -56,24 +61,45 @@ Pod::Spec.new do |s|
         }
     end
     
+#    s.subspec 'OTSwift' do |o|
+#        o.ios.deployment_target = '10.0'
+#        o.tvos.deployment_target =  '10.0'
+#        o.osx.deployment_target =  '10.12'
+#        if isPodLint
+#            o.vendored_frameworks = "build/AliyunLogOTSwift.xcframework"
+#        else
+#            o.vendored_frameworks = "AliyunLogOTSwift/AliyunLogOTSwift.xcframework"
+#        end
+#        o.user_target_xcconfig = {
+#            'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
+#        }
+#    end
+    
     s.subspec 'OT' do |o|
-        o.ios.deployment_target = '9.0'
-        o.tvos.deployment_target =  '9.0'
-        o.osx.deployment_target =  '10.8'
+        o.ios.deployment_target = IOS_TARGET_VERSION
+        o.tvos.deployment_target =  TVOS_TARGET_VERSION
+        o.osx.deployment_target =  OSX_TARGET_VERSION
+        
+#        o.dependency 'AliyunLogProducer/OTSwift'
+        
         if isPodLint
-            o.vendored_frameworks = "build/AliyunLogOT.xcframework"
+            o.vendored_frameworks = "build/AliyunLogOT.xcframework", "build/AliyunLogOTSwift.xcframework"
         else
-            o.vendored_frameworks = "AliyunLogOT/AliyunLogOT.xcframework"
+            o.vendored_frameworks = "AliyunLogOT/AliyunLogOT.xcframework", "AliyunLogOTSwift/AliyunLogOTSwift.xcframework"
         end
         o.user_target_xcconfig = {
             'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
         }
+        o.pod_target_xcconfig   = {
+            'SWIFT_VERSION' => '5.0',
+            'VALID_ARCHS' => 'x86_64 arm64'
+        }
     end
 
     s.subspec 'Core' do |c|
-        c.ios.deployment_target = '9.0'
-        c.tvos.deployment_target =  '9.0'
-        c.osx.deployment_target =  '10.8'
+        c.ios.deployment_target = IOS_TARGET_VERSION
+        c.tvos.deployment_target =  TVOS_TARGET_VERSION
+        c.osx.deployment_target =  OSX_TARGET_VERSION
         c.dependency 'AliyunLogProducer/Producer'
         c.dependency 'AliyunLogProducer/OT'
         if isPodLint
@@ -81,16 +107,16 @@ Pod::Spec.new do |s|
         else
             c.vendored_frameworks = "AliyunLogCore/AliyunLogCore.xcframework"
         end
-        
+
         c.user_target_xcconfig = {
             'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
         }
     end
 
     s.subspec 'CrashReporter' do |c|
-        c.ios.deployment_target = '9.0'
-        c.tvos.deployment_target =  '9.0'
-        c.osx.deployment_target =  '10.8'
+        c.ios.deployment_target = IOS_TARGET_VERSION
+        c.tvos.deployment_target =  TVOS_TARGET_VERSION
+        c.osx.deployment_target =  OSX_TARGET_VERSION
         c.dependency 'AliyunLogProducer/Producer'
         c.dependency 'AliyunLogProducer/OT'
         c.dependency 'AliyunLogProducer/Core'
@@ -155,9 +181,9 @@ Pod::Spec.new do |s|
     end
 
     s.subspec 'Trace' do |c|
-        c.ios.deployment_target = '9.0'
-        c.tvos.deployment_target =  '9.0'
-        c.osx.deployment_target =  '10.8'
+        c.ios.deployment_target = IOS_TARGET_VERSION
+        c.tvos.deployment_target =  TVOS_TARGET_VERSION
+        c.osx.deployment_target =  OSX_TARGET_VERSION
         c.dependency 'AliyunLogProducer/Producer'
         c.dependency 'AliyunLogProducer/Core'
         c.dependency 'AliyunLogProducer/OT'

@@ -7,9 +7,12 @@
 
 import UIKit
 import AliyunLogProducer
+import Combine
 
 class ViewController: UIViewController {
     fileprivate var client:     LogProducerClient!
+    var cancellables = Set<AnyCancellable>()
+    var index: Int = 0
     
     var x : Int = 0
 
@@ -95,6 +98,10 @@ class ViewController: UIViewController {
         }
         client = LogProducerClient(logProducerConfig:config, callback:callbackFunc)
 //        client = LogProducerClient(logProducerConfig:config)
+//        DispatchQueue.global().async {
+//            Thread.sleep(forTimeInterval: 3.0)
+//            SLSTracer.spanBuilder("for test in async, should independent").build().end()
+//        }
     }
     
     func sendOneLog() {
@@ -187,6 +194,112 @@ class ViewController: UIViewController {
             URLSession.shared.dataTask(with: URL.init(string: "http://sls-mall.caa227ac081f24f1a8556f33d69b96c99.cn-beijing.alicontainer.com/catalogue")!).resume()
         }
     }
+    
+    @IBAction func startEngine(_ sender: Any) {
+        let root = SLSTracer.spanBuilder("执行启动引擎操作").setActive(true).build()
+        self.connectPower("启动引擎")
+        loadReportStatus().sink { _ in
+            root.end()
+        } receiveValue: { ret in
+            print("load report status result: \(ret)")
+        }
+        .store(in: &cancellables)
+    }
+    
+    func connectPower(_ source: String) {
+        SLSTracer.withinSpan("\(source) 1. 接通电源") {
+//            Thread.sleep(forTimeInterval: 1.0)
+        }
+        
+    
+        SLSTracer.withinSpan("\(source) 1.1. 电气系统自检") {
+            SLSTracer.withinSpan("\(source) 1.1.1. 电池电压检查") {
+//                Thread.sleep(forTimeInterval: 1.0)
+//                        Task.sleep(2)
+            }
+            
+            SLSTracer.withinSpan("\(source) 1.1.2. 电气信号检查") {
+//                Thread.sleep(forTimeInterval: 1.0)
+//                        Task.sleep(2.0)
+            }
+        }
+    }
+    
+    
+    @IBAction func openAirConditioner(_ sender: Any) {
+        index += 1;
+        let root = SLSTracer.spanBuilder("打开空调-\(index)").setActive(true).build()
+
+        connectPower("打开空调-\(index)")
+
+        loadReportStatus().sink { _ in
+            
+        } receiveValue: { ret in
+            print("load report status result: \(ret)")
+        }
+        .store(in: &cancellables)
+        root.end()
+
+//        SLSTracer.withinSpan("打开空调-\(self.index)") {
+//            self.connectPower("打开空调-\(self.index)")
+//
+//            self.loadReportStatus().sink { _ in
+//
+//            } receiveValue: { ret in
+//                print("load report status result: \(ret)")
+//            }
+//            .store(in: &self.cancellables)
+//        }
+    }
+    
+    
+    func loadReportStatus() -> Future<Bool, Error> {
+        let a = Future<Bool, Error> { promise in
+            self.getReportStatus { result in
+                if case let .failure(error) = result {
+                    print("Failed to report status, result: \(error.localizedDescription)")
+                }
+                promise(result)
+                
+            }
+        }
+        
+//        return a.eraseToAnyPublisher()
+        return a
+    }
+    
+    func getReportStatus(completion: @escaping (Result<Bool, Error>) -> Void) {
+//        Task.detached {
+//            do {
+//                let result = try await self.reportStatus()
+//                completion(.success(result))
+//            } catch {
+//                completion(.failure(error))
+//            }
+//        }
+        Task {
+            do {
+                let result = try await self.reportStatus()
+                completion(.success(result))
+            } catch {
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    func reportStatus() async throws -> Bool {
+        var urlRequest = URLRequest(url: URL.init(string: "http://sls-mall.caa227ac081f24f1a8556f33d69b96c99.cn-beijing.alicontainer.com/catalogue")!)
+        urlRequest.httpMethod = "GET"
+        
+        try await Task.sleep(nanoseconds: 3 * 1_000_000_000)
+        let (_, response) = try await URLSession.shared.data(for: urlRequest)
+        guard (response as? HTTPURLResponse)?.statusCode == 200 else {
+            fatalError("Error while fetching data")
+        }
+        
+        return true
+    }
+    
     
     @IBAction func eventAndExceptionDemo(_ sender: Any) {
         

@@ -105,7 +105,6 @@
 				F8E435B8276C656400F805D7 /* Sources */,
 				F8E435B9276C656400F805D7 /* Frameworks */,
 				F8E435BA276C656400F805D7 /* Resources */,
-				5AD179394E04E8AC166CABDB /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -163,23 +162,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		5AD179394E04E8AC166CABDB /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AliyunLogSwift/Pods-AliyunLogSwift-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AliyunLogSwift/Pods-AliyunLogSwift-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AliyunLogSwift/Pods-AliyunLogSwift-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		F40F013B9B37AC4EF23069DF /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

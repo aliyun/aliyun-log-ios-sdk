@@ -7,10 +7,22 @@
 
 #import "SLSContextManager.h"
 
-#if __has_include(<AliyunLogProducer/AliyunLogProducer-Swift.h>)
-#import <AliyunLogProducer/AliyunLogProducer-Swift.h>
-#elif  __has_include(<AliyunLogOT/AliyunLogOT-Swift.h>)
-#import <AliyunLogOT/AliyunLogOT-Swift.h>
+#if __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_10_0
+    #define __HAS_SLS_OT_SWIFT
+#elif __MAC_OS_X_VERSION_MIN_REQUIRED >= __MAC_10_12
+    #define __HAS_SLS_OT_SWIFT
+#elif __TV_OS_VERSION_MIN_REQUIRED >= __TVOS_10_0
+    #define __HAS_SLS_OT_SWIFT
+#endif
+
+#ifdef __HAS_SLS_OT_SWIFT
+    #if __has_include(<AliyunLogProducer/AliyunLogProducer-Swift.h>)
+        #import <AliyunLogProducer/AliyunLogProducer-Swift.h>
+    #elif  __has_include(<AliyunLogOT/AliyunLogOT-Swift.h>)
+        #import <AliyunLogOTSwift/AliyunLogOTSwift-Swift.h>
+    #elif __has_include("AliyunLogOTSwift/AliyunLogOTSwift-Swift.h")
+        #import "AliyunLogOTSwift/AliyunLogOTSwift-Swift.h"
+    #endif
 #endif
 
 @interface SLSContext ()
@@ -33,21 +45,27 @@ NSLock *lock;
 SLSSpan *globalSpan;
 NSString *startupTimestamp;
 NSUserDefaults *userDefaults;
+#ifdef __HAS_SLS_OT_SWIFT
 ActivityContextManager *contextManager;
+#endif
 
 + (void)initialize {
     lock = [[NSLock alloc] init];
-    
+
+#ifdef __HAS_SLS_OT_SWIFT
     contextManager = [[ActivityContextManager alloc] init];
+#endif
     
     startupTimestamp = [NSString stringWithFormat:@"%lf", [[NSDate date] timeIntervalSince1970]];
     userDefaults = [[NSUserDefaults alloc] initWithSuiteName:@"sls_cached_span"];
 }
 
 + (SLSContext *) current {
+#ifdef __HAS_SLS_OT_SWIFT
     if (@available(iOS 10.0, macOS 10.12, watchOS 3.0, tvOS 10.0, *)) {
         return [contextManager getCurrentContextValueForKey:@"context"];
     }
+#endif
     
     SLSContext *context = [[[NSThread currentThread] threadDictionary] objectForKey:@"sls_thread_context"];
     if (nil == context) {
@@ -76,31 +94,30 @@ ActivityContextManager *contextManager;
         };
     }
     
-    if (@available(iOS 10.0, macOS 10.12, watchOS 3.0, tvOS 10.0, *)) {
-        SLSContext *current= [[SLSContext alloc] init];
+#ifdef __HAS_SLS_OT_SWIFT
+    SLSContext *current= [[SLSContext alloc] init];
+    current.span = span;
+    [contextManager setCurrentContextValueForKey:@"context" value:current];
+    
+    return ^() {
+        [contextManager removeContextValueForKey:@"context" value:current];
+        [contextManager setCurrentContextValueForKey:@"context" value:beforeContext];
+    };
+#else
+    SLSContext *current = [[[NSThread currentThread] threadDictionary] objectForKey:span];
+    if (nil == current) {
+        current = [[SLSContext alloc] init];
         current.span = span;
-        [contextManager setCurrentContextValueForKey:@"context" value:current];
-        
-        return ^() {
-            [contextManager removeContextValueForKey:@"context" value:current];
-            [contextManager setCurrentContextValueForKey:@"context" value:beforeContext];
-        };
-    } else {
-        SLSContext *current = [[[NSThread currentThread] threadDictionary] objectForKey:span];
-        if (nil == current) {
-            current = [[SLSContext alloc] init];
-            current.span = span;
-            [[[NSThread currentThread] threadDictionary] setObject:current forKey:span];
-        }
-    
-        [[[NSThread currentThread] threadDictionary] setObject:current forKey:@"sls_thread_context"];
-    
-        return ^() {
-            [[[NSThread currentThread] threadDictionary] setObject:beforeContext forKey:@"sls_thread_context"];
-            [[[NSThread currentThread] threadDictionary] removeObjectForKey:span];
-        };
-    
+        [[[NSThread currentThread] threadDictionary] setObject:current forKey:span];
     }
+
+    [[[NSThread currentThread] threadDictionary] setObject:current forKey:@"sls_thread_context"];
+
+    return ^() {
+        [[[NSThread currentThread] threadDictionary] setObject:beforeContext forKey:@"sls_thread_context"];
+        [[[NSThread currentThread] threadDictionary] removeObjectForKey:span];
+    };
+#endif
 }
 
 + (void) setGlobalActiveSpan: (SLSSpan *) span {

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		7C3A99CE0A09A42DEEFC4C93 /* Pods_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7AADE1ED0F511DC26AA4189 /* Pods_iOS.framework */; };
 		E6A29AE822AFECC9A2F19E54 /* Pods_iOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFA9C6A4E57DEE2DEBD5C374 /* Pods_iOSTests.framework */; };
+		F809901E292DC6EF0000DEE9 /* SwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F809901D292DC6EF0000DEE9 /* SwiftTests.swift */; };
 		F816EECA277172A70024B85E /* ProducerExampleNoCacheController.m in Sources */ = {isa = PBXBuildFile; fileRef = F816EEC9277172A70024B85E /* ProducerExampleNoCacheController.m */; };
 		F816EECD277173870024B85E /* ProducerExampleDynamicController.m in Sources */ = {isa = PBXBuildFile; fileRef = F816EECC277173870024B85E /* ProducerExampleDynamicController.m */; };
 		F816EED027717FC60024B85E /* ProducerExampleClientsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F816EECF27717FC60024B85E /* ProducerExampleClientsController.m */; };
@@ -51,6 +52,8 @@
 		A7AADE1ED0F511DC26AA4189 /* Pods_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D83A691078AD3197FBFACBAC /* Pods-iOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSTests.debug.xcconfig"; path = "Target Support Files/Pods-iOSTests/Pods-iOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		DFA9C6A4E57DEE2DEBD5C374 /* Pods_iOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F809901C292DC6EF0000DEE9 /* iOSTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iOSTests-Bridging-Header.h"; sourceTree = "<group>"; };
+		F809901D292DC6EF0000DEE9 /* SwiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftTests.swift; sourceTree = "<group>"; };
 		F81137D528DB074000F5E54C /* iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iOS.entitlements; sourceTree = "<group>"; };
 		F816EEC8277172A70024B85E /* ProducerExampleNoCacheController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProducerExampleNoCacheController.h; sourceTree = "<group>"; };
 		F816EEC9277172A70024B85E /* ProducerExampleNoCacheController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProducerExampleNoCacheController.m; sourceTree = "<group>"; };
@@ -144,6 +147,8 @@
 				F825D48F285C6BEB0081C9DA /* Category */,
 				F825D487285C62AE0081C9DA /* LogTests.m */,
 				F89F96DD291B831200621335 /* ContextTests.m */,
+				F809901D292DC6EF0000DEE9 /* SwiftTests.swift */,
+				F809901C292DC6EF0000DEE9 /* iOSTests-Bridging-Header.h */,
 			);
 			path = iOSTests;
 			sourceTree = "<group>";
@@ -282,7 +287,7 @@
 				F825D481285C62AD0081C9DA /* Sources */,
 				F825D482285C62AD0081C9DA /* Frameworks */,
 				F825D483285C62AD0081C9DA /* Resources */,
-				5D1C6B5409C8709415AA8BFA /* [CP] Embed Pods Frameworks */,
+				1786E5ABE533B4474B7FEFFC /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -302,7 +307,7 @@
 				F8E43590276C3CA400F805D7 /* Sources */,
 				F8E43591276C3CA400F805D7 /* Frameworks */,
 				F8E43592276C3CA400F805D7 /* Resources */,
-				489AC45A77530C1EFA2AC36D /* [CP] Embed Pods Frameworks */,
+				DCCA7E0C7F20451CAC32B963 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -324,6 +329,7 @@
 				TargetAttributes = {
 					F825D484285C62AD0081C9DA = {
 						CreatedOnToolsVersion = 13.3.1;
+						LastSwiftMigration = 1340;
 						TestTargetID = F8E43593276C3CA400F805D7;
 					};
 					F8E43593276C3CA400F805D7 = {
@@ -371,24 +377,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		489AC45A77530C1EFA2AC36D /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-iOS/Pods-iOS-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-iOS/Pods-iOS-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-iOS/Pods-iOS-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		5D1C6B5409C8709415AA8BFA /* [CP] Embed Pods Frameworks */ = {
+		1786E5ABE533B4474B7FEFFC /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -427,6 +416,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		DCCA7E0C7F20451CAC32B963 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iOS/Pods-iOS-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iOS/Pods-iOS-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-iOS/Pods-iOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		E1F0A54F7B6F3E7300DA578F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -459,6 +465,7 @@
 				F89F96DE291B831200621335 /* ContextTests.m in Sources */,
 				F825D492285C6D570081C9DA /* Log+Test.m in Sources */,
 				F825D488285C62AE0081C9DA /* LogTests.m in Sources */,
+				F809901E292DC6EF0000DEE9 /* SwiftTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -521,17 +528,26 @@
 			baseConfigurationReference = D83A691078AD3197FBFACBAC /* Pods-iOSTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = QWPJRHMG6U;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.aliyun.sls.ios.iOSTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "iOSTests/iOSTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iOS.app/iOS";
 				TVOS_DEPLOYMENT_TARGET = 9.0;
@@ -543,16 +559,24 @@
 			baseConfigurationReference = 4C96C40159E23BC69717B8D9 /* Pods-iOSTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = QWPJRHMG6U;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.aliyun.sls.ios.iOSTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "iOSTests/iOSTests-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iOS.app/iOS";
 				TVOS_DEPLOYMENT_TARGET = 9.0;

@@ -35,6 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             utils.pluginAppId = dict["PPLUGIN_APPID"] ?? ""
             utils.accessKeyId = dict["PACCESS_KEYID"] ?? ""
             utils.accessKeySecret = dict["PACCESS_KEY_SECRET"] ?? ""
+            utils.secKey = dict["PNETWORK_SECKEY"] ?? ""
         }
         
 //        SLSLogV("endpoint: %@", utils.endpoint)
@@ -52,16 +53,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         credentials.instanceId = "ios-dev-ea64"
         
         let networkDiagnosisCredentials = credentials.createNetworkDiagnosisCredentials()
-        networkDiagnosisCredentials.secretKey = "eyJhbGl5dW5fdWlkIjoiMTY1NDIxODk2NTM0MzA1MCIsImlwYV9hcHBfaWQiOiJmTmFGUGNBbWd4RXRlcFVwTUZ6WnZYIiwic2VjX2tleSI6IjJhMWM3NzU5MDBmZjY5YTRkMmQ3ZDE3NDk5MmMwYjU5Y2VhMTU3NTFiOGI1NGU4YjMzYjQxNTVmYzVhOTQ2YTBjMjJiNmE3YTNkZDJmNjRmOWUzMmM3N2I4Yzk2Y2YzYThmMDM3OTgwOGIzNzljZjI1ODgyM2UxM2ZmMjNlYjBjIiwic2lnbiI6IjUwYjQ2Y2EzZjJjZGM1MGJhMTZhY2Y3ZmU0OGRjNzZmMmRkYjVjYTZmOWIxYTQ1NTY1ZTkwZGViZGM0MjI5YTBlYzBiMzAwMzhlYTY0MmNmNGM2ZWMyOWNkMzNmZTBlYjFiYzlmMWYzZTU4ZDczNDUxNjJiYmNjMzA2ZTJhMTBlIn0=";
+        networkDiagnosisCredentials.secretKey = utils.secKey;
         networkDiagnosisCredentials.siteId = "cn";
         networkDiagnosisCredentials.putExtension("value", forKey: "key")
         networkDiagnosisCredentials.endpoint = "https://cn-hangzhou.log.aliyuncs.com"
         networkDiagnosisCredentials.project = "yuanbo-test-2"
         
         let tracerCredentials = credentials.createTrace()
-        tracerCredentials.endpoint = "https://cn-beijing.log.aliyuncs.com";
-        tracerCredentials.project = "qs-demos";
-        tracerCredentials.logstore = "sls-mall-traces";
+        tracerCredentials.instanceId = "sls-mall"
+        tracerCredentials.endpoint = "https://cn-beijing.log.aliyuncs.com"
+        tracerCredentials.project = "qs-demos"
         
         SLSCocoa.sharedInstance().initialize(credentials) { configuration in
             configuration.spanProvider = SpanProvider()
@@ -71,7 +72,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         SLSCocoa.sharedInstance().registerCredentialsCallback { feature, result in
-            NSLog("feature: %s, result: %s", feature, result);
+            NSLog("feature: %@, result: %@", feature, result)
         }
         
         return true
