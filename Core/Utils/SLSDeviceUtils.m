@@ -269,13 +269,13 @@
     #pragma clang diagnostic push
     #pragma clang diagnostic ignored "-Wunguarded-availability-new"
                 carrier = info.serviceSubscriberCellularProviders[info.serviceSubscriberCellularProviders.allKeys.firstObject];
-                if (!carrier.mobileNetworkCode) {
+                if (nil != carrier && nil != carrier.mobileNetworkCode) {
                     carrier = info.serviceSubscriberCellularProviders[info.serviceSubscriberCellularProviders.allKeys.lastObject];
                 }
     #pragma clang diagnostic pop
             }
         }
-        if(!carrier) {
+        if(carrier == nil) {
     #pragma clang diagnostic push
     #pragma clang diagnostic ignored "-Wdeprecated-declarations"
             carrier = info.subscriberCellularProvider;
@@ -287,6 +287,8 @@
             } else {
                 return [carrier carrierName];
             }
+        } else {
+            return @"Unknown";
         }
     } @catch (NSException *exception) {
         return @"Unknown";
