@@ -14,14 +14,6 @@ private let OS_ACTIVITY_CURRENT = unsafeBitCast(dlsym(UnsafeMutableRawPointer(bi
                                                                       _ parent: Unmanaged<AnyObject>?,
                                                                       _ flags: os_activity_flag_t) -> AnyObject!
 
-///// Keys used by Opentelemetry to store values in the Context
-//public enum OpenTelemetryContextKeys: String {
-//    case span
-//    case baggage
-//}
-
-
-@available(iOS 10.0, macOS 10.12, watchOS 3.0, tvOS 10.0, *)
 @objc
 public class ActivityContextManager: NSObject {
     static let instance = ActivityContextManager()
@@ -72,7 +64,7 @@ public class ActivityContextManager: NSObject {
 
     func createActivityContext() -> (os_activity_id_t, os_activity_scope_state_s) {
         let dso = UnsafeMutableRawPointer(mutating: #dsohandle)
-        let activity = _os_activity_create(dso, "SLS_ActivityContext", OS_ACTIVITY_CURRENT, OS_ACTIVITY_FLAG_DEFAULT)
+        let activity = _os_activity_create(dso, "sls_activity_context", OS_ACTIVITY_CURRENT, OS_ACTIVITY_FLAG_DEFAULT)
         let currentActivityId = os_activity_get_identifier(activity, nil)
         var activityState = os_activity_scope_state_s()
         os_activity_scope_enter(activity, &activityState)

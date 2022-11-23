@@ -15,6 +15,7 @@ targets.each do |t|
       pod 'AliyunLogProducer/Producer', :path =>'../../'
       pod 'AliyunLogProducer/Core', :path =>'../../'
       pod 'AliyunLogProducer/OT', :path =>'../../'
+      pod 'AliyunLogProducer/OTSwift', :path =>'../../'
       pod 'AliyunLogProducer/CrashReporter', :path =>'../../'
       pod 'AliyunLogProducer/NetworkDiagnosis', :path =>'../../'
       pod 'AliyunLogProducer/Trace', :path =>'../../'

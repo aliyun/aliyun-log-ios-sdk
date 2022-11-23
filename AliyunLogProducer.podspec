@@ -66,12 +66,22 @@ https://help.aliyun.com/product/28958.html
     c.public_header_files = 'Core/**/*.h'
   end
   
+  s.subspec 'OTSwift' do |o|
+    o.ios.deployment_target = '10.0'
+    o.tvos.deployment_target =  '10.0'
+    o.osx.deployment_target =  '10.12'
+    o.source_files = 'OTSwift/**/*.{m,h,swift}'
+    o.public_header_files = 'OTSwift/**/*.h'
+  end
+  
   s.subspec 'OT' do |o|
     o.ios.deployment_target = '9.0'
     o.tvos.deployment_target =  '9.0'
     o.osx.deployment_target =  '10.8'
-    o.source_files = 'OT/**/*.{m,h,swift}'
+    o.source_files = 'OT/**/*.{m,h}'
     o.public_header_files = 'OT/**/*.h'
+    
+    o.dependency 'AliyunLogProducer/OTSwift'
   end
   
   s.subspec 'CrashReporter' do |c|
