@@ -7,17 +7,17 @@ Pod::Spec.new do |s|
     IOS_TARGET_VERSION = '9.0'
     OSX_TARGET_VERSION = '10.9'
     TVOS_TARGET_VERSION = '9.0'
-    
+
     s.name             = "AliyunLogProducer"
     s.version          = "3.1.5.beta.1"
     s.summary          = "aliyun log service ios producer."
-    
+
     # This description is used to generate tags and improve search results.
     #   * Think: What does it do? Why did you write it? What is the focus?
     #   * Try to keep it short, snappy and to the point.
     #   * Write the description between the DESC delimiters below.
     #   * Finally, don't worry about the indent, CocoaPods strips it!
-    
+
     s.description      = <<-DESC
     log service ios producer.
     https://help.aliyun.com/document_detail/29063.html
@@ -35,18 +35,18 @@ Pod::Spec.new do |s|
 #    s.source           = { :http => "https://ios-repo.oss-cn-shanghai.aliyuncs.com/AliyunLogProducer/3.0.1.beta.3/AliyunLogProducer.zip" }
     s.source           = { :http => "framework_url" }
     s.social_media_url = "http://t.cn/AiRpol8C"
-    
+
     # s.ios.deployment_target = '9.0'
     # s.osx.deployment_target =  '10.8'
     # s.tvos.deployment_target =  '9.0'
     s.platform     = :ios, "9.0"
-    
+
     s.swift_version = '5.0'
-    
+
     s.requires_arc  = true
     s.libraries = "z"
     s.default_subspec = 'Producer'
-    
+
     s.subspec 'Producer' do |c|
         c.ios.deployment_target = IOS_TARGET_VERSION
         c.tvos.deployment_target =  TVOS_TARGET_VERSION
@@ -60,7 +60,7 @@ Pod::Spec.new do |s|
             'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
         }
     end
-    
+
 #    s.subspec 'OTSwift' do |o|
 #        o.ios.deployment_target = '10.0'
 #        o.tvos.deployment_target =  '10.0'
@@ -74,14 +74,14 @@ Pod::Spec.new do |s|
 #            'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
 #        }
 #    end
-    
+
     s.subspec 'OT' do |o|
         o.ios.deployment_target = IOS_TARGET_VERSION
         o.tvos.deployment_target =  TVOS_TARGET_VERSION
         o.osx.deployment_target =  OSX_TARGET_VERSION
-        
+
 #        o.dependency 'AliyunLogProducer/OTSwift'
-        
+
         if isPodLint
             o.vendored_frameworks = "build/AliyunLogOT.xcframework", "build/AliyunLogOTSwift.xcframework"
         else
