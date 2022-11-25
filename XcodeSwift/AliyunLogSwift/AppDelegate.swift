@@ -67,9 +67,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         SLSCocoa.sharedInstance().initialize(credentials) { configuration in
             configuration.spanProvider = SpanProvider()
             configuration.enableTrace = true
-            configuration.enableInstrumentNSURLSession = true
+//            configuration.enableInstrumentNSURLSession = true
 //            configuration.spanProvider = SpanProvider()
         }
+        
+//        URLSessionInstrumentation(configuration: URLSessionInstrumentationConfiguration(shouldInstrument: { req in
+//            if (req.url?.host?.contains("log.aliyuncs.com") ?? false) == true {
+//                return false
+//            }
+//            return true
+//        }))
         
         SLSCocoa.sharedInstance().registerCredentialsCallback { feature, result in
             NSLog("feature: %@, result: %@", feature, result)

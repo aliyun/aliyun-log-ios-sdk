@@ -162,5 +162,24 @@ https://help.aliyun.com/product/28958.html
       'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
     }
   end
+  
+  s.subspec 'URLSessionInstrumentation' do |t|
+    t.ios.deployment_target = '10.0'
+    t.tvos.deployment_target =  '10.0'
+    t.osx.deployment_target =  '10.12'
+#    t.dependency 'AliyunLogProducer/Producer'
+#    t.dependency 'AliyunLogProducer/Core'
+    t.dependency 'AliyunLogProducer/OT'
+    t.dependency 'AliyunLogProducer/Trace'
+    t.source_files = 'Instrumentation/URLSession/**/*.{m,h,swift}'
+#    t.public_header_files = "Trace/**/*.h"
+    t.pod_target_xcconfig = {
+      'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64',
+      'OTHER_LDFLAGS' => '-ObjC',
+    }
+    t.user_target_xcconfig = {
+      'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
+    }
+  end
 end
 

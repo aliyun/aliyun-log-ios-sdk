@@ -315,10 +315,12 @@ class ViewController: UIViewController {
         urlRequest.httpMethod = "GET"
         
         try await Task.sleep(nanoseconds: 3 * 1_000_000_000)
-        let (_, response) = try await URLSession.shared.data(for: urlRequest)
-        guard (response as? HTTPURLResponse)?.statusCode == 200 else {
-            fatalError("Error while fetching data")
-        }
+        let session = URLSession.shared
+        try await session.data(for: urlRequest)
+//        let (_, response) = try await session.data(for: urlRequest)
+//        guard (response as? HTTPURLResponse)?.statusCode == 200 else {
+//            fatalError("Error while fetching data")
+//        }
         
         return true
     }
