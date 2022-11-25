@@ -264,7 +264,6 @@
 		9D0CAEEE252177D800A4985A /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/lib/libz.tbd; sourceTree = DEVELOPER_DIR; };
 		9D984DB22520A9B7009DE4FE /* AliyunLogProducer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AliyunLogProducer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8099046292DCC5E0000DEE9 /* AliyunLogOTSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AliyunLogOTSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F8099047292DCC5E0000DEE9 /* AliyunLogOT copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "AliyunLogOT copy-Info.plist"; path = "/Users/gordon/Documents/code/aliyun/iOS/aliyun-log-ios-sdk/AliyunLogOT copy-Info.plist"; sourceTree = "<absolute>"; };
 		F8099049292DCCEF0000DEE9 /* ActivityContextManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityContextManager.swift; sourceTree = "<group>"; };
 		F809904B292DCD680000DEE9 /* build-ot-swift.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = "build-ot-swift.sh"; path = "publish/build-ot-swift.sh"; sourceTree = "<group>"; };
 		F80DF47826A7034E00151F7C /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk/usr/lib/libc++.tbd"; sourceTree = DEVELOPER_DIR; };
@@ -577,7 +576,6 @@
 				F878289028B5FC3800F3D2B5 /* Unity4SLS */,
 				9D984DB32520A9B7009DE4FE /* Products */,
 				9D0CAEED252177D800A4985A /* Frameworks */,
-				F8099047292DCC5E0000DEE9 /* AliyunLogOT copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};

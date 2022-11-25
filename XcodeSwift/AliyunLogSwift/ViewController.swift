@@ -197,7 +197,9 @@ class ViewController: UIViewController {
     
     @IBAction func startEngine(_ sender: Any) {
         let root = SLSTracer.spanBuilder("执行启动引擎操作").setActive(true).build()
-        self.connectPower("启动引擎")
+        Task {
+            try await self.connectPower("启动引擎")
+        }
         loadReportStatus().sink { _ in
             root.end()
         } receiveValue: { ret in
@@ -206,12 +208,13 @@ class ViewController: UIViewController {
         .store(in: &cancellables)
     }
     
-    func connectPower(_ source: String) {
+    func connectPower(_ source: String) async throws {
         SLSTracer.withinSpan("\(source) 1. 接通电源") {
 //            Thread.sleep(forTimeInterval: 1.0)
         }
         
-    
+        try await Task.sleep(nanoseconds: 3 * 1_000_000_000)
+        
         SLSTracer.withinSpan("\(source) 1.1. 电气系统自检") {
             SLSTracer.withinSpan("\(source) 1.1.1. 电池电压检查") {
 //                Thread.sleep(forTimeInterval: 1.0)
@@ -224,20 +227,38 @@ class ViewController: UIViewController {
             }
         }
     }
-    
+//
+//    func createTask() {
+//        Task {
+//            let span: SLSSpan = SLSContextManager.activeSpan()
+//            print("active span name: \(span.name)")
+//        }
+//    }
+//
     
     @IBAction func openAirConditioner(_ sender: Any) {
+//        let root = SLSTracer.spanBuilder("test root").setActive(true).build()
+//
+//        createTask()
+//
+//        root.end()
+//
+//
+//
         index += 1;
         let root = SLSTracer.spanBuilder("打开空调-\(index)").setActive(true).build()
 
-        connectPower("打开空调-\(index)")
+        Task {
+            try await connectPower("打开空调-\(index)")
+        }
 
         loadReportStatus().sink { _ in
-            
+//            root.end()
         } receiveValue: { ret in
             print("load report status result: \(ret)")
         }
         .store(in: &cancellables)
+        
         root.end()
 
 //        SLSTracer.withinSpan("打开空调-\(self.index)") {
@@ -255,12 +276,14 @@ class ViewController: UIViewController {
     
     func loadReportStatus() -> Future<Bool, Error> {
         let a = Future<Bool, Error> { promise in
-            self.getReportStatus { result in
-                if case let .failure(error) = result {
-                    print("Failed to report status, result: \(error.localizedDescription)")
+            SLSTracer.withinSpan("get report status") {
+                self.getReportStatus { result in
+                    if case let .failure(error) = result {
+                        print("Failed to report status, result: \(error.localizedDescription)")
+                    }
+                    promise(result)
+                    
                 }
-                promise(result)
-                
             }
         }
         

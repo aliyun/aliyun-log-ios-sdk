@@ -4,7 +4,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'AliyunLogProducer'
-  s.version          = '3.1.5'
+  s.version          = '3.1.6.beta.1'
   s.summary          = 'aliyun log service ios producer.'
 
 # This description is used to generate tags and improve search results.
@@ -25,21 +25,22 @@ https://help.aliyun.com/product/28958.html
   s.source           = { :git => 'https://github.com/aliyun/aliyun-log-ios-sdk.git', :tag => s.version.to_s }
   s.social_media_url = 'http://t.cn/AiRpol8C'
 
-  s.ios.deployment_target = '9.0'
-#  s.osx.deployment_target =  '10.8'
-#  s.tvos.deployment_target =  '9.0'
+  # s.ios.deployment_target = '10.0'
+  # s.osx.deployment_target =  '10.12'
+  # s.tvos.deployment_target =  '10.0'
+  s.platform     = :ios, "10.0"
 
   s.requires_arc  = true
   s.libraries = 'z'
-  s.swift_version = "5.5.2"
+  s.swift_version = "5.0"
 #  s.xcconfig = { 'GCC_ENABLE_CPP_EXCEPTIONS' => 'YES' }
 
   s.default_subspec = 'Producer'
   
   s.subspec 'Producer' do |c|
-    c.ios.deployment_target = '9.0'
-    c.tvos.deployment_target =  '9.0'
-    c.osx.deployment_target =  '10.8'
+    c.ios.deployment_target = '10.0'
+    c.tvos.deployment_target =  '10.0'
+    c.osx.deployment_target =  '10.12'
     c.source_files =
       'AliyunLogProducer/AliyunLogProducer/**/*.{h,m}',
       'AliyunLogProducer/aliyun-log-c-sdk/**/*.{c,h}'
@@ -57,9 +58,9 @@ https://help.aliyun.com/product/28958.html
   end
 
   s.subspec 'Core' do |c|
-    c.ios.deployment_target = '9.0'
-    c.tvos.deployment_target =  '9.0'
-    c.osx.deployment_target =  '10.8'
+    c.ios.deployment_target = '10.0'
+    c.tvos.deployment_target =  '10.0'
+    c.osx.deployment_target =  '10.12'
     c.dependency 'AliyunLogProducer/Producer'
     c.dependency 'AliyunLogProducer/OT'
     c.source_files = 'Core/**/*.{m,h}'
@@ -75,9 +76,9 @@ https://help.aliyun.com/product/28958.html
   end
   
   s.subspec 'OT' do |o|
-    o.ios.deployment_target = '9.0'
-    o.tvos.deployment_target =  '9.0'
-    o.osx.deployment_target =  '10.8'
+    o.ios.deployment_target = '10.0'
+    o.tvos.deployment_target =  '10.0'
+    o.osx.deployment_target =  '10.12'
     o.source_files = 'OT/**/*.{m,h}'
     o.public_header_files = 'OT/**/*.h'
     
@@ -85,9 +86,9 @@ https://help.aliyun.com/product/28958.html
   end
   
   s.subspec 'CrashReporter' do |c|
-    c.ios.deployment_target = '9.0'
-    c.tvos.deployment_target =  '9.0'
-    c.osx.deployment_target =  '10.8'
+    c.ios.deployment_target = '10.0'
+    c.tvos.deployment_target =  '10.0'
+    c.osx.deployment_target =  '10.12'
     c.dependency 'AliyunLogProducer/Core'
     c.dependency 'AliyunLogProducer/OT'
     c.dependency 'AliyunLogProducer/Trace'
@@ -145,6 +146,9 @@ https://help.aliyun.com/product/28958.html
   end
   
   s.subspec 'Trace' do |t|
+    t.ios.deployment_target = '10.0'
+    t.tvos.deployment_target =  '10.0'
+    t.osx.deployment_target =  '10.12'
     t.dependency 'AliyunLogProducer/Producer'
     t.dependency 'AliyunLogProducer/Core'
     t.dependency 'AliyunLogProducer/OT'

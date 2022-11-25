@@ -7,7 +7,7 @@
 
 #import "SLSSpan.h"
 #import "SLSContextManager.h"
-#import "NSString+SLS.h"
+//#import "NSString+SLS.h"
 
 NSString* const SLSINTERNAL = @"INTERNAL";
 NSString* const SLSSERVER = @"SERVER";
@@ -220,7 +220,7 @@ typedef void (^_internal_Scope)(void);
         [attributeDict setObject:[_attribute valueForKey:key] forKey:key];
     }
     
-    [dict setObject:[NSString stringWithDictionary:attributeDict] forKey:@"attribute"];
+    [dict setObject:[self stringWithDictionary:attributeDict] forKey:@"attribute"];
     
     if (_resource.attributes) {
         NSMutableDictionary<NSString*, NSString*> *resourceDict = [NSMutableDictionary<NSString*, NSString*> dictionary];
@@ -228,7 +228,7 @@ typedef void (^_internal_Scope)(void);
             [resourceDict setObject:attr.value forKey:attr.key];
         }
 
-        [dict setObject:[NSString stringWithDictionary: resourceDict] forKey:@"resource"];
+        [dict setObject:[self stringWithDictionary: resourceDict] forKey:@"resource"];
     }
     
     if (_evetns && [_evetns count] > 0) {
@@ -311,6 +311,30 @@ typedef void (^_internal_Scope)(void);
     span->_isEnd = _isEnd;
     [_lock unlock];
     return span;
+}
+
+- (NSString *) stringWithDictionary: (NSDictionary *) dictionary {
+    if (![NSJSONSerialization isValidJSONObject:dictionary]) {
+        return [NSString string];
+    }
+    
+    NSJSONWritingOptions options = kNilOptions;
+    if (@available(iOS 11.0, macOS 10.13, watchOS 4.0, tvOS 11.0, *)) {
+        options = NSJSONWritingSortedKeys;
+    }
+    NSError *error = nil;
+    NSData *data = [NSJSONSerialization dataWithJSONObject:dictionary
+                                                   options:options
+                                                     error:&error
+    ];
+    
+    if (nil != error) {
+        return [NSString string];
+    }
+    
+    return [[NSString alloc] initWithData:data
+                                 encoding:NSUTF8StringEncoding
+    ];
 }
 
 @end
