@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
     isPodLint = ENV['env'].to_s == 'lint'
     
     s.name             = "AliyunLogProducer"
-    s.version          = "3.1.5"
+    s.version          = "3.1.6.beta.2"
     s.summary          = "aliyun log service ios producer."
     
     # This description is used to generate tags and improve search results.
