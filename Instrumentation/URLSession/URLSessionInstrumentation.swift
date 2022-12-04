@@ -22,7 +22,8 @@ struct NetworkRequestState {
 
 private var idKey: Void?
 
-public class URLSessionInstrumentation {
+@objc
+public class URLSessionInstrumentation : NSObject {
     private var requestMap = [String: NetworkRequestState]()
 
     var configuration: URLSessionInstrumentationConfiguration
@@ -40,9 +41,16 @@ public class URLSessionInstrumentation {
 //        }
 //        return spans
 //    }
+    
+    public override convenience init() {
+        self.init(configuration: URLSessionInstrumentationConfiguration(shouldInstrument: { request in
+            return request.url?.host?.contains("log.aliyuncs.com") == false
+        }))
+    }
 
     public init(configuration: URLSessionInstrumentationConfiguration) {
         self.configuration = configuration
+        super.init()
 //        tracer = OpenTelemetrySDK.instance.tracerProvider.get(instrumentationName: "NSURLSession", instrumentationVersion: "0.0.1") as! TracerSdk
         self.injectInNSURLClasses()
     }
@@ -162,13 +170,13 @@ public class URLSessionInstrumentation {
                 let sessionTaskId = UUID().uuidString
 
                 if let request = argument as? URLRequest, objc_getAssociatedObject(argument, &idKey) == nil {
-                    let instrumentedRequest = URLSessionLogger.processAndLogRequest(request, sessionTaskId: sessionTaskId, instrumentation: self, shouldInjectHeaders: true)
+                    let instrumentedRequest = URLSessionLogger.processAndLogRequest(request, sessionTaskId: sessionTaskId, instrumentation: self, shouldInjectHeaders: true, end: true)
                     task = castedIMP(session, selector, instrumentedRequest ?? request)
                 } else {
                     task = castedIMP(session, selector, argument)
                     if objc_getAssociatedObject(argument, &idKey) == nil, let currentRequest = task.currentRequest
                     {
-                        URLSessionLogger.processAndLogRequest(currentRequest, sessionTaskId: sessionTaskId, instrumentation: self, shouldInjectHeaders: false)
+                        URLSessionLogger.processAndLogRequest(currentRequest, sessionTaskId: sessionTaskId, instrumentation: self, shouldInjectHeaders: false, end: true)
                     }
                 }
                 self.setIdKey(value: sessionTaskId, for: task)
@@ -195,7 +203,7 @@ public class URLSessionInstrumentation {
             let block: @convention(block) (URLSession, URLRequest, AnyObject) -> URLSessionTask = { session, request, argument in
                 let sessionTaskId = UUID().uuidString
                 let castedIMP = unsafeBitCast(originalIMP, to: (@convention(c) (URLSession, Selector, URLRequest, AnyObject) -> URLSessionDataTask).self)
-                let instrumentedRequest = URLSessionLogger.processAndLogRequest(request, sessionTaskId: sessionTaskId, instrumentation: self, shouldInjectHeaders: true)
+                let instrumentedRequest = URLSessionLogger.processAndLogRequest(request, sessionTaskId: sessionTaskId, instrumentation: self, shouldInjectHeaders: true, end: true)
                 let task = castedIMP(session, selector, instrumentedRequest ?? request, argument)
                 self.setIdKey(value: sessionTaskId, for: task)
                 return task

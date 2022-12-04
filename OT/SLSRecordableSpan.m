@@ -38,6 +38,8 @@
         
         if (nil != _processor) {
             res = [_processor onEnd:self];
+        } else {
+            res = NO;
         }
     }
     return res;

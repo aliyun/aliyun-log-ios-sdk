@@ -33,7 +33,7 @@ class URLSessionLogger {
 //    #endif // os(iOS) && !targetEnvironment(macCatalyst)
 
     /// This methods creates a Span for a request, and optionally injects tracing headers, returns a  new request if it was needed to create a new one to add the tracing headers
-    @discardableResult static func processAndLogRequest(_ request: URLRequest, sessionTaskId: String, instrumentation: URLSessionInstrumentation, shouldInjectHeaders: Bool) -> URLRequest? {
+    @discardableResult static func processAndLogRequest(_ request: URLRequest, sessionTaskId: String, instrumentation: URLSessionInstrumentation, shouldInjectHeaders: Bool, end: Bool = false) -> URLRequest? {
         guard instrumentation.configuration.shouldInstrument?(request) ?? true else {
             return nil
         }
@@ -73,6 +73,14 @@ class URLSessionLogger {
 //        #endif
 
         instrumentation.configuration.createdRequest?(returnRequest ?? request, span)
+        
+        if end == true {
+            runningSpansQueue.sync {
+                if let span = runningSpans.removeValue(forKey: sessionTaskId) {
+                    span.end()
+                }
+            }
+        }
 
         return returnRequest
     }

@@ -125,10 +125,14 @@
         configuration.debuggable = YES;
         configuration.enableCrashReporter = YES;
         configuration.enableBlockDetection = YES;
-        configuration.enableNetworkDiagnosis = YES;
+//        configuration.enableNetworkDiagnosis = YES;
         configuration.enableTrace = YES;
-        configuration.enableInstrumentNSURLSession = YES;
+//        configuration.enableInstrumentNSURLSession = YES;
     }];
+    
+    [[URLSessionInstrumentation alloc] init];
+//    [URLSessionInstrumentation new];
+
     
     [[SLSCocoa sharedInstance] setExtra:@"key_e1" value:@"value_e1"];
     [[SLSCocoa sharedInstance] setExtra:@"key_e2" dictValue:@{
