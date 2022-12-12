@@ -92,6 +92,9 @@ static NetworkDiagnosisController *selfClzz;
     CGFloat rx = ((SLScreenW - SLPadding * 2) / 4 * 3 - SLCellWidth / 2);
     
     [[SLSNetworkDiagnosis sharedInstance] setMultiplePortsDetect:YES];
+    [[SLSNetworkDiagnosis sharedInstance] registerCallback:^(NSString * _Nonnull result) {
+        SLSLog(@"global callback: %@", result);
+    }];
 
     [self createButton:@"PING" andAction:@selector(ping) andX:lx andY:SLCellHeight * 11];
     [self createButton:@"TCPPING" andAction:@selector(tcpPing) andX:rx andY:SLCellHeight * 11];

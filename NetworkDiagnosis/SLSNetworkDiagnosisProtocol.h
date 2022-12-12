@@ -15,6 +15,7 @@ typedef void (^Callback)(NSString *result);
 - (void) disableExNetworkInfo;
 - (void) setPolicyDomain: (NSString *) policyDomain;
 - (void) setMultiplePortsDetect: (BOOL) enable;
+- (void) registerCallback: (nullable Callback) callback;
 
 - (void) http: (NSString *) url;
 - (void) http: (NSString *) url callback: (nullable Callback) callback;

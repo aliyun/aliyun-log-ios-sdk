@@ -50,6 +50,14 @@
     [_feature setPolicyDomain:policyDomain];
 }
 
+- (void) registerCallback: (nullable Callback) callback {
+    if (!_feature) {
+        return;
+    }
+    
+    [_feature registerCallback:callback];
+}
+
 - (void)dns:(nonnull NSString *)domain {
     if (!_feature) {
         return;

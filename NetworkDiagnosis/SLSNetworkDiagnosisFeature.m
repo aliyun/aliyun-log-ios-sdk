@@ -40,6 +40,7 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
 
 @interface SLSNetworkDiagnosisSender : SLSSdkSender<AliNetworkDiagnosisDelegate>
 - (instancetype) initWithFeature: (SLSSdkFeature *) feature;
+- (void) registerCallback: (nullable Callback) callback;
 + (instancetype) sender: (SLSCredentials *) credentials feature: (SLSSdkFeature *) feature;
 @end
 
@@ -156,6 +157,14 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
 
 - (void) setMultiplePortsDetect: (BOOL) enable {
     _enableMultiplePortsDetect = enable;
+}
+
+- (void) registerCallback:(Callback)callback {
+    if (!_sender) {
+        return;
+    }
+    
+    [_sender registerCallback:callback];
 }
 
 #pragma mark - dns
@@ -340,6 +349,7 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
 #pragma mark - network diagnosis sender
 @interface SLSNetworkDiagnosisSender ()
 @property(nonatomic, strong) SLSSdkFeature *feature;
+@property(nonatomic, strong, readonly) Callback globalCallback;
 @end
 
 @implementation SLSNetworkDiagnosisSender
@@ -347,6 +357,10 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
     SLSNetworkDiagnosisSender *sender = [[SLSNetworkDiagnosisSender alloc] initWithFeature:feature];
     [sender initialize:credentials];
     return sender;;
+}
+
+- (void) registerCallback: (nullable Callback) callback {
+    _globalCallback = callback;
 }
 
 - (instancetype) initWithFeature: (SLSSdkFeature *) feature {
@@ -405,6 +419,7 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
 
 - (void)report:(NSString *)content level:(AliNetDiagLogLevel)level context:(id)context {
     if (!content) {
+        SLSLog(@"network_diagnosis, content is empty.");
         return;
     }
     
@@ -423,6 +438,7 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
     
     NSString *method = [dict objectForKey:@"method"];
     if (!method) {
+        SLSLog(@"network_diagnosis, method is empty.");
         return;
     }
     
@@ -435,6 +451,10 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
     ];
     [builder setGlobal:NO];
     [[builder build] end];
+    
+    if (_globalCallback) {
+        _globalCallback([content copy]);
+    }
 }
 
 
