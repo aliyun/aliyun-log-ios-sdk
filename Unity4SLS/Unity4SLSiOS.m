@@ -8,6 +8,7 @@
 
 #import "Unity4SLSiOS.h"
 #import "SLSCocoa.h"
+#import "SLSCrashReporter.h"
 
 #pragma mark - Interface for Unity bridge
 
@@ -40,7 +41,7 @@ extern "C"{
         return credentials;
     }
     
-    void _InitSLS(const char * instanceId, const char * endpoint, const char * project, const char * accesskeyId, const char * accessKeySecret, const char * securityToken) {
+    void _SLS_InitSLS(const char * instanceId, const char * endpoint, const char * project, const char * accesskeyId, const char * accessKeySecret, const char * securityToken) {
         SLSCredentials *credentials = createCredentials(instanceId, endpoint, project, accesskeyId, accessKeySecret, securityToken);
         
         [[SLSCocoa sharedInstance] initialize:credentials configuration:^(SLSConfiguration * _Nonnull configuration) {
@@ -48,16 +49,24 @@ extern "C"{
         }];
     }
     
-    void _SetLogLevel(int level) {
+    void _SLS_RegisterCredentialsCallback(cs_sls_callback callback) {
+        [[SLSCocoa sharedInstance] registerCredentialsCallback:^(NSString * _Nonnull feature, NSString * _Nonnull result) {
+            if (callback) {
+                callback(feature.UTF8String, result.UTF8String);
+            }
+        }];
+    }
+    
+    void _SLS_SetLogLevel(int level) {
         //        [SLSCocoa sharedInstance]
     }
     
-    void _SetCredentials(const char * instanceId, const char * endpoint, const char * project, const char * accesskeyId, const char * accessKeySecret, const char * securityToken) {
+    void _SLS_SetCredentials(const char * instanceId, const char * endpoint, const char * project, const char * accesskeyId, const char * accessKeySecret, const char * securityToken) {
         SLSCredentials *credentials = createCredentials(instanceId, endpoint, project, accesskeyId, accessKeySecret, securityToken);
         [[SLSCocoa sharedInstance] setCredentials:credentials];
     }
     
-    void _SetUserInfo(const char * uid, const char * channel) {
+    void _SLS_SetUserInfo(const char * uid, const char * channel) {
         if (!userInfo) {
             userInfo = [[SLSUserInfo alloc] init];
         }
@@ -71,7 +80,7 @@ extern "C"{
         [[SLSCocoa sharedInstance] setUserInfo: userInfo];
     }
     
-    void _SetExtraOfExt(const char * extKey, const char * extValue) {
+    void _SLS_SetExtraOfExt(const char * extKey, const char * extValue) {
         if (!userInfo) {
             return;
         }
@@ -84,7 +93,7 @@ extern "C"{
         [[SLSCocoa sharedInstance] setUserInfo:userInfo];
     }
     
-    void _SetExtra(const char * key, const char * value) {
+    void _SLS_SetExtra(const char * key, const char * value) {
         if (!key || !value) {
             return;
         }
@@ -92,7 +101,7 @@ extern "C"{
         [[SLSCocoa sharedInstance] setExtra:[NSString stringWithUTF8String:key] value:[NSString stringWithUTF8String:value]];
     }
     
-    void _RemoveExtra(const char * key) {
+    void _SLS_RemoveExtra(const char * key) {
         if (!key) {
             return;
         }
@@ -100,8 +109,36 @@ extern "C"{
         [[SLSCocoa sharedInstance] removeExtra:[NSString stringWithUTF8String:key]];
     }
     
-    void _ClearExtra(void) {
+    void _SLS_ClearExtra(void) {
         [[SLSCocoa sharedInstance] clearExtras];
+    }
+    
+    void _SLS_ReportError(const char * type, const char * message, const char * stacktrace) {
+        [[SLSCrashReporter sharedInstance]
+             reportError:[NSString stringWithUTF8String:type]
+             message:[NSString stringWithUTF8String:message]
+             stacktrace:[NSString stringWithUTF8String:stacktrace]
+        ];
+    }
+
+    void _SLS_ReportLuaError(const char * message, const char * stacktrace) {
+        [[SLSCrashReporter sharedInstance]
+             reportError:@"lua"
+             message:[NSString stringWithUTF8String:message]
+             stacktrace:[NSString stringWithUTF8String:stacktrace]
+        ];
+    }
+
+    void _SLS_ReportCSharpError(const char * message, const char * stacktrace) {
+        [[SLSCrashReporter sharedInstance]
+             reportError:@"csharp"
+             message:[NSString stringWithUTF8String:message]
+             stacktrace:[NSString stringWithUTF8String:stacktrace]
+        ];
+    }
+
+    const char* _SLS_HelloFromiOS(void) {
+        return @"hello from iOS.".UTF8String;
     }
     
 #ifdef __cplusplus

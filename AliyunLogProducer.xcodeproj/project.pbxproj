@@ -318,6 +318,13 @@
 		F88FAFE228ACECCC00F8792A /* build-crashreporter.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = "build-crashreporter.sh"; path = "publish/build-crashreporter.sh"; sourceTree = "<group>"; };
 		F88FAFE328ACECCC00F8792A /* build-ot.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = "build-ot.sh"; path = "publish/build-ot.sh"; sourceTree = "<group>"; };
 		F88FAFE528ACF07A00F8792A /* build-all.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = "build-all.sh"; path = "publish/build-all.sh"; sourceTree = "<group>"; };
+		F8A43DAE2951B7DA00C8B73A /* build-core-framework.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = "build-core-framework.sh"; path = "publish/build-core-framework.sh"; sourceTree = "<group>"; };
+		F8A43DAF2951B86B00C8B73A /* build-crashreporter-framework.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = "build-crashreporter-framework.sh"; path = "publish/build-crashreporter-framework.sh"; sourceTree = "<group>"; };
+		F8A43DB02951B8C300C8B73A /* build-ot-framework.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = "build-ot-framework.sh"; path = "publish/build-ot-framework.sh"; sourceTree = "<group>"; };
+		F8A43DB12951B8CB00C8B73A /* build-ot-swift-framework.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = "build-ot-swift-framework.sh"; path = "publish/build-ot-swift-framework.sh"; sourceTree = "<group>"; };
+		F8A43DB22951B94F00C8B73A /* build-wpkmobi.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = "build-wpkmobi.sh"; path = "publish/build-wpkmobi.sh"; sourceTree = "<group>"; };
+		F8A43DE52951BBC700C8B73A /* build-producer-framework.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = "build-producer-framework.sh"; path = "publish/build-producer-framework.sh"; sourceTree = "<group>"; };
+		F8A43DF12951DB9A00C8B73A /* build-frameworks.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = "build-frameworks.sh"; path = "publish/build-frameworks.sh"; sourceTree = "<group>"; };
 		F8ACED2628AD32FD004DC16B /* build-pub.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = "build-pub.sh"; path = "publish/build-pub.sh"; sourceTree = "<group>"; };
 		F8C26B0328FE8E4D0008F384 /* SLSLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLSLink.m; sourceTree = "<group>"; };
 		F8C26B0428FE8E4E0008F384 /* SLSLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLSLink.h; sourceTree = "<group>"; };
@@ -555,15 +562,22 @@
 				F81137DF28DB096600F5E54C /* exported_symbols */,
 				F88FAFE128ACECCC00F8792A /* AliyunLogProducer.podspec */,
 				F8ACED2628AD32FD004DC16B /* build-pub.sh */,
+				F8A43DF12951DB9A00C8B73A /* build-frameworks.sh */,
 				F88FAFE528ACF07A00F8792A /* build-all.sh */,
 				F88FAFDE28ACECCC00F8792A /* build-core.sh */,
+				F8A43DAE2951B7DA00C8B73A /* build-core-framework.sh */,
 				F88FAFE228ACECCC00F8792A /* build-crashreporter.sh */,
+				F8A43DAF2951B86B00C8B73A /* build-crashreporter-framework.sh */,
 				F88FAFE028ACECCC00F8792A /* build-networkdiagnosis.sh */,
 				F88FAFE328ACECCC00F8792A /* build-ot.sh */,
+				F8A43DB02951B8C300C8B73A /* build-ot-framework.sh */,
 				F809904B292DCD680000DEE9 /* build-ot-swift.sh */,
+				F8A43DB12951B8CB00C8B73A /* build-ot-swift-framework.sh */,
 				F88FAFDF28ACECCC00F8792A /* build-producer.sh */,
+				F8A43DE52951BBC700C8B73A /* build-producer-framework.sh */,
 				F834A16A28D312CE00000F72 /* build-trace.sh */,
 				F87828DA28B60DE400F3D2B5 /* build-unity4sls.sh */,
+				F8A43DB22951B94F00C8B73A /* build-wpkmobi.sh */,
 				F820294528C5A3AF00A79810 /* strip_symbols.sh */,
 				F81137E328DB13F200F5E54C /* build-xcframework.sh */,
 				F8FC419728AB9B1300618273 /* AliyunLogProducer */,

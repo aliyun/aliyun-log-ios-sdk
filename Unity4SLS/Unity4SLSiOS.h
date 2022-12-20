@@ -15,22 +15,33 @@ extern "C"{
 #endif
 typedef void *UserInfo;
 typedef void *Dictionary;
+typedef void (*cs_sls_callback)(const char*, const char*);
 
-void _InitSLS(const char * instanceId, const char * endpoint, const char * project, const char * accesskeyId, const char * accessKeySecret, const char * securityToken);
+void _SLS_InitSLS(const char * instanceId, const char * endpoint, const char * project, const char * accesskeyId, const char * accessKeySecret, const char * securityToken);
 
-void _SetLogLevel(int level);
+void _SLS_RegisterCredentialsCallback(cs_sls_callback callback);
 
-void _SetCredentials(const char * instanceId, const char * endpoint, const char * project, const char * accesskeyId, const char * accessKeySecret, const char * securityToken);
+void _SLS_SetLogLevel(int level);
 
-void _SetUserInfo(const char * uid, const char * channel);
+void _SLS_SetCredentials(const char * instanceId, const char * endpoint, const char * project, const char * accesskeyId, const char * accessKeySecret, const char * securityToken);
 
-void _SetExtraOfExt(const char * extKey, const char * extValue);
+void _SLS_SetUserInfo(const char * uid, const char * channel);
 
-void _SetExtra(const char * key, const char * value);
+void _SLS_SetExtraOfExt(const char * extKey, const char * extValue);
 
-void _RemoveExtra(const char * key);
+void _SLS_SetExtra(const char * key, const char * value);
 
-void _ClearExtra(void);
+void _SLS_RemoveExtra(const char * key);
+
+void _SLS_ClearExtra(void);
+
+void _SLS_ReportError(const char * type, const char * message, const char * stacktrace);
+
+void _SLS_ReportLuaError(const char * message, const char * stacktrace);
+
+void _SLS_ReportCSharpError(const char * message, const char * stacktrace);
+
+const char* _SLS_HelloFromiOS(void);
     
 #ifdef __cplusplus
 } // extern "C"
