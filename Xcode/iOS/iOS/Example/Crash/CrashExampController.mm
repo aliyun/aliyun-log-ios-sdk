@@ -67,7 +67,7 @@
     [self createButton:@"Signal SIGSYS" andAction:@selector(onSignalSysCrashBtnClick) andX:lx andY:(SLCellHeight + SLPadding) * 7 andWidth:cellWidth andHeight:SLCellHeight andFont: font];
     [self createButton:@"Signal SIGPIPE" andAction:@selector(onSignalPipeCrashBtnClick) andX:rx andY:(SLCellHeight + SLPadding) * 7 andWidth:cellWidth andHeight:SLCellHeight andFont: font];
     
-    [self createButton:@"error" andAction:@selector(onCustomLog) andX:lx andY:(SLCellHeight + SLPadding) * 8 andWidth:(SLScreenW - lx * 4) andHeight:SLCellHeight andFont: font];
+    [self createButton:@"自定义错误" andAction:@selector(onCustomLog) andX:lx andY:(SLCellHeight + SLPadding) * 8 andWidth:(SLScreenW - lx * 4) andHeight:SLCellHeight andFont: font];
     
     [self createButton:@"动态更新" andAction:@selector(updateConfiguration) andX:lx andY:(SLCellHeight + SLPadding) * 9 andWidth:(SLScreenW - lx * 4) andHeight:SLCellHeight andFont: font];
     
@@ -244,6 +244,9 @@
     } @finally {
         
     }
+    
+    [[SLSCrashReporter sharedInstance] reportError:@[@"single custom error 1"]];
+    [[SLSCrashReporter sharedInstance] reportError:@"custom" stacktrace:@"custom error 2"];
     
 }
 
