@@ -299,6 +299,7 @@ static void observeDirectory(dispatch_source_t _source, NSString *path, director
     }
     
     NSString *time = @"";
+    NSString *subType = @"crash";
     content = [NSMutableString string];
     for (NSString *line in lines) {
         if ([line containsString:@"Date/Time:"]) {
@@ -311,6 +312,13 @@ static void observeDirectory(dispatch_source_t _source, NSString *path, director
         if ([line containsString:@"UDID:"]) {
             [((NSMutableString *) content) appendFormat:@"UDID:      %@\n", [Utdid getUtdid]];
         } else {
+            if ([line containsString:@"k_ac:"]) {
+                NSArray *chunks = [line componentsSeparatedByString:@"k_ac:"];
+                if (nil != chunks && [chunks count] == 2) {
+                    subType = [chunks[1] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+                }
+            }
+            
             [((NSMutableString *) content) appendFormat:@"%@\n", line];
         }
     }
@@ -332,7 +340,7 @@ static void observeDirectory(dispatch_source_t _source, NSString *path, director
     [buidler addAttribute:
          [SLSAttribute of:@"t" value:@"error"],
          [SLSAttribute of:@"ex.type" value:type],
-         [SLSAttribute of:@"ex.sub_type" value:type],
+         [SLSAttribute of:@"ex.sub_type" value:subType],
          [SLSAttribute of:@"ex.origin" value:content],
          [SLSAttribute of:@"ex.file" value: [file lastPathComponent]],
          nil
