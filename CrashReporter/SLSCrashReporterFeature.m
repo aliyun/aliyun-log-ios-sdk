@@ -40,7 +40,7 @@ typedef void(^directory_changed_block)(NSString *);
 
 @property(nonatomic, strong) dispatch_source_t crashLogSource;
 @property(nonatomic, strong) dispatch_source_t crashStatLogSource;
-@property(nonatomic, strong) SLSCredentials *credentials;
+@property(nonatomic, copy) NSString *project;
 
 //@property(nonatomic, strong) SLSConfiguration *configuration;
 
@@ -63,12 +63,22 @@ typedef void(^directory_changed_block)(NSString *);
     return @"crash_reporter";
 }
 
+- (void)setCredentials:(SLSCredentials *)credentials {
+    if (nil == credentials) {
+        return;
+    }
+    
+    if ([credentials.project length] > 0) {
+        _project = [credentials.project copy];
+    }
+}
+
 - (void) onInitializeSender: (SLSCredentials *) credentials configuration: (SLSConfiguration *) configuration {
     [super onInitializeSender:credentials configuration:configuration];
 }
 - (void) onInitialize: (SLSCredentials *) credentials configuration: (SLSConfiguration *) configuration {
     [super onInitialize:credentials configuration:configuration];
-    _credentials = credentials;
+    _project = credentials.project;
     
     [self observeDirectoryChanged];
     [self initWPKMobi: credentials configuration:configuration];
@@ -387,7 +397,7 @@ static void observeDirectory(dispatch_source_t _source, NSString *path, director
         [span addAttribute:
              [SLSAttribute of:@"ex.file" value:[file lastPathComponent]],
              [SLSAttribute of:@"ex.uuid" value:[[Utdid getUtdid] copy]],
-             [SLSAttribute of:@"ex.project" value:_credentials.project],
+             [SLSAttribute of:@"ex.project" value:_project],
              [SLSAttribute of:@"ex.time" value:t],
              [SLSAttribute of:@"ex.filter_time" value:[t substringToIndex:10]],
              [SLSAttribute of:@"ex.filter_classify" value:@"crash"],
