@@ -35,6 +35,8 @@ void _SLS_RemoveExtra(const char * key);
 
 void _SLS_ClearExtra(void);
 
+void _SLS_ReportCustomLog(const char *type, const char *log);
+
 void _SLS_ReportError(const char * type, const char * message, const char * stacktrace);
 
 void _SLS_ReportLuaError(const char * message, const char * stacktrace);

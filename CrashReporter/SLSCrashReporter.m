@@ -34,6 +34,15 @@
     [_feature setFeatureEnabled:enable];
 }
 
+- (void) reportCustomLog: (nonnull NSString *)log type: (nonnull NSString *)type {
+    if (!_feature) {
+        return;
+    }
+    
+    [_feature reportCustomLog:log type:type];
+}
+
+
 - (void) reportError: (nonnull NSArray<NSString *> *)stacktraces {
     [self reportError:@"exception" stacktraces: stacktraces];
 }

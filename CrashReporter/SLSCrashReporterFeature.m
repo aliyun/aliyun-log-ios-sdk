@@ -464,6 +464,19 @@ static void observeDirectory(dispatch_source_t _source, NSString *path, director
     return [WPKSetup isWPKReporterActive];
 }
 
+#pragma mark - report custom log
+- (void) reportCustomLog: (nonnull NSString *)log type: (nonnull NSString *)type {
+    SLSSpanBuilder *buidler = [self newSpanBuilder:@"custom log"];
+    [buidler addAttribute:
+         [SLSAttribute of:@"t" value:@"custom"],
+         [SLSAttribute of:@"ex.type" value:([type length] > 0 ? type: @"log")],
+         [SLSAttribute of:@"ex.origin" value: ([log length] > 0 ? log : @"")],
+         nil
+    ];
+    
+    [[buidler build] end];
+}
+
 #pragma mark - report error
 - (void) reportError: (NSString *) type level: (SLSLogLevel) level message: (NSString *) message stacktraces: (NSArray<NSString *> *) stacktraces {
     [WPKSetup reportScriptException:[type copy] reason:[message copy] stackTrace:[stacktraces copy] terminateProgram:NO];

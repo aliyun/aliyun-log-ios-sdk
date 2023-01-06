@@ -113,6 +113,10 @@ extern "C"{
         [[SLSCocoa sharedInstance] clearExtras];
     }
     
+    void _SLS_ReportCustomLog(const char *type, const char *log) {
+        [[SLSCrashReporter sharedInstance] reportCustomLog:[NSString stringWithUTF8String:log] type:[NSString stringWithUTF8String:type]];
+    }
+    
     void _SLS_ReportError(const char * type, const char * message, const char * stacktrace) {
         [[SLSCrashReporter sharedInstance]
              reportError:[NSString stringWithUTF8String:type]

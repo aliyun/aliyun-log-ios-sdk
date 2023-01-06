@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void) setCrashReporterFeature: (SLSCrashReporterFeature *) feature;
 - (void) setEnabled: (BOOL) enable;
 
+- (void) reportCustomLog: (nonnull NSString *)log type: (nonnull NSString *)type;
+
 - (void) reportException: (nonnull NSException *)exception;
 - (void) reportError: (nonnull NSString *)type exception: (nonnull NSException *)exception;
 - (void) reportError: (nonnull NSString *)type level: (SLSLogLevel) level exception: (nonnull NSException *)exception;

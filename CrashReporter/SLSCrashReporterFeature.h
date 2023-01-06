@@ -25,6 +25,7 @@ typedef NS_ENUM(NSInteger, SLSLogLevel) {
 
 
 @interface SLSCrashReporterFeature : SLSSdkFeature
+- (void) reportCustomLog: (nonnull NSString *) log type: (nonnull NSString *) type;
 - (void) reportError: (NSString *) type level: (SLSLogLevel) level message: (NSString *) message stacktraces: (NSArray<NSString *> *) stacktraces;
 @end
 
