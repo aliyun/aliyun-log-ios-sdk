@@ -80,6 +80,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         SLSCocoa.sharedInstance().registerCredentialsCallback { feature, result in
             NSLog("feature: %@, result: %@", feature, result)
+            
+            if (result == "LogProducerParametersInvalid" || result == "LogProducerSendUnauthorized") {
+                // 请求新的token，然后把新的token更新到sdk
+                let credentials = SLSCredentials()
+                credentials.accessKeyId = utils.accessKeyId
+                credentials.accessKeySecret = utils.accessKeySecret
+//                credentials.securityToken = utils.
+                
+                // 不要忘记更新到sdk
+                SLSCocoa.sharedInstance().setCredentials(credentials)
+            }
         }
         
         return true
