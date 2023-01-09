@@ -15,14 +15,18 @@ public typealias HTTPStatus = Int
 public struct URLSessionInstrumentationConfiguration {
     public init(shouldRecordPayload: ((URLSession) -> (Bool)?)? = nil,
                 shouldInstrument: ((URLRequest) -> (Bool)?)? = nil,
+                shouldRecordRequestHeaders: ((URLRequest) -> (Bool)?)? = nil,
+                shouldRecordRequestBody: ((URLRequest) -> (Bool)?)? = nil,
+                shouldRecordResponse: ((URLResponse, DataOrFile?) -> (Bool)?)? = nil,
+                shouldRecordError: ((Error, DataOrFile?) -> (Bool)?)? = nil,
                 nameSpan: ((URLRequest) -> (String)?)? = nil,
                 spanCustomization: ((URLRequest, SLSSpanBuilder) -> Void)? = nil,
                 shouldInjectTracingHeaders: ((URLRequest) -> (Bool)?)? = nil,
                 injectCustomHeaders: ((inout URLRequest, SLSSpan?) -> Void)? = nil,
                 createdRequest: ((URLRequest, SLSSpan) -> Void)? = nil,
                 receivedResponse: ((URLResponse, DataOrFile?, SLSSpan) -> Void)? = nil,
-                receivedError: ((Error, DataOrFile?, HTTPStatus, SLSSpan) -> Void)? = nil)
-    {
+                receivedError: ((Error, DataOrFile?, HTTPStatus, SLSSpan) -> Void)? = nil
+    ) {
         self.shouldRecordPayload = shouldRecordPayload
         self.shouldInstrument = shouldInstrument
         self.shouldInjectTracingHeaders = shouldInjectTracingHeaders
@@ -66,4 +70,16 @@ public struct URLSessionInstrumentationConfiguration {
 
     ///  Called before the span is ended, it allows to add extra information to the Span
     public var receivedError: ((Error, DataOrFile?, HTTPStatus, SLSSpan) -> Void)?
+    
+    /// Implement this callback if you want the request to record headers data, false by default.
+    public var shouldRecordRequestHeaders: ((URLRequest) -> (Bool)?)?
+
+    /// Implement this callback if you want the request to record body data, false by default.
+    public var shouldRecordRequestBody: ((URLRequest) -> (Bool)?)?
+    
+    /// Implement this callback if you want the response to record data, false by default.
+    public var shouldRecordResponse: ((URLResponse, DataOrFile?) -> (Bool)?)?
+    
+    /// Implement this callback if you want the error response to record data, false by default.
+    public var shouldRecordError: ((Error, DataOrFile?) -> (Bool)?)?
 }

@@ -33,6 +33,20 @@ class URLSessionLogger {
 //            }
 //        }()
 //    #endif // os(iOS) && !targetEnvironment(macCatalyst)
+    
+    static func dictionary2String(dict: [String: String]) -> String {
+        var result: String = ""
+        do {
+            let data = try JSONSerialization.data(withJSONObject: dict)
+            if let json = String(data: data, encoding: String.Encoding.utf8) {
+                result = json
+            }
+        } catch {
+            result = ""
+        }
+        
+        return result
+    }
 
     /// This methods creates a Span for a request, and optionally injects tracing headers, returns a  new request if it was needed to create a new one to add the tracing headers
     @discardableResult static func processAndLogRequest(_ request: URLRequest, sessionTaskId: String, instrumentation: URLSessionInstrumentation, shouldInjectHeaders: Bool, end: Bool = false) -> URLRequest? {
@@ -55,6 +69,18 @@ class URLSessionLogger {
             SLSAttribute.of("net.peer.port", value: String(request.url?.port ?? 0))
 //            SLSAttribute.of("", value: "")
         ])
+        
+        if let _ = instrumentation.configuration.shouldRecordRequestHeaders?(request) {
+            spanBuilder.addAttributes([
+                SLSAttribute.of("http.headers", value: dictionary2String(dict: request.allHTTPHeaderFields ?? ["":""]))
+            ])
+        }
+        
+        if let _ = instrumentation.configuration.shouldRecordRequestBody?(request) {
+            spanBuilder.addAttributes([
+                SLSAttribute.of("http.body", value: String(data: request.httpBody ?? Data(), encoding: .utf8)!)
+            ])
+        }
 
         instrumentation.configuration.spanCustomization?(request, spanBuilder)
 
@@ -101,6 +127,15 @@ class URLSessionLogger {
 
         span.addAttributes([SLSAttribute.of("http.status_code", value: String(httpResponse.statusCode))])
         span.statusCode = URLSessionLogger.statusForStatusCode(code: httpResponse.statusCode)
+        
+        if let _ = instrumentation.configuration.shouldRecordResponse?(response, dataOrFile) {
+            if let res = response as? HTTPURLResponse {
+                span.addAttributes([
+                    SLSAttribute.of("http.response.headers", value: dictionary2String(dict: res.allHeaderFields as! Dictionary)),
+                    SLSAttribute.of("http.response.body", value: String(data: dataOrFile as! Data, encoding: .utf8)!)
+                ])
+            }
+        }
 
         instrumentation.configuration.receivedResponse?(response, dataOrFile, span)
         span.end()
@@ -118,6 +153,13 @@ class URLSessionLogger {
         
         span.addAttributes([SLSAttribute.of("http.status_code", value: String(statusCode))])
         span.statusCode = URLSessionLogger.statusForStatusCode(code: statusCode)
+        
+        if let _ = instrumentation.configuration.shouldRecordError?(error, dataOrFile) {
+            span.addAttributes([
+                SLSAttribute.of("http.response.message", value: error.localizedDescription)
+            ])
+        }
+        
         instrumentation.configuration.receivedError?(error, dataOrFile, statusCode, span)
 
         span.end()
