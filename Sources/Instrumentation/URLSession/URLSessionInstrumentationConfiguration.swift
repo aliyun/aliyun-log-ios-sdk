@@ -29,6 +29,10 @@ public struct URLSessionInstrumentationConfiguration {
     ) {
         self.shouldRecordPayload = shouldRecordPayload
         self.shouldInstrument = shouldInstrument
+        self.shouldRecordRequestHeaders = shouldRecordRequestHeaders
+        self.shouldRecordRequestBody = shouldRecordRequestBody
+        self.shouldRecordResponse = shouldRecordResponse
+        self.shouldRecordError = shouldRecordError
         self.shouldInjectTracingHeaders = shouldInjectTracingHeaders
         self.injectCustomHeaders = injectCustomHeaders
         self.nameSpan = nameSpan
