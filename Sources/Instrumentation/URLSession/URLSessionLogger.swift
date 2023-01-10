@@ -77,12 +77,10 @@ class URLSessionLogger {
         }
         
         if let _ = instrumentation.configuration.shouldRecordRequestBody?(request),
-           let body = request.httpBody {
-            if let body = String(data: body, encoding: .utf8) {
-                spanBuilder.addAttributes([
-                    SLSAttribute.of("http.body", value: body)
-                ])
-            }
+        let body = request.httpBodyAsJSON() {
+            spanBuilder.addAttributes([
+                SLSAttribute.of("http.body", value: "\(body)")
+            ])
         }
 
         instrumentation.configuration.spanCustomization?(request, spanBuilder)
@@ -216,5 +214,41 @@ class URLSessionLogger {
         headers["traceparent"] = traceparent
         
         return headers
+    }
+}
+
+extension URLRequest {
+    func httpBodyAsData() -> Data? {
+        guard let bodyStream = self.httpBodyStream else { return nil }
+        bodyStream.open()
+        let bufferSize: Int = 16
+        let buffer = UnsafeMutablePointer<UInt8>.allocate(capacity: bufferSize)
+        var dat: Data = Data()
+        while bodyStream.hasBytesAvailable {
+            let readDat = bodyStream.read(buffer, maxLength: bufferSize)
+            dat.append(buffer, count: readDat)
+        }
+        buffer.deallocate()
+        bodyStream.close()
+        return dat
+    }
+    
+    public func httpBodyAsJSON() -> Any? {
+        var bodyData: Data? = nil
+        if let data = httpBodyAsData() {
+            bodyData = data
+        }
+        if let data = self.httpBody {
+            bodyData = data
+        }
+        guard let d = bodyData else {
+            return nil
+        }
+        do {
+            return try JSONSerialization.jsonObject(with: d, options: [.allowFragments, .mutableContainers])
+        } catch {
+            print(error.localizedDescription)
+            return nil
+        }
     }
 }
