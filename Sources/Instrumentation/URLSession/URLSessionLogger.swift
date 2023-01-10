@@ -76,9 +76,10 @@ class URLSessionLogger {
             ])
         }
         
-        if let _ = instrumentation.configuration.shouldRecordRequestBody?(request) {
+        if let _ = instrumentation.configuration.shouldRecordRequestBody?(request),
+           let body = request.httpBody {
             spanBuilder.addAttributes([
-                SLSAttribute.of("http.body", value: String(data: request.httpBody ?? Data(), encoding: .utf8)!)
+                SLSAttribute.of("http.body", value: String(data: body, encoding: .utf8)!)
             ])
         }
 
