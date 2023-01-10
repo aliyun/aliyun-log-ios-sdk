@@ -132,9 +132,18 @@ class URLSessionLogger {
         if let _ = instrumentation.configuration.shouldRecordResponse?(response, dataOrFile) {
             if let res = response as? HTTPURLResponse {
                 span.addAttributes([
-                    SLSAttribute.of("http.response.headers", value: dictionary2String(dict: res.allHeaderFields as! Dictionary)),
-                    SLSAttribute.of("http.response.body", value: String(data: dataOrFile as! Data, encoding: .utf8)!)
+                    SLSAttribute.of("http.response.headers", value: dictionary2String(dict: res.allHeaderFields as! Dictionary))
                 ])
+                
+                if let body = dataOrFile as? Data {
+                    span.addAttributes([
+                        SLSAttribute.of("http.response.body", value: String(data: body, encoding: .utf8)!)
+                    ])
+                } else {
+                    span.addAttributes([
+                        SLSAttribute.of("http.response.body", value: "None")
+                    ])
+                }
             }
         }
 
