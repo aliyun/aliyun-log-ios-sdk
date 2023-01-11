@@ -129,22 +129,18 @@ class URLSessionLogger {
         span.addAttributes([SLSAttribute.of("http.status_code", value: String(httpResponse.statusCode))])
         span.statusCode = URLSessionLogger.statusForStatusCode(code: httpResponse.statusCode)
         
-        if let _ = instrumentation.configuration.shouldRecordResponse?(response, dataOrFile) {
-            if let res = response as? HTTPURLResponse {
+        if let _ = instrumentation.configuration.shouldRecordResponse?(response, dataOrFile),
+           let res = response as? HTTPURLResponse,
+           let data = dataOrFile as? Data {
                 span.addAttributes([
                     SLSAttribute.of("http.response.headers", value: dictionary2String(dict: res.allHeaderFields as! Dictionary))
                 ])
-                
-                if let body = dataOrFile as? Data {
+
+                if let body = data.httpResponseBodyAsString() {
                     span.addAttributes([
-                        SLSAttribute.of("http.response.body", value: String(data: body, encoding: .utf8)!)
-                    ])
-                } else {
-                    span.addAttributes([
-                        SLSAttribute.of("http.response.body", value: "None")
+                        SLSAttribute.of("http.response.body", value: "\(body)")
                     ])
                 }
-            }
         }
 
         instrumentation.configuration.receivedResponse?(response, dataOrFile, span)
@@ -258,6 +254,20 @@ extension URLRequest {
         } catch {
             print(error.localizedDescription)
             return nil
+        }
+    }
+}
+
+extension Data {
+    func httpResponseBodyAsString() -> Any? {
+        do {
+            return try "\(JSONSerialization.jsonObject(with: self, options: [.allowFragments, .mutableContainers]))"
+        } catch {
+            guard let str = String(data: self, encoding: .utf8) else {
+                return nil
+            }
+            
+            return str
         }
     }
 }
