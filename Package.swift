@@ -113,7 +113,7 @@ let package = Package(
 //        ),
         .binaryTarget(
             name: "WPKMobi",
-            path: "WPKMobi/WPKMobi.xcframework"
+            path: "Sources/WPKMobi/WPKMobi.xcframework"
         ),
 //        .binaryTarget(
 //            name: "AliNetworkDiagnosis",
