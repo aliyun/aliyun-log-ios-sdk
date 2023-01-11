@@ -14,7 +14,9 @@ let package = Package(
         .library(name: "AliyunLogOTSwift", targets: ["AliyunLogOTSwift"]),
         .library(name: "AliyunLogCore", targets: ["AliyunLogCore"]),
         .library(name: "AliyunLogTrace", targets: ["AliyunLogTrace"]),
-        .library(name: "AliyunLogURLSessionInstrumentation", targets: ["AliyunLogURLSessionInstrumentation"])
+        .library(name: "AliyunLogURLSessionInstrumentation", targets: ["AliyunLogURLSessionInstrumentation"]),
+        .library(name: "AliyunLogCrashReporter", targets: ["AliyunLogCrashReporter", "WPKMobi"]),
+//        .library(name: "AliyunLogNetworkDiagnosis", targets: ["AliyunLogNetworkDiagnosis", "AliNetworkDiagnosis"])
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -82,7 +84,41 @@ let package = Package(
                 "URLSession/"
             ],
             publicHeadersPath: "URLSession/include/"
-        )
+        ),
+        .target(
+            name: "AliyunLogCrashReporter",
+            dependencies: ["AliyunLogCore", "AliyunLogOT", "AliyunLogTrace"],
+            path: "Sources",
+            sources: [
+                "CrashReporter/"
+            ],
+            publicHeadersPath: "CrashReporter/include"
+        ),
+        .target(
+            name: "Unity4SLS",
+            path: "Sources",
+            sources: [
+                "Unity4SLS/"
+            ],
+            publicHeadersPath: "Unity4SLS/include"
+        ),
+//        .target(
+//            name: "AliyunLogNetworkDiagnosis",
+//            dependencies: ["AliyunLogCore", "AliyunLogOT"],
+//            path: "Sources",
+//            sources: [
+//                "NetworkDiagnosis/"
+//            ],
+//            publicHeadersPath: "NetworkDiagnosis/include"
+//        ),
+        .binaryTarget(
+            name: "WPKMobi",
+            path: "WPKMobi/WPKMobi.xcframework"
+        ),
+//        .binaryTarget(
+//            name: "AliNetworkDiagnosis",
+//            path: "AliNetworkDiagnosis/AliNetworkDiagnosis.framework"
+//        ),
 //        .testTarget(
 //            name: "aliyun-log-ios-sdk3Tests",
 //            dependencies: ["aliyun-log-ios-sdk3"]),
