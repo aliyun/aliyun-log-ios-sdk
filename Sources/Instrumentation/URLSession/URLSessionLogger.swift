@@ -250,10 +250,12 @@ extension URLRequest {
             return nil
         }
         do {
-            return try JSONSerialization.jsonObject(with: d, options: [.allowFragments, .mutableContainers])
+            return try "\(JSONSerialization.jsonObject(with: d, options: [.allowFragments, .mutableContainers]))"
         } catch {
-            print(error.localizedDescription)
-            return nil
+            guard let str = String(data: d, encoding: .utf8) else {
+                return nil
+            }
+            return str
         }
     }
 }
@@ -266,7 +268,6 @@ extension Data {
             guard let str = String(data: self, encoding: .utf8) else {
                 return nil
             }
-            
             return str
         }
     }
