@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SLSNetworkDiagnosis : NSObject<SLSNetworkDiagnosisProtocol>
 + (instancetype) sharedInstance;
 - (void) setNetworkDiagnosisFeature: (SLSNetworkDiagnosisFeature *) feature;
+- (void) updateExtensions: (NSDictionary *) extension;
+
 @end
 
 NS_ASSUME_NONNULL_END

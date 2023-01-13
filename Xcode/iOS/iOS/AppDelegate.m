@@ -125,7 +125,7 @@
         configuration.debuggable = YES;
         configuration.enableCrashReporter = YES;
         configuration.enableBlockDetection = YES;
-        configuration.enableNetworkDiagnosis = YES;
+//        configuration.enableNetworkDiagnosis = YES;
         configuration.enableTrace = YES;
 //        configuration.enableInstrumentNSURLSession = YES;
     }];

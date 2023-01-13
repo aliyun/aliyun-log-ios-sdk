@@ -5,7 +5,7 @@
 //  Created by gordon on 2022/8/10.
 //
 
-#import <AliyunLogProducer/AliyunLogProducer.h>
+#import "AliyunLogProducer.h"
 #import "SLSNetworkDiagnosisFeature.h"
 #import "Utdid.h"
 #import "NSString+SLS.h"
@@ -165,6 +165,10 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
     }
     
     [_sender registerCallback:callback];
+}
+
+- (void) updateExtensions: (NSDictionary *) extension {
+    [AliNetworkDiagnosis updateExtension: [extension copy]];
 }
 
 #pragma mark - dns

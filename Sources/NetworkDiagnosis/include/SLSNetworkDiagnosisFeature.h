@@ -16,7 +16,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SLSNetworkDiagnosisFeature : SLSSdkFeature<SLSNetworkDiagnosisProtocol>
-
+- (void) updateExtensions: (NSDictionary *) extension;
 @end
 
 NS_ASSUME_NONNULL_END

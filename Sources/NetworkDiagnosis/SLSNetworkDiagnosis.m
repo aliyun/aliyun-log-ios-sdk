@@ -58,6 +58,14 @@
     [_feature registerCallback:callback];
 }
 
+- (void) updateExtensions: (NSDictionary *) extension {
+    if (!_feature) {
+        return;
+    }
+    
+    [_feature updateExtensions:extension];
+}
+
 - (void)dns:(nonnull NSString *)domain {
     if (!_feature) {
         return;

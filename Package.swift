@@ -15,8 +15,8 @@ let package = Package(
         .library(name: "AliyunLogCore", targets: ["AliyunLogCore"]),
         .library(name: "AliyunLogTrace", targets: ["AliyunLogTrace"]),
         .library(name: "AliyunLogURLSessionInstrumentation", targets: ["AliyunLogURLSessionInstrumentation"]),
-        .library(name: "AliyunLogCrashReporter", targets: ["AliyunLogCrashReporter", "WPKMobi"]),
-//        .library(name: "AliyunLogNetworkDiagnosis", targets: ["AliyunLogNetworkDiagnosis", "AliNetworkDiagnosis"])
+        .library(name: "AliyunLogCrashReporter", targets: ["AliyunLogCrashReporter"]),
+        .library(name: "AliyunLogNetworkDiagnosis", targets: ["AliyunLogNetworkDiagnosis"])
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -87,12 +87,15 @@ let package = Package(
         ),
         .target(
             name: "AliyunLogCrashReporter",
-            dependencies: ["AliyunLogCore", "AliyunLogOT", "AliyunLogTrace"],
+            dependencies: ["AliyunLogCore", "AliyunLogOT", "AliyunLogTrace", "WPKMobi"],
             path: "Sources",
             sources: [
                 "CrashReporter/"
             ],
-            publicHeadersPath: "CrashReporter/include"
+            publicHeadersPath: "CrashReporter/include",
+            linkerSettings: [
+//                .linkedFramework("CoreGraphics")
+            ]
         ),
         .target(
             name: "Unity4SLS",
@@ -102,23 +105,23 @@ let package = Package(
             ],
             publicHeadersPath: "Unity4SLS/include"
         ),
-//        .target(
-//            name: "AliyunLogNetworkDiagnosis",
-//            dependencies: ["AliyunLogCore", "AliyunLogOT"],
-//            path: "Sources",
-//            sources: [
-//                "NetworkDiagnosis/"
-//            ],
-//            publicHeadersPath: "NetworkDiagnosis/include"
-//        ),
+        .target(
+            name: "AliyunLogNetworkDiagnosis",
+            dependencies: ["AliyunLogCore", "AliyunLogOT", "AliNetworkDiagnosis"],
+            path: "Sources",
+            sources: [
+                "NetworkDiagnosis/"
+            ],
+            publicHeadersPath: "NetworkDiagnosis/include"
+        ),
         .binaryTarget(
             name: "WPKMobi",
             path: "Sources/WPKMobi/WPKMobi.xcframework"
         ),
-//        .binaryTarget(
-//            name: "AliNetworkDiagnosis",
-//            path: "AliNetworkDiagnosis/AliNetworkDiagnosis.framework"
-//        ),
+        .binaryTarget(
+            name: "AliNetworkDiagnosis",
+            path: "Sources/AliNetworkDiagnosis/AliNetworkDiagnosis.xcframework"
+        ),
 //        .testTarget(
 //            name: "aliyun-log-ios-sdk3Tests",
 //            dependencies: ["aliyun-log-ios-sdk3"]),
