@@ -36,6 +36,9 @@ let package = Package(
             name: "AliyunLogProducer",
             dependencies: ["aliyun-log-c-sdk"],
             path: "Sources",
+            exclude: [
+                "Info.plist"
+            ],
             sources: [
                 "Producer/"
             ],
@@ -44,6 +47,9 @@ let package = Package(
         .target(
             name: "AliyunLogOTSwift",
             path: "Sources",
+            exclude: [
+                "Info.plist"
+            ],
             sources: [
                 "OTSwift/"
             ],
@@ -53,6 +59,9 @@ let package = Package(
             name: "AliyunLogOT",
             dependencies: ["AliyunLogOTSwift"],
             path: "Sources",
+            exclude: [
+                "Info.plist"
+            ],
             sources: [
                 "OT/"
             ],
@@ -62,6 +71,9 @@ let package = Package(
             name: "AliyunLogCore",
             dependencies: ["AliyunLogProducer", "AliyunLogOT", "AliyunLogOTSwift"],
             path: "Sources",
+            exclude: [
+                "Info.plist"
+            ],
             sources: [
                 "Core/"
             ],
@@ -71,6 +83,9 @@ let package = Package(
             name: "AliyunLogTrace",
             dependencies: ["AliyunLogCore"],
             path: "Sources",
+            exclude: [
+                "Info.plist"
+            ],
             sources: [
                 "Trace/"
             ],

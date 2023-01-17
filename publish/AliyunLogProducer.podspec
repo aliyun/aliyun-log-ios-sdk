@@ -163,11 +163,11 @@ Pod::Spec.new do |s|
         n.dependency 'AliyunLogProducer/OT'
 
         if isPodLint
-            n.vendored_frameworks = "build/AliyunLogNetworkDiagnosis.framework", "build/AliNetworkDiagnosis.framework"
-            n.exclude_files = 'build/AliNetworkDiagnosis.framework/**/Headers/*.h'
+            n.vendored_frameworks = "build/AliyunLogNetworkDiagnosis.framework", "build/AliNetworkDiagnosis.xcframework"
+            n.exclude_files = 'build/AliNetworkDiagnosis.xcframework/**/Headers/*.h'
         else
-            n.vendored_frameworks = "AliyunLogNetworkDiagnosis/AliyunLogNetworkDiagnosis.framework", "AliNetworkDiagnosis/AliNetworkDiagnosis.framework"
-            n.exclude_files = 'AliNetworkDiagnosis/AliNetworkDiagnosis.framework/**/Headers/*.h'
+            n.vendored_frameworks = "AliyunLogNetworkDiagnosis/AliyunLogNetworkDiagnosis.framework", "AliNetworkDiagnosis/AliNetworkDiagnosis.xcframework"
+            n.exclude_files = 'AliNetworkDiagnosis/AliNetworkDiagnosis.xcframework/**/Headers/*.h'
         end
         n.frameworks = "SystemConfiguration", "CoreGraphics"
         n.libraries = "z", "c++", "resolv"

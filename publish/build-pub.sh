@@ -3,8 +3,8 @@ set -o pipefail
 set -e
 rm -rf build
 mkdir build
-cp -r ../NetworkDiagnosis/AliNetworkDiagnosis.framework build/AliNetworkDiagnosis.framework
-cp -r ../CrashReporter/WPKMobi.xcframework build/WPKMobi.xcframework
+cp -r ../Sources/AliNetworkDiagnosis/AliNetworkDiagnosis.xcframework build/AliNetworkDiagnosis.xcframework
+cp -r ../Sources/WPKMobi/WPKMobi.xcframework build/WPKMobi.xcframework
 
 sh build-producer.sh
 sh build-ot.sh
