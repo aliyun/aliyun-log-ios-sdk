@@ -16,7 +16,7 @@ sh build-trace.sh
 
 env=lint pod lib lint AliyunLogProducer.podspec --allow-warnings
 
-mkdir -p build/zip/AliNetworkDiagnosis && cp -r build/AliNetworkDiagnosis.framework build/zip/AliNetworkDiagnosis/AliNetworkDiagnosis.framework
+mkdir -p build/zip/AliNetworkDiagnosis && cp -r build/AliNetworkDiagnosis.xcframework build/zip/AliNetworkDiagnosis/AliNetworkDiagnosis.xcframework
 mkdir -p build/zip/WPKMobi && cp -r build/WPKMobi.xcframework build/zip/WPKMobi/WPKMobi.xcframework
 
 mkdir -p build/zip/AliyunLogProducer && cp -r build/AliyunLogProducer.xcframework build/zip/AliyunLogProducer/AliyunLogProducer.xcframework
@@ -24,7 +24,7 @@ mkdir -p build/zip/AliyunLogOT && cp -r build/AliyunLogOT.xcframework build/zip/
 mkdir -p build/zip/AliyunLogOTSwift && cp -r build/AliyunLogOTSwift.xcframework build/zip/AliyunLogOTSwift/AliyunLogOTSwift.xcframework
 mkdir -p build/zip/AliyunLogCore && cp -r build/AliyunLogCore.xcframework build/zip/AliyunLogCore/AliyunLogCore.xcframework
 mkdir -p build/zip/AliyunLogCrashReporter && cp -r build/AliyunLogCrashReporter.xcframework build/zip/AliyunLogCrashReporter/AliyunLogCrashReporter.xcframework
-mkdir -p build/zip/AliyunLogNetworkDiagnosis && cp -r build/AliyunLogNetworkDiagnosis.framework build/zip/AliyunLogNetworkDiagnosis/AliyunLogNetworkDiagnosis.framework
+mkdir -p build/zip/AliyunLogNetworkDiagnosis && cp -r build/AliyunLogNetworkDiagnosis.xcframework build/zip/AliyunLogNetworkDiagnosis/AliyunLogNetworkDiagnosis.xcframework
 mkdir -p build/zip/AliyunLogTrace && cp -r build/AliyunLogTrace.xcframework build/zip/AliyunLogTrace/AliyunLogTrace.xcframework
 
 pushd build/zip
