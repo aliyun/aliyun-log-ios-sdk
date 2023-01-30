@@ -16,13 +16,15 @@
 #endif
 
 #ifdef __HAS_SLS_OT_SWIFT
-@import AliyunLogOTSwift;
     #if __has_include(<AliyunLogProducer/AliyunLogProducer-Swift.h>)
         #import <AliyunLogProducer/AliyunLogProducer-Swift.h>
     #elif  __has_include(<AliyunLogOT/AliyunLogOT-Swift.h>)
         #import <AliyunLogOTSwift/AliyunLogOTSwift-Swift.h>
     #elif __has_include("AliyunLogOTSwift/AliyunLogOTSwift-Swift.h")
         #import "AliyunLogOTSwift/AliyunLogOTSwift-Swift.h"
+    #else
+        // should import AliyunLogOTSwift module in Swift
+        @import AliyunLogOTSwift;
     #endif
 #endif
 

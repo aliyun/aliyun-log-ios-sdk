@@ -11,8 +11,8 @@
 #import <AppKit/AppKit.h>
 #endif
 
-#import "SLSProducer.h"
 #import "SLSCocoa.h"
+#import "AliyunLogProducer.h"
 #import "SLSSdkSender.h"
 #import "SLSAppUtils.h"
 #import "SLSFeatureProtocol.h"
@@ -20,8 +20,6 @@
 #import "SLSDeviceUtils.h"
 #import "NSString+SLS.h"
 #import "SLSUtils.h"
-
-@import AliyunLogProducer;
 
 @interface SLSCocoa ()
 @property(atomic, assign) BOOL hasInitialize;

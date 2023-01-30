@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
     TVOS_TARGET_VERSION = '9.0'
 
     s.name             = "AliyunLogProducer"
-    s.version          = "3.1.7"
+    s.version          = "3.1.8"
     s.summary          = "aliyun log service ios producer."
 
     # This description is used to generate tags and improve search results.
@@ -163,10 +163,10 @@ Pod::Spec.new do |s|
         n.dependency 'AliyunLogProducer/OT'
 
         if isPodLint
-            n.vendored_frameworks = "build/AliyunLogNetworkDiagnosis.framework", "build/AliNetworkDiagnosis.xcframework"
+            n.vendored_frameworks = "build/AliyunLogNetworkDiagnosis.xcframework", "build/AliNetworkDiagnosis.xcframework"
             n.exclude_files = 'build/AliNetworkDiagnosis.xcframework/**/Headers/*.h'
         else
-            n.vendored_frameworks = "AliyunLogNetworkDiagnosis/AliyunLogNetworkDiagnosis.framework", "AliNetworkDiagnosis/AliNetworkDiagnosis.xcframework"
+            n.vendored_frameworks = "AliyunLogNetworkDiagnosis/AliyunLogNetworkDiagnosis.xcframework", "AliNetworkDiagnosis/AliNetworkDiagnosis.xcframework"
             n.exclude_files = 'AliNetworkDiagnosis/AliNetworkDiagnosis.xcframework/**/Headers/*.h'
         end
         n.frameworks = "SystemConfiguration", "CoreGraphics"
@@ -191,6 +191,25 @@ Pod::Spec.new do |s|
             c.vendored_frameworks = "build/AliyunLogTrace.xcframework"
         else
             c.vendored_frameworks = "AliyunLogTrace/AliyunLogTrace.xcframework"
+        end
+
+        c.user_target_xcconfig = {
+            'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
+        }
+    end
+    
+    s.subspec 'URLSession' do |c|
+        c.ios.deployment_target = IOS_TARGET_VERSION
+        c.tvos.deployment_target =  TVOS_TARGET_VERSION
+        c.osx.deployment_target =  OSX_TARGET_VERSION
+        c.dependency 'AliyunLogProducer/Producer'
+        c.dependency 'AliyunLogProducer/Core'
+        c.dependency 'AliyunLogProducer/OT'
+        c.dependency 'AliyunLogProducer/Trace'
+        if isPodLint
+            c.vendored_frameworks = "build/AliyunLogURLSession.xcframework"
+        else
+            c.vendored_frameworks = "AliyunLogURLSession/AliyunLogURLSession.xcframework"
         end
 
         c.user_target_xcconfig = {

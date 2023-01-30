@@ -91,7 +91,6 @@ static void _on_log_send_done(const char * config_name, log_producer_result resu
                                                  logstore:[utils logstore]
                                               accessKeyID:[utils accessKeyId]
                                           accessKeySecret:[utils accessKeySecret]
-                                            securityToken:@"CAIS6wJ1q6Ft5B2yfSjIr5bAHIvahaZQ54ySbRf/nXhkRu1UhLDYkzz2IH1PfXNhBegcsvw0nGFW6P0clr1Yb7h4aWPtSOZHxbB23CWdVK7mlJQbT3joXcX3d1KIAjvXgeUUCoeQFaEdE5XAQlTAkTAJh9meXD6+XlujHISUgJp8FLo+VRW5ajw0erUqIgxt+vcdLmf1MvmWLhnwj07XA1ESvWgas25k7rmlycCx8wfXiEaAqtUYvIPsOJOpHfIOBZ50SIWx2+MkNPiDgjZK7BpH/7sxlKVN4nLcstLYGF1Kpg+LN+fd6dA2awt+abMmHLRJ6+D1nOY9oeDQ0p/z0FNXMOVYWj/SHcWkx8TfBOSzO/RBLO+mYi6dioDQb8Cq71x6P0h2bl0aJ4ATTVZrEgEpRz3gLauqxUvHeA/LSdLejfpvi8splw+0pYHSdgbRGOuDqi0cO5I6c0cvOAMO2WvofrUBdwFc9d/81QkfoO8agAFrounlqRV3mXGDslUrfnp7dPqful78FYsFJD78FeoImYDUGp7jKO7GUPbrGgsWzIt6Xkrb+6dmzJQMXUlelieGt9gJ1yCwZ17oPKWNCMgcN9XT7KDaoyHubHHLkhmGXjf1UD2ByL5npl5cWIDG/Rh3ar5QNPs5EsV9q7P5kt97bQ=="
     ];
 //    _config = [[LogProducerConfig alloc] initWithEndpoint:@"" project:@"" logstore:@"" accessKeyID:@"" accessKeySecret:@""];
     [_config SetTopic:@"test_topic"];

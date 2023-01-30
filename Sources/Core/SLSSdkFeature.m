@@ -5,10 +5,9 @@
 //  Created by gordon on 2022/7/20.
 //
 
-#import "SLSSystemCapabilities.h"
 #import "SLSSdkFeature.h"
 #import "SLSUtils.h"
-@import AliyunLogProducer;
+#import "AliyunLogProducer.h"
 
 @interface SLSSdkFeature ()
 

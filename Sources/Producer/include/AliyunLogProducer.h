@@ -50,3 +50,8 @@ FOUNDATION_EXPORT const unsigned char AliyunLogProducerVersionString[];
 #if __has_include("AliyunLogProducer-Swift.h")
 #import "AliyunLogProducer-Swift.h"
 #endif
+
+// AliyunLogURLSession
+#if __has_include("AliyunLogURLSession/AliyunLogURLSession-Swift.h")
+#import "AliyunLogURLSession/AliyunLogURLSession-Swift.h"
+#endif

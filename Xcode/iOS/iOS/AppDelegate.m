@@ -51,6 +51,36 @@
 
 @end
 
+#pragma mark -- URLSessionInstrumentationProtocol implementation
+@interface URLInstrumentationProtocal : NSObject<URLSessionInstrumentationProtocol>
+@end
+@implementation URLInstrumentationProtocal
+
+- (BOOL)shouldInstrument:(NSURLRequest * _Nonnull)request {
+    return ![request.URL.host containsString:@"log.aliyuncs.com"];
+}
+
+- (BOOL)shouldRecordError:(NSError * _Nonnull)error :(id _Nullable)_ {
+    return YES;
+}
+
+- (BOOL)shouldRecordPayload:(NSURLSession * _Nonnull)session {
+    return YES;
+}
+
+- (BOOL)shouldRecordRequestBody:(NSURLRequest * _Nonnull)request {
+    return YES;
+}
+
+- (BOOL)shouldRecordRequestHeaders:(NSURLRequest * _Nonnull)request {
+    return YES;
+}
+
+- (BOOL)shouldRecordResponse:(NSURLResponse * _Nonnull)response :(id _Nullable)dataOrFile {
+    return YES;
+}
+@end
+
 @interface AppDelegate ()
 
 @end
@@ -129,6 +159,8 @@
         configuration.enableTrace = YES;
 //        configuration.enableInstrumentNSURLSession = YES;
     }];
+    
+    [[URLSessionInstrumentation alloc] initWithProtoco:[[URLInstrumentationProtocal alloc] init]];
     
 //    [[URLSessionInstrumentation alloc] init];
 //    [URLSessionInstrumentation new];
