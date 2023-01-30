@@ -8,7 +8,7 @@
 #import "SLSConfiguration.h"
 #import "SLSSdkSender.h"
 #import "SLSNoOpSender.h"
-#import "AliyunLogProducer.h"
+#import "SLSProducer.h"
 #import "SLSHttpHeader.h"
 #import "SLSUtils.h"
 //@import AliyunLogProducer;

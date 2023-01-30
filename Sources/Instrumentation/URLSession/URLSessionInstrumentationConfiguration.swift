@@ -4,9 +4,9 @@
  */
 
 import Foundation
-//import OpenTelemetryApi
-//import OpenTelemetrySdk
+#if canImport(AliyunLogOT)
 import AliyunLogOT
+#endif
 
 public typealias DataOrFile = Any
 public typealias SessionTaskId = String

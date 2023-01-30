@@ -9,6 +9,7 @@
 #import "SLSSdkSender.h"
 #import "SLSTracer+Internal.h"
 #import "SLSURLSessionInstrumentation.h"
+#import "LogProducerConfig.h"
 #import "SLSHttpHeader.h"
 
 @class SLSTraceSender;

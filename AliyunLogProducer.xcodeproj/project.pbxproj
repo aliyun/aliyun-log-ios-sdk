@@ -105,6 +105,7 @@
 		F84F8ADE2814E1180038A46E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F80DF47A26A7035E00151F7C /* SystemConfiguration.framework */; };
 		F84F8AE02814E1180038A46E /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F80DF47826A7034E00151F7C /* libc++.tbd */; };
 		F84F8AE12814E1180038A46E /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D0CAEEE252177D800A4985A /* libz.tbd */; };
+		F8896C682977FAF0004CB258 /* SLSProducer.h in Headers */ = {isa = PBXBuildFile; fileRef = F8896C672977FAF0004CB258 /* SLSProducer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F8E05D432976819C002CD256 /* log_persistent_manager.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E05CFE2976819C002CD256 /* log_persistent_manager.h */; };
 		F8E05D442976819C002CD256 /* log_sha1.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E05CFF2976819C002CD256 /* log_sha1.h */; };
 		F8E05D452976819C002CD256 /* log_producer_common.c in Sources */ = {isa = PBXBuildFile; fileRef = F8E05D002976819C002CD256 /* log_producer_common.c */; };
@@ -146,25 +147,22 @@
 		F8E05D692976819C002CD256 /* log_ring_file.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E05D252976819C002CD256 /* log_ring_file.h */; };
 		F8E05D6A2976819C002CD256 /* log_queue.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E05D262976819C002CD256 /* log_queue.h */; };
 		F8E05D6B2976819C002CD256 /* Log.m in Sources */ = {isa = PBXBuildFile; fileRef = F8E05D282976819C002CD256 /* Log.m */; };
-		F8E05D6C2976819C002CD256 /* NSString+SLS.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E05D292976819C002CD256 /* NSString+SLS.h */; };
-		F8E05D6D2976819C002CD256 /* NSDictionary+SLS.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E05D2A2976819C002CD256 /* NSDictionary+SLS.h */; };
 		F8E05D6E2976819C002CD256 /* LogProducerConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = F8E05D2B2976819C002CD256 /* LogProducerConfig.m */; };
 		F8E05D6F2976819C002CD256 /* SLSURLSession.m in Sources */ = {isa = PBXBuildFile; fileRef = F8E05D2C2976819C002CD256 /* SLSURLSession.m */; };
 		F8E05D702976819C002CD256 /* SLSHttpHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = F8E05D2D2976819C002CD256 /* SLSHttpHeader.m */; };
 		F8E05D712976819C002CD256 /* LogProducerClient.m in Sources */ = {isa = PBXBuildFile; fileRef = F8E05D2E2976819C002CD256 /* LogProducerClient.m */; };
-		F8E05D722976819C002CD256 /* NSString+SLS.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E05D302976819C002CD256 /* NSString+SLS.h */; };
-		F8E05D732976819C002CD256 /* NSDictionary+SLS.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E05D312976819C002CD256 /* NSDictionary+SLS.h */; };
-		F8E05D742976819C002CD256 /* SLSUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E05D322976819C002CD256 /* SLSUtils.h */; };
-		F8E05D752976819D002CD256 /* NSDateFormatter+SLS.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E05D332976819C002CD256 /* NSDateFormatter+SLS.h */; };
-		F8E05D762976819D002CD256 /* TimeUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E05D342976819C002CD256 /* TimeUtils.h */; };
+		F8E05D722976819C002CD256 /* NSString+SLS.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E05D302976819C002CD256 /* NSString+SLS.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F8E05D732976819C002CD256 /* NSDictionary+SLS.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E05D312976819C002CD256 /* NSDictionary+SLS.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F8E05D742976819C002CD256 /* SLSUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E05D322976819C002CD256 /* SLSUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F8E05D752976819D002CD256 /* NSDateFormatter+SLS.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E05D332976819C002CD256 /* NSDateFormatter+SLS.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F8E05D762976819D002CD256 /* TimeUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E05D342976819C002CD256 /* TimeUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F8E05D772976819D002CD256 /* LogProducerConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E05D352976819C002CD256 /* LogProducerConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F8E05D782976819D002CD256 /* Log.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E05D362976819C002CD256 /* Log.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F8E05D792976819D002CD256 /* LogProducerClient.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E05D372976819C002CD256 /* LogProducerClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F8E05D7A2976819D002CD256 /* SLSHttpHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E05D382976819C002CD256 /* SLSHttpHeader.h */; };
+		F8E05D7A2976819D002CD256 /* SLSHttpHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E05D382976819C002CD256 /* SLSHttpHeader.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F8E05D7B2976819D002CD256 /* SLSURLSession.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E05D392976819C002CD256 /* SLSURLSession.h */; };
-		F8E05D7C2976819D002CD256 /* SLSSystemCapabilities.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E05D3A2976819C002CD256 /* SLSSystemCapabilities.h */; };
+		F8E05D7C2976819D002CD256 /* SLSSystemCapabilities.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E05D3A2976819C002CD256 /* SLSSystemCapabilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F8E05D7D2976819D002CD256 /* AliyunLogProducer.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E05D3B2976819C002CD256 /* AliyunLogProducer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F8E05D7E2976819D002CD256 /* NSDateFormatter+SLS.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E05D3C2976819C002CD256 /* NSDateFormatter+SLS.h */; };
 		F8E05D7F2976819D002CD256 /* NSDictionary+SLS.m in Sources */ = {isa = PBXBuildFile; fileRef = F8E05D3D2976819C002CD256 /* NSDictionary+SLS.m */; };
 		F8E05D802976819D002CD256 /* NSString+SLS.m in Sources */ = {isa = PBXBuildFile; fileRef = F8E05D3E2976819C002CD256 /* NSString+SLS.m */; };
 		F8E05D812976819D002CD256 /* TimeUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = F8E05D3F2976819C002CD256 /* TimeUtils.m */; };
@@ -206,21 +204,21 @@
 			remoteGlobalIDString = F8F6A96428ABBB730070B023;
 			remoteInfo = AliyunLogOT;
 		};
-		F8E05D93297688D1002CD256 /* PBXContainerItemProxy */ = {
+		F8896C612977F05D004CB258 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9D984DA92520A9B7009DE4FE /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = F8F6A96428ABBB730070B023;
 			remoteInfo = AliyunLogOT;
 		};
-		F8E05D95297688DC002CD256 /* PBXContainerItemProxy */ = {
+		F8896C632977F05D004CB258 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9D984DA92520A9B7009DE4FE /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = F834A14A28D3116300000F72;
 			remoteInfo = AliyunLogTrace;
 		};
-		F8E05D97297688F6002CD256 /* PBXContainerItemProxy */ = {
+		F8896C652977F06C004CB258 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9D984DA92520A9B7009DE4FE /* Project object */;
 			proxyType = 1;
@@ -421,6 +419,7 @@
 		F8696C4F27F0066D00EF0020 /* AliyunLogCrashReporter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AliyunLogCrashReporter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F87828CA28B6089D00F3D2B5 /* libUnity4SLS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libUnity4SLS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F87828DA28B60DE400F3D2B5 /* build-unity4sls.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = "build-unity4sls.sh"; path = "publish/build-unity4sls.sh"; sourceTree = "<group>"; };
+		F8896C672977FAF0004CB258 /* SLSProducer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLSProducer.h; sourceTree = "<group>"; };
 		F88FAFDE28ACECCC00F8792A /* build-core.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = "build-core.sh"; path = "publish/build-core.sh"; sourceTree = "<group>"; };
 		F88FAFDF28ACECCC00F8792A /* build-producer.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = "build-producer.sh"; path = "publish/build-producer.sh"; sourceTree = "<group>"; };
 		F88FAFE028ACECCC00F8792A /* build-networkdiagnosis.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = "build-networkdiagnosis.sh"; path = "publish/build-networkdiagnosis.sh"; sourceTree = "<group>"; };
@@ -477,8 +476,6 @@
 		F8E05D252976819C002CD256 /* log_ring_file.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = log_ring_file.h; sourceTree = "<group>"; };
 		F8E05D262976819C002CD256 /* log_queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = log_queue.h; sourceTree = "<group>"; };
 		F8E05D282976819C002CD256 /* Log.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Log.m; sourceTree = "<group>"; };
-		F8E05D292976819C002CD256 /* NSString+SLS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SLS.h"; sourceTree = "<group>"; };
-		F8E05D2A2976819C002CD256 /* NSDictionary+SLS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+SLS.h"; sourceTree = "<group>"; };
 		F8E05D2B2976819C002CD256 /* LogProducerConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogProducerConfig.m; sourceTree = "<group>"; };
 		F8E05D2C2976819C002CD256 /* SLSURLSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLSURLSession.m; sourceTree = "<group>"; };
 		F8E05D2D2976819C002CD256 /* SLSHttpHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLSHttpHeader.m; sourceTree = "<group>"; };
@@ -495,7 +492,6 @@
 		F8E05D392976819C002CD256 /* SLSURLSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLSURLSession.h; sourceTree = "<group>"; };
 		F8E05D3A2976819C002CD256 /* SLSSystemCapabilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLSSystemCapabilities.h; sourceTree = "<group>"; };
 		F8E05D3B2976819C002CD256 /* AliyunLogProducer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AliyunLogProducer.h; sourceTree = "<group>"; };
-		F8E05D3C2976819C002CD256 /* NSDateFormatter+SLS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDateFormatter+SLS.h"; sourceTree = "<group>"; };
 		F8E05D3D2976819C002CD256 /* NSDictionary+SLS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+SLS.m"; sourceTree = "<group>"; };
 		F8E05D3E2976819C002CD256 /* NSString+SLS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SLS.m"; sourceTree = "<group>"; };
 		F8E05D3F2976819C002CD256 /* TimeUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeUtils.m; sourceTree = "<group>"; };
@@ -508,6 +504,8 @@
 		F8E74BF928ACBD78000609C3 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/lib/libz.tbd; sourceTree = DEVELOPER_DIR; };
 		F8F6A9AC28ABBB730070B023 /* AliyunLogOT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AliyunLogOT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8F6AA5128AC7B6F0070B023 /* AliyunLogCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AliyunLogCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F8F9396A2977E92F003E4171 /* build-urlsession.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = "build-urlsession.sh"; path = "publish/build-urlsession.sh"; sourceTree = "<group>"; };
+		F8F9396B2977E937003E4171 /* build-urlsession-framework.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = "build-urlsession-framework.sh"; path = "publish/build-urlsession-framework.sh"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -639,6 +637,8 @@
 				F88FAFDF28ACECCC00F8792A /* build-producer.sh */,
 				F8A43DE52951BBC700C8B73A /* build-producer-framework.sh */,
 				F834A16A28D312CE00000F72 /* build-trace.sh */,
+				F8F9396A2977E92F003E4171 /* build-urlsession.sh */,
+				F8F9396B2977E937003E4171 /* build-urlsession-framework.sh */,
 				F87828DA28B60DE400F3D2B5 /* build-unity4sls.sh */,
 				F8A43DB22951B94F00C8B73A /* build-wpkmobi.sh */,
 				F820294528C5A3AF00A79810 /* strip_symbols.sh */,
@@ -696,6 +696,7 @@
 		F8255A032976715D00411DAD /* include */ = {
 			isa = PBXGroup;
 			children = (
+				F8255A0B2976715D00411DAD /* AliyunLogOT.h */,
 				F8255A042976715D00411DAD /* SLSRecordableSpan.h */,
 				F8255A052976715D00411DAD /* SLSKeyValue.h */,
 				F8255A062976715D00411DAD /* SLSAttribute.h */,
@@ -703,7 +704,6 @@
 				F8255A082976715D00411DAD /* SLSResource.h */,
 				F8255A092976715D00411DAD /* SLSSpanProviderProtocol.h */,
 				F8255A0A2976715D00411DAD /* SLSSpan.h */,
-				F8255A0B2976715D00411DAD /* AliyunLogOT.h */,
 				F8255A0C2976715D00411DAD /* SLSContextManager.h */,
 				F8255A0D2976715D00411DAD /* SLSLink.h */,
 				F8255A0E2976715D00411DAD /* SLSSpanBuilder.h */,
@@ -912,14 +912,12 @@
 			isa = PBXGroup;
 			children = (
 				F8E05D2F2976819C002CD256 /* include */,
+				F8E05D392976819C002CD256 /* SLSURLSession.h */,
 				F8E05D282976819C002CD256 /* Log.m */,
-				F8E05D292976819C002CD256 /* NSString+SLS.h */,
-				F8E05D2A2976819C002CD256 /* NSDictionary+SLS.h */,
 				F8E05D2B2976819C002CD256 /* LogProducerConfig.m */,
 				F8E05D2C2976819C002CD256 /* SLSURLSession.m */,
 				F8E05D2D2976819C002CD256 /* SLSHttpHeader.m */,
 				F8E05D2E2976819C002CD256 /* LogProducerClient.m */,
-				F8E05D3C2976819C002CD256 /* NSDateFormatter+SLS.h */,
 				F8E05D3D2976819C002CD256 /* NSDictionary+SLS.m */,
 				F8E05D3E2976819C002CD256 /* NSString+SLS.m */,
 				F8E05D3F2976819C002CD256 /* TimeUtils.m */,
@@ -935,6 +933,7 @@
 			isa = PBXGroup;
 			children = (
 				F8E05D3B2976819C002CD256 /* AliyunLogProducer.h */,
+				F8896C672977FAF0004CB258 /* SLSProducer.h */,
 				F8E05D302976819C002CD256 /* NSString+SLS.h */,
 				F8E05D312976819C002CD256 /* NSDictionary+SLS.h */,
 				F8E05D322976819C002CD256 /* SLSUtils.h */,
@@ -944,7 +943,6 @@
 				F8E05D362976819C002CD256 /* Log.h */,
 				F8E05D372976819C002CD256 /* LogProducerClient.h */,
 				F8E05D382976819C002CD256 /* SLSHttpHeader.h */,
-				F8E05D392976819C002CD256 /* SLSURLSession.h */,
 				F8E05D3A2976819C002CD256 /* SLSSystemCapabilities.h */,
 			);
 			path = include;
@@ -1046,30 +1044,28 @@
 				F8E05D522976819C002CD256 /* log_define.h in Headers */,
 				F8E05D502976819C002CD256 /* log_multi_thread.h in Headers */,
 				F8E05D4E2976819C002CD256 /* log_inner_include.h in Headers */,
-				F8E05D492976819C002CD256 /* log_producer_sender.h in Headers */,
 				F8E05D722976819C002CD256 /* NSString+SLS.h in Headers */,
+				F8E05D732976819C002CD256 /* NSDictionary+SLS.h in Headers */,
+				F8E05D742976819C002CD256 /* SLSUtils.h in Headers */,
+				F8E05D752976819D002CD256 /* NSDateFormatter+SLS.h in Headers */,
+				F8E05D762976819D002CD256 /* TimeUtils.h in Headers */,
+				F8E05D7A2976819D002CD256 /* SLSHttpHeader.h in Headers */,
+				F8E05D7C2976819D002CD256 /* SLSSystemCapabilities.h in Headers */,
+				F8896C682977FAF0004CB258 /* SLSProducer.h in Headers */,
+				F8E05D492976819C002CD256 /* log_producer_sender.h in Headers */,
 				F8E05D602976819C002CD256 /* log_api.h in Headers */,
 				F8E05D442976819C002CD256 /* log_sha1.h in Headers */,
-				F8E05D6C2976819C002CD256 /* NSString+SLS.h in Headers */,
-				F8E05D762976819D002CD256 /* TimeUtils.h in Headers */,
-				F8E05D742976819C002CD256 /* SLSUtils.h in Headers */,
-				F8E05D732976819C002CD256 /* NSDictionary+SLS.h in Headers */,
 				F8E05D562976819C002CD256 /* log_md5.h in Headers */,
-				F8E05D7A2976819D002CD256 /* SLSHttpHeader.h in Headers */,
 				F8E05D632976819C002CD256 /* log_builder.h in Headers */,
 				F8E05D572976819C002CD256 /* log_lz4.h in Headers */,
 				F8E05D432976819C002CD256 /* log_persistent_manager.h in Headers */,
 				F8E05D5D2976819C002CD256 /* log_sds.h in Headers */,
 				F8E05D612976819C002CD256 /* log_hmac-sha.h in Headers */,
-				F8E05D7E2976819D002CD256 /* NSDateFormatter+SLS.h in Headers */,
 				F8E05D472976819C002CD256 /* inner_log.h in Headers */,
 				F8E05D582976819C002CD256 /* log_util.h in Headers */,
-				F8E05D7C2976819D002CD256 /* SLSSystemCapabilities.h in Headers */,
 				F8E05D4D2976819C002CD256 /* inner_log.h in Headers */,
 				F8E05D692976819C002CD256 /* log_ring_file.h in Headers */,
 				F8E05D7B2976819D002CD256 /* SLSURLSession.h in Headers */,
-				F8E05D752976819D002CD256 /* NSDateFormatter+SLS.h in Headers */,
-				F8E05D6D2976819C002CD256 /* NSDictionary+SLS.h in Headers */,
 				F8E05D6A2976819C002CD256 /* log_queue.h in Headers */,
 				F8E05D662976819C002CD256 /* log_producer_manager.h in Headers */,
 			);
@@ -1241,9 +1237,9 @@
 			buildRules = (
 			);
 			dependencies = (
-				F8E05D98297688F6002CD256 /* PBXTargetDependency */,
-				F8E05D96297688DC002CD256 /* PBXTargetDependency */,
-				F8E05D94297688D1002CD256 /* PBXTargetDependency */,
+				F8896C662977F06C004CB258 /* PBXTargetDependency */,
+				F8896C622977F05D004CB258 /* PBXTargetDependency */,
+				F8896C642977F05D004CB258 /* PBXTargetDependency */,
 			);
 			name = AliyunLogURLSession;
 			productName = AliyunLogProducer;
@@ -1605,20 +1601,20 @@
 			target = F8F6A96428ABBB730070B023 /* AliyunLogOT */;
 			targetProxy = F838F07B29767620001F1275 /* PBXContainerItemProxy */;
 		};
-		F8E05D94297688D1002CD256 /* PBXTargetDependency */ = {
+		F8896C622977F05D004CB258 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = F8F6A96428ABBB730070B023 /* AliyunLogOT */;
-			targetProxy = F8E05D93297688D1002CD256 /* PBXContainerItemProxy */;
+			targetProxy = F8896C612977F05D004CB258 /* PBXContainerItemProxy */;
 		};
-		F8E05D96297688DC002CD256 /* PBXTargetDependency */ = {
+		F8896C642977F05D004CB258 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = F834A14A28D3116300000F72 /* AliyunLogTrace */;
-			targetProxy = F8E05D95297688DC002CD256 /* PBXContainerItemProxy */;
+			targetProxy = F8896C632977F05D004CB258 /* PBXContainerItemProxy */;
 		};
-		F8E05D98297688F6002CD256 /* PBXTargetDependency */ = {
+		F8896C662977F06C004CB258 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = F8F6AA3128AC7B6F0070B023 /* AliyunLogCore */;
-			targetProxy = F8E05D97297688F6002CD256 /* PBXContainerItemProxy */;
+			targetProxy = F8896C652977F06C004CB258 /* PBXContainerItemProxy */;
 		};
 		F8E4D2052976758000880E6F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1750,6 +1746,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
@@ -1804,6 +1801,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
@@ -1967,6 +1965,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
 				CURRENT_PROJECT_VERSION = 310;
@@ -2014,6 +2013,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
 				CURRENT_PROJECT_VERSION = 310;
@@ -2099,7 +2099,7 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				LINK_WITH_STANDARD_LIBRARIES = NO;
 				MACH_O_TYPE = staticlib;
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MARKETING_VERSION = 3.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.aysls.cocoa.producer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2112,7 +2112,7 @@
 				SWIFT_VERSION = 5.0;
 				SYSTEM_HEADER_SEARCH_PATHS = "";
 				TARGETED_DEVICE_FAMILY = "1,2,3,6";
-				TVOS_DEPLOYMENT_TARGET = 9.0;
+				TVOS_DEPLOYMENT_TARGET = 10.0;
 				VALIDATE_WORKSPACE = YES;
 			};
 			name = Debug;
@@ -2159,7 +2159,7 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				LINK_WITH_STANDARD_LIBRARIES = NO;
 				MACH_O_TYPE = staticlib;
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MARKETING_VERSION = 3.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.aysls.cocoa.producer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2171,7 +2171,7 @@
 				SWIFT_VERSION = 5.0;
 				SYSTEM_HEADER_SEARCH_PATHS = "";
 				TARGETED_DEVICE_FAMILY = "1,2,3,6";
-				TVOS_DEPLOYMENT_TARGET = 9.0;
+				TVOS_DEPLOYMENT_TARGET = 10.0;
 				VALIDATE_WORKSPACE = YES;
 			};
 			name = Release;

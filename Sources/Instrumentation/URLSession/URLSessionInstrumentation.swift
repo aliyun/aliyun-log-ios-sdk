@@ -4,8 +4,9 @@
  */
 
 import Foundation
-//import OpenTelemetryApi
-//import OpenTelemetrySdk
+#if canImport(AliyunLogOT)
+import AliyunLogOT
+#endif
 
 struct NetworkRequestState {
     var request: URLRequest?
@@ -21,6 +22,109 @@ struct NetworkRequestState {
 }
 
 private var idKey: Void?
+
+@objc public protocol URLSessionInstrumentationProtocol {
+    func shouldRecordPayload(_ session: URLSession) -> Bool
+    func shouldInstrument(_ request: URLRequest) -> Bool
+    func shouldRecordRequestHeaders(_ request: URLRequest) -> Bool
+    func shouldRecordRequestBody(_ request: URLRequest) -> Bool
+    func shouldRecordResponse(_ response: URLResponse, _ dataOrFile: DataOrFile?) -> Bool
+    func shouldRecordError(_ error: Error, _ dataOrFile: DataOrFile?) -> Bool
+    
+//    func nameSpan(_ : URLRequest) -> String?
+//    func spanCustomization(_ : URLRequest, _ : SLSSpanBuilder)
+//    func shouldInjectTracingHeaders(_ : URLRequest)  -> Bool
+//    func injectCustomHeaders(_ : URLRequest, _ : SLSSpan?)
+//    func createdRequest(_ : URLRequest, _ : SLSSpan)
+//    func receivedResponse(_ : URLResponse, _ : DataOrFile?, _ : SLSSpan)
+//    func receivedError(_ : Error, _ : DataOrFile?, _ : HTTPStatus, _ : SLSSpan)
+}
+
+@objc
+fileprivate class URLSessionInstrumentationConfigurationObjc : NSObject {
+    @objc var delegate: URLSessionInstrumentationProtocol?
+    
+    public init(_ protoco: URLSessionInstrumentationProtocol) {
+        self.delegate = protoco
+    }
+    
+    public func shouldRecordPayload(_ session: URLSession) -> Bool {
+        guard let d = delegate else {
+            return false
+        }
+        
+        return d.shouldRecordPayload(session)
+    }
+    
+    public func shouldInstrument(_ request: URLRequest) -> Bool {
+        guard let d = delegate else {
+            return true
+        }
+        
+        return d.shouldInstrument(request)
+    }
+    
+    public func shouldRecordRequestHeaders(_ request: URLRequest) -> Bool {
+        guard let d = delegate else {
+            return false
+        }
+        
+        return d.shouldRecordRequestHeaders(request)
+    }
+    
+    public func shouldRecordRequestBody(_ request: URLRequest) -> Bool {
+        guard let d = delegate else {
+            return false
+        }
+        
+        return d.shouldRecordRequestBody(request)
+        
+    }
+    
+    public func shouldRecordResponse(_ response: URLResponse, _ dataOrFile: DataOrFile?) -> Bool {
+        guard let d = delegate else {
+            return false
+        }
+        
+        return d.shouldRecordResponse(response, dataOrFile)
+    }
+    
+    public func shouldRecordError(_ error: Error, _ dataOrFile: DataOrFile?) -> Bool {
+        guard let d = delegate else {
+            return true
+        }
+        
+        return d.shouldRecordError(error, dataOrFile)
+    }
+    
+//    public func nameSpan(_ : URLRequest) -> String? {
+//        return nil
+//    }
+//
+//    public func spanCustomization(_ : URLRequest, _ : SLSSpanBuilder) {
+//
+//    }
+//
+//    public func shouldInjectTracingHeaders(_ : URLRequest)  -> Bool {
+//        return true
+//    }
+//
+//    public func injectCustomHeaders(_ : inout URLRequest, _ : SLSSpan?) {
+//
+//    }
+//
+//    public func createdRequest(_ : URLRequest, _ : SLSSpan) {
+//
+//    }
+//
+//    public func receivedResponse(_ : URLResponse, _ : DataOrFile?, _ : SLSSpan) {
+//
+//    }
+//
+//    public func receivedError(_ : Error, _ : DataOrFile?, _ : HTTPStatus, _ : SLSSpan) {
+//
+//    }
+}
 
 @objc
 public class URLSessionInstrumentation : NSObject {
@@ -42,6 +146,7 @@ public class URLSessionInstrumentation : NSObject {
 //        return spans
 //    }
     
+    @objc
     public override convenience init() {
         self.init(configuration: URLSessionInstrumentationConfiguration(shouldInstrument: { request in
             return request.url?.host?.contains("log.aliyuncs.com") == false
@@ -53,6 +158,42 @@ public class URLSessionInstrumentation : NSObject {
         super.init()
 //        tracer = OpenTelemetrySDK.instance.tracerProvider.get(instrumentationName: "NSURLSession", instrumentationVersion: "0.0.1") as! TracerSdk
         self.injectInNSURLClasses()
+    }
+    
+    @objc
+    public convenience init(protoco: URLSessionInstrumentationProtocol) {
+        let objcConfiguration = URLSessionInstrumentationConfigurationObjc(protoco)
+        
+        self.init(configuration: URLSessionInstrumentationConfiguration(
+            shouldRecordPayload: { session in
+                return objcConfiguration.shouldRecordPayload(session)
+            }, shouldInstrument: { request in
+                return objcConfiguration.shouldInstrument(request)
+            }, shouldRecordRequestHeaders: { request in
+                return objcConfiguration.shouldRecordRequestHeaders(request)
+            }, shouldRecordRequestBody: { request in
+                return objcConfiguration.shouldRecordRequestBody(request)
+            }, shouldRecordResponse: { response, dataOrFile in
+                return objcConfiguration.shouldRecordResponse(response, dataOrFile)
+            }, shouldRecordError: { error, dataOrFile in
+                return objcConfiguration.shouldRecordError(error, dataOrFile)
+            }
+//            , nameSpan: { request in
+//                return objcConfiguration.nameSpan(request)
+//            }, spanCustomization: { request, spanBuilder in
+//                objcConfiguration.spanCustomization(request, spanBuilder)
+//            }, shouldInjectTracingHeaders: { request in
+//                return objcConfiguration.shouldInjectTracingHeaders(request)
+//            }, injectCustomHeaders: { request, span in
+//                objcConfiguration.injectCustomHeaders(&request, span)
+//            }, createdRequest: { request, span in
+//                objcConfiguration.createdRequest(request, span)
+//            }, receivedResponse: { response, dataOrFile, span in
+//                objcConfiguration.receivedResponse(response, dataOrFile, span)
+//            }, receivedError: { error, dataOrFile, status, span in
+//                objcConfiguration.receivedError(error, dataOrFile, status, span)
+//            }
+        ))
     }
 
     private func injectInNSURLClasses() {
@@ -448,30 +589,30 @@ public class URLSessionInstrumentation : NSObject {
         originalIMP = method_setImplementation(original, swizzledIMP)
     }
 
-    private func injectTaskDidFinishCollectingMetricsIntoDelegateClass(cls: AnyClass) {
-        let selector = #selector(URLSessionTaskDelegate.urlSession(_:task:didFinishCollecting:))
-        guard let original = class_getInstanceMethod(cls, selector) else {
-            let block: @convention(block) (Any, URLSession, URLSessionTask, URLSessionTaskMetrics) -> Void = { _, session, task, metrics in
-                self.urlSession(session, task: task, didFinishCollecting: metrics)
-            }
-            let imp = imp_implementationWithBlock(unsafeBitCast(block, to: AnyObject.self))
-            class_addMethod(cls, selector, imp, "@@@")
-            return
-        }
-        var originalIMP: IMP?
-        let block: @convention(block) (Any, URLSession, URLSessionTask, URLSessionTaskMetrics) -> Void = { object, session, task, metrics in
-            if objc_getAssociatedObject(session, &idKey) == nil {
-                self.urlSession(session, task: task, didFinishCollecting: metrics)
-            }
-            let key = String(selector.hashValue)
-            objc_setAssociatedObject(session, key, true, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-            let castedIMP = unsafeBitCast(originalIMP, to: (@convention(c) (Any, Selector, URLSession, URLSessionTask, URLSessionTaskMetrics) -> Void).self)
-            castedIMP(object, selector, session, task, metrics)
-            objc_setAssociatedObject(session, key, nil, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-        }
-        let swizzledIMP = imp_implementationWithBlock(unsafeBitCast(block, to: AnyObject.self))
-        originalIMP = method_setImplementation(original, swizzledIMP)
-    }
+//    private func injectTaskDidFinishCollectingMetricsIntoDelegateClass(cls: AnyClass) {
+//        let selector = #selector(URLSessionTaskDelegate.urlSession(_:task:didFinishCollecting:))
+//        guard let original = class_getInstanceMethod(cls, selector) else {
+//            let block: @convention(block) (Any, URLSession, URLSessionTask, URLSessionTaskMetrics) -> Void = { _, session, task, metrics in
+//                self.urlSession(session, task: task, didFinishCollecting: metrics)
+//            }
+//            let imp = imp_implementationWithBlock(unsafeBitCast(block, to: AnyObject.self))
+//            class_addMethod(cls, selector, imp, "@@@")
+//            return
+//        }
+//        var originalIMP: IMP?
+//        let block: @convention(block) (Any, URLSession, URLSessionTask, URLSessionTaskMetrics) -> Void = { object, session, task, metrics in
+//            if objc_getAssociatedObject(session, &idKey) == nil {
+//                self.urlSession(session, task: task, didFinishCollecting: metrics)
+//            }
+//            let key = String(selector.hashValue)
+//            objc_setAssociatedObject(session, key, true, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+//            let castedIMP = unsafeBitCast(originalIMP, to: (@convention(c) (Any, Selector, URLSession, URLSessionTask, URLSessionTaskMetrics) -> Void).self)
+//            castedIMP(object, selector, session, task, metrics)
+//            objc_setAssociatedObject(session, key, nil, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+//        }
+//        let swizzledIMP = imp_implementationWithBlock(unsafeBitCast(block, to: AnyObject.self))
+//        originalIMP = method_setImplementation(original, swizzledIMP)
+//    }
 
     func injectRespondsToSelectorIntoDelegateClass(cls: AnyClass) {
         let selector = #selector(NSObject.responds(to:))
@@ -599,12 +740,12 @@ public class URLSessionInstrumentation : NSObject {
         self.setIdKey(value: id, for: downloadTask)
     }
 
-    private func urlSession(_ session: URLSession, task: URLSessionTask, didFinishCollecting metrics: URLSessionTaskMetrics) {
-        let taskId = self.idKeyForTask(task)
-        if (self.requestMap[taskId]?.request) != nil {
-            /// Code for instrumenting colletion should be written here
-        }
-    }
+//    private func urlSession(_ session: URLSession, task: URLSessionTask, didFinishCollecting metrics: URLSessionTaskMetrics) {
+//        let taskId = self.idKeyForTask(task)
+//        if (self.requestMap[taskId]?.request) != nil {
+//            /// Code for instrumenting colletion should be written here
+//        }
+//    }
 
     private func urlSessionTaskWillResume(_ session: URLSessionTask) {
         let taskId = self.idKeyForTask(session)

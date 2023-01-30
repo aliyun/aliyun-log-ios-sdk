@@ -4,11 +4,12 @@
  */
 
 import Foundation
-//import OpenTelemetryApi
-//import OpenTelemetrySdk
 import os.log
+#if canImport(AliyunLogOT)
 import AliyunLogOT
 import AliyunLogTrace
+#endif
+
 #if os(iOS) && !targetEnvironment(macCatalyst)
 //    import NetworkStatus
 #endif // os(iOS) && !targetEnvironment(macCatalyst)

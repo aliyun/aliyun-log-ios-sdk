@@ -41,20 +41,16 @@ https://help.aliyun.com/product/28958.html
     c.ios.deployment_target = '10.0'
     c.tvos.deployment_target =  '10.0'
     c.osx.deployment_target =  '10.12'
-    c.source_files =
-      'AliyunLogProducer/AliyunLogProducer/**/*.{h,m}',
-      'AliyunLogProducer/aliyun-log-c-sdk/**/*.{c,h}'
-
+    c.source_files = 'Sources/Producer/**/*.{h,m}', 'Sources/aliyun-log-c-sdk/**/*.{c,h}'
     c.public_header_files =
-      'AliyunLogProducer/AliyunLogProducer/*.h',
-      'AliyunLogProducer/AliyunLogProducer/Utils/*.h',
-      'AliyunLogProducer/aliyun-log-c-sdk/src/log_define.h',
-      'AliyunLogProducer/aliyun-log-c-sdk/src/log_http_interface.h',
-      'AliyunLogProducer/aliyun-log-c-sdk/src/log_inner_include.h',
-      'AliyunLogProducer/aliyun-log-c-sdk/src/log_multi_thread.h',
-      'AliyunLogProducer/aliyun-log-c-sdk/src/log_producer_client.h',
-      'AliyunLogProducer/aliyun-log-c-sdk/src/log_producer_common.h',
-      'AliyunLogProducer/aliyun-log-c-sdk/src/log_producer_config.h'
+      'Sources/Producer/inclue/*.h',
+      'Sources/aliyun-log-c-sdk/src/log_define.h',
+      'Sources/aliyun-log-c-sdk/src/log_http_interface.h',
+      'Sources/aliyun-log-c-sdk/src/log_inner_include.h',
+      'Sources/aliyun-log-c-sdk/src/log_multi_thread.h',
+      'Sources/aliyun-log-c-sdk/src/log_producer_client.h',
+      'Sources/aliyun-log-c-sdk/src/log_producer_common.h',
+      'Sources/aliyun-log-c-sdk/src/log_producer_config.h'
   end
 
   s.subspec 'Core' do |c|
@@ -63,24 +59,23 @@ https://help.aliyun.com/product/28958.html
     c.osx.deployment_target =  '10.12'
     c.dependency 'AliyunLogProducer/Producer'
     c.dependency 'AliyunLogProducer/OT'
-    c.source_files = 'Core/**/*.{m,h}'
-    c.public_header_files = 'Core/**/*.h'
+    c.source_files = 'Sources/Core/**/*.{m,h}'
+    c.public_header_files = 'Sources/Core/include/*.h'
   end
   
   s.subspec 'OTSwift' do |o|
     o.ios.deployment_target = '10.0'
     o.tvos.deployment_target =  '10.0'
     o.osx.deployment_target =  '10.12'
-    o.source_files = 'OTSwift/**/*.{m,h,swift}'
-    o.public_header_files = 'OTSwift/**/*.h'
+    o.source_files = 'Sources/OTSwift/**/*.{m,h,swift}'
   end
   
   s.subspec 'OT' do |o|
     o.ios.deployment_target = '10.0'
     o.tvos.deployment_target =  '10.0'
     o.osx.deployment_target =  '10.12'
-    o.source_files = 'OT/**/*.{m,h}'
-    o.public_header_files = 'OT/**/*.h'
+    o.source_files = 'Sources/OT/**/*.{m,h}'
+    o.public_header_files = 'Sources/OT/**/include/*.h'
     
     o.dependency 'AliyunLogProducer/OTSwift'
   end
@@ -92,10 +87,10 @@ https://help.aliyun.com/product/28958.html
     c.dependency 'AliyunLogProducer/Core'
     c.dependency 'AliyunLogProducer/OT'
     c.dependency 'AliyunLogProducer/Trace'
-    c.source_files = 'CrashReporter/**/*.{m,h}'
-    c.public_header_files = 'CrashReporter/**/*.h'
-    c.vendored_frameworks = 'CrashReporter/WPKMobi.xcframework'
-    c.exclude_files = 'CrashReporter/WPKMobi.xcframework/**/Headers/*.h'
+    c.source_files = 'Sources/CrashReporter/**/*.{m,h}'
+    c.public_header_files = 'Sources/CrashReporter/include/*.h'
+    c.vendored_frameworks = 'Sources/WPKMobi/WPKMobi.xcframework'
+    c.exclude_files = 'Sources/WPKMobi/WPKMobi.xcframework/**/Headers/*.h'
 
     c.ios.frameworks = "SystemConfiguration", "CoreGraphics"
     c.tvos.frameworks = "SystemConfiguration", "CoreGraphics"
@@ -129,11 +124,10 @@ https://help.aliyun.com/product/28958.html
   s.subspec 'NetworkDiagnosis' do |n|
     n.dependency 'AliyunLogProducer/Core'
     n.dependency 'AliyunLogProducer/OT'
-    n.source_files = 'NetworkDiagnosis/**/*.{m,h}'
-    n.public_header_files = "NetworkDiagnosis/**/*.h"
-    n.vendored_frameworks = 'NetworkDiagnosis/AliNetworkDiagnosis.framework'
-#      n.project_header_files = 'NetworkDiagnosis/AliNetworkDiagnosis.framework/Headers/**/*.h'
-    n.exclude_files = 'NetworkDiagnosis/AliNetworkDiagnosis.framework/**/Headers/*.h'
+    n.source_files = 'Sources/NetworkDiagnosis/**/*.{m,h}'
+    n.public_header_files = "Sources/NetworkDiagnosis/include/*.h"
+    n.vendored_frameworks = 'Sources/AliNetworkDiagnosis/AliNetworkDiagnosis.xcframework'
+    n.exclude_files = 'Sources/AliNetworkDiagnosis/AliNetworkDiagnosis.xcframework/**/Headers/*.h'
     n.frameworks = "SystemConfiguration", "CoreGraphics"
     n.libraries = "z", "c++", "resolv"
     n.pod_target_xcconfig = {
@@ -152,8 +146,8 @@ https://help.aliyun.com/product/28958.html
     t.dependency 'AliyunLogProducer/Producer'
     t.dependency 'AliyunLogProducer/Core'
     t.dependency 'AliyunLogProducer/OT'
-    t.source_files = 'Trace/**/*.{m,h}'
-    t.public_header_files = "Trace/**/*.h"
+    t.source_files = 'Sources/Trace/**/*.{m,h}'
+    t.public_header_files = "Sources/Trace/include/*.h"
     t.pod_target_xcconfig = {
       'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64',
       'OTHER_LDFLAGS' => '-ObjC',
@@ -171,7 +165,7 @@ https://help.aliyun.com/product/28958.html
 #    t.dependency 'AliyunLogProducer/Core'
     t.dependency 'AliyunLogProducer/OT'
     t.dependency 'AliyunLogProducer/Trace'
-    t.source_files = 'Instrumentation/URLSession/**/*.{m,h,swift}'
+    t.source_files = 'Sources/Instrumentation/URLSession/**/*.{m,h,swift}'
 #    t.public_header_files = "Trace/**/*.h"
     t.pod_target_xcconfig = {
       'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64',

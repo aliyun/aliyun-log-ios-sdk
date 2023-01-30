@@ -6,7 +6,7 @@
 //
 
 #import "SLSSdkSender.h"
-#import "AliyunLogProducer.h"
+#import "SLSProducer.h"
 
 @interface SLSSdkSender ()
 

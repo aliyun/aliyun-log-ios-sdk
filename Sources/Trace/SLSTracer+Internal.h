@@ -5,7 +5,7 @@
 //  Created by gordon on 2022/9/14.
 //
 
-#import "AliyunLogProducer.h"
+#import "AliyunLogOT.h"
 #import "SLSTracer.h"
 
 NS_ASSUME_NONNULL_BEGIN

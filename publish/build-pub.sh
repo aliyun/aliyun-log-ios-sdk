@@ -13,6 +13,7 @@ sh build-core.sh
 sh build-crashreporter.sh
 sh build-networkdiagnosis.sh
 sh build-trace.sh
+sh build-urlsession.sh
 
 env=lint pod lib lint AliyunLogProducer.podspec --allow-warnings
 
@@ -26,6 +27,7 @@ mkdir -p build/zip/AliyunLogCore && cp -r build/AliyunLogCore.xcframework build/
 mkdir -p build/zip/AliyunLogCrashReporter && cp -r build/AliyunLogCrashReporter.xcframework build/zip/AliyunLogCrashReporter/AliyunLogCrashReporter.xcframework
 mkdir -p build/zip/AliyunLogNetworkDiagnosis && cp -r build/AliyunLogNetworkDiagnosis.xcframework build/zip/AliyunLogNetworkDiagnosis/AliyunLogNetworkDiagnosis.xcframework
 mkdir -p build/zip/AliyunLogTrace && cp -r build/AliyunLogTrace.xcframework build/zip/AliyunLogTrace/AliyunLogTrace.xcframework
+mkdir -p build/zip/AliyunLogURLSession && cp -r build/AliyunLogURLSession.xcframework build/zip/AliyunLogURLSession/AliyunLogURLSession.xcframework
 
 pushd build/zip
 zip -r ../AliyunLogProducer.zip *

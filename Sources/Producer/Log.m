@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "Log.h"
 #import "TimeUtils.h"
-#import "AliyunLogProducer.h"
+#import "SLSProducer.h"
 
 @interface Log ()
 @property (nonatomic, assign) unsigned int logTime;
