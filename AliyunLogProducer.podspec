@@ -42,15 +42,7 @@ https://help.aliyun.com/product/28958.html
     c.tvos.deployment_target =  '10.0'
     c.osx.deployment_target =  '10.12'
     c.source_files = 'Sources/Producer/**/*.{h,m}', 'Sources/aliyun-log-c-sdk/**/*.{c,h}'
-    c.public_header_files =
-      'Sources/Producer/inclue/*.h',
-      'Sources/aliyun-log-c-sdk/src/log_define.h',
-      'Sources/aliyun-log-c-sdk/src/log_http_interface.h',
-      'Sources/aliyun-log-c-sdk/src/log_inner_include.h',
-      'Sources/aliyun-log-c-sdk/src/log_multi_thread.h',
-      'Sources/aliyun-log-c-sdk/src/log_producer_client.h',
-      'Sources/aliyun-log-c-sdk/src/log_producer_common.h',
-      'Sources/aliyun-log-c-sdk/src/log_producer_config.h'
+    c.public_header_files = 'Sources/Producer/inclue/*.h', 'Sources/aliyun-log-c-sdk/include/*.h'
   end
 
   s.subspec 'Core' do |c|
@@ -63,21 +55,21 @@ https://help.aliyun.com/product/28958.html
     c.public_header_files = 'Sources/Core/include/*.h'
   end
   
-  s.subspec 'OTSwift' do |o|
-    o.ios.deployment_target = '10.0'
-    o.tvos.deployment_target =  '10.0'
-    o.osx.deployment_target =  '10.12'
-    o.source_files = 'Sources/OTSwift/**/*.{m,h,swift}'
+  s.subspec 'OTSwift' do |c|
+    c.ios.deployment_target = '10.0'
+    c.tvos.deployment_target =  '10.0'
+    c.osx.deployment_target =  '10.12'
+    c.source_files = 'Sources/OTSwift/**/*.{m,h,swift}'
   end
   
-  s.subspec 'OT' do |o|
-    o.ios.deployment_target = '10.0'
-    o.tvos.deployment_target =  '10.0'
-    o.osx.deployment_target =  '10.12'
-    o.source_files = 'Sources/OT/**/*.{m,h}'
-    o.public_header_files = 'Sources/OT/**/include/*.h'
+  s.subspec 'OT' do |c|
+    c.ios.deployment_target = '10.0'
+    c.tvos.deployment_target =  '10.0'
+    c.osx.deployment_target =  '10.12'
+    c.source_files = 'Sources/OT/**/*.{m,h}'
+    c.public_header_files = 'Sources/OT/**/include/*.h'
     
-    o.dependency 'AliyunLogProducer/OTSwift'
+    c.dependency 'AliyunLogProducer/OTSwift'
   end
   
   s.subspec 'CrashReporter' do |c|
@@ -121,57 +113,54 @@ https://help.aliyun.com/product/28958.html
     }
   end
   
-  s.subspec 'NetworkDiagnosis' do |n|
-    n.dependency 'AliyunLogProducer/Core'
-    n.dependency 'AliyunLogProducer/OT'
-    n.source_files = 'Sources/NetworkDiagnosis/**/*.{m,h}'
-    n.public_header_files = "Sources/NetworkDiagnosis/include/*.h"
-    n.vendored_frameworks = 'Sources/AliNetworkDiagnosis/AliNetworkDiagnosis.xcframework'
-    n.exclude_files = 'Sources/AliNetworkDiagnosis/AliNetworkDiagnosis.xcframework/**/Headers/*.h'
-    n.frameworks = "SystemConfiguration", "CoreGraphics"
-    n.libraries = "z", "c++", "resolv"
-    n.pod_target_xcconfig = {
+  s.subspec 'NetworkDiagnosis' do |c|
+    c.dependency 'AliyunLogProducer/Core'
+    c.dependency 'AliyunLogProducer/OT'
+    c.source_files = 'Sources/NetworkDiagnosis/**/*.{m,h}'
+    c.public_header_files = "Sources/NetworkDiagnosis/include/*.h"
+    c.vendored_frameworks = 'Sources/AliNetworkDiagnosis/AliNetworkDiagnosis.xcframework'
+    c.exclude_files = 'Sources/AliNetworkDiagnosis/AliNetworkDiagnosis.xcframework/**/Headers/*.h'
+    c.frameworks = "SystemConfiguration", "CoreGraphics"
+    c.libraries = "z", "c++", "resolv"
+    c.pod_target_xcconfig = {
       'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64',
       'OTHER_LDFLAGS' => '-ObjC',
     }
-    n.user_target_xcconfig = {
+    c.user_target_xcconfig = {
       'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
     }
   end
   
-  s.subspec 'Trace' do |t|
-    t.ios.deployment_target = '10.0'
-    t.tvos.deployment_target =  '10.0'
-    t.osx.deployment_target =  '10.12'
-    t.dependency 'AliyunLogProducer/Producer'
-    t.dependency 'AliyunLogProducer/Core'
-    t.dependency 'AliyunLogProducer/OT'
-    t.source_files = 'Sources/Trace/**/*.{m,h}'
-    t.public_header_files = "Sources/Trace/include/*.h"
-    t.pod_target_xcconfig = {
+  s.subspec 'Trace' do |c|
+    c.ios.deployment_target = '10.0'
+    c.tvos.deployment_target =  '10.0'
+    c.osx.deployment_target =  '10.12'
+    c.dependency 'AliyunLogProducer/Producer'
+    c.dependency 'AliyunLogProducer/Core'
+    c.dependency 'AliyunLogProducer/OT'
+    c.source_files = 'Sources/Trace/**/*.{m,h}'
+    c.public_header_files = "Sources/Trace/include/*.h"
+    c.pod_target_xcconfig = {
       'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64',
       'OTHER_LDFLAGS' => '-ObjC',
     }
-    t.user_target_xcconfig = {
+    c.user_target_xcconfig = {
       'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
     }
   end
   
-  s.subspec 'URLSessionInstrumentation' do |t|
-    t.ios.deployment_target = '10.0'
-    t.tvos.deployment_target =  '10.0'
-    t.osx.deployment_target =  '10.12'
-#    t.dependency 'AliyunLogProducer/Producer'
-#    t.dependency 'AliyunLogProducer/Core'
-    t.dependency 'AliyunLogProducer/OT'
-    t.dependency 'AliyunLogProducer/Trace'
-    t.source_files = 'Sources/Instrumentation/URLSession/**/*.{m,h,swift}'
-#    t.public_header_files = "Trace/**/*.h"
-    t.pod_target_xcconfig = {
+  s.subspec 'URLSessionInstrumentation' do |c|
+    c.ios.deployment_target = '10.0'
+    c.tvos.deployment_target =  '10.0'
+    c.osx.deployment_target =  '10.12'
+    c.dependency 'AliyunLogProducer/OT'
+    c.dependency 'AliyunLogProducer/Trace'
+    c.source_files = 'Sources/Instrumentation/URLSession/**/*.{m,h,swift}'
+    c.pod_target_xcconfig = {
       'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64',
       'OTHER_LDFLAGS' => '-ObjC',
     }
-    t.user_target_xcconfig = {
+    c.user_target_xcconfig = {
       'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
     }
   end
