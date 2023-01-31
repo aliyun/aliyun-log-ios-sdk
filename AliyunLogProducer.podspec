@@ -14,10 +14,10 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-log service ios producer.
-https://help.aliyun.com/document_detail/29063.html
-https://help.aliyun.com/product/28958.html
-                       DESC
+  log service ios producer.
+  https://help.aliyun.com/document_detail/29063.html
+  https://help.aliyun.com/product/28958.html
+  DESC
 
   s.homepage         = 'https://github.com/aliyun/aliyun-log-ios-sdk'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
@@ -42,7 +42,7 @@ https://help.aliyun.com/product/28958.html
     c.tvos.deployment_target =  '10.0'
     c.osx.deployment_target =  '10.12'
     c.source_files = 'Sources/Producer/**/*.{h,m}', 'Sources/aliyun-log-c-sdk/**/*.{c,h}'
-    c.public_header_files = 'Sources/Producer/inclue/*.h', 'Sources/aliyun-log-c-sdk/include/*.h'
+    c.public_header_files = 'Sources/Producer/include/*.h', 'Sources/aliyun-log-c-sdk/include/*.h'
   end
 
   s.subspec 'Core' do |c|

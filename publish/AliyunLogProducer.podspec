@@ -198,7 +198,7 @@ Pod::Spec.new do |s|
         }
     end
     
-    s.subspec 'URLSession' do |c|
+    s.subspec 'URLSessionInstrumentation' do |c|
         c.ios.deployment_target = IOS_TARGET_VERSION
         c.tvos.deployment_target =  TVOS_TARGET_VERSION
         c.osx.deployment_target =  OSX_TARGET_VERSION
