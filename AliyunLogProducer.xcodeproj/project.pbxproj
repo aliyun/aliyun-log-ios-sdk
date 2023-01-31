@@ -1,0 +1,2696 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 52;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F809903D292DCC5E0000DEE9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F80DF47C26A7037000151F7C /* CoreGraphics.framework */; };
+		F809903E292DCC5E0000DEE9 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F80DF47A26A7035E00151F7C /* SystemConfiguration.framework */; };
+		F809903F292DCC5E0000DEE9 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F80DF47826A7034E00151F7C /* libc++.tbd */; };
+		F8099040292DCC5E0000DEE9 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D0CAEEE252177D800A4985A /* libz.tbd */; };
+		F809904F292DCF9B0000DEE9 /* AliyunLogOTSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8099046292DCC5E0000DEE9 /* AliyunLogOTSwift.framework */; };
+		F8255A1E2976715E00411DAD /* SLSRecordableSpan.h in Headers */ = {isa = PBXBuildFile; fileRef = F8255A042976715D00411DAD /* SLSRecordableSpan.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F8255A1F2976715E00411DAD /* SLSKeyValue.h in Headers */ = {isa = PBXBuildFile; fileRef = F8255A052976715D00411DAD /* SLSKeyValue.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F8255A202976715E00411DAD /* SLSAttribute.h in Headers */ = {isa = PBXBuildFile; fileRef = F8255A062976715D00411DAD /* SLSAttribute.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F8255A212976715E00411DAD /* SLSEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = F8255A072976715D00411DAD /* SLSEvent.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F8255A222976715E00411DAD /* SLSResource.h in Headers */ = {isa = PBXBuildFile; fileRef = F8255A082976715D00411DAD /* SLSResource.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F8255A232976715E00411DAD /* SLSSpanProviderProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = F8255A092976715D00411DAD /* SLSSpanProviderProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F8255A242976715E00411DAD /* SLSSpan.h in Headers */ = {isa = PBXBuildFile; fileRef = F8255A0A2976715D00411DAD /* SLSSpan.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F8255A252976715E00411DAD /* AliyunLogOT.h in Headers */ = {isa = PBXBuildFile; fileRef = F8255A0B2976715D00411DAD /* AliyunLogOT.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F8255A262976715E00411DAD /* SLSContextManager.h in Headers */ = {isa = PBXBuildFile; fileRef = F8255A0C2976715D00411DAD /* SLSContextManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F8255A272976715E00411DAD /* SLSLink.h in Headers */ = {isa = PBXBuildFile; fileRef = F8255A0D2976715D00411DAD /* SLSLink.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F8255A282976715E00411DAD /* SLSSpanBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = F8255A0E2976715D00411DAD /* SLSSpanBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F8255A292976715E00411DAD /* SLSSpanProcessorProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = F8255A0F2976715D00411DAD /* SLSSpanProcessorProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F8255A2A2976715E00411DAD /* SLSContextManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F8255A102976715D00411DAD /* SLSContextManager.m */; };
+		F8255A2B2976715E00411DAD /* SLSIdGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = F8255A112976715D00411DAD /* SLSIdGenerator.h */; };
+		F8255A2D2976715E00411DAD /* SLSAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = F8255A132976715D00411DAD /* SLSAttribute.m */; };
+		F8255A2E2976715E00411DAD /* SLSTimeUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = F8255A142976715D00411DAD /* SLSTimeUtils.m */; };
+		F8255A2F2976715E00411DAD /* SLSResource.m in Sources */ = {isa = PBXBuildFile; fileRef = F8255A152976715D00411DAD /* SLSResource.m */; };
+		F8255A302976715E00411DAD /* SLSSpanBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = F8255A162976715D00411DAD /* SLSSpanBuilder.m */; };
+		F8255A312976715E00411DAD /* SLSLink.m in Sources */ = {isa = PBXBuildFile; fileRef = F8255A172976715D00411DAD /* SLSLink.m */; };
+		F8255A322976715E00411DAD /* SLSTimeUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = F8255A182976715D00411DAD /* SLSTimeUtils.h */; };
+		F8255A332976715E00411DAD /* SLSKeyValue.m in Sources */ = {isa = PBXBuildFile; fileRef = F8255A192976715D00411DAD /* SLSKeyValue.m */; };
+		F8255A342976715E00411DAD /* SLSSpan.m in Sources */ = {isa = PBXBuildFile; fileRef = F8255A1A2976715D00411DAD /* SLSSpan.m */; };
+		F8255A352976715E00411DAD /* SLSRecordableSpan.m in Sources */ = {isa = PBXBuildFile; fileRef = F8255A1B2976715D00411DAD /* SLSRecordableSpan.m */; };
+		F8255A362976715E00411DAD /* SLSEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = F8255A1C2976715D00411DAD /* SLSEvent.m */; };
+		F8255A372976715E00411DAD /* SLSIdGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = F8255A1D2976715E00411DAD /* SLSIdGenerator.m */; };
+		F8255A3B297672CC00411DAD /* ActivityContextManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8255A39297672CC00411DAD /* ActivityContextManager.swift */; };
+		F8255A5F2976739D00411DAD /* SLSConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = F8255A3C2976739D00411DAD /* SLSConfiguration.m */; };
+		F8255A602976739D00411DAD /* SLSSdkFeature.h in Headers */ = {isa = PBXBuildFile; fileRef = F8255A3E2976739D00411DAD /* SLSSdkFeature.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F8255A612976739D00411DAD /* SLSConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = F8255A3F2976739D00411DAD /* SLSConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F8255A622976739D00411DAD /* SLSNoOpSender.h in Headers */ = {isa = PBXBuildFile; fileRef = F8255A402976739D00411DAD /* SLSNoOpSender.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F8255A632976739D00411DAD /* AliyunLogCore.h in Headers */ = {isa = PBXBuildFile; fileRef = F8255A412976739D00411DAD /* AliyunLogCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F8255A642976739D00411DAD /* SLSCocoa.h in Headers */ = {isa = PBXBuildFile; fileRef = F8255A422976739D00411DAD /* SLSCocoa.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F8255A652976739D00411DAD /* Utdid.h in Headers */ = {isa = PBXBuildFile; fileRef = F8255A432976739D00411DAD /* Utdid.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F8255A662976739D00411DAD /* LogProducerClient+Bricks.h in Headers */ = {isa = PBXBuildFile; fileRef = F8255A442976739D00411DAD /* LogProducerClient+Bricks.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F8255A672976739D00411DAD /* SLSFeatureProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = F8255A452976739D00411DAD /* SLSFeatureProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F8255A682976739D00411DAD /* SLSSdkSender.h in Headers */ = {isa = PBXBuildFile; fileRef = F8255A462976739D00411DAD /* SLSSdkSender.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F8255A692976739D00411DAD /* SLSNoOpFeature.h in Headers */ = {isa = PBXBuildFile; fileRef = F8255A472976739D00411DAD /* SLSNoOpFeature.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F8255A6A2976739D00411DAD /* SLSCredentials.h in Headers */ = {isa = PBXBuildFile; fileRef = F8255A482976739D00411DAD /* SLSCredentials.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F8255A6B2976739D00411DAD /* SLSSenderProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = F8255A492976739D00411DAD /* SLSSenderProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F8255A6C2976739D00411DAD /* SLSSwizzle.h in Headers */ = {isa = PBXBuildFile; fileRef = F8255A4A2976739D00411DAD /* SLSSwizzle.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F8255A6D2976739D00411DAD /* SLSUserInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = F8255A4B2976739D00411DAD /* SLSUserInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F8255A6E2976739D00411DAD /* SLSNoOpSender.m in Sources */ = {isa = PBXBuildFile; fileRef = F8255A4C2976739D00411DAD /* SLSNoOpSender.m */; };
+		F8255A6F2976739D00411DAD /* SLSDeviceUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = F8255A4D2976739D00411DAD /* SLSDeviceUtils.h */; };
+		F8255A702976739D00411DAD /* SLSStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = F8255A4E2976739D00411DAD /* SLSStorage.h */; };
+		F8255A712976739D00411DAD /* SLSAppUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = F8255A4F2976739D00411DAD /* SLSAppUtils.h */; };
+		F8255A722976739D00411DAD /* SLSUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F8255A502976739D00411DAD /* SLSUserInfo.m */; };
+		F8255A732976739D00411DAD /* SLSSdkSender.m in Sources */ = {isa = PBXBuildFile; fileRef = F8255A512976739D00411DAD /* SLSSdkSender.m */; };
+		F8255A742976739D00411DAD /* SLSStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = F8255A522976739D00411DAD /* SLSStorage.m */; };
+		F8255A752976739D00411DAD /* SLSDeviceUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = F8255A532976739D00411DAD /* SLSDeviceUtils.m */; };
+		F8255A762976739D00411DAD /* SLSCredentials.m in Sources */ = {isa = PBXBuildFile; fileRef = F8255A542976739D00411DAD /* SLSCredentials.m */; };
+		F8255A772976739D00411DAD /* SLSReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = F8255A552976739D00411DAD /* SLSReachability.m */; };
+		F8255A782976739D00411DAD /* LogProducerClient+Bricks.m in Sources */ = {isa = PBXBuildFile; fileRef = F8255A562976739D00411DAD /* LogProducerClient+Bricks.m */; };
+		F8255A792976739D00411DAD /* SLSAppUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = F8255A572976739D00411DAD /* SLSAppUtils.m */; };
+		F8255A7A2976739D00411DAD /* Utdid.m in Sources */ = {isa = PBXBuildFile; fileRef = F8255A582976739D00411DAD /* Utdid.m */; };
+		F8255A7C2976739D00411DAD /* SLSCocoa.m in Sources */ = {isa = PBXBuildFile; fileRef = F8255A5A2976739D00411DAD /* SLSCocoa.m */; };
+		F8255A7D2976739D00411DAD /* SLSNoOpFeature.m in Sources */ = {isa = PBXBuildFile; fileRef = F8255A5B2976739D00411DAD /* SLSNoOpFeature.m */; };
+		F8255A7E2976739D00411DAD /* SLSReachability.h in Headers */ = {isa = PBXBuildFile; fileRef = F8255A5C2976739D00411DAD /* SLSReachability.h */; };
+		F8255A7F2976739D00411DAD /* SLSSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = F8255A5D2976739D00411DAD /* SLSSwizzle.m */; };
+		F8255A802976739D00411DAD /* SLSSdkFeature.m in Sources */ = {isa = PBXBuildFile; fileRef = F8255A5E2976739D00411DAD /* SLSSdkFeature.m */; };
+		F834A15428D3116300000F72 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F80DF47C26A7037000151F7C /* CoreGraphics.framework */; };
+		F834A15528D3116300000F72 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F80DF47A26A7035E00151F7C /* SystemConfiguration.framework */; };
+		F834A15728D3116300000F72 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F80DF47826A7034E00151F7C /* libc++.tbd */; };
+		F834A15828D3116300000F72 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D0CAEEE252177D800A4985A /* libz.tbd */; };
+		F838F08429767663001F1275 /* SLSCrashReporterFeature.m in Sources */ = {isa = PBXBuildFile; fileRef = F838F07D29767663001F1275 /* SLSCrashReporterFeature.m */; };
+		F838F08529767663001F1275 /* AliyunLogCrashReporter.h in Headers */ = {isa = PBXBuildFile; fileRef = F838F07F29767663001F1275 /* AliyunLogCrashReporter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F838F08629767663001F1275 /* SLSCrashReporter.h in Headers */ = {isa = PBXBuildFile; fileRef = F838F08029767663001F1275 /* SLSCrashReporter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F838F08729767663001F1275 /* SLSCrashReporterFeature.h in Headers */ = {isa = PBXBuildFile; fileRef = F838F08129767663001F1275 /* SLSCrashReporterFeature.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F838F08829767663001F1275 /* SLSCrashReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = F838F08229767663001F1275 /* SLSCrashReporter.m */; };
+		F838F08C297676B6001F1275 /* WPKMobi.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = F838F08B297676B6001F1275 /* WPKMobi.xcframework */; };
+		F838F0912976771F001F1275 /* AliNetworkDiagnosis.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = F838F0902976771F001F1275 /* AliNetworkDiagnosis.xcframework */; };
+		F838F09B2976772B001F1275 /* SLSNetworkDiagnosis.h in Headers */ = {isa = PBXBuildFile; fileRef = F838F0942976772B001F1275 /* SLSNetworkDiagnosis.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F838F09C2976772B001F1275 /* AliyunLogNetworkDiagnosis.h in Headers */ = {isa = PBXBuildFile; fileRef = F838F0952976772B001F1275 /* AliyunLogNetworkDiagnosis.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F838F09D2976772B001F1275 /* SLSNetworkDiagnosisFeature.h in Headers */ = {isa = PBXBuildFile; fileRef = F838F0962976772B001F1275 /* SLSNetworkDiagnosisFeature.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F838F09E2976772B001F1275 /* SLSNetworkDiagnosisProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = F838F0972976772B001F1275 /* SLSNetworkDiagnosisProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F838F09F2976772B001F1275 /* SLSNetworkDiagnosisFeature.m in Sources */ = {isa = PBXBuildFile; fileRef = F838F0982976772B001F1275 /* SLSNetworkDiagnosisFeature.m */; };
+		F838F0A02976772B001F1275 /* SLSNetworkDiagnosis.m in Sources */ = {isa = PBXBuildFile; fileRef = F838F0992976772B001F1275 /* SLSNetworkDiagnosis.m */; };
+		F838F0AC29767771001F1275 /* SLSTracer.m in Sources */ = {isa = PBXBuildFile; fileRef = F838F0A229767770001F1275 /* SLSTracer.m */; };
+		F838F0AD29767771001F1275 /* SLSURLSessionInstrumentation.h in Headers */ = {isa = PBXBuildFile; fileRef = F838F0A329767770001F1275 /* SLSURLSessionInstrumentation.h */; };
+		F838F0AE29767771001F1275 /* AliyunLogTrace.h in Headers */ = {isa = PBXBuildFile; fileRef = F838F0A529767770001F1275 /* AliyunLogTrace.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F838F0AF29767771001F1275 /* SLSTraceFeature.h in Headers */ = {isa = PBXBuildFile; fileRef = F838F0A629767770001F1275 /* SLSTraceFeature.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F838F0B029767771001F1275 /* SLSTracer.h in Headers */ = {isa = PBXBuildFile; fileRef = F838F0A729767770001F1275 /* SLSTracer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F838F0B129767771001F1275 /* SLSTraceFeature.m in Sources */ = {isa = PBXBuildFile; fileRef = F838F0A829767770001F1275 /* SLSTraceFeature.m */; };
+		F838F0B229767771001F1275 /* SLSURLSessionInstrumentation.m in Sources */ = {isa = PBXBuildFile; fileRef = F838F0A929767770001F1275 /* SLSURLSessionInstrumentation.m */; };
+		F838F0B329767771001F1275 /* SLSTracer+Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = F838F0AA29767771001F1275 /* SLSTracer+Internal.h */; };
+		F838F0B7297677DF001F1275 /* Unity4SLSiOS.m in Sources */ = {isa = PBXBuildFile; fileRef = F838F0B6297677DF001F1275 /* Unity4SLSiOS.m */; };
+		F838F111297679CF001F1275 /* URLSessionInstrumentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F838F10C297679CF001F1275 /* URLSessionInstrumentation.swift */; };
+		F838F112297679CF001F1275 /* URLSessionInstrumentationConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = F838F10D297679CF001F1275 /* URLSessionInstrumentationConfiguration.swift */; };
+		F838F113297679CF001F1275 /* InstrumentationUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F838F10E297679CF001F1275 /* InstrumentationUtils.swift */; };
+		F838F114297679CF001F1275 /* URLSessionLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = F838F10F297679CF001F1275 /* URLSessionLogger.swift */; };
+		F84F8ADD2814E1180038A46E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F80DF47C26A7037000151F7C /* CoreGraphics.framework */; };
+		F84F8ADE2814E1180038A46E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F80DF47A26A7035E00151F7C /* SystemConfiguration.framework */; };
+		F84F8AE02814E1180038A46E /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F80DF47826A7034E00151F7C /* libc++.tbd */; };
+		F84F8AE12814E1180038A46E /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D0CAEEE252177D800A4985A /* libz.tbd */; };
+		F8896C682977FAF0004CB258 /* SLSProducer.h in Headers */ = {isa = PBXBuildFile; fileRef = F8896C672977FAF0004CB258 /* SLSProducer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F8E05D432976819C002CD256 /* log_persistent_manager.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E05CFE2976819C002CD256 /* log_persistent_manager.h */; };
+		F8E05D442976819C002CD256 /* log_sha1.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E05CFF2976819C002CD256 /* log_sha1.h */; };
+		F8E05D452976819C002CD256 /* log_producer_common.c in Sources */ = {isa = PBXBuildFile; fileRef = F8E05D002976819C002CD256 /* log_producer_common.c */; };
+		F8E05D462976819C002CD256 /* log_api.c in Sources */ = {isa = PBXBuildFile; fileRef = F8E05D012976819C002CD256 /* log_api.c */; };
+		F8E05D472976819C002CD256 /* inner_log.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E05D022976819C002CD256 /* inner_log.h */; };
+		F8E05D482976819C002CD256 /* log_sds.c in Sources */ = {isa = PBXBuildFile; fileRef = F8E05D032976819C002CD256 /* log_sds.c */; };
+		F8E05D492976819C002CD256 /* log_producer_sender.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E05D042976819C002CD256 /* log_producer_sender.h */; };
+		F8E05D4A2976819C002CD256 /* log_builder.c in Sources */ = {isa = PBXBuildFile; fileRef = F8E05D052976819C002CD256 /* log_builder.c */; };
+		F8E05D4B2976819C002CD256 /* log_producer_config.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E05D072976819C002CD256 /* log_producer_config.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F8E05D4C2976819C002CD256 /* log_producer_client.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E05D082976819C002CD256 /* log_producer_client.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F8E05D4D2976819C002CD256 /* inner_log.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E05D092976819C002CD256 /* inner_log.h */; };
+		F8E05D4E2976819C002CD256 /* log_inner_include.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E05D0A2976819C002CD256 /* log_inner_include.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F8E05D4F2976819C002CD256 /* log_http_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E05D0B2976819C002CD256 /* log_http_interface.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F8E05D502976819C002CD256 /* log_multi_thread.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E05D0C2976819C002CD256 /* log_multi_thread.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F8E05D512976819C002CD256 /* log_producer_common.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E05D0D2976819C002CD256 /* log_producer_common.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F8E05D522976819C002CD256 /* log_define.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E05D0E2976819C002CD256 /* log_define.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F8E05D532976819C002CD256 /* log_hmac-sha.c in Sources */ = {isa = PBXBuildFile; fileRef = F8E05D0F2976819C002CD256 /* log_hmac-sha.c */; };
+		F8E05D542976819C002CD256 /* log_queue.c in Sources */ = {isa = PBXBuildFile; fileRef = F8E05D102976819C002CD256 /* log_queue.c */; };
+		F8E05D552976819C002CD256 /* log_ring_file.c in Sources */ = {isa = PBXBuildFile; fileRef = F8E05D112976819C002CD256 /* log_ring_file.c */; };
+		F8E05D562976819C002CD256 /* log_md5.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E05D122976819C002CD256 /* log_md5.h */; };
+		F8E05D572976819C002CD256 /* log_lz4.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E05D132976819C002CD256 /* log_lz4.h */; };
+		F8E05D582976819C002CD256 /* log_util.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E05D142976819C002CD256 /* log_util.h */; };
+		F8E05D592976819C002CD256 /* log_producer_manager.c in Sources */ = {isa = PBXBuildFile; fileRef = F8E05D152976819C002CD256 /* log_producer_manager.c */; };
+		F8E05D5A2976819C002CD256 /* log_producer_config.c in Sources */ = {isa = PBXBuildFile; fileRef = F8E05D162976819C002CD256 /* log_producer_config.c */; };
+		F8E05D5B2976819C002CD256 /* log_sha1.c in Sources */ = {isa = PBXBuildFile; fileRef = F8E05D172976819C002CD256 /* log_sha1.c */; };
+		F8E05D5C2976819C002CD256 /* log_persistent_manager.c in Sources */ = {isa = PBXBuildFile; fileRef = F8E05D182976819C002CD256 /* log_persistent_manager.c */; };
+		F8E05D5D2976819C002CD256 /* log_sds.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E05D192976819C002CD256 /* log_sds.h */; };
+		F8E05D5E2976819C002CD256 /* inner_log.c in Sources */ = {isa = PBXBuildFile; fileRef = F8E05D1A2976819C002CD256 /* inner_log.c */; };
+		F8E05D5F2976819C002CD256 /* log_producer_client.c in Sources */ = {isa = PBXBuildFile; fileRef = F8E05D1B2976819C002CD256 /* log_producer_client.c */; };
+		F8E05D602976819C002CD256 /* log_api.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E05D1C2976819C002CD256 /* log_api.h */; };
+		F8E05D612976819C002CD256 /* log_hmac-sha.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E05D1D2976819C002CD256 /* log_hmac-sha.h */; };
+		F8E05D622976819C002CD256 /* log_http_interface.c in Sources */ = {isa = PBXBuildFile; fileRef = F8E05D1E2976819C002CD256 /* log_http_interface.c */; };
+		F8E05D632976819C002CD256 /* log_builder.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E05D1F2976819C002CD256 /* log_builder.h */; };
+		F8E05D642976819C002CD256 /* log_producer_sender.c in Sources */ = {isa = PBXBuildFile; fileRef = F8E05D202976819C002CD256 /* log_producer_sender.c */; };
+		F8E05D652976819C002CD256 /* log_util.c in Sources */ = {isa = PBXBuildFile; fileRef = F8E05D212976819C002CD256 /* log_util.c */; };
+		F8E05D662976819C002CD256 /* log_producer_manager.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E05D222976819C002CD256 /* log_producer_manager.h */; };
+		F8E05D672976819C002CD256 /* log_md5.c in Sources */ = {isa = PBXBuildFile; fileRef = F8E05D232976819C002CD256 /* log_md5.c */; };
+		F8E05D682976819C002CD256 /* log_lz4.c in Sources */ = {isa = PBXBuildFile; fileRef = F8E05D242976819C002CD256 /* log_lz4.c */; };
+		F8E05D692976819C002CD256 /* log_ring_file.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E05D252976819C002CD256 /* log_ring_file.h */; };
+		F8E05D6A2976819C002CD256 /* log_queue.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E05D262976819C002CD256 /* log_queue.h */; };
+		F8E05D6B2976819C002CD256 /* Log.m in Sources */ = {isa = PBXBuildFile; fileRef = F8E05D282976819C002CD256 /* Log.m */; };
+		F8E05D6E2976819C002CD256 /* LogProducerConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = F8E05D2B2976819C002CD256 /* LogProducerConfig.m */; };
+		F8E05D6F2976819C002CD256 /* SLSURLSession.m in Sources */ = {isa = PBXBuildFile; fileRef = F8E05D2C2976819C002CD256 /* SLSURLSession.m */; };
+		F8E05D702976819C002CD256 /* SLSHttpHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = F8E05D2D2976819C002CD256 /* SLSHttpHeader.m */; };
+		F8E05D712976819C002CD256 /* LogProducerClient.m in Sources */ = {isa = PBXBuildFile; fileRef = F8E05D2E2976819C002CD256 /* LogProducerClient.m */; };
+		F8E05D722976819C002CD256 /* NSString+SLS.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E05D302976819C002CD256 /* NSString+SLS.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F8E05D732976819C002CD256 /* NSDictionary+SLS.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E05D312976819C002CD256 /* NSDictionary+SLS.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F8E05D742976819C002CD256 /* SLSUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E05D322976819C002CD256 /* SLSUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F8E05D752976819D002CD256 /* NSDateFormatter+SLS.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E05D332976819C002CD256 /* NSDateFormatter+SLS.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F8E05D762976819D002CD256 /* TimeUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E05D342976819C002CD256 /* TimeUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F8E05D772976819D002CD256 /* LogProducerConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E05D352976819C002CD256 /* LogProducerConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F8E05D782976819D002CD256 /* Log.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E05D362976819C002CD256 /* Log.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F8E05D792976819D002CD256 /* LogProducerClient.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E05D372976819C002CD256 /* LogProducerClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F8E05D7A2976819D002CD256 /* SLSHttpHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E05D382976819C002CD256 /* SLSHttpHeader.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F8E05D7B2976819D002CD256 /* SLSURLSession.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E05D392976819C002CD256 /* SLSURLSession.h */; };
+		F8E05D7C2976819D002CD256 /* SLSSystemCapabilities.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E05D3A2976819C002CD256 /* SLSSystemCapabilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F8E05D7D2976819D002CD256 /* AliyunLogProducer.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E05D3B2976819C002CD256 /* AliyunLogProducer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F8E05D7F2976819D002CD256 /* NSDictionary+SLS.m in Sources */ = {isa = PBXBuildFile; fileRef = F8E05D3D2976819C002CD256 /* NSDictionary+SLS.m */; };
+		F8E05D802976819D002CD256 /* NSString+SLS.m in Sources */ = {isa = PBXBuildFile; fileRef = F8E05D3E2976819C002CD256 /* NSString+SLS.m */; };
+		F8E05D812976819D002CD256 /* TimeUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = F8E05D3F2976819C002CD256 /* TimeUtils.m */; };
+		F8E05D822976819D002CD256 /* NSDateFormatter+SLS.m in Sources */ = {isa = PBXBuildFile; fileRef = F8E05D402976819C002CD256 /* NSDateFormatter+SLS.m */; };
+		F8E05D842976819D002CD256 /* SLSUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = F8E05D422976819C002CD256 /* SLSUtils.m */; };
+		F8E74BF428ACBD5A000609C3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8E74BF328ACBD5A000609C3 /* CoreGraphics.framework */; };
+		F8E74BF628ACBD65000609C3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8E74BF528ACBD65000609C3 /* SystemConfiguration.framework */; };
+		F8E74BF828ACBD71000609C3 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F8E74BF728ACBD71000609C3 /* libc++.tbd */; };
+		F8E74BFA28ACBD78000609C3 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F8E74BF928ACBD78000609C3 /* libz.tbd */; };
+		F8F6A9A328ABBB730070B023 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F80DF47C26A7037000151F7C /* CoreGraphics.framework */; };
+		F8F6A9A428ABBB730070B023 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F80DF47A26A7035E00151F7C /* SystemConfiguration.framework */; };
+		F8F6A9A528ABBB730070B023 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F80DF47826A7034E00151F7C /* libc++.tbd */; };
+		F8F6A9A628ABBB730070B023 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D0CAEEE252177D800A4985A /* libz.tbd */; };
+		F8F6AA4828AC7B6F0070B023 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F80DF47C26A7037000151F7C /* CoreGraphics.framework */; };
+		F8F6AA4928AC7B6F0070B023 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F80DF47A26A7035E00151F7C /* SystemConfiguration.framework */; };
+		F8F6AA4A28AC7B6F0070B023 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F80DF47826A7034E00151F7C /* libc++.tbd */; };
+		F8F6AA4B28AC7B6F0070B023 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D0CAEEE252177D800A4985A /* libz.tbd */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F809904C292DCF180000DEE9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9D984DA92520A9B7009DE4FE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F809901F292DCC5E0000DEE9;
+			remoteInfo = AliyunLogOTSwift;
+		};
+		F8099051292DCF9B0000DEE9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9D984DA92520A9B7009DE4FE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F809901F292DCC5E0000DEE9;
+			remoteInfo = AliyunLogOTSwift;
+		};
+		F838F07B29767620001F1275 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9D984DA92520A9B7009DE4FE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F8F6A96428ABBB730070B023;
+			remoteInfo = AliyunLogOT;
+		};
+		F8896C612977F05D004CB258 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9D984DA92520A9B7009DE4FE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F8F6A96428ABBB730070B023;
+			remoteInfo = AliyunLogOT;
+		};
+		F8896C632977F05D004CB258 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9D984DA92520A9B7009DE4FE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F834A14A28D3116300000F72;
+			remoteInfo = AliyunLogTrace;
+		};
+		F8896C652977F06C004CB258 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9D984DA92520A9B7009DE4FE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F8F6AA3128AC7B6F0070B023;
+			remoteInfo = AliyunLogCore;
+		};
+		F8E4D2042976758000880E6F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9D984DA92520A9B7009DE4FE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9D984DB12520A9B7009DE4FE;
+			remoteInfo = AliyunLogProducer;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		F8099042292DCC5E0000DEE9 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F834A15A28D3116300000F72 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F838F10729767993001F1275 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F84F8AE32814E1180038A46E /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F87828C828B6089D00F3D2B5 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F89F65CB273E454B00CEE012 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F8F6AA4D28AC7B6F0070B023 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		9D0CAEEE252177D800A4985A /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/lib/libz.tbd; sourceTree = DEVELOPER_DIR; };
+		9D984DB22520A9B7009DE4FE /* AliyunLogProducer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AliyunLogProducer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F8099046292DCC5E0000DEE9 /* AliyunLogOTSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AliyunLogOTSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F809904B292DCD680000DEE9 /* build-ot-swift.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = "build-ot-swift.sh"; path = "publish/build-ot-swift.sh"; sourceTree = "<group>"; };
+		F80DF47826A7034E00151F7C /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk/usr/lib/libc++.tbd"; sourceTree = DEVELOPER_DIR; };
+		F80DF47A26A7035E00151F7C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
+		F80DF47C26A7037000151F7C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
+		F81137E028DB096600F5E54C /* producer_symbols.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = producer_symbols.txt; sourceTree = "<group>"; };
+		F81137E128DB096600F5E54C /* crash_reporter_symbols.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = crash_reporter_symbols.txt; sourceTree = "<group>"; };
+		F81137E328DB13F200F5E54C /* build-xcframework.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = "build-xcframework.sh"; path = "publish/build-xcframework.sh"; sourceTree = "<group>"; };
+		F820294528C5A3AF00A79810 /* strip_symbols.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = strip_symbols.sh; path = publish/strip_symbols.sh; sourceTree = "<group>"; };
+		F8255A042976715D00411DAD /* SLSRecordableSpan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLSRecordableSpan.h; sourceTree = "<group>"; };
+		F8255A052976715D00411DAD /* SLSKeyValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLSKeyValue.h; sourceTree = "<group>"; };
+		F8255A062976715D00411DAD /* SLSAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLSAttribute.h; sourceTree = "<group>"; };
+		F8255A072976715D00411DAD /* SLSEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLSEvent.h; sourceTree = "<group>"; };
+		F8255A082976715D00411DAD /* SLSResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLSResource.h; sourceTree = "<group>"; };
+		F8255A092976715D00411DAD /* SLSSpanProviderProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLSSpanProviderProtocol.h; sourceTree = "<group>"; };
+		F8255A0A2976715D00411DAD /* SLSSpan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLSSpan.h; sourceTree = "<group>"; };
+		F8255A0B2976715D00411DAD /* AliyunLogOT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AliyunLogOT.h; sourceTree = "<group>"; };
+		F8255A0C2976715D00411DAD /* SLSContextManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLSContextManager.h; sourceTree = "<group>"; };
+		F8255A0D2976715D00411DAD /* SLSLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLSLink.h; sourceTree = "<group>"; };
+		F8255A0E2976715D00411DAD /* SLSSpanBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLSSpanBuilder.h; sourceTree = "<group>"; };
+		F8255A0F2976715D00411DAD /* SLSSpanProcessorProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLSSpanProcessorProtocol.h; sourceTree = "<group>"; };
+		F8255A102976715D00411DAD /* SLSContextManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLSContextManager.m; path = Sources/OT/SLSContextManager.m; sourceTree = SOURCE_ROOT; };
+		F8255A112976715D00411DAD /* SLSIdGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLSIdGenerator.h; path = Sources/OT/SLSIdGenerator.h; sourceTree = SOURCE_ROOT; };
+		F8255A122976715D00411DAD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = Sources/OT/Info.plist; sourceTree = SOURCE_ROOT; };
+		F8255A132976715D00411DAD /* SLSAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLSAttribute.m; path = Sources/OT/SLSAttribute.m; sourceTree = SOURCE_ROOT; };
+		F8255A142976715D00411DAD /* SLSTimeUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLSTimeUtils.m; path = Sources/OT/SLSTimeUtils.m; sourceTree = SOURCE_ROOT; };
+		F8255A152976715D00411DAD /* SLSResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLSResource.m; path = Sources/OT/SLSResource.m; sourceTree = SOURCE_ROOT; };
+		F8255A162976715D00411DAD /* SLSSpanBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLSSpanBuilder.m; path = Sources/OT/SLSSpanBuilder.m; sourceTree = SOURCE_ROOT; };
+		F8255A172976715D00411DAD /* SLSLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLSLink.m; path = Sources/OT/SLSLink.m; sourceTree = SOURCE_ROOT; };
+		F8255A182976715D00411DAD /* SLSTimeUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLSTimeUtils.h; path = Sources/OT/SLSTimeUtils.h; sourceTree = SOURCE_ROOT; };
+		F8255A192976715D00411DAD /* SLSKeyValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLSKeyValue.m; path = Sources/OT/SLSKeyValue.m; sourceTree = SOURCE_ROOT; };
+		F8255A1A2976715D00411DAD /* SLSSpan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLSSpan.m; path = Sources/OT/SLSSpan.m; sourceTree = SOURCE_ROOT; };
+		F8255A1B2976715D00411DAD /* SLSRecordableSpan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLSRecordableSpan.m; path = Sources/OT/SLSRecordableSpan.m; sourceTree = SOURCE_ROOT; };
+		F8255A1C2976715D00411DAD /* SLSEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLSEvent.m; path = Sources/OT/SLSEvent.m; sourceTree = SOURCE_ROOT; };
+		F8255A1D2976715E00411DAD /* SLSIdGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLSIdGenerator.m; path = Sources/OT/SLSIdGenerator.m; sourceTree = SOURCE_ROOT; };
+		F8255A38297672CC00411DAD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = Sources/OTSwift/Info.plist; sourceTree = SOURCE_ROOT; };
+		F8255A39297672CC00411DAD /* ActivityContextManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActivityContextManager.swift; path = Sources/OTSwift/ActivityContextManager.swift; sourceTree = SOURCE_ROOT; };
+		F8255A3C2976739D00411DAD /* SLSConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLSConfiguration.m; path = Sources/Core/SLSConfiguration.m; sourceTree = SOURCE_ROOT; };
+		F8255A3E2976739D00411DAD /* SLSSdkFeature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLSSdkFeature.h; sourceTree = "<group>"; };
+		F8255A3F2976739D00411DAD /* SLSConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLSConfiguration.h; sourceTree = "<group>"; };
+		F8255A402976739D00411DAD /* SLSNoOpSender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLSNoOpSender.h; sourceTree = "<group>"; };
+		F8255A412976739D00411DAD /* AliyunLogCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AliyunLogCore.h; sourceTree = "<group>"; };
+		F8255A422976739D00411DAD /* SLSCocoa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLSCocoa.h; sourceTree = "<group>"; };
+		F8255A432976739D00411DAD /* Utdid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utdid.h; sourceTree = "<group>"; };
+		F8255A442976739D00411DAD /* LogProducerClient+Bricks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LogProducerClient+Bricks.h"; sourceTree = "<group>"; };
+		F8255A452976739D00411DAD /* SLSFeatureProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLSFeatureProtocol.h; sourceTree = "<group>"; };
+		F8255A462976739D00411DAD /* SLSSdkSender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLSSdkSender.h; sourceTree = "<group>"; };
+		F8255A472976739D00411DAD /* SLSNoOpFeature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLSNoOpFeature.h; sourceTree = "<group>"; };
+		F8255A482976739D00411DAD /* SLSCredentials.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLSCredentials.h; sourceTree = "<group>"; };
+		F8255A492976739D00411DAD /* SLSSenderProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLSSenderProtocol.h; sourceTree = "<group>"; };
+		F8255A4A2976739D00411DAD /* SLSSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLSSwizzle.h; sourceTree = "<group>"; };
+		F8255A4B2976739D00411DAD /* SLSUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLSUserInfo.h; sourceTree = "<group>"; };
+		F8255A4C2976739D00411DAD /* SLSNoOpSender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLSNoOpSender.m; path = Sources/Core/SLSNoOpSender.m; sourceTree = SOURCE_ROOT; };
+		F8255A4D2976739D00411DAD /* SLSDeviceUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLSDeviceUtils.h; path = Sources/Core/SLSDeviceUtils.h; sourceTree = SOURCE_ROOT; };
+		F8255A4E2976739D00411DAD /* SLSStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLSStorage.h; path = Sources/Core/SLSStorage.h; sourceTree = SOURCE_ROOT; };
+		F8255A4F2976739D00411DAD /* SLSAppUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLSAppUtils.h; path = Sources/Core/SLSAppUtils.h; sourceTree = SOURCE_ROOT; };
+		F8255A502976739D00411DAD /* SLSUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLSUserInfo.m; path = Sources/Core/SLSUserInfo.m; sourceTree = SOURCE_ROOT; };
+		F8255A512976739D00411DAD /* SLSSdkSender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLSSdkSender.m; path = Sources/Core/SLSSdkSender.m; sourceTree = SOURCE_ROOT; };
+		F8255A522976739D00411DAD /* SLSStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLSStorage.m; path = Sources/Core/SLSStorage.m; sourceTree = SOURCE_ROOT; };
+		F8255A532976739D00411DAD /* SLSDeviceUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLSDeviceUtils.m; path = Sources/Core/SLSDeviceUtils.m; sourceTree = SOURCE_ROOT; };
+		F8255A542976739D00411DAD /* SLSCredentials.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLSCredentials.m; path = Sources/Core/SLSCredentials.m; sourceTree = SOURCE_ROOT; };
+		F8255A552976739D00411DAD /* SLSReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLSReachability.m; path = Sources/Core/SLSReachability.m; sourceTree = SOURCE_ROOT; };
+		F8255A562976739D00411DAD /* LogProducerClient+Bricks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "LogProducerClient+Bricks.m"; path = "Sources/Core/LogProducerClient+Bricks.m"; sourceTree = SOURCE_ROOT; };
+		F8255A572976739D00411DAD /* SLSAppUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLSAppUtils.m; path = Sources/Core/SLSAppUtils.m; sourceTree = SOURCE_ROOT; };
+		F8255A582976739D00411DAD /* Utdid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Utdid.m; path = Sources/Core/Utdid.m; sourceTree = SOURCE_ROOT; };
+		F8255A592976739D00411DAD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = Sources/Core/Info.plist; sourceTree = SOURCE_ROOT; };
+		F8255A5A2976739D00411DAD /* SLSCocoa.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLSCocoa.m; path = Sources/Core/SLSCocoa.m; sourceTree = SOURCE_ROOT; };
+		F8255A5B2976739D00411DAD /* SLSNoOpFeature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLSNoOpFeature.m; path = Sources/Core/SLSNoOpFeature.m; sourceTree = SOURCE_ROOT; };
+		F8255A5C2976739D00411DAD /* SLSReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLSReachability.h; path = Sources/Core/SLSReachability.h; sourceTree = SOURCE_ROOT; };
+		F8255A5D2976739D00411DAD /* SLSSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLSSwizzle.m; path = Sources/Core/SLSSwizzle.m; sourceTree = SOURCE_ROOT; };
+		F8255A5E2976739D00411DAD /* SLSSdkFeature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLSSdkFeature.m; path = Sources/Core/SLSSdkFeature.m; sourceTree = SOURCE_ROOT; };
+		F834A15E28D3116300000F72 /* AliyunLogTrace.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AliyunLogTrace.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F834A16A28D312CE00000F72 /* build-trace.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = "build-trace.sh"; path = "publish/build-trace.sh"; sourceTree = "<group>"; };
+		F838F07D29767663001F1275 /* SLSCrashReporterFeature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLSCrashReporterFeature.m; path = Sources/CrashReporter/SLSCrashReporterFeature.m; sourceTree = SOURCE_ROOT; };
+		F838F07F29767663001F1275 /* AliyunLogCrashReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AliyunLogCrashReporter.h; sourceTree = "<group>"; };
+		F838F08029767663001F1275 /* SLSCrashReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLSCrashReporter.h; sourceTree = "<group>"; };
+		F838F08129767663001F1275 /* SLSCrashReporterFeature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLSCrashReporterFeature.h; sourceTree = "<group>"; };
+		F838F08229767663001F1275 /* SLSCrashReporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLSCrashReporter.m; path = Sources/CrashReporter/SLSCrashReporter.m; sourceTree = SOURCE_ROOT; };
+		F838F08329767663001F1275 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = Sources/CrashReporter/Info.plist; sourceTree = SOURCE_ROOT; };
+		F838F08B297676B6001F1275 /* WPKMobi.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = WPKMobi.xcframework; sourceTree = "<group>"; };
+		F838F0902976771F001F1275 /* AliNetworkDiagnosis.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = AliNetworkDiagnosis.xcframework; sourceTree = "<group>"; };
+		F838F0922976772A001F1275 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = Sources/NetworkDiagnosis/Info.plist; sourceTree = SOURCE_ROOT; };
+		F838F0942976772B001F1275 /* SLSNetworkDiagnosis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLSNetworkDiagnosis.h; sourceTree = "<group>"; };
+		F838F0952976772B001F1275 /* AliyunLogNetworkDiagnosis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AliyunLogNetworkDiagnosis.h; sourceTree = "<group>"; };
+		F838F0962976772B001F1275 /* SLSNetworkDiagnosisFeature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLSNetworkDiagnosisFeature.h; sourceTree = "<group>"; };
+		F838F0972976772B001F1275 /* SLSNetworkDiagnosisProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLSNetworkDiagnosisProtocol.h; sourceTree = "<group>"; };
+		F838F0982976772B001F1275 /* SLSNetworkDiagnosisFeature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLSNetworkDiagnosisFeature.m; path = Sources/NetworkDiagnosis/SLSNetworkDiagnosisFeature.m; sourceTree = SOURCE_ROOT; };
+		F838F0992976772B001F1275 /* SLSNetworkDiagnosis.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLSNetworkDiagnosis.m; path = Sources/NetworkDiagnosis/SLSNetworkDiagnosis.m; sourceTree = SOURCE_ROOT; };
+		F838F0A129767770001F1275 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = Sources/Trace/Info.plist; sourceTree = SOURCE_ROOT; };
+		F838F0A229767770001F1275 /* SLSTracer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLSTracer.m; path = Sources/Trace/SLSTracer.m; sourceTree = SOURCE_ROOT; };
+		F838F0A329767770001F1275 /* SLSURLSessionInstrumentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLSURLSessionInstrumentation.h; path = Sources/Trace/SLSURLSessionInstrumentation.h; sourceTree = SOURCE_ROOT; };
+		F838F0A529767770001F1275 /* AliyunLogTrace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AliyunLogTrace.h; sourceTree = "<group>"; };
+		F838F0A629767770001F1275 /* SLSTraceFeature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLSTraceFeature.h; sourceTree = "<group>"; };
+		F838F0A729767770001F1275 /* SLSTracer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLSTracer.h; sourceTree = "<group>"; };
+		F838F0A829767770001F1275 /* SLSTraceFeature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLSTraceFeature.m; path = Sources/Trace/SLSTraceFeature.m; sourceTree = SOURCE_ROOT; };
+		F838F0A929767770001F1275 /* SLSURLSessionInstrumentation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLSURLSessionInstrumentation.m; path = Sources/Trace/SLSURLSessionInstrumentation.m; sourceTree = SOURCE_ROOT; };
+		F838F0AA29767771001F1275 /* SLSTracer+Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "SLSTracer+Internal.h"; path = "Sources/Trace/SLSTracer+Internal.h"; sourceTree = SOURCE_ROOT; };
+		F838F0B5297677DF001F1275 /* Unity4SLSiOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Unity4SLSiOS.h; sourceTree = "<group>"; };
+		F838F0B6297677DF001F1275 /* Unity4SLSiOS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Unity4SLSiOS.m; path = Sources/Unity4SLS/Unity4SLSiOS.m; sourceTree = SOURCE_ROOT; };
+		F838F10B29767993001F1275 /* AliyunLogURLSession.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AliyunLogURLSession.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F838F10C297679CF001F1275 /* URLSessionInstrumentation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLSessionInstrumentation.swift; sourceTree = "<group>"; };
+		F838F10D297679CF001F1275 /* URLSessionInstrumentationConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLSessionInstrumentationConfiguration.swift; sourceTree = "<group>"; };
+		F838F10E297679CF001F1275 /* InstrumentationUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstrumentationUtils.swift; sourceTree = "<group>"; };
+		F838F10F297679CF001F1275 /* URLSessionLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLSessionLogger.swift; sourceTree = "<group>"; };
+		F838F110297679CF001F1275 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		F838F11629767A27001F1275 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F84F8AE72814E1180038A46E /* AliyunLogNetworkDiagnosis.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AliyunLogNetworkDiagnosis.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F8696C4F27F0066D00EF0020 /* AliyunLogCrashReporter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AliyunLogCrashReporter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F87828CA28B6089D00F3D2B5 /* libUnity4SLS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libUnity4SLS.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		F87828DA28B60DE400F3D2B5 /* build-unity4sls.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = "build-unity4sls.sh"; path = "publish/build-unity4sls.sh"; sourceTree = "<group>"; };
+		F8896C672977FAF0004CB258 /* SLSProducer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLSProducer.h; sourceTree = "<group>"; };
+		F88FAFDE28ACECCC00F8792A /* build-core.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = "build-core.sh"; path = "publish/build-core.sh"; sourceTree = "<group>"; };
+		F88FAFDF28ACECCC00F8792A /* build-producer.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = "build-producer.sh"; path = "publish/build-producer.sh"; sourceTree = "<group>"; };
+		F88FAFE028ACECCC00F8792A /* build-networkdiagnosis.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = "build-networkdiagnosis.sh"; path = "publish/build-networkdiagnosis.sh"; sourceTree = "<group>"; };
+		F88FAFE128ACECCC00F8792A /* AliyunLogProducer.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; name = AliyunLogProducer.podspec; path = publish/AliyunLogProducer.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		F88FAFE228ACECCC00F8792A /* build-crashreporter.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = "build-crashreporter.sh"; path = "publish/build-crashreporter.sh"; sourceTree = "<group>"; };
+		F88FAFE328ACECCC00F8792A /* build-ot.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = "build-ot.sh"; path = "publish/build-ot.sh"; sourceTree = "<group>"; };
+		F88FAFE528ACF07A00F8792A /* build-all.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = "build-all.sh"; path = "publish/build-all.sh"; sourceTree = "<group>"; };
+		F8A43DAE2951B7DA00C8B73A /* build-core-framework.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = "build-core-framework.sh"; path = "publish/build-core-framework.sh"; sourceTree = "<group>"; };
+		F8A43DAF2951B86B00C8B73A /* build-crashreporter-framework.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = "build-crashreporter-framework.sh"; path = "publish/build-crashreporter-framework.sh"; sourceTree = "<group>"; };
+		F8A43DB02951B8C300C8B73A /* build-ot-framework.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = "build-ot-framework.sh"; path = "publish/build-ot-framework.sh"; sourceTree = "<group>"; };
+		F8A43DB12951B8CB00C8B73A /* build-ot-swift-framework.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = "build-ot-swift-framework.sh"; path = "publish/build-ot-swift-framework.sh"; sourceTree = "<group>"; };
+		F8A43DB22951B94F00C8B73A /* build-wpkmobi.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = "build-wpkmobi.sh"; path = "publish/build-wpkmobi.sh"; sourceTree = "<group>"; };
+		F8A43DE52951BBC700C8B73A /* build-producer-framework.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = "build-producer-framework.sh"; path = "publish/build-producer-framework.sh"; sourceTree = "<group>"; };
+		F8A43DF12951DB9A00C8B73A /* build-frameworks.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = "build-frameworks.sh"; path = "publish/build-frameworks.sh"; sourceTree = "<group>"; };
+		F8ACED2628AD32FD004DC16B /* build-pub.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = "build-pub.sh"; path = "publish/build-pub.sh"; sourceTree = "<group>"; };
+		F8E05CFE2976819C002CD256 /* log_persistent_manager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = log_persistent_manager.h; sourceTree = "<group>"; };
+		F8E05CFF2976819C002CD256 /* log_sha1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = log_sha1.h; sourceTree = "<group>"; };
+		F8E05D002976819C002CD256 /* log_producer_common.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = log_producer_common.c; sourceTree = "<group>"; };
+		F8E05D012976819C002CD256 /* log_api.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = log_api.c; sourceTree = "<group>"; };
+		F8E05D022976819C002CD256 /* inner_log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = inner_log.h; sourceTree = "<group>"; };
+		F8E05D032976819C002CD256 /* log_sds.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = log_sds.c; sourceTree = "<group>"; };
+		F8E05D042976819C002CD256 /* log_producer_sender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = log_producer_sender.h; sourceTree = "<group>"; };
+		F8E05D052976819C002CD256 /* log_builder.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = log_builder.c; sourceTree = "<group>"; };
+		F8E05D072976819C002CD256 /* log_producer_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = log_producer_config.h; sourceTree = "<group>"; };
+		F8E05D082976819C002CD256 /* log_producer_client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = log_producer_client.h; sourceTree = "<group>"; };
+		F8E05D092976819C002CD256 /* inner_log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = inner_log.h; sourceTree = "<group>"; };
+		F8E05D0A2976819C002CD256 /* log_inner_include.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = log_inner_include.h; sourceTree = "<group>"; };
+		F8E05D0B2976819C002CD256 /* log_http_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = log_http_interface.h; sourceTree = "<group>"; };
+		F8E05D0C2976819C002CD256 /* log_multi_thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = log_multi_thread.h; sourceTree = "<group>"; };
+		F8E05D0D2976819C002CD256 /* log_producer_common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = log_producer_common.h; sourceTree = "<group>"; };
+		F8E05D0E2976819C002CD256 /* log_define.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = log_define.h; sourceTree = "<group>"; };
+		F8E05D0F2976819C002CD256 /* log_hmac-sha.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "log_hmac-sha.c"; sourceTree = "<group>"; };
+		F8E05D102976819C002CD256 /* log_queue.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = log_queue.c; sourceTree = "<group>"; };
+		F8E05D112976819C002CD256 /* log_ring_file.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = log_ring_file.c; sourceTree = "<group>"; };
+		F8E05D122976819C002CD256 /* log_md5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = log_md5.h; sourceTree = "<group>"; };
+		F8E05D132976819C002CD256 /* log_lz4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = log_lz4.h; sourceTree = "<group>"; };
+		F8E05D142976819C002CD256 /* log_util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = log_util.h; sourceTree = "<group>"; };
+		F8E05D152976819C002CD256 /* log_producer_manager.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = log_producer_manager.c; sourceTree = "<group>"; };
+		F8E05D162976819C002CD256 /* log_producer_config.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = log_producer_config.c; sourceTree = "<group>"; };
+		F8E05D172976819C002CD256 /* log_sha1.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = log_sha1.c; sourceTree = "<group>"; };
+		F8E05D182976819C002CD256 /* log_persistent_manager.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = log_persistent_manager.c; sourceTree = "<group>"; };
+		F8E05D192976819C002CD256 /* log_sds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = log_sds.h; sourceTree = "<group>"; };
+		F8E05D1A2976819C002CD256 /* inner_log.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = inner_log.c; sourceTree = "<group>"; };
+		F8E05D1B2976819C002CD256 /* log_producer_client.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = log_producer_client.c; sourceTree = "<group>"; };
+		F8E05D1C2976819C002CD256 /* log_api.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = log_api.h; sourceTree = "<group>"; };
+		F8E05D1D2976819C002CD256 /* log_hmac-sha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "log_hmac-sha.h"; sourceTree = "<group>"; };
+		F8E05D1E2976819C002CD256 /* log_http_interface.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = log_http_interface.c; sourceTree = "<group>"; };
+		F8E05D1F2976819C002CD256 /* log_builder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = log_builder.h; sourceTree = "<group>"; };
+		F8E05D202976819C002CD256 /* log_producer_sender.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = log_producer_sender.c; sourceTree = "<group>"; };
+		F8E05D212976819C002CD256 /* log_util.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = log_util.c; sourceTree = "<group>"; };
+		F8E05D222976819C002CD256 /* log_producer_manager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = log_producer_manager.h; sourceTree = "<group>"; };
+		F8E05D232976819C002CD256 /* log_md5.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = log_md5.c; sourceTree = "<group>"; };
+		F8E05D242976819C002CD256 /* log_lz4.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = log_lz4.c; sourceTree = "<group>"; };
+		F8E05D252976819C002CD256 /* log_ring_file.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = log_ring_file.h; sourceTree = "<group>"; };
+		F8E05D262976819C002CD256 /* log_queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = log_queue.h; sourceTree = "<group>"; };
+		F8E05D282976819C002CD256 /* Log.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Log.m; sourceTree = "<group>"; };
+		F8E05D2B2976819C002CD256 /* LogProducerConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogProducerConfig.m; sourceTree = "<group>"; };
+		F8E05D2C2976819C002CD256 /* SLSURLSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLSURLSession.m; sourceTree = "<group>"; };
+		F8E05D2D2976819C002CD256 /* SLSHttpHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLSHttpHeader.m; sourceTree = "<group>"; };
+		F8E05D2E2976819C002CD256 /* LogProducerClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogProducerClient.m; sourceTree = "<group>"; };
+		F8E05D302976819C002CD256 /* NSString+SLS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SLS.h"; sourceTree = "<group>"; };
+		F8E05D312976819C002CD256 /* NSDictionary+SLS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+SLS.h"; sourceTree = "<group>"; };
+		F8E05D322976819C002CD256 /* SLSUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLSUtils.h; sourceTree = "<group>"; };
+		F8E05D332976819C002CD256 /* NSDateFormatter+SLS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDateFormatter+SLS.h"; sourceTree = "<group>"; };
+		F8E05D342976819C002CD256 /* TimeUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeUtils.h; sourceTree = "<group>"; };
+		F8E05D352976819C002CD256 /* LogProducerConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogProducerConfig.h; sourceTree = "<group>"; };
+		F8E05D362976819C002CD256 /* Log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Log.h; sourceTree = "<group>"; };
+		F8E05D372976819C002CD256 /* LogProducerClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogProducerClient.h; sourceTree = "<group>"; };
+		F8E05D382976819C002CD256 /* SLSHttpHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLSHttpHeader.h; sourceTree = "<group>"; };
+		F8E05D392976819C002CD256 /* SLSURLSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLSURLSession.h; sourceTree = "<group>"; };
+		F8E05D3A2976819C002CD256 /* SLSSystemCapabilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLSSystemCapabilities.h; sourceTree = "<group>"; };
+		F8E05D3B2976819C002CD256 /* AliyunLogProducer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AliyunLogProducer.h; sourceTree = "<group>"; };
+		F8E05D3D2976819C002CD256 /* NSDictionary+SLS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+SLS.m"; sourceTree = "<group>"; };
+		F8E05D3E2976819C002CD256 /* NSString+SLS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SLS.m"; sourceTree = "<group>"; };
+		F8E05D3F2976819C002CD256 /* TimeUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeUtils.m; sourceTree = "<group>"; };
+		F8E05D402976819C002CD256 /* NSDateFormatter+SLS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDateFormatter+SLS.m"; sourceTree = "<group>"; };
+		F8E05D412976819C002CD256 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F8E05D422976819C002CD256 /* SLSUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLSUtils.m; sourceTree = "<group>"; };
+		F8E74BF328ACBD5A000609C3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
+		F8E74BF528ACBD65000609C3 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
+		F8E74BF728ACBD71000609C3 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/lib/libc++.tbd"; sourceTree = DEVELOPER_DIR; };
+		F8E74BF928ACBD78000609C3 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/lib/libz.tbd; sourceTree = DEVELOPER_DIR; };
+		F8F6A9AC28ABBB730070B023 /* AliyunLogOT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AliyunLogOT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F8F6AA5128AC7B6F0070B023 /* AliyunLogCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AliyunLogCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F8F9396A2977E92F003E4171 /* build-urlsession.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = "build-urlsession.sh"; path = "publish/build-urlsession.sh"; sourceTree = "<group>"; };
+		F8F9396B2977E937003E4171 /* build-urlsession-framework.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = "build-urlsession-framework.sh"; path = "publish/build-urlsession-framework.sh"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9D984DAF2520A9B7009DE4FE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F809903C292DCC5E0000DEE9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F809903D292DCC5E0000DEE9 /* CoreGraphics.framework in Frameworks */,
+				F809903E292DCC5E0000DEE9 /* SystemConfiguration.framework in Frameworks */,
+				F809903F292DCC5E0000DEE9 /* libc++.tbd in Frameworks */,
+				F8099040292DCC5E0000DEE9 /* libz.tbd in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F834A15328D3116300000F72 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F834A15428D3116300000F72 /* CoreGraphics.framework in Frameworks */,
+				F834A15528D3116300000F72 /* SystemConfiguration.framework in Frameworks */,
+				F834A15728D3116300000F72 /* libc++.tbd in Frameworks */,
+				F834A15828D3116300000F72 /* libz.tbd in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F838F10529767993001F1275 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F84F8ADC2814E1180038A46E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F838F0912976771F001F1275 /* AliNetworkDiagnosis.xcframework in Frameworks */,
+				F84F8ADD2814E1180038A46E /* CoreGraphics.framework in Frameworks */,
+				F84F8ADE2814E1180038A46E /* SystemConfiguration.framework in Frameworks */,
+				F84F8AE02814E1180038A46E /* libc++.tbd in Frameworks */,
+				F84F8AE12814E1180038A46E /* libz.tbd in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F8696C4527F0066D00EF0020 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F8E74BFA28ACBD78000609C3 /* libz.tbd in Frameworks */,
+				F8E74BF828ACBD71000609C3 /* libc++.tbd in Frameworks */,
+				F838F08C297676B6001F1275 /* WPKMobi.xcframework in Frameworks */,
+				F8E74BF628ACBD65000609C3 /* SystemConfiguration.framework in Frameworks */,
+				F8E74BF428ACBD5A000609C3 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F87828C728B6089D00F3D2B5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F8F6A9A228ABBB730070B023 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F8F6A9A328ABBB730070B023 /* CoreGraphics.framework in Frameworks */,
+				F8F6A9A428ABBB730070B023 /* SystemConfiguration.framework in Frameworks */,
+				F8F6A9A528ABBB730070B023 /* libc++.tbd in Frameworks */,
+				F8F6A9A628ABBB730070B023 /* libz.tbd in Frameworks */,
+				F809904F292DCF9B0000DEE9 /* AliyunLogOTSwift.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F8F6AA4728AC7B6F0070B023 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F8F6AA4828AC7B6F0070B023 /* CoreGraphics.framework in Frameworks */,
+				F8F6AA4928AC7B6F0070B023 /* SystemConfiguration.framework in Frameworks */,
+				F8F6AA4A28AC7B6F0070B023 /* libc++.tbd in Frameworks */,
+				F8F6AA4B28AC7B6F0070B023 /* libz.tbd in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9D0CAEED252177D800A4985A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F8E74BF928ACBD78000609C3 /* libz.tbd */,
+				F8E74BF728ACBD71000609C3 /* libc++.tbd */,
+				F8E74BF528ACBD65000609C3 /* SystemConfiguration.framework */,
+				F80DF47C26A7037000151F7C /* CoreGraphics.framework */,
+				F8E74BF328ACBD5A000609C3 /* CoreGraphics.framework */,
+				F80DF47A26A7035E00151F7C /* SystemConfiguration.framework */,
+				F80DF47826A7034E00151F7C /* libc++.tbd */,
+				9D0CAEEE252177D800A4985A /* libz.tbd */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9D984DA82520A9B7009DE4FE = {
+			isa = PBXGroup;
+			children = (
+				F81137DF28DB096600F5E54C /* exported_symbols */,
+				F88FAFE128ACECCC00F8792A /* AliyunLogProducer.podspec */,
+				F8ACED2628AD32FD004DC16B /* build-pub.sh */,
+				F8A43DF12951DB9A00C8B73A /* build-frameworks.sh */,
+				F88FAFE528ACF07A00F8792A /* build-all.sh */,
+				F88FAFDE28ACECCC00F8792A /* build-core.sh */,
+				F8A43DAE2951B7DA00C8B73A /* build-core-framework.sh */,
+				F88FAFE228ACECCC00F8792A /* build-crashreporter.sh */,
+				F8A43DAF2951B86B00C8B73A /* build-crashreporter-framework.sh */,
+				F88FAFE028ACECCC00F8792A /* build-networkdiagnosis.sh */,
+				F88FAFE328ACECCC00F8792A /* build-ot.sh */,
+				F8A43DB02951B8C300C8B73A /* build-ot-framework.sh */,
+				F809904B292DCD680000DEE9 /* build-ot-swift.sh */,
+				F8A43DB12951B8CB00C8B73A /* build-ot-swift-framework.sh */,
+				F88FAFDF28ACECCC00F8792A /* build-producer.sh */,
+				F8A43DE52951BBC700C8B73A /* build-producer-framework.sh */,
+				F834A16A28D312CE00000F72 /* build-trace.sh */,
+				F8F9396A2977E92F003E4171 /* build-urlsession.sh */,
+				F8F9396B2977E937003E4171 /* build-urlsession-framework.sh */,
+				F87828DA28B60DE400F3D2B5 /* build-unity4sls.sh */,
+				F8A43DB22951B94F00C8B73A /* build-wpkmobi.sh */,
+				F820294528C5A3AF00A79810 /* strip_symbols.sh */,
+				F81137E328DB13F200F5E54C /* build-xcframework.sh */,
+				F8E05CFC297680EC002CD256 /* AliyunLogProducer */,
+				F8F6A9AE28ABBBDB0070B023 /* OT */,
+				F8099048292DCCEF0000DEE9 /* OTSwift */,
+				F8F6AA5328AC7BCC0070B023 /* Core */,
+				F8E74BA328ACAE71000609C3 /* CrashReporter */,
+				F8F09C1228ACC48C0086A714 /* NetworkDiagnosis */,
+				F834A13F28D3115C00000F72 /* Trace */,
+				F838F0BA2976795C001F1275 /* Instrumentation */,
+				F878289028B5FC3800F3D2B5 /* Unity4SLS */,
+				9D984DB32520A9B7009DE4FE /* Products */,
+				9D0CAEED252177D800A4985A /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		9D984DB32520A9B7009DE4FE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9D984DB22520A9B7009DE4FE /* AliyunLogProducer.framework */,
+				F8696C4F27F0066D00EF0020 /* AliyunLogCrashReporter.framework */,
+				F84F8AE72814E1180038A46E /* AliyunLogNetworkDiagnosis.framework */,
+				F8F6A9AC28ABBB730070B023 /* AliyunLogOT.framework */,
+				F8F6AA5128AC7B6F0070B023 /* AliyunLogCore.framework */,
+				F87828CA28B6089D00F3D2B5 /* libUnity4SLS.a */,
+				F834A15E28D3116300000F72 /* AliyunLogTrace.framework */,
+				F8099046292DCC5E0000DEE9 /* AliyunLogOTSwift.framework */,
+				F838F10B29767993001F1275 /* AliyunLogURLSession.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F8099048292DCCEF0000DEE9 /* OTSwift */ = {
+			isa = PBXGroup;
+			children = (
+				F8255A39297672CC00411DAD /* ActivityContextManager.swift */,
+				F8255A38297672CC00411DAD /* Info.plist */,
+			);
+			name = OTSwift;
+			path = Sources/OTSwift;
+			sourceTree = "<group>";
+		};
+		F81137DF28DB096600F5E54C /* exported_symbols */ = {
+			isa = PBXGroup;
+			children = (
+				F81137E028DB096600F5E54C /* producer_symbols.txt */,
+				F81137E128DB096600F5E54C /* crash_reporter_symbols.txt */,
+			);
+			name = exported_symbols;
+			path = publish/exported_symbols;
+			sourceTree = "<group>";
+		};
+		F8255A032976715D00411DAD /* include */ = {
+			isa = PBXGroup;
+			children = (
+				F8255A0B2976715D00411DAD /* AliyunLogOT.h */,
+				F8255A042976715D00411DAD /* SLSRecordableSpan.h */,
+				F8255A052976715D00411DAD /* SLSKeyValue.h */,
+				F8255A062976715D00411DAD /* SLSAttribute.h */,
+				F8255A072976715D00411DAD /* SLSEvent.h */,
+				F8255A082976715D00411DAD /* SLSResource.h */,
+				F8255A092976715D00411DAD /* SLSSpanProviderProtocol.h */,
+				F8255A0A2976715D00411DAD /* SLSSpan.h */,
+				F8255A0C2976715D00411DAD /* SLSContextManager.h */,
+				F8255A0D2976715D00411DAD /* SLSLink.h */,
+				F8255A0E2976715D00411DAD /* SLSSpanBuilder.h */,
+				F8255A0F2976715D00411DAD /* SLSSpanProcessorProtocol.h */,
+			);
+			name = include;
+			path = Sources/OT/include;
+			sourceTree = SOURCE_ROOT;
+		};
+		F8255A3D2976739D00411DAD /* include */ = {
+			isa = PBXGroup;
+			children = (
+				F8255A412976739D00411DAD /* AliyunLogCore.h */,
+				F8255A3E2976739D00411DAD /* SLSSdkFeature.h */,
+				F8255A3F2976739D00411DAD /* SLSConfiguration.h */,
+				F8255A402976739D00411DAD /* SLSNoOpSender.h */,
+				F8255A422976739D00411DAD /* SLSCocoa.h */,
+				F8255A432976739D00411DAD /* Utdid.h */,
+				F8255A442976739D00411DAD /* LogProducerClient+Bricks.h */,
+				F8255A452976739D00411DAD /* SLSFeatureProtocol.h */,
+				F8255A462976739D00411DAD /* SLSSdkSender.h */,
+				F8255A472976739D00411DAD /* SLSNoOpFeature.h */,
+				F8255A482976739D00411DAD /* SLSCredentials.h */,
+				F8255A492976739D00411DAD /* SLSSenderProtocol.h */,
+				F8255A4A2976739D00411DAD /* SLSSwizzle.h */,
+				F8255A4B2976739D00411DAD /* SLSUserInfo.h */,
+			);
+			name = include;
+			path = Sources/Core/include;
+			sourceTree = SOURCE_ROOT;
+		};
+		F834A13F28D3115C00000F72 /* Trace */ = {
+			isa = PBXGroup;
+			children = (
+				F838F0A429767770001F1275 /* include */,
+				F838F0A129767770001F1275 /* Info.plist */,
+				F838F0A829767770001F1275 /* SLSTraceFeature.m */,
+				F838F0A229767770001F1275 /* SLSTracer.m */,
+				F838F0AA29767771001F1275 /* SLSTracer+Internal.h */,
+				F838F0A329767770001F1275 /* SLSURLSessionInstrumentation.h */,
+				F838F0A929767770001F1275 /* SLSURLSessionInstrumentation.m */,
+			);
+			name = Trace;
+			path = Sources/Trace;
+			sourceTree = "<group>";
+		};
+		F838F07E29767663001F1275 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				F838F07F29767663001F1275 /* AliyunLogCrashReporter.h */,
+				F838F08029767663001F1275 /* SLSCrashReporter.h */,
+				F838F08129767663001F1275 /* SLSCrashReporterFeature.h */,
+			);
+			name = include;
+			path = Sources/CrashReporter/include;
+			sourceTree = SOURCE_ROOT;
+		};
+		F838F08A297676B6001F1275 /* WPKMobi */ = {
+			isa = PBXGroup;
+			children = (
+				F838F08B297676B6001F1275 /* WPKMobi.xcframework */,
+			);
+			name = WPKMobi;
+			path = Sources/WPKMobi;
+			sourceTree = SOURCE_ROOT;
+		};
+		F838F08F2976771F001F1275 /* AliNetworkDiagnosis */ = {
+			isa = PBXGroup;
+			children = (
+				F838F0902976771F001F1275 /* AliNetworkDiagnosis.xcframework */,
+			);
+			name = AliNetworkDiagnosis;
+			path = Sources/AliNetworkDiagnosis;
+			sourceTree = SOURCE_ROOT;
+		};
+		F838F0932976772A001F1275 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				F838F0942976772B001F1275 /* SLSNetworkDiagnosis.h */,
+				F838F0952976772B001F1275 /* AliyunLogNetworkDiagnosis.h */,
+				F838F0962976772B001F1275 /* SLSNetworkDiagnosisFeature.h */,
+				F838F0972976772B001F1275 /* SLSNetworkDiagnosisProtocol.h */,
+			);
+			name = include;
+			path = Sources/NetworkDiagnosis/include;
+			sourceTree = SOURCE_ROOT;
+		};
+		F838F0A429767770001F1275 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				F838F0A529767770001F1275 /* AliyunLogTrace.h */,
+				F838F0A629767770001F1275 /* SLSTraceFeature.h */,
+				F838F0A729767770001F1275 /* SLSTracer.h */,
+			);
+			name = include;
+			path = Sources/Trace/include;
+			sourceTree = SOURCE_ROOT;
+		};
+		F838F0B4297677DF001F1275 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				F838F0B5297677DF001F1275 /* Unity4SLSiOS.h */,
+			);
+			name = include;
+			path = Sources/Unity4SLS/include;
+			sourceTree = SOURCE_ROOT;
+		};
+		F838F0BA2976795C001F1275 /* Instrumentation */ = {
+			isa = PBXGroup;
+			children = (
+				F838F0BB29767976001F1275 /* URLSession */,
+			);
+			name = Instrumentation;
+			sourceTree = "<group>";
+		};
+		F838F0BB29767976001F1275 /* URLSession */ = {
+			isa = PBXGroup;
+			children = (
+				F838F110297679CF001F1275 /* README.md */,
+				F838F11629767A27001F1275 /* Info.plist */,
+				F838F10E297679CF001F1275 /* InstrumentationUtils.swift */,
+				F838F10C297679CF001F1275 /* URLSessionInstrumentation.swift */,
+				F838F10D297679CF001F1275 /* URLSessionInstrumentationConfiguration.swift */,
+				F838F10F297679CF001F1275 /* URLSessionLogger.swift */,
+			);
+			name = URLSession;
+			path = Sources/Instrumentation/URLSession;
+			sourceTree = "<group>";
+		};
+		F878289028B5FC3800F3D2B5 /* Unity4SLS */ = {
+			isa = PBXGroup;
+			children = (
+				F838F0B4297677DF001F1275 /* include */,
+				F838F0B6297677DF001F1275 /* Unity4SLSiOS.m */,
+			);
+			name = Unity4SLS;
+			path = Sources/Unity4SLS;
+			sourceTree = "<group>";
+		};
+		F8E05CFC297680EC002CD256 /* AliyunLogProducer */ = {
+			isa = PBXGroup;
+			children = (
+				F8E05CFD2976819C002CD256 /* aliyun-log-c-sdk */,
+				F8E05D272976819C002CD256 /* Producer */,
+			);
+			name = AliyunLogProducer;
+			sourceTree = "<group>";
+		};
+		F8E05CFD2976819C002CD256 /* aliyun-log-c-sdk */ = {
+			isa = PBXGroup;
+			children = (
+				F8E05CFE2976819C002CD256 /* log_persistent_manager.h */,
+				F8E05CFF2976819C002CD256 /* log_sha1.h */,
+				F8E05D002976819C002CD256 /* log_producer_common.c */,
+				F8E05D012976819C002CD256 /* log_api.c */,
+				F8E05D022976819C002CD256 /* inner_log.h */,
+				F8E05D032976819C002CD256 /* log_sds.c */,
+				F8E05D042976819C002CD256 /* log_producer_sender.h */,
+				F8E05D052976819C002CD256 /* log_builder.c */,
+				F8E05D062976819C002CD256 /* include */,
+				F8E05D0F2976819C002CD256 /* log_hmac-sha.c */,
+				F8E05D102976819C002CD256 /* log_queue.c */,
+				F8E05D112976819C002CD256 /* log_ring_file.c */,
+				F8E05D122976819C002CD256 /* log_md5.h */,
+				F8E05D132976819C002CD256 /* log_lz4.h */,
+				F8E05D142976819C002CD256 /* log_util.h */,
+				F8E05D152976819C002CD256 /* log_producer_manager.c */,
+				F8E05D162976819C002CD256 /* log_producer_config.c */,
+				F8E05D172976819C002CD256 /* log_sha1.c */,
+				F8E05D182976819C002CD256 /* log_persistent_manager.c */,
+				F8E05D192976819C002CD256 /* log_sds.h */,
+				F8E05D1A2976819C002CD256 /* inner_log.c */,
+				F8E05D1B2976819C002CD256 /* log_producer_client.c */,
+				F8E05D1C2976819C002CD256 /* log_api.h */,
+				F8E05D1D2976819C002CD256 /* log_hmac-sha.h */,
+				F8E05D1E2976819C002CD256 /* log_http_interface.c */,
+				F8E05D1F2976819C002CD256 /* log_builder.h */,
+				F8E05D202976819C002CD256 /* log_producer_sender.c */,
+				F8E05D212976819C002CD256 /* log_util.c */,
+				F8E05D222976819C002CD256 /* log_producer_manager.h */,
+				F8E05D232976819C002CD256 /* log_md5.c */,
+				F8E05D242976819C002CD256 /* log_lz4.c */,
+				F8E05D252976819C002CD256 /* log_ring_file.h */,
+				F8E05D262976819C002CD256 /* log_queue.h */,
+			);
+			name = "aliyun-log-c-sdk";
+			path = "Sources/aliyun-log-c-sdk";
+			sourceTree = "<group>";
+		};
+		F8E05D062976819C002CD256 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				F8E05D072976819C002CD256 /* log_producer_config.h */,
+				F8E05D082976819C002CD256 /* log_producer_client.h */,
+				F8E05D092976819C002CD256 /* inner_log.h */,
+				F8E05D0A2976819C002CD256 /* log_inner_include.h */,
+				F8E05D0B2976819C002CD256 /* log_http_interface.h */,
+				F8E05D0C2976819C002CD256 /* log_multi_thread.h */,
+				F8E05D0D2976819C002CD256 /* log_producer_common.h */,
+				F8E05D0E2976819C002CD256 /* log_define.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		F8E05D272976819C002CD256 /* Producer */ = {
+			isa = PBXGroup;
+			children = (
+				F8E05D2F2976819C002CD256 /* include */,
+				F8E05D392976819C002CD256 /* SLSURLSession.h */,
+				F8E05D282976819C002CD256 /* Log.m */,
+				F8E05D2B2976819C002CD256 /* LogProducerConfig.m */,
+				F8E05D2C2976819C002CD256 /* SLSURLSession.m */,
+				F8E05D2D2976819C002CD256 /* SLSHttpHeader.m */,
+				F8E05D2E2976819C002CD256 /* LogProducerClient.m */,
+				F8E05D3D2976819C002CD256 /* NSDictionary+SLS.m */,
+				F8E05D3E2976819C002CD256 /* NSString+SLS.m */,
+				F8E05D3F2976819C002CD256 /* TimeUtils.m */,
+				F8E05D402976819C002CD256 /* NSDateFormatter+SLS.m */,
+				F8E05D412976819C002CD256 /* Info.plist */,
+				F8E05D422976819C002CD256 /* SLSUtils.m */,
+			);
+			name = Producer;
+			path = Sources/Producer;
+			sourceTree = "<group>";
+		};
+		F8E05D2F2976819C002CD256 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				F8E05D3B2976819C002CD256 /* AliyunLogProducer.h */,
+				F8896C672977FAF0004CB258 /* SLSProducer.h */,
+				F8E05D302976819C002CD256 /* NSString+SLS.h */,
+				F8E05D312976819C002CD256 /* NSDictionary+SLS.h */,
+				F8E05D322976819C002CD256 /* SLSUtils.h */,
+				F8E05D332976819C002CD256 /* NSDateFormatter+SLS.h */,
+				F8E05D342976819C002CD256 /* TimeUtils.h */,
+				F8E05D352976819C002CD256 /* LogProducerConfig.h */,
+				F8E05D362976819C002CD256 /* Log.h */,
+				F8E05D372976819C002CD256 /* LogProducerClient.h */,
+				F8E05D382976819C002CD256 /* SLSHttpHeader.h */,
+				F8E05D3A2976819C002CD256 /* SLSSystemCapabilities.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		F8E74BA328ACAE71000609C3 /* CrashReporter */ = {
+			isa = PBXGroup;
+			children = (
+				F838F08A297676B6001F1275 /* WPKMobi */,
+				F838F07E29767663001F1275 /* include */,
+				F838F08329767663001F1275 /* Info.plist */,
+				F838F08229767663001F1275 /* SLSCrashReporter.m */,
+				F838F07D29767663001F1275 /* SLSCrashReporterFeature.m */,
+			);
+			name = CrashReporter;
+			path = Sources/CrashReporter;
+			sourceTree = "<group>";
+		};
+		F8F09C1228ACC48C0086A714 /* NetworkDiagnosis */ = {
+			isa = PBXGroup;
+			children = (
+				F838F08F2976771F001F1275 /* AliNetworkDiagnosis */,
+				F838F0932976772A001F1275 /* include */,
+				F838F0922976772A001F1275 /* Info.plist */,
+				F838F0992976772B001F1275 /* SLSNetworkDiagnosis.m */,
+				F838F0982976772B001F1275 /* SLSNetworkDiagnosisFeature.m */,
+			);
+			name = NetworkDiagnosis;
+			path = Sources/NetworkDiagnosis;
+			sourceTree = "<group>";
+		};
+		F8F6A9AE28ABBBDB0070B023 /* OT */ = {
+			isa = PBXGroup;
+			children = (
+				F8255A032976715D00411DAD /* include */,
+				F8255A122976715D00411DAD /* Info.plist */,
+				F8255A132976715D00411DAD /* SLSAttribute.m */,
+				F8255A102976715D00411DAD /* SLSContextManager.m */,
+				F8255A1C2976715D00411DAD /* SLSEvent.m */,
+				F8255A112976715D00411DAD /* SLSIdGenerator.h */,
+				F8255A1D2976715E00411DAD /* SLSIdGenerator.m */,
+				F8255A192976715D00411DAD /* SLSKeyValue.m */,
+				F8255A172976715D00411DAD /* SLSLink.m */,
+				F8255A1B2976715D00411DAD /* SLSRecordableSpan.m */,
+				F8255A152976715D00411DAD /* SLSResource.m */,
+				F8255A1A2976715D00411DAD /* SLSSpan.m */,
+				F8255A162976715D00411DAD /* SLSSpanBuilder.m */,
+				F8255A182976715D00411DAD /* SLSTimeUtils.h */,
+				F8255A142976715D00411DAD /* SLSTimeUtils.m */,
+			);
+			name = OT;
+			path = Sources/OT;
+			sourceTree = "<group>";
+		};
+		F8F6AA5328AC7BCC0070B023 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				F8255A3D2976739D00411DAD /* include */,
+				F8255A592976739D00411DAD /* Info.plist */,
+				F8255A562976739D00411DAD /* LogProducerClient+Bricks.m */,
+				F8255A4F2976739D00411DAD /* SLSAppUtils.h */,
+				F8255A572976739D00411DAD /* SLSAppUtils.m */,
+				F8255A5A2976739D00411DAD /* SLSCocoa.m */,
+				F8255A3C2976739D00411DAD /* SLSConfiguration.m */,
+				F8255A542976739D00411DAD /* SLSCredentials.m */,
+				F8255A4D2976739D00411DAD /* SLSDeviceUtils.h */,
+				F8255A532976739D00411DAD /* SLSDeviceUtils.m */,
+				F8255A5B2976739D00411DAD /* SLSNoOpFeature.m */,
+				F8255A4C2976739D00411DAD /* SLSNoOpSender.m */,
+				F8255A5C2976739D00411DAD /* SLSReachability.h */,
+				F8255A552976739D00411DAD /* SLSReachability.m */,
+				F8255A5E2976739D00411DAD /* SLSSdkFeature.m */,
+				F8255A512976739D00411DAD /* SLSSdkSender.m */,
+				F8255A4E2976739D00411DAD /* SLSStorage.h */,
+				F8255A522976739D00411DAD /* SLSStorage.m */,
+				F8255A5D2976739D00411DAD /* SLSSwizzle.m */,
+				F8255A502976739D00411DAD /* SLSUserInfo.m */,
+				F8255A582976739D00411DAD /* Utdid.m */,
+			);
+			name = Core;
+			path = Sources/Core;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		9D984DAD2520A9B7009DE4FE /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F8E05D7D2976819D002CD256 /* AliyunLogProducer.h in Headers */,
+				F8E05D772976819D002CD256 /* LogProducerConfig.h in Headers */,
+				F8E05D792976819D002CD256 /* LogProducerClient.h in Headers */,
+				F8E05D782976819D002CD256 /* Log.h in Headers */,
+				F8E05D4F2976819C002CD256 /* log_http_interface.h in Headers */,
+				F8E05D4C2976819C002CD256 /* log_producer_client.h in Headers */,
+				F8E05D512976819C002CD256 /* log_producer_common.h in Headers */,
+				F8E05D4B2976819C002CD256 /* log_producer_config.h in Headers */,
+				F8E05D522976819C002CD256 /* log_define.h in Headers */,
+				F8E05D502976819C002CD256 /* log_multi_thread.h in Headers */,
+				F8E05D4E2976819C002CD256 /* log_inner_include.h in Headers */,
+				F8E05D722976819C002CD256 /* NSString+SLS.h in Headers */,
+				F8E05D732976819C002CD256 /* NSDictionary+SLS.h in Headers */,
+				F8E05D742976819C002CD256 /* SLSUtils.h in Headers */,
+				F8E05D752976819D002CD256 /* NSDateFormatter+SLS.h in Headers */,
+				F8E05D762976819D002CD256 /* TimeUtils.h in Headers */,
+				F8E05D7A2976819D002CD256 /* SLSHttpHeader.h in Headers */,
+				F8E05D7C2976819D002CD256 /* SLSSystemCapabilities.h in Headers */,
+				F8896C682977FAF0004CB258 /* SLSProducer.h in Headers */,
+				F8E05D492976819C002CD256 /* log_producer_sender.h in Headers */,
+				F8E05D602976819C002CD256 /* log_api.h in Headers */,
+				F8E05D442976819C002CD256 /* log_sha1.h in Headers */,
+				F8E05D562976819C002CD256 /* log_md5.h in Headers */,
+				F8E05D632976819C002CD256 /* log_builder.h in Headers */,
+				F8E05D572976819C002CD256 /* log_lz4.h in Headers */,
+				F8E05D432976819C002CD256 /* log_persistent_manager.h in Headers */,
+				F8E05D5D2976819C002CD256 /* log_sds.h in Headers */,
+				F8E05D612976819C002CD256 /* log_hmac-sha.h in Headers */,
+				F8E05D472976819C002CD256 /* inner_log.h in Headers */,
+				F8E05D582976819C002CD256 /* log_util.h in Headers */,
+				F8E05D4D2976819C002CD256 /* inner_log.h in Headers */,
+				F8E05D692976819C002CD256 /* log_ring_file.h in Headers */,
+				F8E05D7B2976819D002CD256 /* SLSURLSession.h in Headers */,
+				F8E05D6A2976819C002CD256 /* log_queue.h in Headers */,
+				F8E05D662976819C002CD256 /* log_producer_manager.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F8099020292DCC5E0000DEE9 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F834A14B28D3116300000F72 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F838F0AE29767771001F1275 /* AliyunLogTrace.h in Headers */,
+				F838F0B029767771001F1275 /* SLSTracer.h in Headers */,
+				F838F0AF29767771001F1275 /* SLSTraceFeature.h in Headers */,
+				F838F0B329767771001F1275 /* SLSTracer+Internal.h in Headers */,
+				F838F0AD29767771001F1275 /* SLSURLSessionInstrumentation.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F838F0C229767993001F1275 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F84F8AD02814E1180038A46E /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F838F09C2976772B001F1275 /* AliyunLogNetworkDiagnosis.h in Headers */,
+				F838F09B2976772B001F1275 /* SLSNetworkDiagnosis.h in Headers */,
+				F838F09E2976772B001F1275 /* SLSNetworkDiagnosisProtocol.h in Headers */,
+				F838F09D2976772B001F1275 /* SLSNetworkDiagnosisFeature.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F8696C1127F0066D00EF0020 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F838F08629767663001F1275 /* SLSCrashReporter.h in Headers */,
+				F838F08729767663001F1275 /* SLSCrashReporterFeature.h in Headers */,
+				F838F08529767663001F1275 /* AliyunLogCrashReporter.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F8F6A96528ABBB730070B023 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F8255A252976715E00411DAD /* AliyunLogOT.h in Headers */,
+				F8255A292976715E00411DAD /* SLSSpanProcessorProtocol.h in Headers */,
+				F8255A282976715E00411DAD /* SLSSpanBuilder.h in Headers */,
+				F8255A232976715E00411DAD /* SLSSpanProviderProtocol.h in Headers */,
+				F8255A242976715E00411DAD /* SLSSpan.h in Headers */,
+				F8255A1E2976715E00411DAD /* SLSRecordableSpan.h in Headers */,
+				F8255A1F2976715E00411DAD /* SLSKeyValue.h in Headers */,
+				F8255A202976715E00411DAD /* SLSAttribute.h in Headers */,
+				F8255A222976715E00411DAD /* SLSResource.h in Headers */,
+				F8255A212976715E00411DAD /* SLSEvent.h in Headers */,
+				F8255A272976715E00411DAD /* SLSLink.h in Headers */,
+				F8255A262976715E00411DAD /* SLSContextManager.h in Headers */,
+				F8255A2B2976715E00411DAD /* SLSIdGenerator.h in Headers */,
+				F8255A322976715E00411DAD /* SLSTimeUtils.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F8F6AA3228AC7B6F0070B023 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F8255A632976739D00411DAD /* AliyunLogCore.h in Headers */,
+				F8255A662976739D00411DAD /* LogProducerClient+Bricks.h in Headers */,
+				F8255A6D2976739D00411DAD /* SLSUserInfo.h in Headers */,
+				F8255A612976739D00411DAD /* SLSConfiguration.h in Headers */,
+				F8255A6B2976739D00411DAD /* SLSSenderProtocol.h in Headers */,
+				F8255A682976739D00411DAD /* SLSSdkSender.h in Headers */,
+				F8255A672976739D00411DAD /* SLSFeatureProtocol.h in Headers */,
+				F8255A652976739D00411DAD /* Utdid.h in Headers */,
+				F8255A6A2976739D00411DAD /* SLSCredentials.h in Headers */,
+				F8255A642976739D00411DAD /* SLSCocoa.h in Headers */,
+				F8255A692976739D00411DAD /* SLSNoOpFeature.h in Headers */,
+				F8255A602976739D00411DAD /* SLSSdkFeature.h in Headers */,
+				F8255A6C2976739D00411DAD /* SLSSwizzle.h in Headers */,
+				F8255A622976739D00411DAD /* SLSNoOpSender.h in Headers */,
+				F8255A6F2976739D00411DAD /* SLSDeviceUtils.h in Headers */,
+				F8255A7E2976739D00411DAD /* SLSReachability.h in Headers */,
+				F8255A712976739D00411DAD /* SLSAppUtils.h in Headers */,
+				F8255A702976739D00411DAD /* SLSStorage.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		9D984DB12520A9B7009DE4FE /* AliyunLogProducer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9D984DBA2520A9B7009DE4FE /* Build configuration list for PBXNativeTarget "AliyunLogProducer" */;
+			buildPhases = (
+				9D984DAD2520A9B7009DE4FE /* Headers */,
+				9D984DAE2520A9B7009DE4FE /* Sources */,
+				9D984DAF2520A9B7009DE4FE /* Frameworks */,
+				9D984DB02520A9B7009DE4FE /* Resources */,
+				F89F65CB273E454B00CEE012 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AliyunLogProducer;
+			productName = AliyunLogProducer;
+			productReference = 9D984DB22520A9B7009DE4FE /* AliyunLogProducer.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		F809901F292DCC5E0000DEE9 /* AliyunLogOTSwift */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F8099043292DCC5E0000DEE9 /* Build configuration list for PBXNativeTarget "AliyunLogOTSwift" */;
+			buildPhases = (
+				F8099020292DCC5E0000DEE9 /* Headers */,
+				F809902F292DCC5E0000DEE9 /* Sources */,
+				F809903C292DCC5E0000DEE9 /* Frameworks */,
+				F8099041292DCC5E0000DEE9 /* Resources */,
+				F8099042292DCC5E0000DEE9 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AliyunLogOTSwift;
+			productName = AliyunLogProducer;
+			productReference = F8099046292DCC5E0000DEE9 /* AliyunLogOTSwift.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		F834A14A28D3116300000F72 /* AliyunLogTrace */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F834A15B28D3116300000F72 /* Build configuration list for PBXNativeTarget "AliyunLogTrace" */;
+			buildPhases = (
+				F834A14B28D3116300000F72 /* Headers */,
+				F834A15028D3116300000F72 /* Sources */,
+				F834A15328D3116300000F72 /* Frameworks */,
+				F834A15928D3116300000F72 /* Resources */,
+				F834A15A28D3116300000F72 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AliyunLogTrace;
+			productName = AliyunLogProducer;
+			productReference = F834A15E28D3116300000F72 /* AliyunLogTrace.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		F838F0C129767993001F1275 /* AliyunLogURLSession */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F838F10829767993001F1275 /* Build configuration list for PBXNativeTarget "AliyunLogURLSession" */;
+			buildPhases = (
+				F838F0C229767993001F1275 /* Headers */,
+				F838F0E829767993001F1275 /* Sources */,
+				F838F10529767993001F1275 /* Frameworks */,
+				F838F10629767993001F1275 /* Resources */,
+				F838F10729767993001F1275 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F8896C662977F06C004CB258 /* PBXTargetDependency */,
+				F8896C622977F05D004CB258 /* PBXTargetDependency */,
+				F8896C642977F05D004CB258 /* PBXTargetDependency */,
+			);
+			name = AliyunLogURLSession;
+			productName = AliyunLogProducer;
+			productReference = F838F10B29767993001F1275 /* AliyunLogURLSession.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		F84F8ACF2814E1180038A46E /* AliyunLogNetworkDiagnosis */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F84F8AE42814E1180038A46E /* Build configuration list for PBXNativeTarget "AliyunLogNetworkDiagnosis" */;
+			buildPhases = (
+				F84F8AD02814E1180038A46E /* Headers */,
+				F84F8AD62814E1180038A46E /* Sources */,
+				F84F8ADC2814E1180038A46E /* Frameworks */,
+				F84F8AE22814E1180038A46E /* Resources */,
+				F84F8AE32814E1180038A46E /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AliyunLogNetworkDiagnosis;
+			productName = AliyunLogProducer;
+			productReference = F84F8AE72814E1180038A46E /* AliyunLogNetworkDiagnosis.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		F8696C1027F0066D00EF0020 /* AliyunLogCrashReporter */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F8696C4C27F0066D00EF0020 /* Build configuration list for PBXNativeTarget "AliyunLogCrashReporter" */;
+			buildPhases = (
+				F8696C1127F0066D00EF0020 /* Headers */,
+				F8696C2D27F0066D00EF0020 /* Sources */,
+				F8696C4527F0066D00EF0020 /* Frameworks */,
+				F8696C4A27F0066D00EF0020 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AliyunLogCrashReporter;
+			productName = AliyunLogProducer;
+			productReference = F8696C4F27F0066D00EF0020 /* AliyunLogCrashReporter.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		F87828C928B6089D00F3D2B5 /* Unity4SLS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F87828D028B6089D00F3D2B5 /* Build configuration list for PBXNativeTarget "Unity4SLS" */;
+			buildPhases = (
+				F87828C628B6089D00F3D2B5 /* Sources */,
+				F87828C728B6089D00F3D2B5 /* Frameworks */,
+				F87828C828B6089D00F3D2B5 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Unity4SLS;
+			productName = Unity4SLSiOS;
+			productReference = F87828CA28B6089D00F3D2B5 /* libUnity4SLS.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		F8F6A96428ABBB730070B023 /* AliyunLogOT */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F8F6A9A928ABBB730070B023 /* Build configuration list for PBXNativeTarget "AliyunLogOT" */;
+			buildPhases = (
+				F8F6A96528ABBB730070B023 /* Headers */,
+				F8F6A98628ABBB730070B023 /* Sources */,
+				F8F6A9A228ABBB730070B023 /* Frameworks */,
+				F8F6A9A728ABBB730070B023 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F809904D292DCF180000DEE9 /* PBXTargetDependency */,
+				F8099052292DCF9B0000DEE9 /* PBXTargetDependency */,
+			);
+			name = AliyunLogOT;
+			productName = AliyunLogProducer;
+			productReference = F8F6A9AC28ABBB730070B023 /* AliyunLogOT.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		F8F6AA3128AC7B6F0070B023 /* AliyunLogCore */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F8F6AA4E28AC7B6F0070B023 /* Build configuration list for PBXNativeTarget "AliyunLogCore" */;
+			buildPhases = (
+				F8F6AA3228AC7B6F0070B023 /* Headers */,
+				F8F6AA3E28AC7B6F0070B023 /* Sources */,
+				F8F6AA4728AC7B6F0070B023 /* Frameworks */,
+				F8F6AA4C28AC7B6F0070B023 /* Resources */,
+				F8F6AA4D28AC7B6F0070B023 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F838F07C29767620001F1275 /* PBXTargetDependency */,
+				F8E4D2052976758000880E6F /* PBXTargetDependency */,
+			);
+			name = AliyunLogCore;
+			productName = AliyunLogProducer;
+			productReference = F8F6AA5128AC7B6F0070B023 /* AliyunLogCore.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9D984DA92520A9B7009DE4FE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1120;
+				ORGANIZATIONNAME = com.aysls.ios;
+				TargetAttributes = {
+					9D984DB12520A9B7009DE4FE = {
+						CreatedOnToolsVersion = 11.2.1;
+					};
+					F809901F292DCC5E0000DEE9 = {
+						LastSwiftMigration = 1340;
+					};
+					F838F0C129767993001F1275 = {
+						LastSwiftMigration = 1340;
+					};
+					F87828C928B6089D00F3D2B5 = {
+						CreatedOnToolsVersion = 13.3.1;
+					};
+					F8F6A96428ABBB730070B023 = {
+						LastSwiftMigration = 1340;
+					};
+				};
+			};
+			buildConfigurationList = 9D984DAC2520A9B7009DE4FE /* Build configuration list for PBXProject "AliyunLogProducer" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 9D984DA82520A9B7009DE4FE;
+			productRefGroup = 9D984DB32520A9B7009DE4FE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9D984DB12520A9B7009DE4FE /* AliyunLogProducer */,
+				F8F6A96428ABBB730070B023 /* AliyunLogOT */,
+				F809901F292DCC5E0000DEE9 /* AliyunLogOTSwift */,
+				F8F6AA3128AC7B6F0070B023 /* AliyunLogCore */,
+				F8696C1027F0066D00EF0020 /* AliyunLogCrashReporter */,
+				F84F8ACF2814E1180038A46E /* AliyunLogNetworkDiagnosis */,
+				F834A14A28D3116300000F72 /* AliyunLogTrace */,
+				F838F0C129767993001F1275 /* AliyunLogURLSession */,
+				F87828C928B6089D00F3D2B5 /* Unity4SLS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9D984DB02520A9B7009DE4FE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F8099041292DCC5E0000DEE9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F834A15928D3116300000F72 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F838F10629767993001F1275 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F84F8AE22814E1180038A46E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F8696C4A27F0066D00EF0020 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F8F6A9A728ABBB730070B023 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F8F6AA4C28AC7B6F0070B023 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9D984DAE2520A9B7009DE4FE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F8E05D642976819C002CD256 /* log_producer_sender.c in Sources */,
+				F8E05D712976819C002CD256 /* LogProducerClient.m in Sources */,
+				F8E05D802976819D002CD256 /* NSString+SLS.m in Sources */,
+				F8E05D702976819C002CD256 /* SLSHttpHeader.m in Sources */,
+				F8E05D452976819C002CD256 /* log_producer_common.c in Sources */,
+				F8E05D822976819D002CD256 /* NSDateFormatter+SLS.m in Sources */,
+				F8E05D552976819C002CD256 /* log_ring_file.c in Sources */,
+				F8E05D482976819C002CD256 /* log_sds.c in Sources */,
+				F8E05D6B2976819C002CD256 /* Log.m in Sources */,
+				F8E05D5C2976819C002CD256 /* log_persistent_manager.c in Sources */,
+				F8E05D5F2976819C002CD256 /* log_producer_client.c in Sources */,
+				F8E05D812976819D002CD256 /* TimeUtils.m in Sources */,
+				F8E05D7F2976819D002CD256 /* NSDictionary+SLS.m in Sources */,
+				F8E05D5A2976819C002CD256 /* log_producer_config.c in Sources */,
+				F8E05D5E2976819C002CD256 /* inner_log.c in Sources */,
+				F8E05D542976819C002CD256 /* log_queue.c in Sources */,
+				F8E05D6E2976819C002CD256 /* LogProducerConfig.m in Sources */,
+				F8E05D672976819C002CD256 /* log_md5.c in Sources */,
+				F8E05D622976819C002CD256 /* log_http_interface.c in Sources */,
+				F8E05D652976819C002CD256 /* log_util.c in Sources */,
+				F8E05D842976819D002CD256 /* SLSUtils.m in Sources */,
+				F8E05D4A2976819C002CD256 /* log_builder.c in Sources */,
+				F8E05D6F2976819C002CD256 /* SLSURLSession.m in Sources */,
+				F8E05D682976819C002CD256 /* log_lz4.c in Sources */,
+				F8E05D532976819C002CD256 /* log_hmac-sha.c in Sources */,
+				F8E05D5B2976819C002CD256 /* log_sha1.c in Sources */,
+				F8E05D592976819C002CD256 /* log_producer_manager.c in Sources */,
+				F8E05D462976819C002CD256 /* log_api.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F809902F292DCC5E0000DEE9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F8255A3B297672CC00411DAD /* ActivityContextManager.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F834A15028D3116300000F72 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F838F0B229767771001F1275 /* SLSURLSessionInstrumentation.m in Sources */,
+				F838F0AC29767771001F1275 /* SLSTracer.m in Sources */,
+				F838F0B129767771001F1275 /* SLSTraceFeature.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F838F0E829767993001F1275 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F838F114297679CF001F1275 /* URLSessionLogger.swift in Sources */,
+				F838F113297679CF001F1275 /* InstrumentationUtils.swift in Sources */,
+				F838F112297679CF001F1275 /* URLSessionInstrumentationConfiguration.swift in Sources */,
+				F838F111297679CF001F1275 /* URLSessionInstrumentation.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F84F8AD62814E1180038A46E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F838F09F2976772B001F1275 /* SLSNetworkDiagnosisFeature.m in Sources */,
+				F838F0A02976772B001F1275 /* SLSNetworkDiagnosis.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F8696C2D27F0066D00EF0020 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F838F08429767663001F1275 /* SLSCrashReporterFeature.m in Sources */,
+				F838F08829767663001F1275 /* SLSCrashReporter.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F87828C628B6089D00F3D2B5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F838F0B7297677DF001F1275 /* Unity4SLSiOS.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F8F6A98628ABBB730070B023 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F8255A342976715E00411DAD /* SLSSpan.m in Sources */,
+				F8255A372976715E00411DAD /* SLSIdGenerator.m in Sources */,
+				F8255A352976715E00411DAD /* SLSRecordableSpan.m in Sources */,
+				F8255A312976715E00411DAD /* SLSLink.m in Sources */,
+				F8255A362976715E00411DAD /* SLSEvent.m in Sources */,
+				F8255A2E2976715E00411DAD /* SLSTimeUtils.m in Sources */,
+				F8255A2A2976715E00411DAD /* SLSContextManager.m in Sources */,
+				F8255A332976715E00411DAD /* SLSKeyValue.m in Sources */,
+				F8255A302976715E00411DAD /* SLSSpanBuilder.m in Sources */,
+				F8255A2F2976715E00411DAD /* SLSResource.m in Sources */,
+				F8255A2D2976715E00411DAD /* SLSAttribute.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F8F6AA3E28AC7B6F0070B023 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F8255A7C2976739D00411DAD /* SLSCocoa.m in Sources */,
+				F8255A7A2976739D00411DAD /* Utdid.m in Sources */,
+				F8255A5F2976739D00411DAD /* SLSConfiguration.m in Sources */,
+				F8255A722976739D00411DAD /* SLSUserInfo.m in Sources */,
+				F8255A752976739D00411DAD /* SLSDeviceUtils.m in Sources */,
+				F8255A782976739D00411DAD /* LogProducerClient+Bricks.m in Sources */,
+				F8255A732976739D00411DAD /* SLSSdkSender.m in Sources */,
+				F8255A802976739D00411DAD /* SLSSdkFeature.m in Sources */,
+				F8255A7F2976739D00411DAD /* SLSSwizzle.m in Sources */,
+				F8255A6E2976739D00411DAD /* SLSNoOpSender.m in Sources */,
+				F8255A742976739D00411DAD /* SLSStorage.m in Sources */,
+				F8255A762976739D00411DAD /* SLSCredentials.m in Sources */,
+				F8255A792976739D00411DAD /* SLSAppUtils.m in Sources */,
+				F8255A7D2976739D00411DAD /* SLSNoOpFeature.m in Sources */,
+				F8255A772976739D00411DAD /* SLSReachability.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F809904D292DCF180000DEE9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F809901F292DCC5E0000DEE9 /* AliyunLogOTSwift */;
+			targetProxy = F809904C292DCF180000DEE9 /* PBXContainerItemProxy */;
+		};
+		F8099052292DCF9B0000DEE9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F809901F292DCC5E0000DEE9 /* AliyunLogOTSwift */;
+			targetProxy = F8099051292DCF9B0000DEE9 /* PBXContainerItemProxy */;
+		};
+		F838F07C29767620001F1275 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F8F6A96428ABBB730070B023 /* AliyunLogOT */;
+			targetProxy = F838F07B29767620001F1275 /* PBXContainerItemProxy */;
+		};
+		F8896C622977F05D004CB258 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F8F6A96428ABBB730070B023 /* AliyunLogOT */;
+			targetProxy = F8896C612977F05D004CB258 /* PBXContainerItemProxy */;
+		};
+		F8896C642977F05D004CB258 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F834A14A28D3116300000F72 /* AliyunLogTrace */;
+			targetProxy = F8896C632977F05D004CB258 /* PBXContainerItemProxy */;
+		};
+		F8896C662977F06C004CB258 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F8F6AA3128AC7B6F0070B023 /* AliyunLogCore */;
+			targetProxy = F8896C652977F06C004CB258 /* PBXContainerItemProxy */;
+		};
+		F8E4D2052976758000880E6F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9D984DB12520A9B7009DE4FE /* AliyunLogProducer */;
+			targetProxy = F8E4D2042976758000880E6F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		9D984DB82520A9B7009DE4FE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/aliyun-log-c-sdk/src";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		9D984DB92520A9B7009DE4FE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/aliyun-log-c-sdk/src";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		9D984DBB2520A9B7009DE4FE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = YES;
+				CURRENT_PROJECT_VERSION = 310;
+				DEAD_CODE_STRIPPING = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = QWPJRHMG6U;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AliyunLogProducer/CrashReporter",
+					"$(PROJECT_DIR)/AliyunLogProducer/NetworkDiagnosis",
+					"$(PROJECT_DIR)/AliyunLogProducer/build/iphoneos",
+					"$(PROJECT_DIR)/AliyunLogProducer/build/AliyunLogProducer",
+					"$(PROJECT_DIR)/AliyunLogProducer/build",
+					"$(PROJECT_DIR)/AliyunLogProducer/build/iphonesimulator",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = "$(SRCROOT)/Sources/Producer/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LINK_WITH_STANDARD_LIBRARIES = NO;
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MARKETING_VERSION = 3.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aysls.cocoa.producer;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "watchsimulator watchos macosx iphonesimulator iphoneos driverkit appletvsimulator appletvos";
+				SUPPORTS_MACCATALYST = YES;
+				SYSTEM_HEADER_SEARCH_PATHS = "";
+				TARGETED_DEVICE_FAMILY = "1,2,3,6";
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				VALIDATE_WORKSPACE = YES;
+			};
+			name = Debug;
+		};
+		9D984DBC2520A9B7009DE4FE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = YES;
+				CURRENT_PROJECT_VERSION = 310;
+				DEAD_CODE_STRIPPING = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DEPLOYMENT_POSTPROCESSING = YES;
+				DEVELOPMENT_TEAM = QWPJRHMG6U;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AliyunLogProducer/CrashReporter",
+					"$(PROJECT_DIR)/AliyunLogProducer/NetworkDiagnosis",
+					"$(PROJECT_DIR)/AliyunLogProducer/build/iphoneos",
+					"$(PROJECT_DIR)/AliyunLogProducer/build/AliyunLogProducer",
+					"$(PROJECT_DIR)/AliyunLogProducer/build",
+					"$(PROJECT_DIR)/AliyunLogProducer/build/iphonesimulator",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = "$(SRCROOT)/Sources/Producer/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LINK_WITH_STANDARD_LIBRARIES = NO;
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MARKETING_VERSION = 3.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aysls.cocoa.producer;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "watchsimulator watchos macosx iphonesimulator iphoneos driverkit appletvsimulator appletvos";
+				SUPPORTS_MACCATALYST = YES;
+				SYSTEM_HEADER_SEARCH_PATHS = "";
+				TARGETED_DEVICE_FAMILY = "1,2,3,6";
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				VALIDATE_WORKSPACE = YES;
+			};
+			name = Release;
+		};
+		F8099044292DCC5E0000DEE9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = YES;
+				CURRENT_PROJECT_VERSION = 311;
+				DEAD_CODE_STRIPPING = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = QWPJRHMG6U;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AliyunLogProducer/CrashReporter",
+					"$(PROJECT_DIR)/AliyunLogProducer/NetworkDiagnosis",
+					"$(PROJECT_DIR)/AliyunLogProducer/build/iphoneos",
+					"$(PROJECT_DIR)/AliyunLogProducer/build/AliyunLogProducer",
+					"$(PROJECT_DIR)/AliyunLogProducer/build",
+					"$(PROJECT_DIR)/AliyunLogProducer/build/iphonesimulator",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = "$(SRCROOT)/Sources/OTSwift/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LINK_WITH_STANDARD_LIBRARIES = NO;
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MARKETING_VERSION = 3.1.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aysls.cocoa.ot;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "watchsimulator watchos macosx iphonesimulator iphoneos driverkit appletvsimulator appletvos";
+				SUPPORTS_MACCATALYST = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				SYSTEM_HEADER_SEARCH_PATHS = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TVOS_DEPLOYMENT_TARGET = 10.0;
+				VALIDATE_WORKSPACE = YES;
+			};
+			name = Debug;
+		};
+		F8099045292DCC5E0000DEE9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = YES;
+				CURRENT_PROJECT_VERSION = 311;
+				DEAD_CODE_STRIPPING = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DEPLOYMENT_POSTPROCESSING = YES;
+				DEVELOPMENT_TEAM = QWPJRHMG6U;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AliyunLogProducer/CrashReporter",
+					"$(PROJECT_DIR)/AliyunLogProducer/NetworkDiagnosis",
+					"$(PROJECT_DIR)/AliyunLogProducer/build/iphoneos",
+					"$(PROJECT_DIR)/AliyunLogProducer/build/AliyunLogProducer",
+					"$(PROJECT_DIR)/AliyunLogProducer/build",
+					"$(PROJECT_DIR)/AliyunLogProducer/build/iphonesimulator",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = "$(SRCROOT)/Sources/OTSwift/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LINK_WITH_STANDARD_LIBRARIES = NO;
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MARKETING_VERSION = 3.1.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aysls.cocoa.ot;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "watchsimulator watchos macosx iphonesimulator iphoneos driverkit appletvsimulator appletvos";
+				SUPPORTS_MACCATALYST = YES;
+				SWIFT_VERSION = 5.0;
+				SYSTEM_HEADER_SEARCH_PATHS = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TVOS_DEPLOYMENT_TARGET = 10.0;
+				VALIDATE_WORKSPACE = YES;
+			};
+			name = Release;
+		};
+		F834A15C28D3116300000F72 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = YES;
+				CURRENT_PROJECT_VERSION = 310;
+				DEAD_CODE_STRIPPING = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = QWPJRHMG6U;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AliyunLogProducer/CrashReporter",
+					"$(PROJECT_DIR)/AliyunLogProducer/NetworkDiagnosis",
+					"$(PROJECT_DIR)/NetworkDiagnosis",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = "$(SRCROOT)/Sources/Trace/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LINK_WITH_STANDARD_LIBRARIES = NO;
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MARKETING_VERSION = 3.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aysls.cocoa.trace;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "watchsimulator watchos macosx iphonesimulator iphoneos driverkit appletvsimulator appletvos";
+				SUPPORTS_MACCATALYST = YES;
+				SYSTEM_HEADER_SEARCH_PATHS = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				VALIDATE_WORKSPACE = YES;
+			};
+			name = Debug;
+		};
+		F834A15D28D3116300000F72 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = YES;
+				CURRENT_PROJECT_VERSION = 310;
+				DEAD_CODE_STRIPPING = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DEPLOYMENT_POSTPROCESSING = YES;
+				DEVELOPMENT_TEAM = QWPJRHMG6U;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AliyunLogProducer/CrashReporter",
+					"$(PROJECT_DIR)/AliyunLogProducer/NetworkDiagnosis",
+					"$(PROJECT_DIR)/NetworkDiagnosis",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = "$(SRCROOT)/Sources/Trace/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LINK_WITH_STANDARD_LIBRARIES = NO;
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MARKETING_VERSION = 3.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aysls.cocoa.trace;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "watchsimulator watchos macosx iphonesimulator iphoneos driverkit appletvsimulator appletvos";
+				SUPPORTS_MACCATALYST = YES;
+				SYSTEM_HEADER_SEARCH_PATHS = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				VALIDATE_WORKSPACE = YES;
+			};
+			name = Release;
+		};
+		F838F10929767993001F1275 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = YES;
+				CURRENT_PROJECT_VERSION = 310;
+				DEAD_CODE_STRIPPING = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = QWPJRHMG6U;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AliyunLogProducer/CrashReporter",
+					"$(PROJECT_DIR)/AliyunLogProducer/NetworkDiagnosis",
+					"$(PROJECT_DIR)/AliyunLogProducer/build/iphoneos",
+					"$(PROJECT_DIR)/AliyunLogProducer/build/AliyunLogProducer",
+					"$(PROJECT_DIR)/AliyunLogProducer/build",
+					"$(PROJECT_DIR)/AliyunLogProducer/build/iphonesimulator",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = "$(SRCROOT)/Sources/Instrumentation/URLSession/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LINK_WITH_STANDARD_LIBRARIES = NO;
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MARKETING_VERSION = 3.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aysls.cocoa.producer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "watchsimulator watchos macosx iphonesimulator iphoneos driverkit appletvsimulator appletvos";
+				SUPPORTS_MACCATALYST = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				SYSTEM_HEADER_SEARCH_PATHS = "";
+				TARGETED_DEVICE_FAMILY = "1,2,3,6";
+				TVOS_DEPLOYMENT_TARGET = 10.0;
+				VALIDATE_WORKSPACE = YES;
+			};
+			name = Debug;
+		};
+		F838F10A29767993001F1275 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = YES;
+				CURRENT_PROJECT_VERSION = 310;
+				DEAD_CODE_STRIPPING = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DEPLOYMENT_POSTPROCESSING = YES;
+				DEVELOPMENT_TEAM = QWPJRHMG6U;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AliyunLogProducer/CrashReporter",
+					"$(PROJECT_DIR)/AliyunLogProducer/NetworkDiagnosis",
+					"$(PROJECT_DIR)/AliyunLogProducer/build/iphoneos",
+					"$(PROJECT_DIR)/AliyunLogProducer/build/AliyunLogProducer",
+					"$(PROJECT_DIR)/AliyunLogProducer/build",
+					"$(PROJECT_DIR)/AliyunLogProducer/build/iphonesimulator",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = "$(SRCROOT)/Sources/Instrumentation/URLSession/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LINK_WITH_STANDARD_LIBRARIES = NO;
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MARKETING_VERSION = 3.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aysls.cocoa.producer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "watchsimulator watchos macosx iphonesimulator iphoneos driverkit appletvsimulator appletvos";
+				SUPPORTS_MACCATALYST = YES;
+				SWIFT_VERSION = 5.0;
+				SYSTEM_HEADER_SEARCH_PATHS = "";
+				TARGETED_DEVICE_FAMILY = "1,2,3,6";
+				TVOS_DEPLOYMENT_TARGET = 10.0;
+				VALIDATE_WORKSPACE = YES;
+			};
+			name = Release;
+		};
+		F84F8AE52814E1180038A46E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = YES;
+				CURRENT_PROJECT_VERSION = 310;
+				DEAD_CODE_STRIPPING = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = QWPJRHMG6U;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AliyunLogProducer/CrashReporter",
+					"$(PROJECT_DIR)/AliyunLogProducer/NetworkDiagnosis",
+					"$(PROJECT_DIR)/NetworkDiagnosis",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = "$(SRCROOT)/Sources/NetworkDiagnosis/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LINK_WITH_STANDARD_LIBRARIES = NO;
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MARKETING_VERSION = 3.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aysls.cocoa.networkdiagnosis;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SYSTEM_HEADER_SEARCH_PATHS = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_WORKSPACE = YES;
+			};
+			name = Debug;
+		};
+		F84F8AE62814E1180038A46E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = YES;
+				CURRENT_PROJECT_VERSION = 310;
+				DEAD_CODE_STRIPPING = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DEPLOYMENT_POSTPROCESSING = YES;
+				DEVELOPMENT_TEAM = QWPJRHMG6U;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AliyunLogProducer/CrashReporter",
+					"$(PROJECT_DIR)/AliyunLogProducer/NetworkDiagnosis",
+					"$(PROJECT_DIR)/NetworkDiagnosis",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = "$(SRCROOT)/Sources/NetworkDiagnosis/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LINK_WITH_STANDARD_LIBRARIES = NO;
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MARKETING_VERSION = 3.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aysls.cocoa.networkdiagnosis;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SYSTEM_HEADER_SEARCH_PATHS = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_WORKSPACE = YES;
+			};
+			name = Release;
+		};
+		F8696C4D27F0066D00EF0020 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = YES;
+				CURRENT_PROJECT_VERSION = 310;
+				DEAD_CODE_STRIPPING = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = QWPJRHMG6U;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AliyunLogProducer/CrashReporter",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = "$(SRCROOT)/Sources/CrashReporter/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LINK_WITH_STANDARD_LIBRARIES = NO;
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MARKETING_VERSION = 3.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aysls.cocoa.crashreporter;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "watchsimulator watchos macosx iphonesimulator iphoneos driverkit appletvsimulator appletvos";
+				SUPPORTS_MACCATALYST = YES;
+				SYSTEM_HEADER_SEARCH_PATHS = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				VALIDATE_WORKSPACE = YES;
+			};
+			name = Debug;
+		};
+		F8696C4E27F0066D00EF0020 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = YES;
+				CURRENT_PROJECT_VERSION = 310;
+				DEAD_CODE_STRIPPING = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DEPLOYMENT_POSTPROCESSING = YES;
+				DEVELOPMENT_TEAM = QWPJRHMG6U;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AliyunLogProducer/CrashReporter",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = "$(SRCROOT)/Sources/CrashReporter/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LINK_WITH_STANDARD_LIBRARIES = NO;
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MARKETING_VERSION = 3.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aysls.cocoa.crashreporter;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "watchsimulator watchos macosx iphonesimulator iphoneos driverkit appletvsimulator appletvos";
+				SUPPORTS_MACCATALYST = YES;
+				SYSTEM_HEADER_SEARCH_PATHS = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				VALIDATE_WORKSPACE = YES;
+			};
+			name = Release;
+		};
+		F87828D128B6089D00F3D2B5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QWPJRHMG6U;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F87828D228B6089D00F3D2B5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QWPJRHMG6U;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		F8F6A9AA28ABBB730070B023 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = YES;
+				CURRENT_PROJECT_VERSION = 311;
+				DEAD_CODE_STRIPPING = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = QWPJRHMG6U;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AliyunLogProducer/CrashReporter",
+					"$(PROJECT_DIR)/AliyunLogProducer/NetworkDiagnosis",
+					"$(PROJECT_DIR)/AliyunLogProducer/build/iphoneos",
+					"$(PROJECT_DIR)/AliyunLogProducer/build/AliyunLogProducer",
+					"$(PROJECT_DIR)/AliyunLogProducer/build",
+					"$(PROJECT_DIR)/AliyunLogProducer/build/iphonesimulator",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = "$(SRCROOT)/Sources/OT/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LINK_WITH_STANDARD_LIBRARIES = NO;
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MARKETING_VERSION = 3.1.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aysls.cocoa.ot;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "watchsimulator watchos macosx iphonesimulator iphoneos driverkit appletvsimulator appletvos";
+				SUPPORTS_MACCATALYST = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				SYSTEM_HEADER_SEARCH_PATHS = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				VALIDATE_WORKSPACE = YES;
+			};
+			name = Debug;
+		};
+		F8F6A9AB28ABBB730070B023 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = YES;
+				CURRENT_PROJECT_VERSION = 311;
+				DEAD_CODE_STRIPPING = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DEPLOYMENT_POSTPROCESSING = YES;
+				DEVELOPMENT_TEAM = QWPJRHMG6U;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AliyunLogProducer/CrashReporter",
+					"$(PROJECT_DIR)/AliyunLogProducer/NetworkDiagnosis",
+					"$(PROJECT_DIR)/AliyunLogProducer/build/iphoneos",
+					"$(PROJECT_DIR)/AliyunLogProducer/build/AliyunLogProducer",
+					"$(PROJECT_DIR)/AliyunLogProducer/build",
+					"$(PROJECT_DIR)/AliyunLogProducer/build/iphonesimulator",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = "$(SRCROOT)/Sources/OT/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LINK_WITH_STANDARD_LIBRARIES = NO;
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MARKETING_VERSION = 3.1.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aysls.cocoa.ot;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "watchsimulator watchos macosx iphonesimulator iphoneos driverkit appletvsimulator appletvos";
+				SUPPORTS_MACCATALYST = YES;
+				SWIFT_VERSION = 5.0;
+				SYSTEM_HEADER_SEARCH_PATHS = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				VALIDATE_WORKSPACE = YES;
+			};
+			name = Release;
+		};
+		F8F6AA4F28AC7B6F0070B023 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = YES;
+				CURRENT_PROJECT_VERSION = 310;
+				DEAD_CODE_STRIPPING = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = QWPJRHMG6U;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AliyunLogProducer/CrashReporter",
+					"$(PROJECT_DIR)/AliyunLogProducer/NetworkDiagnosis",
+					"$(PROJECT_DIR)/AliyunLogProducer/build/iphoneos",
+					"$(PROJECT_DIR)/AliyunLogProducer/build/AliyunLogProducer",
+					"$(PROJECT_DIR)/AliyunLogProducer/build",
+					"$(PROJECT_DIR)/AliyunLogProducer/build/iphonesimulator",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = "$(SRCROOT)/Sources/Core/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LINK_WITH_STANDARD_LIBRARIES = NO;
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MARKETING_VERSION = 3.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aysls.cocoa.core;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "watchsimulator watchos macosx iphonesimulator iphoneos driverkit appletvsimulator appletvos";
+				SUPPORTS_MACCATALYST = YES;
+				SYSTEM_HEADER_SEARCH_PATHS = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				VALIDATE_WORKSPACE = YES;
+			};
+			name = Debug;
+		};
+		F8F6AA5028AC7B6F0070B023 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = YES;
+				CURRENT_PROJECT_VERSION = 310;
+				DEAD_CODE_STRIPPING = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DEPLOYMENT_POSTPROCESSING = YES;
+				DEVELOPMENT_TEAM = QWPJRHMG6U;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AliyunLogProducer/CrashReporter",
+					"$(PROJECT_DIR)/AliyunLogProducer/NetworkDiagnosis",
+					"$(PROJECT_DIR)/AliyunLogProducer/build/iphoneos",
+					"$(PROJECT_DIR)/AliyunLogProducer/build/AliyunLogProducer",
+					"$(PROJECT_DIR)/AliyunLogProducer/build",
+					"$(PROJECT_DIR)/AliyunLogProducer/build/iphonesimulator",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = "$(SRCROOT)/Sources/Core/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LINK_WITH_STANDARD_LIBRARIES = NO;
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MARKETING_VERSION = 3.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aysls.cocoa.core;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "watchsimulator watchos macosx iphonesimulator iphoneos driverkit appletvsimulator appletvos";
+				SUPPORTS_MACCATALYST = YES;
+				SYSTEM_HEADER_SEARCH_PATHS = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				VALIDATE_WORKSPACE = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9D984DAC2520A9B7009DE4FE /* Build configuration list for PBXProject "AliyunLogProducer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9D984DB82520A9B7009DE4FE /* Debug */,
+				9D984DB92520A9B7009DE4FE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9D984DBA2520A9B7009DE4FE /* Build configuration list for PBXNativeTarget "AliyunLogProducer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9D984DBB2520A9B7009DE4FE /* Debug */,
+				9D984DBC2520A9B7009DE4FE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F8099043292DCC5E0000DEE9 /* Build configuration list for PBXNativeTarget "AliyunLogOTSwift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F8099044292DCC5E0000DEE9 /* Debug */,
+				F8099045292DCC5E0000DEE9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F834A15B28D3116300000F72 /* Build configuration list for PBXNativeTarget "AliyunLogTrace" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F834A15C28D3116300000F72 /* Debug */,
+				F834A15D28D3116300000F72 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F838F10829767993001F1275 /* Build configuration list for PBXNativeTarget "AliyunLogURLSession" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F838F10929767993001F1275 /* Debug */,
+				F838F10A29767993001F1275 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F84F8AE42814E1180038A46E /* Build configuration list for PBXNativeTarget "AliyunLogNetworkDiagnosis" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F84F8AE52814E1180038A46E /* Debug */,
+				F84F8AE62814E1180038A46E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F8696C4C27F0066D00EF0020 /* Build configuration list for PBXNativeTarget "AliyunLogCrashReporter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F8696C4D27F0066D00EF0020 /* Debug */,
+				F8696C4E27F0066D00EF0020 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F87828D028B6089D00F3D2B5 /* Build configuration list for PBXNativeTarget "Unity4SLS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F87828D128B6089D00F3D2B5 /* Debug */,
+				F87828D228B6089D00F3D2B5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F8F6A9A928ABBB730070B023 /* Build configuration list for PBXNativeTarget "AliyunLogOT" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F8F6A9AA28ABBB730070B023 /* Debug */,
+				F8F6A9AB28ABBB730070B023 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F8F6AA4E28AC7B6F0070B023 /* Build configuration list for PBXNativeTarget "AliyunLogCore" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F8F6AA4F28AC7B6F0070B023 /* Debug */,
+				F8F6AA5028AC7B6F0070B023 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9D984DA92520A9B7009DE4FE /* Project object */;
+}

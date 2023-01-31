@@ -7,7 +7,6 @@
 
 #import "ViewController.h"
 #import "DemoUtils.h"
-#import <AliyunLogProducer/LogProducerClient+Bricks.h>
 
 @interface ViewController ()
 
@@ -21,6 +20,10 @@
 
 - (UIButton *) createButton: (NSString *) title andAction: (SEL) action andX: (CGFloat) x andY: (CGFloat) y {
     return [self createButton:title andAction:action andX:x andY:y andWidth:SLCellWidth andHeight:SLCellHeight andFont:[UIFont systemFontOfSize:15]];
+}
+
+- (UIButton *) createButton: (NSString *) title andAction: (SEL) action andX: (CGFloat) x andY: (CGFloat) y andWidth:(CGFloat)width {
+    return [self createButton:title andAction:action andX:x andY:y andWidth:width andHeight:SLCellHeight andFont:[UIFont systemFontOfSize:15]];
 }
 
 - (UIButton *) createButton: (NSString *) title andAction: (SEL) action andX: (CGFloat) x andY: (CGFloat) y andWidth: (CGFloat) width andHeight: (CGFloat) height {
@@ -58,6 +61,7 @@
     UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(SLPadding + x, SLNavBarAndStatusBarHeight + SLPadding * 2 + y, width, height)];
     textView.backgroundColor = [UIColor whiteColor];
     [textView setTextColor:[UIColor blackColor]];
+    [textView setReturnKeyType:UIReturnKeyDone];
     [textView setText:text];
     
     [self.view addSubview:textView];

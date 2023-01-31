@@ -7,9 +7,12 @@
 
 import UIKit
 import AliyunLogProducer
+import Combine
 
 class ViewController: UIViewController {
     fileprivate var client:     LogProducerClient!
+    var cancellables = Set<AnyCancellable>()
+    var index: Int = 0
     
     var x : Int = 0
 
@@ -95,11 +98,15 @@ class ViewController: UIViewController {
         }
         client = LogProducerClient(logProducerConfig:config, callback:callbackFunc)
 //        client = LogProducerClient(logProducerConfig:config)
+//        DispatchQueue.global().async {
+//            Thread.sleep(forTimeInterval: 3.0)
+//            SLSTracer.spanBuilder("for test in async, should independent").build().end()
+//        }
     }
     
     func sendOneLog() {
         let log = getOneLog()
-        log.putContent("index", value:String(x))
+//        log.putContent("index", value:String(x))
         x = x + 1
         let res = client?.add(log, flush:1)
         print(res!)
@@ -147,6 +154,200 @@ class ViewController: UIViewController {
     @IBAction func mockCrash(_ sender: Any) {
         let numbers = [0]
         let _ = numbers[1]
+    }
+    
+    @IBAction func simpleTrace(_ sender: Any) {
+        // single span with SpanBuilder
+        SLSTracer.spanBuilder("span builder")
+            .setService("iOS")
+            .addAttributes([SLSAttribute.of("attr_key", value: "attr_value")])
+            .addResource(SLSResource.of("res_key", value: "res_value"))
+            .build()
+            .end()
+        
+        
+        // single span
+        var span = SLSTracer.startSpan("span 1")
+        span.addAttributes([SLSAttribute.of("attr_key", value: "attr_value")])
+        span.end()
+
+        // span with children
+        span = SLSTracer.startSpan("span with children", active: true)
+        SLSTracer.startSpan("child span 1").end()
+        SLSTracer.startSpan("child span 2").end()
+        span.end()
+
+        // span with function block
+        SLSTracer.withinSpan("span with func block") {
+            SLSTracer.startSpan("span within block 1").end()
+            SLSTracer.withinSpan("nested span with func block") {
+                SLSTracer.startSpan("nested span 1").end()
+                SLSTracer.startSpan("nested span 2").end()
+            }
+//            var array = [String]()
+//            array.remove(at: 10)
+            SLSTracer.startSpan("span within block 2").end()
+        }
+        
+        // http request with traceid
+        SLSTracer.withinSpan("span with http request func") {
+            URLSession.shared.dataTask(with: URL.init(string: "http://sls-mall.caa227ac081f24f1a8556f33d69b96c99.cn-beijing.alicontainer.com/catalogue")!).resume()
+        }
+    }
+    
+    @IBAction func startEngine(_ sender: Any) {
+        let root = SLSTracer.spanBuilder("执行启动引擎操作").setActive(true).build()
+        Task {
+            try await self.connectPower("启动引擎")
+        }
+        loadReportStatus().sink { _ in
+            root.end()
+        } receiveValue: { ret in
+            print("load report status result: \(ret)")
+        }
+        .store(in: &cancellables)
+    }
+    
+    func connectPower(_ source: String) async throws {
+        SLSTracer.withinSpan("\(source) 1. 接通电源") {
+//            Thread.sleep(forTimeInterval: 1.0)
+        }
+        
+        try await Task.sleep(nanoseconds: 3 * 1_000_000_000)
+        
+        SLSTracer.withinSpan("\(source) 1.1. 电气系统自检") {
+            SLSTracer.withinSpan("\(source) 1.1.1. 电池电压检查") {
+//                Thread.sleep(forTimeInterval: 1.0)
+//                        Task.sleep(2)
+            }
+            
+            SLSTracer.withinSpan("\(source) 1.1.2. 电气信号检查") {
+//                Thread.sleep(forTimeInterval: 1.0)
+//                        Task.sleep(2.0)
+            }
+        }
+    }
+//
+//    func createTask() {
+//        Task {
+//            let span: SLSSpan = SLSContextManager.activeSpan()
+//            print("active span name: \(span.name)")
+//        }
+//    }
+//
+    
+    @IBAction func openAirConditioner(_ sender: Any) {
+//        let root = SLSTracer.spanBuilder("test root").setActive(true).build()
+//
+//        createTask()
+//
+//        root.end()
+//
+//
+//
+        index += 1;
+        let root = SLSTracer.spanBuilder("打开空调-\(index)").setActive(true).build()
+
+        Task {
+            try await connectPower("打开空调-\(index)")
+        }
+
+        loadReportStatus().sink { _ in
+//            root.end()
+        } receiveValue: { ret in
+            print("load report status result: \(ret)")
+        }
+        .store(in: &cancellables)
+        
+        root.end()
+
+//        SLSTracer.withinSpan("打开空调-\(self.index)") {
+//            self.connectPower("打开空调-\(self.index)")
+//
+//            self.loadReportStatus().sink { _ in
+//
+//            } receiveValue: { ret in
+//                print("load report status result: \(ret)")
+//            }
+//            .store(in: &self.cancellables)
+//        }
+    }
+    
+    
+    func loadReportStatus() -> Future<Bool, Error> {
+        let a = Future<Bool, Error> { promise in
+            SLSTracer.withinSpan("get report status") {
+                self.getReportStatus { result in
+                    if case let .failure(error) = result {
+                        print("Failed to report status, result: \(error.localizedDescription)")
+                    }
+                    promise(result)
+                    
+                }
+            }
+        }
+        
+//        return a.eraseToAnyPublisher()
+        return a
+    }
+    
+    func getReportStatus(completion: @escaping (Result<Bool, Error>) -> Void) {
+//        Task.detached {
+//            do {
+//                let result = try await self.reportStatus()
+//                completion(.success(result))
+//            } catch {
+//                completion(.failure(error))
+//            }
+//        }
+        Task {
+            do {
+                let result = try await self.reportStatus()
+                completion(.success(result))
+            } catch {
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    func reportStatus() async throws -> Bool {
+        var urlRequest = URLRequest(url: URL.init(string: "http://sls-mall.caa227ac081f24f1a8556f33d69b96c99.cn-beijing.alicontainer.com/catalogue")!)
+        urlRequest.httpMethod = "GET"
+        
+        try await Task.sleep(nanoseconds: 3 * 1_000_000_000)
+        let session = URLSession.shared
+        try await session.data(for: urlRequest)
+//        let (_, response) = try await session.data(for: urlRequest)
+//        guard (response as? HTTPURLResponse)?.statusCode == 200 else {
+//            fatalError("Error while fetching data")
+//        }
+        
+        return true
+    }
+    
+    
+    @IBAction func eventAndExceptionDemo(_ sender: Any) {
+        
+        SLSTracer.startSpan("span with event")
+            .addEvent("event name")
+            .end()
+        SLSTracer.startSpan("span with event and attribute")
+            .addEvent("event name with attribute", attributes: [
+                SLSAttribute.of("attr_key", value: "attr_value"),
+                SLSAttribute.of("attr_key2", value: "attr_value2")
+            ])
+            .end()
+        
+        SLSTracer.startSpan("span with exception")
+            .recordException(NSException(name: NSExceptionName("mock exception name"), reason: "mock exception reason"))
+            .end()
+        SLSTracer.startSpan("span with exception and attribute")
+            .recordException(NSException(name: NSExceptionName("mock exception name"), reason: "mock exception reason"), attributes: [
+                SLSAttribute.of("attr_key", value: "attr_value"),
+                SLSAttribute.of("attr_key2", value: "attr_value2")
+            ])
+            .end()
+        
     }
     
 }

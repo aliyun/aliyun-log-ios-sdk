@@ -7,13 +7,23 @@
 
 #import "CrashExampController.h"
 #include "CppExceptionFaker.hpp"
+#import <AliyunLogProducer/AliyunLogProducer.h>
 
 @interface CrashExampController ()
 @property(nonatomic, strong) NSLock *lock;
-
+@property(atomic, assign) BOOL enabled;
 @end
 
 @implementation CrashExampController
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        _enabled = YES;
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -57,41 +67,64 @@
     [self createButton:@"Signal SIGSYS" andAction:@selector(onSignalSysCrashBtnClick) andX:lx andY:(SLCellHeight + SLPadding) * 7 andWidth:cellWidth andHeight:SLCellHeight andFont: font];
     [self createButton:@"Signal SIGPIPE" andAction:@selector(onSignalPipeCrashBtnClick) andX:rx andY:(SLCellHeight + SLPadding) * 7 andWidth:cellWidth andHeight:SLCellHeight andFont: font];
     
-    [self createButton:@"Custom Log" andAction:@selector(onCustomLog) andX:lx andY:(SLCellHeight + SLPadding) * 8 andWidth:(SLScreenW - lx * 4) andHeight:SLCellHeight andFont: font];
+    [self createButton:@"自定义错误" andAction:@selector(onCustomLog) andX:lx andY:(SLCellHeight + SLPadding) * 8 andWidth:(SLScreenW - lx * 4) andHeight:SLCellHeight andFont: font];
     
     [self createButton:@"动态更新" andAction:@selector(updateConfiguration) andX:lx andY:(SLCellHeight + SLPadding) * 9 andWidth:(SLScreenW - lx * 4) andHeight:SLCellHeight andFont: font];
+    
+    [self createButton:@"卡顿" andAction:@selector(onJank) andX:lx andY:(SLCellHeight + SLPadding) * 10 andWidth:(SLScreenW - lx * 4) andHeight:SLCellHeight andFont: font];
+    
+    [self createButton:@"开启/关闭" andAction:@selector(switchEnabled) andX:lx andY:(SLCellHeight + SLPadding) * 11 andWidth:(SLScreenW - lx * 4) andHeight:SLCellHeight andFont: font];
 }
 
 - (void) initCrash {
-    DemoUtils *utils = [DemoUtils sharedInstance];
-    SLSConfig *config = [[SLSConfig alloc] init];
-    // 正式发布时建议关闭
-    [config setDebuggable:YES];
+//    DemoUtils *utils = [DemoUtils sharedInstance];
+//    SLSConfig *config = [[SLSConfig alloc] init];
+//    // 正式发布时建议关闭
+//    [config setDebuggable:YES];
+//
+//    [config setEndpoint: [utils endpoint]];
+//    [config setAccessKeyId: [utils accessKeyId]];
+//    [config setAccessKeySecret: [utils accessKeySecret]];
+//    [config setPluginAppId: [utils pluginAppId]];
+//    [config setPluginLogproject: [utils project]];
+//
+//    [config setUserId:@"test_userid"];
+//    [config setChannel:@"test_channel"];
+//    [config addCustomWithKey:@"customKey" andValue:@"testValue"];
     
-    [config setEndpoint: [utils endpoint]];
-    [config setAccessKeyId: [utils accessKeyId]];
-    [config setAccessKeySecret: [utils accessKeySecret]];
-    [config setPluginAppId: [utils pluginAppId]];
-    [config setPluginLogproject: [utils project]];
+//    SLSAdapter *slsAdapter = [SLSAdapter sharedInstance];
+////    [slsAdapter addPlugin:[[SLSCrashReporterPlugin alloc]init]];
+////    [slsAdapter addPlugin:[[SLSTracePlugin alloc] init]];
+//    [slsAdapter initWithSLSConfig:config];
     
-    [config setUserId:@"test_userid"];
-    [config setChannel:@"test_channel"];
-    [config addCustomWithKey:@"customKey" andValue:@"testValue"];
+//    SLSCredentials *credentials = [SLSCredentials credentials];
+//    credentials.endpoint = @"https://cn-hangzhou.log.aliyuncs.com";
+//    credentials.project = @"yuanbo-test-1";
+//    credentials.accessKeyId = utils.accessKeyId;
+//    credentials.accessKeySecret = utils.accessKeySecret;
+//    credentials.instanceId = @"yuanbo-ios";
+//
+//    [[SLSCocoa sharedInstance] initialize:credentials configuration:^(SLSConfiguration * _Nonnull configuration) {
+//        configuration.enableCrashReporter = YES;
+//    }];
     
-    SLSAdapter *slsAdapter = [SLSAdapter sharedInstance];
-    [slsAdapter addPlugin:[[SLSCrashReporterPlugin alloc]init]];
-//    [slsAdapter addPlugin:[[SLSTracePlugin alloc] init]];
-    [slsAdapter initWithSLSConfig:config];
 }
 
 - (void) updateConfiguration {
-    SLSConfig *config = [[SLSConfig alloc] init];
-    config.userId = @"test_uuuid";
+//    SLSConfig *config = [[SLSConfig alloc] init];
+//    config.userId = @"test_uuuid";
+//
+//    SLSAdapter *adapter = [SLSAdapter sharedInstance];
+//    [adapter updateConfig:config];
+//    DemoUtils *utils = [DemoUtils sharedInstance];
+//    [adapter resetSecurityToken:utils.accessKeyId secret:utils.accessKeySecret token:nil];
     
-    SLSAdapter *adapter = [SLSAdapter sharedInstance];
-    [adapter updateConfig:config];
-    DemoUtils *utils = [DemoUtils sharedInstance];
-    [adapter resetSecurityToken:utils.accessKeyId secret:utils.accessKeySecret token:nil];
+    
+    SLSCredentials *credentials = [SLSCredentials credentials];
+    credentials.instanceId = @"yuanbo-test-1111";
+    credentials.accessKeyId = [DemoUtils sharedInstance].accessKeyId;
+    credentials.accessKeySecret = [DemoUtils sharedInstance].accessKeySecret;
+    [[SLSCocoa sharedInstance] setCredentials:credentials];
 }
 
 # pragma Mach Crash
@@ -202,14 +235,67 @@
 
 - (void) onCustomLog {
     SLSLogV(@"********** Make a Custom Log now. **********");
-    [[SLSAdapter sharedInstance] reportCustomEvent:@"Clicked" properties:@{
-        @"view_pos": @1,
-        @"view_content": @"click test"
-    }];
+    @try {
+        NSMutableArray *array = @[];
+        [array removeObjectAtIndex:10];
+    } @catch (NSException *exception) {
+        [[SLSCrashReporter sharedInstance] reportException:exception];
+//        [[SLSCrashReporter sharedInstance] reportError:@"exception" message:exception.name stacktrace:exception.description];
+    } @finally {
+        
+    }
+    
+    [[SLSCrashReporter sharedInstance] reportError:@[@"single custom error 1"]];
+    [[SLSCrashReporter sharedInstance] reportError:@"custom" stacktrace:@"custom error 2"];
+    
+}
+
+- (void) onJank {
+    dispatch_queue_t queue = dispatch_queue_create("com.xxx.queue", DISPATCH_QUEUE_SERIAL);
+    // 任务 1
+    dispatch_sync(queue, ^{
+        sleep(3);                                       // 模拟耗时操作
+        NSLog(@"任务1---%@",[NSThread currentThread]);   // 打印当前线程
+    });
+    // 任务 2
+    dispatch_sync(queue, ^{
+        sleep(3);                                       // 模拟耗时操作
+        NSLog(@"任务2---%@",[NSThread currentThread]);  // 打印当前线程
+    });
+    // 任务 3
+    dispatch_sync(queue, ^{
+        sleep(3);                                       // 模拟耗时操作
+        NSLog(@"任务3---%@",[NSThread currentThread]);  // 打印当前线程
+    });
+    // 任务 4
+    dispatch_sync(queue, ^{
+        sleep(3);                                       // 模拟耗时操作
+        NSLog(@"任务4---%@",[NSThread currentThread]);  // 打印当前线程
+    });
+    // 任务 5
+    dispatch_sync(queue, ^{
+        sleep(3);                                       // 模拟耗时操作
+        NSLog(@"任务5---%@",[NSThread currentThread]);  // 打印当前线程
+    });
+    // 任务 6
+    dispatch_sync(queue, ^{
+        sleep(3);                                       // 模拟耗时操作
+        NSLog(@"任务6---%@",[NSThread currentThread]);  // 打印当前线程
+    });
 }
 
 - (void) crash {
     
+}
+
+- (void) switchEnabled {
+    if (_enabled) {
+        _enabled = NO;
+    } else {
+        _enabled = YES;
+    }
+    
+    [[SLSCrashReporter sharedInstance] setEnabled:_enabled];
 }
 
 @end

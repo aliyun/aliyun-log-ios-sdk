@@ -8,6 +8,16 @@
 import UIKit
 import AliyunLogProducer
 
+@objc class SpanProvider : NSObject, SLSSpanProviderProtocol {
+    func provideResource() -> SLSResource {
+        return SLSResource.of("res_from_swift_key", value: "swift_valu");
+    }
+    
+    func provideAttribute() -> [SLSAttribute] {
+        return [SLSAttribute.of("attr_from _swift_key", value: "swift_value")];
+    }
+}
+
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -25,6 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             utils.pluginAppId = dict["PPLUGIN_APPID"] ?? ""
             utils.accessKeyId = dict["PACCESS_KEYID"] ?? ""
             utils.accessKeySecret = dict["PACCESS_KEY_SECRET"] ?? ""
+            utils.secKey = dict["PNETWORK_SECKEY"] ?? ""
         }
         
 //        SLSLogV("endpoint: %@", utils.endpoint)
@@ -34,22 +45,53 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        SLSLogV("accessKeyId: %@", utils.accessKeyId)
 //        SLSLogV("accessKeySecret: %@", utils.accessKeySecret)
         
-        let config = SLSConfig()
-        config.debuggable = true
+        let credentials = SLSCredentials()
+        credentials.endpoint = "https://cn-hangzhou.log.aliyuncs.com"
+        credentials.project = "yuanbo-test-1"
+        credentials.accessKeyId = utils.accessKeyId
+        credentials.accessKeySecret = utils.accessKeySecret
+        credentials.instanceId = "ios-dev-ea64"
         
-        config.endpoint = utils.endpoint
-        config.pluginLogproject = utils.project
-        config.pluginAppId = utils.pluginAppId
-        config.accessKeyId = utils.accessKeyId
-        config.accessKeySecret = utils.accessKeySecret
+        let networkDiagnosisCredentials = credentials.createNetworkDiagnosisCredentials()
+        networkDiagnosisCredentials.secretKey = utils.secKey;
+        networkDiagnosisCredentials.siteId = "cn";
+        networkDiagnosisCredentials.putExtension("value", forKey: "key")
+        networkDiagnosisCredentials.endpoint = "https://cn-hangzhou.log.aliyuncs.com"
+        networkDiagnosisCredentials.project = "yuanbo-test-2"
         
-        config.userId = "test_userid"
-        config.channel = "test_channel"
-        config.addCustom(withKey: "custom_key", andValue: "custom_value")
+        let tracerCredentials = credentials.createTrace()
+        tracerCredentials.instanceId = "sls-mall"
+        tracerCredentials.endpoint = "https://cn-beijing.log.aliyuncs.com"
+        tracerCredentials.project = "qs-demos"
         
-        let adapter = SLSAdapter.sharedInstance()
-        adapter.add(SLSCrashReporterPlugin())
-        adapter.initWith(config)
+        SLSCocoa.sharedInstance().initialize(credentials) { configuration in
+            configuration.spanProvider = SpanProvider()
+            configuration.enableTrace = true
+//            configuration.enableInstrumentNSURLSession = true
+//            configuration.spanProvider = SpanProvider()
+        }
+        
+//        URLSessionInstrumentation(configuration: URLSessionInstrumentationConfiguration(shouldInstrument: { req in
+//            if (req.url?.host?.contains("log.aliyuncs.com") ?? false) == true {
+//                return false
+//            }
+//            return true
+//        }))
+        
+        SLSCocoa.sharedInstance().registerCredentialsCallback { feature, result in
+            NSLog("feature: %@, result: %@", feature, result)
+            
+            if (result == "LogProducerParametersInvalid" || result == "LogProducerSendUnauthorized") {
+                // 请求新的token，然后把新的token更新到sdk
+                let credentials = SLSCredentials()
+                credentials.accessKeyId = utils.accessKeyId
+                credentials.accessKeySecret = utils.accessKeySecret
+//                credentials.securityToken = utils.
+                
+                // 不要忘记更新到sdk
+                SLSCocoa.sharedInstance().setCredentials(credentials)
+            }
+        }
         
         return true
     }

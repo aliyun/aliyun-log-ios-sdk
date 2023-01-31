@@ -1,6 +1,7 @@
 # Uncomment the next line to define a global platform for your project
 # platform :ios, '9.0'
 source 'https://github.com/CocoaPods/Specs.git'
+source 'https://github.com/aliyun/aliyun-specs.git'
 
 target 'AliyunLogSwift' do
   # Comment the next line if you don't want to use dynamic frameworks
@@ -10,7 +11,14 @@ target 'AliyunLogSwift' do
 #  pod 'AliyunLogProducer', :path =>'../' , :subspecs => ['Core', 'Bricks', 'CrashReporter']
 #  pod 'AliyunLogProducer', '2.5.0.alpha.2' , :subspecs => ['Core', 'Bricks', 'CrashReporter']
 #   pod 'AliyunLogProducer', '2.3.7' , :subspecs => ['Core', 'Bricks', 'CrashReporter']
+
+#  pod 'AliyunLogProducer', '3.1.6.beta.1', :subspecs=> ['CrashReporter', 'NetworkDiagnosis', 'Trace']
+  pod 'AliyunLogProducer/Producer', :path =>'../'
   pod 'AliyunLogProducer/Core', :path =>'../'
-  pod 'AliyunLogProducer/Bricks', :path =>'../'
+  pod 'AliyunLogProducer/OT', :path =>'../'
+#  pod 'AliyunLogProducer/OTSwift', :path =>'../'
   pod 'AliyunLogProducer/CrashReporter', :path =>'../'
+  pod 'AliyunLogProducer/NetworkDiagnosis', :path =>'../'
+  pod 'AliyunLogProducer/Trace', :path =>'../'
+  pod 'AliyunLogProducer/URLSessionInstrumentation', :path =>'../'
 end

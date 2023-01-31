@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong) NSString *accessKeyId;
 @property(nonatomic, strong) NSString *accessKeySecret;
 @property(nonatomic, strong) NSString *pluginAppId;
+@property(nonatomic, strong) NSString *secKey;
 
 + (instancetype) sharedInstance;
 

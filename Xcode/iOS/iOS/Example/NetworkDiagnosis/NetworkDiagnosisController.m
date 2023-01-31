@@ -6,14 +6,13 @@
 //
 
 #import "NetworkDiagnosisController.h"
-#import "SLSNetworkDiagnosisPlugin.h"
-#import "SLSNetworkDiagnosis.h"
-#import "NetworkDiagnosisPolicyController.h"
+#import <AliyunLogProducer/AliyunLogProducer.h>
 
 @interface NetworkDiagnosisController ()
 @property(nonatomic, strong) UITextView *statusTextView;
-@property (strong,nonatomic)NSTimer *timer;
+@property (strong,nonatomic) NSTimer *timer;
 @property (strong, nonatomic) NSMutableArray<NSString*> *endpoints;
+@property (assign, atomic) long index;
 @end
 
 @implementation NetworkDiagnosisController
@@ -62,7 +61,6 @@ static NetworkDiagnosisController *selfClzz;
     selfClzz = self;
     self.title = @"网络监控";
     [self initViews];
-    [self initNetworkDiagnosis];
 }
 
 - (void) initViews {
@@ -92,18 +90,22 @@ static NetworkDiagnosisController *selfClzz;
     
     CGFloat lx = ((SLScreenW - SLPadding * 2) / 4 - SLCellWidth / 2);
     CGFloat rx = ((SLScreenW - SLPadding * 2) / 4 * 3 - SLCellWidth / 2);
+    
+    [[SLSNetworkDiagnosis sharedInstance] setMultiplePortsDetect:YES];
+    [[SLSNetworkDiagnosis sharedInstance] registerCallback:^(NSString * _Nonnull result) {
+        SLSLog(@"global callback: %@", result);
+    }];
 
     [self createButton:@"PING" andAction:@selector(ping) andX:lx andY:SLCellHeight * 11];
     [self createButton:@"TCPPING" andAction:@selector(tcpPing) andX:rx andY:SLCellHeight * 11];
     
     [self createButton:@"HTTPPING" andAction:@selector(httpPing) andX:lx andY:SLCellHeight * 12 + SLPadding];
     [self createButton:@"MTR" andAction:@selector(mtr) andX:rx andY:SLCellHeight * 12 + SLPadding];
+    [self createButton:@"DNS" andAction:@selector(dns) andX:lx andY:SLCellHeight * 13 + SLPadding * 2 andWidth:SLScreenW - (lx * 2 + SLPadding * 2) andHeight:SLCellHeight];
     
-    [self createButton:@"AUTO" andAction:@selector(ato) andX:lx andY:SLCellHeight * 13 + SLPadding * 2 andWidth:SLScreenW - (lx * 2 + SLPadding * 2) andHeight:SLCellHeight];
-
-    [self createButton:@"动态更新配置" andAction:@selector(updateConfig) andX:lx andY:SLCellHeight * 14 + SLPadding * 3 andWidth:SLScreenW - (lx * 2 + SLPadding * 2) andHeight:SLCellHeight];
-
-    [self createButton:@"配置探测策略" andAction:@selector(navToPolicy) andX:lx andY:SLCellHeight * 15 + SLPadding * 4 andWidth:SLScreenW - (lx * 2 + SLPadding * 2) andHeight:SLCellHeight];
+    [self createButton:@"AUTO" andAction:@selector(ato) andX:lx andY:SLCellHeight * 14 + SLPadding * 3 andWidth:SLScreenW - (lx * 2 + SLPadding * 2) andHeight:SLCellHeight];
+    [self createButton:@"动态更新配置" andAction:@selector(updateConfig) andX:lx andY:SLCellHeight * 15 + SLPadding * 4 andWidth:SLScreenW - (lx * 2 + SLPadding * 2) andHeight:SLCellHeight];
+    [self createButton:@"Extra" andAction:@selector(updateExtra) andX:lx andY:SLCellHeight * 16 + SLPadding * 5 andWidth:SLScreenW - (lx * 2 + SLPadding * 2) andHeight:SLCellHeight];
 }
 
 - (void) updateStatus: (NSString *)append {
@@ -116,34 +118,43 @@ static NetworkDiagnosisController *selfClzz;
 
 - (void) ping {
     [self updateStatus:@"start ping..."];
-    [[SLSNetworkDiagnosis sharedInstance] ping:@"www.aliyun.com" callback:^(SLSNetworkDiagnosisResult * _Nonnull result) {
-        [self updateStatus:[NSString stringWithFormat:@"ping result, success: %d, data: %@", result.success, result.data]];
+    
+    [[SLSNetworkDiagnosis sharedInstance] ping:@"www.aliyun.con" callback:^(NSString * _Nonnull result) {
+        NSLog(@"ping result: %@", result);
+        [self updateStatus:[NSString stringWithFormat:@"ping result, data: %@", result]];
     }];
 }
 
 - (void) tcpPing {
     [self updateStatus:@"start tcpPing..."];
-    [[SLSNetworkDiagnosis sharedInstance] tcpPing:@"www.aliyun.com" port:80 callback:^(SLSNetworkDiagnosisResult * _Nonnull result) {
-        [self updateStatus:[NSString stringWithFormat:@"tcpPing result, success: %d, data: %@", result.success, result.data]];
+    [[SLSNetworkDiagnosis sharedInstance] tcpPing:@"www.aliyun.com" port:80 callback:^(NSString * _Nonnull result) {
+        [self updateStatus:[NSString stringWithFormat:@"tcpping result, data: %@", result]];
     }];
 }
 
 - (void) httpPing {
     [self updateStatus:@"start httpPing..."];
-    [[SLSNetworkDiagnosis sharedInstance] httpPing:@"https://www.aliyun.com" callback:^(SLSNetworkDiagnosisResult * _Nonnull result) {
-        [self updateStatus:[NSString stringWithFormat:@"httpPing result, success: %d, data: %@", result.success, result.data]];
+    [[SLSNetworkDiagnosis sharedInstance] http:@"https://www.aliyun.com" callback:^(NSString * _Nonnull result) {
+        [self updateStatus:[NSString stringWithFormat:@"ping result, data: %@", result]];
     }];
 }
 
 - (void) mtr {
     [self updateStatus:@"start mtr..."];
-    [[SLSNetworkDiagnosis sharedInstance] mtr:@"www.aliyun.com" callback:^(SLSNetworkDiagnosisResult * _Nonnull result) {
-        [self updateStatus:[NSString stringWithFormat:@"mtr result, success: %d, data: %@", result.success, result.data]];
+    [[SLSNetworkDiagnosis sharedInstance] mtr:@"www.aliyun.com" callback:^(NSString * _Nonnull result) {
+        [self updateStatus:[NSString stringWithFormat:@"mtr result, data: %@", result]];
+    }];
+}
+
+- (void) dns {
+    [self updateStatus:@"start dns..."];
+    [[SLSNetworkDiagnosis sharedInstance] dns:@"www.aliyun.com" callback:^(NSString * _Nonnull result) {
+        [self updateStatus:[NSString stringWithFormat:@"dns result, data: %@", result]];
     }];
 }
 
 - (void) navToPolicy {
-    [self.navigationController pushViewController:[[NetworkDiagnosisPolicyController alloc]init] animated:YES];
+//    [self.navigationController pushViewController:[[NetworkDiagnosisPolicyController alloc]init] animated:YES];
 }
 
 - (void) ato {
@@ -159,39 +170,21 @@ static NetworkDiagnosisController *selfClzz;
 }
 
 - (void) updateConfig {
-    SLSAdapter *adapter = [SLSAdapter sharedInstance];
-    SLSConfig *config = [[SLSConfig alloc] init];
-    [config setUserId:@"test_userid_updated"];
-    [config setUserNick:@"test_usernick_updated"];
-    [config setLongLoginNick:@"test_long_usernick_updated"];
-    [config addCustomWithKey:@"updated_key" andValue:@"updated_value"];
-    [adapter updateConfig:config];
+    SLSCredentials *credentials = [SLSCredentials credentials];
+    credentials.networkDiagnosisCredentials = [credentials createNetworkDiagnosisCredentials];
+    credentials.networkDiagnosisCredentials.accessKeyId = @"";
+    credentials.networkDiagnosisCredentials.accessKeySecret = @"";
+    
+    [[SLSCocoa sharedInstance] setCredentials:credentials];
 }
 
-- (void) initNetworkDiagnosis {
-    DemoUtils *utils = [DemoUtils sharedInstance];
-    SLSConfig *config = [[SLSConfig alloc] init];
-    // 正式发布时建议关闭
-    [config setDebuggable:YES];
+- (void) updateExtra {
+    _index += 1;
     
-    [config setEndpoint: [utils endpoint]];
-    [config setAccessKeyId: [utils accessKeyId]];
-    [config setAccessKeySecret: [utils accessKeySecret]];
-    [config setPluginAppId: [utils pluginAppId]];
-    [config setPluginLogproject: [utils project]];
-    
-    [config setUserId:@"test_userid"];
-    [config setUserNick:@"user_nick"];
-    [config setChannel:@"test_channel"];
-    [config setLongLoginNick:@"test_long_nick"];
-    [config addCustomWithKey:@"customKey" andValue:@"testValue"];
-    
-    [config setSiteId:@"cn"];
-    
-    SLSAdapter *slsAdapter = [SLSAdapter sharedInstance];
-//    [slsAdapter addPlugin:[[SLSCrashReporterPlugin alloc]init]];
-    [slsAdapter addPlugin:[[SLSNetworkDiagnosisPlugin alloc] init]];
-    [slsAdapter initWithSLSConfig:config];
+    [[SLSCocoa sharedInstance] setExtra:[NSString stringWithFormat:@"extra_key_%ld", _index] value:[NSString stringWithFormat:@"extra_value_%ld", _index]];
+    [[SLSCocoa sharedInstance] setExtra:[NSString stringWithFormat:@"extra_dict_key_%ld", _index] dictValue:@{
+        [NSString stringWithFormat:@"extra_dict_key_%ld", _index]: [NSString stringWithFormat:@"extra_dict_value_%ld", _index]
+    }];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

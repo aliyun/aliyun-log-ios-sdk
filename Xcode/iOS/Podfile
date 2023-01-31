@@ -1,6 +1,7 @@
 # Uncomment the next line to define a global platform for your project
 platform :ios, '10.0'
-source 'https://github.com/CocoaPods/Specs.git'
+#source 'https://github.com/CocoaPods/Specs.git'
+source 'https://github.com/aliyun/aliyun-specs.git'
 
 targets = ['iOS','iOSTests']
 targets.each do |t|
@@ -10,12 +11,14 @@ targets.each do |t|
       use_frameworks!
 
       # Pods for Demo
-#      pod 'AliyunLogProducer', '2.3.10.3' , :subspecs => ['Core', 'Bricks', 'CrashReporter', 'NetworkDiagnosis', 'Trace']
+#      pod 'AliyunLogProducer', '3.1.8', :subspecs => ['CrashReporter', 'NetworkDiagnosis', 'Trace', 'URLSessionInstrumentation']
+      pod 'AliyunLogProducer/Producer', :path =>'../../'
       pod 'AliyunLogProducer/Core', :path =>'../../'
-      pod 'AliyunLogProducer/Bricks', :path =>'../../'
+      pod 'AliyunLogProducer/OT', :path =>'../../'
       pod 'AliyunLogProducer/CrashReporter', :path =>'../../'
       pod 'AliyunLogProducer/NetworkDiagnosis', :path =>'../../'
       pod 'AliyunLogProducer/Trace', :path =>'../../'
+      pod 'AliyunLogProducer/URLSessionInstrumentation', :path =>'../../'
     end
 
 end
@@ -35,10 +38,9 @@ end
 
 post_install do |installer|
     installer.pods_project.targets.each do |target|
-        if target.name == 'Reachability'
             target.build_configurations.each do |config|
                 config.build_settings['EXCLUDED_ARCHS[sdk=iphonesimulator*]'] = 'arm64'
+#                config.build_settings['ENABLE_BITCODE'] = 'NO'
             end
-        end
     end
 end

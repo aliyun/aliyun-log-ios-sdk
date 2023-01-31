@@ -86,14 +86,19 @@ static void _on_log_send_done(const char * config_name, log_producer_result resu
 - (void) initLogProducer {
     DemoUtils *utils = [DemoUtils sharedInstance];
 
-    _config = [[LogProducerConfig alloc] initWithEndpoint:[utils endpoint] project:[utils project] logstore:[utils logstore] accessKeyID:[utils accessKeyId] accessKeySecret:[utils accessKeySecret]];
+    _config = [[LogProducerConfig alloc] initWithEndpoint:[utils endpoint]
+                                                  project:[utils project]
+                                                 logstore:[utils logstore]
+                                              accessKeyID:[utils accessKeyId]
+                                          accessKeySecret:[utils accessKeySecret]
+    ];
+//    _config = [[LogProducerConfig alloc] initWithEndpoint:@"" project:@"" logstore:@"" accessKeyID:@"" accessKeySecret:@""];
     [_config SetTopic:@"test_topic"];
     [_config AddTag:@"test" value:@"test_tag"];
     [_config SetPacketLogBytes:1024*1024];
     [_config SetPacketLogCount:1024];
     [_config SetPacketTimeout:3000];
     [_config SetMaxBufferLimit:64*1024*1024];
-    [_config SetSendThreadCount:1];
 
     NSArray  *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *Path = [[paths lastObject] stringByAppendingString:@"/log.dat"];
@@ -116,7 +121,6 @@ static void _on_log_send_done(const char * config_name, log_producer_result resu
     [_config SetDropUnauthorizedLog:0];
 
     _client = [[LogProducerClient alloc] initWithLogProducerConfig:_config callback:_on_log_send_done];
-    [_client setEnableTrack:YES];
 }
 
 

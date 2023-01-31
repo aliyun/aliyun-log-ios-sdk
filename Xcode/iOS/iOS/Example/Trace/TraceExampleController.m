@@ -7,14 +7,14 @@
 
 #import "TraceExampleController.h"
 
-@interface Setter : NSObject  <TelemetrySetter>
-@end
-
-@implementation Setter
-- (void)set:(NSMutableDictionary * _Nonnull)dict :(NSString * _Nonnull)key :(NSString * _Nonnull)value {
-    [dict setObject:value forKey:key];
-}
-@end
+//@interface Setter : NSObject  <TelemetrySetter>
+//@end
+//
+//@implementation Setter
+//- (void)set:(NSMutableDictionary * _Nonnull)dict :(NSString * _Nonnull)key :(NSString * _Nonnull)value {
+//    [dict setObject:value forKey:key];
+//}
+//@end
 
 @interface TraceExampleController ()
 @property(nonatomic, strong) UITextView *statusTextView;
@@ -33,7 +33,6 @@ static TraceExampleController *selfClzz;
     selfClzz = self;
     self.title = @"基础配置";
     [self initViews];
-    [self initTrace];
 }
 
 - (void) initViews {
@@ -60,14 +59,109 @@ static TraceExampleController *selfClzz;
     self.statusTextView.layoutManager.allowsNonContiguousLayout = NO;
     [self.statusTextView setEditable:NO];
     [self.statusTextView setContentOffset:CGPointMake(0, 0)];
-
-    CGFloat lx = ((SLScreenW - SLPadding * 2) / 4 - SLCellWidth / 2);
-    CGFloat rx = ((SLScreenW - SLPadding * 2) / 4 * 3 - SLCellWidth / 2);
-
-    [self createButton:@"span" andAction:@selector(span) andX:lx andY:SLCellHeight * 11];
-    [self createButton:@"trace" andAction:@selector(trace) andX:rx andY:SLCellHeight * 11];
     
-    [self createButton:@"inject" andAction:@selector(inject) andX:lx andY:SLCellHeight * 12 + SLPadding];
+    [self createButton:@"启动引擎" action:@selector(engineStart) row: 1 left:YES];
+    [self createButton:@"打开空调" action:@selector(airConditionerOpen) row: 1 left:NO];
+    
+    [self createButton:@"Simple Trace" action:@selector(simpleTrace) row: 2 left:YES];
+    [self createButton:@"spanBuilder" action:@selector(spanBuilder) row: 2 left:NO];
+    
+    [self createButton:@"startSpan:" action:@selector(startSpan) row: 3 left:YES];
+    [self createButton:@"startSpan:active:" action:@selector(test) row: 3 left:NO];
+    
+    [self createButton:@"withinSpan:block" action:@selector(test) row: 4 left:YES];
+    [self createButton:@"withinSpan:active:block:" action:@selector(test) row: 4 left:NO];
+    
+    [self createButton:@"withinSpan:active:parent:block:" action:@selector(test) row: 5 left:YES];
+    [self createButton:@"嵌套trace示例" action:@selector(nestedTraceDemo) row: 5 left:NO];
+    
+
+    [self createButton:@"event & exception" action:@selector(eventAndExceptionDemo) row: 6 left:YES];
+}
+
+- (UIButton *) createButton: (NSString *) name action: (SEL) action row: (int) row left: (BOOL) left {
+    CGFloat width = SLCellWidth * 1.5;
+    CGFloat lx = (SLScreenW - width * 2 - SLPadding * 2) / 4;
+    CGFloat rx = width + lx * 3;
+    
+    return [self createButton:name andAction:action andX:left ? lx : rx andY:SLCellHeight * (10 + row) + SLPadding * row andWidth:width];
+}
+
+- (void) simpleTrace {
+    // single span
+    SLSSpan *span = [SLSTracer startSpan:@"span 1"];
+    [span addAttribute:[SLSAttribute of:@"attr_key" value:@"attr_value"], nil];
+    [span addResource:[SLSResource of:@"res_key" value:@"res_value"]];
+    [span end];
+    
+    // single span with SpanBuilder
+    [[[[[[SLSTracer spanBuilder:@"spanBuilder"]
+            setService:@"iOS"]
+            addAttribute:[SLSAttribute of:@"attr_key" value:@"attr_value"], nil]
+            addResource:[SLSResource of:@"res_key" value:@"res_value"]]
+            build]
+     end];
+    
+    // span with children
+    span = [SLSTracer startSpan:@"span with children" active:YES];
+    [[SLSTracer startSpan:@"child span 1"] end];
+    [[SLSTracer startSpan:@"child span 2"] end];
+    [span end];
+    
+    // span with function block
+    [SLSTracer withinSpan:@"span with func block" block:^{
+        [[SLSTracer startSpan:@"span within block 1"] end];
+        // nested span with function block
+        [SLSTracer withinSpan:@"nested span with func block" block:^{
+            [[SLSTracer startSpan:@"nested span 1"] end];
+            [[SLSTracer startSpan:@"nested span 2"] end];
+            // nsexception
+            [[NSMutableArray array] removeObjectAtIndex:10];
+        }];
+        [[SLSTracer startSpan:@"span within block 2"] end];
+    }];
+    
+    // http request with traceid
+    [SLSTracer withinSpan:@"span with http request func" block:^{
+        [[[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:@"http://sls-mall.caa227ac081f24f1a8556f33d69b96c99.cn-beijing.alicontainer.com/catalogue"]] resume];
+    }];
+}
+
+- (void) spanBuilder {
+    SLSSpan *span = [[[[[[SLSTracer spanBuilder:@"spanBuilder"]
+                        addAttribute:[SLSAttribute of:@"attr_key" value:@"attr_value"], nil]
+                        addResource:[SLSResource of:[SLSKeyValue key:@"res_key" value:@"res_value"], nil]]
+                        setActive:YES]
+                        setService:@"spanbuilder_service"]
+                     build];
+    
+    SLSSpan *child = [SLSTracer startSpan:@"child_span"];
+    [child end];
+    
+    [span end];
+}
+
+- (void) startSpan {
+    SLSSpan *span = [SLSTracer startSpan:@"startSpan:"];
+    [span addAttribute:[SLSAttribute of:@"attr_key" value:@"attr_value"], nil];
+    [span setResource:[SLSResource of:@"res_key" value:@"res_value"]];
+    [span setService:@"test_service"];
+    [span end];
+}
+
+- (void) test {
+    [SLSTracer withinSpan:@"test" block:^{
+        NSMutableArray *array = [NSMutableArray array];
+        [array removeObjectAtIndex:10];
+    }];
+}
+
+- (NSDictionary<NSString *,NSString *> *)injectCustomeHeaders {
+    return @{};
+}
+
+- (BOOL)shouldInstrument:(NSURLRequest *)request {
+    return request;
 }
 
 - (void) updateStatus: (NSString *)append {
@@ -78,57 +172,164 @@ static TraceExampleController *selfClzz;
     });
 }
 
-- (void) initTrace {
-    DemoUtils *utils = [DemoUtils sharedInstance];
-    SLSConfig *config = [[SLSConfig alloc] init];
-    // 正式发布时建议关闭
-    [config setDebuggable:YES];
-
-    [config setAccessKeyId: [utils accessKeyId]];
-    [config setAccessKeySecret: [utils accessKeySecret]];
-    [config setPluginAppId: [utils pluginAppId]];
-    // trace 插件配置时需要使用setTraceXXXX 方法
-    [config setTraceEndpoint:@"https://cn-beijing.log.aliyuncs.com"];
-    [config setTraceLogproject:@"qs-demos"];
-    [config setTraceLogstore:@"sls-mall-traces"];
-
-    SLSAdapter *slsAdapter = [SLSAdapter sharedInstance];
-    [slsAdapter addPlugin:[[SLSTracePlugin alloc]init]];
-    [slsAdapter initWithSLSConfig:config];
+- (void) engineStart {
+    [self performSelectorInBackground:@selector(startEngine) withObject:nil];
 }
 
-- (void) span {
-    TelemetrySDK *sdk = [TelemetrySDK instance];
-    [[[[sdk getTracer:@"demo"] spanBuilderWithSpanName:@"test-span"] startSpan] end];
-    [self updateStatus:@"单个 span 节点"];
+- (void) startEngine {
+    [SLSTracer withinSpan:@"执行启动引擎操作" block:^{
+        [self connectPower];
+        [[SLSTracer startSpan:@"启动引擎"] end];
+        // todo 上报状态
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://sls-mall.caa227ac081f24f1a8556f33d69b96c99.cn-beijing.alicontainer.com/catalogue"]];
+        [[[NSURLSession sharedSession] dataTaskWithRequest:request] resume];
+//        [SLSURLSession sendSynchronousRequest:[NSURLRequest requestWithURL:@""] returningResponse:(NSURLResponse * _Nullable __autoreleasing * _Nullable) error:(NSError *__autoreleasing  _Nullable * _Nullable)];
+    }];
 }
 
-- (void) trace {
-    TelemetrySDK *sdk = [TelemetrySDK instance];
-    TelemetryTracer *tracer = [sdk getTracer:@"demo"];
-    TelemetrySpan *span = [[tracer spanBuilderWithSpanName:@"test-1"] startSpan];
-    
-    TelemetrySpan *span2 = [[[tracer spanBuilderWithSpanName:@"test-2"] setParent:span] startSpan];
-    [span2 end];
-    
-    TelemetrySpan *span3 = [[[tracer spanBuilderWithSpanName:@"test-3"] setParent:span] startSpan];
-    [span3 setStatusWithStatus:TelemetryStatus.ERROR];
-    [span3 end];
-    
-    [span end];
-    [self updateStatus:@"多个 span 进行关联"];
+- (void) connectPower {
+    [SLSTracer withinSpan:@"1：接通电源" block:^{
+        [NSThread sleepForTimeInterval: 2.0];
+    }];
+    [SLSTracer withinSpan:@"1.1: 电气系统自检" block:^{
+        [SLSTracer withinSpan:@"1.1.1: 电池电压检查" block:^{
+            [NSThread sleepForTimeInterval:2.0];
+        }];
+        [SLSTracer withinSpan:@"1.1.2: 电气信号检查" block:^{
+            [NSThread sleepForTimeInterval:2.0];
+        }];
+    }];
 }
+
+- (void) airConditionerOpen {
+//    [self performSelectorInBackground:@selector(openAirConditioner) withObject:nil];
+//    [[[NSInvocationOperation alloc] initWithTarget:self selector:@selector(openAirConditioner) object:nil] start];
+//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//        [self openAirConditioner];
+//    });
+    [self pthread_test];
+}
+
+- (void) pthread_test {
+    THREAD t;
+    THREAD_INIT(t, pthread_fun, NULL);
+}
+
+void * pthread_fun(void * params) {
+    [selfClzz openAirConditioner];
+    return NULL;
+}
+
+- (void) openAirConditioner {
+    [self updateStatus:[NSString stringWithFormat:@"current thread: %@", [NSThread currentThread]]];
+    [SLSTracer withinSpan:@"执行开空调操作" block:^{
+        [SLSTracer withinSpan:@"1: 接通电源" block:^{
+            [NSThread sleepForTimeInterval:2.0];
+        }];
+        [SLSTracer withinSpan:@"2. 电气系统自检" block:^{
+            [SLSTracer withinSpan:@"2.1 电池检查" block:^{
+                [[SLSTracer startSpan:@"电池电压检查"] end];
+                [NSThread sleepForTimeInterval:2.0];
+                
+                SLSSpan *span = [SLSTracer startSpan:@"电池电流检查"];
+                [span setStatusCode:ERROR];
+                [span setStatusMessage:@"电池电流检查异常"];
+                [span end];
+                [NSThread sleepForTimeInterval:2.0];
+                
+                [[SLSTracer startSpan:@"电池温度检查"] end];
+                
+            }];
+            [SLSTracer withinSpan:@"2.2 电气信息检查" block:^{
+                [NSThread sleepForTimeInterval:2.0];
+            }];
+        }];
+        [SLSTracer withinSpan:@"3. 启动风扇" block:^{
+            [NSThread sleepForTimeInterval:2.0];
+        }];
+        [[[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:@"http://sls-mall.caa227ac081f24f1a8556f33d69b96c99.cn-beijing.alicontainer.com/catalogue"] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+            
+        }] resume];
+    }];
+    
+}
+
+- (void) connetAirPower {
+    
+}
+
+//- (void) trace {
+//    [SLSTracer withinSpan:@"开空调：子步骤1：电气系统检查" active:YES parent:nil block:^{
+//        [SLSTracer withinSpan:@"开空调：1.1 电池检查" active:YES parent:nil block:^{
+//            [[SLSTracer startSpan:@"电池电压检查"] end];
+//            [[SLSTracer startSpan:@"电池电流检查"] end];
+//        }];
+//        [[SLSTracer startSpan:@"span name"] end];
+//    }];
+//}
 
 - (void) inject {
-    TelemetrySDK *sdk = [TelemetrySDK instance];
-    TelemetrySpan *span = [[[sdk getTracer:@"demo"] spanBuilderWithSpanName:@"test-inject"] startSpan];
+//    TelemetrySDK *sdk = [TelemetrySDK instance];
+//    TelemetrySpan *span = [[[sdk getTracer:@"demo"] spanBuilderWithSpanName:@"test-inject"] startSpan];
+//
+//    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+//    [[sdk activeTextMapPropagator] injectWithContext:span.context carrier:dict setter:[[Setter alloc] init]];
+//    [span setAttributeWithKey:@"inject-traceparent" value:[[TelemetryAttributeValue alloc] initWithStringValue:[[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:dict options:kNilOptions error:nil] encoding:NSUTF8StringEncoding]]];
+//    [span end];
+//
+//    [self updateStatus:@"span 和 traceparent header 进行关联，用于前后端打通"];
+}
 
-    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    [[sdk activeTextMapPropagator] injectWithContext:span.context carrier:dict setter:[[Setter alloc] init]];
-    [span setAttributeWithKey:@"inject-traceparent" value:[[TelemetryAttributeValue alloc] initWithStringValue:[[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:dict options:kNilOptions error:nil] encoding:NSUTF8StringEncoding]]];
-    [span end];
-    
-    [self updateStatus:@"span 和 traceparent header 进行关联，用于前后端打通"];
+- (void) nestedTraceDemo {
+    [self updateStatus:@"嵌套trace示例"];
+    SLSSpan *root = [SLSTracer startSpan:@"root span"];
+    SLSScope scope = [SLSContextManager makeCurrent:root];
+
+    SLSSpan *child1 = [[[SLSTracer spanBuilder:@"nest child span 1"] setActive:YES] build];
+    [[SLSTracer startSpan:@"span in nest child span 1 start"] end];
+    [[SLSTracer startSpan:@"span in nest child span 1 end"] end];
+    [[SLSContextManager activeSpan] addAttribute:[SLSAttribute of:@"child1_key" value:@"child1_value"], nil];
+    [child1 end];
+
+    [[SLSContextManager activeSpan] addAttribute:[SLSAttribute of:@"root_key1" value:@"root_value1"], nil];
+
+    SLSSpan *child2 = [[[SLSTracer spanBuilder:@"nest child span 2"] setActive:YES] build];
+    [[SLSTracer startSpan:@"span in nest child span 2 start"] end];
+    [[SLSTracer startSpan:@"span in nest child span 2 end"] end];
+    [[SLSContextManager activeSpan] addAttribute:[SLSAttribute of:@"child2_key" value:@"child2_value"], nil];
+
+    SLSSpan *child21 = [[[SLSTracer spanBuilder:@"nest child in span2"] setActive:YES] build];
+    [[SLSTracer startSpan:@"span in nest nest child span2 start"] end];
+    [[SLSTracer startSpan:@"span in nest nest child span2 end"] end];
+    [[SLSContextManager activeSpan] addAttribute:[SLSAttribute of:@"child21_key" value:@"child21_value"], nil];
+
+    [child21 end];
+    [child2 end];
+
+    [[SLSContextManager activeSpan] addAttribute:[SLSAttribute of:@"root_key2" value:@"root_value2"], nil];
+
+    [[SLSTracer startSpan:@"root span end"] end];
+    [root end];
+    scope();
+}
+
+- (void) eventAndExceptionDemo {
+    [self updateStatus:@"addEvent & recordException"];
+
+    NSArray *attributes = @[
+        [SLSAttribute of:@"attrs_key1" value:@"attrs_value1"],
+        [SLSAttribute of:@"attrs_key2" value:@"attrs_value2"],
+        [SLSAttribute of:@"attrs_key3" value:@"attrs_value3"]
+    ];
+
+    [[[SLSTracer startSpan:@"span with event"] addEvent:@"event name"] end];
+    [[[SLSTracer startSpan:@"span with event and attribute"] addEvent:@"event with attribute" attribute:[SLSAttribute of:@"attr_key" value:@"attr_value"], nil] end];
+    [[[SLSTracer startSpan:@"span with event and attributes 2"] addEvent:@"event with attributes" attributes:attributes] end];
+
+    [[[SLSTracer startSpan:@"span with exception"] recordException:[NSException exceptionWithName:@"span exception" reason:@"mock" userInfo:nil]] end];
+    [[[SLSTracer startSpan:@"span with exception and attribute"] recordException:[NSException exceptionWithName:@"span exception" reason:@"mock" userInfo:nil] attribute:[SLSAttribute of:@"attr_key" value:@"attr_value"], nil] end];
+    [[[SLSTracer startSpan:@"span with exception and attributes"] recordException:[NSException exceptionWithName:@"span exception" reason:@"mock" userInfo:nil] attribute:[SLSAttribute of:@"attr_key" value:@"attr_value"], [SLSAttribute of:@"attr_key2" value:@"attr_value2"], nil] end];
+    [[[SLSTracer startSpan:@"span with exception and attributes 2"] recordException:[NSException exceptionWithName:@"span exception" reason:@"mock" userInfo:nil] attributes:attributes] end];
 }
 
 @end

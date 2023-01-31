@@ -103,13 +103,9 @@ static void _on_log_send_done(const char * config_name, log_producer_result resu
     
     _config = [self createLogProducerConfig:path andLogstore:[utils logstore]];
     _client = [[LogProducerClient alloc] initWithLogProducerConfig:_config callback:_on_log_send_done];
-    // 开启采集设备基础信息，默认不开启
-    [_client setEnableTrack:YES];
     
     _config2 = [self createLogProducerConfig:path2 andLogstore:@"test2"];
     _client2 = [[LogProducerClient alloc] initWithLogProducerConfig:_config2 callback:_on_log_send_done];
-    // 开启采集设备基础信息，默认不开启
-    [_client2 setEnableTrack:YES];
     
 }
 
@@ -122,8 +118,6 @@ static void _on_log_send_done(const char * config_name, log_producer_result resu
     [config SetPacketLogCount:1024];
     [config SetPacketTimeout:3000];
     [config SetMaxBufferLimit:64*1024*1024];
-    [config SetSendThreadCount:1];
-
 
     [config SetPersistent:1];
     // 不同的 LogProducerClient 实例必须要配置不同的 path，否则数据必串

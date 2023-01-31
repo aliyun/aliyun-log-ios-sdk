@@ -17,6 +17,7 @@ class DemoUtils {
     var accessKeyId = ""
     var accessKeySecret = ""
     var pluginAppId = ""
+    var secKey = ""
     
     
     private init() {}
