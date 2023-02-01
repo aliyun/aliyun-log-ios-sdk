@@ -79,6 +79,19 @@
 - (BOOL)shouldRecordResponse:(NSURLResponse * _Nonnull)response :(id _Nullable)dataOrFile {
     return YES;
 }
+
+- (void)customizeSpan:(NSURLRequest * _Nonnull)request :(SLSSpanBuilder * _Nonnull)spanBuilder {
+    [spanBuilder setService:request.URL.path];
+}
+
+- (NSString * _Nullable)nameSpan:(NSURLRequest * _Nonnull)request {
+    return [NSString stringWithFormat:@"%@ %@", request.HTTPMethod, request.URL.path];
+}
+
+- (void)injectCustomHeaders:(NSURLRequest *)request :(SLSSpan *)span {
+    
+}
+
 @end
 
 @interface AppDelegate ()

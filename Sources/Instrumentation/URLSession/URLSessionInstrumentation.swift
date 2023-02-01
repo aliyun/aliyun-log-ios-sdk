@@ -31,10 +31,10 @@ private var idKey: Void?
     func shouldRecordResponse(_ response: URLResponse, _ dataOrFile: DataOrFile?) -> Bool
     func shouldRecordError(_ error: Error, _ dataOrFile: DataOrFile?) -> Bool
     
-//    func nameSpan(_ : URLRequest) -> String?
-//    func spanCustomization(_ : URLRequest, _ : SLSSpanBuilder)
+    func nameSpan(_ request: URLRequest) -> String?
+    func customizeSpan(_ request: URLRequest, _ spanBuilder: SLSSpanBuilder)
 //    func shouldInjectTracingHeaders(_ : URLRequest)  -> Bool
-//    func injectCustomHeaders(_ : URLRequest, _ : SLSSpan?)
+    func injectCustomHeaders(_ request: URLRequest, _ span: SLSSpan?)
 //    func createdRequest(_ : URLRequest, _ : SLSSpan)
 //    func receivedResponse(_ : URLResponse, _ : DataOrFile?, _ : SLSSpan)
 //    func receivedError(_ : Error, _ : DataOrFile?, _ : HTTPStatus, _ : SLSSpan)
@@ -97,21 +97,33 @@ fileprivate class URLSessionInstrumentationConfigurationObjc : NSObject {
         return d.shouldRecordError(error, dataOrFile)
     }
     
-//    public func nameSpan(_ : URLRequest) -> String? {
-//        return nil
-//    }
-//
-//    public func spanCustomization(_ : URLRequest, _ : SLSSpanBuilder) {
-//
-//    }
+    public func nameSpan(_ request: URLRequest) -> String? {
+        guard let d = delegate else {
+            return nil
+        }
+        
+        return d.nameSpan(request)
+    }
+
+    public func customizeSpan(_ request: URLRequest, _ spanBuilder: SLSSpanBuilder) {
+        guard let d = delegate else {
+            return
+        }
+        
+        d.customizeSpan(request, spanBuilder)
+    }
 //
 //    public func shouldInjectTracingHeaders(_ : URLRequest)  -> Bool {
 //        return true
 //    }
 //
-//    public func injectCustomHeaders(_ : inout URLRequest, _ : SLSSpan?) {
-//
-//    }
+    public func injectCustomHeaders(_ request: inout URLRequest, _ span: SLSSpan?) {
+        guard let d = delegate else {
+            return
+        }
+        
+        d.injectCustomHeaders(request, span)
+    }
 //
 //    public func createdRequest(_ : URLRequest, _ : SLSSpan) {
 //
@@ -177,15 +189,15 @@ public class URLSessionInstrumentation : NSObject {
                 return objcConfiguration.shouldRecordResponse(response, dataOrFile)
             }, shouldRecordError: { error, dataOrFile in
                 return objcConfiguration.shouldRecordError(error, dataOrFile)
+            }, nameSpan: { request in
+                return objcConfiguration.nameSpan(request)
+            }, spanCustomization: { request, spanBuilder in
+                objcConfiguration.customizeSpan(request, spanBuilder)
+            }, injectCustomHeaders: { request, span in
+                objcConfiguration.injectCustomHeaders(&request, span)
             }
-//            , nameSpan: { request in
-//                return objcConfiguration.nameSpan(request)
-//            }, spanCustomization: { request, spanBuilder in
-//                objcConfiguration.spanCustomization(request, spanBuilder)
-//            }, shouldInjectTracingHeaders: { request in
+//            , shouldInjectTracingHeaders: { request in
 //                return objcConfiguration.shouldInjectTracingHeaders(request)
-//            }, injectCustomHeaders: { request, span in
-//                objcConfiguration.injectCustomHeaders(&request, span)
 //            }, createdRequest: { request, span in
 //                objcConfiguration.createdRequest(request, span)
 //            }, receivedResponse: { response, dataOrFile, span in
