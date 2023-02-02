@@ -51,6 +51,22 @@
     [_lock unlock];
 }
 
+- (NSDictionary *) toDictionary {
+    NSMutableArray<NSDictionary *> *array = [NSMutableArray array];
+    for (SLSAttribute *attribute in _attributes) {
+        [array addObject:@{
+            @"key": attribute.key,
+            @"value": @{
+                @"stringValue": attribute.value
+            }
+        }];
+    }
+    
+    return @{
+        @"attributes": array
+    };
+}
+
 + (SLSResource*) of: (NSString *)key value: (NSString *)value {
     SLSResource *resource = [[SLSResource alloc] init];
     [resource add:key value:value];

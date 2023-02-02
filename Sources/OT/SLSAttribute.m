@@ -28,6 +28,19 @@
     return  array;
 }
 
++ (NSArray *) toArray: (NSArray<SLSAttribute *> *) attributes {
+    NSMutableArray *array = [NSMutableArray array];
+    for (SLSAttribute *attribute in attributes) {
+        [array addObject:@{
+            @"key": attribute.key,
+            @"value": @{
+                @"stringValue": attribute.value
+            }
+        }];
+    }
+    return array;
+}
+
 - (id)copyWithZone:(nullable NSZone *)zone {
     SLSAttribute *attr = [[SLSAttribute alloc] init];
     attr.key = [self.key copy];

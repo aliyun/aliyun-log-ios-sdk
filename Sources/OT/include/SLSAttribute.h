@@ -18,6 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSArray<SLSAttribute*> *) of: (SLSKeyValue *) keyValue, ... NS_REQUIRES_NIL_TERMINATION;
 
++ (NSArray *) toArray: (NSArray<SLSAttribute *> *) attributes;
+
 @end
 
 NS_ASSUME_NONNULL_END
