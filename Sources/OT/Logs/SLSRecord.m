@@ -23,13 +23,24 @@
     return self;
 }
 
+- (SLSRecord *) addAttribute: (NSArray<SLSAttribute *> *) attributes {
+    if (nil == attributes) {
+        return self;
+    }
+    
+    NSMutableArray *array = (NSMutableArray *)_attributes;
+    [array addObjectsFromArray:attributes];
+
+    return self;
+}
+
 - (NSDictionary *) toJson {
     return @{
         @"timeUnixNano": [NSString stringWithFormat:@"%lu", _timeUnixNano / 1000],
-        @"severityNumber": @"",
-        @"severityText":_severityText,
+        @"severityNumber": _severityNumber.length > 0 ? _severityNumber : @"",
+        @"severityText": _severityText.length > 0 ? _severityText : @"",
         @"body": @{
-            @"stringValue": _body.stringValue
+            @"stringValue": (nil != _body && _body.stringValue.length > 0) ? _body.stringValue : @""
         },
         @"attributes": [SLSAttribute toArray:_attributes],
         @"traceId": _traceId,

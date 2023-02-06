@@ -69,10 +69,27 @@
 
 #pragma mark - SLS Trace Credentials
 @implementation SLSTraceCredentials
-- (instancetype)initWithCredentials:(SLSCredentials *)credentials {
-    if (self = [super initWithCredentials:credentials]) {
-        
-    }
-    return self;
+//- (instancetype)initWithCredentials:(SLSCredentials *)credentials {
+//    if (self = [super initWithCredentials:credentials]) {
+//        
+//    }
+//    return self;
+//}
+
++ (instancetype)credentials:(SLSCredentials *)credentials {
+    return [[SLSTraceCredentials alloc] initWithCredentials:credentials];
+}
+
+- (SLSLogsCredentials *) createLogsCredentials {
+    _logsCredentials = [SLSLogsCredentials credentials:self];
+    return _logsCredentials;
+}
+@end
+
+#pragma mark - SLS Trace Logs Credetials
+@implementation SLSLogsCredentials
+
++ (instancetype)credentials:(SLSCredentials *)credentials {
+    return [[SLSLogsCredentials alloc] initWithCredentials:credentials];
 }
 @end

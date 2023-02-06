@@ -17,11 +17,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property(copy) NSString *severityNumber;
 @property(copy) NSString *severityText;
 @property(nonatomic, strong) SLSBody *body;
-@property(nonatomic, strong) NSArray<SLSAttribute *> *attributes;
+@property(nonatomic, strong, readonly) NSArray<SLSAttribute *> *attributes;
 @property(copy) NSString *traceId;
 @property(copy) NSString *spanId;
 
 + (SLSRecord *) record;
+
+- (SLSRecord *) addAttribute: (NSArray<SLSAttribute *> *) attributes;
 
 - (NSDictionary *) toJson;
 

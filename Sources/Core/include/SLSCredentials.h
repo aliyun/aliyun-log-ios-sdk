@@ -28,10 +28,11 @@ typedef void (^CredentialsCallback)(NSString *feature, NSString *result);
 + (instancetype) credentials;
 
 - (SLSNetworkDiagnosisCredentials *) createNetworkDiagnosisCredentials;
-- (SLSTraceCredentials *) createTraceCredentials;
+- (SLSTraceCredentials *) createTraceCredentials NS_SWIFT_NAME(createTraceCredentials());
 
 @end
 
+#pragma mark - SLSLogstoreCredentials
 @interface SLSLogstoreCredentials : SLSCredentials
 @property(nonatomic, strong) NSString *logstore;
 
@@ -40,6 +41,7 @@ typedef void (^CredentialsCallback)(NSString *feature, NSString *result);
 
 @end
 
+#pragma mark - SLSNetworkDiagnosisCredentials
 @interface SLSNetworkDiagnosisCredentials : SLSLogstoreCredentials
 
 @property(nonatomic, strong) NSString *secretKey;
@@ -53,8 +55,15 @@ typedef void (^CredentialsCallback)(NSString *feature, NSString *result);
 
 @end
 
-@interface SLSTraceCredentials : SLSLogstoreCredentials
+#pragma mark - SLSLogsCredentials
+@interface SLSLogsCredentials : SLSLogstoreCredentials
 
+@end
+
+#pragma mark - SLSTraceCredentials
+@interface SLSTraceCredentials : SLSLogstoreCredentials
+@property(nonatomic, strong) SLSLogsCredentials *logsCredentials;
+- (SLSLogsCredentials *) createLogsCredentials NS_SWIFT_NAME(createLogsCredentials());
 @end
 
 NS_ASSUME_NONNULL_END

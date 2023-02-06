@@ -24,3 +24,6 @@ FOUNDATION_EXPORT const unsigned char AliyunLogOTVersionString[];
 #import "SLSContextManager.h"
 #import "SLSEvent.h"
 #import "SLSLink.h"
+#import "SLSLogScope.h"
+#import "SLSLogData.h"
+#import "SLSRecord.h"
