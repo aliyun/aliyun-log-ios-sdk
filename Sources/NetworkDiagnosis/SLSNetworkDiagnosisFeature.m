@@ -260,21 +260,6 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
                     }
                 }
     ];
-//    [AliMTR start:domain
-//           maxTtl:maxTTL
-//         maxPaths:maxPaths
-//   maxTimesEachIP:DEFAULT_MAX_TIMES
-//          timeout:timeout
-//          context:self
-//          traceID:[self generateId]
-//         complete:^(id context, NSString *traceID, NSMutableArray<AliMTRResult *> *results) {
-//                    if (callback) {
-//                        for (AliMTRResult *result in results) {
-//                            callback(result.content);
-//                        }
-//                    }
-//                }
-//    ];
 }
 
 #pragma mark - ping
@@ -383,27 +368,54 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
 }
 
 - (NSString *)provideEndpoint:(SLSCredentials *)credentials {
-    return [super provideEndpoint:credentials.networkDiagnosisCredentials];
+    if (nil != credentials.networkDiagnosisCredentials && credentials.networkDiagnosisCredentials.endpoint.length > 0) {
+        return credentials.networkDiagnosisCredentials.endpoint;
+    }
+    
+    return [super provideEndpoint:credentials];
 }
 
 - (NSString *)provideProjectName:(SLSCredentials *)credentials {
-    return credentials.networkDiagnosisCredentials.project;
+    if (nil != credentials.networkDiagnosisCredentials && credentials.networkDiagnosisCredentials.project.length > 0) {
+        return credentials.networkDiagnosisCredentials.project;
+    }
+    
+    return [super provideProjectName:credentials];
 }
 
 - (NSString *)provideLogstoreName:(SLSCredentials *)credentials {
-    return [NSString stringWithFormat:@"ipa-%@-raw", credentials.networkDiagnosisCredentials.instanceId];
+    if (nil != credentials.networkDiagnosisCredentials && credentials.networkDiagnosisCredentials.instanceId.length > 0) {
+        return [NSString stringWithFormat:@"ipa-%@-raw", credentials.networkDiagnosisCredentials.instanceId];
+    } else {
+        if (credentials.instanceId.length > 0) {
+            return [NSString stringWithFormat:@"ipa-%@-raw", credentials.instanceId];
+        }
+        return nil;
+    }
 }
 
 - (NSString *)provideAccessKeyId:(SLSCredentials *)credentials {
-    return credentials.networkDiagnosisCredentials.accessKeyId;
+    if (nil != credentials.networkDiagnosisCredentials && credentials.networkDiagnosisCredentials.accessKeyId.length > 0) {
+        return credentials.networkDiagnosisCredentials.accessKeyId;
+    }
+    
+    return [super provideAccessKeyId:credentials];
 }
 
 - (NSString *)provideAccessKeySecret:(SLSCredentials *)credentials {
-    return credentials.networkDiagnosisCredentials.accessKeySecret;
+    if (nil != credentials.networkDiagnosisCredentials && credentials.networkDiagnosisCredentials.accessKeySecret.length > 0) {
+        return credentials.networkDiagnosisCredentials.accessKeySecret;
+    }
+    
+    return [super provideAccessKeySecret:credentials];
 }
 
 - (NSString *)provideSecurityToken:(SLSCredentials *)credentials {
-    return credentials.networkDiagnosisCredentials.securityToken;
+    if (nil != credentials.networkDiagnosisCredentials && credentials.networkDiagnosisCredentials.securityToken.length > 0) {
+        return credentials.networkDiagnosisCredentials.securityToken;
+    }
+    
+    return [super provideSecurityToken:credentials];
 }
 
 - (void) provideLogProducerConfig: (id) config {
@@ -458,15 +470,6 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
     
     if (_globalCallback) {
         _globalCallback([content copy]);
-    }
-}
-
-
-- (void)setCredentials:(nonnull SLSCredentials *)credentials {
-    [super setCredentials:credentials.networkDiagnosisCredentials];
-    
-    if (credentials.networkDiagnosisCredentials && [credentials.networkDiagnosisCredentials.secretKey length] > 0) {
-        [AliNetworkDiagnosis refreshSecretKey:credentials.networkDiagnosisCredentials.secretKey];
     }
 }
 

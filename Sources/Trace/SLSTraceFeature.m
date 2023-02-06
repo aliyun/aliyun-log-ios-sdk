@@ -76,10 +76,12 @@
         [credentials createTraceCredentials];
     }
     [_sender setCredentials:credentials];
+    [_logsSender setCredentials:credentials];
 }
 
 - (void) setCallback:(CredentialsCallback)callback {
     [_sender setCallback:callback];
+    [_logsSender setCallback:callback];
 }
 
 - (BOOL) addLog:(Log *)log {
@@ -125,38 +127,61 @@
 }
 
 - (NSString *)provideEndpoint:(SLSCredentials *)credentials {
-    return [super provideEndpoint:credentials.traceCredentials];
+    if (nil != credentials.traceCredentials && credentials.traceCredentials.endpoint.length > 0) {
+        return credentials.traceCredentials.endpoint;
+    }
+    
+    return [super provideEndpoint:credentials];
 }
 
 - (NSString *)provideProjectName:(SLSCredentials *)credentials {
-    return credentials.traceCredentials.project;
+    if (nil != credentials.traceCredentials && credentials.traceCredentials.project.length > 0) {
+        return credentials.traceCredentials.project;
+    }
+    
+    return [super provideProjectName:credentials];
 }
 
 - (NSString *)provideLogstoreName:(SLSCredentials *)credentials {
-    return [NSString stringWithFormat:@"%@-traces", credentials.traceCredentials.instanceId];
-    return credentials.traceCredentials.logstore;
+    if (nil != credentials.traceCredentials && credentials.traceCredentials.instanceId.length > 0) {
+        return [NSString stringWithFormat:@"%@-traces", credentials.traceCredentials.instanceId];
+    } else {
+        if (credentials.instanceId.length > 0) {
+            return [NSString stringWithFormat:@"%@-traces", credentials.instanceId];
+        } else {
+            return nil;
+        }
+    }
 }
 
 - (NSString *)provideAccessKeyId:(SLSCredentials *)credentials {
-    return credentials.traceCredentials.accessKeyId;
+    if (nil != credentials.traceCredentials && credentials.traceCredentials.accessKeyId.length > 0) {
+        return credentials.traceCredentials.accessKeyId;
+    }
+    
+    return [super provideAccessKeyId:credentials];
 }
 
 - (NSString *)provideAccessKeySecret:(SLSCredentials *)credentials {
-    return credentials.traceCredentials.accessKeySecret;
+    if (nil != credentials.traceCredentials && credentials.traceCredentials.accessKeySecret.length > 0) {
+        return credentials.traceCredentials.accessKeySecret;
+    }
+    
+    return [super provideAccessKeySecret:credentials];
 }
 
 - (NSString *)provideSecurityToken:(SLSCredentials *)credentials {
-    return credentials.traceCredentials.securityToken;
+    if (nil != credentials.traceCredentials && credentials.traceCredentials.securityToken.length > 0) {
+            return credentials.traceCredentials.securityToken;
+    }
+    
+    return [super provideSecurityToken:credentials];
 }
 
 - (void) provideLogProducerConfig: (id) config {
     [config setHttpHeaderInjector:^NSArray<NSString *> *(NSArray<NSString *> *srcHeaders) {
         return [SLSHttpHeader getHeaders:srcHeaders, [NSString stringWithFormat:@"%@/%@", [self->_feature name], [self->_feature version]], nil];
     }];
-}
-
-- (void)setCredentials:(nonnull SLSCredentials *)credentials {
-    [super setCredentials:credentials.traceCredentials];
 }
 
 @end
@@ -184,7 +209,7 @@
 - (NSString *)provideEndpoint:(SLSCredentials *)credentials {
     SLSLogsCredentials * logsCredentials = credentials.traceCredentials.logsCredentials;
     if (nil == logsCredentials || logsCredentials.endpoint.length == 0) {
-        return [super provideEndpoint:credentials.traceCredentials];
+        return [super provideEndpoint:credentials];
     }
     
     return logsCredentials.endpoint;
@@ -193,7 +218,7 @@
 - (NSString *)provideProjectName:(SLSCredentials *)credentials {
     SLSLogsCredentials * logsCredentials = credentials.traceCredentials.logsCredentials;
     if (nil == logsCredentials || logsCredentials.project.length == 0) {
-        return [super provideProjectName:credentials.traceCredentials];
+        return [super provideProjectName:credentials];
     }
     
     return logsCredentials.project;
@@ -202,14 +227,17 @@
 - (NSString *)provideLogstoreName:(SLSCredentials *)credentials {
     SLSLogsCredentials * logsCredentials = credentials.traceCredentials.logsCredentials;
     if (nil == logsCredentials || logsCredentials.logstore.length == 0) {
-        return [NSString stringWithFormat:@"%@-logs", credentials.instanceId];
+        if (nil == credentials.traceCredentials || credentials.traceCredentials.instanceId.length == 0) {
+            if (credentials.instanceId.length == 0) {
+                return nil;
+            } else {
+                return [NSString stringWithFormat:@"%@-logs", credentials.instanceId];
+            }
+        } else {
+            return [NSString stringWithFormat:@"%@-logs", credentials.traceCredentials.instanceId];
+        }
     }
     
     return logsCredentials.logstore;
 }
-
-- (void)setCredentials:(nonnull SLSCredentials *)credentials {
-    [super setCredentials:credentials.traceCredentials.logsCredentials];
-}
-
 @end
