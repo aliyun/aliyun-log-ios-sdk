@@ -13,6 +13,7 @@
 #import "AliyunLogOT.h"
 #endif
 #import "SLSURLSessionInstrumentation.h"
+#import "Log.h"
 
 static SLSTraceFeature *_feature;
 static id<SLSSpanProviderProtocol> _provider;
@@ -75,5 +76,57 @@ static id<SLSSpanProcessorProtocol> _processor;
 + (void) registerURLSessionInstrumentationDelegate: (id<SLSURLSessionInstrumentationDelegate>) delegate {
     [SLSURLSessionInstrumentation registerInstrumentationDelegate:delegate];
 }
+
+#pragma mark - Logs
++ (BOOL) log: (NSString *) logContent level: (SLSLogsLevel) level {
+    return [self log: logContent level: level attributes: [NSArray array]];
+}
+
++ (BOOL) log: (NSString *) logContent level: (SLSLogsLevel) level attributes: (NSArray<SLSAttribute *> *) attributes {
+    SLSLogDataBuilder * builder = [SLSLogData builder];
+    [builder setLogContent:logContent];
+    [builder setLogsLevel:level];
+    [builder setAttribute:attributes];
+    
+    return [self log: [builder build]];
+}
+
++ (BOOL) log: (SLSLogData *) logData {
+    if (nil == logData) {
+        return false;
+    }
+    
+    SLSSpan *activeSpan = [SLSContextManager activeSpan];
+    if (nil == activeSpan) {
+        activeSpan = [[self spanBuilder:@"logs"] build];
+    }
+    
+    SLSResource *r = logData.resource;
+    if (nil == r) {
+        r = [SLSResource resource];
+    }
+    [r merge:activeSpan.resource];
+    [logData setResource:r];
+    
+    NSMutableArray<SLSAttribute *> *attributes = [NSMutableArray array];
+    for (NSString *key in activeSpan.attribute) {
+        [attributes addObject:[SLSAttribute of:key value:activeSpan.attribute[key]]];
+    }
+    for (SLSRecord *record in logData.logRecords) {
+        [record addAttribute:attributes];
+        if (record.traceId.length == 0) {
+            [record setTraceId:activeSpan.traceID];
+        }
+        
+        if (record.spanId.length == 0) {
+            [record setSpanId:activeSpan.spanID];
+        }
+    }
+    
+    Log *log = [Log log];
+    [log putContents:[logData toJson]];
+    return [_feature addLog:log];
+}
+
 @end
 

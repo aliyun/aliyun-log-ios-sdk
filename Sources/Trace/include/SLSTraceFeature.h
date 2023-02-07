@@ -12,9 +12,12 @@
 #endif
 
 
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SLSTraceFeature : SLSSdkFeature
+
+- (BOOL) addLog: (id) log;
 
 @end
 

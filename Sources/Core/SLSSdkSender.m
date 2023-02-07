@@ -123,31 +123,36 @@
         return;
     }
     
-    if (credentials.securityToken && credentials.securityToken.length > 0) {
-        if (credentials.accessKeyId && credentials.accessKeyId.length > 0
-            && credentials.accessKeySecret && credentials.accessKeySecret.length > 0) {
-            [_config ResetSecurityToken:credentials.accessKeyId
-                        accessKeySecret:credentials.accessKeySecret
-                          securityToken:credentials.securityToken
+    NSString *securityToken = [self provideSecurityToken:credentials];
+    NSString *accessKeyId = [self provideAccessKeyId:credentials];
+    NSString *accessKeySecret = [self provideAccessKeySecret:credentials];
+    if (securityToken.length > 0) {
+        if (accessKeyId.length > 0 && accessKeySecret.length > 0) {
+            [_config ResetSecurityToken:accessKeyId
+                        accessKeySecret:accessKeySecret
+                          securityToken:securityToken
             ];
         }
     } else {
-        if (credentials.accessKeyId && credentials.accessKeyId.length > 0
-            && credentials.accessKeySecret && credentials.accessKeySecret.length > 0) {
-            [_config setAccessKeyId:credentials.accessKeyId];
-            [_config setAccessKeySecret:credentials.accessKeySecret];
+        if (accessKeyId.length > 0 && accessKeySecret.length > 0) {
+            [_config setAccessKeyId: accessKeyId];
+            [_config setAccessKeySecret: accessKeySecret];
         }
 
     }
     
-    if (credentials.endpoint && credentials.endpoint.length > 0) {
-        [_config setEndpoint:credentials.endpoint];
+    NSString *endpoint = [self provideEndpoint:credentials];
+    NSString *project = [self provideProjectName:credentials];
+    NSString *logstore = [self provideLogstoreName:credentials];
+    
+    if (endpoint.length > 0) {
+        [_config setEndpoint:endpoint];
     }
-    if (credentials.project && credentials.project.length > 0) {
-        [_config setProject:credentials.project];
+    if (project.length > 0) {
+        [_config setProject:project];
     }
-    if (credentials.instanceId && credentials.instanceId.length > 0) {
-        [_config setLogstore:[self provideLogstoreName:credentials]];
+    if (logstore.length > 0) {
+        [_config setLogstore:logstore];
     }
 }
 

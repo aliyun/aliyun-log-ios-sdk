@@ -63,7 +63,7 @@ let package = Package(
                 "Info.plist"
             ],
             sources: [
-                "OT/"
+                "OT/", "OT/Logs/"
             ],
             publicHeadersPath: "OT/include/"
         ),

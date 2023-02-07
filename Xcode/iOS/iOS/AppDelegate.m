@@ -166,11 +166,11 @@
     [[SLSCocoa sharedInstance] initialize:credentials configuration:^(SLSConfiguration * _Nonnull configuration) {
         configuration.spanProvider = [SpanProvider provider];
         configuration.debuggable = YES;
-        configuration.enableCrashReporter = YES;
-        configuration.enableBlockDetection = YES;
+//        configuration.enableCrashReporter = YES;
+//        configuration.enableBlockDetection = YES;
 //        configuration.enableNetworkDiagnosis = YES;
         configuration.enableTrace = YES;
-//        configuration.enableInstrumentNSURLSession = YES;
+        configuration.enableTraceLogs = YES;
     }];
     
     [[URLSessionInstrumentation alloc] initWithProtoco:[[URLInstrumentationProtocal alloc] init]];
@@ -194,10 +194,17 @@
             // credentials.securityToken = @""; // 可选，sts 方式获取的token必须要填
             // [[SLSCocoa sharedInstance] setCredentials:credentials];
             
-             SLSCredentials *credentials = [SLSCredentials credentials];
-             credentials.accessKeyId = [utils accessKeyId];
-             credentials.accessKeySecret = [utils accessKeySecret];
-             [[SLSCocoa sharedInstance] setCredentials:credentials];
+            SLSCredentials *credentials = [SLSCredentials credentials];
+            credentials.accessKeyId = [utils accessKeyId];
+            credentials.accessKeySecret = [utils accessKeySecret];
+            
+            // 动态更新 Logs 的写入 logstore
+            SLSTraceCredentials *traceCredentials = [credentials createTraceCredentials];
+            SLSLogsCredentials *logsCredentials = [traceCredentials createLogsCredentials];
+            logsCredentials.logstore = @"sls-mall-custom-logs";
+
+            // 更新凭证信息
+            [[SLSCocoa sharedInstance] setCredentials:credentials];
         }
     }];
 

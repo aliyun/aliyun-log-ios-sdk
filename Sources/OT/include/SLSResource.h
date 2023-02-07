@@ -26,6 +26,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void) add: (NSArray<SLSAttribute *> *) attributes;
 - (void) merge: (SLSResource *) resource;
 
+#pragma mark - serialization
+- (NSDictionary *) toDictionary;
 @end
 
 NS_ASSUME_NONNULL_END

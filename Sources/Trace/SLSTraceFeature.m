@@ -23,9 +23,14 @@
 
 @end
 
+@interface SLSTraceLogSender : SLSTraceSender
++ (instancetype) sender: (SLSCredentials *) credentials feature: (SLSSdkFeature *) feature;
+@end
+
 #pragma mark - SLS Trace Feature
 @interface SLSTraceFeature ()
 @property(nonatomic, strong) SLSTraceSender *sender;
+@property(nonatomic, strong) SLSTraceLogSender *logsSender;
 @end
 
 @implementation SLSTraceFeature
@@ -53,6 +58,10 @@
     if (configuration.enableInstrumentNSURLSession) {
         [SLSURLSessionInstrumentation inject];
     }
+    
+    if (configuration.enableTraceLogs) {
+        _logsSender = [SLSTraceLogSender sender:credentials feature:self];
+    }
 }
 
 - (SLSSpanBuilder *)newSpanBuilder:(NSString *)spanName provider:(id<SLSSpanProviderProtocol>)provider processor:(id<SLSSpanProcessorProtocol>)processor {
@@ -67,10 +76,20 @@
         [credentials createTraceCredentials];
     }
     [_sender setCredentials:credentials];
+    [_logsSender setCredentials:credentials];
 }
 
 - (void) setCallback:(CredentialsCallback)callback {
     [_sender setCallback:callback];
+    [_logsSender setCallback:callback];
+}
+
+- (BOOL) addLog:(Log *)log {
+    if (nil == log || nil == _logsSender) {
+        return NO;
+    }
+    
+    return [_logsSender send: log];
 }
 
 @end
@@ -108,28 +127,55 @@
 }
 
 - (NSString *)provideEndpoint:(SLSCredentials *)credentials {
-    return [super provideEndpoint:credentials.traceCredentials];
+    if (nil != credentials.traceCredentials && credentials.traceCredentials.endpoint.length > 0) {
+        return credentials.traceCredentials.endpoint;
+    }
+    
+    return [super provideEndpoint:credentials];
 }
 
 - (NSString *)provideProjectName:(SLSCredentials *)credentials {
-    return credentials.traceCredentials.project;
+    if (nil != credentials.traceCredentials && credentials.traceCredentials.project.length > 0) {
+        return credentials.traceCredentials.project;
+    }
+    
+    return [super provideProjectName:credentials];
 }
 
 - (NSString *)provideLogstoreName:(SLSCredentials *)credentials {
-    return [NSString stringWithFormat:@"%@-traces", credentials.traceCredentials.instanceId];
-    return credentials.traceCredentials.logstore;
+    if (nil != credentials.traceCredentials && credentials.traceCredentials.instanceId.length > 0) {
+        return [NSString stringWithFormat:@"%@-traces", credentials.traceCredentials.instanceId];
+    } else {
+        if (credentials.instanceId.length > 0) {
+            return [NSString stringWithFormat:@"%@-traces", credentials.instanceId];
+        } else {
+            return nil;
+        }
+    }
 }
 
 - (NSString *)provideAccessKeyId:(SLSCredentials *)credentials {
-    return credentials.traceCredentials.accessKeyId;
+    if (nil != credentials.traceCredentials && credentials.traceCredentials.accessKeyId.length > 0) {
+        return credentials.traceCredentials.accessKeyId;
+    }
+    
+    return [super provideAccessKeyId:credentials];
 }
 
 - (NSString *)provideAccessKeySecret:(SLSCredentials *)credentials {
-    return credentials.traceCredentials.accessKeySecret;
+    if (nil != credentials.traceCredentials && credentials.traceCredentials.accessKeySecret.length > 0) {
+        return credentials.traceCredentials.accessKeySecret;
+    }
+    
+    return [super provideAccessKeySecret:credentials];
 }
 
 - (NSString *)provideSecurityToken:(SLSCredentials *)credentials {
-    return credentials.traceCredentials.securityToken;
+    if (nil != credentials.traceCredentials && credentials.traceCredentials.securityToken.length > 0) {
+            return credentials.traceCredentials.securityToken;
+    }
+    
+    return [super provideSecurityToken:credentials];
 }
 
 - (void) provideLogProducerConfig: (id) config {
@@ -138,9 +184,60 @@
     }];
 }
 
-- (void)setCredentials:(nonnull SLSCredentials *)credentials {
-    [super setCredentials:credentials.traceCredentials];
-}
-
 @end
 
+#pragma mark - TraceLogSender
+@interface SLSTraceLogSender()
+@property(nonatomic, strong) SLSTraceLogSender *sender;
+@end
+
+@implementation SLSTraceLogSender
++ (instancetype) sender: (SLSCredentials *) credentials feature: (SLSSdkFeature *) feature {
+    SLSTraceLogSender *sender = [[SLSTraceLogSender alloc] initWithFeature:feature];
+    [sender initialize:credentials];
+    return sender;
+}
+
+- (NSString *)provideFeatureName {
+    return @"TraceLogs";
+}
+
+- (NSString *)provideLogFileName:(SLSCredentials *)credentials {
+    return @"traces_logs";
+}
+
+- (NSString *)provideEndpoint:(SLSCredentials *)credentials {
+    SLSLogsCredentials * logsCredentials = credentials.traceCredentials.logsCredentials;
+    if (nil == logsCredentials || logsCredentials.endpoint.length == 0) {
+        return [super provideEndpoint:credentials];
+    }
+    
+    return logsCredentials.endpoint;
+}
+
+- (NSString *)provideProjectName:(SLSCredentials *)credentials {
+    SLSLogsCredentials * logsCredentials = credentials.traceCredentials.logsCredentials;
+    if (nil == logsCredentials || logsCredentials.project.length == 0) {
+        return [super provideProjectName:credentials];
+    }
+    
+    return logsCredentials.project;
+}
+
+- (NSString *)provideLogstoreName:(SLSCredentials *)credentials {
+    SLSLogsCredentials * logsCredentials = credentials.traceCredentials.logsCredentials;
+    if (nil == logsCredentials || logsCredentials.logstore.length == 0) {
+        if (nil == credentials.traceCredentials || credentials.traceCredentials.instanceId.length == 0) {
+            if (credentials.instanceId.length == 0) {
+                return nil;
+            } else {
+                return [NSString stringWithFormat:@"%@-logs", credentials.instanceId];
+            }
+        } else {
+            return [NSString stringWithFormat:@"%@-logs", credentials.traceCredentials.instanceId];
+        }
+    }
+    
+    return logsCredentials.logstore;
+}
+@end

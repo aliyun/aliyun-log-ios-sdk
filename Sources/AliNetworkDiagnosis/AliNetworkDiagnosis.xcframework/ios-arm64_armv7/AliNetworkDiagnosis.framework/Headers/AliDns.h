@@ -6,7 +6,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "AliProtocols.h"
+#import <AliNetworkDiagnosis/AliProtocols.h>
+
 @interface AliDnsResult : NSObject
 @property (readonly) NSDictionary* result;
 @property (nonatomic,strong) NSString* content;

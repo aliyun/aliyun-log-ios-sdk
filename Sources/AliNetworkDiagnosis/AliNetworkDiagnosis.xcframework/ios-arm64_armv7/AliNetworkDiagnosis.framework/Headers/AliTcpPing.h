@@ -6,7 +6,8 @@
 //  Copyright © 2016年 Qiniu Cloud Storage. All rights reserved.
 //
 
-#import "AliProtocols.h"
+#import <AliNetworkDiagnosis/AliProtocols.h>
+
 #import <Foundation/Foundation.h>
 
 @interface AliTcpPingResult : NSObject

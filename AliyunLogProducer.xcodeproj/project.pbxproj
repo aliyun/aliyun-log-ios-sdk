@@ -168,6 +168,12 @@
 		F8E05D812976819D002CD256 /* TimeUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = F8E05D3F2976819C002CD256 /* TimeUtils.m */; };
 		F8E05D822976819D002CD256 /* NSDateFormatter+SLS.m in Sources */ = {isa = PBXBuildFile; fileRef = F8E05D402976819C002CD256 /* NSDateFormatter+SLS.m */; };
 		F8E05D842976819D002CD256 /* SLSUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = F8E05D422976819C002CD256 /* SLSUtils.m */; };
+		F8E4908E2990FE63004CC7DE /* SLSLogData.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E4908B2990FE62004CC7DE /* SLSLogData.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F8E4908F2990FE63004CC7DE /* SLSRecord.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E4908C2990FE62004CC7DE /* SLSRecord.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F8E490902990FE63004CC7DE /* SLSLogScope.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E4908D2990FE62004CC7DE /* SLSLogScope.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F8E490952990FE9F004CC7DE /* SLSLogScope.m in Sources */ = {isa = PBXBuildFile; fileRef = F8E490922990FE9F004CC7DE /* SLSLogScope.m */; };
+		F8E490962990FE9F004CC7DE /* SLSLogData.m in Sources */ = {isa = PBXBuildFile; fileRef = F8E490932990FE9F004CC7DE /* SLSLogData.m */; };
+		F8E490972990FE9F004CC7DE /* SLSRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = F8E490942990FE9F004CC7DE /* SLSRecord.m */; };
 		F8E74BF428ACBD5A000609C3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8E74BF328ACBD5A000609C3 /* CoreGraphics.framework */; };
 		F8E74BF628ACBD65000609C3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8E74BF528ACBD65000609C3 /* SystemConfiguration.framework */; };
 		F8E74BF828ACBD71000609C3 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F8E74BF728ACBD71000609C3 /* libc++.tbd */; };
@@ -498,6 +504,12 @@
 		F8E05D402976819C002CD256 /* NSDateFormatter+SLS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDateFormatter+SLS.m"; sourceTree = "<group>"; };
 		F8E05D412976819C002CD256 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F8E05D422976819C002CD256 /* SLSUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLSUtils.m; sourceTree = "<group>"; };
+		F8E4908B2990FE62004CC7DE /* SLSLogData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLSLogData.h; sourceTree = "<group>"; };
+		F8E4908C2990FE62004CC7DE /* SLSRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLSRecord.h; sourceTree = "<group>"; };
+		F8E4908D2990FE62004CC7DE /* SLSLogScope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLSLogScope.h; sourceTree = "<group>"; };
+		F8E490922990FE9F004CC7DE /* SLSLogScope.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLSLogScope.m; sourceTree = "<group>"; };
+		F8E490932990FE9F004CC7DE /* SLSLogData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLSLogData.m; sourceTree = "<group>"; };
+		F8E490942990FE9F004CC7DE /* SLSRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLSRecord.m; sourceTree = "<group>"; };
 		F8E74BF328ACBD5A000609C3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
 		F8E74BF528ACBD65000609C3 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
 		F8E74BF728ACBD71000609C3 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/lib/libc++.tbd"; sourceTree = DEVELOPER_DIR; };
@@ -706,6 +718,9 @@
 				F8255A0A2976715D00411DAD /* SLSSpan.h */,
 				F8255A0C2976715D00411DAD /* SLSContextManager.h */,
 				F8255A0D2976715D00411DAD /* SLSLink.h */,
+				F8E4908D2990FE62004CC7DE /* SLSLogScope.h */,
+				F8E4908B2990FE62004CC7DE /* SLSLogData.h */,
+				F8E4908C2990FE62004CC7DE /* SLSRecord.h */,
 				F8255A0E2976715D00411DAD /* SLSSpanBuilder.h */,
 				F8255A0F2976715D00411DAD /* SLSSpanProcessorProtocol.h */,
 			);
@@ -948,6 +963,16 @@
 			path = include;
 			sourceTree = "<group>";
 		};
+		F8E490912990FE9F004CC7DE /* Logs */ = {
+			isa = PBXGroup;
+			children = (
+				F8E490922990FE9F004CC7DE /* SLSLogScope.m */,
+				F8E490932990FE9F004CC7DE /* SLSLogData.m */,
+				F8E490942990FE9F004CC7DE /* SLSRecord.m */,
+			);
+			path = Logs;
+			sourceTree = "<group>";
+		};
 		F8E74BA328ACAE71000609C3 /* CrashReporter */ = {
 			isa = PBXGroup;
 			children = (
@@ -978,6 +1003,7 @@
 			isa = PBXGroup;
 			children = (
 				F8255A032976715D00411DAD /* include */,
+				F8E490912990FE9F004CC7DE /* Logs */,
 				F8255A122976715D00411DAD /* Info.plist */,
 				F8255A132976715D00411DAD /* SLSAttribute.m */,
 				F8255A102976715D00411DAD /* SLSContextManager.m */,
@@ -1132,6 +1158,9 @@
 				F8255A202976715E00411DAD /* SLSAttribute.h in Headers */,
 				F8255A222976715E00411DAD /* SLSResource.h in Headers */,
 				F8255A212976715E00411DAD /* SLSEvent.h in Headers */,
+				F8E4908F2990FE63004CC7DE /* SLSRecord.h in Headers */,
+				F8E490902990FE63004CC7DE /* SLSLogScope.h in Headers */,
+				F8E4908E2990FE63004CC7DE /* SLSLogData.h in Headers */,
 				F8255A272976715E00411DAD /* SLSLink.h in Headers */,
 				F8255A262976715E00411DAD /* SLSContextManager.h in Headers */,
 				F8255A2B2976715E00411DAD /* SLSIdGenerator.h in Headers */,
@@ -1548,7 +1577,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				F8255A342976715E00411DAD /* SLSSpan.m in Sources */,
+				F8E490972990FE9F004CC7DE /* SLSRecord.m in Sources */,
 				F8255A372976715E00411DAD /* SLSIdGenerator.m in Sources */,
+				F8E490952990FE9F004CC7DE /* SLSLogScope.m in Sources */,
 				F8255A352976715E00411DAD /* SLSRecordableSpan.m in Sources */,
 				F8255A312976715E00411DAD /* SLSLink.m in Sources */,
 				F8255A362976715E00411DAD /* SLSEvent.m in Sources */,
@@ -1556,6 +1587,7 @@
 				F8255A2A2976715E00411DAD /* SLSContextManager.m in Sources */,
 				F8255A332976715E00411DAD /* SLSKeyValue.m in Sources */,
 				F8255A302976715E00411DAD /* SLSSpanBuilder.m in Sources */,
+				F8E490962990FE9F004CC7DE /* SLSLogData.m in Sources */,
 				F8255A2F2976715E00411DAD /* SLSResource.m in Sources */,
 				F8255A2D2976715E00411DAD /* SLSAttribute.m in Sources */,
 			);

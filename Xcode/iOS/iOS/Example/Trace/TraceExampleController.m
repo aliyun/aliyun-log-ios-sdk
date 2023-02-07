@@ -77,6 +77,7 @@ static TraceExampleController *selfClzz;
     
 
     [self createButton:@"event & exception" action:@selector(eventAndExceptionDemo) row: 6 left:YES];
+    [self createButton:@"add logs" action:@selector(addLogs) row: 6 left:NO];
 }
 
 - (UIButton *) createButton: (NSString *) name action: (SEL) action row: (int) row left: (BOOL) left {
@@ -330,6 +331,20 @@ void * pthread_fun(void * params) {
     [[[SLSTracer startSpan:@"span with exception and attribute"] recordException:[NSException exceptionWithName:@"span exception" reason:@"mock" userInfo:nil] attribute:[SLSAttribute of:@"attr_key" value:@"attr_value"], nil] end];
     [[[SLSTracer startSpan:@"span with exception and attributes"] recordException:[NSException exceptionWithName:@"span exception" reason:@"mock" userInfo:nil] attribute:[SLSAttribute of:@"attr_key" value:@"attr_value"], [SLSAttribute of:@"attr_key2" value:@"attr_value2"], nil] end];
     [[[SLSTracer startSpan:@"span with exception and attributes 2"] recordException:[NSException exceptionWithName:@"span exception" reason:@"mock" userInfo:nil] attributes:attributes] end];
+}
+
+- (void) addLogs {
+    [SLSTracer log:@"log with level" level:SLS_LOGS_INFO];
+    
+    [SLSTracer log:@"log with attributes" level:SLS_LOGS_DEBUG attributes:@[
+        [SLSAttribute of:@"key" value:@"value"],
+        [SLSAttribute of:@"key 2" value:@"value 2"]
+    ]];
+    
+    SLSLogDataBuilder *builder = [SLSLogData builder];
+    [builder setLogContent:@"test"];
+
+    [SLSTracer log: [builder build]];
 }
 
 @end
