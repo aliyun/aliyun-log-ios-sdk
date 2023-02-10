@@ -22,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void) setExtra: (NSString *)key dictValue: (NSDictionary<NSString *, NSString *> *)value;
 - (void) removeExtra: (NSString *)key;
 - (void) clearExtras;
+- (void) setUtdid: (NSString *) utdid;
 
 @end
 

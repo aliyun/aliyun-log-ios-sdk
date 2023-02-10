@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSString *) getUtdid;
 
++ (void) setUtdid: (NSString *) utdid;
+
 @end
 
 NS_ASSUME_NONNULL_END
