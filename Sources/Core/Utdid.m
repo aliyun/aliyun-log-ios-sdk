@@ -25,5 +25,13 @@
     return [uuid copy];
 }
 
++ (void) setUtdid: (NSString *) utdid {
+    if (utdid.length == 0) {
+        return;
+    }
+    
+    [SLSStorage setUtdid:utdid];
+}
+
 @end
 

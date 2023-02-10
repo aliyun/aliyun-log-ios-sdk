@@ -163,12 +163,13 @@
     tracerCredentials.endpoint = @"https://cn-beijing.log.aliyuncs.com";
     tracerCredentials.project = @"qs-demos";
     
+    [[SLSCocoa sharedInstance] setUtdid:@"1212122"];
     [[SLSCocoa sharedInstance] initialize:credentials configuration:^(SLSConfiguration * _Nonnull configuration) {
         configuration.spanProvider = [SpanProvider provider];
         configuration.debuggable = YES;
 //        configuration.enableCrashReporter = YES;
 //        configuration.enableBlockDetection = YES;
-//        configuration.enableNetworkDiagnosis = YES;
+        configuration.enableNetworkDiagnosis = YES;
         configuration.enableTrace = YES;
         configuration.enableTraceLogs = YES;
     }];

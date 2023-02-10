@@ -186,6 +186,9 @@
 - (void) clearExtras {
     [_extraProvider clearExtras];
 }
+- (void) setUtdid: (NSString *) utdid {
+    [Utdid setUtdid:utdid];
+}
 
 @end
 
