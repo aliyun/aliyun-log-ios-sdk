@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'AliyunLogProducer'
-  s.version          = '2.3.11'
+  s.version          = '2.3.11.1'
   s.summary          = 'aliyun log service ios producer.'
 
 # This description is used to generate tags and improve search results.
@@ -38,7 +38,7 @@ https://help.aliyun.com/product/28958.html
 #  s.xcconfig = { 'GCC_ENABLE_CPP_EXCEPTIONS' => 'YES' }
 
   s.default_subspec = 'Core'
-  
+
   s.subspec 'Core' do |c|
     c.ios.deployment_target = '9.0'
     c.tvos.deployment_target =  '9.0'
@@ -60,7 +60,7 @@ https://help.aliyun.com/product/28958.html
       'AliyunLogProducer/aliyun-log-c-sdk/src/log_producer_common.h',
       'AliyunLogProducer/aliyun-log-c-sdk/src/log_producer_config.h'
   end
-  
+
   s.subspec 'Bricks' do |b|
     b.ios.deployment_target = '9.0'
     b.tvos.deployment_target =  '9.0'
@@ -70,7 +70,7 @@ https://help.aliyun.com/product/28958.html
     b.public_header_files = 'AliyunLogProducer/AliyunLogProducer/common/**/*.h'
     b.frameworks = "SystemConfiguration"
   end
-  
+
   s.subspec 'CrashReporter' do |r|
     r.ios.deployment_target = '9.0'
     r.tvos.deployment_target =  '9.0'
@@ -96,7 +96,7 @@ https://help.aliyun.com/product/28958.html
     r.ios.user_target_xcconfig = {
       'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
     }
-    
+
     r.tvos.pod_target_xcconfig = {
         'EXCLUDED_ARCHS[sdk=appletvsimulator*]' => 'arm64',
         'OTHER_LDFLAGS' => '-ObjC'
@@ -104,13 +104,13 @@ https://help.aliyun.com/product/28958.html
     r.tvos.user_target_xcconfig = {
       'EXCLUDED_ARCHS[sdk=appletvsimulator*]' => 'arm64'
     }
-    
+
     r.osx.pod_target_xcconfig = {
        'OTHER_LDFLAGS' => '-ObjC'
     }
 
   end
-  
+
   s.subspec 'NetworkDiagnosis' do |n|
     n.dependency 'AliyunLogProducer/Bricks'
     n.source_files = 'AliyunLogProducer/AliyunLogProducer/NetworkDiagnosis/**/*.{m,h}'
@@ -127,7 +127,7 @@ https://help.aliyun.com/product/28958.html
       'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
     }
   end
-  
+
   s.subspec 'Trace' do |t|
     t.ios.deployment_target = '10.0'
     t.ios.dependency 'AliyunLogProducer/Bricks'
