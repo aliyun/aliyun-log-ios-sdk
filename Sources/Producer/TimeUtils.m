@@ -27,6 +27,9 @@ static NSTimeInterval elapsedRealtime = 0;
     }
     
     NSURL *url = [NSURL URLWithString:endpoint];
+    if (nil == url || !url.host || url.host.length <= 0) {
+        return;
+    }
     NSString *urlString = [NSString stringWithFormat:@"https://%@.%@/servertime", project, url.host];
 //    NSString *url = @"https://cn-shanghai-staging-share.sls.aliyuncs.com/servertime";
     
