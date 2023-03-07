@@ -25,7 +25,6 @@
 		F8255A282976715E00411DAD /* SLSSpanBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = F8255A0E2976715D00411DAD /* SLSSpanBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F8255A292976715E00411DAD /* SLSSpanProcessorProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = F8255A0F2976715D00411DAD /* SLSSpanProcessorProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F8255A2A2976715E00411DAD /* SLSContextManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F8255A102976715D00411DAD /* SLSContextManager.m */; };
-		F8255A2B2976715E00411DAD /* SLSIdGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = F8255A112976715D00411DAD /* SLSIdGenerator.h */; };
 		F8255A2D2976715E00411DAD /* SLSAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = F8255A132976715D00411DAD /* SLSAttribute.m */; };
 		F8255A2E2976715E00411DAD /* SLSTimeUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = F8255A142976715D00411DAD /* SLSTimeUtils.m */; };
 		F8255A2F2976715E00411DAD /* SLSResource.m in Sources */ = {isa = PBXBuildFile; fileRef = F8255A152976715D00411DAD /* SLSResource.m */; };
@@ -105,6 +104,7 @@
 		F84F8ADE2814E1180038A46E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F80DF47A26A7035E00151F7C /* SystemConfiguration.framework */; };
 		F84F8AE02814E1180038A46E /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F80DF47826A7034E00151F7C /* libc++.tbd */; };
 		F84F8AE12814E1180038A46E /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D0CAEEE252177D800A4985A /* libz.tbd */; };
+		F872337329B6DCE200AA72AD /* SLSIdGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = F872337229B6DCE200AA72AD /* SLSIdGenerator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F8896C682977FAF0004CB258 /* SLSProducer.h in Headers */ = {isa = PBXBuildFile; fileRef = F8896C672977FAF0004CB258 /* SLSProducer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F8E05D432976819C002CD256 /* log_persistent_manager.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E05CFE2976819C002CD256 /* log_persistent_manager.h */; };
 		F8E05D442976819C002CD256 /* log_sha1.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E05CFF2976819C002CD256 /* log_sha1.h */; };
@@ -337,7 +337,6 @@
 		F8255A0E2976715D00411DAD /* SLSSpanBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLSSpanBuilder.h; sourceTree = "<group>"; };
 		F8255A0F2976715D00411DAD /* SLSSpanProcessorProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLSSpanProcessorProtocol.h; sourceTree = "<group>"; };
 		F8255A102976715D00411DAD /* SLSContextManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLSContextManager.m; path = Sources/OT/SLSContextManager.m; sourceTree = SOURCE_ROOT; };
-		F8255A112976715D00411DAD /* SLSIdGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLSIdGenerator.h; path = Sources/OT/SLSIdGenerator.h; sourceTree = SOURCE_ROOT; };
 		F8255A122976715D00411DAD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = Sources/OT/Info.plist; sourceTree = SOURCE_ROOT; };
 		F8255A132976715D00411DAD /* SLSAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLSAttribute.m; path = Sources/OT/SLSAttribute.m; sourceTree = SOURCE_ROOT; };
 		F8255A142976715D00411DAD /* SLSTimeUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLSTimeUtils.m; path = Sources/OT/SLSTimeUtils.m; sourceTree = SOURCE_ROOT; };
@@ -423,6 +422,7 @@
 		F838F11629767A27001F1275 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F84F8AE72814E1180038A46E /* AliyunLogNetworkDiagnosis.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AliyunLogNetworkDiagnosis.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8696C4F27F0066D00EF0020 /* AliyunLogCrashReporter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AliyunLogCrashReporter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F872337229B6DCE200AA72AD /* SLSIdGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLSIdGenerator.h; sourceTree = "<group>"; };
 		F87828CA28B6089D00F3D2B5 /* libUnity4SLS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libUnity4SLS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F87828DA28B60DE400F3D2B5 /* build-unity4sls.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = "build-unity4sls.sh"; path = "publish/build-unity4sls.sh"; sourceTree = "<group>"; };
 		F8896C672977FAF0004CB258 /* SLSProducer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLSProducer.h; sourceTree = "<group>"; };
@@ -713,6 +713,7 @@
 				F8255A052976715D00411DAD /* SLSKeyValue.h */,
 				F8255A062976715D00411DAD /* SLSAttribute.h */,
 				F8255A072976715D00411DAD /* SLSEvent.h */,
+				F872337229B6DCE200AA72AD /* SLSIdGenerator.h */,
 				F8255A082976715D00411DAD /* SLSResource.h */,
 				F8255A092976715D00411DAD /* SLSSpanProviderProtocol.h */,
 				F8255A0A2976715D00411DAD /* SLSSpan.h */,
@@ -1008,7 +1009,6 @@
 				F8255A132976715D00411DAD /* SLSAttribute.m */,
 				F8255A102976715D00411DAD /* SLSContextManager.m */,
 				F8255A1C2976715D00411DAD /* SLSEvent.m */,
-				F8255A112976715D00411DAD /* SLSIdGenerator.h */,
 				F8255A1D2976715E00411DAD /* SLSIdGenerator.m */,
 				F8255A192976715D00411DAD /* SLSKeyValue.m */,
 				F8255A172976715D00411DAD /* SLSLink.m */,
@@ -1158,12 +1158,12 @@
 				F8255A202976715E00411DAD /* SLSAttribute.h in Headers */,
 				F8255A222976715E00411DAD /* SLSResource.h in Headers */,
 				F8255A212976715E00411DAD /* SLSEvent.h in Headers */,
+				F872337329B6DCE200AA72AD /* SLSIdGenerator.h in Headers */,
 				F8E4908F2990FE63004CC7DE /* SLSRecord.h in Headers */,
 				F8E490902990FE63004CC7DE /* SLSLogScope.h in Headers */,
 				F8E4908E2990FE63004CC7DE /* SLSLogData.h in Headers */,
 				F8255A272976715E00411DAD /* SLSLink.h in Headers */,
 				F8255A262976715E00411DAD /* SLSContextManager.h in Headers */,
-				F8255A2B2976715E00411DAD /* SLSIdGenerator.h in Headers */,
 				F8255A322976715E00411DAD /* SLSTimeUtils.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
