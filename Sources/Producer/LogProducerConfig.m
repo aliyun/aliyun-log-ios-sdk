@@ -126,7 +126,7 @@ static int os_http_post(const char *url,
     if (self = [super init])
     {
         self->config = create_log_producer_config();
-        self->config->user_params = (__bridge void *)(self);
+        self->config->user_params = (__bridge_retained void *)(self);
 #if SLS_HOST_MAC
         log_producer_config_set_source(self->config, "macOS");
 #elif SLS_HOST_TV

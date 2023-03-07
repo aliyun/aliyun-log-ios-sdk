@@ -21,6 +21,7 @@ typedef void (^AddLogInterceptor)(Log *log);
 @interface LogProducerClient : NSObject
 {
     @private log_producer* producer;
+    @private log_producer_config* config;
     @private log_producer_client* client;
     @private BOOL _enableTrack;
     @private BOOL enable;

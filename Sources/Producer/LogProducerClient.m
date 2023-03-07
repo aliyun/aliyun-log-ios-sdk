@@ -32,6 +32,7 @@
 {
     if (self = [super init])
     {
+        self->config = logProducerConfig->config;
         self->producer = create_log_producer(logProducerConfig->config, *callback, (nil == params ? nil : (__bridge void *)(params)));
         self->client = get_log_producer_client(self->producer, nil);
         
@@ -53,6 +54,7 @@
     }
     enable = NO;
     destroy_log_producer(self->producer);
+    CFRelease(self->config->user_params);
 }
 
 - (LogProducerResult)AddLog:(Log *) log
