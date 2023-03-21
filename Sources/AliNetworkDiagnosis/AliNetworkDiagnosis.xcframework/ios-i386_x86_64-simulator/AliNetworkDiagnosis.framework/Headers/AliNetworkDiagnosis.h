@@ -23,6 +23,7 @@ typedef NS_ENUM(NSUInteger, AliNetDiagLogLevel){
 
 };
 
+
 @protocol AliNetworkDiagnosisDelegate <NSObject>
 
 - (void)report:(NSString*)content level:(AliNetDiagLogLevel)level context:(id)context;
@@ -47,5 +48,6 @@ typedef NS_ENUM(NSUInteger, AliNetDiagLogLevel){
 +(void)disableExNetInfo;
 +(void)enableDebug:(BOOL)debug;
 +(void)updateExtension:(NSDictionary*)extension;
++(void)registerHttpCredentialDelegate:(id<AliHttpCredentialDelegate>)delegate;
 @end
 

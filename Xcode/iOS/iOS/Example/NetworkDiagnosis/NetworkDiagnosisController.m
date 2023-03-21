@@ -134,8 +134,14 @@ static NetworkDiagnosisController *selfClzz;
 
 - (void) httpPing {
     [self updateStatus:@"start httpPing..."];
-    [[SLSNetworkDiagnosis sharedInstance] http:@"https://www.aliyun.com" callback:^(NSString * _Nonnull result) {
-        [self updateStatus:[NSString stringWithFormat:@"ping result, data: %@", result]];
+//    [[SLSNetworkDiagnosis sharedInstance] http:@"https://www.aliyun.com" callback:^(NSString * _Nonnull result) {
+//        [self updateStatus:[NSString stringWithFormat:@"ping result, data: %@", result]];
+//    }];
+    
+    [[SLSNetworkDiagnosis sharedInstance] http:@"https://demo.ne.aliyuncs.com" callback:^(NSString * _Nonnull result) {
+        
+    } credential:^NSURLCredential * _Nullable(NSString * _Nonnull url) {
+        return [self getHttpCredential:url];
     }];
 }
 
@@ -193,6 +199,70 @@ static NetworkDiagnosisController *selfClzz;
     if (_timer && [_timer isValid]) {
         [_timer invalidate];
     }
+}
+
+-(NSURLCredential*) getHttpCredential:(NSString*)url {
+    if (![url containsString:@"demo.ne.aliyuncs.com"]) {
+        return nil;
+    }
+    
+    NSString *p12WithBase64 = @"";
+    NSData *p12Data = [[NSData alloc] initWithBase64EncodedString:p12WithBase64 options:0];
+    CFDataRef inPKCS12Data = (__bridge CFDataRef)p12Data;
+        
+    SecIdentityRef identity = NULL;
+    NSString *pass = @"123";
+    OSStatus status = [self extractIdentity:inPKCS12Data identity:&identity pass:pass];
+    if(status != 0 || identity == NULL) {
+        return nil;
+    }
+        
+        SecCertificateRef certificate = NULL;
+        SecIdentityCopyCertificate (identity, &certificate);
+        const void *certs[] = {certificate};
+        CFArrayRef arrayOfCerts = CFArrayCreate(kCFAllocatorDefault, certs, 1, NULL);
+        
+        // NSURLCredentialPersistenceForSession:创建URL证书,在会话期间有效
+        NSURLCredential *credential = [NSURLCredential credentialWithIdentity:identity certificates:(__bridge NSArray*)arrayOfCerts persistence:NSURLCredentialPersistenceForSession];
+        
+        if(certificate) {
+            CFRelease(certificate);
+        }
+        
+        if (arrayOfCerts) {
+            CFRelease(arrayOfCerts);
+        }
+    if (credential) {
+        return [credential copy];
+    }
+    
+    return nil;
+}
+
+// 提取身份identity
+- (OSStatus)extractIdentity:(CFDataRef)inP12Data identity:(SecIdentityRef*)identity pass:(NSString *)pass {
+    
+    CFStringRef password = (__bridge CFStringRef)(pass);//证书密码
+    const void *keys[] = { kSecImportExportPassphrase };
+    const void *values[] = { password };
+    
+    CFDictionaryRef options = CFDictionaryCreate(NULL, keys, values, 1, NULL, NULL);
+    
+    CFArrayRef items = CFArrayCreate(NULL, 0, 0, NULL);
+    OSStatus securityError = SecPKCS12Import(inP12Data, options, &items);
+    if (securityError == 0)
+    {
+        CFDictionaryRef ident = CFArrayGetValueAtIndex(items,0);
+        const void *tempIdentity = NULL;
+        tempIdentity = CFDictionaryGetValue(ident, kSecImportItemIdentity);
+        *identity = (SecIdentityRef)tempIdentity;
+    }
+    
+    if (options) {
+        CFRelease(options);
+    }
+    
+    return securityError;
 }
 
 @end

@@ -66,6 +66,14 @@
     [_feature updateExtensions:extension];
 }
 
+- (void) registerHttpCredentialDelegate: (nullable CredentialDelegate) delegate {
+    if (!_feature) {
+        return;
+    }
+    
+    [_feature registerHttpCredentialDelegate:delegate];
+}
+
 - (void)dns:(nonnull NSString *)domain {
     if (!_feature) {
         return;
@@ -120,6 +128,14 @@
     }
     
     [_feature http:url callback:callback];
+}
+
+- (void) http: (NSString *) url callback: (nullable Callback) callback credential: (nullable CredentialDelegate)delegate {
+    if (!_feature) {
+        return;
+    }
+    
+    [_feature http:url callback:callback credential:delegate];
 }
 
 - (void)mtr:(nonnull NSString *)domain {
