@@ -80,6 +80,10 @@ static NetworkDiagnosisController *selfClzz;
     [label sizeToFit];
     label.textAlignment = NSTextAlignmentLeft;
     
+    [[SLSNetworkDiagnosis sharedInstance] registerHttpCredentialDelegate:^NSURLCredential * _Nullable(NSString * _Nonnull url) {
+        return [self getHttpCredential:url];
+    }];
+    
     [self createLabel:@"状态: " andX:0 andY:SLCellHeight * 5];
     
     self.statusTextView = [self createTextView:@"" andX:0 andY:SLCellHeight * 6 andWidth:(SLScreenW - SLPadding * 2) andHeight:(SLCellHeight * 4)];
