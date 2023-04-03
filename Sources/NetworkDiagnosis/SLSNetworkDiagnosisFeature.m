@@ -44,6 +44,11 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
 + (instancetype) sender: (SLSCredentials *) credentials feature: (SLSSdkFeature *) feature;
 @end
 
+@interface InternalHttpCredentialDelegate : NSObject<AliHttpCredentialDelegate>
+@property(nonatomic, copy) CredentialDelegate delegate;
++ (instancetype) delegate: (CredentialDelegate) delegate;
+@end
+
 @interface SLSNetworkDiagnosisFeature ()
 @property(nonatomic, strong) SLSNetworkDiagnosisSender *sender;
 @property(nonatomic, strong) NSString *idPrefix;
@@ -170,6 +175,9 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
 - (void) updateExtensions: (NSDictionary *) extension {
     [AliNetworkDiagnosis updateExtension: [extension copy]];
 }
+- (void) registerHttpCredentialDelegate: (nullable CredentialDelegate) delegate {
+    [AliNetworkDiagnosis registerHttpCredentialDelegate:[InternalHttpCredentialDelegate delegate:delegate]];
+}
 
 #pragma mark - dns
 - (void)dns:(nonnull NSString *)domain {
@@ -212,15 +220,27 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
 }
 
 - (void)http:(nonnull NSString *)url callback:(nullable Callback)callback {
-    [AliHttpPing start:url
-               traceId:[self generateId]
-               context:self
-              complete:^(id context, NSString *traceID, AliHttpPingResult *result) {
-                        if (callback) {
-                            callback([result.content copy]);
-                        }
-                    }
+    [self http:url callback:callback credential:nil];
+}
+
+
+- (void)http:(nonnull NSString *)url callback:(nullable Callback)callback credential: (nullable CredentialDelegate)credential {
+    InternalHttpCredentialDelegate *delegate = [InternalHttpCredentialDelegate delegate:credential];
+    AliHttpCredential *httpCredential = [delegate getHttpCredential:url context:self];
+    
+    AliHttpPingConfig *config = [[AliHttpPingConfig alloc] init:url
+                                                        traceId:[self generateId]
+                                               clientCredential:(nil != httpCredential ? httpCredential.clientCredential : nil)
+                                               serverCredential:nil
+                                                        context:self
+                                                       complete:^(id context, NSString *traceID, AliHttpPingResult *result) {
+                                                                if (callback) {
+                                                                    callback([result.content copy]);
+                                                                }
+                                                            }
     ];
+    
+    [AliHttpPing execute:config];
 }
 
 #pragma mark - mtr
@@ -473,4 +493,27 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
     }
 }
 
+@end
+
+#pragma mark internal ali http credential delegate
+@implementation InternalHttpCredentialDelegate
++ (instancetype) delegate: (CredentialDelegate) delegate {
+    InternalHttpCredentialDelegate *instance =  [[self alloc] init];
+    instance.delegate = delegate;
+    return instance;
+}
+
+- (AliHttpCredential *)getHttpCredential:(NSString *)url context:(id)context {
+    if (nil == _delegate) {
+        return nil;
+    }
+    
+    NSURLCredential *credential = _delegate(url);
+    if (nil != credential) {
+        AliHttpCredential *httpCredential = [[AliHttpCredential alloc] init];
+        httpCredential.clientCredential = credential;
+        return httpCredential;
+    }
+    return nil;
+}
 @end

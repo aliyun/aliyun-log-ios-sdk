@@ -7,6 +7,17 @@
 
 #import <Foundation/Foundation.h>
 
+@interface AliHttpCredential : NSObject
+// 客户端提供凭证，供服务器认证客户端时使用
+@property (nonatomic, strong) NSURLCredential* clientCredential;
+// 服务端凭证，供客户端认证服务器时使用
+@property (nonatomic, strong) NSURLCredential* serverCredential;
+@end
+
+@protocol AliHttpCredentialDelegate <NSObject>
+- (AliHttpCredential*)getHttpCredential:(NSString*)url context:(id)context;
+@end
+
 @interface AliHttpPingResult : NSObject
 //客户端发起请求的时间
 @property (nonatomic, assign) UInt64 startDate;
@@ -52,9 +63,18 @@ typedef void (^AliHttpPingCompleteHandler)(id context, NSString *traceID, AliHtt
 @property id context;
 @property AliHttpPingCompleteHandler complete;
 @property NSString* src;
+@property NSURLCredential* clientCredential;
+@property NSURLCredential* serverCredential;
 
 -(instancetype)init:(NSString*)url
             traceId:(NSString*)traceId
+            context:(id)context
+           complete:(AliHttpPingCompleteHandler)complete;
+
+-(instancetype)init:(NSString*)url
+            traceId:(NSString*)traceId
+clientCredential:(NSURLCredential*)clientCredential
+serverCredential:(NSURLCredential*)serverCredential
             context:(id)context
            complete:(AliHttpPingCompleteHandler)complete;
 @end

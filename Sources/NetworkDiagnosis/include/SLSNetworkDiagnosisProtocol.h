@@ -10,15 +10,19 @@
 NS_ASSUME_NONNULL_BEGIN
 
 typedef void (^Callback)(NSString *result);
+typedef NSURLCredential* _Nullable (^CredentialDelegate)(NSString *url);
 
 @protocol SLSNetworkDiagnosisProtocol <NSObject>
 - (void) disableExNetworkInfo;
 - (void) setPolicyDomain: (NSString *) policyDomain;
 - (void) setMultiplePortsDetect: (BOOL) enable;
 - (void) registerCallback: (nullable Callback) callback;
+- (void) registerHttpCredentialDelegate: (nullable CredentialDelegate) delegate;
 
 - (void) http: (NSString *) url;
 - (void) http: (NSString *) url callback: (nullable Callback) callback;
+- (void) http: (NSString *) url callback: (nullable Callback) callback credential: (nullable CredentialDelegate)delegate;
+//- (void) http:(nonnull NSString *)url callback:(nullable Callback)callback credential: (AliHttpCredential *)credential;
 
 - (void) ping: (NSString *) domain;
 - (void) ping: (NSString *) domain callback: (nullable Callback) callback;
