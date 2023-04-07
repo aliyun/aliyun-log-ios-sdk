@@ -96,8 +96,11 @@ static NetworkDiagnosisController *selfClzz;
     CGFloat rx = ((SLScreenW - SLPadding * 2) / 4 * 3 - SLCellWidth / 2);
     
     [[SLSNetworkDiagnosis sharedInstance] setMultiplePortsDetect:YES];
-    [[SLSNetworkDiagnosis sharedInstance] registerCallback:^(NSString * _Nonnull result) {
-        SLSLog(@"global callback: %@", result);
+//    [[SLSNetworkDiagnosis sharedInstance] registerCallback:^(NSString * _Nonnull result) {
+//        SLSLog(@"global callback: %@", result);
+//    }];
+    [[SLSNetworkDiagnosis sharedInstance] registerCallback2:^(SLSResponse * _Nonnull response) {
+        SLSLog(@"global callback: %@", response.content);
     }];
 
     [self createButton:@"PING" andAction:@selector(ping) andX:lx andY:SLCellHeight * 11];
@@ -123,44 +126,89 @@ static NetworkDiagnosisController *selfClzz;
 - (void) ping {
     [self updateStatus:@"start ping..."];
     
-    [[SLSNetworkDiagnosis sharedInstance] ping:@"www.aliyun.con" callback:^(NSString * _Nonnull result) {
-        NSLog(@"ping result: %@", result);
-        [self updateStatus:[NSString stringWithFormat:@"ping result, data: %@", result]];
+    SLSPingRequest *request = [[SLSPingRequest alloc] init];
+    request.domain = @"www.aliyun.com";
+    // 可选参数
+    request.context = @"<your ping context id>";
+    [[SLSNetworkDiagnosis sharedInstance] ping2:request callback:^(SLSResponse * _Nonnull response) {
+        NSLog(@"ping result: %@", response.content);
+        [self updateStatus:[NSString stringWithFormat:@"ping result, data: %@", response.content]];
     }];
+    
+//    [[SLSNetworkDiagnosis sharedInstance] ping:@"www.aliyun.com" callback:^(NSString * _Nonnull result) {
+//        NSLog(@"ping result: %@", result);
+//        [self updateStatus:[NSString stringWithFormat:@"ping result, data: %@", result]];
+//    }];
 }
 
 - (void) tcpPing {
     [self updateStatus:@"start tcpPing..."];
-    [[SLSNetworkDiagnosis sharedInstance] tcpPing:@"www.aliyun.com" port:80 callback:^(NSString * _Nonnull result) {
-        [self updateStatus:[NSString stringWithFormat:@"tcpping result, data: %@", result]];
+    SLSTcpPingRequest *request = [[SLSTcpPingRequest alloc] init];
+    request.domain = @"www.aliyun.com";
+    request.port = 80;
+    // 可选参数
+    request.context = @"<your tcpping context id>";
+    [[SLSNetworkDiagnosis sharedInstance] tcpPing2:request callback:^(SLSResponse * _Nonnull response) {
+        [self updateStatus:[NSString stringWithFormat:@"tcpping result, data: %@", response.content]];
     }];
+    
+//    [[SLSNetworkDiagnosis sharedInstance] tcpPing:@"www.aliyun.com" port:80 callback:^(NSString * _Nonnull result) {
+//        [self updateStatus:[NSString stringWithFormat:@"tcpping result, data: %@", result]];
+//    }];
 }
 
 - (void) httpPing {
     [self updateStatus:@"start httpPing..."];
-//    [[SLSNetworkDiagnosis sharedInstance] http:@"https://www.aliyun.com" callback:^(NSString * _Nonnull result) {
-//        [self updateStatus:[NSString stringWithFormat:@"ping result, data: %@", result]];
-//    }];
     
-    [[SLSNetworkDiagnosis sharedInstance] http:@"https://demo.ne.aliyuncs.com" callback:^(NSString * _Nonnull result) {
-        
-    } credential:^NSURLCredential * _Nullable(NSString * _Nonnull url) {
+    SLSHttpRequest *request = [[SLSHttpRequest alloc] init];
+    request.domain = @"https://demo.ne.aliyuncs.com";
+    // 可选参数
+    request.context = @"<your http context id>";
+    request.headerOnly = YES;
+    request.downloadBytesLimit = 128 * 1024; // 128KB
+    request.credential = ^NSURLCredential * _Nullable(NSString * _Nonnull url) {
         return [self getHttpCredential:url];
+    };
+    [[SLSNetworkDiagnosis sharedInstance] http2:request callback:^(SLSResponse * _Nonnull response) {
+        [self updateStatus:[NSString stringWithFormat:@"http result, data: %@", response.content]];
     }];
+    
+    
+//    [[SLSNetworkDiagnosis sharedInstance] http:@"https://demo.ne.aliyuncs.com" callback:^(NSString * _Nonnull result) {
+//        [self updateStatus:[NSString stringWithFormat:@"http result, data: %@", result]];
+//    } credential:^NSURLCredential * _Nullable(NSString * _Nonnull url) {
+//        return [self getHttpCredential:url];
+//    }];
 }
 
 - (void) mtr {
     [self updateStatus:@"start mtr..."];
-    [[SLSNetworkDiagnosis sharedInstance] mtr:@"www.aliyun.com" callback:^(NSString * _Nonnull result) {
-        [self updateStatus:[NSString stringWithFormat:@"mtr result, data: %@", result]];
+    SLSMtrRequest *request = [[SLSMtrRequest alloc] init];
+    request.domain = @"www.aliyun.com";
+    // 可选参数
+    request.context = @"<your mtr context id>";
+    [[SLSNetworkDiagnosis sharedInstance] mtr2:request callback:^(SLSResponse * _Nonnull response) {
+        [self updateStatus:[NSString stringWithFormat:@"mtr result, data: %@", response.content]];
     }];
+    
+//    [[SLSNetworkDiagnosis sharedInstance] mtr:@"www.aliyun.com" callback:^(NSString * _Nonnull result) {
+//        [self updateStatus:[NSString stringWithFormat:@"mtr result, data: %@", result]];
+//    }];
 }
 
 - (void) dns {
     [self updateStatus:@"start dns..."];
-    [[SLSNetworkDiagnosis sharedInstance] dns:@"www.aliyun.com" callback:^(NSString * _Nonnull result) {
-        [self updateStatus:[NSString stringWithFormat:@"dns result, data: %@", result]];
+    SLSDnsRequest *request = [[SLSDnsRequest alloc] init];
+    request.domain = @"www.aliyun.com";
+    // 可选参数
+    request.context = @"<your dns context id>";
+    [[SLSNetworkDiagnosis sharedInstance] dns2:request callback:^(SLSResponse * _Nonnull response) {
+        [self updateStatus:[NSString stringWithFormat:@"dns result, data: %@", response.content]];
     }];
+    
+//    [[SLSNetworkDiagnosis sharedInstance] dns:@"www.aliyun.com" callback:^(NSString * _Nonnull result) {
+//        [self updateStatus:[NSString stringWithFormat:@"dns result, data: %@", result]];
+//    }];
 }
 
 - (void) navToPolicy {

@@ -1,7 +1,7 @@
 # Uncomment the next line to define a global platform for your project
 platform :ios, '10.0'
-source 'https://github.com/CocoaPods/Specs.git'
-#source 'https://github.com/aliyun/aliyun-specs.git'
+#source 'https://github.com/CocoaPods/Specs.git'
+source 'https://github.com/aliyun/aliyun-specs.git'
 
 targets = ['iOS','iOSTests']
 targets.each do |t|
@@ -11,7 +11,7 @@ targets.each do |t|
       use_frameworks!
 
       # Pods for Demo
-#      pod 'AliyunLogProducer', '3.1.13', :subspecs => ['CrashReporter', 'NetworkDiagnosis', 'Trace', 'URLSessionInstrumentation']
+#      pod 'AliyunLogProducer', '3.1.14', :subspecs => ['CrashReporter', 'NetworkDiagnosis', 'Trace', 'URLSessionInstrumentation']
       pod 'AliyunLogProducer/Producer', :path =>'../../'
       pod 'AliyunLogProducer/Core', :path =>'../../'
       pod 'AliyunLogProducer/OT', :path =>'../../'
@@ -19,6 +19,10 @@ targets.each do |t|
       pod 'AliyunLogProducer/NetworkDiagnosis', :path =>'../../'
       pod 'AliyunLogProducer/Trace', :path =>'../../'
       pod 'AliyunLogProducer/URLSessionInstrumentation', :path =>'../../'
+      
+      if t == 'iOSTests'
+        pod 'OCMock'
+      end
     end
 
 end

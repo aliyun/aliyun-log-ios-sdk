@@ -57,9 +57,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         networkDiagnosisCredentials.siteId = "cn";
         networkDiagnosisCredentials.putExtension("value", forKey: "key")
         networkDiagnosisCredentials.endpoint = "https://cn-hangzhou.log.aliyuncs.com"
-        networkDiagnosisCredentials.project = "yuanbo-test-2"
+        networkDiagnosisCredentials.project = "zaiyun-test5"
         
-        let tracerCredentials = credentials.createTrace()
+        let tracerCredentials = credentials.createTraceCredentials()
         tracerCredentials.instanceId = "sls-mall"
         tracerCredentials.endpoint = "https://cn-beijing.log.aliyuncs.com"
         tracerCredentials.project = "qs-demos"
@@ -67,6 +67,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         SLSCocoa.sharedInstance().initialize(credentials) { configuration in
             configuration.spanProvider = SpanProvider()
             configuration.enableTrace = true
+            configuration.enableNetworkDiagnosis = true
 //            configuration.enableInstrumentNSURLSession = true
 //            configuration.spanProvider = SpanProvider()
         }
@@ -91,6 +92,43 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 // 不要忘记更新到sdk
                 SLSCocoa.sharedInstance().setCredentials(credentials)
             }
+        }
+        
+        let diagnosis = SLSNetworkDiagnosis.sharedInstance()
+//        let dnsRequest = SLSDnsRequest()
+//        dnsRequest.domain = "www.aliyun.com"
+//        dnsRequest.context = "dns-test"
+//        diagnosis.dns2(dnsRequest) { response in
+//            NSLog("dns result: %@", response.content)
+//        }
+
+//        let httpRequest = SLSHttpRequest()
+//        httpRequest.domain = "https://www.aliyun.com"
+//        httpRequest.context = "http-test"
+//        diagnosis.http2(httpRequest) { response in
+//            NSLog("http result: %@", response.content)
+//        }
+
+//        let pingRequest = SLSPingRequest()
+//        pingRequest.domain = "www.aliyun.com"
+//        pingRequest.context = "ping-test"
+//        diagnosis.ping2(pingRequest) { response in
+//            NSLog("ping result: %@", response.content)
+//        }
+
+//        let tcppingRequest = SLSTcpPingRequest()
+//        tcppingRequest.domain = "www.aliyun.com"
+//        tcppingRequest.port = 80
+//        tcppingRequest.context = "tcpping-test"
+//        diagnosis.tcpPing2(tcppingRequest) { response in
+//            NSLog("tcpping result: %@", response.content)
+//        }
+
+        let mtrRequest = SLSMtrRequest()
+        mtrRequest.domain = "www.aliyun.com"
+        mtrRequest.context = "mtr-test"
+        diagnosis.mtr2(mtrRequest) { response in
+            NSLog("mtr result: %@", response.content)
         }
         
         return true

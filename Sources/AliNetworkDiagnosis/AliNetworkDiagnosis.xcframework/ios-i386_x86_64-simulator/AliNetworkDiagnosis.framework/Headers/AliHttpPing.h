@@ -43,6 +43,7 @@
 @property (nonatomic, assign) int sendBytes;
 //接收的字节数
 @property (nonatomic, assign) int receiveBytes;
+@property (nonatomic, assign) float bandwidth;
 
 @property (nonatomic, strong) NSString *httpProtocol;
 @property (nonatomic, strong) NSString *remoteAddr;
@@ -65,6 +66,9 @@ typedef void (^AliHttpPingCompleteHandler)(id context, NSString *traceID, AliHtt
 @property NSString* src;
 @property NSURLCredential* clientCredential;
 @property NSURLCredential* serverCredential;
+@property NSTimeInterval timeout;
+@property int downloadBodyLimitBytes;
+@property BOOL downloadHeaderOnly;
 
 -(instancetype)init:(NSString*)url
             traceId:(NSString*)traceId
@@ -77,9 +81,19 @@ clientCredential:(NSURLCredential*)clientCredential
 serverCredential:(NSURLCredential*)serverCredential
             context:(id)context
            complete:(AliHttpPingCompleteHandler)complete;
+
+-(instancetype)init:(NSString*)url
+            traceId:(NSString*)traceId
+   clientCredential:(NSURLCredential*)clientCredential
+   serverCredential:(NSURLCredential*)serverCredential
+            timeout:(NSTimeInterval)timeout
+              limit:(int)downloadBodyLimitBytes
+         headerOnly:(BOOL)downloadHeaderOnly
+            context:(id)context
+           complete:(AliHttpPingCompleteHandler)complete;
 @end
 
-@interface  AliHttpPing : NSObject <NSURLSessionTaskDelegate>
+@interface  AliHttpPing : NSObject <NSURLSessionDataDelegate>
 +(void)start:(NSString*)url
      traceId:(NSString*)traceId
      context:(id)context
