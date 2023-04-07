@@ -12,6 +12,7 @@
 		F809903F292DCC5E0000DEE9 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F80DF47826A7034E00151F7C /* libc++.tbd */; };
 		F8099040292DCC5E0000DEE9 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D0CAEEE252177D800A4985A /* libz.tbd */; };
 		F809904F292DCF9B0000DEE9 /* AliyunLogOTSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8099046292DCC5E0000DEE9 /* AliyunLogOTSwift.framework */; };
+		F8128BAB29E00563001DC8E3 /* SLSDiagnosisProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = F8128BAA29E00563001DC8E3 /* SLSDiagnosisProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F8255A1E2976715E00411DAD /* SLSRecordableSpan.h in Headers */ = {isa = PBXBuildFile; fileRef = F8255A042976715D00411DAD /* SLSRecordableSpan.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F8255A1F2976715E00411DAD /* SLSKeyValue.h in Headers */ = {isa = PBXBuildFile; fileRef = F8255A052976715D00411DAD /* SLSKeyValue.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F8255A202976715E00411DAD /* SLSAttribute.h in Headers */ = {isa = PBXBuildFile; fileRef = F8255A062976715D00411DAD /* SLSAttribute.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -323,6 +324,7 @@
 		F81137E028DB096600F5E54C /* producer_symbols.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = producer_symbols.txt; sourceTree = "<group>"; };
 		F81137E128DB096600F5E54C /* crash_reporter_symbols.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = crash_reporter_symbols.txt; sourceTree = "<group>"; };
 		F81137E328DB13F200F5E54C /* build-xcframework.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = "build-xcframework.sh"; path = "publish/build-xcframework.sh"; sourceTree = "<group>"; };
+		F8128BAA29E00563001DC8E3 /* SLSDiagnosisProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLSDiagnosisProtocol.h; sourceTree = "<group>"; };
 		F820294528C5A3AF00A79810 /* strip_symbols.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = strip_symbols.sh; path = publish/strip_symbols.sh; sourceTree = "<group>"; };
 		F8255A042976715D00411DAD /* SLSRecordableSpan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLSRecordableSpan.h; sourceTree = "<group>"; };
 		F8255A052976715D00411DAD /* SLSKeyValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLSKeyValue.h; sourceTree = "<group>"; };
@@ -802,6 +804,7 @@
 				F838F0952976772B001F1275 /* AliyunLogNetworkDiagnosis.h */,
 				F838F0962976772B001F1275 /* SLSNetworkDiagnosisFeature.h */,
 				F838F0972976772B001F1275 /* SLSNetworkDiagnosisProtocol.h */,
+				F8128BAA29E00563001DC8E3 /* SLSDiagnosisProtocol.h */,
 			);
 			name = include;
 			path = Sources/NetworkDiagnosis/include;
@@ -1131,6 +1134,7 @@
 				F838F09B2976772B001F1275 /* SLSNetworkDiagnosis.h in Headers */,
 				F838F09E2976772B001F1275 /* SLSNetworkDiagnosisProtocol.h in Headers */,
 				F838F09D2976772B001F1275 /* SLSNetworkDiagnosisFeature.h in Headers */,
+				F8128BAB29E00563001DC8E3 /* SLSDiagnosisProtocol.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

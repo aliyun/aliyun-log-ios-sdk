@@ -14,7 +14,7 @@
 //! Xcode 13 has a new option called "Manage Version and Build Number" which is ticked by default.
 //! If left checked, Xcode will automatically set your app's version number which (rather counter-intuitively), will also apply to all included frameworks
 //! https://stackoverflow.com/a/31418789/1760982
-#define SLS_SDK_VERSION @"3.1.13"
+#define SLS_SDK_VERSION @"3.1.14"
 
 #define SLSLog(fmt, ...) NSLog((@"[SLSiOS] %s " fmt), __FUNCTION__, ##__VA_ARGS__);
 #ifdef DEBUG

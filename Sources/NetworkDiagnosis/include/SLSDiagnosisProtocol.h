@@ -16,17 +16,23 @@
 
 #import <Foundation/Foundation.h>
 
-#import "AliNetworkDiagnosis/AliDns.h"
-#import "AliNetworkDiagnosis/AliHttpPing.h"
-#import "AliNetworkDiagnosis/AliMTR.h"
-#import "AliNetworkDiagnosis/AliPing.h"
-#import "AliNetworkDiagnosis/AliTcpPing.h"
-#import "AliNetworkDiagnosis/AliNetworkDiagnosis.h"
+//#import "AliNetworkDiagnosis/AliDns.h"
+//#import "AliNetworkDiagnosis/AliHttpPing.h"
+//#import "AliNetworkDiagnosis/AliMTR.h"
+//#import "AliNetworkDiagnosis/AliPing.h"
+//#import "AliNetworkDiagnosis/AliTcpPing.h"
+//#import "AliNetworkDiagnosis/AliNetworkDiagnosis.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class AliDnsConfig;
+@class AliHttpPingConfig;
+@class AliMTRConfig;
+@class AliPingConfig;
+@class AliTcpPingConfig;
+
 @protocol SLSDiagnosisProtocol <NSObject>
-- (void)registerDelegate:(id<AliNetworkDiagnosisDelegate>)delegate;
+- (void)registerDelegate:(id)delegate;
 - (void)init:(NSString*)secretKey deviceId:(NSString*)deviceId siteId:(NSString*)siteId extension:(NSDictionary*)extension;
 - (void)setPolicyDomain:(NSString*)domain;
 - (void)refreshSecretKey:(NSString*)secretKey;
@@ -34,7 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)disableExNetInfo;
 - (void)enableDebug:(BOOL)debug;
 - (void)updateExtension:(NSDictionary*)extension;
-- (void)registerHttpCredentialDelegate:(id<AliHttpCredentialDelegate>)delegate;
+- (void)registerHttpCredentialDelegate:(id)delegate;
 
 - (void) dns: (AliDnsConfig *)config;
 - (void) http: (AliHttpPingConfig *)config;
