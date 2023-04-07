@@ -19,6 +19,10 @@ targets.each do |t|
       pod 'AliyunLogProducer/NetworkDiagnosis', :path =>'../../'
       pod 'AliyunLogProducer/Trace', :path =>'../../'
       pod 'AliyunLogProducer/URLSessionInstrumentation', :path =>'../../'
+      
+      if t == 'iOSTests'
+        pod 'OCMock'
+      end
     end
 
 end

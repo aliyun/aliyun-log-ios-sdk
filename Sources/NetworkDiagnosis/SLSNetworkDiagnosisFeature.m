@@ -23,6 +23,7 @@
 #import "AliNetworkDiagnosis/AliNetworkDiagnosis.h"
 
 #import "SLSHttpHeader.h"
+#import "SLSDiagnosisProtocol.h"
 
 static int DEFAULT_PING_SIZE = 64;
 static int DEFAULT_TIMEOUT = 2 * 1000;
@@ -42,23 +43,27 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
 
 @class SLSNetworkDiagnosisSender;
 
+#pragma mark -- network diagnosis sender
 @interface SLSNetworkDiagnosisSender : SLSSdkSender<AliNetworkDiagnosisDelegate>
 - (instancetype) initWithFeature: (SLSSdkFeature *) feature;
 - (void) registerCallback: (nullable Callback2) callback;
 + (instancetype) sender: (SLSCredentials *) credentials feature: (SLSSdkFeature *) feature;
 @end
 
+#pragma mark -- internal credential delegate
 @interface InternalHttpCredentialDelegate : NSObject<AliHttpCredentialDelegate>
 @property(nonatomic, copy) CredentialDelegate delegate;
 + (instancetype) delegate: (CredentialDelegate) delegate;
 @end
 
+#pragma mark -- network diagnosis feature extension
 @interface SLSNetworkDiagnosisFeature ()
 @property(nonatomic, strong) SLSNetworkDiagnosisSender *sender;
 @property(nonatomic, strong) NSString *idPrefix;
 @property(nonatomic, assign) long index;
 @property(nonatomic, strong) NSLock *lock;
 @property(nonatomic, assign) BOOL enableMultiplePortsDetect;
+@property(nonatomic, strong) id<SLSDiagnosisProtocol> diagnosis;
 
 - (NSString *) getIPAIdBySecretKey: (NSString *) secretKey;
 - (NSString *) generateId;
@@ -161,12 +166,17 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
         _idPrefix = [NSString stringWithFormat:@"%ld", (long) [TimeUtils getTimeInMilliis]];
         _lock = [[NSLock alloc] init];
         _enableMultiplePortsDetect = NO;
+        _diagnosis = [[NetSpeedDiagnosis alloc] init];
     }
     return self;
 }
 
 - (NSString *)name {
     return @"network_diagnosis";
+}
+
+- (void)setDiagnosis:(id<SLSDiagnosisProtocol>)diagnosis {
+    _diagnosis = diagnosis;
 }
 
 - (SLSSpanBuilder *) newSpanBuilder: (NSString *)spanName provider: (id<SLSSpanProviderProtocol>) provider processor: (id<SLSSpanProcessorProtocol>) processor {
@@ -190,19 +200,19 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
     
     _sender = [SLSNetworkDiagnosisSender sender:credentials feature:self];
     
-    [AliNetworkDiagnosis init:networkCredentials.secretKey
-                     deviceId:[[Utdid getUtdid] copy]
-                       siteId:networkCredentials.siteId
-                    extension:networkCredentials.extension
+    [_diagnosis init:networkCredentials.secretKey
+            deviceId:[[Utdid getUtdid] copy]
+              siteId:networkCredentials.siteId
+           extension:networkCredentials.extension
     ];
     
 #ifdef DEBUG
-    [AliNetworkDiagnosis enableDebug:self.configuration.debuggable];
+    [_diagnosis enableDebug:self.configuration.debuggable];
 #else
-    [AliNetworkDiagnosis enableDebug:NO];
+    [_diagnosis enableDebug:NO];
 #endif
     
-    [AliNetworkDiagnosis registerDelegate:_sender];
+    [_diagnosis registerDelegate:_sender];
     
     [[SLSNetworkDiagnosis sharedInstance] setNetworkDiagnosisFeature:self];
 }
@@ -246,11 +256,11 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
 }
 
 - (void) disableExNetworkInfo {
-    [AliNetworkDiagnosis disableExNetInfo];
+    [_diagnosis disableExNetInfo];
 }
 
 - (void) setPolicyDomain: (NSString *) policyDomain {
-    [AliNetworkDiagnosis setPolicyDomain:policyDomain];
+    [_diagnosis setPolicyDomain:policyDomain];
 }
 
 - (void) setMultiplePortsDetect: (BOOL) enable {
@@ -274,10 +284,10 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
 }
 
 - (void) updateExtensions: (NSDictionary *) extension {
-    [AliNetworkDiagnosis updateExtension: [extension copy]];
+    [_diagnosis updateExtension: [extension copy]];
 }
 - (void) registerHttpCredentialDelegate: (nullable CredentialDelegate) delegate {
-    [AliNetworkDiagnosis registerHttpCredentialDelegate:[InternalHttpCredentialDelegate delegate:delegate]];
+    [_diagnosis registerHttpCredentialDelegate:[InternalHttpCredentialDelegate delegate:delegate]];
 }
 
 #pragma mark - dns
@@ -323,7 +333,7 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
         return;
     }
 
-    [AliDns execute:[[AliDnsConfig alloc] init:request.domain
+    [_diagnosis dns:[[AliDnsConfig alloc] init:request.domain
                                     nameServer:request.nameServer
                                           type:request.type
                                        timeout:request.timeout
@@ -390,7 +400,7 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
                                                             }
     ];
     
-    [AliHttpPing execute:config];
+    [_diagnosis http:config];
 }
 
 #pragma mark - mtr
@@ -418,6 +428,7 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
     SLSMtrRequest *request = [[SLSMtrRequest alloc] init];
     request.domain = domain;
     request.maxTTL = maxTTL;
+    request.maxPaths = maxPaths;
     request.maxTimes = maxTimes;
     request.timeout = timeout;
     
@@ -440,21 +451,41 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
         return;
     }
     
-    [AliMTR start:request.domain
-           maxTtl:request.maxTTL
-    interfaceType:(_enableMultiplePortsDetect ? AliNetDiagNetworkInterfaceDefault : AliNetDiagNetworkInterfaceCurrent)
-         maxPaths:request.maxPaths
-   maxTimesEachIP:request.maxTimes
-          timeout:request.timeout
-          context:request.context
-          traceID:[self generateId]
-           output:nil
-         complete:^(id context, NSString *traceID, AliMTRResult *result) {
-                    if (callback && result) {
-                        callback([SLSResponse response:context type:@"mtr" content:[result.content copy]]);
-                    }
-                }
+    AliMTRConfig *config = [[AliMTRConfig alloc] init:request.domain
+                                               maxTtl:request.maxTTL
+                                             maxPaths:request.maxPaths
+                                        maxTimeEachIP:request.maxTimes
+                                              timeout:request.timeout
+                                        interfaceType:(_enableMultiplePortsDetect ? AliNetDiagNetworkInterfaceDefault : AliNetDiagNetworkInterfaceCurrent)
+                                               prefer:0
+                                              context:request.context
+                                              traceID:[self generateId]
+                                             complete:^(id context, NSString *traceID, AliMTRResult *result) {
+                                                            if (callback && result) {
+                                                                callback([SLSResponse response:context type:@"mtr" content:[result.content copy]]);
+                                                            }
+                                                        }
+                                      combineComplete:nil
     ];
+    
+    [_diagnosis mtr:config];
+    
+    
+//    [AliMTR start:request.domain
+//           maxTtl:request.maxTTL
+//    interfaceType:(_enableMultiplePortsDetect ? AliNetDiagNetworkInterfaceDefault : AliNetDiagNetworkInterfaceCurrent)
+//         maxPaths:request.maxPaths
+//   maxTimesEachIP:request.maxTimes
+//          timeout:request.timeout
+//          context:request.context
+//          traceID:[self generateId]
+//           output:nil
+//         complete:^(id context, NSString *traceID, AliMTRResult *result) {
+//                    if (callback && result) {
+//                        callback([SLSResponse response:context type:@"mtr" content:[result.content copy]]);
+//                    }
+//                }
+//    ];
 }
 
 
@@ -502,7 +533,7 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
         return;
     }
     
-    [AliPing execute:[[AliPingConfig alloc] init:request.domain
+    [_diagnosis ping:[[AliPingConfig alloc] init:request.domain
                                          timeout:request.timeout
                                    interfaceType:(_enableMultiplePortsDetect ? AliNetDiagNetworkInterfaceDefault : AliNetDiagNetworkInterfaceCurrent)
                                           prefer:0
@@ -562,14 +593,14 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
         return;
     }
     
-    [AliTcpPing execute:[[AliTcpPingConfig alloc] init:request.domain
+    [_diagnosis tcpPing:[[AliTcpPingConfig alloc] init:request.domain
                                                timeout:request.timeout
                                          interfaceType:(_enableMultiplePortsDetect ? AliNetDiagNetworkInterfaceDefault : AliNetDiagNetworkInterfaceCurrent)
                                                 prefer:0
                                                context:request.context
                                                traceID:[self generateId]
                                                   port:request.port
-                                                 count:DEFAULT_MAX_COUNT
+                                                 count:request.maxTimes
                                               interval:DEFAULT_MAX_INTERVAL
                                               complete:^(id context, NSString *traceID, AliTcpPingResult *result) {
                                                         if (callback) {
@@ -745,3 +776,73 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
     return nil;
 }
 @end
+
+#pragma mark -- NetSpeed Diagnosis
+@implementation NetSpeedDiagnosis
+- (void)dns:(nonnull AliDnsConfig *)config {
+    [AliDns execute: config];
+}
+
+- (void)http:(nonnull AliHttpPingConfig *)config {
+    [AliHttpPing execute: config];
+}
+
+- (void)mtr:(nonnull AliMTRConfig *)config {
+    [AliMTR execute: config];
+}
+
+- (void)ping:(nonnull AliPingConfig *)config {
+    [AliPing execute: config];
+}
+
+- (void)tcpPing:(nonnull AliTcpPingConfig *)config {
+    [AliTcpPing execute:config];
+}
+
+- (void)disableExNetInfo {
+    [AliNetworkDiagnosis disableExNetInfo];
+}
+
+
+- (void)enableDebug:(BOOL)debug {
+    [AliNetworkDiagnosis enableDebug:debug];
+}
+
+
+- (void)executeOncePolicy:(nonnull NSString *)policy {
+    [AliNetworkDiagnosis executeOncePolicy:policy];
+}
+
+
+- (void)init:(nonnull NSString *)secretKey deviceId:(nonnull NSString *)deviceId siteId:(nonnull NSString *)siteId extension:(nonnull NSDictionary *)extension {
+    [AliNetworkDiagnosis init:secretKey deviceId:deviceId siteId:siteId extension:extension];
+}
+
+
+- (void)refreshSecretKey:(nonnull NSString *)secretKey {
+    [AliNetworkDiagnosis refreshSecretKey:secretKey];
+}
+
+
+- (void)registerDelegate:(nonnull id<AliNetworkDiagnosisDelegate>)delegate {
+    [AliNetworkDiagnosis registerDelegate:delegate];
+}
+
+
+- (void)registerHttpCredentialDelegate:(nonnull id<AliHttpCredentialDelegate>)delegate {
+    [AliNetworkDiagnosis registerHttpCredentialDelegate:delegate];
+}
+
+
+- (void)setPolicyDomain:(nonnull NSString *)domain {
+    [AliNetworkDiagnosis setPolicyDomain:domain];
+}
+
+
+- (void)updateExtension:(nonnull NSDictionary *)extension {
+    [AliNetworkDiagnosis updateExtension:extension];
+}
+
+
+@end
+

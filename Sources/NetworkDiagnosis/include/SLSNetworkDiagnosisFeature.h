@@ -12,11 +12,18 @@
 #endif
 
 #import "SLSNetworkDiagnosisProtocol.h"
+#import "SLSDiagnosisProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
+#pragma mark -- NetSpeed Diagnosis
+@interface NetSpeedDiagnosis : NSObject<SLSDiagnosisProtocol>
+@end
+
+#pragma mark -- network diagnosis feature
 @interface SLSNetworkDiagnosisFeature : SLSSdkFeature<SLSNetworkDiagnosisProtocol>
 - (void) updateExtensions: (NSDictionary *) extension;
+- (void) setDiagnosis: (id<SLSDiagnosisProtocol>) diagnosis;
 @end
 
 NS_ASSUME_NONNULL_END
