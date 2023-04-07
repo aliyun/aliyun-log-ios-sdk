@@ -58,6 +58,14 @@
     [_feature registerCallback:callback];
 }
 
+- (void)registerCallback2:(Callback2)callback {
+    if (!_feature) {
+        return;
+    }
+    
+    [_feature registerCallback2:callback];
+}
+
 - (void) updateExtensions: (NSDictionary *) extension {
     if (!_feature) {
         return;
@@ -114,6 +122,22 @@
     [_feature dns:nameServer domain:domain type:type timeout:timeout callback:callback];
 }
 
+- (void)dns2:(SLSDnsRequest *)request {
+    if (!_feature) {
+        return;
+    }
+    
+    [_feature dns2:request];
+}
+
+- (void)dns2:(SLSDnsRequest *)request callback:(Callback2)callback {
+    if (!_feature) {
+        return;
+    }
+    
+    [_feature dns2:request callback:callback];
+}
+
 - (void)http:(nonnull NSString *)url {
     if (!_feature) {
         return;
@@ -136,6 +160,22 @@
     }
     
     [_feature http:url callback:callback credential:delegate];
+}
+
+- (void)http2:(SLSHttpRequest *)request {
+    if (!_feature) {
+        return;
+    }
+    
+    [_feature http2:request];
+}
+
+- (void)http2:(SLSHttpRequest *)request callback:(Callback2)callback {
+    if (!_feature) {
+        return;
+    }
+    
+    [_feature http2:request callback:callback];
 }
 
 - (void)mtr:(nonnull NSString *)domain {
@@ -186,6 +226,22 @@
     [_feature mtr:domain maxTTL:maxTTL maxPaths:maxPaths maxTimes:maxTimes timeout:timeout callback:callback];
 }
 
+- (void)mtr2:(SLSMtrRequest *)request {
+    if (!_feature) {
+        return;
+    }
+    
+    [_feature mtr2:request];
+}
+
+- (void)mtr2:(SLSMtrRequest *)request callback:(Callback2)callback {
+    if (!_feature) {
+        return;
+    }
+    
+    [_feature mtr2:request callback:callback];
+}
+
 - (void)ping:(nonnull NSString *)domain {
     if (!_feature) {
         return;
@@ -226,6 +282,22 @@
     [_feature ping:domain size:size maxTimes:maxTimes timeout:timeout callback:callback];
 }
 
+- (void)ping2:(SLSPingRequest *)request {
+    if (!_feature) {
+        return;
+    }
+    
+    [_feature ping2:request];
+}
+
+- (void)ping2:(SLSPingRequest *)request callback:(Callback2)callback {
+    if (!_feature) {
+        return;
+    }
+    
+    [_feature ping2:request callback:callback];
+}
+
 - (void)tcpPing:(nonnull NSString *)domain port:(int)port {
     if (!_feature) {
         return;
@@ -250,12 +322,29 @@
     [_feature tcpPing:domain port:port maxTimes:maxTimes callback:callback];
 }
 
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 - (void)tcpPing:(nonnull NSString *)domain port:(int)port maxTimes:(int)maxTimes timeout:(int)timeout callback:(nullable Callback)callback {
     if (!_feature) {
         return;
     }
     
     [_feature tcpPing:domain port:port maxTimes:maxTimes timeout:timeout callback:callback];
+}
+
+- (void)tcpPing2:(SLSTcpPingRequest *)request {
+    if (!_feature) {
+        return;
+    }
+    
+    [_feature tcpPing2:request];
+}
+
+- (void)tcpPing2:(SLSTcpPingRequest *)request callback:(Callback2)callback {
+    if (!_feature) {
+        return;
+    }
+    
+    [_feature tcpPing2:request callback:callback];
 }
 
 @end
