@@ -128,6 +128,8 @@ static NetworkDiagnosisController *selfClzz;
     
     SLSPingRequest *request = [[SLSPingRequest alloc] init];
     request.domain = @"www.aliyun.com";
+    // 可选参数
+    request.context = @"<your ping context id>";
     [[SLSNetworkDiagnosis sharedInstance] ping2:request callback:^(SLSResponse * _Nonnull response) {
         NSLog(@"ping result: %@", response.content);
         [self updateStatus:[NSString stringWithFormat:@"ping result, data: %@", response.content]];
@@ -144,6 +146,8 @@ static NetworkDiagnosisController *selfClzz;
     SLSTcpPingRequest *request = [[SLSTcpPingRequest alloc] init];
     request.domain = @"www.aliyun.com";
     request.port = 80;
+    // 可选参数
+    request.context = @"<your tcpping context id>";
     [[SLSNetworkDiagnosis sharedInstance] tcpPing2:request callback:^(SLSResponse * _Nonnull response) {
         [self updateStatus:[NSString stringWithFormat:@"tcpping result, data: %@", response.content]];
     }];
@@ -158,6 +162,10 @@ static NetworkDiagnosisController *selfClzz;
     
     SLSHttpRequest *request = [[SLSHttpRequest alloc] init];
     request.domain = @"https://demo.ne.aliyuncs.com";
+    // 可选参数
+    request.context = @"<your http context id>";
+    request.headerOnly = YES;
+    request.downloadBytesLimit = 128 * 1024; // 128KB
     request.credential = ^NSURLCredential * _Nullable(NSString * _Nonnull url) {
         return [self getHttpCredential:url];
     };
@@ -177,6 +185,8 @@ static NetworkDiagnosisController *selfClzz;
     [self updateStatus:@"start mtr..."];
     SLSMtrRequest *request = [[SLSMtrRequest alloc] init];
     request.domain = @"www.aliyun.com";
+    // 可选参数
+    request.context = @"<your mtr context id>";
     [[SLSNetworkDiagnosis sharedInstance] mtr2:request callback:^(SLSResponse * _Nonnull response) {
         [self updateStatus:[NSString stringWithFormat:@"mtr result, data: %@", response.content]];
     }];
@@ -190,6 +200,8 @@ static NetworkDiagnosisController *selfClzz;
     [self updateStatus:@"start dns..."];
     SLSDnsRequest *request = [[SLSDnsRequest alloc] init];
     request.domain = @"www.aliyun.com";
+    // 可选参数
+    request.context = @"<your dns context id>";
     [[SLSNetworkDiagnosis sharedInstance] dns2:request callback:^(SLSResponse * _Nonnull response) {
         [self updateStatus:[NSString stringWithFormat:@"dns result, data: %@", response.content]];
     }];
