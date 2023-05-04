@@ -25,6 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (SLSSpanBuilder *) newSpanBuilder: (NSString *)spanName provider: (id<SLSSpanProviderProtocol>) provider processor: (id<SLSSpanProcessorProtocol>) processor;
 
 - (void) onInitializeSender: (SLSCredentials *) credentials configuration: (SLSConfiguration *) configuration;
+- (void) onPreInit: (SLSCredentials *) credentials configuration: (SLSConfiguration *) configuration;
 - (void) onInitialize: (SLSCredentials *) credentials configuration: (SLSConfiguration *) configuration;
 - (void) onPostInitialize;
 

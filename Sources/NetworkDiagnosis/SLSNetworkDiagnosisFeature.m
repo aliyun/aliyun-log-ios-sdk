@@ -186,8 +186,9 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
     ];
 }
 
-- (void)onInitialize:(SLSCredentials *)credentials configuration:(SLSConfiguration *)configuration {
-    [super onInitialize:credentials configuration:configuration];
+- (void)onPreInit:(SLSCredentials *)credentials configuration:(SLSConfiguration *)configuration {
+    [super onPreInit:credentials configuration:configuration];
+
     SLSNetworkDiagnosisCredentials *networkCredentials = credentials.networkDiagnosisCredentials;
     if (!networkCredentials) {
         SLSLog(@"SLSNetworkDiagnosisCredentials must not be null.");
@@ -215,6 +216,10 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
     [_diagnosis registerDelegate:_sender];
     
     [[SLSNetworkDiagnosis sharedInstance] setNetworkDiagnosisFeature:self];
+}
+
+- (void)onInitialize:(SLSCredentials *)credentials configuration:(SLSConfiguration *)configuration {
+    [super onInitialize:credentials configuration:configuration];
 }
 
 - (void)setCredentials:(SLSCredentials *)credentials {

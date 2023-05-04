@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSString *) name;
 - (NSString *) version;
+- (void) preInit: (SLSCredentials *) credentials configuration: (SLSConfiguration *) configuration;
 - (void) initialize: (SLSCredentials *) credentials configuration: (SLSConfiguration *) configuration;
 - (BOOL) isInitialize;
 - (void) stop;
