@@ -121,6 +121,14 @@ let package = Package(
             publicHeadersPath: "Unity4SLS/include"
         ),
         .target(
+            name: "SLSIPA4Unity",
+            path: "Sources",
+            sources: [
+                "SLSIPA4Unity/"
+            ],
+            publicHeadersPath: "SLSIPA4Unity/include"
+        ),
+        .target(
             name: "AliyunLogNetworkDiagnosis",
             dependencies: ["AliyunLogCore", "AliyunLogOT", "AliNetworkDiagnosis"],
             path: "Sources",
