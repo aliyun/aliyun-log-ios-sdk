@@ -172,28 +172,15 @@
 }
 
 - (void) initFeature: (NSString *) clazzName {
-    if (!clazzName || clazzName.length <= 0) {
+    if (!clazzName || clazzName.length <= 0 || nil == _features) {
         return;
     }
     
-    SLSLog(@"initFeature, start init: %@", clazzName);
-    
-    Class clazz = NSClassFromString(clazzName);
-    if (!clazz || ![clazz conformsToProtocol:@protocol(SLSFeatureProtocol)]) {
-        SLSLog(@"initFeature, feature class not found.");
-        return;
+    for (id<SLSFeatureProtocol> feature in _features) {
+        SLSLog(@"initFeature, start init: %@", [feature name]);
+        [feature initialize:_credentials configuration:_configuration];
+        SLSLog(@"initFeature, init: %@ success.", [feature name]);
     }
-    
-    id<SLSFeatureProtocol> feature = [[clazz alloc] init];
-    if (!feature) {
-        SLSLog(@"initFeature, feature init error.");
-        return;
-    }
-    
-    [feature initialize:_credentials configuration:_configuration];
-    
-    [_features addObject:feature];
-    SLSLog(@"initFeature, init: %@ success.", clazzName);
 }
 
 #pragma mark - setter
