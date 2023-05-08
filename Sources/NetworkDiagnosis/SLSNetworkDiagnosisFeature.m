@@ -201,10 +201,10 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
     
     _sender = [SLSNetworkDiagnosisSender sender:credentials feature:self];
     
-    [_diagnosis init:networkCredentials.secretKey
-            deviceId:[[Utdid getUtdid] copy]
-              siteId:networkCredentials.siteId
-           extension:networkCredentials.extension
+    [_diagnosis preInit:networkCredentials.secretKey
+               deviceId:[[Utdid getUtdid] copy]
+                 siteId:networkCredentials.siteId
+              extension:networkCredentials.extension
     ];
     
 #ifdef DEBUG
@@ -220,6 +220,21 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
 
 - (void)onInitialize:(SLSCredentials *)credentials configuration:(SLSConfiguration *)configuration {
     [super onInitialize:credentials configuration:configuration];
+    
+    SLSNetworkDiagnosisCredentials *networkCredentials = credentials.networkDiagnosisCredentials;
+    if (!networkCredentials) {
+        SLSLog(@"SLSNetworkDiagnosisCredentials must not be null.");
+        return;
+    }
+    
+    if (networkCredentials.secretKey.length > 0) {
+        networkCredentials.instanceId = [self getIPAIdBySecretKey:networkCredentials.secretKey];
+    }
+    
+    [_diagnosis init:networkCredentials.secretKey
+            deviceId:[[Utdid getUtdid] copy]
+              siteId:networkCredentials.siteId
+           extension:networkCredentials.extension];
 }
 
 - (void)setCredentials:(SLSCredentials *)credentials {
@@ -818,6 +833,9 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
     [AliNetworkDiagnosis executeOncePolicy:policy];
 }
 
+- (void)preInit:(NSString*)secretKey deviceId:(NSString*)deviceId siteId:(NSString*)siteId extension:(NSDictionary*)extension {
+    [AliNetworkDiagnosis preInit:secretKey deviceId:deviceId siteId:siteId extension:extension];
+}
 
 - (void)init:(nonnull NSString *)secretKey deviceId:(nonnull NSString *)deviceId siteId:(nonnull NSString *)siteId extension:(nonnull NSDictionary *)extension {
     [AliNetworkDiagnosis init:secretKey deviceId:deviceId siteId:siteId extension:extension];

@@ -10,6 +10,13 @@
 #import <AliNetworkDiagnosis/AliProtocols.h>
 #import <Foundation/Foundation.h>
 
+// all
+#define MTR_PROTOCOL_ALL 0
+// icmp
+#define MTR_PROTOCOL_ICMP 1
+// udp
+#define MTR_PROTOCOL_UDP 2
+
 @interface AliMTRResult : NSObject
 
 @property (readonly) NSInteger code;
@@ -37,6 +44,7 @@ typedef void (^AliMTRCombineCompleteHandler)(id context, NSString *traceID, NSMu
 @property AliMTRCompleteHandler complete;
 @property AliMTRCombineCompleteHandler combineComplete;
 @property int protocol;
+@property BOOL parallel;
 
 -(instancetype)init:(NSString*)host
              maxTtl:(NSInteger)maxTtl

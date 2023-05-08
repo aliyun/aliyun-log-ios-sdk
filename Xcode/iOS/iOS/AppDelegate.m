@@ -176,8 +176,11 @@
     };
     // pre init first
     [[SLSCocoa sharedInstance] preInit:credentials configuration:configuration];
+
     // real-init after privocy agreement
-    [[SLSCocoa sharedInstance] initialize:credentials configuration:configuration];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [[SLSCocoa sharedInstance] initialize:credentials configuration:configuration];
+    });
     
     [[URLSessionInstrumentation alloc] initWithProtoco:[[URLInstrumentationProtocal alloc] init]];
     

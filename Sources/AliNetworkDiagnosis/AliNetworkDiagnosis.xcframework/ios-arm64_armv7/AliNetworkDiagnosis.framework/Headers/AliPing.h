@@ -2,8 +2,6 @@
 //  AliPing.h
 //  NetDiag
 //
-//  Created by bailong on 15/12/30.
-//  Copyright © 2015年 Qiniu Cloud Storage. All rights reserved.
 //
 
 #import <AliNetworkDiagnosis/AliProtocols.h>
@@ -50,6 +48,7 @@ typedef void (^AliPingCombineCompleteHandler)(id context, NSString *traceID, NSM
 @property AliPingCombineCompleteHandler combineComplete;
 @property NSInteger count;
 @property NSInteger interval;
+@property BOOL parallel;
 
 -(instancetype)init:(NSString*)host
             timeout:(NSInteger)timeout
