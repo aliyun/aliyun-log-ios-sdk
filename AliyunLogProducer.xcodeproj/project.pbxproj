@@ -71,6 +71,8 @@
 		F8255A7E2976739D00411DAD /* SLSReachability.h in Headers */ = {isa = PBXBuildFile; fileRef = F8255A5C2976739D00411DAD /* SLSReachability.h */; };
 		F8255A7F2976739D00411DAD /* SLSSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = F8255A5D2976739D00411DAD /* SLSSwizzle.m */; };
 		F8255A802976739D00411DAD /* SLSSdkFeature.m in Sources */ = {isa = PBXBuildFile; fileRef = F8255A5E2976739D00411DAD /* SLSSdkFeature.m */; };
+		F834268A2A09D8540047ADAF /* SLSPrivocyUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = F83426892A09D8540047ADAF /* SLSPrivocyUtils.h */; };
+		F834268C2A09D8640047ADAF /* SLSPrivocyUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = F834268B2A09D8640047ADAF /* SLSPrivocyUtils.m */; };
 		F834A15428D3116300000F72 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F80DF47C26A7037000151F7C /* CoreGraphics.framework */; };
 		F834A15528D3116300000F72 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F80DF47A26A7035E00151F7C /* SystemConfiguration.framework */; };
 		F834A15728D3116300000F72 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F80DF47826A7034E00151F7C /* libc++.tbd */; };
@@ -397,6 +399,8 @@
 		F8255A5C2976739D00411DAD /* SLSReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLSReachability.h; path = Sources/Core/SLSReachability.h; sourceTree = SOURCE_ROOT; };
 		F8255A5D2976739D00411DAD /* SLSSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLSSwizzle.m; path = Sources/Core/SLSSwizzle.m; sourceTree = SOURCE_ROOT; };
 		F8255A5E2976739D00411DAD /* SLSSdkFeature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLSSdkFeature.m; path = Sources/Core/SLSSdkFeature.m; sourceTree = SOURCE_ROOT; };
+		F83426892A09D8540047ADAF /* SLSPrivocyUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLSPrivocyUtils.h; sourceTree = "<group>"; };
+		F834268B2A09D8640047ADAF /* SLSPrivocyUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLSPrivocyUtils.m; sourceTree = "<group>"; };
 		F834A15E28D3116300000F72 /* AliyunLogTrace.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AliyunLogTrace.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F834A16A28D312CE00000F72 /* build-trace.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = "build-trace.sh"; path = "publish/build-trace.sh"; sourceTree = "<group>"; };
 		F838F07D29767663001F1275 /* SLSCrashReporterFeature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLSCrashReporterFeature.m; path = Sources/CrashReporter/SLSCrashReporterFeature.m; sourceTree = SOURCE_ROOT; };
@@ -770,6 +774,7 @@
 				F8255A452976739D00411DAD /* SLSFeatureProtocol.h */,
 				F8255A462976739D00411DAD /* SLSSdkSender.h */,
 				F8255A472976739D00411DAD /* SLSNoOpFeature.h */,
+				F83426892A09D8540047ADAF /* SLSPrivocyUtils.h */,
 				F8255A482976739D00411DAD /* SLSCredentials.h */,
 				F8255A492976739D00411DAD /* SLSSenderProtocol.h */,
 				F8255A4A2976739D00411DAD /* SLSSwizzle.h */,
@@ -1085,6 +1090,7 @@
 				F8255A532976739D00411DAD /* SLSDeviceUtils.m */,
 				F8255A5B2976739D00411DAD /* SLSNoOpFeature.m */,
 				F8255A4C2976739D00411DAD /* SLSNoOpSender.m */,
+				F834268B2A09D8640047ADAF /* SLSPrivocyUtils.m */,
 				F8255A5C2976739D00411DAD /* SLSReachability.h */,
 				F8255A552976739D00411DAD /* SLSReachability.m */,
 				F8255A5E2976739D00411DAD /* SLSSdkFeature.m */,
@@ -1238,6 +1244,7 @@
 				F8255A7E2976739D00411DAD /* SLSReachability.h in Headers */,
 				F8255A712976739D00411DAD /* SLSAppUtils.h in Headers */,
 				F8255A702976739D00411DAD /* SLSStorage.h in Headers */,
+				F834268A2A09D8540047ADAF /* SLSPrivocyUtils.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1682,6 +1689,7 @@
 				F8255A7F2976739D00411DAD /* SLSSwizzle.m in Sources */,
 				F8255A6E2976739D00411DAD /* SLSNoOpSender.m in Sources */,
 				F8255A742976739D00411DAD /* SLSStorage.m in Sources */,
+				F834268C2A09D8640047ADAF /* SLSPrivocyUtils.m in Sources */,
 				F8255A762976739D00411DAD /* SLSCredentials.m in Sources */,
 				F8255A792976739D00411DAD /* SLSAppUtils.m in Sources */,
 				F8255A7D2976739D00411DAD /* SLSNoOpFeature.m in Sources */,

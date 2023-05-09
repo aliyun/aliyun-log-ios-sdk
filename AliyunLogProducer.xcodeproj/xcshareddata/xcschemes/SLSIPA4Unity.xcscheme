@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "F8A3CB8929FBAE9100E4FA2C"
-               BuildableName = "libUnity4SLS copy.a"
+               BuildableName = "libSLSIPA4Unity.a"
                BlueprintName = "SLSIPA4Unity"
                ReferencedContainer = "container:AliyunLogProducer.xcodeproj">
             </BuildableReference>
@@ -51,7 +51,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F8A3CB8929FBAE9100E4FA2C"
-            BuildableName = "libUnity4SLS copy.a"
+            BuildableName = "libSLSIPA4Unity.a"
             BlueprintName = "SLSIPA4Unity"
             ReferencedContainer = "container:AliyunLogProducer.xcodeproj">
          </BuildableReference>
