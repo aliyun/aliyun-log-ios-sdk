@@ -21,6 +21,7 @@ typedef NSURLCredential* _Nullable (^CredentialDelegate)(NSString *url);
 @property(atomic, assign) int size;
 @property(atomic, assign) int maxTimes;
 @property(atomic, assign) int timeout;
+@property(atomic, assign) BOOL parallel;
 @end
 
 @interface SLSHttpRequest : SLSPingRequest
@@ -34,9 +35,14 @@ typedef NSURLCredential* _Nullable (^CredentialDelegate)(NSString *url);
 @property(atomic, assign) NSInteger port;
 @end
 
+#define SLS_MTR_PROROCOL_ALL 0
+#define SLS_MTR_PROROCOL_ICMP 1
+#define SLS_MTR_PROROCOL_UDP 2
+
 @interface SLSMtrRequest : SLSTcpPingRequest
 @property(atomic, assign) int maxTTL;
 @property(atomic, assign) int maxPaths;
+@property(atomic, assign) int protocol;
 @end
 
 @interface SLSDnsRequest : SLSMtrRequest

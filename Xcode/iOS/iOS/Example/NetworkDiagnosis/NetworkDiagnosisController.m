@@ -130,6 +130,7 @@ static NetworkDiagnosisController *selfClzz;
     request.domain = @"www.aliyun.com";
     // 可选参数
     request.context = @"<your ping context id>";
+    request.parallel = YES;
     [[SLSNetworkDiagnosis sharedInstance] ping2:request callback:^(SLSResponse * _Nonnull response) {
         NSLog(@"ping result: %@", response.content);
         [self updateStatus:[NSString stringWithFormat:@"ping result, data: %@", response.content]];
@@ -187,6 +188,8 @@ static NetworkDiagnosisController *selfClzz;
     request.domain = @"www.aliyun.com";
     // 可选参数
     request.context = @"<your mtr context id>";
+    request.parallel = YES;
+    request.protocol = SLS_MTR_PROROCOL_ALL;
     [[SLSNetworkDiagnosis sharedInstance] mtr2:request callback:^(SLSResponse * _Nonnull response) {
         [self updateStatus:[NSString stringWithFormat:@"mtr result, data: %@", response.content]];
     }];

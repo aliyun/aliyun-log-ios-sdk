@@ -93,6 +93,7 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
         _size = DEFAULT_PING_SIZE;
         _maxTimes = DEFAULT_MAX_TIMES;
         _timeout = DEFAULT_TIMEOUT;
+        _parallel = NO;
     }
     return self;
 }
@@ -116,6 +117,7 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
     if (self) {
         _maxTTL = DEFAULT_MTR_MAX_TTL;
         _maxPaths = DEFAULT_MTR_MAX_PATH;
+        _protocol = SLS_MTR_PROROCOL_ALL;
     }
     return self;
 }
@@ -487,6 +489,9 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
                                                         }
                                       combineComplete:nil
     ];
+
+    config.protocol = request.protocol;
+    config.parallel = request.parallel;
     
     [_diagnosis mtr:config];
     
@@ -553,23 +558,25 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
         return;
     }
     
-    [_diagnosis ping:[[AliPingConfig alloc] init:request.domain
-                                         timeout:request.timeout
-                                   interfaceType:(_enableMultiplePortsDetect ? AliNetDiagNetworkInterfaceDefault : AliNetDiagNetworkInterfaceCurrent)
-                                          prefer:0
-                                         context:request.context
-                                         traceID:[self generateId]
-                                            size:request.size
-                                           count:DEFAULT_MAX_COUNT
-                                        interval:DEFAULT_MAX_INTERVAL
-                                        complete:^(id context, NSString *traceID, AliPingResult *result) {
-                                                    if (callback) {
-                                                        callback([SLSResponse response:context type:@"ping" content:[result.content copy]]);
-                                                    }
-                                                }
-                                 combineComplete:nil
-                     ]
+    AliPingConfig *config = [[AliPingConfig alloc] init:request.domain
+                                                timeout:request.timeout
+                                          interfaceType:(_enableMultiplePortsDetect ? AliNetDiagNetworkInterfaceDefault : AliNetDiagNetworkInterfaceCurrent)
+                                                 prefer:0
+                                                context:request.context
+                                                traceID:[self generateId]
+                                                   size:request.size
+                                                  count:DEFAULT_MAX_COUNT
+                                               interval:DEFAULT_MAX_INTERVAL
+                                               complete:^(id context, NSString *traceID, AliPingResult *result) {
+                                                           if (callback) {
+                                                               callback([SLSResponse response:context type:@"ping" content:[result.content copy]]);
+                                                           }
+                                                       }
+                                        combineComplete:nil
     ];
+    config.parallel = request.parallel;
+
+    [_diagnosis ping: config];
 }
 
 #pragma mark - tcpping
