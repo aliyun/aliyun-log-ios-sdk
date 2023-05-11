@@ -318,7 +318,7 @@
 				F8E43590276C3CA400F805D7 /* Sources */,
 				F8E43591276C3CA400F805D7 /* Frameworks */,
 				F8E43592276C3CA400F805D7 /* Resources */,
-				35139FE0ED6E3A7DEB3230E6 /* [CP] Embed Pods Frameworks */,
+				68DF89DFA482DB5A598F5502 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -405,7 +405,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-iOSTests/Pods-iOSTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		35139FE0ED6E3A7DEB3230E6 /* [CP] Embed Pods Frameworks */ = {
+		68DF89DFA482DB5A598F5502 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
