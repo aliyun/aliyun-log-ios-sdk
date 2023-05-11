@@ -93,6 +93,7 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
         _size = DEFAULT_PING_SIZE;
         _maxTimes = DEFAULT_MAX_TIMES;
         _timeout = DEFAULT_TIMEOUT;
+        _parallel = NO;
     }
     return self;
 }
@@ -116,6 +117,7 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
     if (self) {
         _maxTTL = DEFAULT_MTR_MAX_TTL;
         _maxPaths = DEFAULT_MTR_MAX_PATH;
+        _protocol = SLS_MTR_PROROCOL_ALL;
     }
     return self;
 }
@@ -186,8 +188,9 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
     ];
 }
 
-- (void)onInitialize:(SLSCredentials *)credentials configuration:(SLSConfiguration *)configuration {
-    [super onInitialize:credentials configuration:configuration];
+- (void)onPreInit:(SLSCredentials *)credentials configuration:(SLSConfiguration *)configuration {
+    [super onPreInit:credentials configuration:configuration];
+
     SLSNetworkDiagnosisCredentials *networkCredentials = credentials.networkDiagnosisCredentials;
     if (!networkCredentials) {
         SLSLog(@"SLSNetworkDiagnosisCredentials must not be null.");
@@ -200,10 +203,10 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
     
     _sender = [SLSNetworkDiagnosisSender sender:credentials feature:self];
     
-    [_diagnosis init:networkCredentials.secretKey
-            deviceId:[[Utdid getUtdid] copy]
-              siteId:networkCredentials.siteId
-           extension:networkCredentials.extension
+    [_diagnosis preInit:networkCredentials.secretKey
+               deviceId:[[Utdid getUtdid] copy]
+                 siteId:networkCredentials.siteId
+              extension:networkCredentials.extension
     ];
     
 #ifdef DEBUG
@@ -215,6 +218,25 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
     [_diagnosis registerDelegate:_sender];
     
     [[SLSNetworkDiagnosis sharedInstance] setNetworkDiagnosisFeature:self];
+}
+
+- (void)onInitialize:(SLSCredentials *)credentials configuration:(SLSConfiguration *)configuration {
+    [super onInitialize:credentials configuration:configuration];
+    
+    SLSNetworkDiagnosisCredentials *networkCredentials = credentials.networkDiagnosisCredentials;
+    if (!networkCredentials) {
+        SLSLog(@"SLSNetworkDiagnosisCredentials must not be null.");
+        return;
+    }
+    
+    if (networkCredentials.secretKey.length > 0) {
+        networkCredentials.instanceId = [self getIPAIdBySecretKey:networkCredentials.secretKey];
+    }
+    
+    [_diagnosis init:networkCredentials.secretKey
+            deviceId:[[Utdid getUtdid] copy]
+              siteId:networkCredentials.siteId
+           extension:networkCredentials.extension];
 }
 
 - (void)setCredentials:(SLSCredentials *)credentials {
@@ -467,6 +489,9 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
                                                         }
                                       combineComplete:nil
     ];
+
+    config.protocol = request.protocol;
+    config.parallel = request.parallel;
     
     [_diagnosis mtr:config];
     
@@ -533,23 +558,25 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
         return;
     }
     
-    [_diagnosis ping:[[AliPingConfig alloc] init:request.domain
-                                         timeout:request.timeout
-                                   interfaceType:(_enableMultiplePortsDetect ? AliNetDiagNetworkInterfaceDefault : AliNetDiagNetworkInterfaceCurrent)
-                                          prefer:0
-                                         context:request.context
-                                         traceID:[self generateId]
-                                            size:request.size
-                                           count:DEFAULT_MAX_COUNT
-                                        interval:DEFAULT_MAX_INTERVAL
-                                        complete:^(id context, NSString *traceID, AliPingResult *result) {
-                                                    if (callback) {
-                                                        callback([SLSResponse response:context type:@"ping" content:[result.content copy]]);
-                                                    }
-                                                }
-                                 combineComplete:nil
-                     ]
+    AliPingConfig *config = [[AliPingConfig alloc] init:request.domain
+                                                timeout:request.timeout
+                                          interfaceType:(_enableMultiplePortsDetect ? AliNetDiagNetworkInterfaceDefault : AliNetDiagNetworkInterfaceCurrent)
+                                                 prefer:0
+                                                context:request.context
+                                                traceID:[self generateId]
+                                                   size:request.size
+                                                  count:DEFAULT_MAX_COUNT
+                                               interval:DEFAULT_MAX_INTERVAL
+                                               complete:^(id context, NSString *traceID, AliPingResult *result) {
+                                                           if (callback) {
+                                                               callback([SLSResponse response:context type:@"ping" content:[result.content copy]]);
+                                                           }
+                                                       }
+                                        combineComplete:nil
     ];
+    config.parallel = request.parallel;
+
+    [_diagnosis ping: config];
 }
 
 #pragma mark - tcpping
@@ -813,6 +840,9 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
     [AliNetworkDiagnosis executeOncePolicy:policy];
 }
 
+- (void)preInit:(NSString*)secretKey deviceId:(NSString*)deviceId siteId:(NSString*)siteId extension:(NSDictionary*)extension {
+    [AliNetworkDiagnosis preInit:secretKey deviceId:deviceId siteId:siteId extension:extension];
+}
 
 - (void)init:(nonnull NSString *)secretKey deviceId:(nonnull NSString *)deviceId siteId:(nonnull NSString *)siteId extension:(nonnull NSDictionary *)extension {
     [AliNetworkDiagnosis init:secretKey deviceId:deviceId siteId:siteId extension:extension];

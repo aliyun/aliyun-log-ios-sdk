@@ -76,14 +76,18 @@ typedef void(^directory_changed_block)(NSString *);
 - (void) onInitializeSender: (SLSCredentials *) credentials configuration: (SLSConfiguration *) configuration {
     [super onInitializeSender:credentials configuration:configuration];
 }
-- (void) onInitialize: (SLSCredentials *) credentials configuration: (SLSConfiguration *) configuration {
-    [super onInitialize:credentials configuration:configuration];
+- (void)onPreInit:(SLSCredentials *)credentials configuration:(SLSConfiguration *)configuration {
+    [super onPreInit:credentials configuration:configuration];
     _project = credentials.project;
     
     [self observeDirectoryChanged];
     [self initWPKMobi: credentials configuration:configuration];
     
     [[SLSCrashReporter sharedInstance] setCrashReporterFeature:self];
+}
+
+- (void) onInitialize: (SLSCredentials *) credentials configuration: (SLSConfiguration *) configuration {
+    [super onInitialize:credentials configuration:configuration];
 }
 - (void) onPostInitialize {
     [super onPostInitialize];

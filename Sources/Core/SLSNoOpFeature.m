@@ -15,6 +15,11 @@
 - (NSString *) version {
     return @"";
 }
+
+- (void)preInit:(SLSCredentials *)credentials configuration:(SLSConfiguration *)configuration {
+    
+}
+
 - (void) initialize: (SLSCredentials *) credentials configuration: (SLSConfiguration *) configuration {
     
 }

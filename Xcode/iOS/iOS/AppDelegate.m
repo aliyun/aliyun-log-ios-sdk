@@ -164,7 +164,8 @@
     tracerCredentials.project = @"qs-demos";
     
     [[SLSCocoa sharedInstance] setUtdid:@"1212122"];
-    [[SLSCocoa sharedInstance] initialize:credentials configuration:^(SLSConfiguration * _Nonnull configuration) {
+    
+    void (^configuration)(SLSConfiguration *configuration) = ^(SLSConfiguration * configuration) {
         configuration.spanProvider = [SpanProvider provider];
         configuration.debuggable = YES;
         configuration.enableCrashReporter = YES;
@@ -172,7 +173,14 @@
         configuration.enableNetworkDiagnosis = YES;
         configuration.enableTrace = YES;
         configuration.enableTraceLogs = YES;
-    }];
+    };
+    // pre init first
+    [[SLSCocoa sharedInstance] preInit:credentials configuration:configuration];
+
+    // real-init after privocy agreement
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [[SLSCocoa sharedInstance] initialize:credentials configuration:configuration];
+    });
     
     [[URLSessionInstrumentation alloc] initWithProtoco:[[URLInstrumentationProtocal alloc] init]];
     

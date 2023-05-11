@@ -12,7 +12,7 @@ rm -rf lib${SCHEME}.a
 xcodebuild  -project ${WORKSPACE} -scheme ${SCHEME} -configuration Release -sdk iphoneos clean build CONFIGURATION_BUILD_DIR="${PROJECT_BUILDDIR}/iphoneos"
 xcodebuild  -project ${WORKSPACE} -scheme ${SCHEME} -configuration Release -sdk iphonesimulator clean build CONFIGURATION_BUILD_DIR="${PROJECT_BUILDDIR}/iphonesimulator"
 
-cp ./Unity4SLS/Unity4SLSiOS.h ${PROJECT_BUILDDIR}/Unity4SLSiOS.h
+cp ./Sources/Unity4SLS/include/Unity4SLSiOS.h ${PROJECT_BUILDDIR}/Unity4SLSiOS.h
 
 cd ./${PROJECT_BUILDDIR}
 

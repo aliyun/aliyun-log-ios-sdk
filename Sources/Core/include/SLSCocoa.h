@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @class SLSExtraProvider;
 @interface SLSCocoa : NSObject
 + (instancetype) sharedInstance;
+- (BOOL) preInit: (SLSCredentials *) credentials configuration: (void (^)(SLSConfiguration *configuration)) configuration;
 - (BOOL) initialize: (SLSCredentials *) credentials configuration: (void (^)(SLSConfiguration *configuration)) configuration;
 - (void) setCredentials: (SLSCredentials *) credentials;
 - (void) setUserInfo: (SLSUserInfo *) userInfo;

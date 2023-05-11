@@ -12,6 +12,7 @@
 #import <AliNetworkDiagnosis/AliPing.h>
 #import <AliNetworkDiagnosis/AliTcpPing.h>
 #import <AliNetworkDiagnosis/AliHttpPing.h>
+#import <AliNetworkDiagnosis/AliUdpDetect.h>
 
 typedef NS_ENUM(NSUInteger, AliNetDiagLogLevel){
     AliNetDiagLogLevelUpload = 10, // 上报SLS+写文件
@@ -42,6 +43,7 @@ typedef NS_ENUM(NSUInteger, AliNetDiagLogLevel){
 //+(void)init:(NSString*)appKey deviceId:(NSString*)deviceId withSiteId:(NSString*)siteId;
 
 +(void)init:(NSString*)secretKey deviceId:(NSString*)deviceId siteId:(NSString*)siteId extension:(NSDictionary*)extension;
++(void)preInit:(NSString*)secretKey deviceId:(NSString*)deviceId siteId:(NSString*)siteId extension:(NSDictionary*)extension;
 +(void)setPolicyDomain:(NSString*)domain;
 +(void)refreshSecretKey:(NSString*)secretKey;
 +(void)executeOncePolicy:(NSString*)policy;

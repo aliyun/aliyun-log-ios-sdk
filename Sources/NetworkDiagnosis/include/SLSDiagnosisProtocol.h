@@ -33,6 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol SLSDiagnosisProtocol <NSObject>
 - (void)registerDelegate:(id)delegate;
+- (void)preInit:(NSString*)secretKey deviceId:(NSString*)deviceId siteId:(NSString*)siteId extension:(NSDictionary*)extension;
 - (void)init:(NSString*)secretKey deviceId:(NSString*)deviceId siteId:(NSString*)siteId extension:(NSDictionary*)extension;
 - (void)setPolicyDomain:(NSString*)domain;
 - (void)refreshSecretKey:(NSString*)secretKey;

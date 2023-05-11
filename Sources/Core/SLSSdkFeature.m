@@ -11,6 +11,7 @@
 
 @interface SLSSdkFeature ()
 
+@property(atomic, assign) bool hasPreInit;
 @property(atomic, assign) bool hasInitialize;
 
 @end
@@ -43,14 +44,26 @@
     return builder;
 }
 
-- (void) initialize: (SLSCredentials *) credentials configuration: (SLSConfiguration *) configuration {
-    if (_hasInitialize) {
+- (void) preInit: (SLSCredentials *) credentials configuration: (SLSConfiguration *) configuration {
+    if (_hasPreInit) {
         return;
     }
     
     _configuration = configuration;
-    
     [self onInitializeSender:credentials configuration:configuration];
+    [self onPreInit:credentials configuration:configuration];
+    
+    _hasPreInit = YES;
+}
+
+- (void) initialize: (SLSCredentials *) credentials configuration: (SLSConfiguration *) configuration {
+    // should pre-init first
+    [self preInit: credentials configuration: configuration];
+    
+    if (_hasInitialize) {
+        return;
+    }
+    
     [self onInitialize:credentials configuration:configuration];
     _hasInitialize = YES;
     [self onPostInitialize];
@@ -58,6 +71,10 @@
 }
 
 - (void)stop {
+    if (_hasPreInit) {
+        _hasPreInit = NO;
+    }
+    
     if (_hasInitialize) {
         
         [self onStop];
@@ -67,6 +84,10 @@
 }
 
 - (void) onInitializeSender: (SLSCredentials *) credentials configuration: (SLSConfiguration *) configuration {
+    
+}
+
+- (void) onPreInit: (SLSCredentials *) credentials configuration: (SLSConfiguration *) configuration {
     
 }
 - (void) onInitialize: (SLSCredentials *) credentials configuration: (SLSConfiguration *) configuration {

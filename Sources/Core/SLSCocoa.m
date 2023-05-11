@@ -20,17 +20,22 @@
 #import "SLSDeviceUtils.h"
 #import "NSString+SLS.h"
 #import "SLSUtils.h"
+#import "SLSPrivocyUtils.h"
 
 @interface SLSCocoa ()
+@property(atomic, assign) BOOL hasPreInit;
 @property(atomic, assign) BOOL hasInitialize;
 @property(nonatomic, copy) SLSCredentials *credentials;
 @property(nonatomic, strong) SLSConfiguration *configuration;
 @property(nonatomic, strong) NSMutableArray<id<SLSFeatureProtocol>> *features;
 @property(nonatomic, strong) SLSExtraProvider *extraProvider;
 
+- (BOOL) internalPreInit: (SLSCredentials *) credentials configuration: (void (^)(SLSConfiguration *configuration)) configuration;
+- (BOOL) internalInitialize: (SLSCredentials *) credentials configuration: (void (^)(SLSConfiguration *configuration)) configuration;
 - (void) initializeDefaultSpanProvider;
 - (void) initializeSdkSender;
 
+- (void) preInitFeature: (NSString *) clazzName;
 - (void) initFeature: (NSString *) clazzName;
 @end
 
@@ -57,17 +62,27 @@
     return self;
 }
 
+- (BOOL) preInit: (SLSCredentials *) credentials configuration: (void (^)(SLSConfiguration *configuration)) configuration {
+    return [self internalPreInit: credentials configuration:configuration];
+}
+
 - (BOOL) initialize: (SLSCredentials *) credentials configuration: (void (^)(SLSConfiguration *configuration)) configuration {
+    return [self internalInitialize: credentials configuration:configuration];
+}
+
+- (BOOL) internalPreInit: (SLSCredentials *) credentials configuration: (void (^)(SLSConfiguration *configuration)) configuration {
     if (!configuration) {
         return NO;
     }
     
-    if (_hasInitialize) {
+    // disable privocy while pre-init
+    [SLSPrivocyUtils setEnablePrivocy:NO];
+    
+    if (_hasPreInit) {
         return NO;
     }
     
     _credentials = credentials;
-//    _configuration = [[SLSConfiguration alloc] initWithProcessor:[DefaultSdkSender sender]];
     _configuration = [[SLSConfiguration alloc] init];
     configuration(_configuration);
     [_configuration setup];
@@ -76,10 +91,41 @@
     [self initializeSdkSender];
     
     if (_configuration.enableCrashReporter || _configuration.enableBlockDetection) {
+        [self preInitFeature: @"SLSCrashReporterFeature"];
+    }
+    
+    if (_configuration.enableNetworkDiagnosis) {
+        [self preInitFeature: @"SLSNetworkDiagnosisFeature"];
+    }
+    
+    if (_configuration.enableTrace) {
+        [self preInitFeature:@"SLSTraceFeature"];
+    }
+    
+    _hasPreInit = YES;
+    return YES;
+}
+
+- (BOOL) internalInitialize: (SLSCredentials *) credentials configuration: (void (^)(SLSConfiguration *configuration)) configuration {
+    // should pre init first
+    [self internalPreInit:credentials configuration:configuration];
+    
+    if (!configuration) {
+        return NO;
+    }
+    
+    // enable privocy while real-init
+    [SLSPrivocyUtils setEnablePrivocy:YES];
+    
+    if (_hasInitialize) {
+        return NO;
+    }
+    
+    if (_configuration.enableCrashReporter || _configuration.enableBlockDetection) {
         [self initFeature: @"SLSCrashReporterFeature"];
     }
     
-    if (_configuration.enableNetworkDiagnosis) { 
+    if (_configuration.enableNetworkDiagnosis) {
         [self initFeature: @"SLSNetworkDiagnosisFeature"];
     }
     
@@ -100,29 +146,41 @@
     [sender initialize: _credentials];
 }
 
-- (void) initFeature: (NSString *) clazzName {
+- (void) preInitFeature: (NSString *) clazzName {
     if (!clazzName || clazzName.length <= 0) {
         return;
     }
     
-    SLSLog(@"initFeature, start init: %@", clazzName);
+    SLSLog(@"preInitFeature, start init: %@", clazzName);
     
     Class clazz = NSClassFromString(clazzName);
     if (!clazz || ![clazz conformsToProtocol:@protocol(SLSFeatureProtocol)]) {
-        SLSLog(@"initFeature, feature class not found.");
+        SLSLog(@"preInitFeature, feature class not found.");
         return;
     }
     
     id<SLSFeatureProtocol> feature = [[clazz alloc] init];
     if (!feature) {
-        SLSLog(@"initFeature, feature init error.");
+        SLSLog(@"preInitFeature, feature init error.");
         return;
     }
     
-    [feature initialize:_credentials configuration:_configuration];
+    [feature preInit:_credentials configuration:_configuration];
     
     [_features addObject:feature];
-    SLSLog(@"initFeature, init: %@ success.", clazzName);
+    SLSLog(@"preInitFeature, init: %@ success.", clazzName);
+}
+
+- (void) initFeature: (NSString *) clazzName {
+    if (!clazzName || clazzName.length <= 0 || nil == _features) {
+        return;
+    }
+    
+    for (id<SLSFeatureProtocol> feature in _features) {
+        SLSLog(@"initFeature, start init: %@", [feature name]);
+        [feature initialize:_credentials configuration:_configuration];
+        SLSLog(@"initFeature, init: %@ success.", [feature name]);
+    }
 }
 
 #pragma mark - setter
@@ -200,9 +258,8 @@
 @property(nonatomic, strong) SLSExtraProvider *extraProvider;
 - (instancetype) initWithConfiguration: (SLSConfiguration *)configuration credentials: (SLSCredentials *) credentials extraProvider: (SLSExtraProvider *)extraProvider;
 - (void) provideExtra: (NSMutableArray<SLSAttribute *> *)attributes;
+- (SLSResource *) createDefaultResource;
 @end
-
-static SLSResource *DEFAULT_RESOURCE;
 
 @implementation SLSSpanProviderDelegate
 
@@ -213,71 +270,6 @@ static SLSResource *DEFAULT_RESOURCE;
         _credentials = credentials;
         _spanProvider = configuration.spanProvider;
         _extraProvider = extraProvider;
-        
-        if (!DEFAULT_RESOURCE) {
-            DEFAULT_RESOURCE = [[SLSResource alloc] init];
-            [DEFAULT_RESOURCE add:@"sdk.language" value:@"Objective-C"];
-            
-            // device specification, ref: https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/resource/semantic_conventions/device.md
-            [DEFAULT_RESOURCE add:@"device.id" value:[[Utdid getUtdid] copy]];
-            [DEFAULT_RESOURCE add:@"device.model.identifier" value:[SLSDeviceUtils getDeviceModelIdentifier]];
-            [DEFAULT_RESOURCE add:@"device.model.name" value:[SLSDeviceUtils getDeviceModelIdentifier]];
-            [DEFAULT_RESOURCE add:@"device.manufacturer" value:@"Apple"];
-            [DEFAULT_RESOURCE add:@"device.resolution" value:[SLSDeviceUtils getResolution]];
-            
-            // os specification, ref: https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/resource/semantic_conventions/os.md
-#if SLS_HAS_UIKIT
-            NSString *systemName = [[[UIDevice currentDevice] systemName] copy];
-            NSString *systemVersion = [[[UIDevice currentDevice] systemVersion] copy];
-#else
-            NSString *systemName = [[[NSProcessInfo processInfo] operatingSystemName] copy];
-            NSString *systemVersion = [[[NSProcessInfo processInfo] operatingSystemVersionString] copy];
-#endif
-            [DEFAULT_RESOURCE add:@"os.type" value: @"darwin"];
-            [DEFAULT_RESOURCE add:@"os.description" value: [NSString stringWithFormat:@"%@ %@", systemName, systemVersion]];
-            
-#if SLS_HOST_MAC
-            [DEFAULT_RESOURCE add:@"os.name" value: @"macOS"];
-#elif SLS_HOST_TV
-            [DEFAULT_RESOURCE add:@"os.name" value: @"tvOS"];
-#else
-            [DEFAULT_RESOURCE add:@"os.name" value: @"iOS"];
-#endif
-            [DEFAULT_RESOURCE add:@"os.version" value: systemVersion];
-            [DEFAULT_RESOURCE add:@"os.root" value: [SLSDeviceUtils isJailBreak]];
-        //        @"os.sdk": [[TelemetryAttributeValue alloc] initWithStringValue:@"iOS"],
-            
-            // host specification, ref: https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/resource/semantic_conventions/host.md
-#if SLS_HOST_MAC
-            [DEFAULT_RESOURCE add:@"host.name" value: @"macOS"];
-#elif SLS_HOST_TV
-            [DEFAULT_RESOURCE add:@"host.name" value: @"tvOS"];
-#else
-            [DEFAULT_RESOURCE add:@"host.name" value: @"iOS"];
-#endif
-            [DEFAULT_RESOURCE add:@"host.type" value: systemName];
-            [DEFAULT_RESOURCE add:@"host.arch" value: [SLSDeviceUtils getCPUArch]];
-            
-            [DEFAULT_RESOURCE add:@"sls.sdk.language" value: @"Objective-C"];
-            [DEFAULT_RESOURCE add:@"sls.sdk.name" value: @"SLSCocoa"];
-            [DEFAULT_RESOURCE add:@"sls.sdk.version" value: [SLSUtils getSdkVersion]];
-            
-            NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
-            NSString *appName = [infoDictionary objectForKey:@"CFBundleDisplayName"];
-            if (!appName) {
-                appName = [infoDictionary objectForKey:@"CFBundleName"];
-            }
-            NSString *appVersion = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
-            NSString *buildCode = [infoDictionary objectForKey:@"CFBundleVersion"];
-            
-            [DEFAULT_RESOURCE add:@"app.version" value:(!appVersion ? @"-" : appVersion)];
-            [DEFAULT_RESOURCE add:@"app.build_code" value:(!buildCode ? @"-" : buildCode)];
-            [DEFAULT_RESOURCE add:@"app.name" value:(!appName ? @"-" : appName)];
-            
-            [DEFAULT_RESOURCE add:@"net.access" value: [SLSDeviceUtils getNetworkTypeName]];
-            [DEFAULT_RESOURCE add:@"net.access_subtype" value: [SLSDeviceUtils getNetworkSubTypeName]];
-            [DEFAULT_RESOURCE add:@"carrier" value: [[SLSDeviceUtils getCarrier] copy]];
-        }
     }
     return self;
 }
@@ -286,9 +278,76 @@ static SLSResource *DEFAULT_RESOURCE;
     return [[SLSSpanProviderDelegate alloc] initWithConfiguration:configuration credentials:credentials extraProvider:extraProvider];
 }
 
+- (SLSResource *) createDefaultResource {
+    BOOL privocy = [SLSPrivocyUtils isEnablePrivocy];
+    
+    SLSResource *resource = [[SLSResource alloc] init];
+    [resource add:@"sdk.language" value:@"Objective-C"];
+    
+    // device specification, ref: https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/resource/semantic_conventions/device.md
+    [resource add:@"device.id" value:[[Utdid getUtdid] copy]];
+    [resource add:@"device.model.identifier" value:privocy ? [SLSDeviceUtils getDeviceModelIdentifier] : @""];
+    [resource add:@"device.model.name" value:privocy ? [SLSDeviceUtils getDeviceModelIdentifier] : @""];
+    [resource add:@"device.manufacturer" value:@"Apple"];
+    [resource add:@"device.resolution" value:privocy ? [SLSDeviceUtils getResolution] : @""];
+    
+    // os specification, ref: https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/resource/semantic_conventions/os.md
+#if SLS_HAS_UIKIT
+    NSString *systemName = [[[UIDevice currentDevice] systemName] copy];
+    NSString *systemVersion = [[[UIDevice currentDevice] systemVersion] copy];
+#else
+    NSString *systemName = [[[NSProcessInfo processInfo] operatingSystemName] copy];
+    NSString *systemVersion = [[[NSProcessInfo processInfo] operatingSystemVersionString] copy];
+#endif
+    [resource add:@"os.type" value: @"darwin"];
+    [resource add:@"os.description" value: [NSString stringWithFormat:@"%@ %@", systemName, systemVersion]];
+    
+#if SLS_HOST_MAC
+    [resource add:@"os.name" value: @"macOS"];
+#elif SLS_HOST_TV
+    [resource add:@"os.name" value: @"tvOS"];
+#else
+    [resource add:@"os.name" value: @"iOS"];
+#endif
+    [resource add:@"os.version" value: systemVersion];
+    [resource add:@"os.root" value: privocy ? [SLSDeviceUtils isJailBreak] : @""];
+//        @"os.sdk": [[TelemetryAttributeValue alloc] initWithStringValue:@"iOS"],
+    
+    // host specification, ref: https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/resource/semantic_conventions/host.md
+#if SLS_HOST_MAC
+    [resource add:@"host.name" value: @"macOS"];
+#elif SLS_HOST_TV
+    [resource add:@"host.name" value: @"tvOS"];
+#else
+    [resource add:@"host.name" value: @"iOS"];
+#endif
+    [resource add:@"host.type" value: systemName];
+    [resource add:@"host.arch" value: privocy ? [SLSDeviceUtils getCPUArch] : @""];
+    
+    [resource add:@"sls.sdk.language" value: @"Objective-C"];
+    [resource add:@"sls.sdk.name" value: @"SLSCocoa"];
+    [resource add:@"sls.sdk.version" value: [SLSUtils getSdkVersion]];
+    
+    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+    NSString *appName = [infoDictionary objectForKey:@"CFBundleDisplayName"];
+    if (!appName) {
+        appName = [infoDictionary objectForKey:@"CFBundleName"];
+    }
+    NSString *appVersion = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
+    NSString *buildCode = [infoDictionary objectForKey:@"CFBundleVersion"];
+    
+    [resource add:@"app.version" value:(!appVersion ? @"-" : appVersion)];
+    [resource add:@"app.build_code" value:(!buildCode ? @"-" : buildCode)];
+    [resource add:@"app.name" value:(!appName ? @"-" : appName)];
+    
+    [resource add:@"net.access" value: privocy ? [SLSDeviceUtils getNetworkTypeName] : @""];
+    [resource add:@"net.access_subtype" value: privocy ? [SLSDeviceUtils getNetworkSubTypeName] : @""];
+    [resource add:@"carrier" value: privocy ? [[SLSDeviceUtils getCarrier] copy] : @""];
+    return resource;
+}
 
 - (SLSResource *)provideResource {
-    return [DEFAULT_RESOURCE copy];
+    return [[self createDefaultResource] copy];
 }
 
 - (NSArray<SLSAttribute *> *)provideAttribute{
