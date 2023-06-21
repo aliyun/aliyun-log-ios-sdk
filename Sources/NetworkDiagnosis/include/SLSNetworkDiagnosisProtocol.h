@@ -22,6 +22,7 @@ typedef NSURLCredential* _Nullable (^CredentialDelegate)(NSString *url);
 @property(atomic, assign) int maxTimes;
 @property(atomic, assign) int timeout;
 @property(atomic, assign) BOOL parallel;
+@property(nonatomic, strong) NSDictionary<NSString*, NSString*> *extention;
 @end
 
 @interface SLSHttpRequest : SLSPingRequest

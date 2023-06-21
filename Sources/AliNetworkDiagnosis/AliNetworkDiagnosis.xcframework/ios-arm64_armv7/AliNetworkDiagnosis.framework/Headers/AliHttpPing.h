@@ -6,6 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <AliNetworkDiagnosis/AliDetectConfig.h>
 
 @interface AliHttpCredential : NSObject
 // 客户端提供凭证，供服务器认证客户端时使用
@@ -58,12 +59,9 @@
 typedef void (^AliHttpPingCompleteHandler)(id context, NSString *traceID, AliHttpPingResult *result);
 
 
-@interface AliHttpPingConfig : NSObject
+@interface AliHttpPingConfig : AliDetectConfig
 @property NSString* url;
-@property NSString* traceId;
-@property id context;
 @property AliHttpPingCompleteHandler complete;
-@property NSString* src;
 @property NSURLCredential* clientCredential;
 @property NSURLCredential* serverCredential;
 @property NSTimeInterval timeout;

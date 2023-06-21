@@ -355,20 +355,25 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
         return;
     }
 
-    [_diagnosis dns:[[AliDnsConfig alloc] init:request.domain
-                                    nameServer:request.nameServer
-                                          type:request.type
-                                       timeout:request.timeout
-                                 interfaceType:(_enableMultiplePortsDetect ? AliNetDiagNetworkInterfaceDefault : AliNetDiagNetworkInterfaceCurrent)
-                                       traceID:[self generateId]
-                                      complete:^(id context, NSString *traceID, AliDnsResult *result) {
-                                                    if (callback) {
-                                                        callback([SLSResponse response:context type:@"dns" content:[result.content copy]]);
-                                                    }
-                                                }
-                                       context:request.context
-                    ]
+    AliDnsConfig *dnsConfig = [[AliDnsConfig alloc] init:request.domain
+                                              nameServer:request.nameServer
+                                                    type:request.type
+                                                 timeout:request.timeout
+                                           interfaceType:(_enableMultiplePortsDetect ? AliNetDiagNetworkInterfaceDefault : AliNetDiagNetworkInterfaceCurrent)
+                                                 traceID:[self generateId]
+                                                complete:^(id context, NSString *traceID, AliDnsResult *result) {
+                                                              if (callback) {
+                                                                  callback([SLSResponse response:context type:@"dns" content:[result.content copy]]);
+                                                              }
+                                                          }
+                                                 context:request.context
     ];
+    
+    if (request.extention) {
+        dnsConfig.detectExtension = [NSMutableDictionary dictionaryWithDictionary:request.extention];
+    }
+    
+    [_diagnosis dns: dnsConfig];
 }
 
 #pragma mark - http
@@ -421,6 +426,9 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
                                                                 }
                                                             }
     ];
+    if (request.extention) {
+        config.detectExtension = [NSMutableDictionary dictionaryWithDictionary:request.extention];
+    }
     
     [_diagnosis http:config];
 }
@@ -489,6 +497,9 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
                                                         }
                                       combineComplete:nil
     ];
+    if (request.extention) {
+        config.detectExtension = [NSMutableDictionary dictionaryWithDictionary:request.extention];
+    }
 
     config.protocol = request.protocol;
     config.parallel = request.parallel;
@@ -575,6 +586,9 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
                                         combineComplete:nil
     ];
     config.parallel = request.parallel;
+    if (request.extention) {
+        config.detectExtension = [NSMutableDictionary dictionaryWithDictionary:request.extention];
+    }
 
     [_diagnosis ping: config];
 }
@@ -620,23 +634,27 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
         return;
     }
     
-    [_diagnosis tcpPing:[[AliTcpPingConfig alloc] init:request.domain
-                                               timeout:request.timeout
-                                         interfaceType:(_enableMultiplePortsDetect ? AliNetDiagNetworkInterfaceDefault : AliNetDiagNetworkInterfaceCurrent)
-                                                prefer:0
-                                               context:request.context
-                                               traceID:[self generateId]
-                                                  port:request.port
-                                                 count:request.maxTimes
-                                              interval:DEFAULT_MAX_INTERVAL
-                                              complete:^(id context, NSString *traceID, AliTcpPingResult *result) {
-                                                        if (callback) {
-                                                            callback([SLSResponse response:context type:@"tcpping" content:[result.content copy]]);
-                                                        }
-                                                    }
-                                       combineComplete:nil
-                        ]
+    AliTcpPingConfig *config = [[AliTcpPingConfig alloc] init:request.domain
+                                                      timeout:request.timeout
+                                                interfaceType:(_enableMultiplePortsDetect ? AliNetDiagNetworkInterfaceDefault : AliNetDiagNetworkInterfaceCurrent)
+                                                       prefer:0
+                                                      context:request.context
+                                                      traceID:[self generateId]
+                                                         port:request.port
+                                                        count:request.maxTimes
+                                                     interval:DEFAULT_MAX_INTERVAL
+                                                     complete:^(id context, NSString *traceID, AliTcpPingResult *result) {
+                                                               if (callback) {
+                                                                   callback([SLSResponse response:context type:@"tcpping" content:[result.content copy]]);
+                                                               }
+                                                           }
+                                              combineComplete:nil
     ];
+    if (request.extention) {
+        config.detectExtension = [NSMutableDictionary dictionaryWithDictionary:request.extention];
+    }
+
+    [_diagnosis tcpPing: config];
 }
 
 @end

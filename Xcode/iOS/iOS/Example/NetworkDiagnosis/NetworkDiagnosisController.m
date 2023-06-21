@@ -131,6 +131,10 @@ static NetworkDiagnosisController *selfClzz;
     // 可选参数
     request.context = @"<your ping context id>";
     request.parallel = YES;
+    // 可选参数
+    request.extention = @{
+        @"custom_key": @"custom_value_ios"
+    };
     [[SLSNetworkDiagnosis sharedInstance] ping2:request callback:^(SLSResponse * _Nonnull response) {
         NSLog(@"ping result: %@", response.content);
         [self updateStatus:[NSString stringWithFormat:@"ping result, data: %@", response.content]];
@@ -149,6 +153,10 @@ static NetworkDiagnosisController *selfClzz;
     request.port = 80;
     // 可选参数
     request.context = @"<your tcpping context id>";
+    // 可选参数
+    request.extention = @{
+        @"custom_key": @"custom_value_ios"
+    };
     [[SLSNetworkDiagnosis sharedInstance] tcpPing2:request callback:^(SLSResponse * _Nonnull response) {
         [self updateStatus:[NSString stringWithFormat:@"tcpping result, data: %@", response.content]];
     }];
@@ -170,6 +178,11 @@ static NetworkDiagnosisController *selfClzz;
     request.credential = ^NSURLCredential * _Nullable(NSString * _Nonnull url) {
         return [self getHttpCredential:url];
     };
+    // 可选参数
+    request.extention = @{
+        @"custom_key": @"custom_value_ios"
+    };
+
     [[SLSNetworkDiagnosis sharedInstance] http2:request callback:^(SLSResponse * _Nonnull response) {
         [self updateStatus:[NSString stringWithFormat:@"http result, data: %@", response.content]];
     }];
@@ -190,6 +203,11 @@ static NetworkDiagnosisController *selfClzz;
     request.context = @"<your mtr context id>";
     request.parallel = YES;
     request.protocol = SLS_MTR_PROROCOL_ALL;
+    // 可选参数
+    request.extention = @{
+        @"custom_key": @"custom_value_ios"
+    };
+
     [[SLSNetworkDiagnosis sharedInstance] mtr2:request callback:^(SLSResponse * _Nonnull response) {
         [self updateStatus:[NSString stringWithFormat:@"mtr result, data: %@", response.content]];
     }];
@@ -205,6 +223,11 @@ static NetworkDiagnosisController *selfClzz;
     request.domain = @"www.aliyun.com";
     // 可选参数
     request.context = @"<your dns context id>";
+    // 可选参数
+    request.extention = @{
+        @"custom_key": @"custom_value_ios"
+    };
+    
     [[SLSNetworkDiagnosis sharedInstance] dns2:request callback:^(SLSResponse * _Nonnull response) {
         [self updateStatus:[NSString stringWithFormat:@"dns result, data: %@", response.content]];
     }];

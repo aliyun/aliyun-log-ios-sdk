@@ -154,8 +154,8 @@
     networkDiagnosisCredentials.secretKey = [utils secKey];
     networkDiagnosisCredentials.siteId = @"cn";
     [networkDiagnosisCredentials putExtension:@"value" forKey:@"key"];
-    networkDiagnosisCredentials.endpoint = @"https://cn-hangzhou.log.aliyuncs.com";
-    networkDiagnosisCredentials.project = @"zaiyun-test5";
+    networkDiagnosisCredentials.endpoint = @"https://cn-beijing.log.aliyuncs.com";
+    networkDiagnosisCredentials.project = @"mobile-demo-beijing-b";
 
     // Trace
     SLSTraceCredentials *tracerCredentials = [credentials createTraceCredentials];
