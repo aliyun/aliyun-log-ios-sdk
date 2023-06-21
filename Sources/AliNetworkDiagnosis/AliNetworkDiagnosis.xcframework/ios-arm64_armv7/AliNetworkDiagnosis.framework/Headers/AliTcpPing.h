@@ -4,6 +4,7 @@
 //
 //
 
+#import <AliNetworkDiagnosis/AliDetectConfig.h>
 #import <AliNetworkDiagnosis/AliProtocols.h>
 
 #import <Foundation/Foundation.h>
@@ -31,17 +32,10 @@ typedef void (^AliTcpPingCompleteHandler)(id context, NSString *traceID, AliTcpP
 // results: AliTcpPingResult数组
 typedef void (^AliTcpPingCombineCompleteHandler)(id context, NSString *traceID, NSMutableArray<AliTcpPingResult*> *results);
 
-@interface AliTcpPingConfig : NSObject
-@property NSString* host;
-@property NSInteger timeout;
-@property AliNetDiagNetworkInterfaceType interfaceType;
-@property NSInteger prefer;
-@property (nonatomic, strong) id context;
-@property NSString* traceID;
-@property NSString* src;
+@interface AliTcpPingConfig : AliDetectConfig
 
+@property NSInteger timeout;
 @property NSInteger port;
-@property NSInteger count;
 @property NSInteger interval;
 @property AliTcpPingCompleteHandler complete;
 @property AliTcpPingCombineCompleteHandler combineComplete;

@@ -5,6 +5,7 @@
 //
 
 #import <AliNetworkDiagnosis/AliProtocols.h>
+#import <AliNetworkDiagnosis/AliDetectConfig.h>
 #import <Foundation/Foundation.h>
 
 extern const int kAliInvalidPingResponse;
@@ -34,19 +35,12 @@ typedef void (^AliPingCompleteHandler)(id context, NSString *traceID, AliPingRes
 // results: AliPingResult数组
 typedef void (^AliPingCombineCompleteHandler)(id context, NSString *traceID, NSMutableArray<AliPingResult*> *results);
 
-@interface AliPingConfig : NSObject
-@property NSString* host;
-@property NSInteger timeout;
-@property AliNetDiagNetworkInterfaceType interfaceType;
-@property NSInteger prefer;
-@property (nonatomic, strong) id context;
-@property NSString* traceID;
-@property NSString* src;
+@interface AliPingConfig : AliDetectConfig
 
+@property NSInteger timeout;
 @property NSInteger size;
 @property AliPingCompleteHandler complete;
 @property AliPingCombineCompleteHandler combineComplete;
-@property NSInteger count;
 @property NSInteger interval;
 @property BOOL parallel;
 
