@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0DFCE157F13040C71264E144 /* Pods_AliyunLogProducer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A3F68C52C54A5E9646F951F /* Pods_AliyunLogProducer.framework */; };
 		F809903D292DCC5E0000DEE9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F80DF47C26A7037000151F7C /* CoreGraphics.framework */; };
 		F809903E292DCC5E0000DEE9 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F80DF47A26A7035E00151F7C /* SystemConfiguration.framework */; };
 		F809903F292DCC5E0000DEE9 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F80DF47826A7034E00151F7C /* libc++.tbd */; };
@@ -326,8 +327,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8A3F68C52C54A5E9646F951F /* Pods_AliyunLogProducer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AliyunLogProducer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D0CAEEE252177D800A4985A /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/lib/libz.tbd; sourceTree = DEVELOPER_DIR; };
 		9D984DB22520A9B7009DE4FE /* AliyunLogProducer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AliyunLogProducer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A8821B0CBA40873AED0ED23E /* Pods-AliyunLogProducer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AliyunLogProducer.release.xcconfig"; path = "Target Support Files/Pods-AliyunLogProducer/Pods-AliyunLogProducer.release.xcconfig"; sourceTree = "<group>"; };
+		AD4B87537EE2E2A37FEE293E /* Pods-AliyunLogProducer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AliyunLogProducer.debug.xcconfig"; path = "Target Support Files/Pods-AliyunLogProducer/Pods-AliyunLogProducer.debug.xcconfig"; sourceTree = "<group>"; };
 		F8099046292DCC5E0000DEE9 /* AliyunLogOTSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AliyunLogOTSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F809904B292DCD680000DEE9 /* build-ot-swift.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = "build-ot-swift.sh"; path = "publish/build-ot-swift.sh"; sourceTree = "<group>"; };
 		F80DF47826A7034E00151F7C /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk/usr/lib/libc++.tbd"; sourceTree = DEVELOPER_DIR; };
@@ -546,6 +550,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0DFCE157F13040C71264E144 /* Pods_AliyunLogProducer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -642,6 +647,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		393D3CF1644FA97F336115F9 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AD4B87537EE2E2A37FEE293E /* Pods-AliyunLogProducer.debug.xcconfig */,
+				A8821B0CBA40873AED0ED23E /* Pods-AliyunLogProducer.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		9D0CAEED252177D800A4985A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -653,6 +668,7 @@
 				F80DF47A26A7035E00151F7C /* SystemConfiguration.framework */,
 				F80DF47826A7034E00151F7C /* libc++.tbd */,
 				9D0CAEEE252177D800A4985A /* libz.tbd */,
+				8A3F68C52C54A5E9646F951F /* Pods_AliyunLogProducer.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -697,6 +713,7 @@
 				F8A3CB9229FBAEEF00E4FA2C /* SLSIPA4Unity */,
 				9D984DB32520A9B7009DE4FE /* Products */,
 				9D0CAEED252177D800A4985A /* Frameworks */,
+				393D3CF1644FA97F336115F9 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1255,6 +1272,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9D984DBA2520A9B7009DE4FE /* Build configuration list for PBXNativeTarget "AliyunLogProducer" */;
 			buildPhases = (
+				9441ECB3D9C57FBF358648CA /* [CP] Check Pods Manifest.lock */,
 				9D984DAD2520A9B7009DE4FE /* Headers */,
 				9D984DAE2520A9B7009DE4FE /* Sources */,
 				9D984DAF2520A9B7009DE4FE /* Frameworks */,
@@ -1468,7 +1486,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 9D984DAC2520A9B7009DE4FE /* Build configuration list for PBXProject "AliyunLogProducer" */;
+			buildConfigurationList = 9D984DAC2520A9B7009DE4FE /* Build configuration list for PBXProject "AliyunLogSDK" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -1553,6 +1571,31 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		9441ECB3D9C57FBF358648CA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AliyunLogProducer-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		9D984DAE2520A9B7009DE4FE /* Sources */ = {
@@ -1858,6 +1901,7 @@
 		};
 		9D984DBB2520A9B7009DE4FE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AD4B87537EE2E2A37FEE293E /* Pods-AliyunLogProducer.debug.xcconfig */;
 			buildSettings = {
 				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
@@ -1913,6 +1957,7 @@
 		};
 		9D984DBC2520A9B7009DE4FE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A8821B0CBA40873AED0ED23E /* Pods-AliyunLogProducer.release.xcconfig */;
 			buildSettings = {
 				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
@@ -2744,7 +2789,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9D984DAC2520A9B7009DE4FE /* Build configuration list for PBXProject "AliyunLogProducer" */ = {
+		9D984DAC2520A9B7009DE4FE /* Build configuration list for PBXProject "AliyunLogSDK" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9D984DB82520A9B7009DE4FE /* Debug */,
