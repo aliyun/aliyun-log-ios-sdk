@@ -22,6 +22,8 @@ def all_example_pods
 end
 
 def all_test_pods
+  pod 'OCMock'
+  
   pod 'AliyunLogProducer/Producer', :path => './'
   pod 'AliyunLogProducer/Core', :path => './'
   pod 'AliyunLogProducer/OT', :path => './'
