@@ -3,12 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 55;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		F5F699298B4CCAC29950A736 /* Pods_iOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F82EC8832A6535780095F8F8 /* Pods_iOSTests.framework */; };
 		F82EC8822A6534D50095F8F8 /* LogTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F82EC8812A6534D50095F8F8 /* LogTests.m */; };
+		F8CE627B2A7114F300C65D1B /* ContextTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F8CE627A2A7114F300C65D1B /* ContextTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		F82EC8872A6537070095F8F8 /* Pods_AliyunLogProducer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_AliyunLogProducer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F82EC8892A6537180095F8F8 /* Pods_AliyunLogProducer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_AliyunLogProducer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F82EC88B2A6539910095F8F8 /* AliyunLogProducer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AliyunLogProducer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F8CE627A2A7114F300C65D1B /* ContextTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContextTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				F82EC8802A652EA20095F8F8 /* AliyunLogProducer */,
+				F8CE62792A7114CC00C65D1B /* OTSwift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -91,6 +94,14 @@
 				F82EC8812A6534D50095F8F8 /* LogTests.m */,
 			);
 			path = AliyunLogProducer;
+			sourceTree = "<group>";
+		};
+		F8CE62792A7114CC00C65D1B /* OTSwift */ = {
+			isa = PBXGroup;
+			children = (
+				F8CE627A2A7114F300C65D1B /* ContextTests.m */,
+			);
+			path = OTSwift;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -121,7 +132,6 @@
 		F82EC8442A652D100095F8F8 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				BuildIndependentTargetsInParallel = 1;
 				LastUpgradeCheck = 1340;
 				TargetAttributes = {
 					F82EC8782A652E8F0095F8F8 = {
@@ -205,6 +215,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F82EC8822A6534D50095F8F8 /* LogTests.m in Sources */,
+				F8CE627B2A7114F300C65D1B /* ContextTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
