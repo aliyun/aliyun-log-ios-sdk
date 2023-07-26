@@ -14,8 +14,8 @@ test_project_path = 'Tests/AliyunLogSDKTests'
 
 def all_test_pods
   pod 'AliyunLogProducer/Producer', :path => './'
-#  pod 'AliyunLogProducer/Core', :path => './'
-#  pod 'AliyunLogProducer/OT', :path => './'
+  pod 'AliyunLogProducer/Core', :path => './'
+  pod 'AliyunLogProducer/OT', :path => './'
 #  pod 'AliyunLogProducer/CrashReporter', :path => './'
 #  pod 'AliyunLogProducer/NetworkDiagnosis', :path => './'
 #  pod 'AliyunLogProducer/Trace', :path => './'
