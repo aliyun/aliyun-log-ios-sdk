@@ -48,6 +48,8 @@ typedef void (^AliUdpDetectCombineCompleteHandler)(id context, NSString *traceID
 @property NSInteger port;
 @property NSInteger count;
 @property NSInteger interval;
+@property (atomic) BOOL switch_src_port;
+@property NSString* exType;
 @property AliUdpDetectCompleteHandler complete;
 @property AliUdpDetectCombineCompleteHandler combineComplete;
 
