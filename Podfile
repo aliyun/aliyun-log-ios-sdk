@@ -3,7 +3,8 @@
 use_frameworks!
 
 #source 'https://github.com/CocoaPods/Specs.git'
-source 'https://github.com/aliyun/aliyun-specs.git'
+#source 'https://github.com/aliyun/aliyun-specs.git'
+#source 'https://github.com/aliyun-sls/Specs.git'
 
 #source_project_path = 'AliyunLogSDK'
 test_project_path = 'Tests/AliyunLogSDKTests'
