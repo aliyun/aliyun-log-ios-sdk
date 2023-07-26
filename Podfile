@@ -7,11 +7,19 @@ use_frameworks!
 #source 'https://github.com/aliyun-sls/Specs.git'
 
 #source_project_path = 'AliyunLogSDK'
+example_project_path = 'Examples/Examples'
+
 test_project_path = 'Tests/AliyunLogSDKTests'
 
-#def all_source_pods
-#
-#end
+def all_example_pods
+  pod 'AliyunLogProducer/Producer', :path => './'
+  pod 'AliyunLogProducer/Core', :path => './'
+  pod 'AliyunLogProducer/OT', :path => './'
+  pod 'AliyunLogProducer/CrashReporter', :path => './'
+  pod 'AliyunLogProducer/NetworkDiagnosis', :path => './'
+  pod 'AliyunLogProducer/Trace', :path => './'
+  pod 'AliyunLogProducer/URLSessionInstrumentation', :path => './'
+end
 
 def all_test_pods
   pod 'AliyunLogProducer/Producer', :path => './'
@@ -44,6 +52,15 @@ workspace 'AliyunLogSDK.xcworkspace'
 #  pod 'AliyunLogProducer/Core', :path =>'.'
 #end
 
+# Example Project
+target 'iOS Examples' do |t|
+  project example_project_path
+  platform :ios, '10.0'
+  
+  all_example_pods
+end
+
+# Test Project
 target 'iOSTests' do |t|
   project test_project_path
   platform :ios, '10.0'
