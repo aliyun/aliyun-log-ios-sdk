@@ -7,6 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import <AliNetworkDiagnosis/AliProtocols.h>
+#import <AliNetworkDiagnosis/AliDetectConfig.h>
 
 @interface AliDnsResult : NSObject
 @property (readonly) NSDictionary* result;
@@ -15,17 +16,12 @@
 
 typedef void (^AliDnsCompleteHandler)(id context, NSString *traceID, AliDnsResult *result);
 
-@interface AliDnsConfig : NSObject
-@property NSInteger prefer;
+@interface AliDnsConfig : AliDetectConfig
 @property NSString *type;
-@property NSString* traceID;
-@property NSString* src;
-//@property NSString *domain;
-//@property NSString *nameServer;
-//@property NSString *type;
-//@property NSInteger timeout;
-//@property AliDnsCompleteHandler complete;
-//@property id context;
+@property NSString *domain;
+@property NSString *nameServer;
+@property NSInteger timeout;
+@property AliDnsCompleteHandler complete;
 
 -(instancetype)init:(NSString*)domain
          nameServer:(NSString*)nameServer

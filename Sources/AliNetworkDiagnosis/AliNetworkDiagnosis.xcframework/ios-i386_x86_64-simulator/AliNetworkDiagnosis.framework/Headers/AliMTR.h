@@ -8,6 +8,7 @@
 #import <Foundation/Foundation.h>
 
 #import <AliNetworkDiagnosis/AliProtocols.h>
+#import <AliNetworkDiagnosis/AliDetectConfig.h>
 #import <Foundation/Foundation.h>
 
 // all
@@ -29,20 +30,14 @@ typedef void (^AliMTRCompleteHandler)(id context, NSString *traceID, AliMTRResul
 // results: AliMTRResult数组
 typedef void (^AliMTRCombineCompleteHandler)(id context, NSString *traceID, NSMutableArray<AliMTRResult*> *results);
 
-@interface AliMTRConfig : NSObject
-@property NSString* host;
-@property NSInteger timeout;
-@property AliNetDiagNetworkInterfaceType interfaceType;
-@property NSInteger prefer;
-@property (nonatomic, strong) id context;
-@property NSString* traceID;
-@property NSString* src;
+@interface AliMTRConfig : AliDetectConfig
 
+@property NSInteger timeout;
+@property AliMTRCompleteHandler complete;
+@property AliMTRCombineCompleteHandler combineComplete;
 @property NSInteger maxTtl;
 @property NSInteger maxPaths;
 @property NSInteger maxTimesEachIP;
-@property AliMTRCompleteHandler complete;
-@property AliMTRCombineCompleteHandler combineComplete;
 @property int protocol;
 @property BOOL parallel;
 
