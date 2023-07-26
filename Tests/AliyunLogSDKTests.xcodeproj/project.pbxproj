@@ -31,6 +31,7 @@
 		F87566D92A711749006886CA /* Log+Test.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Log+Test.h"; sourceTree = "<group>"; };
 		F87566DA2A711749006886CA /* Log+Test.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Log+Test.m"; sourceTree = "<group>"; };
 		F87566DF2A711867006886CA /* NetworkDiagnosisFeatureTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkDiagnosisFeatureTests.m; sourceTree = "<group>"; };
+		F87566E22A714398006886CA /* BaseTestCase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseTestCase.h; sourceTree = "<group>"; };
 		F8CE627A2A7114F300C65D1B /* ContextTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContextTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -94,6 +95,7 @@
 				F82EC8802A652EA20095F8F8 /* Producer */,
 				F8CE62792A7114CC00C65D1B /* OTSwift */,
 				F87566DC2A71181D006886CA /* NetworkDiagnosis */,
+				F87566E22A714398006886CA /* BaseTestCase.h */,
 			);
 			path = Tests;
 			sourceTree = "<group>";

@@ -23,6 +23,8 @@ end
 
 def all_test_pods
   pod 'OCMock'
+  pod 'Quick'
+  pod 'Nimble'
   
   pod 'AliyunLogProducer/Producer', :path => './'
   pod 'AliyunLogProducer/Core', :path => './'
