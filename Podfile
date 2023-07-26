@@ -17,10 +17,10 @@ def all_test_pods
   pod 'AliyunLogProducer/Producer', :path => './'
   pod 'AliyunLogProducer/Core', :path => './'
   pod 'AliyunLogProducer/OT', :path => './'
-#  pod 'AliyunLogProducer/CrashReporter', :path => './'
-#  pod 'AliyunLogProducer/NetworkDiagnosis', :path => './'
-#  pod 'AliyunLogProducer/Trace', :path => './'
-#  pod 'AliyunLogProducer/URLSessionInstrumentation', :path => './'
+  pod 'AliyunLogProducer/CrashReporter', :path => './'
+  pod 'AliyunLogProducer/NetworkDiagnosis', :path => './'
+  pod 'AliyunLogProducer/Trace', :path => './'
+  pod 'AliyunLogProducer/URLSessionInstrumentation', :path => './'
 end
 
 workspace 'AliyunLogSDK.xcworkspace'
