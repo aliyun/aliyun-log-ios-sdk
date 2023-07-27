@@ -16,6 +16,11 @@ sh build-trace.sh
 sh build-urlsession.sh
 
 env=lint pod lib lint AliyunLogProducer.podspec --allow-warnings
+mkdir -p out
+
+pushd build
+zip -r ../out/xcframeworks.zip *
+popd
 
 mkdir -p build/zip/AliNetworkDiagnosis && cp -r build/AliNetworkDiagnosis.xcframework build/zip/AliNetworkDiagnosis/AliNetworkDiagnosis.xcframework
 mkdir -p build/zip/WPKMobi && cp -r build/WPKMobi.xcframework build/zip/WPKMobi/WPKMobi.xcframework
@@ -30,7 +35,7 @@ mkdir -p build/zip/AliyunLogTrace && cp -r build/AliyunLogTrace.xcframework buil
 mkdir -p build/zip/AliyunLogURLSession && cp -r build/AliyunLogURLSession.xcframework build/zip/AliyunLogURLSession/AliyunLogURLSession.xcframework
 
 pushd build/zip
-zip -r ../AliyunLogProducer.zip *
+zip -r ../../out/AliyunLogProducer.zip *
 popd
 
-open build/zip
+# open build/zip

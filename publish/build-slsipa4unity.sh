@@ -5,7 +5,7 @@ cd ..
 APPLICATION_NAME="AliyunLogProducer"
 SCHEME="SLSIPA4Unity"
 WORKSPACE="AliyunLogSDK.xcodeproj"
-PROJECT_BUILDDIR="./publish/build/${SCHEME}"
+PROJECT_BUILDDIR="./publish/build"
 
 rm -rf lib${SCHEME}.a
 
