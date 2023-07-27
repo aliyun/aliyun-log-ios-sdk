@@ -786,7 +786,7 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
     [builder addAttribute:
          [SLSAttribute of:@"t" value:@"net_d"],
          [SLSAttribute of:@"net.type" value:method],
-         [SLSAttribute of:@"net.origin" value:finalContent],
+         [SLSAttribute of:@"net.origin" dictValue:dict],
          nil
     ];
     [builder setGlobal:NO];
