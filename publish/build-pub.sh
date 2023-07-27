@@ -1,6 +1,9 @@
 #!/bin/sh
 set -o pipefail
 set -e
+
+BUILD_ENV=$1
+
 rm -rf build
 mkdir build
 cp -r ../Sources/AliNetworkDiagnosis/AliNetworkDiagnosis.xcframework build/AliNetworkDiagnosis.xcframework
@@ -15,7 +18,15 @@ sh build-networkdiagnosis.sh
 sh build-trace.sh
 sh build-urlsession.sh
 
-env=lint pod lib lint AliyunLogProducer.podspec --allow-warnings
+if [[ ${#BUILD_ENV} == 0 ]];
+then
+    echo "building in native..."
+    env=lint pod lib lint AliyunLogProducer.podspec --allow-warnings
+else
+    echo "building in mtl..."
+    env=lint tpod lib lint AliyunLogProducer.podspec --allow-warnings
+fi
+
 mkdir -p out
 
 pushd build
