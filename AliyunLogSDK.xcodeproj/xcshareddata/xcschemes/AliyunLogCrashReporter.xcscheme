@@ -17,7 +17,7 @@
                BlueprintIdentifier = "F8696C1027F0066D00EF0020"
                BuildableName = "AliyunLogCrashReporter.framework"
                BlueprintName = "AliyunLogCrashReporter"
-               ReferencedContainer = "container:AliyunLogProducer.xcodeproj">
+               ReferencedContainer = "container:AliyunLogSDK.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -47,6 +47,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "F8696C1027F0066D00EF0020"
+            BuildableName = "AliyunLogCrashReporter.framework"
+            BlueprintName = "AliyunLogCrashReporter"
+            ReferencedContainer = "container:AliyunLogSDK.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

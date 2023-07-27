@@ -17,7 +17,7 @@
                BlueprintIdentifier = "9D984DB12520A9B7009DE4FE"
                BuildableName = "AliyunLogProducer.framework"
                BlueprintName = "AliyunLogProducer"
-               ReferencedContainer = "container:AliyunLogProducer.xcodeproj">
+               ReferencedContainer = "container:AliyunLogSDK.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -47,15 +47,6 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9D984DB12520A9B7009DE4FE"
-            BuildableName = "AliyunLogProducer.framework"
-            BlueprintName = "AliyunLogProducer"
-            ReferencedContainer = "container:AliyunLogProducer.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

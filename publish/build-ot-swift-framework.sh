@@ -4,7 +4,7 @@ cd ..
 
 APPLICATION_NAME="AliyunLogProducer"
 SCHEME="AliyunLogOTSwift"
-WORKSPACE="AliyunLogProducer.xcodeproj"
+WORKSPACE="AliyunLogSDK.xcodeproj"
 PROJECT_BUILDDIR="./publish/build"
 
 rm -rf ${SCHEME}.framework
