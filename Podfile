@@ -10,7 +10,7 @@ example_project_path = 'Examples/Examples'
 test_project_path = 'Tests/AliyunLogSDKTests'
 
 def all_example_pods
-#  pod 'AliyunLogProducer', '3.2.0-alpha.1', :subspecs => ['CrashReporter', 'NetworkDiagnosis', 'Trace', 'URLSessionInstrumentation']
+#  pod 'AliyunLogProducer', '3.2.0', :subspecs => ['CrashReporter', 'NetworkDiagnosis', 'Trace', 'URLSessionInstrumentation']
   pod 'AliyunLogProducer/Producer', :path => './'
   pod 'AliyunLogProducer/Core', :path => './'
   pod 'AliyunLogProducer/OT', :path => './'
@@ -25,7 +25,7 @@ def all_test_pods
   pod 'Quick'
   pod 'Nimble'
  
-# pod 'AliyunLogProducer', '3.2.0-alpha.1', :subspecs => ['CrashReporter', 'NetworkDiagnosis', 'Trace', 'URLSessionInstrumentation']
+# pod 'AliyunLogProducer', '3.2.0', :subspecs => ['CrashReporter', 'NetworkDiagnosis', 'Trace', 'URLSessionInstrumentation']
   pod 'AliyunLogProducer/Producer', :path => './'
   pod 'AliyunLogProducer/Core', :path => './'
   pod 'AliyunLogProducer/OT', :path => './'
