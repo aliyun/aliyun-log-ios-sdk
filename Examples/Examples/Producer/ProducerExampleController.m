@@ -70,6 +70,17 @@ static ProducerExampleController *selfClzz;
 }
 
 static void _on_log_send_done(const char * config_name, log_producer_result result, size_t log_bytes, size_t compressed_bytes, const char * req_id, const char * message, const unsigned char * raw_buffer, void * userparams) {
+    // 当错误码为LOG_PRODUCER_SEND_UNAUTHORIZED或LOG_PRODUCER_PARAMETERS_INVALID时，需要检查AccessKey是否有效
+    if (LOG_PRODUCER_SEND_UNAUTHORIZED == result || LOG_PRODUCER_PARAMETERS_INVALID) {
+        // 1. 检查AccessKey是否有效
+        // ...
+        
+        // 2. 如果是LOG_PRODUCER_PARAMETERS_INVALID错误码，也需要确认Endpoint、Project、Logstore是否有效
+        if (LOG_PRODUCER_PARAMETERS_INVALID == result) {
+            // ...
+        }
+    }
+    
     if (result == LOG_PRODUCER_OK) {
         NSString *success = [NSString stringWithFormat:@"send success, config : %s, result : %d, log bytes : %d, compressed bytes : %d, request id : %s", config_name, (result), (int)log_bytes, (int)compressed_bytes, req_id];
         SLSLogV("%@", success);
