@@ -254,6 +254,10 @@ unsigned int time_func() {
     log_producer_config_set_logstore(self->config, [logstore UTF8String]);
 }
 
+- (NSString *) getLogStore {
+    return self->logstore;
+}
+
 - (void)SetTopic:(NSString *) topic
 {
     const char *topicChar=[topic UTF8String];

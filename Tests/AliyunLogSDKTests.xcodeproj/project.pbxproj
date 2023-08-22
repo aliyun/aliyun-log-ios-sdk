@@ -13,6 +13,8 @@
 		F87566DB2A711749006886CA /* Log+Test.m in Sources */ = {isa = PBXBuildFile; fileRef = F87566DA2A711749006886CA /* Log+Test.m */; };
 		F87566E02A711867006886CA /* NetworkDiagnosisFeatureTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F87566DF2A711867006886CA /* NetworkDiagnosisFeatureTests.m */; };
 		F8CE627B2A7114F300C65D1B /* ContextTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F8CE627A2A7114F300C65D1B /* ContextTests.m */; };
+		F8D0BE532A8F6B2400C9A157 /* LogProducerClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F8D0BE522A8F6B2400C9A157 /* LogProducerClientTests.m */; };
+		F8D0BE552A8F6BC700C9A157 /* LogProducerConfigTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F8D0BE542A8F6BC700C9A157 /* LogProducerConfigTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +35,8 @@
 		F87566DF2A711867006886CA /* NetworkDiagnosisFeatureTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkDiagnosisFeatureTests.m; sourceTree = "<group>"; };
 		F87566E22A714398006886CA /* BaseTestCase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseTestCase.h; sourceTree = "<group>"; };
 		F8CE627A2A7114F300C65D1B /* ContextTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContextTests.m; sourceTree = "<group>"; };
+		F8D0BE522A8F6B2400C9A157 /* LogProducerClientTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LogProducerClientTests.m; sourceTree = "<group>"; };
+		F8D0BE542A8F6BC700C9A157 /* LogProducerConfigTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LogProducerConfigTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +108,8 @@
 			isa = PBXGroup;
 			children = (
 				F82EC8812A6534D50095F8F8 /* LogTests.m */,
+				F8D0BE542A8F6BC700C9A157 /* LogProducerConfigTests.m */,
+				F8D0BE522A8F6B2400C9A157 /* LogProducerClientTests.m */,
 			);
 			path = Producer;
 			sourceTree = "<group>";
@@ -246,9 +252,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F8D0BE552A8F6BC700C9A157 /* LogProducerConfigTests.m in Sources */,
 				F82EC8822A6534D50095F8F8 /* LogTests.m in Sources */,
 				F87566D72A7116E0006886CA /* ContextSwiftTests.swift in Sources */,
 				F87566DB2A711749006886CA /* Log+Test.m in Sources */,
+				F8D0BE532A8F6B2400C9A157 /* LogProducerClientTests.m in Sources */,
 				F87566E02A711867006886CA /* NetworkDiagnosisFeatureTests.m in Sources */,
 				F8CE627B2A7114F300C65D1B /* ContextTests.m in Sources */,
 			);

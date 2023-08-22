@@ -97,6 +97,8 @@ typedef NSArray<NSString *> * (^SLSHttpHeaderInjector) (NSArray<NSString *> *src
 
 - (void) setLogstore: (NSString *)logstore;
 
+- (NSString *) getLogStore;
+
 - (void) ResetSecurityToken:(NSString *) accessKeyID accessKeySecret:(NSString *)accessKeySecret securityToken:(NSString *)securityToken;
 
 - (void) setAccessKeyId: (NSString *)accessKeyId;
