@@ -38,7 +38,7 @@ end
 workspace 'AliyunLogSDK.xcworkspace'
 
 # Example Project
-target 'iOS Examples' do |t|
+target 'iOSExamples' do |t|
   project example_project_path
   platform :ios, '10.0'
   
