@@ -29,6 +29,7 @@
 		F8CE62702A710F8300C65D1B /* DemoUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = F8CE626F2A710F8300C65D1B /* DemoUtils.m */; };
 		F8CE62732A710F8A00C65D1B /* ExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F8CE62712A710F8A00C65D1B /* ExampleViewController.m */; };
 		F8CE62772A710FD300C65D1B /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F8CE62752A710FD300C65D1B /* MainViewController.m */; };
+		F8FC0A2D2A95EEAC0095E2FA /* BenchmarkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F8FC0A2B2A95EEAC0095E2FA /* BenchmarkViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -79,6 +80,8 @@
 		F8CE62752A710FD300C65D1B /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		F8CE62762A710FD300C65D1B /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		F8CE62782A71112200C65D1B /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		F8FC0A2B2A95EEAC0095E2FA /* BenchmarkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BenchmarkViewController.m; sourceTree = "<group>"; };
+		F8FC0A2C2A95EEAC0095E2FA /* BenchmarkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BenchmarkViewController.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +137,7 @@
 		F8CE622F2A710D5500C65D1B /* Examples */ = {
 			isa = PBXGroup;
 			children = (
+				F8FC0A272A95DE130095E2FA /* Benchmark */,
 				F8CE62492A710F7100C65D1B /* Crash */,
 				F8CE624E2A710F7100C65D1B /* NetworkDiagnosis */,
 				F8CE62562A710F7100C65D1B /* Producer */,
@@ -209,6 +213,15 @@
 				F8CE62622A710F7100C65D1B /* ProducerExampleImmediateController.h */,
 			);
 			path = Producer;
+			sourceTree = "<group>";
+		};
+		F8FC0A272A95DE130095E2FA /* Benchmark */ = {
+			isa = PBXGroup;
+			children = (
+				F8FC0A2C2A95EEAC0095E2FA /* BenchmarkViewController.h */,
+				F8FC0A2B2A95EEAC0095E2FA /* BenchmarkViewController.m */,
+			);
+			path = Benchmark;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -342,6 +355,7 @@
 				F8CE62702A710F8300C65D1B /* DemoUtils.m in Sources */,
 				F8CE62692A710F7100C65D1B /* ProducerExampleController.m in Sources */,
 				F8CE626B2A710F7100C65D1B /* ProducerExampleDynamicController.m in Sources */,
+				F8FC0A2D2A95EEAC0095E2FA /* BenchmarkViewController.m in Sources */,
 				F8CE626D2A710F7100C65D1B /* ProducerExampleNoCacheController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

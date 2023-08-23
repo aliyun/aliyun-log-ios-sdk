@@ -17,6 +17,7 @@
 #import "NetworkDiagnosisController.h"
 #import "TraceExampleController.h"
 #import "TraceRemoteDemoViewController.h"
+#import "BenchmarkViewController.h"
 
 @interface MainViewController ()
 
@@ -55,6 +56,8 @@
     [self createButton:@"Trace" andAction:@selector(gotoTracePage) andX: (SLCellWidth + SLPadding) * 2 andY:  (SLCellHeight + 30) * 2];
     
     [self createButton:@"TradeDemo" andAction:@selector(gotoTraceRemotePage) andX: 0 andY: (SLCellHeight + 30) * 3];
+    
+    [self createButton:@"Benchmark" andAction:@selector(gotoBenchmarkPage) andX: 0 andY: (SLCellHeight + 30) * 4];
     
 }
 
@@ -96,6 +99,10 @@
 
 - (void) gotoTraceRemotePage {
     [self gotoPageWithPage:[[TraceRemoteDemoViewController alloc] init]];
+}
+
+- (void) gotoBenchmarkPage {
+    [self gotoPageWithPage:[[BenchmarkViewController alloc] init]];
 }
 
 - (void) gotoPageWithPage: (ViewController *) controller {
