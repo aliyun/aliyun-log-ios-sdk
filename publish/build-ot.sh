@@ -29,4 +29,4 @@
 set -o pipefail
 set -e
 
-sh build-xcframework.sh -s "AliyunLogOT" -p "iphoneos iphonesimulator appletvos appletvsimulator macosx macosx_catalyst" -d 1
+sh build-xcframework.sh -s "AliyunLogOT" -p "iphoneos iphonesimulator appletvos appletvsimulator macosx macosx_catalyst"

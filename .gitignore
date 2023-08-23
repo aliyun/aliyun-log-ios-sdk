@@ -46,3 +46,6 @@ playground.xcworkspace
 # Carthage
 Carthage/Build
 
+# build
+publish/build
+publish/out

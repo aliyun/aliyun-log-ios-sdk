@@ -15,6 +15,20 @@
     return  attribute;
 }
 
++ (SLSAttribute*) of: (NSString *) key dictValue: (NSDictionary*)value {
+    SLSAttribute *attribute = [[SLSAttribute alloc] init];
+    attribute.key = key;
+    attribute.value = [value copy];
+    return  attribute;
+}
+
++ (SLSAttribute*) of: (NSString *) key arrayValue: (NSArray*)value {
+    SLSAttribute *attribute = [[SLSAttribute alloc] init];
+    attribute.key = key;
+    attribute.value = value;
+    return  attribute;
+}
+
 + (NSArray<SLSAttribute*> *) of: (SLSKeyValue *) keyValue, ... NS_REQUIRES_NIL_TERMINATION {
     NSMutableArray<SLSAttribute*> * array = [NSMutableArray<SLSAttribute*> array];
     [array addObject:[self of:keyValue.key value:keyValue.value]];

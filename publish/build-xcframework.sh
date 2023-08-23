@@ -9,7 +9,7 @@ PLATFORM_COUNT=0
 ENABLE_DEBUG=0
 
 SCHEME="AliyunLogProducer"
-WORKSPACE="AliyunLogProducer.xcodeproj"
+PROJECT="AliyunLogSDK.xcodeproj"
 PROJECT_BUILDDIR="publish/build"
 
 usage()
@@ -42,31 +42,31 @@ build_framework()
         echo "not support ${PLATFORM}"; exit 1;
         ;;
     esac
-    
+
     echo "generic_platform: ${generic_platform}"
-    
+
     PLATFORM_WORKING_DIRECTORY="${PROJECT_BUILDDIR}/${SCHEME}/${PLATFORM}"
 
     echo "building ${PLATFORM} for ${SCHEME}. generic_platform: ${generic_platform}, PLATFORM_WORKING_DIRECTORY: ${PLATFORM_WORKING_DIRECTORY}"
     # clean
-    xcodebuild OTHER_CFLAGS="-fembed-bitcode" clean -project ${WORKSPACE} -scheme ${SCHEME} -configuration Release
+    xcodebuild OTHER_CFLAGS="-fembed-bitcode" clean -project ${PROJECT} -scheme ${SCHEME} -configuration Release
     # archive
     xcodebuild OTHER_CFLAGS="-fembed-bitcode" \
-        -project ${WORKSPACE} \
+        -project ${PROJECT} \
         -scheme ${SCHEME} \
         -configuration Release \
         -destination "${generic_platform}" \
         -archivePath "${PLATFORM_WORKING_DIRECTORY}/${SCHEME}.xcarchive" \
         archive \
         SKIP_INSTALL=NO BUILD_LIBRARY_FOR_DISTRIBUTION=YES
-        
+
     # copy framework to PLATFORM dir
     rm -rf ${PLATFORM_WORKING_DIRECTORY}/${SCHEME}.framework/
     mkdir ${PLATFORM_WORKING_DIRECTORY}/${SCHEME}.framework/
-    
+
     src="${PLATFORM_WORKING_DIRECTORY}/${SCHEME}.xcarchive/Products/Library/Frameworks/${SCHEME}.framework/"
     dest="${PLATFORM_WORKING_DIRECTORY}/${SCHEME}.framework/"
-    
+
     if [[ ${PLATFORM} == *"macosx"* ]];
     then src="${PLATFORM_WORKING_DIRECTORY}/${SCHEME}.xcarchive/Products/Library/Frameworks/${SCHEME}.framework/Versions/A/"
     fi
@@ -76,9 +76,9 @@ build_framework()
         echo "src: ${src}"
         echo "dest: ${dest}"
     fi
-    
+
     cp -rf ${src} ${dest}
-    
+
     # macos specified
     if [[ ${PLATFORM} == *"macosx"* ]];
     then
@@ -86,11 +86,11 @@ build_framework()
         rm -rf ${dest}/Resources
         rm -rf ${dest}/Versions
     fi
-    
+
     # remove invalid info
     rm -rf ${dest}/PrivateHeaders
     rm -rf ${dest}/_CodeSignature
-    
+
     echo "building ${SCHEME} for ${PLATFORM} end."
 }
 
@@ -105,7 +105,7 @@ create_xcframework()
     if [[ ${ENABLE_DEBUG} == 1 ]];
     then echo "framworks cmd: ${cmd_frameworks[@]}"
     fi
-    
+
     # create xcframework
     xcodebuild -create-xcframework -output ${PROJECT_BUILDDIR}/${SCHEME}.xcframework ${cmd_frameworks[@]}
 }

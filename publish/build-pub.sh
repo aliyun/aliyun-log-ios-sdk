@@ -1,6 +1,9 @@
 #!/bin/sh
 set -o pipefail
 set -e
+
+BUILD_ENV=$1
+
 rm -rf build
 mkdir build
 cp -r ../Sources/AliNetworkDiagnosis/AliNetworkDiagnosis.xcframework build/AliNetworkDiagnosis.xcframework
@@ -15,7 +18,20 @@ sh build-networkdiagnosis.sh
 sh build-trace.sh
 sh build-urlsession.sh
 
-env=lint pod lib lint AliyunLogProducer.podspec --allow-warnings
+if [[ ${#BUILD_ENV} == 0 ]];
+then
+    echo "building in native..."
+    env=lint pod lib lint AliyunLogProducer.podspec --allow-warnings
+else
+    echo "building in mtl..."
+    env=lint tpod lib lint AliyunLogProducer.podspec --allow-warnings
+fi
+
+mkdir -p out
+
+pushd build
+zip -r ../out/xcframeworks.zip *
+popd
 
 mkdir -p build/zip/AliNetworkDiagnosis && cp -r build/AliNetworkDiagnosis.xcframework build/zip/AliNetworkDiagnosis/AliNetworkDiagnosis.xcframework
 mkdir -p build/zip/WPKMobi && cp -r build/WPKMobi.xcframework build/zip/WPKMobi/WPKMobi.xcframework
@@ -30,7 +46,7 @@ mkdir -p build/zip/AliyunLogTrace && cp -r build/AliyunLogTrace.xcframework buil
 mkdir -p build/zip/AliyunLogURLSession && cp -r build/AliyunLogURLSession.xcframework build/zip/AliyunLogURLSession/AliyunLogURLSession.xcframework
 
 pushd build/zip
-zip -r ../AliyunLogProducer.zip *
+zip -r ../../out/AliyunLogProducer.zip *
 popd
 
-open build/zip
+# open build/zip

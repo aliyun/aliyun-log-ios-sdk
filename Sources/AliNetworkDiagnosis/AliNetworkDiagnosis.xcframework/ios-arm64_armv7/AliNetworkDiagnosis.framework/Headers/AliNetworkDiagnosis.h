@@ -13,6 +13,7 @@
 #import <AliNetworkDiagnosis/AliTcpPing.h>
 #import <AliNetworkDiagnosis/AliHttpPing.h>
 #import <AliNetworkDiagnosis/AliUdpDetect.h>
+#import <AliNetworkDiagnosis/AliQuicDetect.h>
 
 typedef NS_ENUM(NSUInteger, AliNetDiagLogLevel){
     AliNetDiagLogLevelUpload = 10, // 上报SLS+写文件

@@ -7,6 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import <AliNetworkDiagnosis/AliProtocols.h>
+#import <AliNetworkDiagnosis/AliDetectConfig.h>
 
 #define MAX_SEND_BUF_SIZE 2400
 #define MAX_RECV_BUF_SIZE 8000
@@ -35,18 +36,11 @@ typedef void (^AliUdpDetectCompleteHandler)(id context, NSString *traceID, AliUd
 // results: AliUdpDetectResult数组
 typedef void (^AliUdpDetectCombineCompleteHandler)(id context, NSString *traceID, NSMutableArray<AliUdpDetectResult*> *results);
 
-@interface AliUdpDetectConfig : NSObject
-@property NSString* host;
+@interface AliUdpDetectConfig : AliDetectConfig
 @property NSInteger timeout;
-@property AliNetDiagNetworkInterfaceType interfaceType;
 @property NSString* payload;
-@property NSInteger prefer;
-@property (nonatomic, strong) id context;
-@property NSString* traceID;
-@property NSString* src;
 
 @property NSInteger port;
-@property NSInteger count;
 @property NSInteger interval;
 @property (atomic) BOOL switch_src_port;
 @property NSString* exType;
