@@ -16,11 +16,16 @@ let package = Package(
         .library(name: "AliyunLogTrace", targets: ["AliyunLogTrace"]),
         .library(name: "AliyunLogURLSessionInstrumentation", targets: ["AliyunLogURLSessionInstrumentation"]),
         .library(name: "AliyunLogCrashReporter", targets: ["AliyunLogCrashReporter"]),
-        .library(name: "AliyunLogNetworkDiagnosis", targets: ["AliyunLogNetworkDiagnosis"])
+        .library(name: "AliyunLogNetworkDiagnosis", targets: ["AliyunLogNetworkDiagnosis"]),
+        .library(name: "AliyunLogOtlpExporter", targets: ["AliyunLogOtlpExporter"]),
+        .library(name: "AliyunLogCrashReporter2", targets: ["AliyunLogCrashReporter2", "WPKMobi"]),
+        .library(name: "AliyunLogOTelCommon", targets: ["AliyunLogOTelCommon"]),
+        .library(name: "WPKMobi", targets: ["WPKMobi"])
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
+        .package(url: "https://github.com/open-telemetry/opentelemetry-swift", from: "1.6.0")
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -136,6 +141,52 @@ let package = Package(
                 "NetworkDiagnosis/"
             ],
             publicHeadersPath: "NetworkDiagnosis/include"
+        ),
+        .target(
+            name: "AliyunLogCrashReporter2",
+            dependencies: [
+                "WPKMobiWrapper",
+                "AliyunLogOtlpExporter",
+                "AliyunLogCore",
+                "AliyunLogOTelCommon",
+                .product(name: "OpenTelemetrySdk", package: "opentelemetry-swift")
+            ],
+            path: "Sources",
+            sources: [
+                "CrashReporter2/"
+            ]
+        ),
+        .target(
+            name: "AliyunLogOtlpExporter",
+            dependencies: [
+                "AliyunLogProducer",
+                .product(name: "OpenTelemetryApi", package: "opentelemetry-swift"),
+                .product(name: "OpenTelemetrySdk", package: "opentelemetry-swift")
+            ],
+            path: "Sources",
+            sources: [
+                "OtlpExporter/"
+            ],
+            publicHeadersPath: "OtlpExporter/include"
+        ),
+        .target(
+            name: "WPKMobiWrapper",
+            dependencies: ["WPKMobi"],
+            path: "Sources",
+            sources: [
+                "WPKMobiWrapper/"
+            ],
+            publicHeadersPath: "WPKMobiWrapper/include"
+        ),
+        .target(
+            name: "AliyunLogOTelCommon",
+            dependencies: [
+                .product(name: "OpenTelemetrySdk", package: "opentelemetry-swift")
+            ],
+            path: "Sources",
+            sources: [
+                "OTelCommon/"
+            ]
         ),
         .binaryTarget(
             name: "WPKMobi",

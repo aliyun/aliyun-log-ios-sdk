@@ -27,3 +27,4 @@ FOUNDATION_EXPORT const unsigned char AliyunLogCoreVersionString[];
 #import "SLSSdkFeature.h"
 #import "SLSNoOpSender.h"
 #import "SLSSwizzle.h"
+#import "SLSDeviceUtils.h"
