@@ -18,11 +18,13 @@ import Foundation
 import OpenTelemetryApi
 import OpenTelemetrySdk
 import AliyunLogOtlpExporter
-import AliyunLogCore
+//import AliyunLogCore
 import UIKit
 import AliyunLogOTelCommon
 
 internal class CrashReporterOTel {
+    let SCOPE: String = "uem"
+    
     static var tracerProvider: TracerProvider?
     
     public init() {
@@ -31,12 +33,12 @@ internal class CrashReporterOTel {
     
     func initOtel() {
         let otlpSLSExporter = OtlpSLSSpanExporter.builder()
-            .setEndpoint(ConfigurationManager.shared.delegateResource?("uem")?.endpoint ?? "")
-            .setProject(ConfigurationManager.shared.delegateResource?("uem")?.project ?? "")
-            .setLogstore(ConfigurationManager.shared.delegateResource?("uem")?.instanceId ?? "")
-            .setAccessKey(accessKeyId: ConfigurationManager.shared.delegateAccessKey?("uem")?.accessKeyId,
-                          accessKeySecret: ConfigurationManager.shared.delegateAccessKey?("uem")?.accessKeySecret,
-                          ConfigurationManager.shared.delegateAccessKey?("uem")?.accessKeySecuritToken
+            .setEndpoint(ConfigurationManager.shared.delegateResource?(SCOPE)?.endpoint ?? "")
+            .setProject(ConfigurationManager.shared.delegateResource?(SCOPE)?.project ?? "")
+            .setLogstore(ConfigurationManager.shared.delegateResource?(SCOPE)?.instanceId ?? "")
+            .setAccessKey(accessKeyId: ConfigurationManager.shared.delegateAccessKey?(SCOPE)?.accessKeyId,
+                          accessKeySecret: ConfigurationManager.shared.delegateAccessKey?(SCOPE)?.accessKeySecret,
+                          ConfigurationManager.shared.delegateAccessKey?(SCOPE)?.accessKeySecuritToken
             )
             .build()
         let spanExporters = MultiSpanExporter(spanExporters: [otlpSLSExporter])
@@ -57,9 +59,9 @@ internal class CrashReporterOTel {
                 .merging(other: Resource(attributes: [
                     ResourceAttributes.deviceId.rawValue: AttributeValue.string(Utdid.getUtdid()),
                     ResourceAttributes.deviceManufacturer.rawValue: AttributeValue.string("Apple"),
-                    ResourceAttributes.deviceModelName.rawValue: AttributeValue.string(SLSDeviceUtils.getDeviceModel()),
-                    ResourceAttributes.deviceModelIdentifier.rawValue: AttributeValue.string(SLSDeviceUtils.getDeviceModelIdentifier()),
-                    "device.resolution": AttributeValue.string(SLSDeviceUtils.getResolution()),
+                    ResourceAttributes.deviceModelName.rawValue: AttributeValue.string(DeviceUtils.getDeviceModel()),
+                    ResourceAttributes.deviceModelIdentifier.rawValue: AttributeValue.string(DeviceUtils.getDeviceModelIdentifier()),
+                    "device.resolution": AttributeValue.string(DeviceUtils.getResolution()),
                     "app.version": AttributeValue.string(appVersion ?? ""),
                     "app.versionCode": AttributeValue.string(appVersionCode ?? ""),
                     "app.name": AttributeValue.string(appName ?? ""),
@@ -68,7 +70,7 @@ internal class CrashReporterOTel {
                     ResourceAttributes.osVersion.rawValue: AttributeValue.string(UIDevice.current.systemVersion),
                     ResourceAttributes.osDescription.rawValue: AttributeValue.string("Apple Darwin"),
                     ResourceAttributes.hostName.rawValue: AttributeValue.string(ProcessInfo.processInfo.hostName),
-                    ResourceAttributes.hostArch.rawValue: AttributeValue.string(SLSDeviceUtils.getCPUArch()),
+                    ResourceAttributes.hostArch.rawValue: AttributeValue.string(DeviceUtils.getCPUArch()),
                     "uem.data.type": AttributeValue.string("iOS"),
                     "uem.sdk.version": AttributeValue.string("")
                 ]))
