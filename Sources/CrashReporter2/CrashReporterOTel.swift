@@ -32,13 +32,15 @@ internal class CrashReporterOTel {
     }
     
     func initOtel() {
-        let otlpSLSExporter = OtlpSLSSpanExporter.builder()
-            .setEndpoint(ConfigurationManager.shared.delegateResource?(SCOPE)?.endpoint ?? "")
-            .setProject(ConfigurationManager.shared.delegateResource?(SCOPE)?.project ?? "")
-            .setLogstore(ConfigurationManager.shared.delegateResource?(SCOPE)?.instanceId ?? "")
-            .setAccessKey(accessKeyId: ConfigurationManager.shared.delegateAccessKey?(SCOPE)?.accessKeyId,
-                          accessKeySecret: ConfigurationManager.shared.delegateAccessKey?(SCOPE)?.accessKeySecret,
-                          ConfigurationManager.shared.delegateAccessKey?(SCOPE)?.accessKeySecuritToken
+        let resource = ConfigurationManager.shared.delegateResource?(SCOPE)
+        let accessKey = ConfigurationManager.shared.delegateAccessKey?(SCOPE)
+        let otlpSLSExporter = OtlpSLSSpanExporter.builder(SCOPE)
+            .setEndpoint(resource?.endpoint ?? "")
+            .setProject(resource?.project ?? "")
+            .setLogstore(resource?.instanceId ?? "")
+            .setAccessKey(accessKeyId: accessKey?.accessKeyId,
+                          accessKeySecret: accessKey?.accessKeySecret,
+                          accessKeyToken: accessKey?.accessKeySecuritToken
             )
             .build()
         let spanExporters = MultiSpanExporter(spanExporters: [otlpSLSExporter])

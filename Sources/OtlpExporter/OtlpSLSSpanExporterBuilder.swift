@@ -17,6 +17,7 @@
 import Foundation
 
 open class OtlpSLSSpanExporterBuilder {
+    let scope: String
     var endpoint: String?
     var project: String?
     var logstore: String?
@@ -24,8 +25,8 @@ open class OtlpSLSSpanExporterBuilder {
     var accessKeySecret: String?
     var accessKeyToken: String?
     
-    public init() {
-        
+    public init(_ scope: String) {
+        self.scope = scope
     }
     
     open func setEndpoint(_ endpoint: String?) -> OtlpSLSSpanExporterBuilder {
@@ -43,7 +44,7 @@ open class OtlpSLSSpanExporterBuilder {
         return self
     }
     
-    open func setAccessKey(accessKeyId: String?, accessKeySecret: String?, _ accessKeyToken: String? = nil) -> OtlpSLSSpanExporterBuilder {
+    open func setAccessKey(accessKeyId: String?, accessKeySecret: String?, accessKeyToken: String? = nil) -> OtlpSLSSpanExporterBuilder {
         self.accessKeyId = accessKeyId
         self.accessKeySecret = accessKeySecret
         self.accessKeyToken = accessKeyToken
@@ -51,6 +52,6 @@ open class OtlpSLSSpanExporterBuilder {
     }
     
     open func build() -> OtlpSLSSpanExporter {
-        return OtlpSLSSpanExporter("uem", endpoint, project, logstore, accessKeyId, accessKeySecret, accessKeyToken)
+        return OtlpSLSSpanExporter(scope, endpoint, project, logstore, accessKeyId, accessKeySecret, accessKeyToken)
     }
 }

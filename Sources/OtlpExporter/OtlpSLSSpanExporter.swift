@@ -18,20 +18,23 @@ import Foundation
 import OpenTelemetryApi
 import OpenTelemetrySdk
 import AliyunLogProducer
+import AliyunLogOTelCommon
 
-open class OtlpSLSSpanExporter: SpanExporter {
+open class OtlpSLSSpanExporter: NSObject, SpanExporter {
     let jsonEncoder = JSONEncoder()
     let scope: String
     var config: LogProducerConfig?
     var client: LogProducerClient?
     
-    public static func builder() -> OtlpSLSSpanExporterBuilder {
-        return OtlpSLSSpanExporterBuilder()
+    public static func builder(_ scope: String = "default") -> OtlpSLSSpanExporterBuilder {
+        return OtlpSLSSpanExporterBuilder(scope)
     }
     
     public init(_ scope: String, _ endpoint: String?, _ project: String?, _ logstore: String?, _ accessKeyId: String?, _ accessKeySecret: String?, _ accessKeyToken: String?) {
         self.scope = scope
+        super.init()
         self.initLogProducer(endpoint, project, logstore, accessKeyId, accessKeySecret, accessKeyToken)
+        
     }
     
     func initLogProducer(_ endpoint: String?, _ project: String?, _ logstore: String?, _ accessKeyId: String?, _ accessKeySecret: String?, _ accessKeyToken: String?) {
@@ -55,16 +58,50 @@ open class OtlpSLSSpanExporter: SpanExporter {
         config?.setDropDelayLog(1)
         config?.setDropUnauthorizedLog(0)
         
-        client = LogProducerClient(logProducerConfig: config, callback: { configName, Result, logBytes, compressedBytes, reqId, message, rawBuffer, userParams in
+//        let selfPointer = unsafeBitCast(self, to: UnsafeMutableRawPointer.self)
+        client = LogProducerClient(logProducerConfig: config, callback: { configName, resultCode, logBytes, compressedBytes, reqId, message, rawBuffer, userParams in
+            guard let pointer = userParams else {
+                return
+            }
             
-        })
+            let self_p = unsafeBitCast(pointer, to: OtlpSLSSpanExporter.self)
+            
+            if LOG_PRODUCER_PARAMETERS_INVALID == resultCode {
+                if let resource = ConfigurationManager.shared.delegateResource?(self_p.scope) {
+                    self_p.config?.setEndpoint(resource.endpoint)
+                    self_p.config?.setProject(resource.project)
+                    self_p.config?.setLogstore(resource.instanceId)
+                }
+                
+                if let accessKey = ConfigurationManager.shared.delegateAccessKey?(self_p.scope) {
+                    self_p.config?.setAccessKeyId(accessKey.accessKeyId)
+                    self_p.config?.setAccessKeySecret(accessKey.accessKeySecret)
+                    if let token = accessKey.accessKeySecuritToken, !token.isEmpty {
+                        self_p.config?.resetSecurityToken(accessKey.accessKeyId,
+                                                          accessKeySecret: accessKey.accessKeySecret,
+                                                          securityToken: accessKey.accessKeySecuritToken
+                        )
+                    }
+                }
+            } else if LOG_PRODUCER_SEND_UNAUTHORIZED == resultCode {
+                if let accessKey = ConfigurationManager.shared.delegateAccessKey?(self_p.scope) {
+                    self_p.config?.setAccessKeyId(accessKey.accessKeyId)
+                    self_p.config?.setAccessKeySecret(accessKey.accessKeySecret)
+                    if let token = accessKey.accessKeySecuritToken, !token.isEmpty {
+                        self_p.config?.resetSecurityToken(accessKey.accessKeyId,
+                                                          accessKeySecret: accessKey.accessKeySecret,
+                                                          securityToken: accessKey.accessKeySecuritToken
+                        )
+                    }
+                }
+            }
+        }, userparams: self)
     }
     
     
     public func export(spans: [OpenTelemetrySdk.SpanData]) -> OpenTelemetrySdk.SpanExporterResultCode {
         for span in spans {
             do {
-//                jsonEncoder.outputFormatting = .prettyPrinted
                 let jsonData = try jsonEncoder.encode(SpanExporterData(span: span))
                 if let json = String(data: jsonData, encoding: .utf8) {
                     print(json)
@@ -73,11 +110,6 @@ open class OtlpSLSSpanExporter: SpanExporter {
                 let log: Log = Log()
                 log.putContent(jsonData)
                 client?.add(log)
-//                if let object = try? JSONSerialization.jsonObject(with: jsonData) as? [String: Any] {
-//                    var log: Log = Log()
-//                    log.putContent(jsonData)
-//                    client?.add(log)
-//                }
             } catch {
                 return .failure
             }
@@ -92,8 +124,6 @@ open class OtlpSLSSpanExporter: SpanExporter {
     public func shutdown() {
         
     }
-    
-    
 }
 
 private struct SpanExporterData {
