@@ -147,7 +147,6 @@ let package = Package(
             dependencies: [
                 "WPKMobiWrapper",
                 "AliyunLogOtlpExporter",
-                "AliyunLogCore",
                 "AliyunLogOTelCommon",
                 .product(name: "OpenTelemetrySdk", package: "opentelemetry-swift")
             ],
@@ -160,6 +159,7 @@ let package = Package(
             name: "AliyunLogOtlpExporter",
             dependencies: [
                 "AliyunLogProducer",
+                "AliyunLogOTelCommon",
                 .product(name: "OpenTelemetryApi", package: "opentelemetry-swift"),
                 .product(name: "OpenTelemetrySdk", package: "opentelemetry-swift")
             ],

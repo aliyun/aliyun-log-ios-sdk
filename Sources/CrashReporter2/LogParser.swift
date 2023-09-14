@@ -74,7 +74,7 @@ internal class LogParser {
     var preState: ParserState = .notStart
     var inThreadListParsing = false
     var inStacktraceParsing = false
-    var errorReason: String?
+    var errorReason: String? = ""
     var errorFramework: String?
     var stackBlockBuilder: BlockBuilder?
     var errorId: String?

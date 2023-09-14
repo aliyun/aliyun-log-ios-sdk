@@ -55,26 +55,40 @@ internal class CrashReporterOTel {
             appVersionCode = infoDictionary["CFBundleVersion"] as? String
         }
         
+#if os(iOS)
+        let osName = "iOS"
+#elseif os(macOS)
+        let osName = "macOS"
+#elseif os(tvOS)
+        let osName = "tvOS"
+#elseif os(watchOS)
+        let osName = "watchOS"
+#else
+        let osName = "unknown"
+#endif
+        
         CrashReporterOTel.tracerProvider = TracerProviderBuilder()
             .add(spanProcessor: spanProcessor)
             .with(resource: Resource()
                 .merging(other: Resource(attributes: [
+                    ResourceAttributes.serviceName.rawValue: AttributeValue.string("sls-cocoa"),
                     ResourceAttributes.deviceId.rawValue: AttributeValue.string(Utdid.getUtdid()),
                     ResourceAttributes.deviceManufacturer.rawValue: AttributeValue.string("Apple"),
                     ResourceAttributes.deviceModelName.rawValue: AttributeValue.string(DeviceUtils.getDeviceModel()),
                     ResourceAttributes.deviceModelIdentifier.rawValue: AttributeValue.string(DeviceUtils.getDeviceModelIdentifier()),
-                    "device.resolution": AttributeValue.string(DeviceUtils.getResolution()),
+                    "device.screen": AttributeValue.string(DeviceUtils.getResolution()),
                     "app.version": AttributeValue.string(appVersion ?? ""),
                     "app.versionCode": AttributeValue.string(appVersionCode ?? ""),
                     "app.name": AttributeValue.string(appName ?? ""),
-                    ResourceAttributes.osName.rawValue: AttributeValue.string("iOS"),
+                    ResourceAttributes.osName.rawValue: AttributeValue.string(osName),
                     ResourceAttributes.osType.rawValue: AttributeValue.string("darwin"),
                     ResourceAttributes.osVersion.rawValue: AttributeValue.string(UIDevice.current.systemVersion),
                     ResourceAttributes.osDescription.rawValue: AttributeValue.string("Apple Darwin"),
                     ResourceAttributes.hostName.rawValue: AttributeValue.string(ProcessInfo.processInfo.hostName),
                     ResourceAttributes.hostArch.rawValue: AttributeValue.string(DeviceUtils.getCPUArch()),
-                    "uem.data.type": AttributeValue.string("iOS"),
-                    "uem.sdk.version": AttributeValue.string("")
+                    "uem.data.type": AttributeValue.string(osName),
+                    "uem.sdk.version": AttributeValue.string(""),
+                    "workspace": AttributeValue.string(resource?.instanceId ?? "")
                 ]))
             )
             .build()

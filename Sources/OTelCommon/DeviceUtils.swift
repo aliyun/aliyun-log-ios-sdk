@@ -221,12 +221,12 @@ public class DeviceUtils: NSObject {
 #if canImport(UIKit)
         let size = UIScreen.main.bounds.size
         let scale = UIScreen.main.scale
-        return "\((Int)(size.height * scale))*\((Int)(size.width * scale))"
+        return "\((Int)(size.width * scale))x\((Int)(size.height * scale))"
 #elseif canImport(AppKit)
         let screen = NSScreen.main
         let description = screen?.deviceDescription
         let size = (description?[NSDeviceSize] as? NSValue)?.sizeValue ?? CGSize.zero
-        return "\((Int)(size.height))*\((Int)(size.width))"
+        return "\((Int)(size.width))x\((Int)(size.height))"
 #else
         return "0x0"
 #endif
