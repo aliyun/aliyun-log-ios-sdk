@@ -60,7 +60,7 @@ open class CrashReporter: NSObject {
         crashFileHelper?.scanAndReport(crashLogPath)
         
         if let builder = CrashReporterOTel.spanBuilder("app.start") {
-            builder.setAttribute(key: "t", value: "startup.pv")
+            builder.setAttribute(key: "t", value: "pv")
                 .startSpan()
                 .end()
         }
