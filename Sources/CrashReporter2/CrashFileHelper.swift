@@ -15,6 +15,7 @@
 	
 
 import Foundation
+import AliyunLogOTelCommon
 import OpenTelemetryApi
 import OpenTelemetrySdk
 
@@ -55,9 +56,10 @@ internal class CrashFileHelper {
         mutableResults.removeValue(forKey: "sub_type")
         
         let spanBuilder = CrashReporterOTel.spanBuilder("crashreporter")
-//        spanBuilder?.setStartTime(time: <#T##Date#>)
         for (key, value) in mutableResults {
-            spanBuilder?.setAttribute(key: "ex.\(key)", value: value)
+            if "basic_info" == key || "summary" == key || "stacktrace" == key {
+                spanBuilder?.setAttribute(key: "ex.\(key)", value: value)
+            }
         }
         
         spanBuilder?.setAttribute(key: "t", value: "error")
@@ -65,6 +67,7 @@ internal class CrashFileHelper {
         spanBuilder?.setAttribute(key: "ex.sub_type", value: subType)
         spanBuilder?.setAttribute(key: "ex.id", value: errorId)
         spanBuilder?.setAttribute(key: "ex.catId", value: catId)
+        spanBuilder?.setAttribute(key: "net.access", value: DeviceUtils.getNetworkType())
         
         guard let span = spanBuilder?.startSpan() else { return }
         span.end()

@@ -17,14 +17,14 @@
 import Foundation
 
 @objcMembers
-public class AccessKeyConfiguration: NSObject {
+public class AccessKey: NSObject {
     public var accessKeyId: String?
     public var accessKeySecret: String?
     public var accessKeySecuritToken: String?
     
     @objc
-    public static func `init`(accessKeyId: String? = nil, accessKeySecret: String? = nil, accessKeySecuritToken: String? = nil) -> AccessKeyConfiguration {
-        let accessKeyConfiguration = AccessKeyConfiguration()
+    public static func `init`(accessKeyId: String? = nil, accessKeySecret: String? = nil, accessKeySecuritToken: String? = nil) -> AccessKey {
+        let accessKeyConfiguration = AccessKey()
         accessKeyConfiguration.accessKeyId = accessKeyId
         accessKeyConfiguration.accessKeySecret = accessKeySecret
         accessKeyConfiguration.accessKeySecuritToken = accessKeySecuritToken
@@ -34,19 +34,38 @@ public class AccessKeyConfiguration: NSObject {
 }
 
 @objcMembers
-public class ResourceConfiguration: NSObject {
+public class Resource: NSObject {
     public var endpoint: String?
     public var project: String?
     public var instanceId: String?
     
     @objc
-    public static func `init`(endpoint: String? = nil, project: String? = nil, instanceId: String? = nil) -> ResourceConfiguration {
-        let resourceConfiguration = ResourceConfiguration()
+    public static func `init`(endpoint: String? = nil, project: String? = nil, instanceId: String? = nil) -> Resource {
+        let resourceConfiguration = Resource()
         resourceConfiguration.endpoint = endpoint
         resourceConfiguration.project = project
         resourceConfiguration.instanceId = instanceId
         
         return resourceConfiguration
+    }
+}
+
+@objcMembers
+public class Configuration: NSObject {
+    public var env: String?
+    public var uid: String?
+    public var utdid: String?
+    public var channel: String?
+    
+    @objc
+    public static func `init`(env: String? = nil, uid: String? = nil, utdid: String? = nil, channel: String? = nil) -> Configuration {
+        let configuration = Configuration()
+        configuration.env = env
+        configuration.uid = uid
+        configuration.utdid = utdid
+        configuration.channel = channel
+        
+        return configuration
     }
 }
 
@@ -56,11 +75,15 @@ public class ConfigurationManager: NSObject {
     private override init() {}
     
     @objc
-    public func setDelegate(delegateAccessKey: ((String) -> AccessKeyConfiguration?)? = nil, delegateResource: ((String) -> ResourceConfiguration?)? = nil) {
+    public func setDelegate(delegateAccessKey: ((String) -> AccessKey?)? = nil,
+                            delegateResource: ((String) -> Resource?)? = nil,
+                            delegateConfiguration: ((String) -> Configuration?)? = nil) {
         self.delegateAccessKey = delegateAccessKey
         self.delegateResource = delegateResource
+        self.delegateConfiguration = delegateConfiguration
     }
     
-    public var delegateAccessKey: ((String) -> AccessKeyConfiguration?)?
-    public var delegateResource: ((String) -> ResourceConfiguration?)?
+    public var delegateAccessKey: ((String) -> AccessKey?)?
+    public var delegateResource: ((String) -> Resource?)?
+    public var delegateConfiguration: ((String) -> Configuration?)?
 }

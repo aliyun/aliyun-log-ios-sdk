@@ -15,6 +15,7 @@
 
 
 import Foundation
+import CoreTelephony
 #if canImport(UIKit)
 import UIKit
 #elseif canImport(AppKit)
@@ -263,5 +264,32 @@ public class DeviceUtils: NSObject {
         return cpu
     }
 
+    @objc
+    public static func getNetworkType() -> String {
+        let networkInfo = CTTelephonyNetworkInfo()
+        
+        if let currentRadio = networkInfo.currentRadioAccessTechnology {
+            switch currentRadio {
+            case CTRadioAccessTechnologyGPRS,
+                CTRadioAccessTechnologyEdge,
+            CTRadioAccessTechnologyCDMA1x:
+                return "2G"
+            case CTRadioAccessTechnologyWCDMA,
+                CTRadioAccessTechnologyHSDPA,
+                CTRadioAccessTechnologyHSUPA,
+                CTRadioAccessTechnologyCDMAEVDORev0,
+                CTRadioAccessTechnologyCDMAEVDORevA,
+                CTRadioAccessTechnologyCDMAEVDORevB,
+            CTRadioAccessTechnologyeHRPD:
+                return "3G"
+            case CTRadioAccessTechnologyLTE:
+                return "4G"
+            default:
+                return "Unknown"
+            }
+        }
+        
+        return "No Connection"
+    }
     
 }

@@ -34,10 +34,11 @@ internal class CrashReporterOTel {
     func initOtel() {
         let resource = ConfigurationManager.shared.delegateResource?(SCOPE)
         let accessKey = ConfigurationManager.shared.delegateAccessKey?(SCOPE)
+        let configuration = ConfigurationManager.shared.delegateConfiguration?(SCOPE)
         let otlpSLSExporter = OtlpSLSSpanExporter.builder(SCOPE)
             .setEndpoint(resource?.endpoint ?? "")
             .setProject(resource?.project ?? "")
-            .setLogstore(resource?.instanceId ?? "")
+            .setLogstore("\(resource?.instanceId ?? "")-uem-mobile-raw")
             .setAccessKey(accessKeyId: accessKey?.accessKeyId,
                           accessKeySecret: accessKey?.accessKeySecret,
                           accessKeyToken: accessKey?.accessKeySecuritToken
@@ -67,12 +68,14 @@ internal class CrashReporterOTel {
         let osName = "unknown"
 #endif
         
+        let utdid = configuration?.utdid ?? Utdid.getUtdid()
+        
         CrashReporterOTel.tracerProvider = TracerProviderBuilder()
             .add(spanProcessor: spanProcessor)
             .with(resource: Resource()
                 .merging(other: Resource(attributes: [
                     ResourceAttributes.serviceName.rawValue: AttributeValue.string("sls-cocoa"),
-                    ResourceAttributes.deviceId.rawValue: AttributeValue.string(Utdid.getUtdid()),
+                    ResourceAttributes.deviceId.rawValue: AttributeValue.string(utdid),
                     ResourceAttributes.deviceManufacturer.rawValue: AttributeValue.string("Apple"),
                     ResourceAttributes.deviceModelName.rawValue: AttributeValue.string(DeviceUtils.getDeviceModel()),
                     ResourceAttributes.deviceModelIdentifier.rawValue: AttributeValue.string(DeviceUtils.getDeviceModelIdentifier()),
@@ -88,7 +91,8 @@ internal class CrashReporterOTel {
                     ResourceAttributes.hostArch.rawValue: AttributeValue.string(DeviceUtils.getCPUArch()),
                     "uem.data.type": AttributeValue.string(osName),
                     "uem.sdk.version": AttributeValue.string(""),
-                    "workspace": AttributeValue.string(resource?.instanceId ?? "")
+                    "workspace": AttributeValue.string(resource?.instanceId ?? ""),
+                    "deployment.environment": AttributeValue.string(configuration?.env ?? "default")
                 ]))
             )
             .build()

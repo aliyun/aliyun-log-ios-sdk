@@ -15,6 +15,7 @@
 	
 
 import Foundation
+import AliyunLogOTelCommon
 import WPKMobiWrapper
 
 typealias DirectoryChangedBlock = (String) -> Void
@@ -61,6 +62,7 @@ open class CrashReporter: NSObject {
         
         if let builder = CrashReporterOTel.spanBuilder("app.start") {
             builder.setAttribute(key: "t", value: "pv")
+                .setAttribute(key: "net.access", value: DeviceUtils.getNetworkType())
                 .startSpan()
                 .end()
         }
