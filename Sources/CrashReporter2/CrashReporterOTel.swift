@@ -23,25 +23,29 @@ import UIKit
 import AliyunLogOTelCommon
 
 internal class CrashReporterOTel {
-    let SCOPE: String = "uem"
+    static let VERSION: String = "0.1.0"
+    static let SCOPE: String = "uem"
     
-    static var tracerProvider: TracerProvider?
+    static var tracerProvider: TracerProviderSdk?
     
     public init() {
         
     }
     
     func initOtel() {
-        let resource = ConfigurationManager.shared.delegateResource?(SCOPE)
-        let accessKey = ConfigurationManager.shared.delegateAccessKey?(SCOPE)
-        let configuration = ConfigurationManager.shared.delegateConfiguration?(SCOPE)
-        let otlpSLSExporter = OtlpSLSSpanExporter.builder(SCOPE)
-            .setEndpoint(resource?.endpoint ?? "")
-            .setProject(resource?.project ?? "")
-            .setLogstore("\(resource?.instanceId ?? "")-uem-mobile-raw")
-            .setAccessKey(accessKeyId: accessKey?.accessKeyId,
-                          accessKeySecret: accessKey?.accessKeySecret,
-                          accessKeyToken: accessKey?.accessKeySecuritToken
+        let scope = CrashReporterOTel.SCOPE
+        let workspace = ConfigurationManager.shared.workspaceProvider?(scope)
+        let accessKey = ConfigurationManager.shared.accessKeyProvider?(scope)
+        let environment = ConfigurationManager.shared.environmentProvider?(scope)
+        let otlpSLSExporter = OtlpSLSSpanExporter.builder(scope)
+            .setEndpoint(workspace?.endpoint ?? "")
+            .setProject(workspace?.project ?? "")
+            .setLogstore("\(workspace?.instanceId ?? "")-uem-mobile-raw")
+            .setPersistentFlush(true)
+            .setAccessKey(
+                accessKeyId: accessKey?.accessKeyId,
+                accessKeySecret: accessKey?.accessKeySecret,
+                accessKeyToken: accessKey?.accessKeySecuritToken
             )
             .build()
         let spanExporters = MultiSpanExporter(spanExporters: [otlpSLSExporter])
@@ -68,7 +72,7 @@ internal class CrashReporterOTel {
         let osName = "unknown"
 #endif
         
-        let utdid = configuration?.utdid ?? Utdid.getUtdid()
+        let utdid = environment?.utdid ?? Utdid.getUtdid()
         
         CrashReporterOTel.tracerProvider = TracerProviderBuilder()
             .add(spanProcessor: spanProcessor)
@@ -90,18 +94,21 @@ internal class CrashReporterOTel {
                     ResourceAttributes.hostName.rawValue: AttributeValue.string(ProcessInfo.processInfo.hostName),
                     ResourceAttributes.hostArch.rawValue: AttributeValue.string(DeviceUtils.getCPUArch()),
                     "uem.data.type": AttributeValue.string(osName),
-                    "uem.sdk.version": AttributeValue.string(""),
-                    "workspace": AttributeValue.string(resource?.instanceId ?? ""),
-                    "deployment.environment": AttributeValue.string(configuration?.env ?? "default")
+                    "uem.sdk.version": AttributeValue.string(CrashReporterOTel.VERSION),
+                    "workspace": AttributeValue.string(workspace?.instanceId ?? ""),
+                    "deployment.environment": AttributeValue.string(environment?.env ?? "default")
                 ]))
             )
             .build()
-        
     }
     
     static func spanBuilder(_ spanName: String) -> SpanBuilder? {
         CrashReporterOTel.tracerProvider?
-            .get(instrumentationName: "CrashReporter", instrumentationVersion: "0.1.0")
+            .get(instrumentationName: "CrashReporter", instrumentationVersion: CrashReporterOTel.VERSION)
             .spanBuilder(spanName: spanName)
+    }
+    
+    static func forceFlush() {
+        CrashReporterOTel.tracerProvider?.forceFlush()
     }
 }

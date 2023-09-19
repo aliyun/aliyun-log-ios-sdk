@@ -34,14 +34,14 @@ public class AccessKey: NSObject {
 }
 
 @objcMembers
-public class Resource: NSObject {
+public class Workspace: NSObject {
     public var endpoint: String?
     public var project: String?
     public var instanceId: String?
     
     @objc
-    public static func `init`(endpoint: String? = nil, project: String? = nil, instanceId: String? = nil) -> Resource {
-        let resourceConfiguration = Resource()
+    public static func `init`(endpoint: String? = nil, project: String? = nil, instanceId: String? = nil) -> Workspace {
+        let resourceConfiguration = Workspace()
         resourceConfiguration.endpoint = endpoint
         resourceConfiguration.project = project
         resourceConfiguration.instanceId = instanceId
@@ -51,15 +51,15 @@ public class Resource: NSObject {
 }
 
 @objcMembers
-public class Configuration: NSObject {
+public class Environment: NSObject {
     public var env: String?
     public var uid: String?
     public var utdid: String?
     public var channel: String?
     
     @objc
-    public static func `init`(env: String? = nil, uid: String? = nil, utdid: String? = nil, channel: String? = nil) -> Configuration {
-        let configuration = Configuration()
+    public static func `init`(env: String? = nil, uid: String? = nil, utdid: String? = nil, channel: String? = nil) -> Environment {
+        let configuration = Environment()
         configuration.env = env
         configuration.uid = uid
         configuration.utdid = utdid
@@ -75,15 +75,15 @@ public class ConfigurationManager: NSObject {
     private override init() {}
     
     @objc
-    public func setDelegate(delegateAccessKey: ((String) -> AccessKey?)? = nil,
-                            delegateResource: ((String) -> Resource?)? = nil,
-                            delegateConfiguration: ((String) -> Configuration?)? = nil) {
-        self.delegateAccessKey = delegateAccessKey
-        self.delegateResource = delegateResource
-        self.delegateConfiguration = delegateConfiguration
+    public func setProvider(accessKeyProvider: ((String) -> AccessKey?)? = nil,
+                            workspaceProvider: ((String) -> Workspace?)? = nil,
+                            environmentProvider: ((String) -> Environment?)? = nil) {
+        self.accessKeyProvider = accessKeyProvider
+        self.workspaceProvider = workspaceProvider
+        self.environmentProvider = environmentProvider
     }
     
-    public var delegateAccessKey: ((String) -> AccessKey?)?
-    public var delegateResource: ((String) -> Resource?)?
-    public var delegateConfiguration: ((String) -> Configuration?)?
+    public var accessKeyProvider: ((String) -> AccessKey?)?
+    public var workspaceProvider: ((String) -> Workspace?)?
+    public var environmentProvider: ((String) -> Environment?)?
 }

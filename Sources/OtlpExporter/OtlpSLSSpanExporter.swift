@@ -25,13 +25,15 @@ open class OtlpSLSSpanExporter: NSObject, SpanExporter {
     let scope: String
     var config: LogProducerConfig?
     var client: LogProducerClient?
+    var isPersistentFlush: Bool
     
     public static func builder(_ scope: String = "default") -> OtlpSLSSpanExporterBuilder {
         return OtlpSLSSpanExporterBuilder(scope)
     }
     
-    public init(_ scope: String, _ endpoint: String?, _ project: String?, _ logstore: String?, _ accessKeyId: String?, _ accessKeySecret: String?, _ accessKeyToken: String?) {
+    public init(_ scope: String, _ isPersistentFlush: Bool = false, _ endpoint: String?, _ project: String?, _ logstore: String?, _ accessKeyId: String?, _ accessKeySecret: String?, _ accessKeyToken: String?) {
         self.scope = scope
+        self.isPersistentFlush = isPersistentFlush
         super.init()
         self.initLogProducer(endpoint, project, logstore, accessKeyId, accessKeySecret, accessKeyToken)
         
@@ -45,11 +47,12 @@ open class OtlpSLSSpanExporter: NSObject, SpanExporter {
         config?.setPacketTimeout(3000)
         config?.setMaxBufferLimit(32*1024*1024)
         
-//        NSArray  *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-//        NSString *Path = [[paths lastObject] stringByAppendingString:@"/log.dat"];
+        //        NSArray  *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        //        NSString *Path = [[paths lastObject] stringByAppendingString:@"/log.dat"];
         let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
         let path = paths.last ?? "" + "/data"
         config?.setPersistent(1)
+        config?.setPersistentForceFlush(isPersistentFlush ? 1 : 0)
         config?.setPersistentFilePath(path)
         config?.setPersistentMaxFileCount(10)
         config?.setPersistentMaxFileSize(10*1024*1024)
@@ -58,7 +61,7 @@ open class OtlpSLSSpanExporter: NSObject, SpanExporter {
         config?.setDropDelayLog(1)
         config?.setDropUnauthorizedLog(0)
         
-//        let selfPointer = unsafeBitCast(self, to: UnsafeMutableRawPointer.self)
+        //        let selfPointer = unsafeBitCast(self, to: UnsafeMutableRawPointer.self)
         client = LogProducerClient(logProducerConfig: config, callback: { configName, resultCode, logBytes, compressedBytes, reqId, message, rawBuffer, userParams in
             guard let pointer = userParams else {
                 return
@@ -67,30 +70,32 @@ open class OtlpSLSSpanExporter: NSObject, SpanExporter {
             let self_p = unsafeBitCast(pointer, to: OtlpSLSSpanExporter.self)
             
             if LOG_PRODUCER_PARAMETERS_INVALID == resultCode {
-                if let resource = ConfigurationManager.shared.delegateResource?(self_p.scope) {
-                    self_p.config?.setEndpoint(resource.endpoint)
-                    self_p.config?.setProject(resource.project)
-                    self_p.config?.setLogstore(resource.instanceId)
+                if let workspace = ConfigurationManager.shared.workspaceProvider?(self_p.scope) {
+                    self_p.config?.setEndpoint(workspace.endpoint)
+                    self_p.config?.setProject(workspace.project)
+                    self_p.config?.setLogstore(workspace.instanceId)
                 }
                 
-                if let accessKey = ConfigurationManager.shared.delegateAccessKey?(self_p.scope) {
+                if let accessKey = ConfigurationManager.shared.accessKeyProvider?(self_p.scope) {
                     self_p.config?.setAccessKeyId(accessKey.accessKeyId)
                     self_p.config?.setAccessKeySecret(accessKey.accessKeySecret)
                     if let token = accessKey.accessKeySecuritToken, !token.isEmpty {
-                        self_p.config?.resetSecurityToken(accessKey.accessKeyId,
-                                                          accessKeySecret: accessKey.accessKeySecret,
-                                                          securityToken: accessKey.accessKeySecuritToken
+                        self_p.config?.resetSecurityToken(
+                            accessKey.accessKeyId,
+                            accessKeySecret: accessKey.accessKeySecret,
+                            securityToken: accessKey.accessKeySecuritToken
                         )
                     }
                 }
             } else if LOG_PRODUCER_SEND_UNAUTHORIZED == resultCode {
-                if let accessKey = ConfigurationManager.shared.delegateAccessKey?(self_p.scope) {
+                if let accessKey = ConfigurationManager.shared.accessKeyProvider?(self_p.scope) {
                     self_p.config?.setAccessKeyId(accessKey.accessKeyId)
                     self_p.config?.setAccessKeySecret(accessKey.accessKeySecret)
                     if let token = accessKey.accessKeySecuritToken, !token.isEmpty {
-                        self_p.config?.resetSecurityToken(accessKey.accessKeyId,
-                                                          accessKeySecret: accessKey.accessKeySecret,
-                                                          securityToken: accessKey.accessKeySecuritToken
+                        self_p.config?.resetSecurityToken(
+                            accessKey.accessKeyId,
+                            accessKeySecret: accessKey.accessKeySecret,
+                            securityToken: accessKey.accessKeySecuritToken
                         )
                     }
                 }
@@ -103,9 +108,9 @@ open class OtlpSLSSpanExporter: NSObject, SpanExporter {
         for span in spans {
             do {
                 let jsonData = try jsonEncoder.encode(SpanExporterData(span: span))
-                if let json = String(data: jsonData, encoding: .utf8) {
-                    print(json)
-                }
+//                if let json = String(data: jsonData, encoding: .utf8) {
+//                    print(json)
+//                }
                 
                 let log: Log = Log()
                 log.putContent(jsonData)
@@ -132,11 +137,11 @@ private struct SpanExporterData {
     private let spanId: String
     private let spanKind: String
     private let traceFlags: TraceFlags
-    private let traceState: TraceState
+//    private let traceState: TraceState
     private let parentSpanId: String?
-    private let start: Date
-    private let end: Date
-    private let duration: TimeInterval
+    private let start: UInt64
+    private let end: UInt64
+    private let duration: UInt64
     private let attributes: [String: AttributeValue]
     private let resource: [String: AttributeValue]
     
@@ -151,11 +156,11 @@ private struct SpanExporterData {
         self.spanId = span.spanId.hexString
         self.spanKind = span.kind.rawValue
         self.traceFlags = span.traceFlags
-        self.traceState = span.traceState
+//        self.traceState = span.traceState
         self.parentSpanId = span.parentSpanId?.hexString ?? SpanId.invalid.hexString
-        self.start = span.startTime
-        self.end = span.endTime
-        self.duration = span.endTime.timeIntervalSince(span.startTime)
+        self.start = span.startTime.timeIntervalSince1970.toNanoseconds / 1000
+        self.end = span.endTime.timeIntervalSince1970.toNanoseconds / 1000
+        self.duration = end - start
         self.attributes = span.attributes
         self.resource = span.resource.attributes
         
@@ -173,7 +178,7 @@ extension SpanExporterData: Encodable {
         case spanID
         case kind
         case traceFlags
-        case traceState
+//        case traceState
         case parentSpanID
         case start
         case end
@@ -229,15 +234,15 @@ extension SpanExporterData: Encodable {
         var traceFlagsContainer = container.nestedContainer(keyedBy: TraceFlagsCodingKeys.self, forKey: .traceFlags)
         try traceFlagsContainer.encode(traceFlags.sampled, forKey: .sampled)
         
-        var traceStateContainer = container.nestedContainer(keyedBy: TraceStateCodingKeys.self, forKey: .traceState)
-        var traceStateEntriesContainer = traceStateContainer.nestedUnkeyedContainer(forKey: .entries)
-        
-        try traceState.entries.forEach { entry in
-            var traceStateEntryContainer = traceStateEntriesContainer.nestedContainer(keyedBy: TraceStateEntryCodingKeys.self)
-            
-            try traceStateEntryContainer.encode(entry.key, forKey: .key)
-            try traceStateEntryContainer.encode(entry.value, forKey: .value)
-        }
+//        var traceStateContainer = container.nestedContainer(keyedBy: TraceStateCodingKeys.self, forKey: .traceState)
+//        var traceStateEntriesContainer = traceStateContainer.nestedUnkeyedContainer(forKey: .entries)
+//        
+//        try traceState.entries.forEach { entry in
+//            var traceStateEntryContainer = traceStateEntriesContainer.nestedContainer(keyedBy: TraceStateEntryCodingKeys.self)
+//            
+//            try traceStateEntryContainer.encode(entry.key, forKey: .key)
+//            try traceStateEntryContainer.encode(entry.value, forKey: .value)
+//        }
         
         try container.encodeIfPresent(parentSpanId, forKey: .parentSpanID)
         try container.encode(start, forKey: .start)

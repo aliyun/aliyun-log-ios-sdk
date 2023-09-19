@@ -110,7 +110,7 @@ internal class LogParser {
         
         for line in lines {
             // debug statement
-            print("debugggg, line: \(line)")
+//            print("debugggg, line: \(line)")
             
             // begin header info parse
             if state == .notStart && line.hasPrefix(LINE_BLOCK_START) {

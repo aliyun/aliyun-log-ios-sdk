@@ -24,6 +24,7 @@ open class OtlpSLSSpanExporterBuilder {
     var accessKeyId: String?
     var accessKeySecret: String?
     var accessKeyToken: String?
+    var isPersistentFlush: Bool = false
     
     public init(_ scope: String) {
         self.scope = scope
@@ -51,7 +52,12 @@ open class OtlpSLSSpanExporterBuilder {
         return self
     }
     
+    open func setPersistentFlush(_ isPersistentFlush: Bool) -> OtlpSLSSpanExporterBuilder {
+        self.isPersistentFlush = isPersistentFlush
+        return self
+    }
+    
     open func build() -> OtlpSLSSpanExporter {
-        return OtlpSLSSpanExporter(scope, endpoint, project, logstore, accessKeyId, accessKeySecret, accessKeyToken)
+        return OtlpSLSSpanExporter(scope, isPersistentFlush, endpoint, project, logstore, accessKeyId, accessKeySecret, accessKeyToken)
     }
 }

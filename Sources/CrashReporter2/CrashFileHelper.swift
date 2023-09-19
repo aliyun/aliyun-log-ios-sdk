@@ -71,25 +71,9 @@ internal class CrashFileHelper {
         
         guard let span = spanBuilder?.startSpan() else { return }
         span.end()
-//        _ = try? FileManager.default.removeItem(atPath: filePath)
+        CrashReporterOTel.forceFlush()
         
-//        var attributes: [SLSAttribute] = []
-//        for (key, value) in mutableResults {
-//            attributes.append(SLSAttribute.of("ex.\(key)", value: value))
-//        }
-//        
-//        let eventName = "Application crashed"
-//        let builder = SLSiOSRum.spanBuilder(eventName)
-//            .addAttribute(SLSAttribute.of("title", value: eventName))
-//            .addAttribute(SLSAttribute.of("t", value: "error"))
-//            .addAttribute(SLSAttribute.of("ex.type", value: "crash"))
-//            .addAttribute(SLSAttribute.of("ex.sub_type", value: subType))
-//            .addAttribute(SLSAttribute.of("ex.id", value: errorId))
-//            .addAttribute(SLSAttribute.of("ex.catId", value: catId))
-//            .addAttributes(attributes)
-//        
-//        guard let span = builder.build(), span.end() else { return }
-//        _ = try? FileManager.default.removeItem(atPath: filePath)
+        _ = try? FileManager.default.removeItem(atPath: filePath)
     }
     
     

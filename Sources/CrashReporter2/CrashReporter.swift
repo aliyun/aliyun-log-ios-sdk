@@ -21,21 +21,29 @@ import WPKMobiWrapper
 typealias DirectoryChangedBlock = (String) -> Void
 
 open class CrashReporter: NSObject {
-    private var crashFileHelper: CrashFileHelper?
+    @objc
+    public static let shared: CrashReporter = CrashReporter()
+    
+    private let crashFileHelper: CrashFileHelper
     private var crashLogSource: DispatchSourceFileSystemObject?
     private var debuggable: Bool = false
     
-    public override init() {
+    private override init() {
         crashFileHelper = CrashFileHelper()
     }
     
     @objc
-    open func `init`(debuggable: Bool) -> CrashReporter {
+    public func `init`(debuggable: Bool) {
         CrashReporterOTel().initOtel()
-        let reporter = CrashReporter()
-        reporter.observeDirectoryChanged()
-        reporter.initWPKMobi()
-        return reporter
+        observeDirectoryChanged()
+        initWPKMobi()
+        
+        if let builder = CrashReporterOTel.spanBuilder("app.start") {
+            builder.setAttribute(key: "t", value: "pv")
+                .setAttribute(key: "net.access", value: DeviceUtils.getNetworkType())
+                .startSpan()
+                .end()
+        }
     }
     
     private func observeDirectoryChanged() {
@@ -47,25 +55,11 @@ open class CrashReporter: NSObject {
         let crashLogPath = (wpkLogpath as NSString).appendingPathComponent("CrashLog")
         guard checkAndCreateDirectory(dir: crashLogPath) else { return }
         
-        let crashStatLogPath = (wpkLogpath as NSString).appendingPathComponent("CrashStatLog")
-        guard checkAndCreateDirectory(dir: crashStatLogPath) else { return }
-        
-        observeDirectory(&crashLogSource, path: crashLogPath) { [weak self] path in
-            self?.crashFileHelper?.parseCrashFile(path)
+        observeDirectory(&crashLogSource, path: crashLogPath) { path in
+            CrashReporter.shared.crashFileHelper.parseCrashFile(path)
         }
         
-        // observeDirectory(_crashStatLogSource, crashStatLogPath, ^(NSString *path) {
-        //     [self.crashFileHelper parseCrashFile: path];
-        // });
-        
-        crashFileHelper?.scanAndReport(crashLogPath)
-        
-        if let builder = CrashReporterOTel.spanBuilder("app.start") {
-            builder.setAttribute(key: "t", value: "pv")
-                .setAttribute(key: "net.access", value: DeviceUtils.getNetworkType())
-                .startSpan()
-                .end()
-        }
+        crashFileHelper.scanAndReport(crashLogPath)
     }
     
     private func initWPKMobi() {
@@ -100,7 +94,7 @@ open class CrashReporter: NSObject {
             let type = source.data
             switch type {
             case .write:
-                print("directory changed. \(path)")
+//                print("directory changed. \(path)")
                 handler(path)
             default:
                 break
