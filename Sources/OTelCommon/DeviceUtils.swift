@@ -15,7 +15,10 @@
 
 
 import Foundation
+#if canImport(CoreTelephony)
 import CoreTelephony
+#endif
+
 #if canImport(UIKit)
 import UIKit
 #elseif canImport(AppKit)
@@ -266,6 +269,7 @@ public class DeviceUtils: NSObject {
 
     @objc
     public static func getNetworkType() -> String {
+#if canImport(CoreTelephony)
         let networkInfo = CTTelephonyNetworkInfo()
         
         if let currentRadio = networkInfo.currentRadioAccessTechnology {
@@ -288,6 +292,7 @@ public class DeviceUtils: NSObject {
                 return "Unknown"
             }
         }
+#endif
         
         return "No Connection"
     }

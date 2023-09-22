@@ -242,6 +242,8 @@
 			dependencies = (
 			);
 			name = iOSExamples;
+			packageProductDependencies = (
+			);
 			productName = Examples;
 			productReference = F8CE622D2A710D5500C65D1B /* iOSExamples.app */;
 			productType = "com.apple.product-type.application";
@@ -269,6 +271,8 @@
 				Base,
 			);
 			mainGroup = F8CE62242A710D5500C65D1B;
+			packageReferences = (
+			);
 			productRefGroup = F8CE622E2A710D5500C65D1B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";

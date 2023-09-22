@@ -13,6 +13,27 @@
 		F8099040292DCC5E0000DEE9 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D0CAEEE252177D800A4985A /* libz.tbd */; };
 		F809904F292DCF9B0000DEE9 /* AliyunLogOTSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8099046292DCC5E0000DEE9 /* AliyunLogOTSwift.framework */; };
 		F8128BAB29E00563001DC8E3 /* SLSDiagnosisProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = F8128BAA29E00563001DC8E3 /* SLSDiagnosisProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F8128F762ABAD8BD0091B556 /* Utdid.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8128F722ABAD8BC0091B556 /* Utdid.swift */; };
+		F8128F772ABAD8BD0091B556 /* AttributesHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8128F732ABAD8BC0091B556 /* AttributesHelper.swift */; };
+		F8128F782ABAD8BD0091B556 /* ConfigurationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8128F742ABAD8BC0091B556 /* ConfigurationManager.swift */; };
+		F8128F792ABAD8BD0091B556 /* DeviceUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8128F752ABAD8BC0091B556 /* DeviceUtils.swift */; };
+		F8128F7E2ABADA250091B556 /* OtlpSLSSpanExporterBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8128F7B2ABADA250091B556 /* OtlpSLSSpanExporterBuilder.swift */; };
+		F8128F7F2ABADA250091B556 /* OtlpSLSSpanExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8128F7C2ABADA250091B556 /* OtlpSLSSpanExporter.swift */; };
+		F8128F872ABADC230091B556 /* OpenTelemetryApi.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8128F862ABADC230091B556 /* OpenTelemetryApi.xcframework */; };
+		F8128F8A2ABADC310091B556 /* OpenTelemetrySdk.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8128F892ABADC300091B556 /* OpenTelemetrySdk.xcframework */; };
+		F8128F8B2ABADC310091B556 /* OpenTelemetrySdk.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8128F892ABADC300091B556 /* OpenTelemetrySdk.xcframework */; };
+		F8128FBC2ABAE19C0091B556 /* OpenTelemetrySdk.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8128F892ABADC300091B556 /* OpenTelemetrySdk.xcframework */; };
+		F8128FC42ABAE1E00091B556 /* CrashReporterOTel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8128FA72ABAE12F0091B556 /* CrashReporterOTel.swift */; };
+		F8128FC52ABAE1E00091B556 /* CrashReporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8128FA82ABAE12F0091B556 /* CrashReporter.swift */; };
+		F8128FC62ABAE1E00091B556 /* LogParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8128FA92ABAE12F0091B556 /* LogParser.swift */; };
+		F8128FC72ABAE1E00091B556 /* CrashFileHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8128FAA2ABAE12F0091B556 /* CrashFileHelper.swift */; };
+		F8128FF72ABAE26B0091B556 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F80DF47C26A7037000151F7C /* CoreGraphics.framework */; };
+		F8128FF82ABAE26B0091B556 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F80DF47A26A7035E00151F7C /* SystemConfiguration.framework */; };
+		F8128FF92ABAE26B0091B556 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F80DF47826A7034E00151F7C /* libc++.tbd */; };
+		F8128FFA2ABAE26B0091B556 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D0CAEEE252177D800A4985A /* libz.tbd */; };
+		F81290022ABAE2CD0091B556 /* WPKMobi.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = F838F08B297676B6001F1275 /* WPKMobi.xcframework */; };
+		F81290082ABAE2F90091B556 /* WPKMobiWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = F81290052ABAE2F90091B556 /* WPKMobiWrapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F81290092ABAE2F90091B556 /* WPKMobiWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = F81290062ABAE2F90091B556 /* WPKMobiWrapper.m */; };
 		F8255A1E2976715E00411DAD /* SLSRecordableSpan.h in Headers */ = {isa = PBXBuildFile; fileRef = F8255A042976715D00411DAD /* SLSRecordableSpan.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F8255A1F2976715E00411DAD /* SLSKeyValue.h in Headers */ = {isa = PBXBuildFile; fileRef = F8255A052976715D00411DAD /* SLSKeyValue.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F8255A202976715E00411DAD /* SLSAttribute.h in Headers */ = {isa = PBXBuildFile; fileRef = F8255A062976715D00411DAD /* SLSAttribute.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -207,6 +228,41 @@
 			remoteGlobalIDString = F809901F292DCC5E0000DEE9;
 			remoteInfo = AliyunLogOTSwift;
 		};
+		F8128F8E2ABADEC30091B556 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9D984DA92520A9B7009DE4FE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9D984DB12520A9B7009DE4FE;
+			remoteInfo = AliyunLogProducer;
+		};
+		F8128F902ABADFB80091B556 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9D984DA92520A9B7009DE4FE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F8128F5D2ABAD86F0091B556;
+			remoteInfo = AliyunLogOtelCommon;
+		};
+		F8128FC82ABAE1FF0091B556 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9D984DA92520A9B7009DE4FE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F8128F5D2ABAD86F0091B556;
+			remoteInfo = AliyunLogOTelCommon;
+		};
+		F8128FCA2ABAE1FF0091B556 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9D984DA92520A9B7009DE4FE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F8128F482ABAD81F0091B556;
+			remoteInfo = AliyunLogOtlpExporter;
+		};
+		F812900B2ABAE32A0091B556 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9D984DA92520A9B7009DE4FE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F8128FCC2ABAE26B0091B556;
+			remoteInfo = WPKMobiWrapper;
+		};
 		F838F07B29767620001F1275 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9D984DA92520A9B7009DE4FE /* Project object */;
@@ -246,6 +302,46 @@
 
 /* Begin PBXCopyFilesBuildPhase section */
 		F8099042292DCC5E0000DEE9 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F8128F572ABAD81F0091B556 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F8128F6C2ABAD86F0091B556 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F8128FBE2ABAE19C0091B556 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F8128FFC2ABAE26B0091B556 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
@@ -337,6 +433,27 @@
 		F81137E128DB096600F5E54C /* crash_reporter_symbols.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = crash_reporter_symbols.txt; sourceTree = "<group>"; };
 		F81137E328DB13F200F5E54C /* build-xcframework.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = "build-xcframework.sh"; path = "publish/build-xcframework.sh"; sourceTree = "<group>"; };
 		F8128BAA29E00563001DC8E3 /* SLSDiagnosisProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLSDiagnosisProtocol.h; sourceTree = "<group>"; };
+		F8128F5B2ABAD81F0091B556 /* AliyunLogOtlpExporter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AliyunLogOtlpExporter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F8128F702ABAD86F0091B556 /* AliyunLogOTelCommon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AliyunLogOTelCommon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F8128F722ABAD8BC0091B556 /* Utdid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utdid.swift; sourceTree = "<group>"; };
+		F8128F732ABAD8BC0091B556 /* AttributesHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttributesHelper.swift; sourceTree = "<group>"; };
+		F8128F742ABAD8BC0091B556 /* ConfigurationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationManager.swift; sourceTree = "<group>"; };
+		F8128F752ABAD8BC0091B556 /* DeviceUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceUtils.swift; sourceTree = "<group>"; };
+		F8128F7B2ABADA250091B556 /* OtlpSLSSpanExporterBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtlpSLSSpanExporterBuilder.swift; sourceTree = "<group>"; };
+		F8128F7C2ABADA250091B556 /* OtlpSLSSpanExporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtlpSLSSpanExporter.swift; sourceTree = "<group>"; };
+		F8128F7D2ABADA250091B556 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F8128F862ABADC230091B556 /* OpenTelemetryApi.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = OpenTelemetryApi.xcframework; sourceTree = "<group>"; };
+		F8128F892ABADC300091B556 /* OpenTelemetrySdk.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = OpenTelemetrySdk.xcframework; sourceTree = "<group>"; };
+		F8128FA72ABAE12F0091B556 /* CrashReporterOTel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrashReporterOTel.swift; sourceTree = "<group>"; };
+		F8128FA82ABAE12F0091B556 /* CrashReporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrashReporter.swift; sourceTree = "<group>"; };
+		F8128FA92ABAE12F0091B556 /* LogParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogParser.swift; sourceTree = "<group>"; };
+		F8128FAA2ABAE12F0091B556 /* CrashFileHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrashFileHelper.swift; sourceTree = "<group>"; };
+		F8128FAB2ABAE12F0091B556 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F8128FC22ABAE19C0091B556 /* AliyunLogCrashReporter2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AliyunLogCrashReporter2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F81290002ABAE26C0091B556 /* WPKMobiWrapper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WPKMobiWrapper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F81290052ABAE2F90091B556 /* WPKMobiWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPKMobiWrapper.h; sourceTree = "<group>"; };
+		F81290062ABAE2F90091B556 /* WPKMobiWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPKMobiWrapper.m; sourceTree = "<group>"; };
+		F81290072ABAE2F90091B556 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F820294528C5A3AF00A79810 /* strip_symbols.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = strip_symbols.sh; path = publish/strip_symbols.sh; sourceTree = "<group>"; };
 		F8255A042976715D00411DAD /* SLSRecordableSpan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLSRecordableSpan.h; sourceTree = "<group>"; };
 		F8255A052976715D00411DAD /* SLSKeyValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLSKeyValue.h; sourceTree = "<group>"; };
@@ -560,6 +677,43 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F8128F552ABAD81F0091B556 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F8128F8A2ABADC310091B556 /* OpenTelemetrySdk.xcframework in Frameworks */,
+				F8128F872ABADC230091B556 /* OpenTelemetryApi.xcframework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F8128F6A2ABAD86F0091B556 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F8128F8B2ABADC310091B556 /* OpenTelemetrySdk.xcframework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F8128FBB2ABAE19C0091B556 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F8128FBC2ABAE19C0091B556 /* OpenTelemetrySdk.xcframework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F8128FF62ABAE26B0091B556 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F81290022ABAE2CD0091B556 /* WPKMobi.xcframework in Frameworks */,
+				F8128FF72ABAE26B0091B556 /* CoreGraphics.framework in Frameworks */,
+				F8128FF82ABAE26B0091B556 /* SystemConfiguration.framework in Frameworks */,
+				F8128FF92ABAE26B0091B556 /* libc++.tbd in Frameworks */,
+				F8128FFA2ABAE26B0091B556 /* libz.tbd in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F834A15328D3116300000F72 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -686,15 +840,21 @@
 				F820294528C5A3AF00A79810 /* strip_symbols.sh */,
 				F81137E328DB13F200F5E54C /* build-xcframework.sh */,
 				F8E05CFC297680EC002CD256 /* AliyunLogProducer */,
+				F8128F852ABADC230091B556 /* OpenTelemetryApi */,
+				F8128F882ABADC300091B556 /* OpenTelemetrySdk */,
 				F8F6A9AE28ABBBDB0070B023 /* OT */,
 				F8099048292DCCEF0000DEE9 /* OTSwift */,
+				F8128F712ABAD8BC0091B556 /* OTelCommon */,
+				F8128F7A2ABADA250091B556 /* OtlpExporter */,
 				F8F6AA5328AC7BCC0070B023 /* Core */,
 				F8E74BA328ACAE71000609C3 /* CrashReporter */,
+				F8128FA62ABAE12F0091B556 /* CrashReporter2 */,
 				F8F09C1228ACC48C0086A714 /* NetworkDiagnosis */,
 				F834A13F28D3115C00000F72 /* Trace */,
 				F838F0BA2976795C001F1275 /* Instrumentation */,
 				F878289028B5FC3800F3D2B5 /* Unity4SLS */,
 				F8A3CB9229FBAEEF00E4FA2C /* SLSIPA4Unity */,
+				F81290032ABAE2F90091B556 /* WPKMobiWrapper */,
 				9D984DB32520A9B7009DE4FE /* Products */,
 				9D0CAEED252177D800A4985A /* Frameworks */,
 			);
@@ -713,6 +873,10 @@
 				F8099046292DCC5E0000DEE9 /* AliyunLogOTSwift.framework */,
 				F838F10B29767993001F1275 /* AliyunLogURLSession.framework */,
 				F8A3CB9129FBAE9100E4FA2C /* libSLSIPA4Unity.a */,
+				F8128F5B2ABAD81F0091B556 /* AliyunLogOtlpExporter.framework */,
+				F8128F702ABAD86F0091B556 /* AliyunLogOTelCommon.framework */,
+				F8128FC22ABAE19C0091B556 /* AliyunLogCrashReporter2.framework */,
+				F81290002ABAE26C0091B556 /* WPKMobiWrapper.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -735,6 +899,79 @@
 			);
 			name = exported_symbols;
 			path = publish/exported_symbols;
+			sourceTree = "<group>";
+		};
+		F8128F712ABAD8BC0091B556 /* OTelCommon */ = {
+			isa = PBXGroup;
+			children = (
+				F8128F722ABAD8BC0091B556 /* Utdid.swift */,
+				F8128F732ABAD8BC0091B556 /* AttributesHelper.swift */,
+				F8128F742ABAD8BC0091B556 /* ConfigurationManager.swift */,
+				F8128F752ABAD8BC0091B556 /* DeviceUtils.swift */,
+			);
+			name = OTelCommon;
+			path = Sources/OTelCommon;
+			sourceTree = "<group>";
+		};
+		F8128F7A2ABADA250091B556 /* OtlpExporter */ = {
+			isa = PBXGroup;
+			children = (
+				F8128F7B2ABADA250091B556 /* OtlpSLSSpanExporterBuilder.swift */,
+				F8128F7C2ABADA250091B556 /* OtlpSLSSpanExporter.swift */,
+				F8128F7D2ABADA250091B556 /* Info.plist */,
+			);
+			name = OtlpExporter;
+			path = Sources/OtlpExporter;
+			sourceTree = "<group>";
+		};
+		F8128F852ABADC230091B556 /* OpenTelemetryApi */ = {
+			isa = PBXGroup;
+			children = (
+				F8128F862ABADC230091B556 /* OpenTelemetryApi.xcframework */,
+			);
+			name = OpenTelemetryApi;
+			path = Sources/OpenTelemetryApi;
+			sourceTree = "<group>";
+		};
+		F8128F882ABADC300091B556 /* OpenTelemetrySdk */ = {
+			isa = PBXGroup;
+			children = (
+				F8128F892ABADC300091B556 /* OpenTelemetrySdk.xcframework */,
+			);
+			name = OpenTelemetrySdk;
+			path = Sources/OpenTelemetrySdk;
+			sourceTree = "<group>";
+		};
+		F8128FA62ABAE12F0091B556 /* CrashReporter2 */ = {
+			isa = PBXGroup;
+			children = (
+				F8128FA72ABAE12F0091B556 /* CrashReporterOTel.swift */,
+				F8128FA82ABAE12F0091B556 /* CrashReporter.swift */,
+				F8128FA92ABAE12F0091B556 /* LogParser.swift */,
+				F8128FAA2ABAE12F0091B556 /* CrashFileHelper.swift */,
+				F8128FAB2ABAE12F0091B556 /* Info.plist */,
+			);
+			name = CrashReporter2;
+			path = Sources/CrashReporter2;
+			sourceTree = "<group>";
+		};
+		F81290032ABAE2F90091B556 /* WPKMobiWrapper */ = {
+			isa = PBXGroup;
+			children = (
+				F81290042ABAE2F90091B556 /* include */,
+				F81290062ABAE2F90091B556 /* WPKMobiWrapper.m */,
+				F81290072ABAE2F90091B556 /* Info.plist */,
+			);
+			name = WPKMobiWrapper;
+			path = Sources/WPKMobiWrapper;
+			sourceTree = "<group>";
+		};
+		F81290042ABAE2F90091B556 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				F81290052ABAE2F90091B556 /* WPKMobiWrapper.h */,
+			);
+			path = include;
 			sourceTree = "<group>";
 		};
 		F8255A032976715D00411DAD /* include */ = {
@@ -1157,6 +1394,35 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F8128F4F2ABAD81F0091B556 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F8128F642ABAD86F0091B556 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F8128FB52ABAE19C0091B556 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F8128FD12ABAE26B0091B556 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F81290082ABAE2F90091B556 /* WPKMobiWrapper.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F834A14B28D3116300000F72 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -1287,6 +1553,87 @@
 			name = AliyunLogOTSwift;
 			productName = AliyunLogProducer;
 			productReference = F8099046292DCC5E0000DEE9 /* AliyunLogOTSwift.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		F8128F482ABAD81F0091B556 /* AliyunLogOtlpExporter */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F8128F582ABAD81F0091B556 /* Build configuration list for PBXNativeTarget "AliyunLogOtlpExporter" */;
+			buildPhases = (
+				F8128F4F2ABAD81F0091B556 /* Headers */,
+				F8128F502ABAD81F0091B556 /* Sources */,
+				F8128F552ABAD81F0091B556 /* Frameworks */,
+				F8128F562ABAD81F0091B556 /* Resources */,
+				F8128F572ABAD81F0091B556 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F8128F912ABADFB80091B556 /* PBXTargetDependency */,
+				F8128F8F2ABADEC30091B556 /* PBXTargetDependency */,
+			);
+			name = AliyunLogOtlpExporter;
+			productName = AliyunLogProducer;
+			productReference = F8128F5B2ABAD81F0091B556 /* AliyunLogOtlpExporter.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		F8128F5D2ABAD86F0091B556 /* AliyunLogOTelCommon */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F8128F6D2ABAD86F0091B556 /* Build configuration list for PBXNativeTarget "AliyunLogOTelCommon" */;
+			buildPhases = (
+				F8128F642ABAD86F0091B556 /* Headers */,
+				F8128F652ABAD86F0091B556 /* Sources */,
+				F8128F6A2ABAD86F0091B556 /* Frameworks */,
+				F8128F6B2ABAD86F0091B556 /* Resources */,
+				F8128F6C2ABAD86F0091B556 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AliyunLogOTelCommon;
+			productName = AliyunLogProducer;
+			productReference = F8128F702ABAD86F0091B556 /* AliyunLogOTelCommon.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		F8128FB42ABAE19C0091B556 /* AliyunLogCrashReporter2 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F8128FBF2ABAE19C0091B556 /* Build configuration list for PBXNativeTarget "AliyunLogCrashReporter2" */;
+			buildPhases = (
+				F8128FB52ABAE19C0091B556 /* Headers */,
+				F8128FB62ABAE19C0091B556 /* Sources */,
+				F8128FBB2ABAE19C0091B556 /* Frameworks */,
+				F8128FBD2ABAE19C0091B556 /* Resources */,
+				F8128FBE2ABAE19C0091B556 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F812900C2ABAE32A0091B556 /* PBXTargetDependency */,
+				F8128FC92ABAE1FF0091B556 /* PBXTargetDependency */,
+				F8128FCB2ABAE1FF0091B556 /* PBXTargetDependency */,
+			);
+			name = AliyunLogCrashReporter2;
+			productName = AliyunLogProducer;
+			productReference = F8128FC22ABAE19C0091B556 /* AliyunLogCrashReporter2.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		F8128FCC2ABAE26B0091B556 /* WPKMobiWrapper */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F8128FFD2ABAE26B0091B556 /* Build configuration list for PBXNativeTarget "WPKMobiWrapper" */;
+			buildPhases = (
+				F8128FD12ABAE26B0091B556 /* Headers */,
+				F8128FE52ABAE26B0091B556 /* Sources */,
+				F8128FF62ABAE26B0091B556 /* Frameworks */,
+				F8128FFB2ABAE26B0091B556 /* Resources */,
+				F8128FFC2ABAE26B0091B556 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WPKMobiWrapper;
+			productName = AliyunLogProducer;
+			productReference = F81290002ABAE26C0091B556 /* WPKMobiWrapper.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		F834A14A28D3116300000F72 /* AliyunLogTrace */ = {
@@ -1484,13 +1831,17 @@
 				9D984DB12520A9B7009DE4FE /* AliyunLogProducer */,
 				F8F6A96428ABBB730070B023 /* AliyunLogOT */,
 				F809901F292DCC5E0000DEE9 /* AliyunLogOTSwift */,
+				F8128F482ABAD81F0091B556 /* AliyunLogOtlpExporter */,
+				F8128F5D2ABAD86F0091B556 /* AliyunLogOTelCommon */,
 				F8F6AA3128AC7B6F0070B023 /* AliyunLogCore */,
 				F8696C1027F0066D00EF0020 /* AliyunLogCrashReporter */,
+				F8128FB42ABAE19C0091B556 /* AliyunLogCrashReporter2 */,
 				F84F8ACF2814E1180038A46E /* AliyunLogNetworkDiagnosis */,
 				F834A14A28D3116300000F72 /* AliyunLogTrace */,
 				F838F0C129767993001F1275 /* AliyunLogURLSession */,
 				F87828C928B6089D00F3D2B5 /* Unity4SLS */,
 				F8A3CB8929FBAE9100E4FA2C /* SLSIPA4Unity */,
+				F8128FCC2ABAE26B0091B556 /* WPKMobiWrapper */,
 			);
 		};
 /* End PBXProject section */
@@ -1504,6 +1855,34 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		F8099041292DCC5E0000DEE9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F8128F562ABAD81F0091B556 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F8128F6B2ABAD86F0091B556 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F8128FBD2ABAE19C0091B556 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F8128FFB2ABAE26B0091B556 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1595,6 +1974,45 @@
 			buildActionMask = 2147483647;
 			files = (
 				F8255A3B297672CC00411DAD /* ActivityContextManager.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F8128F502ABAD81F0091B556 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F8128F7F2ABADA250091B556 /* OtlpSLSSpanExporter.swift in Sources */,
+				F8128F7E2ABADA250091B556 /* OtlpSLSSpanExporterBuilder.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F8128F652ABAD86F0091B556 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F8128F762ABAD8BD0091B556 /* Utdid.swift in Sources */,
+				F8128F772ABAD8BD0091B556 /* AttributesHelper.swift in Sources */,
+				F8128F782ABAD8BD0091B556 /* ConfigurationManager.swift in Sources */,
+				F8128F792ABAD8BD0091B556 /* DeviceUtils.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F8128FB62ABAE19C0091B556 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F8128FC42ABAE1E00091B556 /* CrashReporterOTel.swift in Sources */,
+				F8128FC52ABAE1E00091B556 /* CrashReporter.swift in Sources */,
+				F8128FC62ABAE1E00091B556 /* LogParser.swift in Sources */,
+				F8128FC72ABAE1E00091B556 /* CrashFileHelper.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F8128FE52ABAE26B0091B556 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F81290092ABAE2F90091B556 /* WPKMobiWrapper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1709,6 +2127,31 @@
 			isa = PBXTargetDependency;
 			target = F809901F292DCC5E0000DEE9 /* AliyunLogOTSwift */;
 			targetProxy = F8099051292DCF9B0000DEE9 /* PBXContainerItemProxy */;
+		};
+		F8128F8F2ABADEC30091B556 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9D984DB12520A9B7009DE4FE /* AliyunLogProducer */;
+			targetProxy = F8128F8E2ABADEC30091B556 /* PBXContainerItemProxy */;
+		};
+		F8128F912ABADFB80091B556 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F8128F5D2ABAD86F0091B556 /* AliyunLogOTelCommon */;
+			targetProxy = F8128F902ABADFB80091B556 /* PBXContainerItemProxy */;
+		};
+		F8128FC92ABAE1FF0091B556 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F8128F5D2ABAD86F0091B556 /* AliyunLogOTelCommon */;
+			targetProxy = F8128FC82ABAE1FF0091B556 /* PBXContainerItemProxy */;
+		};
+		F8128FCB2ABAE1FF0091B556 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F8128F482ABAD81F0091B556 /* AliyunLogOtlpExporter */;
+			targetProxy = F8128FCA2ABAE1FF0091B556 /* PBXContainerItemProxy */;
+		};
+		F812900C2ABAE32A0091B556 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F8128FCC2ABAE26B0091B556 /* WPKMobiWrapper */;
+			targetProxy = F812900B2ABAE32A0091B556 /* PBXContainerItemProxy */;
 		};
 		F838F07C29767620001F1275 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -2075,6 +2518,467 @@
 				SYSTEM_HEADER_SEARCH_PATHS = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TVOS_DEPLOYMENT_TARGET = 10.0;
+				VALIDATE_WORKSPACE = YES;
+			};
+			name = Release;
+		};
+		F8128F592ABAD81F0091B556 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Manual;
+				COPY_PHASE_STRIP = YES;
+				CURRENT_PROJECT_VERSION = 310;
+				DEAD_CODE_STRIPPING = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AliyunLogProducer/CrashReporter",
+					"$(PROJECT_DIR)/AliyunLogProducer/NetworkDiagnosis",
+					"$(PROJECT_DIR)/AliyunLogProducer/build/iphoneos",
+					"$(PROJECT_DIR)/AliyunLogProducer/build/AliyunLogProducer",
+					"$(PROJECT_DIR)/AliyunLogProducer/build",
+					"$(PROJECT_DIR)/AliyunLogProducer/build/iphonesimulator",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = "$(SRCROOT)/Sources/OtlpExporter/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LINK_WITH_STANDARD_LIBRARIES = NO;
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MARKETING_VERSION = 3.1.0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = com.aysls.cocoa.producer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "watchsimulator watchos macosx iphonesimulator iphoneos driverkit appletvsimulator appletvos";
+				SUPPORTS_MACCATALYST = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				SYSTEM_HEADER_SEARCH_PATHS = "";
+				TARGETED_DEVICE_FAMILY = "1,2,3,6";
+				TVOS_DEPLOYMENT_TARGET = 10.0;
+				VALIDATE_WORKSPACE = YES;
+			};
+			name = Debug;
+		};
+		F8128F5A2ABAD81F0091B556 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Manual;
+				COPY_PHASE_STRIP = YES;
+				CURRENT_PROJECT_VERSION = 310;
+				DEAD_CODE_STRIPPING = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DEPLOYMENT_POSTPROCESSING = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AliyunLogProducer/CrashReporter",
+					"$(PROJECT_DIR)/AliyunLogProducer/NetworkDiagnosis",
+					"$(PROJECT_DIR)/AliyunLogProducer/build/iphoneos",
+					"$(PROJECT_DIR)/AliyunLogProducer/build/AliyunLogProducer",
+					"$(PROJECT_DIR)/AliyunLogProducer/build",
+					"$(PROJECT_DIR)/AliyunLogProducer/build/iphonesimulator",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = "$(SRCROOT)/Sources/OtlpExporter/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LINK_WITH_STANDARD_LIBRARIES = NO;
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MARKETING_VERSION = 3.1.0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = com.aysls.cocoa.producer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "watchsimulator watchos macosx iphonesimulator iphoneos driverkit appletvsimulator appletvos";
+				SUPPORTS_MACCATALYST = YES;
+				SWIFT_VERSION = 5.0;
+				SYSTEM_HEADER_SEARCH_PATHS = "";
+				TARGETED_DEVICE_FAMILY = "1,2,3,6";
+				TVOS_DEPLOYMENT_TARGET = 10.0;
+				VALIDATE_WORKSPACE = YES;
+			};
+			name = Release;
+		};
+		F8128F6E2ABAD86F0091B556 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Manual;
+				COPY_PHASE_STRIP = YES;
+				CURRENT_PROJECT_VERSION = 310;
+				DEAD_CODE_STRIPPING = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AliyunLogProducer/CrashReporter",
+					"$(PROJECT_DIR)/AliyunLogProducer/NetworkDiagnosis",
+					"$(PROJECT_DIR)/AliyunLogProducer/build/iphoneos",
+					"$(PROJECT_DIR)/AliyunLogProducer/build/AliyunLogProducer",
+					"$(PROJECT_DIR)/AliyunLogProducer/build",
+					"$(PROJECT_DIR)/AliyunLogProducer/build/iphonesimulator",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = "$(SRCROOT)/Sources/OTelCommon/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LINK_WITH_STANDARD_LIBRARIES = NO;
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MARKETING_VERSION = 3.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aysls.cocoa.producer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "watchsimulator watchos macosx iphonesimulator iphoneos driverkit appletvsimulator appletvos";
+				SUPPORTS_MACCATALYST = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				SYSTEM_HEADER_SEARCH_PATHS = "";
+				TARGETED_DEVICE_FAMILY = "1,2,3,6";
+				TVOS_DEPLOYMENT_TARGET = 10.0;
+				VALIDATE_WORKSPACE = YES;
+			};
+			name = Debug;
+		};
+		F8128F6F2ABAD86F0091B556 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Manual;
+				COPY_PHASE_STRIP = YES;
+				CURRENT_PROJECT_VERSION = 310;
+				DEAD_CODE_STRIPPING = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DEPLOYMENT_POSTPROCESSING = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AliyunLogProducer/CrashReporter",
+					"$(PROJECT_DIR)/AliyunLogProducer/NetworkDiagnosis",
+					"$(PROJECT_DIR)/AliyunLogProducer/build/iphoneos",
+					"$(PROJECT_DIR)/AliyunLogProducer/build/AliyunLogProducer",
+					"$(PROJECT_DIR)/AliyunLogProducer/build",
+					"$(PROJECT_DIR)/AliyunLogProducer/build/iphonesimulator",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = "$(SRCROOT)/Sources/OTelCommon/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LINK_WITH_STANDARD_LIBRARIES = NO;
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MARKETING_VERSION = 3.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aysls.cocoa.producer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "watchsimulator watchos macosx iphonesimulator iphoneos driverkit appletvsimulator appletvos";
+				SUPPORTS_MACCATALYST = YES;
+				SWIFT_VERSION = 5.0;
+				SYSTEM_HEADER_SEARCH_PATHS = "";
+				TARGETED_DEVICE_FAMILY = "1,2,3,6";
+				TVOS_DEPLOYMENT_TARGET = 10.0;
+				VALIDATE_WORKSPACE = YES;
+			};
+			name = Release;
+		};
+		F8128FC02ABAE19C0091B556 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Manual;
+				COPY_PHASE_STRIP = YES;
+				CURRENT_PROJECT_VERSION = 310;
+				DEAD_CODE_STRIPPING = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AliyunLogProducer/CrashReporter",
+					"$(PROJECT_DIR)/AliyunLogProducer/NetworkDiagnosis",
+					"$(PROJECT_DIR)/AliyunLogProducer/build/iphoneos",
+					"$(PROJECT_DIR)/AliyunLogProducer/build/AliyunLogProducer",
+					"$(PROJECT_DIR)/AliyunLogProducer/build",
+					"$(PROJECT_DIR)/AliyunLogProducer/build/iphonesimulator",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = "$(SRCROOT)/Sources/CrashReporter2/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LINK_WITH_STANDARD_LIBRARIES = NO;
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MARKETING_VERSION = 3.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aysls.cocoa.producer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "watchsimulator watchos macosx iphonesimulator iphoneos driverkit appletvsimulator appletvos";
+				SUPPORTS_MACCATALYST = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				SYSTEM_HEADER_SEARCH_PATHS = "";
+				TARGETED_DEVICE_FAMILY = "1,2,3,6";
+				TVOS_DEPLOYMENT_TARGET = 10.0;
+				VALIDATE_WORKSPACE = YES;
+			};
+			name = Debug;
+		};
+		F8128FC12ABAE19C0091B556 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Manual;
+				COPY_PHASE_STRIP = YES;
+				CURRENT_PROJECT_VERSION = 310;
+				DEAD_CODE_STRIPPING = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DEPLOYMENT_POSTPROCESSING = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AliyunLogProducer/CrashReporter",
+					"$(PROJECT_DIR)/AliyunLogProducer/NetworkDiagnosis",
+					"$(PROJECT_DIR)/AliyunLogProducer/build/iphoneos",
+					"$(PROJECT_DIR)/AliyunLogProducer/build/AliyunLogProducer",
+					"$(PROJECT_DIR)/AliyunLogProducer/build",
+					"$(PROJECT_DIR)/AliyunLogProducer/build/iphonesimulator",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = "$(SRCROOT)/Sources/CrashReporter2/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LINK_WITH_STANDARD_LIBRARIES = NO;
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MARKETING_VERSION = 3.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aysls.cocoa.producer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "watchsimulator watchos macosx iphonesimulator iphoneos driverkit appletvsimulator appletvos";
+				SUPPORTS_MACCATALYST = YES;
+				SWIFT_VERSION = 5.0;
+				SYSTEM_HEADER_SEARCH_PATHS = "";
+				TARGETED_DEVICE_FAMILY = "1,2,3,6";
+				TVOS_DEPLOYMENT_TARGET = 10.0;
+				VALIDATE_WORKSPACE = YES;
+			};
+			name = Release;
+		};
+		F8128FFE2ABAE26B0091B556 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CODE_SIGN_STYLE = Manual;
+				COPY_PHASE_STRIP = YES;
+				CURRENT_PROJECT_VERSION = 310;
+				DEAD_CODE_STRIPPING = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AliyunLogProducer/CrashReporter",
+					"$(PROJECT_DIR)/AliyunLogProducer/NetworkDiagnosis",
+					"$(PROJECT_DIR)/AliyunLogProducer/build/iphoneos",
+					"$(PROJECT_DIR)/AliyunLogProducer/build/AliyunLogProducer",
+					"$(PROJECT_DIR)/AliyunLogProducer/build",
+					"$(PROJECT_DIR)/AliyunLogProducer/build/iphonesimulator",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = "$(SRCROOT)/Sources/WPKMobiWrapper/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LINK_WITH_STANDARD_LIBRARIES = NO;
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MARKETING_VERSION = 3.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aysls.cocoa.core;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "watchsimulator watchos macosx iphonesimulator iphoneos driverkit appletvsimulator appletvos";
+				SUPPORTS_MACCATALYST = YES;
+				SYSTEM_HEADER_SEARCH_PATHS = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				VALIDATE_WORKSPACE = YES;
+			};
+			name = Debug;
+		};
+		F8128FFF2ABAE26B0091B556 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CODE_SIGN_STYLE = Manual;
+				COPY_PHASE_STRIP = YES;
+				CURRENT_PROJECT_VERSION = 310;
+				DEAD_CODE_STRIPPING = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DEPLOYMENT_POSTPROCESSING = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AliyunLogProducer/CrashReporter",
+					"$(PROJECT_DIR)/AliyunLogProducer/NetworkDiagnosis",
+					"$(PROJECT_DIR)/AliyunLogProducer/build/iphoneos",
+					"$(PROJECT_DIR)/AliyunLogProducer/build/AliyunLogProducer",
+					"$(PROJECT_DIR)/AliyunLogProducer/build",
+					"$(PROJECT_DIR)/AliyunLogProducer/build/iphonesimulator",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = "$(SRCROOT)/Sources/WPKMobiWrapper/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LINK_WITH_STANDARD_LIBRARIES = NO;
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MARKETING_VERSION = 3.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aysls.cocoa.core;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "watchsimulator watchos macosx iphonesimulator iphoneos driverkit appletvsimulator appletvos";
+				SUPPORTS_MACCATALYST = YES;
+				SYSTEM_HEADER_SEARCH_PATHS = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TVOS_DEPLOYMENT_TARGET = 9.0;
 				VALIDATE_WORKSPACE = YES;
 			};
 			name = Release;
@@ -2791,6 +3695,42 @@
 			buildConfigurations = (
 				F8099044292DCC5E0000DEE9 /* Debug */,
 				F8099045292DCC5E0000DEE9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F8128F582ABAD81F0091B556 /* Build configuration list for PBXNativeTarget "AliyunLogOtlpExporter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F8128F592ABAD81F0091B556 /* Debug */,
+				F8128F5A2ABAD81F0091B556 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F8128F6D2ABAD86F0091B556 /* Build configuration list for PBXNativeTarget "AliyunLogOTelCommon" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F8128F6E2ABAD86F0091B556 /* Debug */,
+				F8128F6F2ABAD86F0091B556 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F8128FBF2ABAE19C0091B556 /* Build configuration list for PBXNativeTarget "AliyunLogCrashReporter2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F8128FC02ABAE19C0091B556 /* Debug */,
+				F8128FC12ABAE19C0091B556 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F8128FFD2ABAE26B0091B556 /* Build configuration list for PBXNativeTarget "WPKMobiWrapper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F8128FFE2ABAE26B0091B556 /* Debug */,
+				F8128FFF2ABAE26B0091B556 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

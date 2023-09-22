@@ -16,7 +16,11 @@
 
 import Foundation
 import AliyunLogOTelCommon
+#if canImport(AliyunLogCrashReporter.WPKMobiWrapper)
+import AliyunLogCrashReporter.WPKMobiWrapper
+#else
 import WPKMobiWrapper
+#endif
 
 typealias DirectoryChangedBlock = (String) -> Void
 

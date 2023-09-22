@@ -18,6 +18,10 @@ def all_example_pods
   pod 'AliyunLogProducer/NetworkDiagnosis', :path => './'
   pod 'AliyunLogProducer/Trace', :path => './'
   pod 'AliyunLogProducer/URLSessionInstrumentation', :path => './'
+  pod 'AliyunLogOTelCommon', :path => './'
+  pod 'AliyunLogOtlpExporter', :path => './'
+  pod 'AliyunLogCrashReporter', :path => './'
+#  pod 'AliyunLogProducer/CrashReporter2', :path => './'
 end
 
 def all_test_pods

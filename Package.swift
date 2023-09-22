@@ -18,9 +18,10 @@ let package = Package(
         .library(name: "AliyunLogCrashReporter", targets: ["AliyunLogCrashReporter"]),
         .library(name: "AliyunLogNetworkDiagnosis", targets: ["AliyunLogNetworkDiagnosis"]),
         .library(name: "AliyunLogOtlpExporter", targets: ["AliyunLogOtlpExporter"]),
-        .library(name: "AliyunLogCrashReporter2", targets: ["AliyunLogCrashReporter2", "WPKMobi"]),
+        .library(name: "AliyunLogCrashReporter2", targets: ["AliyunLogCrashReporter2", "WPKMobiWrapper"]),
         .library(name: "AliyunLogOTelCommon", targets: ["AliyunLogOTelCommon"]),
-        .library(name: "WPKMobi", targets: ["WPKMobi"])
+//        .library(name: "WPKMobi", targets: ["WPKMobi"]),
+//        .library(name: "AliNetworkDiagnosis", targets: ["AliNetworkDiagnosis"])
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -34,8 +35,7 @@ let package = Package(
             name: "aliyun-log-c-sdk",
             path: "Sources/",
             sources: ["aliyun-log-c-sdk/"],
-            publicHeadersPath: "aliyun-log-c-sdk/include/",
-            linkerSettings: [.linkedLibrary("z")]
+            publicHeadersPath: "aliyun-log-c-sdk/include/"
         ),
         .target(
             name: "AliyunLogProducer",
@@ -107,7 +107,7 @@ let package = Package(
         ),
         .target(
             name: "AliyunLogCrashReporter",
-            dependencies: ["AliyunLogCore", "AliyunLogOT", "AliyunLogTrace", "WPKMobi"],
+            dependencies: ["AliyunLogCore", "AliyunLogOT", "AliyunLogTrace"],
             path: "Sources",
             sources: [
                 "CrashReporter/"
@@ -135,7 +135,7 @@ let package = Package(
         ),
         .target(
             name: "AliyunLogNetworkDiagnosis",
-            dependencies: ["AliyunLogCore", "AliyunLogOT", "AliNetworkDiagnosis"],
+            dependencies: ["AliyunLogCore", "AliyunLogOT"],
             path: "Sources",
             sources: [
                 "NetworkDiagnosis/"
@@ -196,8 +196,14 @@ let package = Package(
             name: "AliNetworkDiagnosis",
             path: "Sources/AliNetworkDiagnosis/AliNetworkDiagnosis.xcframework"
         ),
-//        .testTarget(
-//            name: "aliyun-log-ios-sdk3Tests",
-//            dependencies: ["aliyun-log-ios-sdk3"]),
+//        .binaryTarget(
+//            name: "OpenTelemetryApi",
+//            path: "Sources/OpenTelemetryApi/OpenTelemetryApi.xcframework"
+//        ),
+//
+//        .binaryTarget(
+//            name: "OpenTelemetrySdk",
+//            path: "Sources/OpenTelemetrySdk/OpenTelemetrySdk.xcframework"
+//        )
     ]
 )

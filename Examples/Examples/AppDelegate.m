@@ -8,8 +8,12 @@
 #import "AppDelegate.h"
 #import "DemoUtils.h"
 #import "MainViewController.h"
+#import "SLSUtdid.h"
 
 #import <AliyunLogProducer/AliyunLogProducer.h>
+
+@import AliyunLogCrashReporter;
+@import AliyunLogOTelCommon;
 
 
 @interface SpanProvider : NSObject<SLSSpanProviderProtocol>
@@ -141,6 +145,26 @@
     SLSLogV(@"pluginAppId: %@", [utils pluginAppId]);
     SLSLogV(@"accessKeyId: %@", [utils accessKeyId]);
     SLSLogV(@"accessKeySecret: %@", [utils accessKeySecret]);
+    
+    [ConfigurationManager.shared setProviderWithAccessKeyProvider:^AccessKey * _Nullable(NSString * _Nonnull scope) {
+        return [AccessKey initWithAccessKeyId:utils.accessKeyId
+                              accessKeySecret:utils.accessKeySecret
+                        accessKeySecuritToken:@""
+        ];
+    } workspaceProvider:^Workspace * _Nullable(NSString * _Nonnull scope) {
+        return [Workspace initWithEndpoint:@"https://cn-hangzhou.log.aliyuncs.com"
+                                   project:@"sls-aysls-rum-mobile"
+                                instanceId:@"yuanbo-test-007"
+        ];
+    } environmentProvider:^Environment * _Nullable(NSString * _Nonnull scope) {
+        return [Environment initWithEnv:@"pub" uid:@"123456780" utdid:[SLSUtdid getUtdid] channel:@""];
+    }];
+    
+    [[CrashReporter shared] initWithDebuggable:YES];
+    
+    if (YES) {
+        return YES;
+    }
     
     SLSCredentials *credentials = [SLSCredentials credentials];
     credentials.endpoint = @"https://cn-hangzhou.log.aliyuncs.com";

@@ -15,7 +15,7 @@
 	
 
 import Foundation
-import OpenTelemetryApi
+//import OpenTelemetryApi
 
 public class AttributesHelper {
     

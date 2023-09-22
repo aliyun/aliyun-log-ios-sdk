@@ -7,7 +7,7 @@
 
 #import "SLSProducer.h"
 #import "SLSNetworkDiagnosisFeature.h"
-#import "Utdid.h"
+#import "SLSUtdid.h"
 #import "NSString+SLS.h"
 #import "SLSNetworkDiagnosis.h"
 #import "TimeUtils.h"
@@ -204,7 +204,7 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
     _sender = [SLSNetworkDiagnosisSender sender:credentials feature:self];
     
     [_diagnosis preInit:networkCredentials.secretKey
-               deviceId:[[Utdid getUtdid] copy]
+               deviceId:[[SLSUtdid getUtdid] copy]
                  siteId:networkCredentials.siteId
               extension:networkCredentials.extension
     ];
@@ -234,7 +234,7 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
     }
     
     [_diagnosis init:networkCredentials.secretKey
-            deviceId:[[Utdid getUtdid] copy]
+            deviceId:[[SLSUtdid getUtdid] copy]
               siteId:networkCredentials.siteId
            extension:networkCredentials.extension];
 }
