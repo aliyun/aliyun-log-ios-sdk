@@ -39,8 +39,8 @@ Pod::Spec.new do |s|
 
   s.subspec 'AliyunLogCrashReporter' do |c|
     c.ios.deployment_target = '10.0'
-    c.tvos.deployment_target =  '10.0'
-    c.osx.deployment_target =  '10.12'
+#    c.tvos.deployment_target =  '10.0'
+#    c.osx.deployment_target =  '10.12'
     c.dependency 'AliyunLogOtlpExporter', '4.0.0-beta.1'
     c.dependency 'AliyunLogOTelCommon', '4.0.0-beta.1'
     c.dependency 'AliyunLogCrashReporter/WPKMobiWrapper', '4.0.0-beta.1'
@@ -56,20 +56,20 @@ Pod::Spec.new do |s|
   
   s.subspec 'WPKMobiWrapper' do |c|
     c.ios.deployment_target = '10.0'
-    c.tvos.deployment_target =  '10.0'
-    c.osx.deployment_target =  '10.12'
+#    c.tvos.deployment_target =  '10.0'
+#    c.osx.deployment_target =  '10.12'
     c.source_files = 'Sources/WPKMobiWrapper/**/*.{m,h}'
     c.public_header_files = 'Sources/WPKMobiWrapper/include/*.h'
     c.vendored_frameworks = 'Sources/WPKMobi/WPKMobi.xcframework'
     c.exclude_files = 'Sources/WPKMobi/WPKMobi.xcframework/**/Headers/*.h'
     
     c.ios.frameworks = "SystemConfiguration", "CoreGraphics"
-    c.tvos.frameworks = "SystemConfiguration", "CoreGraphics"
-    c.osx.frameworks = "SystemConfiguration", "Cocoa"
+#    c.tvos.frameworks = "SystemConfiguration", "CoreGraphics"
+#    c.osx.frameworks = "SystemConfiguration", "Cocoa"
     
     c.ios.libraries = "z", "c++"
-    c.tvos.libraries = "z", "c++"
-    c.osx.libraries = "z", "c++"
+#    c.tvos.libraries = "z", "c++"
+#    c.osx.libraries = "z", "c++"
 
     c.ios.pod_target_xcconfig = {
         'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64',

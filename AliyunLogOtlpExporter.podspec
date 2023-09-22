@@ -39,8 +39,8 @@ Pod::Spec.new do |s|
   
   s.subspec 'AliyunLogOtlpExporter' do |c|
     c.ios.deployment_target = '10.0'
-    c.tvos.deployment_target =  '10.0'
-    c.osx.deployment_target =  '10.12'
+#    c.tvos.deployment_target =  '10.0'
+#    c.osx.deployment_target =  '10.12'
     c.dependency 'AliyunLogProducer/Producer', '4.0.0-beta.1'
     c.dependency 'AliyunLogOTelCommon/OpenTelemetryApi', '4.0.0-beta.1'
     c.dependency 'AliyunLogOTelCommon/OpenTelemetrySdk', '4.0.0-beta.1'
