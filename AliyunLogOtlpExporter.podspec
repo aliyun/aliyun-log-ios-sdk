@@ -41,10 +41,10 @@ Pod::Spec.new do |s|
     c.ios.deployment_target = '10.0'
     c.tvos.deployment_target =  '10.0'
     c.osx.deployment_target =  '10.12'
-    c.dependency 'AliyunLogProducer/Producer'
-    c.dependency 'AliyunLogOTelCommon/OpenTelemetryApi'
-    c.dependency 'AliyunLogOTelCommon/OpenTelemetrySdk'
-    c.dependency 'AliyunLogOTelCommon/AliyunLogOTelCommon'
+    c.dependency 'AliyunLogProducer/Producer', '4.0.0-beta.1'
+    c.dependency 'AliyunLogOTelCommon/OpenTelemetryApi', '4.0.0-beta.1'
+    c.dependency 'AliyunLogOTelCommon/OpenTelemetrySdk', '4.0.0-beta.1'
+    c.dependency 'AliyunLogOTelCommon/AliyunLogOTelCommon', '4.0.0-beta.1'
     c.source_files = 'Sources/OtlpExporter/**/*.{m,h,swift}'
     c.pod_target_xcconfig = {
       'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64',

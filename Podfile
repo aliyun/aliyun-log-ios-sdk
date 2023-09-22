@@ -1,7 +1,7 @@
 # Uncomment the next line to define a global platform for your project
 # platform :ios, '10.0'
 use_frameworks!
-
+#source 'https://cdn.cocoapods.org/'
 #source 'https://github.com/aliyun-sls/Specs.git'
 
 #source_project_path = 'AliyunLogSDK'
