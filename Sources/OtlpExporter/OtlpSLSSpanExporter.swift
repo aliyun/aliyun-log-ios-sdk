@@ -46,11 +46,9 @@ open class OtlpSLSSpanExporter: NSObject, SpanExporter {
         config?.setPacketLogCount(4096)
         config?.setPacketTimeout(3000)
         config?.setMaxBufferLimit(32*1024*1024)
-        
-        //        NSArray  *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        //        NSString *Path = [[paths lastObject] stringByAppendingString:@"/log.dat"];
+
         let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
-        let path = (paths.last ?? "") + "/data"
+        let path = (paths.last ?? "") + "/sls_\(scope)_data"
         config?.setPersistent(1)
         config?.setPersistentForceFlush(isPersistentFlush ? 1 : 0)
         config?.setPersistentFilePath(path)
@@ -58,8 +56,9 @@ open class OtlpSLSSpanExporter: NSObject, SpanExporter {
         config?.setPersistentMaxFileSize(10*1024*1024)
         config?.setPersistentMaxLogCount(65536)
         
-        config?.setDropDelayLog(1)
+        config?.setDropDelayLog(0)
         config?.setDropUnauthorizedLog(0)
+//        LogProducerConfig.debug()
         
         //        let selfPointer = unsafeBitCast(self, to: UnsafeMutableRawPointer.self)
         client = LogProducerClient(logProducerConfig: config, callback: { configName, resultCode, logBytes, compressedBytes, reqId, message, rawBuffer, userParams in
