@@ -50,7 +50,7 @@ open class OtlpSLSSpanExporter: NSObject, SpanExporter {
         //        NSArray  *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
         //        NSString *Path = [[paths lastObject] stringByAppendingString:@"/log.dat"];
         let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
-        let path = paths.last ?? "" + "/data"
+        let path = (paths.last ?? "") + "/data"
         config?.setPersistent(1)
         config?.setPersistentForceFlush(isPersistentFlush ? 1 : 0)
         config?.setPersistentFilePath(path)
