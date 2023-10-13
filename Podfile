@@ -2,6 +2,12 @@
 # platform :ios, '10.0'
 use_frameworks!
 source 'https://cdn.cocoapods.org/'
+
+#集团内部仓库
+ali_source 'alibaba-specs'
+#官方镜像仓库
+ali_source 'alibaba-specs-mirror'
+
 #source 'https://github.com/aliyun-sls/Specs.git'
 
 #source_project_path = 'AliyunLogSDK'
