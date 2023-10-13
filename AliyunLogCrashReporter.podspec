@@ -22,7 +22,7 @@ Pod::Spec.new do |s|
   s.homepage         = 'https://github.com/aliyun/aliyun-log-ios-sdk'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'aliyun-log' => 'yulong.gyl@alibaba-inc.com' }
-  s.source           = { :git => 'https://github.com/aliyun/aliyun-log-ios-sdk.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://gitee.com/aliyun-sls/aliyun-log-ios-sdk.git', :tag => s.version.to_s }
   s.social_media_url = 'http://t.cn/AiRpol8C'
 
   # s.ios.deployment_target = '10.0'
