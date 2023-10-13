@@ -65,7 +65,6 @@
 		F8255A622976739D00411DAD /* SLSNoOpSender.h in Headers */ = {isa = PBXBuildFile; fileRef = F8255A402976739D00411DAD /* SLSNoOpSender.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F8255A632976739D00411DAD /* AliyunLogCore.h in Headers */ = {isa = PBXBuildFile; fileRef = F8255A412976739D00411DAD /* AliyunLogCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F8255A642976739D00411DAD /* SLSCocoa.h in Headers */ = {isa = PBXBuildFile; fileRef = F8255A422976739D00411DAD /* SLSCocoa.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F8255A652976739D00411DAD /* Utdid.h in Headers */ = {isa = PBXBuildFile; fileRef = F8255A432976739D00411DAD /* Utdid.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F8255A662976739D00411DAD /* LogProducerClient+Bricks.h in Headers */ = {isa = PBXBuildFile; fileRef = F8255A442976739D00411DAD /* LogProducerClient+Bricks.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F8255A672976739D00411DAD /* SLSFeatureProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = F8255A452976739D00411DAD /* SLSFeatureProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F8255A682976739D00411DAD /* SLSSdkSender.h in Headers */ = {isa = PBXBuildFile; fileRef = F8255A462976739D00411DAD /* SLSSdkSender.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -75,7 +74,6 @@
 		F8255A6C2976739D00411DAD /* SLSSwizzle.h in Headers */ = {isa = PBXBuildFile; fileRef = F8255A4A2976739D00411DAD /* SLSSwizzle.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F8255A6D2976739D00411DAD /* SLSUserInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = F8255A4B2976739D00411DAD /* SLSUserInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F8255A6E2976739D00411DAD /* SLSNoOpSender.m in Sources */ = {isa = PBXBuildFile; fileRef = F8255A4C2976739D00411DAD /* SLSNoOpSender.m */; };
-		F8255A6F2976739D00411DAD /* SLSDeviceUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = F8255A4D2976739D00411DAD /* SLSDeviceUtils.h */; };
 		F8255A702976739D00411DAD /* SLSStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = F8255A4E2976739D00411DAD /* SLSStorage.h */; };
 		F8255A712976739D00411DAD /* SLSAppUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = F8255A4F2976739D00411DAD /* SLSAppUtils.h */; };
 		F8255A722976739D00411DAD /* SLSUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F8255A502976739D00411DAD /* SLSUserInfo.m */; };
@@ -86,7 +84,6 @@
 		F8255A772976739D00411DAD /* SLSReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = F8255A552976739D00411DAD /* SLSReachability.m */; };
 		F8255A782976739D00411DAD /* LogProducerClient+Bricks.m in Sources */ = {isa = PBXBuildFile; fileRef = F8255A562976739D00411DAD /* LogProducerClient+Bricks.m */; };
 		F8255A792976739D00411DAD /* SLSAppUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = F8255A572976739D00411DAD /* SLSAppUtils.m */; };
-		F8255A7A2976739D00411DAD /* Utdid.m in Sources */ = {isa = PBXBuildFile; fileRef = F8255A582976739D00411DAD /* Utdid.m */; };
 		F8255A7C2976739D00411DAD /* SLSCocoa.m in Sources */ = {isa = PBXBuildFile; fileRef = F8255A5A2976739D00411DAD /* SLSCocoa.m */; };
 		F8255A7D2976739D00411DAD /* SLSNoOpFeature.m in Sources */ = {isa = PBXBuildFile; fileRef = F8255A5B2976739D00411DAD /* SLSNoOpFeature.m */; };
 		F8255A7E2976739D00411DAD /* SLSReachability.h in Headers */ = {isa = PBXBuildFile; fileRef = F8255A5C2976739D00411DAD /* SLSReachability.h */; };
@@ -203,6 +200,9 @@
 		F8E74BF628ACBD65000609C3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8E74BF528ACBD65000609C3 /* SystemConfiguration.framework */; };
 		F8E74BF828ACBD71000609C3 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F8E74BF728ACBD71000609C3 /* libc++.tbd */; };
 		F8E74BFA28ACBD78000609C3 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F8E74BF928ACBD78000609C3 /* libz.tbd */; };
+		F8ECED3C2AD630C600FF09A5 /* SLSUtdid.h in Headers */ = {isa = PBXBuildFile; fileRef = F8ECED3B2AD630C600FF09A5 /* SLSUtdid.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F8ECED3E2AD630F200FF09A5 /* SLSDeviceUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = F8ECED3D2AD630F200FF09A5 /* SLSDeviceUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F8ECED402AD6312500FF09A5 /* SLSUtdid.m in Sources */ = {isa = PBXBuildFile; fileRef = F8ECED3F2AD6312500FF09A5 /* SLSUtdid.m */; };
 		F8F6A9A328ABBB730070B023 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F80DF47C26A7037000151F7C /* CoreGraphics.framework */; };
 		F8F6A9A428ABBB730070B023 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F80DF47A26A7035E00151F7C /* SystemConfiguration.framework */; };
 		F8F6A9A528ABBB730070B023 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F80DF47826A7034E00151F7C /* libc++.tbd */; };
@@ -263,33 +263,33 @@
 			remoteGlobalIDString = F8128FCC2ABAE26B0091B556;
 			remoteInfo = WPKMobiWrapper;
 		};
-		F838F07B29767620001F1275 /* PBXContainerItemProxy */ = {
+		F8198D7D2AD64F80005162C7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9D984DA92520A9B7009DE4FE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F8F6AA3128AC7B6F0070B023;
+			remoteInfo = AliyunLogCore;
+		};
+		F8198D7F2AD64F80005162C7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9D984DA92520A9B7009DE4FE /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = F8F6A96428ABBB730070B023;
 			remoteInfo = AliyunLogOT;
 		};
-		F8896C612977F05D004CB258 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9D984DA92520A9B7009DE4FE /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = F8F6A96428ABBB730070B023;
-			remoteInfo = AliyunLogOT;
-		};
-		F8896C632977F05D004CB258 /* PBXContainerItemProxy */ = {
+		F8198D812AD64F80005162C7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9D984DA92520A9B7009DE4FE /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = F834A14A28D3116300000F72;
 			remoteInfo = AliyunLogTrace;
 		};
-		F8896C652977F06C004CB258 /* PBXContainerItemProxy */ = {
+		F838F07B29767620001F1275 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9D984DA92520A9B7009DE4FE /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = F8F6AA3128AC7B6F0070B023;
-			remoteInfo = AliyunLogCore;
+			remoteGlobalIDString = F8F6A96428ABBB730070B023;
+			remoteInfo = AliyunLogOT;
 		};
 		F8E4D2042976758000880E6F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -488,7 +488,6 @@
 		F8255A402976739D00411DAD /* SLSNoOpSender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLSNoOpSender.h; sourceTree = "<group>"; };
 		F8255A412976739D00411DAD /* AliyunLogCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AliyunLogCore.h; sourceTree = "<group>"; };
 		F8255A422976739D00411DAD /* SLSCocoa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLSCocoa.h; sourceTree = "<group>"; };
-		F8255A432976739D00411DAD /* Utdid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utdid.h; sourceTree = "<group>"; };
 		F8255A442976739D00411DAD /* LogProducerClient+Bricks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LogProducerClient+Bricks.h"; sourceTree = "<group>"; };
 		F8255A452976739D00411DAD /* SLSFeatureProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLSFeatureProtocol.h; sourceTree = "<group>"; };
 		F8255A462976739D00411DAD /* SLSSdkSender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLSSdkSender.h; sourceTree = "<group>"; };
@@ -498,7 +497,6 @@
 		F8255A4A2976739D00411DAD /* SLSSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLSSwizzle.h; sourceTree = "<group>"; };
 		F8255A4B2976739D00411DAD /* SLSUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLSUserInfo.h; sourceTree = "<group>"; };
 		F8255A4C2976739D00411DAD /* SLSNoOpSender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLSNoOpSender.m; path = Sources/Core/SLSNoOpSender.m; sourceTree = SOURCE_ROOT; };
-		F8255A4D2976739D00411DAD /* SLSDeviceUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLSDeviceUtils.h; path = Sources/Core/SLSDeviceUtils.h; sourceTree = SOURCE_ROOT; };
 		F8255A4E2976739D00411DAD /* SLSStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLSStorage.h; path = Sources/Core/SLSStorage.h; sourceTree = SOURCE_ROOT; };
 		F8255A4F2976739D00411DAD /* SLSAppUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLSAppUtils.h; path = Sources/Core/SLSAppUtils.h; sourceTree = SOURCE_ROOT; };
 		F8255A502976739D00411DAD /* SLSUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLSUserInfo.m; path = Sources/Core/SLSUserInfo.m; sourceTree = SOURCE_ROOT; };
@@ -509,7 +507,6 @@
 		F8255A552976739D00411DAD /* SLSReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLSReachability.m; path = Sources/Core/SLSReachability.m; sourceTree = SOURCE_ROOT; };
 		F8255A562976739D00411DAD /* LogProducerClient+Bricks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "LogProducerClient+Bricks.m"; path = "Sources/Core/LogProducerClient+Bricks.m"; sourceTree = SOURCE_ROOT; };
 		F8255A572976739D00411DAD /* SLSAppUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLSAppUtils.m; path = Sources/Core/SLSAppUtils.m; sourceTree = SOURCE_ROOT; };
-		F8255A582976739D00411DAD /* Utdid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Utdid.m; path = Sources/Core/Utdid.m; sourceTree = SOURCE_ROOT; };
 		F8255A592976739D00411DAD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = Sources/Core/Info.plist; sourceTree = SOURCE_ROOT; };
 		F8255A5A2976739D00411DAD /* SLSCocoa.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLSCocoa.m; path = Sources/Core/SLSCocoa.m; sourceTree = SOURCE_ROOT; };
 		F8255A5B2976739D00411DAD /* SLSNoOpFeature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLSNoOpFeature.m; path = Sources/Core/SLSNoOpFeature.m; sourceTree = SOURCE_ROOT; };
@@ -562,7 +559,7 @@
 		F88FAFDE28ACECCC00F8792A /* build-core.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = "build-core.sh"; path = "publish/build-core.sh"; sourceTree = "<group>"; };
 		F88FAFDF28ACECCC00F8792A /* build-producer.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = "build-producer.sh"; path = "publish/build-producer.sh"; sourceTree = "<group>"; };
 		F88FAFE028ACECCC00F8792A /* build-networkdiagnosis.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = "build-networkdiagnosis.sh"; path = "publish/build-networkdiagnosis.sh"; sourceTree = "<group>"; };
-		F88FAFE128ACECCC00F8792A /* AliyunLogProducer.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; name = AliyunLogProducer.podspec; path = publish/AliyunLogProducer.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		F88FAFE128ACECCC00F8792A /* AliyunLogProducer.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; name = AliyunLogProducer.podspec; path = publish/AliyunLogProducer.podspec; sourceTree = "<group>"; tabWidth = 2; };
 		F88FAFE228ACECCC00F8792A /* build-crashreporter.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = "build-crashreporter.sh"; path = "publish/build-crashreporter.sh"; sourceTree = "<group>"; };
 		F88FAFE328ACECCC00F8792A /* build-ot.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = "build-ot.sh"; path = "publish/build-ot.sh"; sourceTree = "<group>"; };
 		F88FAFE528ACF07A00F8792A /* build-all.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = "build-all.sh"; path = "publish/build-all.sh"; sourceTree = "<group>"; };
@@ -652,6 +649,9 @@
 		F8E74BF528ACBD65000609C3 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
 		F8E74BF728ACBD71000609C3 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/lib/libc++.tbd"; sourceTree = DEVELOPER_DIR; };
 		F8E74BF928ACBD78000609C3 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/lib/libz.tbd; sourceTree = DEVELOPER_DIR; };
+		F8ECED3B2AD630C600FF09A5 /* SLSUtdid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLSUtdid.h; sourceTree = "<group>"; };
+		F8ECED3D2AD630F200FF09A5 /* SLSDeviceUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLSDeviceUtils.h; sourceTree = "<group>"; };
+		F8ECED3F2AD6312500FF09A5 /* SLSUtdid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLSUtdid.m; sourceTree = "<group>"; };
 		F8F6A9AC28ABBB730070B023 /* AliyunLogOT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AliyunLogOT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8F6AA5128AC7B6F0070B023 /* AliyunLogCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AliyunLogCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8F9396A2977E92F003E4171 /* build-urlsession.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = "build-urlsession.sh"; path = "publish/build-urlsession.sh"; sourceTree = "<group>"; };
@@ -1006,16 +1006,17 @@
 				F8255A3F2976739D00411DAD /* SLSConfiguration.h */,
 				F8255A402976739D00411DAD /* SLSNoOpSender.h */,
 				F8255A422976739D00411DAD /* SLSCocoa.h */,
-				F8255A432976739D00411DAD /* Utdid.h */,
 				F8255A442976739D00411DAD /* LogProducerClient+Bricks.h */,
 				F8255A452976739D00411DAD /* SLSFeatureProtocol.h */,
 				F8255A462976739D00411DAD /* SLSSdkSender.h */,
 				F8255A472976739D00411DAD /* SLSNoOpFeature.h */,
 				F83426892A09D8540047ADAF /* SLSPrivocyUtils.h */,
 				F8255A482976739D00411DAD /* SLSCredentials.h */,
+				F8ECED3D2AD630F200FF09A5 /* SLSDeviceUtils.h */,
 				F8255A492976739D00411DAD /* SLSSenderProtocol.h */,
 				F8255A4A2976739D00411DAD /* SLSSwizzle.h */,
 				F8255A4B2976739D00411DAD /* SLSUserInfo.h */,
+				F8ECED3B2AD630C600FF09A5 /* SLSUtdid.h */,
 			);
 			name = include;
 			path = Sources/Core/include;
@@ -1323,7 +1324,6 @@
 				F8255A5A2976739D00411DAD /* SLSCocoa.m */,
 				F8255A3C2976739D00411DAD /* SLSConfiguration.m */,
 				F8255A542976739D00411DAD /* SLSCredentials.m */,
-				F8255A4D2976739D00411DAD /* SLSDeviceUtils.h */,
 				F8255A532976739D00411DAD /* SLSDeviceUtils.m */,
 				F8255A5B2976739D00411DAD /* SLSNoOpFeature.m */,
 				F8255A4C2976739D00411DAD /* SLSNoOpSender.m */,
@@ -1336,7 +1336,7 @@
 				F8255A522976739D00411DAD /* SLSStorage.m */,
 				F8255A5D2976739D00411DAD /* SLSSwizzle.m */,
 				F8255A502976739D00411DAD /* SLSUserInfo.m */,
-				F8255A582976739D00411DAD /* Utdid.m */,
+				F8ECED3F2AD6312500FF09A5 /* SLSUtdid.m */,
 			);
 			name = Core;
 			path = Sources/Core;
@@ -1499,14 +1499,14 @@
 				F8255A6B2976739D00411DAD /* SLSSenderProtocol.h in Headers */,
 				F8255A682976739D00411DAD /* SLSSdkSender.h in Headers */,
 				F8255A672976739D00411DAD /* SLSFeatureProtocol.h in Headers */,
-				F8255A652976739D00411DAD /* Utdid.h in Headers */,
 				F8255A6A2976739D00411DAD /* SLSCredentials.h in Headers */,
 				F8255A642976739D00411DAD /* SLSCocoa.h in Headers */,
 				F8255A692976739D00411DAD /* SLSNoOpFeature.h in Headers */,
 				F8255A602976739D00411DAD /* SLSSdkFeature.h in Headers */,
+				F8ECED3C2AD630C600FF09A5 /* SLSUtdid.h in Headers */,
+				F8ECED3E2AD630F200FF09A5 /* SLSDeviceUtils.h in Headers */,
 				F8255A6C2976739D00411DAD /* SLSSwizzle.h in Headers */,
 				F8255A622976739D00411DAD /* SLSNoOpSender.h in Headers */,
-				F8255A6F2976739D00411DAD /* SLSDeviceUtils.h in Headers */,
 				F8255A7E2976739D00411DAD /* SLSReachability.h in Headers */,
 				F8255A712976739D00411DAD /* SLSAppUtils.h in Headers */,
 				F8255A702976739D00411DAD /* SLSStorage.h in Headers */,
@@ -1668,9 +1668,9 @@
 			buildRules = (
 			);
 			dependencies = (
-				F8896C662977F06C004CB258 /* PBXTargetDependency */,
-				F8896C622977F05D004CB258 /* PBXTargetDependency */,
-				F8896C642977F05D004CB258 /* PBXTargetDependency */,
+				F8198D7E2AD64F80005162C7 /* PBXTargetDependency */,
+				F8198D802AD64F80005162C7 /* PBXTargetDependency */,
+				F8198D822AD64F80005162C7 /* PBXTargetDependency */,
 			);
 			name = AliyunLogURLSession;
 			productName = AliyunLogProducer;
@@ -1781,8 +1781,8 @@
 			buildRules = (
 			);
 			dependencies = (
-				F838F07C29767620001F1275 /* PBXTargetDependency */,
 				F8E4D2052976758000880E6F /* PBXTargetDependency */,
+				F838F07C29767620001F1275 /* PBXTargetDependency */,
 			);
 			name = AliyunLogCore;
 			productName = AliyunLogProducer;
@@ -2097,7 +2097,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F8255A7C2976739D00411DAD /* SLSCocoa.m in Sources */,
-				F8255A7A2976739D00411DAD /* Utdid.m in Sources */,
 				F8255A5F2976739D00411DAD /* SLSConfiguration.m in Sources */,
 				F8255A722976739D00411DAD /* SLSUserInfo.m in Sources */,
 				F8255A752976739D00411DAD /* SLSDeviceUtils.m in Sources */,
@@ -2110,6 +2109,7 @@
 				F834268C2A09D8640047ADAF /* SLSPrivocyUtils.m in Sources */,
 				F8255A762976739D00411DAD /* SLSCredentials.m in Sources */,
 				F8255A792976739D00411DAD /* SLSAppUtils.m in Sources */,
+				F8ECED402AD6312500FF09A5 /* SLSUtdid.m in Sources */,
 				F8255A7D2976739D00411DAD /* SLSNoOpFeature.m in Sources */,
 				F8255A772976739D00411DAD /* SLSReachability.m in Sources */,
 			);
@@ -2153,25 +2153,25 @@
 			target = F8128FCC2ABAE26B0091B556 /* WPKMobiWrapper */;
 			targetProxy = F812900B2ABAE32A0091B556 /* PBXContainerItemProxy */;
 		};
+		F8198D7E2AD64F80005162C7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F8F6AA3128AC7B6F0070B023 /* AliyunLogCore */;
+			targetProxy = F8198D7D2AD64F80005162C7 /* PBXContainerItemProxy */;
+		};
+		F8198D802AD64F80005162C7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F8F6A96428ABBB730070B023 /* AliyunLogOT */;
+			targetProxy = F8198D7F2AD64F80005162C7 /* PBXContainerItemProxy */;
+		};
+		F8198D822AD64F80005162C7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F834A14A28D3116300000F72 /* AliyunLogTrace */;
+			targetProxy = F8198D812AD64F80005162C7 /* PBXContainerItemProxy */;
+		};
 		F838F07C29767620001F1275 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = F8F6A96428ABBB730070B023 /* AliyunLogOT */;
 			targetProxy = F838F07B29767620001F1275 /* PBXContainerItemProxy */;
-		};
-		F8896C622977F05D004CB258 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = F8F6A96428ABBB730070B023 /* AliyunLogOT */;
-			targetProxy = F8896C612977F05D004CB258 /* PBXContainerItemProxy */;
-		};
-		F8896C642977F05D004CB258 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = F834A14A28D3116300000F72 /* AliyunLogTrace */;
-			targetProxy = F8896C632977F05D004CB258 /* PBXContainerItemProxy */;
-		};
-		F8896C662977F06C004CB258 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = F8F6AA3128AC7B6F0070B023 /* AliyunLogCore */;
-			targetProxy = F8896C652977F06C004CB258 /* PBXContainerItemProxy */;
 		};
 		F8E4D2052976758000880E6F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
