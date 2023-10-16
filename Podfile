@@ -34,9 +34,15 @@ def all_example_pods
 end
 
 def all_test_pods
-  pod 'OCMock', '3.8.1-cn'
-  pod 'Quick', '5.0.1-cn'
-  pod 'Nimble', '10.0.0-cn'
+  if ENV['build_env']
+    pod 'OCMock', '3.8.1-cn'
+    pod 'Quick', '5.0.1-cn'
+    pod 'Nimble', '10.0.0-cn'
+  else
+    pod 'OCMock', '3.8.1'
+    pod 'Quick', '5.0.1'
+    pod 'Nimble', '10.0.0'
+  end
  
 #  pod 'AliyunLogProducer', '4.0.0-beta.1', :subspecs => ['NetworkDiagnosis', 'Trace', 'URLSessionInstrumentation']
 #  pod 'AliyunLogOTelCommon', '4.0.0-beta.1'
