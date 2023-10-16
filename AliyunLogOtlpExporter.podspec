@@ -4,7 +4,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'AliyunLogOtlpExporter'
-  s.version          = '4.0.0-beta.3'
+  s.version          = '4.0.0-beta.4'
   s.summary          = 'aliyun log service ios otlp exporter.'
 
 # This description is used to generate tags and improve search results.
