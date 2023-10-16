@@ -52,7 +52,7 @@ def all_test_pods
 #  pod 'AliyunLogProducer/Core', :path => './'
 #  pod 'AliyunLogProducer/OT', :path => './'
 #  pod 'AliyunLogProducer/CrashReporter', :path => './'
-#  pod 'AliyunLogProducer/NetworkDiagnosis', :path => './'
+  pod 'AliyunLogProducer/NetworkDiagnosis', :path => './'
   pod 'AliyunLogProducer/Trace', :path => './'
   pod 'AliyunLogProducer/URLSessionInstrumentation', :path => './'
   pod 'AliyunLogOTelCommon', :path => './'
