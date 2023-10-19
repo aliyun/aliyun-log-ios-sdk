@@ -4,7 +4,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'AliyunLogOtlpExporter'
-  s.version          = '4.0.0-beta.4'
+  s.version          = '4.0.0-beta.5'
   s.summary          = 'aliyun log service ios otlp exporter.'
 
 # This description is used to generate tags and improve search results.
@@ -35,24 +35,39 @@ Pod::Spec.new do |s|
   s.swift_version = "5.0"
 #  s.xcconfig = { 'GCC_ENABLE_CPP_EXCEPTIONS' => 'YES' }
 
-  s.default_subspec = 'AliyunLogOtlpExporter'
+#  s.default_subspec = 'AliyunLogOtlpExporter'
+  
+  s.pod_target_xcconfig = {
+    'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64 i386',
+    'OTHER_LDFLAGS' => '-ObjC',
+  }
+  s.user_target_xcconfig = {
+    'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64 i386'
+  }
+  
+#  s.dependency 'AliyunLogProducer/Producer', '4.0.0-beta.4'
+#  s.dependency 'AliyunLogOTelCommon/OpenTelemetryApi', '4.0.0-beta.4'
+#  s.dependency 'AliyunLogOTelCommon/OpenTelemetrySdk', '4.0.0-beta.4'
+#  s.dependency 'AliyunLogOTelCommon/AliyunLogOTelCommon', '4.0.0-beta.4'
+#  s.source_files = 'Sources/OtlpExporter/**/*.{m,h,swift}'
+
   
   s.subspec 'AliyunLogOtlpExporter' do |c|
     c.ios.deployment_target = '10.0'
 #    c.tvos.deployment_target =  '10.0'
 #    c.osx.deployment_target =  '10.12'
     c.dependency 'AliyunLogProducer/Producer', '4.0.0-beta.4'
-    c.dependency 'AliyunLogOTelCommon/OpenTelemetryApi', '4.0.0-beta.4'
-    c.dependency 'AliyunLogOTelCommon/OpenTelemetrySdk', '4.0.0-beta.4'
-    c.dependency 'AliyunLogOTelCommon/AliyunLogOTelCommon', '4.0.0-beta.4'
+    c.dependency 'AliyunLogOTelCommon/OpenTelemetryApi', '4.0.0-beta.5'
+    c.dependency 'AliyunLogOTelCommon/OpenTelemetrySdk', '4.0.0-beta.5'
+    c.dependency 'AliyunLogOTelCommon/AliyunLogOTelCommon', '4.0.0-beta.5'
     c.source_files = 'Sources/OtlpExporter/**/*.{m,h,swift}'
-    c.pod_target_xcconfig = {
-      'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64',
-      'OTHER_LDFLAGS' => '-ObjC',
-    }
-    c.user_target_xcconfig = {
-      'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
-    }
+#    c.pod_target_xcconfig = {
+#      'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64',
+#      'OTHER_LDFLAGS' => '-ObjC',
+#    }
+#    c.user_target_xcconfig = {
+#      'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
+#    }
   end
 end
 
