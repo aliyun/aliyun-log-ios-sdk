@@ -4,7 +4,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'AliyunLogProducer'
-  s.version          = '4.0.0-beta.5'
+  s.version          = '4.0.0-beta.6'
   s.summary          = 'aliyun log service ios producer.'
 
 # This description is used to generate tags and improve search results.
@@ -37,6 +37,14 @@ Pod::Spec.new do |s|
 
   s.default_subspec = 'Producer'
   
+  s.pod_target_xcconfig = {
+    'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64 i386',
+  }
+  
+  s.user_target_xcconfig = {
+    'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64 i386'
+  }
+
   s.subspec 'Producer' do |c|
     c.ios.deployment_target = '10.0'
     c.tvos.deployment_target =  '10.0'
@@ -54,65 +62,24 @@ Pod::Spec.new do |s|
     c.source_files = 'Sources/Core/**/*.{m,h}'
     c.public_header_files = 'Sources/Core/include/*.h'
   end
-  
+
   s.subspec 'OTSwift' do |c|
     c.ios.deployment_target = '10.0'
     c.tvos.deployment_target =  '10.0'
     c.osx.deployment_target =  '10.12'
     c.source_files = 'Sources/OTSwift/**/*.{m,h,swift}'
   end
-  
+
   s.subspec 'OT' do |c|
     c.ios.deployment_target = '10.0'
     c.tvos.deployment_target =  '10.0'
     c.osx.deployment_target =  '10.12'
     c.source_files = 'Sources/OT/**/*.{m,h}'
     c.public_header_files = 'Sources/OT/**/include/*.h'
-    
+
     c.dependency 'AliyunLogProducer/OTSwift'
   end
-  
-#  s.subspec 'CrashReporter' do |c|
-#    c.ios.deployment_target = '10.0'
-#    c.tvos.deployment_target =  '10.0'
-#    c.osx.deployment_target =  '10.12'
-#    c.dependency 'AliyunLogProducer/Core'
-#    c.dependency 'AliyunLogProducer/OT'
-#    c.dependency 'AliyunLogProducer/Trace'
-#    c.source_files = 'Sources/CrashReporter/**/*.{m,h}'
-#    c.public_header_files = 'Sources/CrashReporter/include/*.h'
-#    c.vendored_frameworks = 'Sources/WPKMobi/WPKMobi.xcframework'
-#    c.exclude_files = 'Sources/WPKMobi/WPKMobi.xcframework/**/Headers/*.h'
-#
-#    c.ios.frameworks = "SystemConfiguration", "CoreGraphics"
-#    c.tvos.frameworks = "SystemConfiguration", "CoreGraphics"
-#    c.osx.frameworks = "SystemConfiguration", "Cocoa"
-#    
-#    c.ios.libraries = "z", "c++"
-#    c.tvos.libraries = "z", "c++"
-#    c.osx.libraries = "z", "c++"
-#
-#    c.ios.pod_target_xcconfig = {
-#        'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64',
-#        'OTHER_LDFLAGS' => '-ObjC'
-#    }
-#    c.ios.user_target_xcconfig = {
-#      'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
-#    }
-#
-#    c.tvos.pod_target_xcconfig = {
-#        'EXCLUDED_ARCHS[sdk=appletvsimulator*]' => 'arm64',
-#        'OTHER_LDFLAGS' => '-ObjC'
-#    }
-#    c.tvos.user_target_xcconfig = {
-#      'EXCLUDED_ARCHS[sdk=appletvsimulator*]' => 'arm64'
-#    }
-#
-#    c.osx.pod_target_xcconfig = {
-#       'OTHER_LDFLAGS' => '-ObjC'
-#    }
-#  end
-  
+
   s.subspec 'NetworkDiagnosis' do |c|
     c.dependency 'AliyunLogProducer/Core'
     c.dependency 'AliyunLogProducer/OT'
@@ -123,46 +90,8 @@ Pod::Spec.new do |s|
     c.frameworks = "SystemConfiguration", "CoreGraphics"
     c.libraries = "z", "c++", "resolv"
     c.pod_target_xcconfig = {
-      'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64 i386',
       'OTHER_LDFLAGS' => '-ObjC',
     }
-    c.user_target_xcconfig = {
-      'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64 i386'
-    }
   end
-  
-#  s.subspec 'Trace' do |c|
-#    c.ios.deployment_target = '10.0'
-#    c.tvos.deployment_target =  '10.0'
-#    c.osx.deployment_target =  '10.12'
-#    c.dependency 'AliyunLogProducer/Producer'
-#    c.dependency 'AliyunLogProducer/Core'
-#    c.dependency 'AliyunLogProducer/OT'
-#    c.source_files = 'Sources/Trace/**/*.{m,h}'
-#    c.public_header_files = "Sources/Trace/include/*.h"
-#    c.pod_target_xcconfig = {
-#      'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64',
-#      'OTHER_LDFLAGS' => '-ObjC',
-#    }
-#    c.user_target_xcconfig = {
-#      'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
-#    }
-#  end
-#  
-#  s.subspec 'URLSessionInstrumentation' do |c|
-#    c.ios.deployment_target = '10.0'
-#    c.tvos.deployment_target =  '10.0'
-#    c.osx.deployment_target =  '10.12'
-#    c.dependency 'AliyunLogProducer/OT'
-#    c.dependency 'AliyunLogProducer/Trace'
-#    c.source_files = 'Sources/Instrumentation/URLSession/**/*.{m,h,swift}'
-#    c.pod_target_xcconfig = {
-#      'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64',
-#      'OTHER_LDFLAGS' => '-ObjC',
-#    }
-#    c.user_target_xcconfig = {
-#      'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
-#    }
-#  end
 end
 
