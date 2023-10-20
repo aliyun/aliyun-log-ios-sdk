@@ -4,7 +4,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'AliyunLogOTelCommon'
-  s.version          = '4.0.0-beta.5'
+  s.version          = '4.0.0-beta.6'
   s.summary          = 'aliyun log service ios otel common library.'
 
 # This description is used to generate tags and improve search results.
