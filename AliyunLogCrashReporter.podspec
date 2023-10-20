@@ -41,8 +41,8 @@ Pod::Spec.new do |s|
     c.ios.deployment_target = '10.0'
 #    c.tvos.deployment_target =  '10.0'
 #    c.osx.deployment_target =  '10.12'
-    c.dependency 'AliyunLogOtlpExporter', '4.0.0-beta.5'
-    c.dependency 'AliyunLogOTelCommon', '4.0.0-beta.5'
+    c.dependency 'AliyunLogOtlpExporter', '4.0.0-beta.6'
+    c.dependency 'AliyunLogOTelCommon', '4.0.0-beta.6'
     c.dependency 'AliyunLogCrashReporter/WPKMobiWrapper'
     c.source_files = 'Sources/CrashReporter2/**/*.{m,h,swift}'
     c.pod_target_xcconfig = {
@@ -76,7 +76,7 @@ Pod::Spec.new do |s|
         'OTHER_LDFLAGS' => '-ObjC'
     }
     c.ios.user_target_xcconfig = {
-      'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64 i386'
+        'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64 i386'
     }
 
     c.tvos.pod_target_xcconfig = {
@@ -84,11 +84,11 @@ Pod::Spec.new do |s|
         'OTHER_LDFLAGS' => '-ObjC'
     }
     c.tvos.user_target_xcconfig = {
-      'EXCLUDED_ARCHS[sdk=appletvsimulator*]' => 'arm64 i386'
+        'EXCLUDED_ARCHS[sdk=appletvsimulator*]' => 'arm64 i386'
     }
 
     c.osx.pod_target_xcconfig = {
-       'OTHER_LDFLAGS' => '-ObjC'
+        'OTHER_LDFLAGS' => '-ObjC'
     }
   end
 end
