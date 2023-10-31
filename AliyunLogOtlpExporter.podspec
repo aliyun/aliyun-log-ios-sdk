@@ -4,7 +4,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'AliyunLogOtlpExporter'
-  s.version          = '4.0.0-beta.8'
+  s.version          = '4.0.0-beta.9'
   s.summary          = 'aliyun log service ios otlp exporter.'
 
 # This description is used to generate tags and improve search results.
@@ -45,10 +45,10 @@ Pod::Spec.new do |s|
     'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64 i386'
   }
   
-  s.dependency 'AliyunLogProducer/Producer', '4.0.0-beta.8'
-  s.dependency 'AliyunLogOTelCommon/OpenTelemetryApi', '4.0.0-beta.8'
-  s.dependency 'AliyunLogOTelCommon/OpenTelemetrySdk', '4.0.0-beta.8'
-  s.dependency 'AliyunLogOTelCommon/AliyunLogOTelCommon', '4.0.0-beta.8'
+  s.dependency 'AliyunLogProducer/Producer', '4.0.0-beta.9'
+  s.dependency 'AliyunLogOTelCommon/OpenTelemetryApi', '4.0.0-beta.9'
+  s.dependency 'AliyunLogOTelCommon/OpenTelemetrySdk', '4.0.0-beta.9'
+  s.dependency 'AliyunLogOTelCommon/AliyunLogOTelCommon', '4.0.0-beta.9'
   s.source_files = 'Sources/OtlpExporter/**/*.{m,h,swift}'
 
 end
