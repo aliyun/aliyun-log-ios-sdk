@@ -16,7 +16,7 @@
 
 import Foundation
 
-open class OtlpSLSSpanExporterBuilder {
+open class OtlpSLSSpanExporterBuilder : NSObject {
     let scope: String
     var endpoint: String?
     var project: String?
@@ -30,21 +30,25 @@ open class OtlpSLSSpanExporterBuilder {
         self.scope = scope
     }
     
+    @objc
     open func setEndpoint(_ endpoint: String?) -> OtlpSLSSpanExporterBuilder {
         self.endpoint = endpoint
         return self
     }
     
+    @objc
     open func setProject(_ project: String?) -> OtlpSLSSpanExporterBuilder {
         self.project = project
         return self
     }
     
+    @objc
     open func setLogstore(_ logstore: String?) -> OtlpSLSSpanExporterBuilder {
         self.logstore = logstore
         return self
     }
     
+    @objc
     open func setAccessKey(accessKeyId: String?, accessKeySecret: String?, accessKeyToken: String? = nil) -> OtlpSLSSpanExporterBuilder {
         self.accessKeyId = accessKeyId
         self.accessKeySecret = accessKeySecret
@@ -52,11 +56,13 @@ open class OtlpSLSSpanExporterBuilder {
         return self
     }
     
+    @objc
     open func setPersistentFlush(_ isPersistentFlush: Bool) -> OtlpSLSSpanExporterBuilder {
         self.isPersistentFlush = isPersistentFlush
         return self
     }
     
+    @objc
     open func build() -> OtlpSLSSpanExporter {
         return OtlpSLSSpanExporter(scope, isPersistentFlush, endpoint, project, logstore, accessKeyId, accessKeySecret, accessKeyToken)
     }

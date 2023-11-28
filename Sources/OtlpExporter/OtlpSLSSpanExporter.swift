@@ -27,6 +27,7 @@ open class OtlpSLSSpanExporter: NSObject, SpanExporter {
     var client: LogProducerClient?
     var isPersistentFlush: Bool
     
+    @objc
     public static func builder(_ scope: String = "default") -> OtlpSLSSpanExporterBuilder {
         return OtlpSLSSpanExporterBuilder(scope)
     }
