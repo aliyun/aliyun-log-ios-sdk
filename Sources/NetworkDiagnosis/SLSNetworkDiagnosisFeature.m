@@ -25,6 +25,8 @@
 #import "SLSHttpHeader.h"
 #import "SLSDiagnosisProtocol.h"
 
+#import "AliyunLogNetworkDiagnosis/AliyunLogNetworkDiagnosis-Swift.h"
+
 static int DEFAULT_PING_SIZE = 64;
 static int DEFAULT_TIMEOUT = 2 * 1000;
 static int DEFAULT_MAX_TIMES = 10;
@@ -201,6 +203,11 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
         networkCredentials.instanceId = [self getIPAIdBySecretKey:networkCredentials.secretKey];
     }
     
+    [NetworkDiagnosisHelper updateWorkspace:networkCredentials.endpoint
+                                    project:networkCredentials.project
+                                   logstore:networkCredentials.instanceId
+    ];
+    
     _sender = [SLSNetworkDiagnosisSender sender:credentials feature:self];
     
     [_diagnosis preInit:networkCredentials.secretKey
@@ -355,6 +362,8 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
         return;
     }
 
+    
+    TraceNode *node = [TraceNode traceNode:@"dns" request:request];
     AliDnsConfig *dnsConfig = [[AliDnsConfig alloc] init:request.domain
                                               nameServer:request.nameServer
                                                     type:request.type
@@ -365,9 +374,13 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
                                                               if (callback) {
                                                                   callback([SLSResponse response:context type:@"dns" content:[result.content copy]]);
                                                               }
+
+                                                              [node end];
                                                           }
                                                  context:request.context
     ];
+    
+    [node setDetectConfig:dnsConfig];
     
     if (request.extention) {
         dnsConfig.detectExtension = [NSMutableDictionary dictionaryWithDictionary:request.extention];
@@ -412,6 +425,8 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
     InternalHttpCredentialDelegate *delegate = [InternalHttpCredentialDelegate delegate:request.credential];
     AliHttpCredential *httpCredential = [delegate getHttpCredential:request.domain context:request.context];
     
+    TraceNode *node = [TraceNode traceNode:@"http" request:request];
+    
     AliHttpPingConfig *config = [[AliHttpPingConfig alloc] init:request.domain
                                                         traceId:[self generateId]
                                                clientCredential:(nil != httpCredential ? httpCredential.clientCredential : nil)
@@ -424,11 +439,15 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
                                                                 if (callback) {
                                                                     callback([SLSResponse response:context type:@"http" content:[result.content copy]]);
                                                                 }
+
+                                                                [node end];
                                                             }
     ];
     if (request.extention) {
         config.detectExtension = [NSMutableDictionary dictionaryWithDictionary:request.extention];
     }
+    
+    [node setDetectConfig:config];
     
     [_diagnosis http:config];
 }
@@ -481,6 +500,7 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
         return;
     }
     
+    TraceNode *node = [TraceNode traceNode:@"mtr" request:request];
     AliMTRConfig *config = [[AliMTRConfig alloc] init:request.domain
                                                maxTtl:request.maxTTL
                                              maxPaths:request.maxPaths
@@ -494,6 +514,8 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
                                                             if (callback && result) {
                                                                 callback([SLSResponse response:context type:@"mtr" content:[result.content copy]]);
                                                             }
+        
+                                                            [node end];
                                                         }
                                       combineComplete:nil
     ];
@@ -503,6 +525,8 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
 
     config.protocol = request.protocol;
     config.parallel = request.parallel;
+    
+    [node setDetectConfig:config];
     
     [_diagnosis mtr:config];
     
@@ -569,6 +593,7 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
         return;
     }
     
+    TraceNode *node = [TraceNode traceNode:@"ping" request:request];
     AliPingConfig *config = [[AliPingConfig alloc] init:request.domain
                                                 timeout:request.timeout
                                           interfaceType:(_enableMultiplePortsDetect ? AliNetDiagNetworkInterfaceDefault : AliNetDiagNetworkInterfaceCurrent)
@@ -582,6 +607,8 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
                                                            if (callback) {
                                                                callback([SLSResponse response:context type:@"ping" content:[result.content copy]]);
                                                            }
+
+                                                           [node end];
                                                        }
                                         combineComplete:nil
     ];
@@ -590,6 +617,7 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
         config.detectExtension = [NSMutableDictionary dictionaryWithDictionary:request.extention];
     }
 
+    [node setDetectConfig:config];
     [_diagnosis ping: config];
 }
 
@@ -634,6 +662,7 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
         return;
     }
     
+    TraceNode *node = [TraceNode traceNode:@"tcpping" request:request];
     AliTcpPingConfig *config = [[AliTcpPingConfig alloc] init:request.domain
                                                       timeout:request.timeout
                                                 interfaceType:(_enableMultiplePortsDetect ? AliNetDiagNetworkInterfaceDefault : AliNetDiagNetworkInterfaceCurrent)
@@ -647,12 +676,16 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
                                                                if (callback) {
                                                                    callback([SLSResponse response:context type:@"tcpping" content:[result.content copy]]);
                                                                }
+        
+                                                               [node end];
                                                            }
                                               combineComplete:nil
     ];
     if (request.extention) {
         config.detectExtension = [NSMutableDictionary dictionaryWithDictionary:request.extention];
     }
+    
+    [node setDetectConfig:config];
 
     [_diagnosis tcpPing: config];
 }

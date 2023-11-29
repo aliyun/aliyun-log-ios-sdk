@@ -157,7 +157,7 @@ private struct SpanExporterData {
         self.spanKind = span.kind.rawValue
         self.traceFlags = span.traceFlags
 //        self.traceState = span.traceState
-        self.parentSpanId = span.parentSpanId?.hexString ?? SpanId.invalid.hexString
+        self.parentSpanId = span.parentSpanId?.hexString ?? ""
         self.start = span.startTime.timeIntervalSince1970.toNanoseconds / 1000
         self.end = span.endTime.timeIntervalSince1970.toNanoseconds / 1000
         self.duration = end - start

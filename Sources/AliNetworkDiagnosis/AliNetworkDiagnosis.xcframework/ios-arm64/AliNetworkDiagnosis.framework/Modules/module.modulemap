@@ -1,0 +1,6 @@
+framework module AliNetworkDiagnosis {
+  umbrella header "AliNetworkDiagnosis.h"
+
+  export *
+  module * { export * }
+}

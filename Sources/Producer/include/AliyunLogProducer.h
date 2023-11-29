@@ -25,33 +25,33 @@ FOUNDATION_EXPORT const unsigned char AliyunLogProducerVersionString[];
 #import "AliyunLogCore.h"
 #endif
 
-// AliyunLogCrashReporter
-#if __has_include("AliyunLogCrashReporter/AliyunLogCrashReporter.h")
-#import "AliyunLogCrashReporter/AliyunLogCrashReporter.h"
-#elif __has_include("AliyunLogCrashReporter.h")
-#import "AliyunLogCrashReporter.h"
-#endif
-
-// AliyunLogNetworkDiagnosis
-#if __has_include("AliyunLogNetworkDiagnosis/AliyunLogNetworkDiagnosis.h")
-#import "AliyunLogNetworkDiagnosis/AliyunLogNetworkDiagnosis.h"
-#elif __has_include("AliyunLogNetworkDiagnosis.h")
-#import "AliyunLogNetworkDiagnosis.h"
-#endif
-
-// AliyunLogTrace
-#if __has_include("AliyunLogTrace/AliyunLogTrace.h")
-#import "AliyunLogTrace/AliyunLogTrace.h"
-#elif __has_include("AliyunLogTrace.h")
-#import "AliyunLogTrace.h"
-#endif
-
-// Swift
-#if __has_include("AliyunLogProducer-Swift.h")
-#import "AliyunLogProducer-Swift.h"
-#endif
-
-// AliyunLogURLSession
-#if __has_include("AliyunLogURLSession/AliyunLogURLSession-Swift.h")
-#import "AliyunLogURLSession/AliyunLogURLSession-Swift.h"
-#endif
+//// AliyunLogCrashReporter
+//#if __has_include("AliyunLogCrashReporter/AliyunLogCrashReporter.h")
+//#import "AliyunLogCrashReporter/AliyunLogCrashReporter.h"
+//#elif __has_include("AliyunLogCrashReporter.h")
+//#import "AliyunLogCrashReporter.h"
+//#endif
+//
+//// AliyunLogNetworkDiagnosis
+//#if __has_include("AliyunLogNetworkDiagnosis/AliyunLogNetworkDiagnosis.h")
+//#import "AliyunLogNetworkDiagnosis/AliyunLogNetworkDiagnosis.h"
+//#elif __has_include("AliyunLogNetworkDiagnosis.h")
+//#import "AliyunLogNetworkDiagnosis.h"
+//#endif
+//
+//// AliyunLogTrace
+//#if __has_include("AliyunLogTrace/AliyunLogTrace.h")
+//#import "AliyunLogTrace/AliyunLogTrace.h"
+//#elif __has_include("AliyunLogTrace.h")
+//#import "AliyunLogTrace.h"
+//#endif
+//
+//// Swift
+//#if __has_include("AliyunLogProducer-Swift.h")
+//#import "AliyunLogProducer-Swift.h"
+//#endif
+//
+//// AliyunLogURLSession
+//#if __has_include("AliyunLogURLSession/AliyunLogURLSession-Swift.h")
+//#import "AliyunLogURLSession/AliyunLogURLSession-Swift.h"
+//#endif
