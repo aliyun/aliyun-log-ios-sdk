@@ -18,12 +18,12 @@ FOUNDATION_EXPORT const unsigned char AliyunLogProducerVersionString[];
 
 #import "SLSProducer.h"
 
-// AliyunLogCore
-#if __has_include("AliyunLogCore/AliyunLogCore.h")
-#import "AliyunLogCore/AliyunLogCore.h"
-#elif __has_include("AliyunLogCore.h")
-#import "AliyunLogCore.h"
-#endif
+//// AliyunLogCore
+//#if __has_include("AliyunLogCore/AliyunLogCore.h")
+//#import "AliyunLogCore/AliyunLogCore.h"
+//#elif __has_include("AliyunLogCore.h")
+//#import "AliyunLogCore.h"
+//#endif
 
 //// AliyunLogCrashReporter
 //#if __has_include("AliyunLogCrashReporter/AliyunLogCrashReporter.h")
