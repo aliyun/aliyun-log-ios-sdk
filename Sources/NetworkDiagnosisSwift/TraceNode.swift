@@ -27,7 +27,10 @@ open class TraceNode : NSObject {
     var request: SLSRequest
     
     public init(_ type: String, _ request: SLSRequest) {
-        self.tracer = OpenTelemetry.instance.tracerProvider.get(instrumentationName: "network_diagnosis", instrumentationVersion: "1.0.0")
+        self.tracer = OpenTelemetry.instance.tracerProvider.get(
+            instrumentationName: "network_diagnosis",
+            instrumentationVersion: "1.0.0"
+        )
         self.type = type
         self.request = request
         

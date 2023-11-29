@@ -4,7 +4,7 @@
 
 Pod::Spec.new do |s|
     s.name             = 'AliyunLogNetworkDiagnosis'
-    s.version          = '4.0.1'
+    s.version          = '4.0.2-dev.1'
     s.summary          = 'aliyun log service ios producer.'
 
     # This description is used to generate tags and improve search results.
@@ -37,24 +37,23 @@ Pod::Spec.new do |s|
 
     s.pod_target_xcconfig = {
         'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64 i386',
+        'OTHER_LDFLAGS' => '-ObjC',
     }
 
     s.user_target_xcconfig = {
         'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64 i386'
     }
 
-    s.dependency 'AliyunLogProducer/Core'
-    s.dependency 'AliyunLogProducer/OT'
-    s.dependency 'AliyunLogOtlpExporter'
+#    s.dependency 'AliyunLogProducer/Core'
+#    s.dependency 'AliyunLogProducer/OT'
+    s.dependency 'AliyunLogProducer', '4.0.2-dev.1'
+    s.dependency 'AliyunLogOtlpExporter', '4.0.2-dev.1'
     s.dependency 'AliyunLogOTelCommon'
-    s.source_files = 'Sources/NetworkDiagnosis/**/*.{m,h}', 'Sources/NetworkDiagnosisSwift/**/*.{m,h,swift}'
-    s.public_header_files = "Sources/NetworkDiagnosis/include/*.h"
+    s.source_files = 'Sources/NetworkDiagnosis/**/*.{m,h}', 'Sources/NetworkDiagnosisSwift/**/*.{m,h,swift}', 'Sources/Core/**/*.{m,h}', 'Sources/OT/**/*.{m,h}'
+    s.public_header_files = "Sources/NetworkDiagnosis/include/*.h", 'Sources/Core/include/*.h', 'Sources/OT/**/include/*.h'
     s.vendored_frameworks = 'Sources/AliNetworkDiagnosis/AliNetworkDiagnosis.xcframework'
     s.exclude_files = 'Sources/AliNetworkDiagnosis/AliNetworkDiagnosis.xcframework/**/Headers/*.h'
     s.frameworks = "SystemConfiguration", "CoreGraphics"
     s.libraries = "z", "c++", "resolv"
-    s.pod_target_xcconfig = {
-        'OTHER_LDFLAGS' => '-ObjC',
-    }
 end
 

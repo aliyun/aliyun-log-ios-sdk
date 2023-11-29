@@ -7,13 +7,13 @@
 
 #import "SLSContextManager.h"
 
-#if __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_10_0
-    #define __HAS_SLS_OT_SWIFT
-#elif __MAC_OS_X_VERSION_MIN_REQUIRED >= __MAC_10_12
-    #define __HAS_SLS_OT_SWIFT
-#elif __TV_OS_VERSION_MIN_REQUIRED >= __TVOS_10_0
-    #define __HAS_SLS_OT_SWIFT
-#endif
+//#if __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_10_0
+//    #define __HAS_SLS_OT_SWIFT
+//#elif __MAC_OS_X_VERSION_MIN_REQUIRED >= __MAC_10_12
+//    #define __HAS_SLS_OT_SWIFT
+//#elif __TV_OS_VERSION_MIN_REQUIRED >= __TVOS_10_0
+//    #define __HAS_SLS_OT_SWIFT
+//#endif
 
 #ifdef __HAS_SLS_OT_SWIFT
     #if __has_include(<AliyunLogProducer/AliyunLogProducer-Swift.h>)
