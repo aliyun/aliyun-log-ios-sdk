@@ -4,7 +4,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'AliyunLogProducer'
-  s.version          = '4.0.2-dev.1'
+  s.version          = '4.1.0'
   s.summary          = 'aliyun log service ios producer.'
 
 # This description is used to generate tags and improve search results.
@@ -45,53 +45,10 @@ Pod::Spec.new do |s|
     'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64 i386'
   }
 
-#  s.subspec 'Producer' do |c|
-    s.ios.deployment_target = '10.0'
-    s.tvos.deployment_target =  '10.0'
-    s.osx.deployment_target =  '10.12'
-    s.source_files = 'Sources/Producer/**/*.{h,m}', 'Sources/aliyun-log-c-sdk/**/*.{c,h}'
-    s.public_header_files = 'Sources/Producer/include/*.h', 'Sources/aliyun-log-c-sdk/include/*.h'
-#  end
-
-#  s.subspec 'Core' do |c|
-#    c.ios.deployment_target = '10.0'
-#    c.tvos.deployment_target =  '10.0'
-#    c.osx.deployment_target =  '10.12'
-#    c.dependency 'AliyunLogProducer/Producer'
-#    c.dependency 'AliyunLogProducer/OT'
-#    c.source_files = 'Sources/Core/**/*.{m,h}'
-#    c.public_header_files = 'Sources/Core/include/*.h'
-#  end
-#
-#  s.subspec 'OTSwift' do |c|
-#    c.ios.deployment_target = '10.0'
-#    c.tvos.deployment_target =  '10.0'
-#    c.osx.deployment_target =  '10.12'
-#    c.source_files = 'Sources/OTSwift/**/*.{m,h,swift}'
-#  end
-#
-#  s.subspec 'OT' do |c|
-#    c.ios.deployment_target = '10.0'
-#    c.tvos.deployment_target =  '10.0'
-#    c.osx.deployment_target =  '10.12'
-#    c.source_files = 'Sources/OT/**/*.{m,h}'
-#    c.public_header_files = 'Sources/OT/**/include/*.h'
-#
-#    c.dependency 'AliyunLogProducer/OTSwift'
-#  end
-#
-#  s.subspec 'NetworkDiagnosis' do |c|
-#    c.dependency 'AliyunLogProducer/Core'
-#    c.dependency 'AliyunLogProducer/OT'
-#    c.source_files = 'Sources/NetworkDiagnosis/**/*.{m,h}'
-#    c.public_header_files = "Sources/NetworkDiagnosis/include/*.h"
-#    c.vendored_frameworks = 'Sources/AliNetworkDiagnosis/AliNetworkDiagnosis.xcframework'
-#    c.exclude_files = 'Sources/AliNetworkDiagnosis/AliNetworkDiagnosis.xcframework/**/Headers/*.h'
-#    c.frameworks = "SystemConfiguration", "CoreGraphics"
-#    c.libraries = "z", "c++", "resolv"
-#    c.pod_target_xcconfig = {
-#      'OTHER_LDFLAGS' => '-ObjC',
-#    }
-#  end
+  s.ios.deployment_target = '10.0'
+  s.tvos.deployment_target =  '10.0'
+  s.osx.deployment_target =  '10.12'
+  s.source_files = 'Sources/Producer/**/*.{h,m}', 'Sources/aliyun-log-c-sdk/**/*.{c,h}'
+  s.public_header_files = 'Sources/Producer/include/*.h', 'Sources/aliyun-log-c-sdk/include/*.h'
 end
 

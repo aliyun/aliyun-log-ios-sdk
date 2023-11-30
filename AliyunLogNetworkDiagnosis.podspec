@@ -4,8 +4,8 @@
 
 Pod::Spec.new do |s|
     s.name             = 'AliyunLogNetworkDiagnosis'
-    s.version          = '4.0.2-dev.1'
-    s.summary          = 'aliyun log service ios producer.'
+    s.version          = '4.1.0'
+    s.summary          = 'aliyun log service ios network diagnosis.'
 
     # This description is used to generate tags and improve search results.
     #   * Think: What does it do? Why did you write it? What is the focus?
@@ -46,9 +46,9 @@ Pod::Spec.new do |s|
 
 #    s.dependency 'AliyunLogProducer/Core'
 #    s.dependency 'AliyunLogProducer/OT'
-    s.dependency 'AliyunLogProducer', '4.0.2-dev.1'
-    s.dependency 'AliyunLogOtlpExporter', '4.0.2-dev.1'
-    s.dependency 'AliyunLogOTelCommon'
+    s.dependency 'AliyunLogProducer', '4.1.0'
+    s.dependency 'AliyunLogOtlpExporter', '4.1.0'
+    s.dependency 'AliyunLogOTelCommon', '4.1.0'
     s.source_files = 'Sources/NetworkDiagnosis/**/*.{m,h}', 'Sources/NetworkDiagnosisSwift/**/*.{m,h,swift}', 'Sources/Core/**/*.{m,h}', 'Sources/OT/**/*.{m,h}'
     s.public_header_files = "Sources/NetworkDiagnosis/include/*.h", 'Sources/Core/include/*.h', 'Sources/OT/**/include/*.h'
     s.vendored_frameworks = 'Sources/AliNetworkDiagnosis/AliNetworkDiagnosis.xcframework'

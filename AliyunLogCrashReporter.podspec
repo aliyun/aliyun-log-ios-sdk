@@ -4,7 +4,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'AliyunLogCrashReporter'
-  s.version          = '4.0.1'
+  s.version          = '4.1.0'
   s.summary          = 'aliyun log service ios CrashReporter.'
 
 # This description is used to generate tags and improve search results.
@@ -41,8 +41,8 @@ Pod::Spec.new do |s|
     c.ios.deployment_target = '10.0'
 #    c.tvos.deployment_target =  '10.0'
 #    c.osx.deployment_target =  '10.12'
-    c.dependency 'AliyunLogOtlpExporter'
-    c.dependency 'AliyunLogOTelCommon'
+    c.dependency 'AliyunLogOtlpExporter', '4.1.0'
+    c.dependency 'AliyunLogOTelCommon', '4.1.0'
     c.dependency 'AliyunLogCrashReporter/WPKMobiWrapper'
     c.source_files = 'Sources/CrashReporter2/**/*.{m,h,swift}'
     c.pod_target_xcconfig = {
