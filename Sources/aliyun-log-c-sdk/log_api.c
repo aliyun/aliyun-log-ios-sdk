@@ -8,7 +8,8 @@ int LOG_OS_HttpPost(const char *url,
                     char **header_array,
                     int header_count,
                     const void *data,
-                    int data_len);
+                    int data_len,
+                    post_log_result *http_response);
 
 unsigned int LOG_GET_TIME();
 
@@ -638,12 +639,17 @@ post_log_result * post_logs_from_lz4buf_with_config(log_producer_config *config,
         log_http_inject_headers(config, header_array, header_count, dest_header_array, dest_count);
         char **final_header_array = (*dest_count) == 0 ? header_array : dest_header_array;
         int final_header_count = (*dest_count) == 0 ? header_count : (*dest_count);
-        int res = LOG_OS_HttpPost(url, final_header_array, final_header_count, (const void *) buffer->data, buffer->length);
+        
+        post_log_result *http_response = (post_log_result*)malloc(sizeof(post_log_result));
+        int res = LOG_OS_HttpPost(url, final_header_array, final_header_count, (const void *) buffer->data, buffer->length, http_response);
         log_http_release_inject_headers(config, dest_header_array, *dest_count);
 
         result->statusCode = res;
-        result->requestID  = req;
-        result->errorMessage = err;
+        result->requestID  = log_sdsnew(http_response->requestID);
+        log_sds error_message = log_sdsnew("status: ");
+        error_message = log_sdscatprintf(error_message, "%d, ", res);
+        error_message = log_sdscat(error_message, http_response->errorMessage);
+        result->errorMessage = error_message;
 
         cur_slist_free_all(headers); /* free the list again */
         log_sdsfree(url);
@@ -654,6 +660,10 @@ post_log_result * post_logs_from_lz4buf_with_config(log_producer_config *config,
         log_sdsfree(headerHost);
         log_sdsfree(sigContent);
         log_sdsfree(headerSig);
+        
+        free(http_response->requestID);
+        free(http_response->errorMessage);
+        free(http_response);
         free(dest_count);
     }
 
@@ -723,13 +733,17 @@ post_log_result * post_logs_from_lz4buf_webtracking(const char *endpoint, const 
         }
 
         aos_info_log("post_logs_from_lz4buf_webtracking, start LOG_OS_HttpPost.");
+        post_log_result *http_response = (post_log_result*)malloc(sizeof(post_log_result));
         int res = LOG_OS_HttpPost(url, header_array, header_count,
-                                  (const void *) buffer->data, buffer->length);
+                                  (const void *) buffer->data, buffer->length, http_response);
         aos_info_log("post_logs_from_lz4buf_webtracking, LOG_OS_HttpPost res: %d.", res);
 
         result->statusCode = res;
-        result->requestID  = req;
-        result->errorMessage = err;
+        result->requestID  = log_sdsnew(http_response->requestID);
+        log_sds error_message = log_sdsnew("status: ");
+        error_message = log_sdscatprintf(error_message, "%d, ", res);
+        error_message = log_sdscat(error_message, http_response->errorMessage);
+        result->errorMessage = error_message;
 
         cur_slist_free_all(headers); /* free the list again */
         log_sdsfree(url);
