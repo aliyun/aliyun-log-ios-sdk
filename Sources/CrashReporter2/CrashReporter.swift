@@ -50,6 +50,58 @@ open class CrashReporter: NSObject {
         }
     }
     
+    @objc
+    public func addLog(_ log: String) {
+        addLog(logs: ["content": log])
+    }
+
+    @objc
+    public func addLog(logs: [String: String]) {
+        if logs.count == 0 {
+            return
+        }
+
+        if let builder = CrashReporterOTel.spanBuilder("log") {
+            builder.setAttribute(key: "t", value: "log")
+                .setAttribute(key: "net.access", value: DeviceUtils.getNetworkType())
+
+            for (k, v) in logs {
+                builder.setAttribute(key: "log.\(k)", value: v)
+            }
+
+            builder.startSpan().end()
+        }
+    }
+
+    @objc
+    public func reportException(_ error: NSException) {
+        reportException(name: "exception", error: error, properties: nil)
+    }
+
+    @objc
+    public func reportException(_ error: NSException, properties: [String: String]?) {
+        reportException(name: "exception", error: error, properties: properties)
+    }
+
+    @objc
+    public func reportException(name: String, error: NSException, properties: [String: String]?) {
+        if let builder = CrashReporterOTel.spanBuilder("exception") {
+            builder.setAttribute(key: "t", value: "exception")
+                .setAttribute(key: "ex.name", value: name)
+                .setAttribute(key: "ex.type", value: "\(error.name.rawValue)")
+                .setAttribute(key: "ex.message", value: "\(error.reason ?? "")")
+                .setAttribute(key: "ex.stacktrace", value: "\(error.callStackSymbols.joined(separator: "\n"))")
+
+            if let properties = properties {
+                for (k, v) in properties {
+                    builder.setAttribute(key: "ex.\(k)", value: v)
+                }
+            }
+
+            builder.startSpan().end()
+        }
+    }
+
     private func observeDirectoryChanged() {
         let libraryPath = NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true).first ?? ""
         
