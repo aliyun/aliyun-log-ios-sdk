@@ -269,22 +269,30 @@ public class DeviceUtils: NSObject {
 
     @objc
     public static func getNetworkType() -> String {
+        guard let reachability = try? Reachability() else {
+            return "No Connection"
+        }
+
+        if reachability.connection == .wifi {
+            return "Wi-Fi"
+        }
+
 #if canImport(CoreTelephony)
         let networkInfo = CTTelephonyNetworkInfo()
         
-        if let currentRadio = networkInfo.currentRadioAccessTechnology {
+        if let currentRadio = currentRadioAccessTechnology(networkInfo: networkInfo) {
             switch currentRadio {
             case CTRadioAccessTechnologyGPRS,
-                CTRadioAccessTechnologyEdge,
-            CTRadioAccessTechnologyCDMA1x:
+                 CTRadioAccessTechnologyEdge,
+                 CTRadioAccessTechnologyCDMA1x:
                 return "2G"
             case CTRadioAccessTechnologyWCDMA,
-                CTRadioAccessTechnologyHSDPA,
-                CTRadioAccessTechnologyHSUPA,
-                CTRadioAccessTechnologyCDMAEVDORev0,
-                CTRadioAccessTechnologyCDMAEVDORevA,
-                CTRadioAccessTechnologyCDMAEVDORevB,
-            CTRadioAccessTechnologyeHRPD:
+                 CTRadioAccessTechnologyHSDPA,
+                 CTRadioAccessTechnologyHSUPA,
+                 CTRadioAccessTechnologyCDMAEVDORev0,
+                 CTRadioAccessTechnologyCDMAEVDORevA,
+                 CTRadioAccessTechnologyCDMAEVDORevB,
+                 CTRadioAccessTechnologyeHRPD:
                 return "3G"
             case CTRadioAccessTechnologyLTE:
                 return "4G"
@@ -297,4 +305,15 @@ public class DeviceUtils: NSObject {
         return "No Connection"
     }
     
+    private static func currentRadioAccessTechnology(networkInfo: CTTelephonyNetworkInfo) -> String? {
+#if canImport(CoreTelephony)
+        if #available(iOS 12.0, *) {
+            return networkInfo.serviceCurrentRadioAccessTechnology?.values.first
+        } else {
+            return networkInfo.currentRadioAccessTechnology
+        }
+#endif
+
+        return nil
+    }
 }

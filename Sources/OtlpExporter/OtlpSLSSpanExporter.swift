@@ -167,7 +167,7 @@ private struct SpanExporterData {
         self.host = span.resource.attributes["host.name"]?.description ?? ""
         self.service = span.resource.attributes["service.name"]?.description ?? ""
         self.statusCode = span.status.name
-        self.statusMessage = span.status.description
+        self.statusMessage = ""
     }
 }
 
