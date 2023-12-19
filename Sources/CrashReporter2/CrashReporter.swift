@@ -91,6 +91,7 @@ open class CrashReporter: NSObject {
                 .setAttribute(key: "ex.type", value: "\(error.name.rawValue)")
                 .setAttribute(key: "ex.message", value: "\(error.reason ?? "")")
                 .setAttribute(key: "ex.stacktrace", value: "\(error.callStackSymbols.joined(separator: "\n"))")
+                .setAttribute(key: "net.access", value: DeviceUtils.getNetworkType())
 
             if let properties = properties {
                 for (k, v) in properties {

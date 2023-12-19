@@ -207,8 +207,8 @@ internal class LogParser {
         blockBuilder?.append(line: line)
         blockBuilder?.append(line: "\n")
         
-        if line.hasPrefix("Path:") {
-            errorId = md5(content: line)
+        if line.hasPrefix("Incident Identifier: ") {
+            errorId = line.components(separatedBy: ":")[1].trimmingCharacters(in: .whitespacesAndNewlines)
         }
     }
     
