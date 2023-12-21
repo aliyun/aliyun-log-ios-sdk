@@ -16,6 +16,7 @@
 
 import Foundation
 import AliyunLogOTelCommon
+import OpenTelemetryApi
 #if canImport(WPKMobiWrapper)
 import WPKMobiWrapper
 #else
@@ -44,9 +45,9 @@ open class CrashReporter: NSObject {
         
         if let builder = CrashReporterOTel.spanBuilder("app.start") {
             builder.setAttribute(key: "t", value: "pv")
-                .setAttribute(key: "net.access", value: DeviceUtils.getNetworkType())
-                .startSpan()
-                .end()
+            
+            AttributesHelper.setAttributes(builder)
+            builder.startSpan().end()
         }
     }
     
@@ -63,12 +64,13 @@ open class CrashReporter: NSObject {
 
         if let builder = CrashReporterOTel.spanBuilder("log") {
             builder.setAttribute(key: "t", value: "log")
-                .setAttribute(key: "net.access", value: DeviceUtils.getNetworkType())
 
             for (k, v) in logs {
                 builder.setAttribute(key: "log.\(k)", value: v)
             }
 
+            AttributesHelper.setAttributes(builder)
+            
             builder.startSpan().end()
         }
     }
@@ -91,7 +93,6 @@ open class CrashReporter: NSObject {
                 .setAttribute(key: "ex.type", value: "\(error.name.rawValue)")
                 .setAttribute(key: "ex.message", value: "\(error.reason ?? "")")
                 .setAttribute(key: "ex.stacktrace", value: "\(error.callStackSymbols.joined(separator: "\n"))")
-                .setAttribute(key: "net.access", value: DeviceUtils.getNetworkType())
 
             if let properties = properties {
                 for (k, v) in properties {
@@ -99,6 +100,7 @@ open class CrashReporter: NSObject {
                 }
             }
 
+            AttributesHelper.setAttributes(builder)
             builder.startSpan().end()
         }
     }
@@ -151,7 +153,6 @@ open class CrashReporter: NSObject {
             let type = source.data
             switch type {
             case .write:
-//                print("directory changed. \(path)")
                 handler(path)
             default:
                 break

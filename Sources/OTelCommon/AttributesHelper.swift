@@ -15,7 +15,7 @@
 	
 
 import Foundation
-//import OpenTelemetryApi
+import OpenTelemetryApi
 
 public class AttributesHelper {
     
@@ -23,6 +23,11 @@ public class AttributesHelper {
         
     }
     
-//    public static func create() -> AttributeValue
+    public static func setAttributes(_ builder: SpanBuilder) {
+        let environment = ConfigurationManager.shared.environmentProvider?("uem")
+        
+        builder.setAttribute(key: "uid", value: environment?.uid ?? "")
+        builder.setAttribute(key: "net.access", value: DeviceUtils.getNetworkType())
+    }
     
 }

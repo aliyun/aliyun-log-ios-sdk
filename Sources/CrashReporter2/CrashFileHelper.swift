@@ -55,25 +55,27 @@ internal class CrashFileHelper {
         mutableResults.removeValue(forKey: "id")
         mutableResults.removeValue(forKey: "sub_type")
         
-        let spanBuilder = CrashReporterOTel.spanBuilder("crashreporter")
-        for (key, value) in mutableResults {
-            if "basic_info" == key || "summary" == key || "stacktrace" == key {
-                spanBuilder?.setAttribute(key: "ex.\(key)", value: value)
+        if let spanBuilder = CrashReporterOTel.spanBuilder("crashreporter") {
+            for (key, value) in mutableResults {
+                if "basic_info" == key || "summary" == key || "stacktrace" == key {
+                    spanBuilder.setAttribute(key: "ex.\(key)", value: value)
+                }
             }
+
+            spanBuilder.setAttribute(key: "t", value: "error")
+            spanBuilder.setAttribute(key: "ex.type", value: "crash")
+            spanBuilder.setAttribute(key: "ex.sub_type", value: subType)
+            spanBuilder.setAttribute(key: "ex.id", value: errorId)
+            spanBuilder.setAttribute(key: "ex.catId", value: catId)
+
+            AttributesHelper.setAttributes(spanBuilder)
+
+            let span = spanBuilder.startSpan()
+            span.end()
+            CrashReporterOTel.forceFlush()
+
+            _ = try? FileManager.default.removeItem(atPath: filePath)
         }
-        
-        spanBuilder?.setAttribute(key: "t", value: "error")
-        spanBuilder?.setAttribute(key: "ex.type", value: "crash")
-        spanBuilder?.setAttribute(key: "ex.sub_type", value: subType)
-        spanBuilder?.setAttribute(key: "ex.id", value: errorId)
-        spanBuilder?.setAttribute(key: "ex.catId", value: catId)
-        spanBuilder?.setAttribute(key: "net.access", value: DeviceUtils.getNetworkType())
-        
-        guard let span = spanBuilder?.startSpan() else { return }
-        span.end()
-        CrashReporterOTel.forceFlush()
-        
-        _ = try? FileManager.default.removeItem(atPath: filePath)
     }
     
     

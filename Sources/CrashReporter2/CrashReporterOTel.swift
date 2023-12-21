@@ -96,7 +96,8 @@ internal class CrashReporterOTel {
                     "uem.data.type": AttributeValue.string(osName),
                     "uem.sdk.version": AttributeValue.string(CrashReporterOTel.VERSION),
                     "workspace": AttributeValue.string(workspace?.instanceId ?? ""),
-                    "deployment.environment": AttributeValue.string(environment?.env ?? "default")
+                    "deployment.environment": AttributeValue.string(environment?.env ?? "default"),
+                    "deployment.channel": AttributeValue.string(environment?.channel ?? "default")
                 ]))
             )
             .build()
