@@ -4,14 +4,9 @@
 
 Pod::Spec.new do |s|
     s.name             = 'AliyunLogNetworkDiagnosis'
-    s.version          = '4.1.0'
+    # read version from VERSION file
+    s.version          = File.read('VERSION').strip
     s.summary          = 'aliyun log service ios network diagnosis.'
-
-    # This description is used to generate tags and improve search results.
-    #   * Think: What does it do? Why did you write it? What is the focus?
-    #   * Try to keep it short, snappy and to the point.
-    #   * Write the description between the DESC delimiters below.
-    #   * Finally, don't worry about the indent, CocoaPods strips it!
 
     s.description      = <<-DESC
     log service ios producer.
@@ -46,9 +41,9 @@ Pod::Spec.new do |s|
 
 #    s.dependency 'AliyunLogProducer/Core'
 #    s.dependency 'AliyunLogProducer/OT'
-    s.dependency 'AliyunLogProducer', '4.1.0'
-    s.dependency 'AliyunLogOtlpExporter', '4.1.0'
-    s.dependency 'AliyunLogOTelCommon', '4.1.0'
+    s.dependency 'AliyunLogProducer'
+    s.dependency 'AliyunLogOtlpExporter'
+    s.dependency 'AliyunLogOTelCommon'
     s.source_files = 'Sources/NetworkDiagnosis/**/*.{m,h}', 'Sources/NetworkDiagnosisSwift/**/*.{m,h,swift}', 'Sources/Core/**/*.{m,h}', 'Sources/OT/**/*.{m,h}'
     s.public_header_files = "Sources/NetworkDiagnosis/include/*.h", 'Sources/Core/include/*.h', 'Sources/OT/**/include/*.h'
     s.vendored_frameworks = 'Sources/AliNetworkDiagnosis/AliNetworkDiagnosis.xcframework'
