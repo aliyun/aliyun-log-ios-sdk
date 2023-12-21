@@ -4,8 +4,7 @@
 
 Pod::Spec.new do |s|
     s.name             = 'AliyunLogProducer'
-    # read version from VERSION file
-    s.version          = File.read('VERSION').strip
+    s.version          = '4.2.0'
     s.summary          = 'aliyun log service ios producer.'
 
     s.description      = <<-DESC
