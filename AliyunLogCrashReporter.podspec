@@ -4,7 +4,7 @@
 
 Pod::Spec.new do |s|
     s.name             = 'AliyunLogCrashReporter'
-    s.version          = '4.2.1-dev.1'
+    s.version          = "4.2.1-dev.2"
     s.summary          = 'aliyun log service ios CrashReporter.'
 
     s.description      = <<-DESC
@@ -35,9 +35,9 @@ Pod::Spec.new do |s|
         c.ios.deployment_target = '10.0'
         #    c.tvos.deployment_target =  '10.0'
         #    c.osx.deployment_target =  '10.12'
-        c.dependency 'AliyunLogOtlpExporter', '4.2.1-dev.1'
-        c.dependency 'AliyunLogOTelCommon', '4.2.1-dev.1'
-        c.dependency 'AliyunLogCrashReporter/WPKMobiWrapper', '4.2.1-dev.1'
+        c.dependency 'AliyunLogOtlpExporter', "#{s.version}"
+        c.dependency 'AliyunLogOTelCommon', "#{s.version}"
+        c.dependency 'AliyunLogCrashReporter/WPKMobiWrapper', "#{s.version}"
         c.source_files = 'Sources/CrashReporter2/**/*.{m,h,swift}'
         c.pod_target_xcconfig = {
           'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64 i386',
