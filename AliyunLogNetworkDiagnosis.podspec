@@ -40,9 +40,9 @@ Pod::Spec.new do |s|
 
 #    s.dependency 'AliyunLogProducer/Core'
 #    s.dependency 'AliyunLogProducer/OT'
-    s.dependency 'AliyunLogProducer'
-    s.dependency 'AliyunLogOtlpExporter'
-    s.dependency 'AliyunLogOTelCommon'
+    s.dependency 'AliyunLogProducer', '4.2.1-dev.1'
+    s.dependency 'AliyunLogOtlpExporter', '4.2.1-dev.1'
+    s.dependency 'AliyunLogOTelCommon', '4.2.1-dev.1'
     s.source_files = 'Sources/NetworkDiagnosis/**/*.{m,h}', 'Sources/NetworkDiagnosisSwift/**/*.{m,h,swift}', 'Sources/Core/**/*.{m,h}', 'Sources/OT/**/*.{m,h}'
     s.public_header_files = "Sources/NetworkDiagnosis/include/*.h", 'Sources/Core/include/*.h', 'Sources/OT/**/include/*.h'
     s.vendored_frameworks = 'Sources/AliNetworkDiagnosis/AliNetworkDiagnosis.xcframework'
