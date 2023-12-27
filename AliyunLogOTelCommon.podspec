@@ -72,5 +72,18 @@ Pod::Spec.new do |s|
           'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64 i386'
         }
     end
+
+    s.subspec 'URLSessionInstrumentation' do |c|
+        c.ios.deployment_target = '10.0'
+        #    c.tvos.deployment_target =  '10.0'
+        #    c.osx.deployment_target =  '10.12'
+        c.vendored_frameworks = 'Sources/URLSessionInstrumentation/URLSessionInstrumentation.xcframework'
+        c.pod_target_xcconfig = {
+          'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64 i386',
+        }
+        c.user_target_xcconfig = {
+          'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64 i386'
+        }
+    end
 end
 
