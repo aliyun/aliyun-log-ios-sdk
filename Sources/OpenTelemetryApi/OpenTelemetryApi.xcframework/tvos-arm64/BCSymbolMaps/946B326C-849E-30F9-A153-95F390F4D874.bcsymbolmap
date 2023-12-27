@@ -131,9 +131,9 @@ Apple clang version 13.1.6 (clang-1316.0.20.12)
 /Applications/Xcode13/Xcode.app/Contents/Developer/Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS15.4.sdk
 AppleTVOS15.4.sdk
 <swift-imported-modules>
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift
 Apple Swift version 5.6.1 (swiftlang-5.6.0.323.66 clang-1316.0.20.12)
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Baggage/Baggage.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Baggage/Baggage.swift
 _swift_stdlib_malloc_size
 /Applications/Xcode13/Xcode.app/Contents/Developer/Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS15.4.sdk/usr/lib/swift/shims/LibcShims.h
 __swift_instantiateConcreteTypeFromMangledName
@@ -221,8 +221,8 @@ $sSp14moveInitialize4from5countySpyxG_SitF16OpenTelemetryApi5EntryV_Tg5
 $sSTsSL7ElementRpzrlE6sortedSayABGyFSbAB_ABtcABmcfu_SbAB_ABtcfu0_Say16OpenTelemetryApi5EntryVG_TG5Tf4nnd_n
 $sSTsSL7ElementRpzrlE6sortedSayABGyFSbAB_ABtcABmcfu_SbAB_ABtcfu0_Say16OpenTelemetryApi5EntryVG_TB5
 <
-.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Baggage/Entry.swift
-.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Baggage/EntryKey.swift
+Sources/OpenTelemetryApi/Baggage/Entry.swift
+Sources/OpenTelemetryApi/Baggage/EntryKey.swift
 $ss6_merge3low3mid4high6buffer2bySbSpyxG_A3GSbx_xtKXEtKlF6$deferL_yylF16OpenTelemetryApi5EntryV_Tg5
 $sSr13_mergeTopRuns_6buffer2bySbSaySnySiGGz_SpyxGSbx_xtKXEtKF16OpenTelemetryApi5EntryV_Tg5054$sSTsSL7ElementRpzrlE6sortedSayABGyFSbAB_ABtcABmcfu_Sbs14_ABtcfu0_Say16fg4Api5I14VG_TG5Tf4nnd_nTf1nncn_n
 $sSlsE5countSivgSnySiG_Tg5
@@ -298,7 +298,7 @@ $ss22_ContiguousArrayBufferV26mutableFirstElementAddressSpyxGvg16OpenTelemetryAp
 $ss15ContiguousArrayV21_makeMutableAndUniqueyyF16OpenTelemetryApi5EntryV_Tg5
 $ss22_ContiguousArrayBufferV16beginCOWMutationSbyF16OpenTelemetryApi5EntryV_Tg5
 $s16OpenTelemetryApi6SpanIdV8fromData10withOffsetAC10Foundation0G0V_SitcfcfA0_
-.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Trace/SpanId.swift
+Sources/OpenTelemetryApi/Trace/SpanId.swift
 sorted
 $sSTsE6sorted2bySay7ElementQzGSbAD_ADtKXE_tKFSay16OpenTelemetryApi5EntryVG_Tg5
 init
@@ -306,13 +306,13 @@ $ss12_ArrayBufferV7_buffer19shiftedToStartIndexAByxGs011_ContiguousaB0VyxG_Sitcf
 $sSTsSL7ElementRpzrlE6sortedSayABGyFSbAB_ABtcABmcfu_Say16OpenTelemetryApi5EntryVG_Tg5
 _symbolic $s16OpenTelemetryApi14BaggageBuilderP
 _$s16OpenTelemetryApi14BaggageBuilder_pMF
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Baggage/BaggageBuilder.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Baggage/BaggageBuilder.swift
 _symbolic $s16OpenTelemetryApi14BaggageManagerP
 _$s16OpenTelemetryApi14BaggageManager_pMF
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Baggage/BaggageManager.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Baggage/BaggageManager.swift
 _symbolic $s16OpenTelemetryApi22BaggageManagerProviderP
 _$s16OpenTelemetryApi22BaggageManagerProvider_pMF
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Baggage/BaggageManagerProvider.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Baggage/BaggageManagerProvider.swift
 _$s16OpenTelemetryApi14DefaultBaggageC7entriesSDyAA8EntryKeyVAA0G0VSgGvM.resume.0
 _$s16OpenTelemetryApi14DefaultBaggageCSDyAA8EntryKeyVAA0F0VSgGIetMAgYl_TC
 _$s16OpenTelemetryApi14DefaultBaggageCAA0E0A2aDP14baggageBuilderAA0eG0_pyFZTW
@@ -375,7 +375,7 @@ _$ss23_ContiguousArrayStorageCy16OpenTelemetryApi5EntryVSgGMD
 _symbolic _____Sg 16OpenTelemetryApi5EntryV
 _$s16OpenTelemetryApi5EntryVSgMD
 _objc_classes_$s16OpenTelemetryApi14DefaultBaggageCN
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Baggage/DefaultBaggage.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Baggage/DefaultBaggage.swift
 $ss22_ContiguousArrayBufferV19_uninitializedCount15minimumCapacityAByxGSi_SitcfCs5UInt8V_Tg5Tf4nnd_n
 $ss22_ContiguousArrayBufferV18_initStorageHeader5count8capacityySi_SitFs5UInt8V_Tg5
 $ss22_ContiguousArrayBufferVAByxGycfCs5UInt8V_Tg5
@@ -516,7 +516,7 @@ $ss12_ArrayBufferV8capacitySivgSnySiG_Tg5
 $ss22_ContiguousArrayBufferV8capacitySivgSnySiG_Tg5
 getEntryValue
 baggageBuilder
-.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Baggage/DefaultBaggageBuilder.swift
+Sources/OpenTelemetryApi/Baggage/DefaultBaggageBuilder.swift
 deinit
 $ss12_ArrayBufferVAByxGycfC16OpenTelemetryApi5EntryV_Tg5
 entries.modify
@@ -592,7 +592,7 @@ _$ss18_DictionaryStorageCySSyXlGMD
 _symbolic _____y__________SgG s18_DictionaryStorageC 16OpenTelemetryApi8EntryKeyV AC0F0V
 _$ss18_DictionaryStorageCy16OpenTelemetryApi8EntryKeyVAC0F0VSgGMD
 _objc_classes_$s16OpenTelemetryApi21DefaultBaggageBuilderCN
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Baggage/DefaultBaggageBuilder.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Baggage/DefaultBaggageBuilder.swift
 $s16OpenTelemetryApi5EntryVSgWOb
 $s16OpenTelemetryApi21DefaultBaggageBuilderCMa
 keypath_set.4
@@ -669,10 +669,10 @@ setNoParent
 setParent
 subscript.set
 $s16OpenTelemetryApi12EmptyBaggageC8instanceACvau
-.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Baggage/EmptyBaggage.swift
+Sources/OpenTelemetryApi/Baggage/EmptyBaggage.swift
 $s16OpenTelemetryApi0aB0V8instanceACvau
-.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/OpenTelemetry.swift
-.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Baggage/DefaultBaggage.swift
+Sources/OpenTelemetryApi/OpenTelemetry.swift
+Sources/OpenTelemetryApi/Baggage/DefaultBaggage.swift
 isEmpty.get
 $sSD5countSivg16OpenTelemetryApi8EntryKeyV_AB0E0VSgTg5
 $ss16IndexingIteratorV4next7ElementQzSgyFSay16OpenTelemetryApi5EntryVG_Tg5
@@ -681,12 +681,12 @@ $sSayxSicir16OpenTelemetryApi5EntryV_Tg5
 $sSayxGSlsSl8endIndex0B0QzvgTW16OpenTelemetryApi5EntryV_Tg5
 $sSa8endIndexSivg16OpenTelemetryApi5EntryV_Tg5
 activeBaggage.get
-.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Context/OpenTelemetryContextProvider.swift
+Sources/OpenTelemetryApi/Context/OpenTelemetryContextProvider.swift
 dynamic_cast_existential_1_conditional
 updateValue
 $sSD11removeValue6forKeyq_Sgx_tF16OpenTelemetryApi05EntryD0V_AD0H0VSgTB5
-.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Baggage/EntryMetadata.swift
-.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Baggage/EntryValue.swift
+Sources/OpenTelemetryApi/Baggage/EntryMetadata.swift
+Sources/OpenTelemetryApi/Baggage/EntryValue.swift
 isValid
 isPrintableString
 noImplicitParent.modify
@@ -709,7 +709,7 @@ _symbolic _____ 16OpenTelemetryApi21DefaultBaggageManagerC
 _$s16OpenTelemetryApi21DefaultBaggageManagerCMF
 _objc_classes_$s16OpenTelemetryApi21DefaultBaggageManagerCN
 -private-discriminator _E39A122BCFA067B7F9852E49446C2EC8
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Baggage/DefaultBaggageManager.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Baggage/DefaultBaggageManager.swift
 $s16OpenTelemetryApi21DefaultBaggageManagerCMa
 getCurrentBaggage
 instance.modify
@@ -729,10 +729,10 @@ _$s16OpenTelemetryApi29DefaultBaggageManagerProviderCMf
 _symbolic _____ 16OpenTelemetryApi29DefaultBaggageManagerProviderC
 _$s16OpenTelemetryApi29DefaultBaggageManagerProviderCMF
 _objc_classes_$s16OpenTelemetryApi29DefaultBaggageManagerProviderCN
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Baggage/DefaultBaggageManagerProvider.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Baggage/DefaultBaggageManagerProvider.swift
 $s16OpenTelemetryApi29DefaultBaggageManagerProviderCMa
 create
-.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Baggage/DefaultBaggageManager.swift
+Sources/OpenTelemetryApi/Baggage/DefaultBaggageManager.swift
 $s16OpenTelemetryApi29DefaultBaggageManagerProviderC8instanceACvau
 $s16OpenTelemetryApi29DefaultBaggageManagerProviderC8instance_WZ
 _$s16OpenTelemetryApi12EmptyBaggageC8instanceACvMZ.resume.0
@@ -747,9 +747,9 @@ _symbolic _____ 16OpenTelemetryApi12EmptyBaggageC
 _$s16OpenTelemetryApi12EmptyBaggageCMF
 _objc_classes_$s16OpenTelemetryApi12EmptyBaggageCN
 -private-discriminator _632E55FF7B53190E816348D411A713BE
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Baggage/EmptyBaggage.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Baggage/EmptyBaggage.swift
 $s16OpenTelemetryApi12EmptyBaggageCMa
-.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Baggage/EmptyBaggageBuilder.swift
+Sources/OpenTelemetryApi/Baggage/EmptyBaggageBuilder.swift
 $s16OpenTelemetryApi12EmptyBaggageC8instance_WZ
 _$s16OpenTelemetryApi19EmptyBaggageBuilderCAA0eF0A2aDP9setParentyxAA0E0_pSgFTW
 _$s16OpenTelemetryApi19EmptyBaggageBuilderCAA0eF0A2aDP11setNoParentxyFTW
@@ -762,7 +762,7 @@ _$s16OpenTelemetryApi19EmptyBaggageBuilderCMf
 _symbolic _____ 16OpenTelemetryApi19EmptyBaggageBuilderC
 _$s16OpenTelemetryApi19EmptyBaggageBuilderCMF
 _objc_classes_$s16OpenTelemetryApi19EmptyBaggageBuilderCN
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Baggage/EmptyBaggageBuilder.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Baggage/EmptyBaggageBuilder.swift
 $s16OpenTelemetryApi19EmptyBaggageBuilderCMa
 _$s16OpenTelemetryApi5EntryVSQAASQ2eeoiySbx_xtFZTW
 _$s16OpenTelemetryApi5EntryVSLAASL1loiySbx_xtFZTW
@@ -792,7 +792,7 @@ _symbolic _____ 16OpenTelemetryApi10EntryValueV
 _symbolic _____Sg 16OpenTelemetryApi13EntryMetadataV
 _$s16OpenTelemetryApi5EntryVMF
 -private-discriminator _BF928C8A2210D306EDEE114F8FD193A6
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Baggage/Entry.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Baggage/Entry.swift
 $s16OpenTelemetryApi5EntryVMa
 $s16OpenTelemetryApi5EntryVwst
 $s16OpenTelemetryApi5EntryVwet
@@ -838,7 +838,7 @@ _$s16OpenTelemetryApi8EntryKeyVMf
 _symbolic SS
 _$s16OpenTelemetryApi8EntryKeyVMF
 -private-discriminator _DA880A0A87AC3A60002AAAB1B2EB506A
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Baggage/EntryKey.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Baggage/EntryKey.swift
 $s16OpenTelemetryApi8EntryKeyVMa
 $s16OpenTelemetryApi8EntryKeyVwst
 $s16OpenTelemetryApi8EntryKeyVwet
@@ -870,7 +870,7 @@ _$s16OpenTelemetryApi13EntryMetadataVWV
 _$s16OpenTelemetryApi13EntryMetadataVMf
 _symbolic _____ 16OpenTelemetryApi13EntryMetadataV
 _$s16OpenTelemetryApi13EntryMetadataVMF
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Baggage/EntryMetadata.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Baggage/EntryMetadata.swift
 $s16OpenTelemetryApi13EntryMetadataVMa
 $s16OpenTelemetryApi13EntryMetadataVwst
 $s16OpenTelemetryApi13EntryMetadataVwet
@@ -894,7 +894,7 @@ _$s16OpenTelemetryApi10EntryValueVWV
 _$s16OpenTelemetryApi10EntryValueVMf
 _$s16OpenTelemetryApi10EntryValueVMF
 -private-discriminator _49F0EAE0E2A185C143F7A5D620AF5062
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Baggage/EntryValue.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Baggage/EntryValue.swift
 $s16OpenTelemetryApi10EntryValueVMa
 $s16OpenTelemetryApi10EntryValueVwst
 $s16OpenTelemetryApi10EntryValueVwet
@@ -932,7 +932,7 @@ _$s16OpenTelemetryApi23JaegerBaggagePropagatorCMF
 _symbolic _____ySSG s11_SetStorageC
 _$ss11_SetStorageCySSGMD
 _objc_classes_$s16OpenTelemetryApi23JaegerBaggagePropagatorCN
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Baggage/Propagation/JaegerBaggagePropagator.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Baggage/Propagation/JaegerBaggagePropagator.swift
 $sSlsSQ7ElementRpzrlE5split9separator9maxSplits25omittingEmptySubsequencesSay11SubSequenceQzGAB_SiSbtFSbABXEfU_SS_TG5TA
 $s16OpenTelemetryApi23JaegerBaggagePropagatorCMa
 $s16OpenTelemetryApi23JaegerBaggagePropagatorC6fieldsShySSGvpACTk
@@ -1012,7 +1012,7 @@ baggagePrefix.get
 baggageHeader.get
 _symbolic $s16OpenTelemetryApi24TextMapBaggagePropagatorP
 _$s16OpenTelemetryApi24TextMapBaggagePropagator_pMF
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Baggage/Propagation/TextMapBaggagePropagator.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Baggage/Propagation/TextMapBaggagePropagator.swift
 _$s16OpenTelemetryApi20W3CBaggagePropagatorV7extract7carrier6getterAA7Baggage_pSgSDyS2SG_xtAA6GetterRzlFySsXEfU_
 _$s16OpenTelemetryApi20W3CBaggagePropagatorVAA014TextMapBaggageF0A2aDP6fieldsShySSGvgTW
 _$s16OpenTelemetryApi20W3CBaggagePropagatorVAA014TextMapBaggageF0A2aDP6inject7baggage7carrier6setteryAA0I0_p_SDyS2SGzqd__tAA6SetterRd__lFTW
@@ -1026,7 +1026,7 @@ _$s16OpenTelemetryApi20W3CBaggagePropagatorVMF
 _symbolic SaySsG
 _symbolic _____ SS5IndexV
 -private-discriminator _F03A8932D567A26ABA05B1938D6CFB67
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Baggage/Propagation/W3CBaggagePropagator.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Baggage/Propagation/W3CBaggagePropagator.swift
 objectdestroy.3
 objectdestroy
 $s16OpenTelemetryApi20W3CBaggagePropagatorVMa
@@ -1082,7 +1082,7 @@ _$s16OpenTelemetryApi23ZipkinBaggagePropagatorCMf
 _symbolic _____ 16OpenTelemetryApi23ZipkinBaggagePropagatorC
 _$s16OpenTelemetryApi23ZipkinBaggagePropagatorCMF
 _objc_classes_$s16OpenTelemetryApi23ZipkinBaggagePropagatorCN
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Baggage/Propagation/ZipkinBaggagePropagator.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Baggage/Propagation/ZipkinBaggagePropagator.swift
 $s16OpenTelemetryApi23ZipkinBaggagePropagatorCMa
 Swift runtime failure: Can't drop a negative number of elements from a collection
 $sSSSlsSl5index_8offsetBy07limitedC05IndexQzSgAE_SiAEtFTW
@@ -1195,7 +1195,7 @@ _$s16OpenTelemetryApi12AttributeSetC10CodingKeys33_6FEC124CEB63C61C199282575FA91
 _$s16OpenTelemetryApi12AttributeSetC10CodingKeys33_6FEC124CEB63C61C199282575FA911A2LLOs0F3KeyAAMc
 _objc_classes_$s16OpenTelemetryApi12AttributeSetCN
 -private-discriminator _6FEC124CEB63C61C199282575FA911A2
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Common/AttributeSet.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Common/AttributeSet.swift
 $s16OpenTelemetryApi12AttributeSetC10CodingKeys33_6FEC124CEB63C61C199282575FA911A2LLOAFs23CustomStringConvertibleAAWl
 $s16OpenTelemetryApi12AttributeSetC10CodingKeys33_6FEC124CEB63C61C199282575FA911A2LLOs0F3KeyAAs23CustomStringConvertiblePWb
 $s16OpenTelemetryApi12AttributeSetC10CodingKeys33_6FEC124CEB63C61C199282575FA911A2LLOAFs28CustomDebugStringConvertibleAAWl
@@ -1937,7 +1937,7 @@ _associated conformance 16OpenTelemetryApi14AttributeValueO10CodingKeys33_C70B80
 _$s16OpenTelemetryApi14AttributeValueO10CodingKeys33_C70B80D3EF0F2569B7BBDFD935A7C603LLOs0F3KeyAAMcMK
 _$s16OpenTelemetryApi14AttributeValueO10CodingKeys33_C70B80D3EF0F2569B7BBDFD935A7C603LLOs0F3KeyAAMc
 -private-discriminator _C70B80D3EF0F2569B7BBDFD935A7C603
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Common/AttributeValue.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Common/AttributeValue.swift
 $s16OpenTelemetryApi14AttributeValueO10CodingKeys33_C70B80D3EF0F2569B7BBDFD935A7C603LLOAFs23CustomStringConvertibleAAWl
 $s16OpenTelemetryApi14AttributeValueO10CodingKeys33_C70B80D3EF0F2569B7BBDFD935A7C603LLOs0F3KeyAAs23CustomStringConvertiblePWb
 $s16OpenTelemetryApi14AttributeValueO10CodingKeys33_C70B80D3EF0F2569B7BBDFD935A7C603LLOAFs28CustomDebugStringConvertibleAAWl
@@ -2101,7 +2101,7 @@ $sSaySdGSayxGSesSeRzlWl
 $s16OpenTelemetryApi29AttributeValueExplicitCodableV010AssociatedE10CodingKeysOAEs0I3KeyAAWl
 $s16OpenTelemetryApi29AttributeValueExplicitCodableV10CodingKeysOAEs0H3KeyAAWl
 $sSa13_adoptStorage_5countSayxG_SpyxGts016_ContiguousArrayB0CyxGn_SitFZs12StaticStringV_Tg5
-.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Common/AttributeSet.swift
+Sources/OpenTelemetryApi/Common/AttributeSet.swift
 $sSayxGSlsSly7ElementQz5IndexQzcirTW16OpenTelemetryApi14AttributeValueO10CodingKeys33_C70B80D3EF0F2569B7BBDFD935A7C603LLO_Tg5
 $sSayxSicir16OpenTelemetryApi14AttributeValueO10CodingKeys33_C70B80D3EF0F2569B7BBDFD935A7C603LLO_Tg5
 $sSa11_getElement_20wasNativeTypeChecked22matchingSubscriptCheckxSi_Sbs16_DependenceTokenVtF16OpenTelemetryApi14AttributeValueO10CodingKeys33_C70B80D3EF0F2569B7BBDFD935A7C603LLO_Tg5
@@ -2192,7 +2192,7 @@ _$sSo14OS_os_activity_pMD
 _objc_classes_$s16OpenTelemetryApi22ActivityContextManagerCN
 _objc_classes_$s16OpenTelemetryApi22ActivityContextManagerC12ScopeElementCN
 -private-discriminator _ED37454E2A1AEF7D1CCFA25C99E50761
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Context/ActivityContextManager.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Context/ActivityContextManager.swift
 $sSD8_VariantV8asNatives01_C10DictionaryVyxq_GvMs6UInt64V_SDySSyXlGTg5.resume.0
 $sSD8_VariantV8asNatives01_C10DictionaryVyxq_GvMs6UInt64V_SDySSyXlGTg5
 $ss17_NativeDictionaryV_8isUniqueq_Sgx_SbtciMs6UInt64V_SDySSyXlGTg5.resume.0
@@ -2245,7 +2245,7 @@ $s16OpenTelemetryApi22ActivityContextManagerC8instance_WZ
 $s16OpenTelemetryApi19OS_ACTIVITY_CURRENT33_ED37454E2A1AEF7D1CCFA25C99E50761LL_WZ
 _symbolic $s16OpenTelemetryApi14ContextManagerP
 _$s16OpenTelemetryApi14ContextManager_pMF
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Context/ContextManager.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Context/ContextManager.swift
 _$ss2eeoiySbx_xtSYRzSQ8RawValueRpzlF16OpenTelemetryApi0dE11ContextKeysO_TB5
 _$s16OpenTelemetryApi0aB11ContextKeysOSQAASQ2eeoiySbx_xtFZTW
 _$s16OpenTelemetryApi0aB11ContextKeysOSHAASH9hashValueSivgTW
@@ -2287,7 +2287,7 @@ _$s16OpenTelemetryApi0aB15ContextProviderVMf
 _symbolic _____ 16OpenTelemetryApi0aB15ContextProviderV
 _symbolic ______p 16OpenTelemetryApi14ContextManagerP
 _$s16OpenTelemetryApi0aB15ContextProviderVMF
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Context/OpenTelemetryContextProvider.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Context/OpenTelemetryContextProvider.swift
 $s16OpenTelemetryApi0aB15ContextProviderVMa
 $s16OpenTelemetryApi0aB15ContextProviderVwst
 $s16OpenTelemetryApi0aB15ContextProviderVwet
@@ -2317,7 +2317,7 @@ _$s16OpenTelemetryApi11StringUtilsVMf
 _symbolic _____ 16OpenTelemetryApi11StringUtilsV
 _$s16OpenTelemetryApi11StringUtilsVMF
 -private-discriminator _7A4A550F27D980207C126381D426C2BC
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Internal/StringUtils.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Internal/StringUtils.swift
 $s16OpenTelemetryApi11StringUtilsVMa
 $s10Foundation6LocaleVSgWOh
 isPrintableChar
@@ -2327,7 +2327,7 @@ $sSS17UnicodeScalarViewV12makeIteratorAB0E0VyF
 isValidMetricName
 _$ss17FixedWidthIntegerPsE8_convert4fromxSg5value_Sb5exacttqd___tSBRd__lFZs6UInt64V_SdTg5
 -private-discriminator _CD99CDCC7425F01A568BE992D2D0FDAE
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Internal/SwiftExtensions.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Internal/SwiftExtensions.swift
 $ss17FixedWidthIntegerPsE8_convert4fromxSg5value_Sb5exacttqd___tSBRd__lFZs6UInt64V_SdTg5
 $sSis18AdditiveArithmeticssAAP1soiyxx_xtFZTW
 $ss6UInt64VSzsSz1ooiyxx_xtFZTW
@@ -2370,7 +2370,7 @@ _$s16OpenTelemetryApi15TraceStateUtilsVMf
 _symbolic _____ 16OpenTelemetryApi15TraceStateUtilsV
 _$s16OpenTelemetryApi15TraceStateUtilsVMF
 -private-discriminator _AF239FFB32D2FCE2641A1B4CDEAF2E13
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Internal/TracestateUtils.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Internal/TracestateUtils.swift
 $s16OpenTelemetryApi15TraceStateUtilsVMa
 $sSKsSQ7ElementRpzrlE9lastIndex2of0C0QzSgAB_tFSbABXEfU_SS_TG5TA
 $sSKsSQ7ElementRpzrlE9lastIndex2of0C0QzSgAB_tFSbABXEfU_SS_TG5
@@ -2476,7 +2476,7 @@ _objc_classes_$s16OpenTelemetryApi13DefaultLoggerCN
 _objc_classes_$s16OpenTelemetryApi13DefaultLoggerC20NoopLogRecordBuilder33_41D040D7D3E39CB4A0C6F9F6F3BCA9CDLLCN
 _$s16OpenTelemetryApi13DefaultLoggerC20NoopLogRecordBuilder33_41D040D7D3E39CB4A0C6F9F6F3BCA9CDLLCN
 -private-discriminator _41D040D7D3E39CB4A0C6F9F6F3BCA9CD
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Logs/DefaultLogger.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Logs/DefaultLogger.swift
 logRecordBuilder
 eventBuilder
 emit
@@ -2534,8 +2534,8 @@ _objc_classes_$s16OpenTelemetryApi21DefaultLoggerProviderCN
 _objc_classes_$s16OpenTelemetryApi17NoopLoggerBuilder33_EA7FDD81029982CC03EFD485AFE9219FLLCN
 _$s16OpenTelemetryApi17NoopLoggerBuilder33_EA7FDD81029982CC03EFD485AFE9219FLLCN
 -private-discriminator _EA7FDD81029982CC03EFD485AFE9219F
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Logs/DefaultLoggerProvider.swift
-.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Logs/DefaultLogger.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Logs/DefaultLoggerProvider.swift
+Sources/OpenTelemetryApi/Logs/DefaultLogger.swift
 setAttributes
 setIncludeTraceContext
 setSchemaUrl
@@ -2551,19 +2551,19 @@ $s16OpenTelemetryApi21DefaultLoggerProviderC8instanceAA0eF0_pvau
 $s16OpenTelemetryApi21DefaultLoggerProviderC8instance_WZ
 _symbolic $s16OpenTelemetryApi12EventBuilderP
 _$s16OpenTelemetryApi12EventBuilder_pMF
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Logs/EventBuilder.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Logs/EventBuilder.swift
 _symbolic $s16OpenTelemetryApi16LogRecordBuilderP
 _$s16OpenTelemetryApi16LogRecordBuilder_pMF
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Logs/LogRecordBuilder.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Logs/LogRecordBuilder.swift
 _symbolic $s16OpenTelemetryApi6LoggerP
 _$s16OpenTelemetryApi6Logger_pMF
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Logs/Logger.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Logs/Logger.swift
 _symbolic $s16OpenTelemetryApi13LoggerBuilderP
 _$s16OpenTelemetryApi13LoggerBuilder_pMF
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Logs/LoggerBuilder.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Logs/LoggerBuilder.swift
 _symbolic $s16OpenTelemetryApi14LoggerProviderP
 _$s16OpenTelemetryApi14LoggerProvider_pMF
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Logs/LoggerProvider.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Logs/LoggerProvider.swift
 _$s16OpenTelemetryApi8SeverityOSQAASQ2eeoiySbx_xtFZTW
 _$s16OpenTelemetryApi8SeverityOSHAASQWb
 _$s16OpenTelemetryApi8SeverityOACSQAAWl
@@ -2602,7 +2602,7 @@ _$s16OpenTelemetryApi8SeverityOWV
 _$s16OpenTelemetryApi8SeverityOMf
 _$s16OpenTelemetryApi8SeverityOMF
 _$s16OpenTelemetryApi8SeverityOACSYAAWL
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Logs/Severity.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Logs/Severity.swift
 $s16OpenTelemetryApi8SeverityOACSYAAWl
 $s16OpenTelemetryApi8SeverityOMa
 $s16OpenTelemetryApi8SeverityOwui
@@ -2641,12 +2641,12 @@ _$s16OpenTelemetryApi20DefaultMeterProviderCMf
 _symbolic _____ 16OpenTelemetryApi20DefaultMeterProviderC
 _$s16OpenTelemetryApi20DefaultMeterProviderCMF
 _objc_classes_$s16OpenTelemetryApi20DefaultMeterProviderCN
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/DefaultMeterProvider.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/DefaultMeterProvider.swift
 $s16OpenTelemetryApi20DefaultMeterProviderCMa
 reset
 $s16OpenTelemetryApi20DefaultMeterProviderC05proxyE0AA05ProxyE0Vvau
 $s16OpenTelemetryApi20DefaultMeterProviderC8instanceAA0eF0_pvau
-.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/ProxyMeter.swift
+Sources/OpenTelemetryApi/Metrics/ProxyMeter.swift
 $s16OpenTelemetryApi5Meter_pSgWOc
 $s16OpenTelemetryApi5Meter_pSgWOh
 setDefault
@@ -2670,7 +2670,7 @@ _$s16OpenTelemetryApi18BoundMeasureMetricCMI
 _$s16OpenTelemetryApi18BoundMeasureMetricCMP
 _symbolic _____ 16OpenTelemetryApi18BoundMeasureMetricC
 _$s16OpenTelemetryApi18BoundMeasureMetricCMF
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Instruments/Gauge/BoundMeasureMetric.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Instruments/Gauge/BoundMeasureMetric.swift
 __swift_instantiateGenericMetadata
 $s16OpenTelemetryApi18BoundMeasureMetricCMa
 $s16OpenTelemetryApi18BoundMeasureMetricCMr
@@ -2683,12 +2683,12 @@ _$s16OpenTelemetryApi20DoubleObserverMetric_pMF
 _$s16OpenTelemetryApi24NoopDoubleObserverMetricVMf
 _symbolic _____ 16OpenTelemetryApi24NoopDoubleObserverMetricV
 _$s16OpenTelemetryApi24NoopDoubleObserverMetricVMF
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Instruments/Gauge/DoubleObserverMetric.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Instruments/Gauge/DoubleObserverMetric.swift
 $s16OpenTelemetryApi24NoopDoubleObserverMetricVMa
 observe
 _symbolic $s16OpenTelemetryApi26DoubleObserverMetricHandleP
 _$s16OpenTelemetryApi26DoubleObserverMetricHandle_pMF
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Instruments/Gauge/DoubleObserverMetricHandle.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Instruments/Gauge/DoubleObserverMetricHandle.swift
 _$s16OpenTelemetryApi21NoopIntObserverMetricVAA0efG0A2aDP7observe5value8labelsetySi_AA8LabelSetCtFTW
 _$s16OpenTelemetryApi21NoopIntObserverMetricVAA0efG0A2aDP7observe5value6labelsySi_SDyS2SGtFTW
 _symbolic $s16OpenTelemetryApi17IntObserverMetricP
@@ -2696,11 +2696,11 @@ _$s16OpenTelemetryApi17IntObserverMetric_pMF
 _$s16OpenTelemetryApi21NoopIntObserverMetricVMf
 _symbolic _____ 16OpenTelemetryApi21NoopIntObserverMetricV
 _$s16OpenTelemetryApi21NoopIntObserverMetricVMF
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Instruments/Gauge/IntObserverMetric.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Instruments/Gauge/IntObserverMetric.swift
 $s16OpenTelemetryApi21NoopIntObserverMetricVMa
 _symbolic $s16OpenTelemetryApi23IntObserverMetricHandleP
 _$s16OpenTelemetryApi23IntObserverMetricHandle_pMF
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Instruments/Gauge/IntObserverMetricHandle.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Instruments/Gauge/IntObserverMetricHandle.swift
 _$s16OpenTelemetryApi16AnyMeasureMetricVyACyxGqd__c1TQyd__RszAA0eF0Rd__lufcAA05BoundeF0CyxGAA8LabelSetCcqd__cfu_
 _$s16OpenTelemetryApi16AnyMeasureMetricVyACyxGqd__c1TQyd__RszAA0eF0Rd__lufcAA05BoundeF0CyxGSDyS2SGcqd__cfu1_
 _$s16OpenTelemetryApi16AnyMeasureMetricVyxGAA0eF0A2aEP4bind8labelsetAA05BoundeF0Cy1TQzGAA8LabelSetC_tFTW
@@ -2743,7 +2743,7 @@ _symbolic qd__
 _symbolic B0
 _symbolic B1
 -private-discriminator _270582C5D3732845721E10C2F785B426
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Instruments/Gauge/MeasureMetric.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Instruments/Gauge/MeasureMetric.swift
 $s16OpenTelemetryApi16AnyMeasureMetricVyACyxGqd__c1TQyd__RszAA0eF0Rd__lufcAA05BoundeF0CyxGAA8LabelSetCcqd__cfu_AjLcfu0_TA
 $s16OpenTelemetryApi16AnyMeasureMetricVyACyxGqd__c1TQyd__RszAA0eF0Rd__lufcAA05BoundeF0CyxGAA8LabelSetCcqd__cfu_AjLcfu0_
 $s16OpenTelemetryApi16AnyMeasureMetricVyACyxGqd__c1TQyd__RszAA0eF0Rd__lufcAA05BoundeF0CyxGSDyS2SGcqd__cfu1_AjKcfu2_TA
@@ -2772,7 +2772,7 @@ _$s16OpenTelemetryApi20BoundHistogramMetricCMI
 _$s16OpenTelemetryApi20BoundHistogramMetricCMP
 _symbolic _____ 16OpenTelemetryApi20BoundHistogramMetricC
 _$s16OpenTelemetryApi20BoundHistogramMetricCMF
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Instruments/Histogram/BoundHistogramMetric.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Instruments/Histogram/BoundHistogramMetric.swift
 $s16OpenTelemetryApi20BoundHistogramMetricCMa
 $s16OpenTelemetryApi20BoundHistogramMetricCMr
 $s16OpenTelemetryApi20BoundHistogramMetricCMi
@@ -2814,7 +2814,7 @@ _$s16OpenTelemetryApi19NoopHistogramMetricVMI
 _$s16OpenTelemetryApi19NoopHistogramMetricVMP
 _$s16OpenTelemetryApi19NoopHistogramMetricVMF
 -private-discriminator _B737EBC06315A2229D927898EF241684
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Instruments/Histogram/HistogramMetric.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Instruments/Histogram/HistogramMetric.swift
 $s16OpenTelemetryApi18AnyHistogramMetricVyACyxGqd__c1TQyd__RszAA0eF0Rd__lufcAA05BoundeF0CyxGAA8LabelSetCcqd__cfu_AjLcfu0_TA
 $s16OpenTelemetryApi18AnyHistogramMetricVyACyxGqd__c1TQyd__RszAA0eF0Rd__lufcAA05BoundeF0CyxGAA8LabelSetCcqd__cfu_AjLcfu0_
 $s16OpenTelemetryApi18AnyHistogramMetricVyACyxGqd__c1TQyd__RszAA0eF0Rd__lufcAA05BoundeF0CyxGSDyS2SGcqd__cfu1_AjKcfu2_TA
@@ -2839,7 +2839,7 @@ _$s16OpenTelemetryApi18BoundCounterMetricCMI
 _$s16OpenTelemetryApi18BoundCounterMetricCMP
 _symbolic _____ 16OpenTelemetryApi18BoundCounterMetricC
 _$s16OpenTelemetryApi18BoundCounterMetricCMF
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Instruments/Sum/BoundCounterMetric.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Instruments/Sum/BoundCounterMetric.swift
 $s16OpenTelemetryApi18BoundCounterMetricCMa
 $s16OpenTelemetryApi18BoundCounterMetricCMr
 $s16OpenTelemetryApi18BoundCounterMetricCMi
@@ -2897,7 +2897,7 @@ _$s16OpenTelemetryApi17NoopCounterMetricVMI
 _$s16OpenTelemetryApi17NoopCounterMetricVMP
 _$s16OpenTelemetryApi17NoopCounterMetricVMF
 -private-discriminator _CAC31C60022AE8FD0A6B8654DC9D9DB8
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Instruments/Sum/CounterMetric.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Instruments/Sum/CounterMetric.swift
 $s16OpenTelemetryApi16AnyCounterMetricVyACyxGqd__c1TQyd__RszAA0eF0Rd__lufcyx_AA8LabelSetCtcqd__cfu_yx_AItcfu0_TA
 $s16OpenTelemetryApi16AnyCounterMetricVyACyxGqd__c1TQyd__RszAA0eF0Rd__lufcyx_AA8LabelSetCtcqd__cfu_yx_AItcfu0_
 $s16OpenTelemetryApi16AnyCounterMetricVyACyxGqd__c1TQyd__RszAA0eF0Rd__lufcyx_SDyS2SGtcqd__cfu1_yx_AHtcfu2_TA
@@ -2953,7 +2953,7 @@ _symbolic SDyS2SG
 _$s16OpenTelemetryApi8LabelSetCMF
 _objc_classes_$s16OpenTelemetryApi8LabelSetCN
 -private-discriminator _F41458E79ED3F3F3BB316B85354D6418
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/LabelSet.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/LabelSet.swift
 $s16OpenTelemetryApi8LabelSetC6labelsSDyS2SGvpACTk
 $s16OpenTelemetryApi8LabelSetC6labelsSDyS2SGvpACTK
 $s16OpenTelemetryApi8LabelSetCMa
@@ -2964,7 +2964,7 @@ $s16OpenTelemetryApi8LabelSetC5emptyACvau
 $s16OpenTelemetryApi8LabelSetC5empty_WZ
 _symbolic $s16OpenTelemetryApi5MeterP
 _$s16OpenTelemetryApi5Meter_pMF
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Meter.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Meter.swift
 createDoubleObserver
 createIntObserver
 createDoubleMeasure
@@ -2973,7 +2973,7 @@ createDoubleCounter
 createIntCounter
 _symbolic $s16OpenTelemetryApi13MeterProviderP
 _$s16OpenTelemetryApi13MeterProvider_pMF
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/MeterProvider.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/MeterProvider.swift
 _$s16OpenTelemetryApi19AnyRawCounterMetricVySdGSgWOc
 _$s16OpenTelemetryApi19AnyRawCounterMetricVySdGSgWOh
 _$s16OpenTelemetryApi19AnyRawCounterMetricVySiGSgWOc
@@ -3110,12 +3110,12 @@ _$s16OpenTelemetryApi20NoopRawCounterMetricVySdGMD
 _symbolic _____ySdG 16OpenTelemetryApi21BoundRawCounterMetricC
 _$s16OpenTelemetryApi21BoundRawCounterMetricCySdGMD
 -private-discriminator _8C8D8417C699C355610C9F65E28CAD0A
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/ProxyMeter.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/ProxyMeter.swift
 $s16OpenTelemetryApi19AnyRawCounterMetricVyACyxGqd__c1TQyd__RszAA0efG0Rd__lufcAA05BoundefG0CyxGAA8LabelSetCcqd__cfu5_AjLcfu6_Sd_AA04NoopefG0VySdGTG5TA
 $s16OpenTelemetryApi19AnyRawCounterMetricVyACyxGqd__c1TQyd__RszAA0efG0Rd__lufcAA05BoundefG0CyxGAA8LabelSetCcqd__cfu5_AjLcfu6_Sd_AA04NoopefG0VySdGTG5
 $s16OpenTelemetryApi19AnyRawCounterMetricVyACyxGqd__c1TQyd__RszAA0efG0Rd__lufcAA05BoundefG0CyxGAA8LabelSetCcqd__cfu5_AjLcfu6_Sd_AA04NoopefG0VySdGTB5
-.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Raw/RawCounterMetric.swift
-.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Raw/BoundRawCounterMetric.swift
+Sources/OpenTelemetryApi/Metrics/Raw/RawCounterMetric.swift
+Sources/OpenTelemetryApi/Metrics/Raw/BoundRawCounterMetric.swift
 objectdestroy.92
 objectdestroy.89
 $s16OpenTelemetryApi19AnyRawCounterMetricVyACyxGqd__c1TQyd__RszAA0efG0Rd__lufcyx_10Foundation4DateVAjA8LabelSetCtcqd__cfu1_yx_A2jLtcfu2_Sd_AA04NoopefG0VySdGTG5TA
@@ -3139,8 +3139,8 @@ objectdestroy.62
 $s16OpenTelemetryApi21AnyRawHistogramMetricVyACyxGqd__c1TQyd__RszAA0efG0Rd__lufcAA05BoundefG0CyxGAA8LabelSetCcqd__cfu_AjLcfu0_Sd_AA04NoopefG0VySdGTG5TA
 $s16OpenTelemetryApi21AnyRawHistogramMetricVyACyxGqd__c1TQyd__RszAA0efG0Rd__lufcAA05BoundefG0CyxGAA8LabelSetCcqd__cfu_AjLcfu0_Sd_AA04NoopefG0VySdGTG5
 $s16OpenTelemetryApi21AnyRawHistogramMetricVyACyxGqd__c1TQyd__RszAA0efG0Rd__lufcAA05BoundefG0CyxGAA8LabelSetCcqd__cfu_AjLcfu0_Sd_AA04NoopefG0VySdGTB5
-.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Raw/RawHistogramMetric.swift
-.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Raw/BoundRawHistogramMetric.swift
+Sources/OpenTelemetryApi/Metrics/Raw/RawHistogramMetric.swift
+Sources/OpenTelemetryApi/Metrics/Raw/BoundRawHistogramMetric.swift
 objectdestroy.59
 $s16OpenTelemetryApi21AnyRawHistogramMetricVyACyxGqd__c1TQyd__RszAA0efG0Rd__lufcySayxG_SaySiG10Foundation4DateVALSixAA8LabelSetCtcqd__cfu5_yAH_Ai2LSixANtcfu6_Si_AA04NoopefG0VySiGTG5TA
 objectdestroy.56
@@ -3155,8 +3155,8 @@ objectdestroy.44
 $s16OpenTelemetryApi16AnyCounterMetricVyACyxGqd__c1TQyd__RszAA0eF0Rd__lufcAA05BoundeF0CyxGAA8LabelSetCcqd__cfu3_AjLcfu4_Si_AA04NoopeF0VySiGTG5TA
 $s16OpenTelemetryApi16AnyCounterMetricVyACyxGqd__c1TQyd__RszAA0eF0Rd__lufcAA05BoundeF0CyxGAA8LabelSetCcqd__cfu3_AjLcfu4_Si_AA04NoopeF0VySiGTG5
 $s16OpenTelemetryApi16AnyCounterMetricVyACyxGqd__c1TQyd__RszAA0eF0Rd__lufcAA05BoundeF0CyxGAA8LabelSetCcqd__cfu3_AjLcfu4_Si_AA04NoopeF0VySiGTB5
-.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Instruments/Sum/CounterMetric.swift
-.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Instruments/Sum/BoundCounterMetric.swift
+Sources/OpenTelemetryApi/Metrics/Instruments/Sum/CounterMetric.swift
+Sources/OpenTelemetryApi/Metrics/Instruments/Sum/BoundCounterMetric.swift
 objectdestroy.41
 $s16OpenTelemetryApi16AnyCounterMetricVyACyxGqd__c1TQyd__RszAA0eF0Rd__lufcyx_SDyS2SGtcqd__cfu1_yx_AHtcfu2_Si_AA04NoopeF0VySiGTG5TA
 objectdestroy.38
@@ -3186,8 +3186,8 @@ objectdestroy.20
 $s16OpenTelemetryApi18AnyHistogramMetricVyACyxGqd__c1TQyd__RszAA0eF0Rd__lufcAA05BoundeF0CyxGAA8LabelSetCcqd__cfu_AjLcfu0_Sd_AA04NoopeF0VySdGTG5TA
 $s16OpenTelemetryApi18AnyHistogramMetricVyACyxGqd__c1TQyd__RszAA0eF0Rd__lufcAA05BoundeF0CyxGAA8LabelSetCcqd__cfu_AjLcfu0_Sd_AA04NoopeF0VySdGTG5
 $s16OpenTelemetryApi18AnyHistogramMetricVyACyxGqd__c1TQyd__RszAA0eF0Rd__lufcAA05BoundeF0CyxGAA8LabelSetCcqd__cfu_AjLcfu0_Sd_AA04NoopeF0VySdGTB5
-.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Instruments/Histogram/HistogramMetric.swift
-.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Instruments/Histogram/BoundHistogramMetric.swift
+Sources/OpenTelemetryApi/Metrics/Instruments/Histogram/HistogramMetric.swift
+Sources/OpenTelemetryApi/Metrics/Instruments/Histogram/BoundHistogramMetric.swift
 objectdestroy.17
 objectdestroy.14
 $s16OpenTelemetryApi18AnyHistogramMetricVyACyxGqd__c1TQyd__RszAA0eF0Rd__lufcAA05BoundeF0CyxGAA8LabelSetCcqd__cfu_AjLcfu0_Si_AA04NoopeF0VySiGTG5TA
@@ -3198,15 +3198,15 @@ objectdestroy.8
 $s16OpenTelemetryApi16AnyMeasureMetricVyACyxGqd__c1TQyd__RszAA0eF0Rd__lufcAA05BoundeF0CyxGAA8LabelSetCcqd__cfu_AjLcfu0_Sd_AA04NoopeF0VySdGTG5TA
 $s16OpenTelemetryApi16AnyMeasureMetricVyACyxGqd__c1TQyd__RszAA0eF0Rd__lufcAA05BoundeF0CyxGAA8LabelSetCcqd__cfu_AjLcfu0_Sd_AA04NoopeF0VySdGTG5
 $s16OpenTelemetryApi16AnyMeasureMetricVyACyxGqd__c1TQyd__RszAA0eF0Rd__lufcAA05BoundeF0CyxGAA8LabelSetCcqd__cfu_AjLcfu0_Sd_AA04NoopeF0VySdGTB5
-.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Instruments/Gauge/MeasureMetric.swift
-.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Instruments/Gauge/BoundMeasureMetric.swift
+Sources/OpenTelemetryApi/Metrics/Instruments/Gauge/MeasureMetric.swift
+Sources/OpenTelemetryApi/Metrics/Instruments/Gauge/BoundMeasureMetric.swift
 objectdestroy.5
 objectdestroy.2
 $s16OpenTelemetryApi16AnyMeasureMetricVyACyxGqd__c1TQyd__RszAA0eF0Rd__lufcAA05BoundeF0CyxGAA8LabelSetCcqd__cfu_AjLcfu0_Si_AA04NoopeF0VySiGTG5TA
 $s16OpenTelemetryApi16AnyMeasureMetricVyACyxGqd__c1TQyd__RszAA0eF0Rd__lufcAA05BoundeF0CyxGAA8LabelSetCcqd__cfu_AjLcfu0_Si_AA04NoopeF0VySiGTG5
 $s16OpenTelemetryApi16AnyMeasureMetricVyACyxGqd__c1TQyd__RszAA0eF0Rd__lufcAA05BoundeF0CyxGAA8LabelSetCcqd__cfu_AjLcfu0_Si_AA04NoopeF0VySiGTB5
 getLabelSet
-.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/LabelSet.swift
+Sources/OpenTelemetryApi/Metrics/LabelSet.swift
 createDoubleObservableGauge
 createIntObservableGauge
 createRawIntCounter
@@ -3254,7 +3254,7 @@ _$s16OpenTelemetryApi21BoundRawCounterMetricCMI
 _$s16OpenTelemetryApi21BoundRawCounterMetricCMP
 _symbolic _____ 16OpenTelemetryApi21BoundRawCounterMetricC
 _$s16OpenTelemetryApi21BoundRawCounterMetricCMF
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Raw/BoundRawCounterMetric.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Raw/BoundRawCounterMetric.swift
 $s16OpenTelemetryApi21BoundRawCounterMetricCMa
 $s16OpenTelemetryApi21BoundRawCounterMetricCMr
 $s16OpenTelemetryApi21BoundRawCounterMetricCMi
@@ -3265,7 +3265,7 @@ _$s16OpenTelemetryApi23BoundRawHistogramMetricCMI
 _$s16OpenTelemetryApi23BoundRawHistogramMetricCMP
 _symbolic _____ 16OpenTelemetryApi23BoundRawHistogramMetricC
 _$s16OpenTelemetryApi23BoundRawHistogramMetricCMF
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Raw/BoundRawHistogramMetric.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Raw/BoundRawHistogramMetric.swift
 $s16OpenTelemetryApi23BoundRawHistogramMetricCMa
 $s16OpenTelemetryApi23BoundRawHistogramMetricCMr
 $s16OpenTelemetryApi23BoundRawHistogramMetricCMi
@@ -3317,7 +3317,7 @@ _$s16OpenTelemetryApi20NoopRawCounterMetricVMI
 _$s16OpenTelemetryApi20NoopRawCounterMetricVMP
 _$s16OpenTelemetryApi20NoopRawCounterMetricVMF
 -private-discriminator _D9C5937A672D79D24CD51119AB96EBEA
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Raw/RawCounterMetric.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Raw/RawCounterMetric.swift
 $s16OpenTelemetryApi19AnyRawCounterMetricVyACyxGqd__c1TQyd__RszAA0efG0Rd__lufcyx_10Foundation4DateVAJSDyS2SGtcqd__cfu_yx_A2jKtcfu0_TA
 $s16OpenTelemetryApi19AnyRawCounterMetricVyACyxGqd__c1TQyd__RszAA0efG0Rd__lufcyx_10Foundation4DateVAJSDyS2SGtcqd__cfu_yx_A2jKtcfu0_
 $s16OpenTelemetryApi19AnyRawCounterMetricVyACyxGqd__c1TQyd__RszAA0efG0Rd__lufcyx_10Foundation4DateVAjA8LabelSetCtcqd__cfu1_yx_A2jLtcfu2_TA
@@ -3389,7 +3389,7 @@ _$s16OpenTelemetryApi22NoopRawHistogramMetricVMI
 _$s16OpenTelemetryApi22NoopRawHistogramMetricVMP
 _$s16OpenTelemetryApi22NoopRawHistogramMetricVMF
 -private-discriminator _55F5006B47A9D7791480AC988DCC3D7E
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Raw/RawHistogramMetric.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Raw/RawHistogramMetric.swift
 $s16OpenTelemetryApi21AnyRawHistogramMetricVyACyxGqd__c1TQyd__RszAA0efG0Rd__lufcAA05BoundefG0CyxGAA8LabelSetCcqd__cfu_AjLcfu0_TA
 $s16OpenTelemetryApi21AnyRawHistogramMetricVyACyxGqd__c1TQyd__RszAA0efG0Rd__lufcAA05BoundefG0CyxGAA8LabelSetCcqd__cfu_AjLcfu0_
 $s16OpenTelemetryApi21AnyRawHistogramMetricVyACyxGqd__c1TQyd__RszAA0efG0Rd__lufcAA05BoundefG0CyxGSDyS2SGcqd__cfu1_AjKcfu2_TA
@@ -3725,7 +3725,7 @@ _$s16OpenTelemetryApi18DefaultStableMeterC27NoopObservableDoubleCounter33_C7DF14
 _$s16OpenTelemetryApi18DefaultStableMeterC0E24NoopDoubleCounterBuilder33_C7DF148BF3D500C0F252CA64EBDE96C6LLCN
 _$s16OpenTelemetryApi18DefaultStableMeterC0E17NoopDoubleCounter33_C7DF148BF3D500C0F252CA64EBDE96C6LLCN
 -private-discriminator _C7DF148BF3D500C0F252CA64EBDE96C6
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Stable/DefaultStableMeter.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Stable/DefaultStableMeter.swift
 $s16OpenTelemetryApi18DefaultStableMeterC25NoopObservableDoubleGauge33_C7DF148BF3D500C0F252CA64EBDE96C6LLVMa
 $s16OpenTelemetryApi18DefaultStableMeterC23NoopObservableLongGauge33_C7DF148BF3D500C0F252CA64EBDE96C6LLVMa
 $s16OpenTelemetryApi18DefaultStableMeterC33NoopObservableDoubleUpDownCounter33_C7DF148BF3D500C0F252CA64EBDE96C6LLVMa
@@ -3781,7 +3781,7 @@ _symbolic _____ 16OpenTelemetryApi26DefaultStableMeterProviderC04NoopF7BuilderC
 _$s16OpenTelemetryApi26DefaultStableMeterProviderC04NoopF7BuilderCMF
 _objc_classes_$s16OpenTelemetryApi26DefaultStableMeterProviderCN
 _objc_classes_$s16OpenTelemetryApi26DefaultStableMeterProviderC04NoopF7BuilderCN
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Stable/DefaultStableMeterProvider.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Stable/DefaultStableMeterProvider.swift
 $s16OpenTelemetryApi26DefaultStableMeterProviderC04NoopF7BuilderCMa
 $s16OpenTelemetryApi26DefaultStableMeterProviderCMa
 meterBuilder
@@ -3792,84 +3792,84 @@ $s16OpenTelemetryApi26DefaultStableMeterProviderC04NoopF7BuilderC04noopF0AA0deF0
 noopMeterBuilder.get
 $s16OpenTelemetryApi26DefaultStableMeterProviderC04noopF7BuilderAC04NoopfI0Cvau
 $s16OpenTelemetryApi26DefaultStableMeterProviderC04NoopF7BuilderC04noopF0_WZ
-.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Stable/DefaultStableMeter.swift
+Sources/OpenTelemetryApi/Metrics/Stable/DefaultStableMeter.swift
 noop
 $s16OpenTelemetryApi26DefaultStableMeterProviderC04noopF7Builder_WZ
 _symbolic $s16OpenTelemetryApi13DoubleCounterP
 _$s16OpenTelemetryApi13DoubleCounter_pMF
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Stable/DoubleCounter.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Stable/DoubleCounter.swift
 _symbolic $s16OpenTelemetryApi20DoubleCounterBuilderP
 _$s16OpenTelemetryApi20DoubleCounterBuilder_pMF
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Stable/DoubleCounterBuilder.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Stable/DoubleCounterBuilder.swift
 _symbolic $s16OpenTelemetryApi18DoubleGaugeBuilderP
 _$s16OpenTelemetryApi18DoubleGaugeBuilder_pMF
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Stable/DoubleGaugeBuilder.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Stable/DoubleGaugeBuilder.swift
 _symbolic $s16OpenTelemetryApi15DoubleHistogramP
 _$s16OpenTelemetryApi15DoubleHistogram_pMF
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Stable/DoubleHistogram.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Stable/DoubleHistogram.swift
 _symbolic $s16OpenTelemetryApi22DoubleHistogramBuilderP
 _$s16OpenTelemetryApi22DoubleHistogramBuilder_pMF
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Stable/DoubleHistogramBuilder.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Stable/DoubleHistogramBuilder.swift
 _symbolic $s16OpenTelemetryApi19DoubleUpDownCounterP
 _$s16OpenTelemetryApi19DoubleUpDownCounter_pMF
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Stable/DoubleUpDownCounter.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Stable/DoubleUpDownCounter.swift
 _symbolic $s16OpenTelemetryApi26DoubleUpDownCounterBuilderP
 _$s16OpenTelemetryApi26DoubleUpDownCounterBuilder_pMF
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Stable/DoubleUpDownCounterBuilder.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Stable/DoubleUpDownCounterBuilder.swift
 _symbolic $s16OpenTelemetryApi11LongCounterP
 _$s16OpenTelemetryApi11LongCounter_pMF
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Stable/LongCounter.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Stable/LongCounter.swift
 _symbolic $s16OpenTelemetryApi18LongCounterBuilderP
 _$s16OpenTelemetryApi18LongCounterBuilder_pMF
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Stable/LongCounterBuilder.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Stable/LongCounterBuilder.swift
 _symbolic $s16OpenTelemetryApi16LongGaugeBuilderP
 _$s16OpenTelemetryApi16LongGaugeBuilder_pMF
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Stable/LongGaugeBuilder.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Stable/LongGaugeBuilder.swift
 _symbolic $s16OpenTelemetryApi13LongHistogramP
 _$s16OpenTelemetryApi13LongHistogram_pMF
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Stable/LongHistogram.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Stable/LongHistogram.swift
 _symbolic $s16OpenTelemetryApi20LongHistogramBuilderP
 _$s16OpenTelemetryApi20LongHistogramBuilder_pMF
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Stable/LongHistogramBuilder.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Stable/LongHistogramBuilder.swift
 _symbolic $s16OpenTelemetryApi17LongUpDownCounterP
 _$s16OpenTelemetryApi17LongUpDownCounter_pMF
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Stable/LongUpDownCounter.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Stable/LongUpDownCounter.swift
 _symbolic $s16OpenTelemetryApi24LongUpDownCounterBuilderP
 _$s16OpenTelemetryApi24LongUpDownCounterBuilder_pMF
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Stable/LongUpDownCounterBuilder.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Stable/LongUpDownCounterBuilder.swift
 _symbolic $s16OpenTelemetryApi12MeterBuilderP
 _$s16OpenTelemetryApi12MeterBuilder_pMF
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Stable/MeterBuilder.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Stable/MeterBuilder.swift
 _symbolic $s16OpenTelemetryApi23ObservableDoubleCounterP
 _$s16OpenTelemetryApi23ObservableDoubleCounter_pMF
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Stable/ObservableDoubleCounter.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Stable/ObservableDoubleCounter.swift
 _symbolic $s16OpenTelemetryApi21ObservableDoubleGaugeP
 _$s16OpenTelemetryApi21ObservableDoubleGauge_pMF
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Stable/ObservableDoubleGauge.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Stable/ObservableDoubleGauge.swift
 _symbolic $s16OpenTelemetryApi27ObservableDoubleMeasurementP
 _$s16OpenTelemetryApi27ObservableDoubleMeasurement_pMF
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Stable/ObservableDoubleMeasurement.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Stable/ObservableDoubleMeasurement.swift
 _symbolic $s16OpenTelemetryApi29ObservableDoubleUpDownCounterP
 _$s16OpenTelemetryApi29ObservableDoubleUpDownCounter_pMF
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Stable/ObservableDoubleUpDownCounter.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Stable/ObservableDoubleUpDownCounter.swift
 _symbolic $s16OpenTelemetryApi21ObservableLongCounterP
 _$s16OpenTelemetryApi21ObservableLongCounter_pMF
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Stable/ObservableLongCounter.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Stable/ObservableLongCounter.swift
 _symbolic $s16OpenTelemetryApi19ObservableLongGaugeP
 _$s16OpenTelemetryApi19ObservableLongGauge_pMF
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Stable/ObservableLongGauge.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Stable/ObservableLongGauge.swift
 _symbolic $s16OpenTelemetryApi25ObservableLongMeasurementP
 _$s16OpenTelemetryApi25ObservableLongMeasurement_pMF
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Stable/ObservableLongMeasurement.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Stable/ObservableLongMeasurement.swift
 _symbolic $s16OpenTelemetryApi27ObservableLongUpDownCounterP
 _$s16OpenTelemetryApi27ObservableLongUpDownCounter_pMF
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Stable/ObservableLongUpDownCounter.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Stable/ObservableLongUpDownCounter.swift
 _symbolic $s16OpenTelemetryApi11StableMeterP
 _$s16OpenTelemetryApi11StableMeter_pMF
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Stable/StableMeter.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Stable/StableMeter.swift
 _symbolic $s16OpenTelemetryApi19StableMeterProviderP
 _$s16OpenTelemetryApi19StableMeterProvider_pMF
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Stable/StableMeterProvider.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/Stable/StableMeterProvider.swift
 _$s16OpenTelemetryApi0aB0V7versionSSvMZ.resume.0
 _$s16OpenTelemetryApi0aB0VXMtSSIetMAyYl_TC
 _$s16OpenTelemetryApi0aB0VACyc33_16CEC5434510C3292031EB3983066E49LlfC
@@ -3913,7 +3913,7 @@ _symbolic ______p 16OpenTelemetryApi14BaggageManagerP
 _$s16OpenTelemetryApi0aB0VMF
 _$s16OpenTelemetryApi21DefaultTracerProviderC8instanceACvpZ
 -private-discriminator _16CEC5434510C3292031EB3983066E49
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/OpenTelemetry.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/OpenTelemetry.swift
 $s16OpenTelemetryApi0aB0VMa
 $s16OpenTelemetryApi0aB0Vwst
 $s16OpenTelemetryApi0aB0Vwet
@@ -3927,7 +3927,7 @@ $s16OpenTelemetryApi24TextMapBaggagePropagator_pWOb
 $s16OpenTelemetryApi14TracerProvider_pWOc
 registerMeterProvider
 registerPropagators
-.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Propagation/DefaultContextPropagators.swift
+Sources/OpenTelemetryApi/Propagation/DefaultContextPropagators.swift
 getAllFields
 $ss16IndexingIteratorVyxGStsSt4next7ElementQzSgyFTWSay16OpenTelemetryApi17TextMapPropagator_pG_Tg5
 $ss16IndexingIteratorV4next7ElementQzSgyFSay16OpenTelemetryApi17TextMapPropagator_pG_Tg5
@@ -3952,13 +3952,13 @@ meterProvider.get
 tracerProvider.get
 $s16OpenTelemetryApi0aB0VWOd
 $s16OpenTelemetryApi0aB0VWOc
-.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Context/ActivityContextManager.swift
-.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Logs/DefaultLoggerProvider.swift
-.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Metrics/DefaultMeterProvider.swift
+Sources/OpenTelemetryApi/Context/ActivityContextManager.swift
+Sources/OpenTelemetryApi/Logs/DefaultLoggerProvider.swift
+Sources/OpenTelemetryApi/Metrics/DefaultMeterProvider.swift
 $s16OpenTelemetryApi21DefaultTracerProviderC8instanceACvau
-.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Trace/DefaultTracerProvider.swift
-.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Baggage/Propagation/W3CBaggagePropagator.swift
-.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Trace/Propagation/W3CTraceContextPropagator.swift
+Sources/OpenTelemetryApi/Trace/DefaultTracerProvider.swift
+Sources/OpenTelemetryApi/Baggage/Propagation/W3CBaggagePropagator.swift
+Sources/OpenTelemetryApi/Trace/Propagation/W3CTraceContextPropagator.swift
 $sSa13_adoptStorage_5countSayxG_SpyxGts016_ContiguousArrayB0CyxGn_SitFZ16OpenTelemetryApi17TextMapPropagator_p_Tg5
 $ss22_ContiguousArrayBufferV5count7storageAByxGSi_s01_aB7StorageCyxGtcfC16OpenTelemetryApi17TextMapPropagator_p_Tg5
 $s16OpenTelemetryApi0aB0V8instance_WZ
@@ -3967,7 +3967,7 @@ version.set
 version.get
 _symbolic $s16OpenTelemetryApi18ContextPropagatorsP
 _$s16OpenTelemetryApi18ContextPropagators_pMF
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Propagation/ContextPropagators.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Propagation/ContextPropagators.swift
 _$s16OpenTelemetryApi25DefaultContextPropagatorsV17textMapPropagatorAA04TexthI0_pvM.resume.0
 _$s16OpenTelemetryApi25DefaultContextPropagatorsV24textMapBaggagePropagatorAA04TexthiJ0_pvM.resume.0
 _$s16OpenTelemetryApi25DefaultContextPropagatorsV22MultiTextMapPropagatorV6fieldsShySSGvM.resume.0
@@ -4027,7 +4027,7 @@ _$s16OpenTelemetryApi25DefaultContextPropagatorsV21NoopBaggagePropagatorVMf
 _symbolic _____ 16OpenTelemetryApi25DefaultContextPropagatorsV21NoopBaggagePropagatorV
 _$s16OpenTelemetryApi25DefaultContextPropagatorsV21NoopBaggagePropagatorVMF
 -private-discriminator _513EA1DEDFF9C1D679916D01552C57C7
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Propagation/DefaultContextPropagators.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Propagation/DefaultContextPropagators.swift
 $s16OpenTelemetryApi25DefaultContextPropagatorsV21NoopBaggagePropagatorVMa
 $s16OpenTelemetryApi25DefaultContextPropagatorsV21NoopTextMapPropagatorVMa
 $s16OpenTelemetryApi25DefaultContextPropagatorsV22MultiTextMapPropagatorVMa
@@ -4093,10 +4093,10 @@ _$s16OpenTelemetryApi13DefaultTracerCMf
 _symbolic _____ 16OpenTelemetryApi13DefaultTracerC
 _$s16OpenTelemetryApi13DefaultTracerCMF
 _objc_classes_$s16OpenTelemetryApi13DefaultTracerCN
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Trace/DefaultTracer.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Trace/DefaultTracer.swift
 $s16OpenTelemetryApi13DefaultTracerCMa
 spanBuilder
-.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Trace/PropagatedSpanBuilder.swift
+Sources/OpenTelemetryApi/Trace/PropagatedSpanBuilder.swift
 $s16OpenTelemetryApi13DefaultTracerC8instanceACvau
 $s16OpenTelemetryApi13DefaultTracerC8instance_WZ
 _$s16OpenTelemetryApi21DefaultTracerProviderC3get19instrumentationName0H7VersionAA0E0_pSS_SSSgtF
@@ -4107,9 +4107,9 @@ _$s16OpenTelemetryApi21DefaultTracerProviderCMf
 _symbolic _____ 16OpenTelemetryApi21DefaultTracerProviderC
 _$s16OpenTelemetryApi21DefaultTracerProviderCMF
 _objc_classes_$s16OpenTelemetryApi21DefaultTracerProviderCN
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Trace/DefaultTracerProvider.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Trace/DefaultTracerProvider.swift
 $s16OpenTelemetryApi21DefaultTracerProviderCMa
-.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Trace/DefaultTracer.swift
+Sources/OpenTelemetryApi/Trace/DefaultTracer.swift
 $s16OpenTelemetryApi21DefaultTracerProviderC8instance_WZ
 _$s16OpenTelemetryApi14PropagatedSpanCSSIetMAgYl_TC
 _$s16OpenTelemetryApi14PropagatedSpanC4kindAA0E4KindOvM.resume.0
@@ -4159,7 +4159,7 @@ _symbolic _____ 16OpenTelemetryApi8SpanKindO
 _symbolic _____ 16OpenTelemetryApi11SpanContextV
 _$s16OpenTelemetryApi14PropagatedSpanCMF
 _objc_classes_$s16OpenTelemetryApi14PropagatedSpanCN
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Trace/PropagatedSpan.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Trace/PropagatedSpan.swift
 keypath_set.6
 $s16OpenTelemetryApi14PropagatedSpanC6statusAA6StatusOvpACTk
 keypath_get.5
@@ -4219,21 +4219,21 @@ _symbolic _____Sg 16OpenTelemetryApi11SpanContextV
 _$s16OpenTelemetryApi21PropagatedSpanBuilderCMF
 _objc_classes_$s16OpenTelemetryApi21PropagatedSpanBuilderCN
 -private-discriminator _2372275A6C4F987E98068330821646A6
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Trace/PropagatedSpanBuilder.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Trace/PropagatedSpanBuilder.swift
 $s16OpenTelemetryApi21PropagatedSpanBuilderCMa
 startSpan
 setActive
 setStartTime
 setSpanKind
 addLink
-.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Trace/PropagatedSpan.swift
+Sources/OpenTelemetryApi/Trace/PropagatedSpan.swift
 random
 $ss17FixedWidthIntegerPsE6random2in5usingxSNyxG_qd__ztSGRd__lFZs6UInt64V_s27SystemRandomNumberGeneratorVTg5
 $sSGsE4nextqd__ys17FixedWidthIntegerRd__SURd__lFs27SystemRandomNumberGeneratorV_s6UInt64VTg5
 $ss17FixedWidthIntegerPsE7_random5usingxqd__z_tSGRd__lFZs6UInt64V_s27SystemRandomNumberGeneratorVTg5
 $ss27SystemRandomNumberGeneratorVSGsSG4nexts6UInt64VyFTW
 $ss27SystemRandomNumberGeneratorV4nexts6UInt64VyF
-.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Trace/TraceId.swift
+Sources/OpenTelemetryApi/Trace/TraceId.swift
 activeSpan.get
 _$s16OpenTelemetryApi12B3PropagatorC6inject11spanContext7carrier6setteryAA04SpanH0V_SDyS2SGzxtAA6SetterRzlF
 _$s16OpenTelemetryApi12B3PropagatorC7extract7carrier6getterAA11SpanContextVSgSDyS2SG_xtAA6GetterRzlF
@@ -4258,11 +4258,11 @@ _symbolic _____ 16OpenTelemetryApi12B3PropagatorC
 _$s16OpenTelemetryApi12B3PropagatorCMF
 _objc_classes_$s16OpenTelemetryApi12B3PropagatorCN
 -private-discriminator _6BD6F6ACFF3F54F3A0A8F57B255173AE
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Trace/Propagation/B3Propagator.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Trace/Propagation/B3Propagator.swift
 $s16OpenTelemetryApi12B3PropagatorCMa
 buildSpanContext
 isValid.get
-.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Trace/SpanContext.swift
+Sources/OpenTelemetryApi/Trace/SpanContext.swift
 createFromRemoteParent
 getSpanContextFromMultipleHeaders
 isSpanIdValid
@@ -4295,7 +4295,7 @@ $ss22_ContiguousArrayBufferV5count7storageAByxGSi_s01_aB7StorageCyxGtcfCs7CVarAr
 $ss22_ContiguousArrayBufferV18_initStorageHeader5count8capacityySi_SitFs7CVarArg_p_Tg5
 singleHeaderInjection.get
 sampled.get
-.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Trace/TraceFlags.swift
+Sources/OpenTelemetryApi/Trace/TraceFlags.swift
 combinedHeaderDelimiter.get
 $s16OpenTelemetryApi12B3PropagatorC23combinedHeaderDelimiterSSvau
 combinedHeader.get
@@ -4312,7 +4312,7 @@ traceIdHeader.get
 $s16OpenTelemetryApi12B3PropagatorC13traceIdHeaderSSvau
 _symbolic $s16OpenTelemetryApi17BinaryFormattableP
 _$s16OpenTelemetryApi17BinaryFormattable_pMF
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Trace/Propagation/BinaryFormattable.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Trace/Propagation/BinaryFormattable.swift
 _$s16OpenTelemetryApi16JaegerPropagatorC6fieldsShySSGvg
 _$s16OpenTelemetryApi16JaegerPropagatorC6fieldsShySSGvs
 _$s16OpenTelemetryApi16JaegerPropagatorC6fieldsShySSGvM
@@ -4336,7 +4336,7 @@ _symbolic _____ 16OpenTelemetryApi16JaegerPropagatorC
 _$s16OpenTelemetryApi16JaegerPropagatorCMF
 _objc_classes_$s16OpenTelemetryApi16JaegerPropagatorCN
 -private-discriminator _55581E91732A5F6028D520C69A06A78C
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Trace/Propagation/JaegerPropagator.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Trace/Propagation/JaegerPropagator.swift
 $s16OpenTelemetryApi16JaegerPropagatorCMa
 $s16OpenTelemetryApi16JaegerPropagatorC6fieldsShySSGvpACTk
 $s16OpenTelemetryApi16JaegerPropagatorC6fieldsShySSGvpACTK
@@ -4363,7 +4363,7 @@ _symbolic $s16OpenTelemetryApi6SetterP
 _$s16OpenTelemetryApi6Setter_pMF
 _symbolic $s16OpenTelemetryApi6GetterP
 _$s16OpenTelemetryApi6Getter_pMF
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Trace/Propagation/TextMapPropagator.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Trace/Propagation/TextMapPropagator.swift
 _$s16OpenTelemetryApi25W3CTraceContextPropagatorV18extractTraceparent33_047BBC0CF1ECBE6FE0AAD868A368F63FLL11traceparentAA7TraceIdV05traceS0_AA04SpanS0V04spanS0AA0R5FlagsV0T7OptionstSgSSSg_tF
 _$s16OpenTelemetryApi25W3CTraceContextPropagatorV17extractTraceState33_047BBC0CF1ECBE6FE0AAD868A368F63FLL20traceStatecollectionAA0iJ0VSgSaySSGSg_tF
 _$s16OpenTelemetryApi25W3CTraceContextPropagatorVAA07TextMapG0A2aDP6fieldsShySSGvgTW
@@ -4385,14 +4385,14 @@ _$ss10ArraySliceVySJGML
 _symbolic _____ySJG s23_ContiguousArrayStorageC
 _$ss23_ContiguousArrayStorageCySJGMD
 -private-discriminator _047BBC0CF1ECBE6FE0AAD868A368F63F
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Trace/Propagation/W3CTraceContextPropagator.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Trace/Propagation/W3CTraceContextPropagator.swift
 $ss10ArraySliceVySJGMa
 $ss10ArraySliceVySJGAByxGSTsWl
 $ss22_ContiguousArrayBufferV19_uninitializedCount15minimumCapacityAByxGSi_SitcfCSJ_Tgq5Tf4nnd_n
 $s16OpenTelemetryApi25W3CTraceContextPropagatorVMa
 $sSTsE21_copySequenceContents12initializing8IteratorQz_SitSry7ElementQzG_tFSS_Tgq5
 extractTraceState
-.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Trace/TraceState.swift
+Sources/OpenTelemetryApi/Trace/TraceState.swift
 $ss18ReversedCollectionV8IteratorV4next7ElementQzSgyFSaySSG_Tg5
 $sSayxGSKsSK9formIndex6beforey0B0Qzz_tFTWSS_Tg5
 $sSa9formIndex6beforeySiz_tFSS_Tg5
@@ -4853,7 +4853,7 @@ _$s16OpenTelemetryApi18SemanticAttributesO17MessageTypeValuesOMF
 _$s16OpenTelemetryApi18SemanticAttributesO010RpcConnectF15ErrorCodeValuesOWV
 _$s16OpenTelemetryApi18SemanticAttributesO010RpcConnectF15ErrorCodeValuesOMf
 _$s16OpenTelemetryApi18SemanticAttributesO010RpcConnectF15ErrorCodeValuesOMF
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Trace/SemanticAttributes.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Trace/SemanticAttributes.swift
 $s16OpenTelemetryApi18SemanticAttributesO010RpcConnectF15ErrorCodeValuesOMa
 $s16OpenTelemetryApi18SemanticAttributesO010RpcConnectF15ErrorCodeValuesOwui
 $s16OpenTelemetryApi18SemanticAttributesO010RpcConnectF15ErrorCodeValuesOwup
@@ -5061,7 +5061,7 @@ device.get
 browser.get
 _symbolic $s16OpenTelemetryApi4SpanP
 _$s16OpenTelemetryApi4Span_pMF
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Trace/Span.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Trace/Span.swift
 putHttpStatusCode
 ~=
 $sSnyxGSXsSX8containsySb5BoundQzFTWSi_Tg5
@@ -5075,7 +5075,7 @@ _$s16OpenTelemetryApi11SpanBuilderP12setAttribute3key5valuexSS_SdtF
 _$s16OpenTelemetryApi11SpanBuilderP12setAttribute3key5valuexSS_SbtF
 _symbolic $s16OpenTelemetryApi11SpanBuilderP
 _$s16OpenTelemetryApi11SpanBuilder_pMF
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Trace/SpanBuilder.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Trace/SpanBuilder.swift
 _$s16OpenTelemetryApi11SpanContextV6create7traceId04spanH00G5Flags0G5StateAcA05TraceH0V_AA0dH0VAA0lJ0VAA0lK0VtFZTm
 _$s16OpenTelemetryApi11SpanContextV10traceStateAA05TraceG0VvM.resume.0
 _$s16OpenTelemetryApi11SpanContextVAA10TraceStateVIetMAlYl_TC
@@ -5181,7 +5181,7 @@ _associated conformance 16OpenTelemetryApi11SpanContextV10CodingKeys33_AD2361DAC
 _$s16OpenTelemetryApi11SpanContextV10CodingKeys33_AD2361DACACAA0392490B8AED348F4AFLLOs0F3KeyAAMcMK
 _$s16OpenTelemetryApi11SpanContextV10CodingKeys33_AD2361DACACAA0392490B8AED348F4AFLLOs0F3KeyAAMc
 -private-discriminator _AD2361DACACAA0392490B8AED348F4AF
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Trace/SpanContext.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Trace/SpanContext.swift
 $s16OpenTelemetryApi11SpanContextV10CodingKeys33_AD2361DACACAA0392490B8AED348F4AFLLOAFs23CustomStringConvertibleAAWl
 $s16OpenTelemetryApi11SpanContextV10CodingKeys33_AD2361DACACAA0392490B8AED348F4AFLLOs0F3KeyAAs23CustomStringConvertiblePWb
 $s16OpenTelemetryApi11SpanContextV10CodingKeys33_AD2361DACACAA0392490B8AED348F4AFLLOAFs28CustomDebugStringConvertibleAAWl
@@ -5348,7 +5348,7 @@ _$ss10ArraySliceVys5UInt8VGML
 _symbolic ______A13At s5UInt8V
 _$ss5UInt8V_A13BtMD
 -private-discriminator _E2809E270B2539D8008E592C5958BF79
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Trace/SpanId.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Trace/SpanId.swift
 $sSays5UInt8VGSayxG10Foundation15ContiguousBytesAeBRszlWl
 $ss20_ArrayBufferProtocolPsE15replaceSubrange_4with10elementsOfySnySiG_Siqd__ntSlRd__7ElementQyd__AGRtzlFs011_ContiguousaB0Vys5UInt8VG_s15EmptyCollectionVyAMGTg5Tf4nndn_n
 $ss15EmptyCollectionVyxGSlsSly7ElementQz5IndexQzcirTWs5UInt8V_Tg5
@@ -5560,7 +5560,7 @@ _$s16OpenTelemetryApi8SpanKindOWV
 _$s16OpenTelemetryApi8SpanKindOMf
 _$s16OpenTelemetryApi8SpanKindOMF
 _$s16OpenTelemetryApi8SpanKindOACSYAAWL
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Trace/SpanKind.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Trace/SpanKind.swift
 $s16OpenTelemetryApi8SpanKindOACSYAAWl
 $s16OpenTelemetryApi8SpanKindOMa
 $s16OpenTelemetryApi8SpanKindOwui
@@ -5895,7 +5895,7 @@ _associated conformance 16OpenTelemetryApi6StatusO10CodingKeys33_084472EF61A9D38
 _$s16OpenTelemetryApi6StatusO10CodingKeys33_084472EF61A9D387219F1E68FC6361EALLOs0E3KeyAAMcMK
 _$s16OpenTelemetryApi6StatusO10CodingKeys33_084472EF61A9D387219F1E68FC6361EALLOs0E3KeyAAMc
 -private-discriminator _084472EF61A9D387219F1E68FC6361EA
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Trace/Status.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Trace/Status.swift
 $s16OpenTelemetryApi6StatusO10CodingKeys33_084472EF61A9D387219F1E68FC6361EALLOAFs23CustomStringConvertibleAAWl
 $s16OpenTelemetryApi6StatusO10CodingKeys33_084472EF61A9D387219F1E68FC6361EALLOs0E3KeyAAs23CustomStringConvertiblePWb
 $s16OpenTelemetryApi6StatusO10CodingKeys33_084472EF61A9D387219F1E68FC6361EALLOAFs28CustomDebugStringConvertibleAAWl
@@ -6067,7 +6067,7 @@ _associated conformance 16OpenTelemetryApi10TraceFlagsV10CodingKeys33_BA225AAD9B
 _$s16OpenTelemetryApi10TraceFlagsV10CodingKeys33_BA225AAD9BB1643277F6469CEB8D4A22LLOs0F3KeyAAMcMK
 _$s16OpenTelemetryApi10TraceFlagsV10CodingKeys33_BA225AAD9BB1643277F6469CEB8D4A22LLOs0F3KeyAAMc
 -private-discriminator _BA225AAD9BB1643277F6469CEB8D4A22
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Trace/TraceFlags.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Trace/TraceFlags.swift
 $ss5SliceV32withContiguousStorageIfAvailableyqd__Sgqd__SRy7ElementQzGKXEKlFqd__AGKXEfU_SS8UTF8ViewV_s5UInt8VSgTg5Tf4xnn_n
 $sSR8rebasingSRyxGs5SliceVyABG_tcfCs5UInt8V_Tg5
 $sSS8UTF8ViewVSlsSl8distance4from2toSi5IndexQz_AGtFTW
@@ -6194,7 +6194,7 @@ _$s16OpenTelemetryApi7TraceIdV10CodingKeys33_99DBAAEE8630A264DA623D5519558698LLO
 _$s16OpenTelemetryApi7TraceIdV10CodingKeys33_99DBAAEE8630A264DA623D5519558698LLOs0F3KeyAAMc
 _$sS2sSTsWL
 -private-discriminator _99DBAAEE8630A264DA623D5519558698
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Trace/TraceId.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Trace/TraceId.swift
 $sS2sSTsWl
 $s16OpenTelemetryApi7TraceIdV10CodingKeys33_99DBAAEE8630A264DA623D5519558698LLOAFs23CustomStringConvertibleAAWl
 $s16OpenTelemetryApi7TraceIdV10CodingKeys33_99DBAAEE8630A264DA623D5519558698LLOs0F3KeyAAs23CustomStringConvertiblePWb
@@ -6434,7 +6434,7 @@ _associated conformance 16OpenTelemetryApi10TraceStateV5EntryV10CodingKeys33_5E5
 _$s16OpenTelemetryApi10TraceStateV5EntryV10CodingKeys33_5E5E75C44D4BAE1936A4D58B4D75F180LLOs0G3KeyAAMcMK
 _$s16OpenTelemetryApi10TraceStateV5EntryV10CodingKeys33_5E5E75C44D4BAE1936A4D58B4D75F180LLOs0G3KeyAAMc
 -private-discriminator _5E5E75C44D4BAE1936A4D58B4D75F180
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Trace/TraceState.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Trace/TraceState.swift
 $s16OpenTelemetryApi10TraceStateV5EntryV10CodingKeys33_5E5E75C44D4BAE1936A4D58B4D75F180LLOAHs23CustomStringConvertibleAAWl
 $s16OpenTelemetryApi10TraceStateV5EntryV10CodingKeys33_5E5E75C44D4BAE1936A4D58B4D75F180LLOs0G3KeyAAs23CustomStringConvertiblePWb
 $s16OpenTelemetryApi10TraceStateV5EntryV10CodingKeys33_5E5E75C44D4BAE1936A4D58B4D75F180LLOAHs28CustomDebugStringConvertibleAAWl
@@ -6493,13 +6493,13 @@ $ss16IndexingIteratorV4next7ElementQzSgyFSay16OpenTelemetryApi10TraceStateV5Entr
 $s16OpenTelemetryApi10TraceStateV3set3key5valueySS_SStFSbAC5EntryVXEfU_
 first
 $s16OpenTelemetryApi10TraceStateV3get3keySSSgSS_tFSbAC5EntryVXEfU_
-.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Internal/TracestateUtils.swift
+Sources/OpenTelemetryApi/Internal/TracestateUtils.swift
 _symbolic $s16OpenTelemetryApi6TracerP
 _$s16OpenTelemetryApi6Tracer_pMF
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Trace/Tracer.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Trace/Tracer.swift
 _symbolic $s16OpenTelemetryApi14TracerProviderP
 _$s16OpenTelemetryApi14TracerProvider_pMF
-/Users/gordon/Documents/code/aliyun/iOS/opentelemetry-objc-extension/.build/checkouts/opentelemetry-swift/Sources/OpenTelemetryApi/Trace/TracerProvider.swift
+/Users/gordon/Documents/code/open/ios/opentelemetry-swift/Sources/OpenTelemetryApi/Trace/TracerProvider.swift
 _swift_getFunctionTypeMetadataGlobalActorBackDeploy
 ___swift_getFunctionTypeMetadataGlobalActorBackDeploy_block_invoke
 __ZZ50swift_getFunctionTypeMetadataGlobalActorBackDeployE9builderFn
