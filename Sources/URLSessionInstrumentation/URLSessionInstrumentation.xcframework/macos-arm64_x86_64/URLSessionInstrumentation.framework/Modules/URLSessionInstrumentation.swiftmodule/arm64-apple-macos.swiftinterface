@@ -15,14 +15,14 @@ public class URLSessionInstrumentation {
   public var startedRequestSpans: [OpenTelemetryApi.Span] {
     get
   }
-  public init(configuration: URLSessionInstrumentation.URLSessionInstrumentationConfiguration)
+  public init(configuration: URLSessionInstrumentationConfiguration)
   @objc deinit
 }
 public typealias DataOrFile = Any
 public typealias SessionTaskId = Swift.String
 public typealias HTTPStatus = Swift.Int
 public struct URLSessionInstrumentationConfiguration {
-  public init(shouldRecordPayload: ((Foundation.URLSession) -> (Swift.Bool)?)? = nil, shouldInstrument: ((Foundation.URLRequest) -> (Swift.Bool)?)? = nil, nameSpan: ((Foundation.URLRequest) -> (Swift.String)?)? = nil, spanCustomization: ((Foundation.URLRequest, OpenTelemetryApi.SpanBuilder) -> Swift.Void)? = nil, shouldInjectTracingHeaders: ((Foundation.URLRequest) -> (Swift.Bool)?)? = nil, injectCustomHeaders: ((inout Foundation.URLRequest, OpenTelemetryApi.Span?) -> Swift.Void)? = nil, createdRequest: ((Foundation.URLRequest, OpenTelemetryApi.Span) -> Swift.Void)? = nil, receivedResponse: ((Foundation.URLResponse, URLSessionInstrumentation.DataOrFile?, OpenTelemetryApi.Span) -> Swift.Void)? = nil, receivedError: ((Swift.Error, URLSessionInstrumentation.DataOrFile?, URLSessionInstrumentation.HTTPStatus, OpenTelemetryApi.Span) -> Swift.Void)? = nil, delegateClassesToInstrument: [Swift.AnyClass]? = nil)
+  public init(shouldRecordPayload: ((Foundation.URLSession) -> (Swift.Bool)?)? = nil, shouldInstrument: ((Foundation.URLRequest) -> (Swift.Bool)?)? = nil, nameSpan: ((Foundation.URLRequest) -> (Swift.String)?)? = nil, spanCustomization: ((Foundation.URLRequest, OpenTelemetryApi.SpanBuilder) -> Swift.Void)? = nil, shouldInjectTracingHeaders: ((Foundation.URLRequest) -> (Swift.Bool)?)? = nil, injectCustomHeaders: ((inout Foundation.URLRequest, OpenTelemetryApi.Span?) -> Swift.Void)? = nil, createdRequest: ((Foundation.URLRequest, OpenTelemetryApi.Span) -> Swift.Void)? = nil, receivedResponse: ((Foundation.URLResponse, DataOrFile?, OpenTelemetryApi.Span) -> Swift.Void)? = nil, receivedError: ((Swift.Error, DataOrFile?, HTTPStatus, OpenTelemetryApi.Span) -> Swift.Void)? = nil, delegateClassesToInstrument: [Swift.AnyClass]? = nil)
   public var shouldInstrument: ((Foundation.URLRequest) -> (Swift.Bool)?)?
   public var shouldRecordPayload: ((Foundation.URLSession) -> (Swift.Bool)?)?
   public var shouldInjectTracingHeaders: ((Foundation.URLRequest) -> (Swift.Bool)?)?
@@ -30,7 +30,7 @@ public struct URLSessionInstrumentationConfiguration {
   public var nameSpan: ((Foundation.URLRequest) -> (Swift.String)?)?
   public var spanCustomization: ((Foundation.URLRequest, OpenTelemetryApi.SpanBuilder) -> Swift.Void)?
   public var createdRequest: ((Foundation.URLRequest, OpenTelemetryApi.Span) -> Swift.Void)?
-  public var receivedResponse: ((Foundation.URLResponse, URLSessionInstrumentation.DataOrFile?, OpenTelemetryApi.Span) -> Swift.Void)?
-  public var receivedError: ((Swift.Error, URLSessionInstrumentation.DataOrFile?, URLSessionInstrumentation.HTTPStatus, OpenTelemetryApi.Span) -> Swift.Void)?
+  public var receivedResponse: ((Foundation.URLResponse, DataOrFile?, OpenTelemetryApi.Span) -> Swift.Void)?
+  public var receivedError: ((Swift.Error, DataOrFile?, HTTPStatus, OpenTelemetryApi.Span) -> Swift.Void)?
   public var delegateClassesToInstrument: [Swift.AnyClass]?
 }

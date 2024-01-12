@@ -2,6 +2,7 @@
 set -o pipefail
 set -e
 
+remote_url="git@gitee.com:aliyun-sls/aliyun-log-ios-sdk.git"
 VERSION=$(cat VERSION)
 echo "version: ${VERSION}"
 
@@ -27,10 +28,16 @@ fi
 
 if git rev-parse -q --verify "refs/tags/$VERSION" >/dev/null; then
     git tag -d $VERSION
-    git push gitee :$VERSION
-    echo "tag: $VERSION deleted"
+    echo "Local tag: $VERSION has deleted"
 else
-    echo "No git tag"
+    echo "No local git tag: $VERSION"
+fi
+
+if git ls-remote --tags "$remote_url" | grep -q "refs/tags/$VERSION"; then
+    git push gitee :$VERSION
+    echo "Remote tag: $VERSION has deleted"
+else
+    echo "No remote git tag: $VERSION"
 fi
 
 git tag $VERSION
