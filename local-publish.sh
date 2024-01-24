@@ -33,7 +33,7 @@ else
     echo "No local git tag: $VERSION"
 fi
 
-if git ls-remote --tags "$remote_url" | grep -q "refs/tags/$VERSION"; then
+if git ls-remote --tags "$remote_url" | grep -qE "refs/tags/$VERSION$"; then
     git push gitee :$VERSION
     echo "Remote tag: $VERSION has deleted"
 else
