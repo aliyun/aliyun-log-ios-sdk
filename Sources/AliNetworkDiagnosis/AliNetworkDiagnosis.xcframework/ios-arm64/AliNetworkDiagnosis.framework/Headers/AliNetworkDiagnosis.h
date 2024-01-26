@@ -33,6 +33,13 @@ typedef NS_ENUM(NSUInteger, AliNetDiagLogLevel){
 
 };
 
+@protocol AliNetworkDiagnosisPolicyDelegate <NSObject>
+
+@optional
+-(void)complete:(NSString*)context msg:(NSString*)msg;
+
+@end
+
 
 @protocol AliNetworkDiagnosisDelegate <NSObject>
 
@@ -60,5 +67,6 @@ typedef NS_ENUM(NSUInteger, AliNetDiagLogLevel){
 +(void)enableDebug:(BOOL)debug;
 +(void)updateExtension:(NSDictionary*)extension;
 +(void)registerHttpCredentialDelegate:(id<AliHttpCredentialDelegate>)delegate;
++(void)registerPolicyCallback:(id<AliNetworkDiagnosisPolicyDelegate>)delegate;
 @end
 
