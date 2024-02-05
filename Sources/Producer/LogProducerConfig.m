@@ -87,14 +87,25 @@ static int os_http_post(const char *url,
         }
         
         NSString *requestId = fields[@"x-log-requestid"];
-        http_response->requestID = nsstring_to_char(requestId);
+        http_response->requestID = (char*)malloc(sizeof(char) * 64);
+        if (requestId.length > 0) {
+            strcpy(http_response->requestID, [requestId UTF8String]);
+        } else {
+            strcpy(http_response->requestID, "");
+        }
 
+        http_response->errorMessage = (char*)malloc(sizeof(char) * 256);
         if (responseCode != 200) {
             NSString *res = [[NSString alloc] initWithData:resData encoding:NSUTF8StringEncoding];
-            http_response->errorMessage = nsstring_to_char(res);
+            if (res.length > 0) {
+                strcpy(http_response->requestID, [res UTF8String]);
+            } else {
+                strcpy(http_response->requestID, "");
+            }
+            
             SLSLog(@"%ld %@ %@", [response statusCode], [response allHeaderFields], res);
         } else {
-            http_response->errorMessage = strdup("");
+            strcpy(http_response->requestID, "");
         }
         return responseCode;
     } else {
@@ -103,7 +114,11 @@ static int os_http_post(const char *url,
         if(error != nil){
             NSString *errorMessage = [NSString stringWithFormat:@"domain: %@, code: %ld, description: %@", error.domain, (long)error.code,  error.localizedDescription];
             SLSLog(@"os_http_post error: %@", errorMessage);
-            http_response->errorMessage = nsstring_to_char(errorMessage);
+            const char* message = [errorMessage UTF8String];
+            
+            http_response->errorMessage = (char*)malloc(sizeof(char) * (strlen(message) + 1));
+            strncpy(http_response->errorMessage, [errorMessage UTF8String], strlen(message));
+            
             if (error.code == kCFURLErrorUserCancelledAuthentication) {
                 return 401;
             }
