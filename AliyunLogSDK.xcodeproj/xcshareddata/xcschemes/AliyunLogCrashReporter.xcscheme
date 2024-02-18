@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "F8128FB42ABAE19C0091B556"
-               BuildableName = "AliyunLogCrashReporter2.framework"
-               BlueprintName = "AliyunLogCrashReporter2"
+               BuildableName = "AliyunLogCrashReporter.framework"
+               BlueprintName = "AliyunLogCrashReporter"
                ReferencedContainer = "container:AliyunLogSDK.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -51,8 +51,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F8128FB42ABAE19C0091B556"
-            BuildableName = "AliyunLogCrashReporter2.framework"
-            BlueprintName = "AliyunLogCrashReporter2"
+            BuildableName = "AliyunLogCrashReporter.framework"
+            BlueprintName = "AliyunLogCrashReporter"
             ReferencedContainer = "container:AliyunLogSDK.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

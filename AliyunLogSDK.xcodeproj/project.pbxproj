@@ -99,6 +99,9 @@
 		F8355A5C2B81DD6A009D2056 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8EC6F112B81D174005A8E36 /* CoreTelephony.framework */; platformFilter = ios; };
 		F8355A5D2B81E119009D2056 /* AliyunLogOTelCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8128F702ABAD86F0091B556 /* AliyunLogOTelCommon.framework */; };
 		F8355A5E2B81E127009D2056 /* AliyunLogProducer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D984DB22520A9B7009DE4FE /* AliyunLogProducer.framework */; };
+		F8355AA52B81F88D009D2056 /* WPKMobi.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8355AA42B81F88D009D2056 /* WPKMobi.xcframework */; };
+		F8355AA62B81F915009D2056 /* AliyunLogOTelCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8128F702ABAD86F0091B556 /* AliyunLogOTelCommon.framework */; };
+		F8355AA72B81F915009D2056 /* AliyunLogOtlpExporter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8128F5B2ABAD81F0091B556 /* AliyunLogOtlpExporter.framework */; };
 		F838F0912976771F001F1275 /* AliNetworkDiagnosis.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = F838F0902976771F001F1275 /* AliNetworkDiagnosis.xcframework */; };
 		F838F09B2976772B001F1275 /* SLSNetworkDiagnosis.h in Headers */ = {isa = PBXBuildFile; fileRef = F838F0942976772B001F1275 /* SLSNetworkDiagnosis.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F838F09C2976772B001F1275 /* AliyunLogNetworkDiagnosis.h in Headers */ = {isa = PBXBuildFile; fileRef = F838F0952976772B001F1275 /* AliyunLogNetworkDiagnosis.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -385,12 +388,13 @@
 		F8128FA92ABAE12F0091B556 /* LogParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogParser.swift; sourceTree = "<group>"; };
 		F8128FAA2ABAE12F0091B556 /* CrashFileHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrashFileHelper.swift; sourceTree = "<group>"; };
 		F8128FAB2ABAE12F0091B556 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F8128FC22ABAE19C0091B556 /* AliyunLogCrashReporter2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AliyunLogCrashReporter2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F8128FC22ABAE19C0091B556 /* AliyunLogCrashReporter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AliyunLogCrashReporter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F81290002ABAE26C0091B556 /* WPKMobiWrapper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WPKMobiWrapper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F81290052ABAE2F90091B556 /* WPKMobiWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPKMobiWrapper.h; sourceTree = "<group>"; };
 		F81290062ABAE2F90091B556 /* WPKMobiWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPKMobiWrapper.m; sourceTree = "<group>"; };
 		F81290072ABAE2F90091B556 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F820294528C5A3AF00A79810 /* strip_symbols.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = strip_symbols.sh; path = publish/strip_symbols.sh; sourceTree = "<group>"; };
+		F8355AA42B81F88D009D2056 /* WPKMobi.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = WPKMobi.xcframework; sourceTree = "<group>"; };
 		F838F0902976771F001F1275 /* AliNetworkDiagnosis.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = AliNetworkDiagnosis.xcframework; sourceTree = "<group>"; };
 		F838F0922976772A001F1275 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = Sources/NetworkDiagnosis/Info.plist; sourceTree = SOURCE_ROOT; };
 		F838F0942976772B001F1275 /* SLSNetworkDiagnosis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLSNetworkDiagnosis.h; sourceTree = "<group>"; };
@@ -526,6 +530,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F8355AA62B81F915009D2056 /* AliyunLogOTelCommon.framework in Frameworks */,
+				F8355AA72B81F915009D2056 /* AliyunLogOtlpExporter.framework in Frameworks */,
 				F8EC6F132B81D4D2005A8E36 /* OpenTelemetryApi.xcframework in Frameworks */,
 				F8128FBC2ABAE19C0091B556 /* OpenTelemetrySdk.xcframework in Frameworks */,
 			);
@@ -537,6 +543,7 @@
 			files = (
 				F8128FF72ABAE26B0091B556 /* CoreGraphics.framework in Frameworks */,
 				F8128FF82ABAE26B0091B556 /* SystemConfiguration.framework in Frameworks */,
+				F8355AA52B81F88D009D2056 /* WPKMobi.xcframework in Frameworks */,
 				F8128FF92ABAE26B0091B556 /* libc++.tbd in Frameworks */,
 				F8128FFA2ABAE26B0091B556 /* libz.tbd in Frameworks */,
 			);
@@ -633,7 +640,7 @@
 				F8A3CB9129FBAE9100E4FA2C /* libSLSIPA4Unity.a */,
 				F8128F5B2ABAD81F0091B556 /* AliyunLogOtlpExporter.framework */,
 				F8128F702ABAD86F0091B556 /* AliyunLogOTelCommon.framework */,
-				F8128FC22ABAE19C0091B556 /* AliyunLogCrashReporter2.framework */,
+				F8128FC22ABAE19C0091B556 /* AliyunLogCrashReporter.framework */,
 				F81290002ABAE26C0091B556 /* WPKMobiWrapper.framework */,
 			);
 			name = Products;
@@ -825,6 +832,7 @@
 		F81290032ABAE2F90091B556 /* WPKMobiWrapper */ = {
 			isa = PBXGroup;
 			children = (
+				F8355AA32B81F88D009D2056 /* WPKMobi */,
 				F81290042ABAE2F90091B556 /* include */,
 				F81290062ABAE2F90091B556 /* WPKMobiWrapper.m */,
 				F81290072ABAE2F90091B556 /* Info.plist */,
@@ -840,6 +848,15 @@
 			);
 			path = include;
 			sourceTree = "<group>";
+		};
+		F8355AA32B81F88D009D2056 /* WPKMobi */ = {
+			isa = PBXGroup;
+			children = (
+				F8355AA42B81F88D009D2056 /* WPKMobi.xcframework */,
+			);
+			name = WPKMobi;
+			path = Sources/WPKMobi;
+			sourceTree = SOURCE_ROOT;
 		};
 		F838F08F2976771F001F1275 /* AliNetworkDiagnosis */ = {
 			isa = PBXGroup;
@@ -1212,9 +1229,9 @@
 			productReference = F8128F702ABAD86F0091B556 /* AliyunLogOTelCommon.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		F8128FB42ABAE19C0091B556 /* AliyunLogCrashReporter2 */ = {
+		F8128FB42ABAE19C0091B556 /* AliyunLogCrashReporter */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F8128FBF2ABAE19C0091B556 /* Build configuration list for PBXNativeTarget "AliyunLogCrashReporter2" */;
+			buildConfigurationList = F8128FBF2ABAE19C0091B556 /* Build configuration list for PBXNativeTarget "AliyunLogCrashReporter" */;
 			buildPhases = (
 				F8128FB52ABAE19C0091B556 /* Headers */,
 				F8128FB62ABAE19C0091B556 /* Sources */,
@@ -1228,9 +1245,9 @@
 				F8128FC92ABAE1FF0091B556 /* PBXTargetDependency */,
 				F8128FCB2ABAE1FF0091B556 /* PBXTargetDependency */,
 			);
-			name = AliyunLogCrashReporter2;
+			name = AliyunLogCrashReporter;
 			productName = AliyunLogProducer;
-			productReference = F8128FC22ABAE19C0091B556 /* AliyunLogCrashReporter2.framework */;
+			productReference = F8128FC22ABAE19C0091B556 /* AliyunLogCrashReporter.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		F8128FCC2ABAE26B0091B556 /* WPKMobiWrapper */ = {
@@ -1338,7 +1355,7 @@
 				9D984DB12520A9B7009DE4FE /* AliyunLogProducer */,
 				F8128F482ABAD81F0091B556 /* AliyunLogOtlpExporter */,
 				F8128F5D2ABAD86F0091B556 /* AliyunLogOTelCommon */,
-				F8128FB42ABAE19C0091B556 /* AliyunLogCrashReporter2 */,
+				F8128FB42ABAE19C0091B556 /* AliyunLogCrashReporter */,
 				F84F8ACF2814E1180038A46E /* AliyunLogNetworkDiagnosis */,
 				F87828C928B6089D00F3D2B5 /* Unity4SLS */,
 				F8A3CB8929FBAE9100E4FA2C /* SLSIPA4Unity */,
@@ -2048,6 +2065,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				EXCLUDED_ARCHS = "armv7 i386";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/AliyunLogProducer/CrashReporter",
@@ -2107,6 +2125,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				EXCLUDED_ARCHS = "armv7 i386";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/AliyunLogProducer/CrashReporter",
@@ -2454,7 +2473,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F8128FBF2ABAE19C0091B556 /* Build configuration list for PBXNativeTarget "AliyunLogCrashReporter2" */ = {
+		F8128FBF2ABAE19C0091B556 /* Build configuration list for PBXNativeTarget "AliyunLogCrashReporter" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F8128FC02ABAE19C0091B556 /* Debug */,

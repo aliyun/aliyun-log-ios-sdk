@@ -19,7 +19,11 @@ import OpenTelemetryApi
 import OpenTelemetrySdk
 import AliyunLogOtlpExporter
 //import AliyunLogCore
+#if canImport(UIKit)
 import UIKit
+#elseif canImport(AppKit)
+import AppKit
+#endif
 import AliyunLogOTelCommon
 
 internal class CrashReporterOTel {
@@ -74,6 +78,15 @@ internal class CrashReporterOTel {
         
         let utdid = environment?.utdid ?? Utdid.getUtdid()
         
+#if canImport(UIKit)
+        let systemVersion = AttributeValue.string(UIDevice.current.systemVersion)
+#elseif canImport(AppKit)
+        let version = ProcessInfo.processInfo.operatingSystemVersion
+        let systemVersion = AttributeValue.string("\(version.majorVersion).\(version.minorVersion).\(version.patchVersion)")
+#else
+        let systemVersion = "unknown"
+#endif
+        
         CrashReporterOTel.tracerProvider = TracerProviderBuilder()
             .add(spanProcessor: spanProcessor)
             .with(resource: Resource()
@@ -89,7 +102,7 @@ internal class CrashReporterOTel {
                     "app.name": AttributeValue.string(appName ?? ""),
                     ResourceAttributes.osName.rawValue: AttributeValue.string(osName),
                     ResourceAttributes.osType.rawValue: AttributeValue.string("darwin"),
-                    ResourceAttributes.osVersion.rawValue: AttributeValue.string(UIDevice.current.systemVersion),
+                    ResourceAttributes.osVersion.rawValue: systemVersion,
                     ResourceAttributes.osDescription.rawValue: AttributeValue.string("Apple Darwin"),
                     ResourceAttributes.hostName.rawValue: AttributeValue.string(ProcessInfo.processInfo.hostName),
                     ResourceAttributes.hostArch.rawValue: AttributeValue.string(DeviceUtils.getCPUArch()),

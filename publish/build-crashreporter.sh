@@ -31,3 +31,6 @@
 ## sh strip_symbols.sh AliyunLogCrashReporter ../../exported_symbols/crash_reporter_symbols.txt
 
 sh build-xcframework.sh -s "AliyunLogCrashReporter" -p "iphoneos iphonesimulator appletvos appletvsimulator macosx macosx_catalyst"
+
+sh build-xcframework.sh -s "WPKMobiWrapper" -p "iphoneos iphonesimulator appletvos appletvsimulator macosx macosx_catalyst"
+
