@@ -15,22 +15,28 @@
 	
 
 import Foundation
+#if canImport(OpenTelemetryApi) && canImport(OpenTelemetrySdk)
 import OpenTelemetryApi
 import OpenTelemetrySdk
+#endif
 import AliNetworkDiagnosis
 
 
 open class TraceNode : NSObject {
+#if canImport(OpenTelemetryApi) && canImport(OpenTelemetrySdk)
     var tracer: Tracer?
     var span: Span?
+#endif
     var type: String
     var request: SLSRequest
     
     public init(_ type: String, _ request: SLSRequest) {
+#if canImport(OpenTelemetryApi) && canImport(OpenTelemetrySdk)
         self.tracer = OpenTelemetry.instance.tracerProvider.get(
             instrumentationName: "network_diagnosis",
             instrumentationVersion: "1.0.0"
         )
+#endif
         self.type = type
         self.request = request
         
@@ -44,6 +50,7 @@ open class TraceNode : NSObject {
     }
     
     func start() {
+#if canImport(OpenTelemetryApi) && canImport(OpenTelemetrySdk)
         guard let tracer = self.tracer else {
             return
         }
@@ -55,10 +62,12 @@ open class TraceNode : NSObject {
         span?.setAttribute(key: "detection.traceId", value: span?.context.traceId.hexString ?? "")
         span?.setAttribute(key: "detection.spanId", value: span?.context.spanId.hexString ?? "")
         span?.setAttribute(key: "detection.deviceId", value: SLSUtdid.getUtdid())
+#endif
     }
     
     @objc
     open func setDetectConfig(_ config: AliDetectConfig) {
+#if canImport(OpenTelemetryApi) && canImport(OpenTelemetrySdk)
         guard let span = span else {
             return
         }
@@ -73,14 +82,17 @@ open class TraceNode : NSObject {
         }
 
         config.setTraceFlowNode(flowNode)
+#endif
     }
     
     @objc
     open func end() {
+#if canImport(OpenTelemetryApi) && canImport(OpenTelemetrySdk)
         guard let span = span else {
             return
         }
         
         span.end()
+#endif
     }
 }

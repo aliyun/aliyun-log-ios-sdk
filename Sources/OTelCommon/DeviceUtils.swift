@@ -15,7 +15,7 @@
 
 
 import Foundation
-#if canImport(CoreTelephony)
+#if canImport(CoreTelephony) && os(iOS) && !targetEnvironment(macCatalyst)
 import CoreTelephony
 #endif
 
@@ -229,7 +229,7 @@ public class DeviceUtils: NSObject {
 #elseif canImport(AppKit)
         let screen = NSScreen.main
         let description = screen?.deviceDescription
-        let size = (description?[NSDeviceSize] as? NSValue)?.sizeValue ?? CGSize.zero
+        let size = (description?[NSDeviceDescriptionKey.size] as? NSValue)?.sizeValue ?? CGSize.zero
         return "\((Int)(size.width))x\((Int)(size.height))"
 #else
         return "0x0"
@@ -277,7 +277,7 @@ public class DeviceUtils: NSObject {
             return "Wi-Fi"
         }
 
-#if canImport(CoreTelephony)
+#if canImport(CoreTelephony) && os(iOS) && !targetEnvironment(macCatalyst)
         let networkInfo = CTTelephonyNetworkInfo()
         
         if let currentRadio = currentRadioAccessTechnology(networkInfo: networkInfo) {
@@ -305,15 +305,13 @@ public class DeviceUtils: NSObject {
         return "No Connection"
     }
     
+#if canImport(CoreTelephony) && os(iOS) && !targetEnvironment(macCatalyst)
     private static func currentRadioAccessTechnology(networkInfo: CTTelephonyNetworkInfo) -> String? {
-#if canImport(CoreTelephony)
         if #available(iOS 12.0, *) {
             return networkInfo.serviceCurrentRadioAccessTechnology?.values.first
         } else {
             return networkInfo.currentRadioAccessTechnology
         }
-#endif
-
-        return nil
     }
+#endif
 }

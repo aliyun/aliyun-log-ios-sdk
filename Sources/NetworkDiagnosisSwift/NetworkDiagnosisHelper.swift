@@ -15,9 +15,11 @@
 	
 
 import Foundation
+#if canImport(OpenTelemetryApi) && canImport(OpenTelemetrySdk) && canImport(AliyunLogOtlpExporter)
 import OpenTelemetryApi
 import OpenTelemetrySdk
 import AliyunLogOtlpExporter
+#endif
 
 public class NetworkDiagnosisHelper : NSObject {
     static var endpoint: String?
@@ -31,6 +33,7 @@ public class NetworkDiagnosisHelper : NSObject {
         self.logstore = logstore
     }
     
+#if canImport(OpenTelemetryApi) && canImport(OpenTelemetrySdk) && canImport(AliyunLogOtlpExporter)
     @objc
     public static func exporter() -> OtlpSLSSpanExporter {
         return OtlpSLSSpanExporter.builder("ipa")
@@ -39,8 +42,14 @@ public class NetworkDiagnosisHelper : NSObject {
             .setLogstore("ipa-\(logstore ?? "")-raw")
             .build()
     }
+#else
+    @objc
+    public static func exporter() -> NSObject? {
+        return nil
+    }
+#endif
     
-    
+#if canImport(OpenTelemetryApi) && canImport(OpenTelemetrySdk) && canImport(AliyunLogOtlpExporter)
     public static func setupTrace(_ builder: inout TracerProviderBuilder) {
         let exporter = OtlpSLSSpanExporter.builder("ipa")
             .setEndpoint(endpoint ?? "")
@@ -51,4 +60,9 @@ public class NetworkDiagnosisHelper : NSObject {
         
         _ = builder.add(spanProcessor: spanProcessor)
     }
+#else
+    public static func setupTrace(_ builder: inout NSObject) {
+        
+    }
+#endif
 }
