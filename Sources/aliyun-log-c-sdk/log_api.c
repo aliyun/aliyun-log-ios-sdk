@@ -618,10 +618,6 @@ post_log_result * post_logs_from_lz4buf_with_config(log_producer_config *config,
 //        curl_easy_setopt(curl, CURLOPT_POSTFIELDS, (void *)buffer->data);
 //        curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, buffer->length);
 
-
-        log_sds req = log_sdsnewEmpty(64);
-        log_sds err = log_sdsnew("n/a");
-
         const int max_header_count = 50;
         char *header_array[max_header_count];
         int header_count = 0;
@@ -718,9 +714,6 @@ post_log_result * post_logs_from_lz4buf_webtracking(const char *endpoint, const 
         log_sds headerRawLen = log_sdsnewEmpty(64);
         headerRawLen = log_sdscatprintf(headerRawLen, "x-log-bodyrawsize:%d", (int)buffer->raw_length);
         headers=cur_slist_append(headers, headerRawLen);
-
-        log_sds req = log_sdsnewEmpty(64);
-        log_sds err = log_sdsnew("n/a");
 
         const int max_header_count = 50;
         char *header_array[max_header_count];
