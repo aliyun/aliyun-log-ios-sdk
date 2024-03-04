@@ -110,6 +110,8 @@ static int os_http_post(const char *url,
         return responseCode;
     } else {
         http_response->statusCode = -1;
+        http_response->requestID = (char*)malloc(sizeof(char) * 64);
+        strcpy(http_response->requestID, "");
         
         if(error != nil){
             NSString *errorMessage = [NSString stringWithFormat:@"domain: %@, code: %ld, description: %@", error.domain, (long)error.code,  error.localizedDescription];
