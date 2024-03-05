@@ -1,4 +1,15 @@
 # Changelog
+
+## 4.2.5
+### Features
+
+- Add PrivacyInfo Integration
+
+### Fixes
+
+- Fix mem leak while posting logs
+- Fix crash if no network connection while posting logs
+
 ## 4.2.4
 
 ### Features
