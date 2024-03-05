@@ -43,3 +43,33 @@
 - Add addLog to CrashReporter
 - Add reportException to CrashReporter
 - Add more callback infomation while sending log
+
+## 4.1.1
+
+### Features
+
+- Expose additional information in the producer callback
+
+## 4.1.0
+
+### Features
+
+- Add link data between trace and network diagnosis
+
+## 4.0.0
+
+### Features
+
+- Add Uem Crashreporter support
+- Add OTelCommon module
+- Add OtlpSLSSpanExporter
+- Upgrade WPKMobi
+
+
+### Fixes
+
+- Fix rand() security problem
+
+### Breaking changes
+
+- CrashReporter will no longer be supported. Use CrashReporter2.
