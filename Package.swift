@@ -135,7 +135,7 @@ let package = Package(
         ),
         .target(
             name: "AliyunLogNetworkDiagnosis",
-            dependencies: ["AliyunLogCore", "AliyunLogOT"],
+            dependencies: ["AliyunLogCore", "AliyunLogOT", "AliNetworkDiagnosis"],
             path: "Sources",
             sources: [
                 "NetworkDiagnosis/"

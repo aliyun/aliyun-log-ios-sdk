@@ -44,4 +44,5 @@ Pod::Spec.new do |s|
     s.osx.deployment_target =  '10.12'
     s.source_files = 'Sources/Producer/**/*.{h,m}', 'Sources/aliyun-log-c-sdk/**/*.{c,h}'
     s.public_header_files = 'Sources/Producer/include/*.h', 'Sources/aliyun-log-c-sdk/include/*.h'
+    s.resource_bundles = { s.name => ['Sources/Producer/PrivacyInfo.xcprivacy'] }
 end
