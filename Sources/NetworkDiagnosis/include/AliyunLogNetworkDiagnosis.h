@@ -14,3 +14,5 @@ FOUNDATION_EXPORT double AliyunLogNetworkDiagnosisVersionNumber;
 FOUNDATION_EXPORT const unsigned char AliyunLogNetworkDiagnosisVersionString[];
 
 #import "SLSNetworkDiagnosis.h"
+#import "AliyunLogCore.h"
+#import "SLSPrivocyUtils.h"

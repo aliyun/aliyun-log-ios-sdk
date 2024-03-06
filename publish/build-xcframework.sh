@@ -1,6 +1,6 @@
 #! /bin/sh
 
-#set -o pipefail
+set -o pipefail
 set -e
 
 PLATFORM_LIST=()
@@ -9,12 +9,14 @@ PLATFORM_COUNT=0
 ENABLE_DEBUG=0
 
 SCHEME="AliyunLogProducer"
+SCHEME_SHADOW="AliyunLogProducer"
 PROJECT="AliyunLogSDK.xcodeproj"
 PROJECT_BUILDDIR="publish/build"
 
 usage()
 {
-    echo "Usage: $0 [-s <scheme>] [-s <platforms>]"; exit 1;
+    # productName与target不同时，应该指定shadow scheme为productName
+    echo "Usage: $0 [-s <scheme>] [-h <shadow scheme>] [-p <platforms>]."; exit 1;
 }
 
 build_framework()
@@ -64,8 +66,8 @@ build_framework()
     rm -rf ${PLATFORM_WORKING_DIRECTORY}/${SCHEME}.framework/
     mkdir ${PLATFORM_WORKING_DIRECTORY}/${SCHEME}.framework/
 
-    src="${PLATFORM_WORKING_DIRECTORY}/${SCHEME}.xcarchive/Products/Library/Frameworks/${SCHEME}.framework/"
-    dest="${PLATFORM_WORKING_DIRECTORY}/${SCHEME}.framework/"
+    src="${PLATFORM_WORKING_DIRECTORY}/${SCHEME}.xcarchive/Products/Library/Frameworks/${SCHEME_SHADOW}.framework/"
+    dest="${PLATFORM_WORKING_DIRECTORY}/${SCHEME_SHADOW}.framework/"
 
     if [[ ${PLATFORM} == *"macosx"* ]];
     then src="${PLATFORM_WORKING_DIRECTORY}/${SCHEME}.xcarchive/Products/Library/Frameworks/${SCHEME}.framework/Versions/A/"
@@ -99,7 +101,7 @@ create_xcframework()
     echo "start create xcframework ..."
     cmd_frameworks=()
     for ((i=0; i< ${PLATFORM_COUNT}; i++)); do
-        cmd_frameworks+=("-framework ${PROJECT_BUILDDIR}/${SCHEME}/${PLATFORM_LIST[i]}/${SCHEME}.framework ")
+        cmd_frameworks+=("-framework ${PROJECT_BUILDDIR}/${SCHEME}/${PLATFORM_LIST[i]}/${SCHEME_SHADOW}.framework ")
     done
 
     if [[ ${ENABLE_DEBUG} == 1 ]];
@@ -107,7 +109,7 @@ create_xcframework()
     fi
 
     # create xcframework
-    xcodebuild -create-xcframework -output ${PROJECT_BUILDDIR}/${SCHEME}.xcframework ${cmd_frameworks[@]}
+    xcodebuild -create-xcframework -output ${PROJECT_BUILDDIR}/${SCHEME_SHADOW}.xcframework ${cmd_frameworks[@]}
 }
 
 clean_env()
@@ -116,11 +118,16 @@ clean_env()
 }
 
 # parameters
-while getopts ":s:p:d:" opt; do
+while getopts ":s:h:p:d:" opt; do
     case "${opt}" in
         s)
             echo "intput scheme: ${OPTARG}"
             SCHEME=${OPTARG}
+            SCHEME_SHADOW=${OPTARG}
+        ;;
+        h)
+            echo "input shadow scheme: ${OPTARG}"
+            SCHEME_SHADOW=${OPTARG}
         ;;
         p)
             echo "input platforms: ${OPTARG}"
@@ -139,7 +146,7 @@ while getopts ":s:p:d:" opt; do
 done
 shift $((OPTIND-1))
 
-echo "SCHEME: ${SCHEME}, length: ${#SCHEME}, PLATFORM_LIST: ${PLATFORM_LIST[@]}, PLATFORM_COUNT: ${PLATFORM_COUNT}"
+echo "SCHEME: ${SCHEME}, length: ${#SCHEME}, SHADOW_SCHEME: ${SCHEME_SHADOW}, PLATFORM_LIST: ${PLATFORM_LIST[@]}, PLATFORM_COUNT: ${PLATFORM_COUNT}"
 
 if [[ ${#SCHEME} == 0 ]];
 then

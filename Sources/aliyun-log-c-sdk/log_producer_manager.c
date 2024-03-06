@@ -10,6 +10,8 @@
 
 #ifdef __MACH__
 #include <stdio.h>
+#include <stdlib.h>
+#include <stdint.h>
 #include <mach/clock.h>
 #include <mach/mach.h>
 #endif
@@ -301,7 +303,7 @@ log_producer_manager * create_log_producer_manager(log_producer_config * produce
         int i = 0;
         for (i = 0; i < 16; ++i)
         {
-            producer_manager->pack_prefix[i] = rand() % 10 + '0';
+            producer_manager->pack_prefix[i] = arc4random() % 10 + '0';
         }
         producer_manager->pack_prefix[i] = '\0';
     }

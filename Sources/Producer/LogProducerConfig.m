@@ -19,6 +19,7 @@
 #import "TimeUtils.h"
 #import "SLSURLSession.h"
 #import "SLSHttpHeader.h"
+#import "log_define.h"
 
 
 @interface LogProducerConfig ()
@@ -33,10 +34,15 @@ static int os_http_post(const char *url,
                 char **header_array,
                 int header_count,
                 const void *data,
-                int data_len)
+                int data_len,
+                post_log_result *http_response)
 {
-    if(url == NULL || *url == 0 || header_array == NULL || header_count < 1 || data == NULL || data_len <= 0)
+    if(url == NULL || *url == 0 || header_array == NULL || header_count < 1 || data == NULL || data_len <= 0) {
+        http_response->statusCode = 400;
+        http_response->errorMessage = "request is not valid";
+        http_response->requestID = "";
         return 400; // bad request
+    }
     
     NSString *urlString = [NSString stringWithUTF8String:url];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
@@ -69,6 +75,8 @@ static int os_http_post(const char *url,
     ];
     if(response != nil){
         int responseCode = (int)[response statusCode];
+        http_response->statusCode = responseCode;
+        
         NSDictionary *fields = [response allHeaderFields];
         NSString *timeVal = fields[@"x-log-time"];
         if ([timeVal length] != 0) {
@@ -77,23 +85,58 @@ static int os_http_post(const char *url,
                 [TimeUtils updateServerTime:serverTime];
             }
         }
+        
+        NSString *requestId = fields[@"x-log-requestid"];
+        http_response->requestID = (char*)malloc(sizeof(char) * 64);
+        if (requestId.length > 0) {
+            strcpy(http_response->requestID, [requestId UTF8String]);
+        } else {
+            strcpy(http_response->requestID, "");
+        }
+
+        http_response->errorMessage = (char*)malloc(sizeof(char) * 256);
         if (responseCode != 200) {
             NSString *res = [[NSString alloc] initWithData:resData encoding:NSUTF8StringEncoding];
+            if (res.length > 0) {
+                strcpy(http_response->requestID, [res UTF8String]);
+            } else {
+                strcpy(http_response->requestID, "");
+            }
+            
             SLSLog(@"%ld %@ %@", [response statusCode], [response allHeaderFields], res);
+        } else {
+            strcpy(http_response->requestID, "");
         }
         return responseCode;
-    }
-    else {
+    } else {
+        http_response->statusCode = -1;
+        http_response->requestID = (char*)malloc(sizeof(char) * 64);
+        strcpy(http_response->requestID, "");
+        
         if(error != nil){
-            NSString *res = [[NSString alloc] initWithData:resData encoding:NSUTF8StringEncoding];
-            SLSLog(@"error: %@, res:%@", error, res);
-            if (error.code == kCFURLErrorUserCancelledAuthentication)
+            NSString *errorMessage = [NSString stringWithFormat:@"domain: %@, code: %ld, description: %@", error.domain, (long)error.code,  error.localizedDescription];
+            SLSLog(@"os_http_post error: %@", errorMessage);
+            const char* message = [errorMessage UTF8String];
+            
+            http_response->errorMessage = (char*)malloc(sizeof(char) * (strlen(message) + 1));
+            strncpy(http_response->errorMessage, [errorMessage UTF8String], strlen(message));
+            
+            if (error.code == kCFURLErrorUserCancelledAuthentication) {
                 return 401;
-            if (error.code == kCFURLErrorBadServerResponse)
+            }
+            if (error.code == kCFURLErrorBadServerResponse) {
                 return 500;
+            }
         }
         return -1;
     }
+}
+
+static char* nsstring_to_char(NSString *str) {
+    NSUInteger len = [str lengthOfBytesUsingEncoding:NSUTF8StringEncoding] + 1;
+    char cStr [len];
+    [str getCString:cStr maxLength:len encoding:NSUTF8StringEncoding];
+    return strdup(cStr);
 }
 
 + (void)load{

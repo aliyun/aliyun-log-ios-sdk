@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1120"
+   LastUpgradeVersion = "1400"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F8696C1027F0066D00EF0020"
+               BlueprintIdentifier = "F8128FB42ABAE19C0091B556"
                BuildableName = "AliyunLogCrashReporter.framework"
                BlueprintName = "AliyunLogCrashReporter"
                ReferencedContainer = "container:AliyunLogSDK.xcodeproj">
@@ -50,7 +50,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F8696C1027F0066D00EF0020"
+            BlueprintIdentifier = "F8128FB42ABAE19C0091B556"
             BuildableName = "AliyunLogCrashReporter.framework"
             BlueprintName = "AliyunLogCrashReporter"
             ReferencedContainer = "container:AliyunLogSDK.xcodeproj">

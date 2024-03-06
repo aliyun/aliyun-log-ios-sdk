@@ -7,7 +7,7 @@
 
 #import "SLSProducer.h"
 #import "SLSNetworkDiagnosisFeature.h"
-#import "Utdid.h"
+#import "SLSUtdid.h"
 #import "NSString+SLS.h"
 #import "SLSNetworkDiagnosis.h"
 #import "TimeUtils.h"
@@ -24,6 +24,13 @@
 
 #import "SLSHttpHeader.h"
 #import "SLSDiagnosisProtocol.h"
+
+// for better compatibility, use __has_include instead of preprocessor
+// in AliyunLogNetworkDiagnosis-NoSwift target, there is no .swift files
+#if __has_include("AliyunLogNetworkDiagnosis/AliyunLogNetworkDiagnosis-Swift.h")
+    #define SLS_NETWORK_SWIFT_FEATURE
+    #import "AliyunLogNetworkDiagnosis/AliyunLogNetworkDiagnosis-Swift.h"
+#endif
 
 static int DEFAULT_PING_SIZE = 64;
 static int DEFAULT_TIMEOUT = 2 * 1000;
@@ -201,10 +208,17 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
         networkCredentials.instanceId = [self getIPAIdBySecretKey:networkCredentials.secretKey];
     }
     
+#ifdef SLS_NETWORK_SWIFT_FEATURE
+    [NetworkDiagnosisHelper updateWorkspace:networkCredentials.endpoint
+                                    project:networkCredentials.project
+                                   logstore:networkCredentials.instanceId
+    ];
+#endif
+
     _sender = [SLSNetworkDiagnosisSender sender:credentials feature:self];
     
     [_diagnosis preInit:networkCredentials.secretKey
-               deviceId:[[Utdid getUtdid] copy]
+               deviceId:[[SLSUtdid getUtdid] copy]
                  siteId:networkCredentials.siteId
               extension:networkCredentials.extension
     ];
@@ -234,7 +248,7 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
     }
     
     [_diagnosis init:networkCredentials.secretKey
-            deviceId:[[Utdid getUtdid] copy]
+            deviceId:[[SLSUtdid getUtdid] copy]
               siteId:networkCredentials.siteId
            extension:networkCredentials.extension];
 }
@@ -355,6 +369,10 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
         return;
     }
 
+    
+#ifdef SLS_NETWORK_SWIFT_FEATURE
+    TraceNode *node = [TraceNode traceNode:@"dns" request:request];
+#endif
     AliDnsConfig *dnsConfig = [[AliDnsConfig alloc] init:request.domain
                                               nameServer:request.nameServer
                                                     type:request.type
@@ -365,9 +383,16 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
                                                               if (callback) {
                                                                   callback([SLSResponse response:context type:@"dns" content:[result.content copy]]);
                                                               }
+#ifdef SLS_NETWORK_SWIFT_FEATURE
+                                                              [node end];
+#endif
                                                           }
                                                  context:request.context
     ];
+    
+#ifdef SLS_NETWORK_SWIFT_FEATURE
+    [node setDetectConfig:dnsConfig];
+#endif
     
     if (request.extention) {
         dnsConfig.detectExtension = [NSMutableDictionary dictionaryWithDictionary:request.extention];
@@ -412,6 +437,9 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
     InternalHttpCredentialDelegate *delegate = [InternalHttpCredentialDelegate delegate:request.credential];
     AliHttpCredential *httpCredential = [delegate getHttpCredential:request.domain context:request.context];
     
+#ifdef SLS_NETWORK_SWIFT_FEATURE
+    TraceNode *node = [TraceNode traceNode:@"http" request:request];
+#endif
     AliHttpPingConfig *config = [[AliHttpPingConfig alloc] init:request.domain
                                                         traceId:[self generateId]
                                                clientCredential:(nil != httpCredential ? httpCredential.clientCredential : nil)
@@ -424,11 +452,19 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
                                                                 if (callback) {
                                                                     callback([SLSResponse response:context type:@"http" content:[result.content copy]]);
                                                                 }
+
+#ifdef SLS_NETWORK_SWIFT_FEATURE
+                                                                [node end];
+#endif
                                                             }
     ];
     if (request.extention) {
         config.detectExtension = [NSMutableDictionary dictionaryWithDictionary:request.extention];
     }
+    
+#ifdef SLS_NETWORK_SWIFT_FEATURE
+    [node setDetectConfig:config];
+#endif
     
     [_diagnosis http:config];
 }
@@ -481,6 +517,9 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
         return;
     }
     
+#ifdef SLS_NETWORK_SWIFT_FEATURE
+    TraceNode *node = [TraceNode traceNode:@"mtr" request:request];
+#endif
     AliMTRConfig *config = [[AliMTRConfig alloc] init:request.domain
                                                maxTtl:request.maxTTL
                                              maxPaths:request.maxPaths
@@ -494,6 +533,10 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
                                                             if (callback && result) {
                                                                 callback([SLSResponse response:context type:@"mtr" content:[result.content copy]]);
                                                             }
+      
+#ifdef SLS_NETWORK_SWIFT_FEATURE
+                                                            [node end];
+#endif
                                                         }
                                       combineComplete:nil
     ];
@@ -503,6 +546,10 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
 
     config.protocol = request.protocol;
     config.parallel = request.parallel;
+    
+#ifdef SLS_NETWORK_SWIFT_FEATURE
+    [node setDetectConfig:config];
+#endif
     
     [_diagnosis mtr:config];
     
@@ -569,6 +616,10 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
         return;
     }
     
+#ifdef SLS_NETWORK_SWIFT_FEATURE
+    TraceNode *node = [TraceNode traceNode:@"ping" request:request];
+#endif
+    
     AliPingConfig *config = [[AliPingConfig alloc] init:request.domain
                                                 timeout:request.timeout
                                           interfaceType:(_enableMultiplePortsDetect ? AliNetDiagNetworkInterfaceDefault : AliNetDiagNetworkInterfaceCurrent)
@@ -582,6 +633,10 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
                                                            if (callback) {
                                                                callback([SLSResponse response:context type:@"ping" content:[result.content copy]]);
                                                            }
+
+#ifdef SLS_NETWORK_SWIFT_FEATURE
+                                                           [node end];
+#endif
                                                        }
                                         combineComplete:nil
     ];
@@ -590,6 +645,10 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
         config.detectExtension = [NSMutableDictionary dictionaryWithDictionary:request.extention];
     }
 
+#ifdef SLS_NETWORK_SWIFT_FEATURE
+    [node setDetectConfig:config];
+#endif
+    
     [_diagnosis ping: config];
 }
 
@@ -634,6 +693,10 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
         return;
     }
     
+#ifdef SLS_NETWORK_SWIFT_FEATURE
+    TraceNode *node = [TraceNode traceNode:@"tcpping" request:request];
+#endif
+    
     AliTcpPingConfig *config = [[AliTcpPingConfig alloc] init:request.domain
                                                       timeout:request.timeout
                                                 interfaceType:(_enableMultiplePortsDetect ? AliNetDiagNetworkInterfaceDefault : AliNetDiagNetworkInterfaceCurrent)
@@ -647,12 +710,20 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
                                                                if (callback) {
                                                                    callback([SLSResponse response:context type:@"tcpping" content:[result.content copy]]);
                                                                }
+
+#ifdef SLS_NETWORK_SWIFT_FEATURE
+                                                               [node end];
+#endif
                                                            }
                                               combineComplete:nil
     ];
     if (request.extention) {
         config.detectExtension = [NSMutableDictionary dictionaryWithDictionary:request.extention];
     }
+    
+#ifdef SLS_NETWORK_SWIFT_FEATURE
+    [node setDetectConfig:config];
+#endif
 
     [_diagnosis tcpPing: config];
 }

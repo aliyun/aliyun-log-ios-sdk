@@ -113,49 +113,49 @@ Pod::Spec.new do |s|
         }
     end
 
-    s.subspec 'CrashReporter' do |c|
-        c.ios.deployment_target = IOS_TARGET_VERSION
-        c.tvos.deployment_target =  TVOS_TARGET_VERSION
-        c.osx.deployment_target =  OSX_TARGET_VERSION
-        c.dependency 'AliyunLogProducer/Producer'
-        c.dependency 'AliyunLogProducer/OT'
-        c.dependency 'AliyunLogProducer/Core'
-        if isPodLint
-            c.vendored_frameworks = "build/AliyunLogCrashReporter.xcframework", "build/WPKMobi.xcframework"
-            c.exclude_files = "build/WPKMobi.xcframework/**/Headers/*.h"
-        else
-            c.vendored_frameworks = "AliyunLogCrashReporter/AliyunLogCrashReporter.xcframework", "WPKMobi/WPKMobi.xcframework"
-            c.exclude_files = "WPKMobi/WPKMobi.xcframework/**/Headers/*.h"
-        end
-
-        c.ios.frameworks = "SystemConfiguration", "CoreGraphics"
-        c.tvos.frameworks = "SystemConfiguration", "CoreGraphics"
-        c.osx.frameworks = "SystemConfiguration", "Cocoa"
-
-        c.ios.libraries = "z", "c++"
-        c.tvos.libraries = "z", "c++"
-        c.osx.libraries = "z", "c++"
-
-        c.ios.pod_target_xcconfig = {
-            'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64',
-            'OTHER_LDFLAGS' => '-ObjC'
-        }
-        c.ios.user_target_xcconfig = {
-            'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
-        }
-
-        c.tvos.pod_target_xcconfig = {
-            'EXCLUDED_ARCHS[sdk=appletvsimulator*]' => 'arm64',
-            'OTHER_LDFLAGS' => '-ObjC'
-        }
-        c.tvos.user_target_xcconfig = {
-            'EXCLUDED_ARCHS[sdk=appletvsimulator*]' => 'arm64'
-        }
-
-        c.osx.pod_target_xcconfig = {
-            'OTHER_LDFLAGS' => '-ObjC'
-        }
-    end
+#    s.subspec 'CrashReporter' do |c|
+#        c.ios.deployment_target = IOS_TARGET_VERSION
+#        c.tvos.deployment_target =  TVOS_TARGET_VERSION
+#        c.osx.deployment_target =  OSX_TARGET_VERSION
+#        c.dependency 'AliyunLogProducer/Producer'
+#        c.dependency 'AliyunLogProducer/OT'
+#        c.dependency 'AliyunLogProducer/Core'
+#        if isPodLint
+#            c.vendored_frameworks = "build/AliyunLogCrashReporter.xcframework", "build/WPKMobi.xcframework"
+#            c.exclude_files = "build/WPKMobi.xcframework/**/Headers/*.h"
+#        else
+#            c.vendored_frameworks = "AliyunLogCrashReporter/AliyunLogCrashReporter.xcframework", "WPKMobi/WPKMobi.xcframework"
+#            c.exclude_files = "WPKMobi/WPKMobi.xcframework/**/Headers/*.h"
+#        end
+#
+#        c.ios.frameworks = "SystemConfiguration", "CoreGraphics"
+#        c.tvos.frameworks = "SystemConfiguration", "CoreGraphics"
+#        c.osx.frameworks = "SystemConfiguration", "Cocoa"
+#
+#        c.ios.libraries = "z", "c++"
+#        c.tvos.libraries = "z", "c++"
+#        c.osx.libraries = "z", "c++"
+#
+#        c.ios.pod_target_xcconfig = {
+#            'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64',
+#            'OTHER_LDFLAGS' => '-ObjC'
+#        }
+#        c.ios.user_target_xcconfig = {
+#            'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
+#        }
+#
+#        c.tvos.pod_target_xcconfig = {
+#            'EXCLUDED_ARCHS[sdk=appletvsimulator*]' => 'arm64',
+#            'OTHER_LDFLAGS' => '-ObjC'
+#        }
+#        c.tvos.user_target_xcconfig = {
+#            'EXCLUDED_ARCHS[sdk=appletvsimulator*]' => 'arm64'
+#        }
+#
+#        c.osx.pod_target_xcconfig = {
+#            'OTHER_LDFLAGS' => '-ObjC'
+#        }
+#    end
 
     s.subspec 'NetworkDiagnosis' do |n|
         n.dependency 'AliyunLogProducer/Producer'
@@ -180,40 +180,40 @@ Pod::Spec.new do |s|
         }
     end
 
-    s.subspec 'Trace' do |c|
-        c.ios.deployment_target = IOS_TARGET_VERSION
-        c.tvos.deployment_target =  TVOS_TARGET_VERSION
-        c.osx.deployment_target =  OSX_TARGET_VERSION
-        c.dependency 'AliyunLogProducer/Producer'
-        c.dependency 'AliyunLogProducer/Core'
-        c.dependency 'AliyunLogProducer/OT'
-        if isPodLint
-            c.vendored_frameworks = "build/AliyunLogTrace.xcframework"
-        else
-            c.vendored_frameworks = "AliyunLogTrace/AliyunLogTrace.xcframework"
-        end
-
-        c.user_target_xcconfig = {
-            'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
-        }
-    end
+#    s.subspec 'Trace' do |c|
+#        c.ios.deployment_target = IOS_TARGET_VERSION
+#        c.tvos.deployment_target =  TVOS_TARGET_VERSION
+#        c.osx.deployment_target =  OSX_TARGET_VERSION
+#        c.dependency 'AliyunLogProducer/Producer'
+#        c.dependency 'AliyunLogProducer/Core'
+#        c.dependency 'AliyunLogProducer/OT'
+#        if isPodLint
+#            c.vendored_frameworks = "build/AliyunLogTrace.xcframework"
+#        else
+#            c.vendored_frameworks = "AliyunLogTrace/AliyunLogTrace.xcframework"
+#        end
+#
+#        c.user_target_xcconfig = {
+#            'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
+#        }
+#    end
     
-    s.subspec 'URLSessionInstrumentation' do |c|
-        c.ios.deployment_target = IOS_TARGET_VERSION
-        c.tvos.deployment_target =  TVOS_TARGET_VERSION
-        c.osx.deployment_target =  OSX_TARGET_VERSION
-        c.dependency 'AliyunLogProducer/Producer'
-        c.dependency 'AliyunLogProducer/Core'
-        c.dependency 'AliyunLogProducer/OT'
-        c.dependency 'AliyunLogProducer/Trace'
-        if isPodLint
-            c.vendored_frameworks = "build/AliyunLogURLSession.xcframework"
-        else
-            c.vendored_frameworks = "AliyunLogURLSession/AliyunLogURLSession.xcframework"
-        end
-
-        c.user_target_xcconfig = {
-            'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
-        }
-    end
+#    s.subspec 'URLSessionInstrumentation' do |c|
+#        c.ios.deployment_target = IOS_TARGET_VERSION
+#        c.tvos.deployment_target =  TVOS_TARGET_VERSION
+#        c.osx.deployment_target =  OSX_TARGET_VERSION
+#        c.dependency 'AliyunLogProducer/Producer'
+#        c.dependency 'AliyunLogProducer/Core'
+#        c.dependency 'AliyunLogProducer/OT'
+#        c.dependency 'AliyunLogProducer/Trace'
+#        if isPodLint
+#            c.vendored_frameworks = "build/AliyunLogURLSession.xcframework"
+#        else
+#            c.vendored_frameworks = "AliyunLogURLSession/AliyunLogURLSession.xcframework"
+#        end
+#
+#        c.user_target_xcconfig = {
+#            'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
+#        }
+#    end
 end

@@ -1,8 +1,18 @@
 # Uncomment the next line to define a global platform for your project
-# platform :ios, '10.0'
+#platform :ios, '10.0'
 use_frameworks!
+#source 'https://cdn.cocoapods.org/'
+#source 'https://github.com/CocoaPods/CocoaPods.git'
+source 'https://github.com/CocoaPods/Specs.git'
+
+##集团内部仓库
+#ali_source 'alibaba-specs'
+##官方镜像仓库
+#ali_source 'alibaba-specs-mirror'
+#ali_source 'cdn.podspec.alibaba-inc'
 
 #source 'https://github.com/aliyun-sls/Specs.git'
+source 'https://gitee.com/aliyun-sls/Specs.git'
 
 #source_project_path = 'AliyunLogSDK'
 example_project_path = 'Examples/Examples'
@@ -10,29 +20,51 @@ example_project_path = 'Examples/Examples'
 test_project_path = 'Tests/AliyunLogSDKTests'
 
 def all_example_pods
-#  pod 'AliyunLogProducer', '3.2.0', :subspecs => ['CrashReporter', 'NetworkDiagnosis', 'Trace', 'URLSessionInstrumentation']
-  pod 'AliyunLogProducer/Producer', :path => './'
-  pod 'AliyunLogProducer/Core', :path => './'
-  pod 'AliyunLogProducer/OT', :path => './'
-  pod 'AliyunLogProducer/CrashReporter', :path => './'
-  pod 'AliyunLogProducer/NetworkDiagnosis', :path => './'
-  pod 'AliyunLogProducer/Trace', :path => './'
-  pod 'AliyunLogProducer/URLSessionInstrumentation', :path => './'
+  pod 'OpenTelemetryApiObjc', '1.1.1'
+  pod 'OpenTelemetrySdkObjc', '1.1.1'
+  
+#  pod 'AliyunLogProducer', '4.2.2'
+#  pod 'AliyunLogOTelCommon', '4.2.2'
+#  pod 'AliyunLogOtlpExporter', '4.2.2'
+#  pod 'AliyunLogCrashReporter', '4.2.2'
+#  pod 'AliyunLogNetworkDiagnosis', '4.2.2'
+
+pod 'AliyunLogProducer', :path => './'
+pod 'AliyunLogOTelCommon', :path => './'
+#pod 'AliyunLogOTelCommon/OpenTelemetryApi', :path => './'
+#pod 'AliyunLogOTelCommon/OpenTelemetrySdk', :path => './'
+pod 'AliyunLogOtlpExporter', :path => './'
+pod 'AliyunLogCrashReporter', :path => './'
+pod 'AliyunLogNetworkDiagnosis', :path => './'
 end
 
 def all_test_pods
-  pod 'OCMock'
-  pod 'Quick'
-  pod 'Nimble'
+  if ENV['build_env']
+    pod 'OCMock', '3.8.1-cn'
+    pod 'Quick', '5.0.1-cn'
+    pod 'Nimble', '10.0.0-cn'
+  else
+    pod 'OCMock', '3.8.1'
+    pod 'Quick', '5.0.1'
+    pod 'Nimble', '10.0.0'
+  end
  
-# pod 'AliyunLogProducer', '3.2.0', :subspecs => ['CrashReporter', 'NetworkDiagnosis', 'Trace', 'URLSessionInstrumentation']
-  pod 'AliyunLogProducer/Producer', :path => './'
-  pod 'AliyunLogProducer/Core', :path => './'
-  pod 'AliyunLogProducer/OT', :path => './'
-  pod 'AliyunLogProducer/CrashReporter', :path => './'
-  pod 'AliyunLogProducer/NetworkDiagnosis', :path => './'
-  pod 'AliyunLogProducer/Trace', :path => './'
-  pod 'AliyunLogProducer/URLSessionInstrumentation', :path => './'
+  pod 'OpenTelemetryApiObjc', '1.1.1'
+  pod 'OpenTelemetrySdkObjc', '1.1.1'
+ 
+#  pod 'AliyunLogProducer', '4.2.2'
+#  pod 'AliyunLogOTelCommon', '4.2.2'
+#  pod 'AliyunLogOtlpExporter', '4.2.2'
+#  pod 'AliyunLogCrashReporter', '4.2.2'
+#  pod 'AliyunLogNetworkDiagnosis', '4.2.2'
+  
+  pod 'AliyunLogProducer', :path => './'
+  pod 'AliyunLogOTelCommon', :path => './'
+#  pod 'AliyunLogOTelCommon/OpenTelemetryApi', :path => './'
+#  pod 'AliyunLogOTelCommon/OpenTelemetrySdk', :path => './'
+  pod 'AliyunLogOtlpExporter', :path => './'
+  pod 'AliyunLogCrashReporter', :path => './'
+  pod 'AliyunLogNetworkDiagnosis', :path => './'
 end
 
 workspace 'AliyunLogSDK.xcworkspace'
@@ -58,6 +90,12 @@ post_install do |installer|
             target.build_configurations.each do |config|
                 config.build_settings['EXCLUDED_ARCHS[sdk=iphonesimulator*]'] = 'arm64'
 #                config.build_settings['ENABLE_BITCODE'] = 'NO'
+# fix error under xcode 15
+# error: DT_TOOLCHAIN_DIR cannot be used to evaluate LIBRARY_SEARCH_PATHS, use TOOLCHAIN_DIR instead (in target 'OpenTelemetryApiObjc' from project 'Pods')
+                xcconfig_path = config.base_configuration_reference.real_path
+                xcconfig = File.read(xcconfig_path)
+                xcconfig_mod = xcconfig.gsub(/DT_TOOLCHAIN_DIR/, "TOOLCHAIN_DIR")
+                File.open(xcconfig_path, "w") { |file| file << xcconfig_mod }
             end
     end
 end

@@ -16,7 +16,7 @@
 #import "ProducerExampleDestroyController.h"
 #import "NetworkDiagnosisController.h"
 #import "TraceExampleController.h"
-#import "TraceRemoteDemoViewController.h"
+//#import "TraceRemoteDemoViewController.h"
 #import "BenchmarkViewController.h"
 
 @interface MainViewController ()
@@ -94,11 +94,11 @@
 }
 
 - (void) gotoTracePage {
-    [self gotoPageWithPage:[[TraceExampleController alloc] init]];
+//    [self gotoPageWithPage:[[TraceExampleController alloc] init]];
 }
 
 - (void) gotoTraceRemotePage {
-    [self gotoPageWithPage:[[TraceRemoteDemoViewController alloc] init]];
+//    [self gotoPageWithPage:[[TraceRemoteDemoViewController alloc] init]];
 }
 
 - (void) gotoBenchmarkPage {

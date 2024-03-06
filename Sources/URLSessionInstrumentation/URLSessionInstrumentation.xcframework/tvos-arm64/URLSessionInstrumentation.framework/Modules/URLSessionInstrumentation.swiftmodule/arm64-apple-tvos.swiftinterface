@@ -1,0 +1,37 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.6.1 (swiftlang-5.6.0.323.66 clang-1316.0.20.12)
+// swift-module-flags: -target arm64-apple-tvos11.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name URLSessionInstrumentation
+import Foundation
+import OpenTelemetryApi
+import OpenTelemetrySdk
+import Swift
+import UIKit
+import _Concurrency
+import os.log
+import os
+public class URLSessionInstrumentation {
+  public var tracer: OpenTelemetryApi.Tracer {
+    get
+  }
+  public var startedRequestSpans: [OpenTelemetryApi.Span] {
+    get
+  }
+  public init(configuration: URLSessionInstrumentationConfiguration)
+  @objc deinit
+}
+public typealias DataOrFile = Any
+public typealias SessionTaskId = Swift.String
+public typealias HTTPStatus = Swift.Int
+public struct URLSessionInstrumentationConfiguration {
+  public init(shouldRecordPayload: ((Foundation.URLSession) -> (Swift.Bool)?)? = nil, shouldInstrument: ((Foundation.URLRequest) -> (Swift.Bool)?)? = nil, nameSpan: ((Foundation.URLRequest) -> (Swift.String)?)? = nil, spanCustomization: ((Foundation.URLRequest, OpenTelemetryApi.SpanBuilder) -> Swift.Void)? = nil, shouldInjectTracingHeaders: ((Foundation.URLRequest) -> (Swift.Bool)?)? = nil, injectCustomHeaders: ((inout Foundation.URLRequest, OpenTelemetryApi.Span?) -> Swift.Void)? = nil, createdRequest: ((Foundation.URLRequest, OpenTelemetryApi.Span) -> Swift.Void)? = nil, receivedResponse: ((Foundation.URLResponse, DataOrFile?, OpenTelemetryApi.Span) -> Swift.Void)? = nil, receivedError: ((Swift.Error, DataOrFile?, HTTPStatus, OpenTelemetryApi.Span) -> Swift.Void)? = nil, delegateClassesToInstrument: [Swift.AnyClass]? = nil)
+  public var shouldInstrument: ((Foundation.URLRequest) -> (Swift.Bool)?)?
+  public var shouldRecordPayload: ((Foundation.URLSession) -> (Swift.Bool)?)?
+  public var shouldInjectTracingHeaders: ((Foundation.URLRequest) -> (Swift.Bool)?)?
+  public var injectCustomHeaders: ((inout Foundation.URLRequest, OpenTelemetryApi.Span?) -> Swift.Void)?
+  public var nameSpan: ((Foundation.URLRequest) -> (Swift.String)?)?
+  public var spanCustomization: ((Foundation.URLRequest, OpenTelemetryApi.SpanBuilder) -> Swift.Void)?
+  public var createdRequest: ((Foundation.URLRequest, OpenTelemetryApi.Span) -> Swift.Void)?
+  public var receivedResponse: ((Foundation.URLResponse, DataOrFile?, OpenTelemetryApi.Span) -> Swift.Void)?
+  public var receivedError: ((Swift.Error, DataOrFile?, HTTPStatus, OpenTelemetryApi.Span) -> Swift.Void)?
+  public var delegateClassesToInstrument: [Swift.AnyClass]?
+}

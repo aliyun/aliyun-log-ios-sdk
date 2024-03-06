@@ -1,0 +1,1885 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.6.1 (swiftlang-5.6.0.323.66 clang-1316.0.20.12)
+// swift-module-flags: -target x86_64-apple-ios13.1-macabi -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name OpenTelemetrySdk
+import Darwin
+import Foundation
+import OpenTelemetryApi
+import Swift
+import _Concurrency
+import os.log
+import os
+public protocol Clock : AnyObject {
+  var now: Foundation.Date { get }
+}
+extension OpenTelemetrySdk.Clock {
+  public var nanoTime: Swift.UInt64 {
+    get
+  }
+}
+public func == (lhs: OpenTelemetrySdk.Clock, rhs: OpenTelemetrySdk.Clock) -> Swift.Bool
+public enum ExportResult {
+  case success
+  case failure
+  public static func == (a: OpenTelemetrySdk.ExportResult, b: OpenTelemetrySdk.ExportResult) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct InstrumentationScopeInfo : Swift.Hashable, Swift.Codable, Swift.Equatable {
+  public var name: Swift.String {
+    get
+  }
+  public var version: Swift.String? {
+    get
+  }
+  public var schemaUrl: Swift.String? {
+    get
+  }
+  public init()
+  public init(name: Swift.String, version: Swift.String? = nil, schemaUrl: Swift.String? = nil)
+  public func hash(into hasher: inout Swift.Hasher)
+  public static func == (a: OpenTelemetrySdk.InstrumentationScopeInfo, b: OpenTelemetrySdk.InstrumentationScopeInfo) -> Swift.Bool
+  public func encode(to encoder: Swift.Encoder) throws
+  public var hashValue: Swift.Int {
+    get
+  }
+  public init(from decoder: Swift.Decoder) throws
+}
+public class MillisClock : OpenTelemetrySdk.Clock {
+  public init()
+  public var now: Foundation.Date {
+    get
+  }
+  @objc deinit
+}
+public class MonotonicClock : OpenTelemetrySdk.Clock {
+  public init(clock: OpenTelemetrySdk.Clock)
+  public var now: Foundation.Date {
+    get
+  }
+  @objc deinit
+}
+public struct ReadableLogRecord : Swift.Codable {
+  public init(resource: OpenTelemetrySdk.Resource, instrumentationScopeInfo: OpenTelemetrySdk.InstrumentationScopeInfo, timestamp: Foundation.Date, observedTimestamp: Foundation.Date? = nil, spanContext: OpenTelemetryApi.SpanContext? = nil, severity: OpenTelemetryApi.Severity? = nil, body: Swift.String? = nil, attributes: [Swift.String : OpenTelemetryApi.AttributeValue])
+  public var resource: OpenTelemetrySdk.Resource {
+    get
+  }
+  public var instrumentationScopeInfo: OpenTelemetrySdk.InstrumentationScopeInfo {
+    get
+  }
+  public var timestamp: Foundation.Date {
+    get
+  }
+  public var observedTimestamp: Foundation.Date? {
+    get
+  }
+  public var spanContext: OpenTelemetryApi.SpanContext? {
+    get
+  }
+  public var severity: OpenTelemetryApi.Severity? {
+    get
+  }
+  public var body: Swift.String? {
+    get
+  }
+  public var attributes: [Swift.String : OpenTelemetryApi.AttributeValue] {
+    get
+  }
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+@_hasMissingDesignatedInitializers public class InMemoryLogRecordExporter : OpenTelemetrySdk.LogRecordExporter {
+  public func getFinishedLogRecords() -> [OpenTelemetrySdk.ReadableLogRecord]
+  public func export(logRecords: [OpenTelemetrySdk.ReadableLogRecord]) -> OpenTelemetrySdk.ExportResult
+  public func shutdown()
+  public func forceFlush() -> OpenTelemetrySdk.ExportResult
+  @objc deinit
+}
+public protocol LogRecordExporter {
+  func export(logRecords: [OpenTelemetrySdk.ReadableLogRecord]) -> OpenTelemetrySdk.ExportResult
+  func shutdown()
+  func forceFlush() -> OpenTelemetrySdk.ExportResult
+}
+public class MultiLogRecordExporter : OpenTelemetrySdk.LogRecordExporter {
+  public init(logRecordExporters: [OpenTelemetrySdk.LogRecordExporter])
+  public func export(logRecords: [OpenTelemetrySdk.ReadableLogRecord]) -> OpenTelemetrySdk.ExportResult
+  public func shutdown()
+  public func forceFlush() -> OpenTelemetrySdk.ExportResult
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class NoopLogRecordExporter : OpenTelemetrySdk.LogRecordExporter {
+  public static let instance: OpenTelemetrySdk.NoopLogRecordExporter
+  public func export(logRecords: [OpenTelemetrySdk.ReadableLogRecord]) -> OpenTelemetrySdk.ExportResult
+  public func shutdown()
+  public func forceFlush() -> OpenTelemetrySdk.ExportResult
+  @objc deinit
+}
+public struct LogLimits {
+  public static let defaultMaxAttributeCount: Swift.Int
+  public static let defaultMaxAtributeLength: Swift.Int
+  public let maxAttributeCount: Swift.Int
+  public let maxAttributeLength: Swift.Int
+  public init(maxAttributeCount: Swift.Int = Self.defaultMaxAttributeCount, maxAttributeLength: Swift.Int = Self.defaultMaxAtributeLength)
+}
+@_hasMissingDesignatedInitializers public class LogRecordBuilderSdk : OpenTelemetryApi.EventBuilder {
+  public func setTimestamp(_ timestamp: Foundation.Date) -> Self
+  public func setObservedTimestamp(_ observed: Foundation.Date) -> Self
+  public func setSpanContext(_ context: OpenTelemetryApi.SpanContext) -> Self
+  public func setSeverity(_ severity: OpenTelemetryApi.Severity) -> Self
+  public func setBody(_ body: Swift.String) -> Self
+  public func setAttributes(_ attributes: [Swift.String : OpenTelemetryApi.AttributeValue]) -> Self
+  public func setData(_ attributes: [Swift.String : OpenTelemetryApi.AttributeValue]) -> Self
+  public func emit()
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class LoggerBuilderSdk : OpenTelemetryApi.LoggerBuilder {
+  public func setEventDomain(_ eventDomain: Swift.String) -> Self
+  public func setSchemaUrl(_ schemaUrl: Swift.String) -> Self
+  public func setInstrumentationVersion(_ instrumentationVersion: Swift.String) -> Self
+  public func setIncludeTraceContext(_ includeTraceContext: Swift.Bool) -> Self
+  public func setAttributes(_ attributes: [Swift.String : OpenTelemetryApi.AttributeValue]) -> Self
+  public func build() -> OpenTelemetryApi.Logger
+  @objc deinit
+}
+public class LoggerProviderBuilder {
+  public var clock: OpenTelemetrySdk.Clock {
+    get
+  }
+  public var resource: OpenTelemetrySdk.Resource {
+    get
+  }
+  public var logLimits: OpenTelemetrySdk.LogLimits {
+    get
+  }
+  public var logProcessors: [OpenTelemetrySdk.LogRecordProcessor] {
+    get
+  }
+  public init()
+  public func with(clock: OpenTelemetrySdk.Clock) -> Self
+  public func with(resource: OpenTelemetrySdk.Resource) -> Self
+  public func with(logLimits: OpenTelemetrySdk.LogLimits) -> Self
+  public func with(processors: [OpenTelemetrySdk.LogRecordProcessor]) -> Self
+  public func build() -> OpenTelemetrySdk.LoggerProviderSdk
+  @objc deinit
+}
+public class LoggerProviderSdk : OpenTelemetryApi.LoggerProvider {
+  public init(clock: OpenTelemetrySdk.Clock = MillisClock(), resource: OpenTelemetrySdk.Resource = EnvVarResource.get(), logLimits: OpenTelemetrySdk.LogLimits = LogLimits(), logRecordProcessors: [OpenTelemetrySdk.LogRecordProcessor] = [])
+  public func get(instrumentationScopeName: Swift.String) -> OpenTelemetryApi.Logger
+  public func loggerBuilder(instrumentationScopeName: Swift.String) -> OpenTelemetryApi.LoggerBuilder
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class LoggerSdk : OpenTelemetryApi.Logger {
+  public func eventBuilder(name: Swift.String) -> OpenTelemetryApi.EventBuilder
+  public func logRecordBuilder() -> OpenTelemetryApi.LogRecordBuilder
+  @objc deinit
+}
+public class BatchLogRecordProcessor : OpenTelemetrySdk.LogRecordProcessor {
+  public init(logRecordExporter: OpenTelemetrySdk.LogRecordExporter, scheduleDelay: Foundation.TimeInterval = 5, exportTimeout: Foundation.TimeInterval = 30, maxQueueSize: Swift.Int = 2048, maxExportBatchSize: Swift.Int = 512, willExportCallback: ((inout [OpenTelemetrySdk.ReadableLogRecord]) -> Swift.Void)? = nil)
+  public func onEmit(logRecord: OpenTelemetrySdk.ReadableLogRecord)
+  public func forceFlush() -> OpenTelemetrySdk.ExportResult
+  public func forceFlush(timeout: Foundation.TimeInterval?)
+  public func shutdown() -> OpenTelemetrySdk.ExportResult
+  @objc deinit
+}
+public protocol LogRecordProcessor {
+  func onEmit(logRecord: OpenTelemetrySdk.ReadableLogRecord)
+  func forceFlush() -> OpenTelemetrySdk.ExportResult
+  func shutdown() -> OpenTelemetrySdk.ExportResult
+}
+public class MultiLogRecordProcessor : OpenTelemetrySdk.LogRecordProcessor {
+  public func forceFlush() -> OpenTelemetrySdk.ExportResult
+  public func shutdown() -> OpenTelemetrySdk.ExportResult
+  public init(logRecordProcessors: [OpenTelemetrySdk.LogRecordProcessor])
+  public func onEmit(logRecord: OpenTelemetrySdk.ReadableLogRecord)
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class NoopLogRecordProcessor : OpenTelemetrySdk.LogRecordProcessor {
+  public static let noopLogRecordProcessor: OpenTelemetrySdk.NoopLogRecordProcessor
+  public func onEmit(logRecord: OpenTelemetrySdk.ReadableLogRecord)
+  public func forceFlush() -> OpenTelemetrySdk.ExportResult
+  public func shutdown() -> OpenTelemetrySdk.ExportResult
+  @objc deinit
+}
+public class SimpleLogRecordProcessor : OpenTelemetrySdk.LogRecordProcessor {
+  public init(logRecordExporter: OpenTelemetrySdk.LogRecordExporter)
+  public func onEmit(logRecord: OpenTelemetrySdk.ReadableLogRecord)
+  public func forceFlush() -> OpenTelemetrySdk.ExportResult
+  public func shutdown() -> OpenTelemetrySdk.ExportResult
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class Aggregator<T> {
+  public func update(value: T)
+  public func checkpoint()
+  public func toMetricData() -> OpenTelemetrySdk.MetricData
+  public func getAggregationType() -> OpenTelemetrySdk.AggregationType
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class CounterSumAggregator<T> : OpenTelemetrySdk.Aggregator<T> where T : Swift.SignedNumeric {
+  override public func update(value: T)
+  override public func checkpoint()
+  override public func toMetricData() -> OpenTelemetrySdk.MetricData
+  override public func getAggregationType() -> OpenTelemetrySdk.AggregationType
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class HistogramAggregator<T> : OpenTelemetrySdk.Aggregator<T> where T : Swift.Comparable, T : Swift.SignedNumeric {
+  public init(explicitBoundaries: Swift.Array<T>? = nil) throws
+  override public func update(value: T)
+  override public func checkpoint()
+  override public func toMetricData() -> OpenTelemetrySdk.MetricData
+  override public func getAggregationType() -> OpenTelemetrySdk.AggregationType
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class LastValueAggregator<T> : OpenTelemetrySdk.Aggregator<T> where T : Swift.SignedNumeric {
+  override public func update(value: T)
+  override public func checkpoint()
+  override public func toMetricData() -> OpenTelemetrySdk.MetricData
+  override public func getAggregationType() -> OpenTelemetrySdk.AggregationType
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class MaxValueAggregator<T> : OpenTelemetrySdk.Aggregator<T> where T : Swift.Comparable, T : Swift.SignedNumeric {
+  override public func update(value: T)
+  override public func checkpoint()
+  override public func toMetricData() -> OpenTelemetrySdk.MetricData
+  override public func getAggregationType() -> OpenTelemetrySdk.AggregationType
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class MeasureMinMaxSumCountAggregator<T> : OpenTelemetrySdk.Aggregator<T> where T : Swift.Comparable, T : Swift.SignedNumeric {
+  override public func update(value: T)
+  override public func checkpoint()
+  override public func toMetricData() -> OpenTelemetrySdk.MetricData
+  override public func getAggregationType() -> OpenTelemetrySdk.AggregationType
+  @objc deinit
+}
+public enum AggregationType : Swift.String, Swift.Codable {
+  case intGauge
+  case doubleGauge
+  case doubleSum
+  case intSum
+  case doubleSummary
+  case intSummary
+  case doubleHistogram
+  case intHistogram
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public struct Metric {
+  public var namespace: Swift.String {
+    get
+  }
+  public var resource: OpenTelemetrySdk.Resource {
+    get
+  }
+  public var instrumentationScopeInfo: OpenTelemetrySdk.InstrumentationScopeInfo {
+    get
+  }
+  public var name: Swift.String {
+    get
+  }
+  public var description: Swift.String {
+    get
+  }
+  public var aggregationType: OpenTelemetrySdk.AggregationType {
+    get
+  }
+  public var data: [OpenTelemetrySdk.MetricData] {
+    get
+  }
+}
+extension OpenTelemetrySdk.Metric : Swift.Equatable {
+  public static func == (lhs: OpenTelemetrySdk.Metric, rhs: OpenTelemetrySdk.Metric) -> Swift.Bool
+}
+extension OpenTelemetrySdk.Metric : Swift.Codable {
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public protocol MetricData {
+  var startTimestamp: Foundation.Date { get set }
+  var timestamp: Foundation.Date { get set }
+  var labels: [Swift.String : Swift.String] { get set }
+}
+public struct NoopMetricData : OpenTelemetrySdk.MetricData {
+  public var startTimestamp: Foundation.Date
+  public var timestamp: Foundation.Date
+  public var labels: [Swift.String : Swift.String]
+}
+public struct SumData<T> : OpenTelemetrySdk.MetricData {
+  public init(startTimestamp: Foundation.Date, timestamp: Foundation.Date, labels: [Swift.String : Swift.String] = [String: String](), sum: T)
+  public var startTimestamp: Foundation.Date
+  public var timestamp: Foundation.Date
+  public var labels: [Swift.String : Swift.String]
+  public var sum: T
+}
+public struct SummaryData<T> : OpenTelemetrySdk.MetricData {
+  public init(startTimestamp: Foundation.Date, timestamp: Foundation.Date, labels: [Swift.String : Swift.String] = [String: String](), count: Swift.Int, sum: T, min: T, max: T)
+  public var startTimestamp: Foundation.Date
+  public var timestamp: Foundation.Date
+  public var labels: [Swift.String : Swift.String]
+  public var count: Swift.Int
+  public var sum: T
+  public var min: T
+  public var max: T
+}
+public struct HistogramData<T> : OpenTelemetrySdk.MetricData {
+  public init(startTimestamp: Foundation.Date, timestamp: Foundation.Date, labels: [Swift.String : Swift.String] = [String: String](), buckets: (boundaries: Swift.Array<T>, counts: Swift.Array<Swift.Int>), count: Swift.Int, sum: T)
+  public var startTimestamp: Foundation.Date
+  public var timestamp: Foundation.Date
+  public var labels: [Swift.String : Swift.String]
+  public var buckets: (boundaries: Swift.Array<T>, counts: Swift.Array<Swift.Int>)
+  public var count: Swift.Int
+  public var sum: T
+}
+extension OpenTelemetrySdk.NoopMetricData : Swift.Equatable, Swift.Codable {
+  public static func == (a: OpenTelemetrySdk.NoopMetricData, b: OpenTelemetrySdk.NoopMetricData) -> Swift.Bool
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+extension OpenTelemetrySdk.SumData : Swift.Equatable where T : Swift.Equatable {
+  public static func == (a: OpenTelemetrySdk.SumData<T>, b: OpenTelemetrySdk.SumData<T>) -> Swift.Bool
+}
+extension OpenTelemetrySdk.SumData : Swift.Codable where T : Swift.Decodable, T : Swift.Encodable {
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+extension OpenTelemetrySdk.SummaryData : Swift.Equatable where T : Swift.Equatable {
+  public static func == (a: OpenTelemetrySdk.SummaryData<T>, b: OpenTelemetrySdk.SummaryData<T>) -> Swift.Bool
+}
+extension OpenTelemetrySdk.SummaryData : Swift.Codable where T : Swift.Decodable, T : Swift.Encodable {
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+extension OpenTelemetrySdk.HistogramData : Swift.Equatable where T : Swift.Equatable {
+  public static func == (lhs: OpenTelemetrySdk.HistogramData<T>, rhs: OpenTelemetrySdk.HistogramData<T>) -> Swift.Bool
+}
+extension OpenTelemetrySdk.HistogramData : Swift.Codable where T : Swift.Decodable, T : Swift.Encodable {
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public enum MetricExporterResultCode {
+  case success
+  case failureNotRetryable
+  case failureRetryable
+  public static func == (a: OpenTelemetrySdk.MetricExporterResultCode, b: OpenTelemetrySdk.MetricExporterResultCode) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public protocol MetricExporter {
+  func export(metrics: [OpenTelemetrySdk.Metric], shouldCancel: (() -> Swift.Bool)?) -> OpenTelemetrySdk.MetricExporterResultCode
+}
+public protocol MetricProcessor {
+  func finishCollectionCycle() -> [OpenTelemetrySdk.Metric]
+  func process(metric: OpenTelemetrySdk.Metric)
+}
+public class MetricProcessorSdk : OpenTelemetrySdk.MetricProcessor {
+  public init()
+  public func finishCollectionCycle() -> [OpenTelemetrySdk.Metric]
+  public func process(metric: OpenTelemetrySdk.Metric)
+  @objc deinit
+}
+@available(*, deprecated, message: "Use MetricProcessorSdk instead")
+public class UngroupedBatcher : OpenTelemetrySdk.MetricProcessor {
+  public init()
+  public func finishCollectionCycle() -> [OpenTelemetrySdk.Metric]
+  public func process(metric: OpenTelemetrySdk.Metric)
+  @objc deinit
+}
+public class MeterProviderBuilder {
+  public var resource: OpenTelemetrySdk.Resource {
+    get
+  }
+  public var metricExporter: OpenTelemetrySdk.MetricExporter {
+    get
+  }
+  public var metricPushInterval: Foundation.TimeInterval {
+    get
+  }
+  public var metricProcessor: OpenTelemetrySdk.MetricProcessor {
+    get
+  }
+  public init()
+  public func with(processor: OpenTelemetrySdk.MetricProcessor) -> Self
+  public func with(exporter: OpenTelemetrySdk.MetricExporter) -> Self
+  public func with(pushInterval: Foundation.TimeInterval) -> Self
+  public func with(resource: OpenTelemetrySdk.Resource) -> Self
+  public func build() -> OpenTelemetryApi.MeterProvider
+  @objc deinit
+}
+public class MeterProviderSdk : OpenTelemetryApi.MeterProvider {
+  public static let defaultPushInterval: Swift.Double
+  convenience public init()
+  public init(metricProcessor: OpenTelemetrySdk.MetricProcessor, metricExporter: OpenTelemetrySdk.MetricExporter, metricPushInterval: Foundation.TimeInterval = MeterProviderSdk.defaultPushInterval, resource: OpenTelemetrySdk.Resource = EnvVarResource.get())
+  public func get(instrumentationName: Swift.String, instrumentationVersion: Swift.String? = nil) -> OpenTelemetryApi.Meter
+  public func setMetricProcessor(_ metricProcessor: OpenTelemetrySdk.MetricProcessor)
+  public func addMetricExporter(_ metricExporter: OpenTelemetrySdk.MetricExporter)
+  public func setMetricPushInterval(_ interval: Foundation.TimeInterval)
+  public func setResource(_ resource: OpenTelemetrySdk.Resource)
+  @objc deinit
+}
+extension OpenTelemetryApi.Meter {
+  public func addMetric(name _: Swift.String, type _: OpenTelemetrySdk.AggregationType, data _: [OpenTelemetrySdk.MetricData])
+}
+public enum Aggregations {
+  public static func drop() -> OpenTelemetrySdk.Aggregation
+  public static func defaultAggregation() -> OpenTelemetrySdk.Aggregation
+  public static func sum() -> OpenTelemetrySdk.Aggregation
+  public static func lastValue() -> OpenTelemetrySdk.Aggregation
+  public static func explicitBucketHistogram() -> OpenTelemetrySdk.Aggregation
+  public static func explicitBucketHistogram(buckets: [Swift.Double]) -> OpenTelemetrySdk.Aggregation
+}
+public typealias AggregationResolver = (OpenTelemetrySdk.InstrumentType) -> OpenTelemetrySdk.Aggregation
+public protocol DefaultAggregationSelector {
+  func getDefaultAggregation(for instrument: OpenTelemetrySdk.InstrumentType) -> OpenTelemetrySdk.Aggregation
+}
+@_hasMissingDesignatedInitializers public class AggregationSelector : OpenTelemetrySdk.DefaultAggregationSelector {
+  public static let instance: OpenTelemetrySdk.AggregationSelector
+  final public let selector: OpenTelemetrySdk.AggregationResolver
+  public func getDefaultAggregation(for instrument: OpenTelemetrySdk.InstrumentType) -> OpenTelemetrySdk.Aggregation
+  public static func defaultSelector() -> OpenTelemetrySdk.AggregationResolver
+  public func with(instrumentType: OpenTelemetrySdk.InstrumentType, aggregation: OpenTelemetrySdk.Aggregation) -> OpenTelemetrySdk.AggregationResolver
+  @objc deinit
+}
+public protocol AggregationTemporalitySelectorProtocol {
+  func getAggregationTemporality(for instrument: OpenTelemetrySdk.InstrumentType) -> OpenTelemetrySdk.AggregationTemporality
+}
+@_hasMissingDesignatedInitializers public class AggregationTemporalitySelector : OpenTelemetrySdk.AggregationTemporalitySelectorProtocol {
+  public func getAggregationTemporality(for instrument: OpenTelemetrySdk.InstrumentType) -> OpenTelemetrySdk.AggregationTemporality
+  public var aggregationTemporalitySelector: (OpenTelemetrySdk.InstrumentType) -> OpenTelemetrySdk.AggregationTemporality
+  @objc deinit
+}
+public enum AggregationTemporality {
+  case delta
+  case cumulative
+  public static func alwaysCumulative() -> OpenTelemetrySdk.AggregationTemporalitySelector
+  public static func deltaPreferred() -> OpenTelemetrySdk.AggregationTemporalitySelector
+  public static func == (a: OpenTelemetrySdk.AggregationTemporality, b: OpenTelemetrySdk.AggregationTemporality) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public protocol Aggregation : AnyObject {
+  func createAggregator(descriptor: OpenTelemetrySdk.InstrumentDescriptor, exemplarFilter: OpenTelemetrySdk.ExemplarFilter) -> OpenTelemetrySdk.StableAggregator
+  func isCompatible(with descriptor: OpenTelemetrySdk.InstrumentDescriptor) -> Swift.Bool
+}
+@_hasMissingDesignatedInitializers public class AggregatorHandle {
+  public func aggregateThenMaybeReset(startEpochNano: Swift.UInt64, endEpochNano: Swift.UInt64, attributes: [Swift.String : OpenTelemetryApi.AttributeValue], reset: Swift.Bool) -> OpenTelemetrySdk.PointData
+  public func recordLong(value: Swift.Int, attributes: [Swift.String : OpenTelemetryApi.AttributeValue])
+  public func recordLong(value: Swift.Int)
+  public func recordDouble(value: Swift.Double, attributes: [Swift.String : OpenTelemetryApi.AttributeValue])
+  public func recordDouble(value: Swift.Double)
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class DefaultAggregation : OpenTelemetrySdk.Aggregation {
+  public static var instance: OpenTelemetrySdk.DefaultAggregation {
+    get
+  }
+  public func createAggregator(descriptor: OpenTelemetrySdk.InstrumentDescriptor, exemplarFilter: OpenTelemetrySdk.ExemplarFilter) -> OpenTelemetrySdk.StableAggregator
+  public func isCompatible(with descriptor: OpenTelemetrySdk.InstrumentDescriptor) -> Swift.Bool
+  @objc deinit
+}
+public enum HistogramAggregatorError : Swift.Error {
+  case unsupportedOperation(Swift.String)
+}
+public class DoubleExplicitBucketHistogramAggregator : OpenTelemetrySdk.StableAggregator {
+  public init(boundaries: [Swift.Double], reservoirSupplier: @escaping () -> OpenTelemetrySdk.ExemplarReservoir)
+  public func diff(previousCumulative: OpenTelemetrySdk.PointData, currentCumulative: OpenTelemetrySdk.PointData) throws -> OpenTelemetrySdk.PointData
+  public func toPoint(measurement: OpenTelemetrySdk.Measurement) throws -> OpenTelemetrySdk.PointData
+  public func createHandle() -> OpenTelemetrySdk.AggregatorHandle
+  public func toMetricData(resource: OpenTelemetrySdk.Resource, scope: OpenTelemetrySdk.InstrumentationScopeInfo, descriptor: OpenTelemetrySdk.MetricDescriptor, points: [OpenTelemetrySdk.PointData], temporality: OpenTelemetrySdk.AggregationTemporality) -> OpenTelemetrySdk.StableMetricData
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class DoubleLastValueAggregator : OpenTelemetrySdk.StableAggregator {
+  public func diff(previousCumulative: OpenTelemetrySdk.PointData, currentCumulative: OpenTelemetrySdk.PointData) throws -> OpenTelemetrySdk.PointData
+  public func toPoint(measurement: OpenTelemetrySdk.Measurement) throws -> OpenTelemetrySdk.PointData
+  public func createHandle() -> OpenTelemetrySdk.AggregatorHandle
+  public func toMetricData(resource: OpenTelemetrySdk.Resource, scope: OpenTelemetrySdk.InstrumentationScopeInfo, descriptor: OpenTelemetrySdk.MetricDescriptor, points: [OpenTelemetrySdk.PointData], temporality: OpenTelemetrySdk.AggregationTemporality) -> OpenTelemetrySdk.StableMetricData
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class DoubleSumAggregator : OpenTelemetrySdk.SumAggregator, OpenTelemetrySdk.StableAggregator {
+  public func diff(previousCumulative: OpenTelemetrySdk.PointData, currentCumulative: OpenTelemetrySdk.PointData) throws -> OpenTelemetrySdk.PointData
+  public func toPoint(measurement: OpenTelemetrySdk.Measurement) throws -> OpenTelemetrySdk.PointData
+  public func createHandle() -> OpenTelemetrySdk.AggregatorHandle
+  public func toMetricData(resource: OpenTelemetrySdk.Resource, scope: OpenTelemetrySdk.InstrumentationScopeInfo, descriptor: OpenTelemetrySdk.MetricDescriptor, points: [OpenTelemetrySdk.PointData], temporality: OpenTelemetrySdk.AggregationTemporality) -> OpenTelemetrySdk.StableMetricData
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class DropAggregation : OpenTelemetrySdk.Aggregation {
+  public static var instance: OpenTelemetrySdk.DropAggregation {
+    get
+  }
+  public func createAggregator(descriptor: OpenTelemetrySdk.InstrumentDescriptor, exemplarFilter: OpenTelemetrySdk.ExemplarFilter) -> OpenTelemetrySdk.StableAggregator
+  public func isCompatible(with descriptor: OpenTelemetrySdk.InstrumentDescriptor) -> Swift.Bool
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class DropAggregator : OpenTelemetrySdk.StableAggregator {
+  public static var POINT_DATA: OpenTelemetrySdk.PointData {
+    get
+  }
+  public func createHandle() -> OpenTelemetrySdk.AggregatorHandle
+  public func diff(previousCumulative: OpenTelemetrySdk.PointData, currentCumulative: OpenTelemetrySdk.PointData) -> OpenTelemetrySdk.PointData
+  public func toPoint(measurement: OpenTelemetrySdk.Measurement) -> OpenTelemetrySdk.PointData
+  public func toMetricData(resource: OpenTelemetrySdk.Resource, scope: OpenTelemetrySdk.InstrumentationScopeInfo, descriptor: OpenTelemetrySdk.MetricDescriptor, points: [OpenTelemetrySdk.PointData], temporality: OpenTelemetrySdk.AggregationTemporality) -> OpenTelemetrySdk.StableMetricData
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class ExplicitBucketHistogramAggregation : OpenTelemetrySdk.Aggregation {
+  public static var DEFAULT_BOUNDARIES: [Swift.Double] {
+    get
+  }
+  public static var instance: OpenTelemetrySdk.ExplicitBucketHistogramAggregation {
+    get
+  }
+  public func createAggregator(descriptor: OpenTelemetrySdk.InstrumentDescriptor, exemplarFilter: OpenTelemetrySdk.ExemplarFilter) -> OpenTelemetrySdk.StableAggregator
+  public func isCompatible(with descriptor: OpenTelemetrySdk.InstrumentDescriptor) -> Swift.Bool
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class LastValueAggregation : OpenTelemetrySdk.Aggregation {
+  public static var instance: OpenTelemetrySdk.LastValueAggregation {
+    get
+  }
+  public func createAggregator(descriptor: OpenTelemetrySdk.InstrumentDescriptor, exemplarFilter: OpenTelemetrySdk.ExemplarFilter) -> OpenTelemetrySdk.StableAggregator
+  public func isCompatible(with descriptor: OpenTelemetrySdk.InstrumentDescriptor) -> Swift.Bool
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class LongLastValueAggregator : OpenTelemetrySdk.StableAggregator {
+  public func diff(previousCumulative: OpenTelemetrySdk.PointData, currentCumulative: OpenTelemetrySdk.PointData) throws -> OpenTelemetrySdk.PointData
+  public func toPoint(measurement: OpenTelemetrySdk.Measurement) throws -> OpenTelemetrySdk.PointData
+  public func createHandle() -> OpenTelemetrySdk.AggregatorHandle
+  public func toMetricData(resource: OpenTelemetrySdk.Resource, scope: OpenTelemetrySdk.InstrumentationScopeInfo, descriptor: OpenTelemetrySdk.MetricDescriptor, points: [OpenTelemetrySdk.PointData], temporality: OpenTelemetrySdk.AggregationTemporality) -> OpenTelemetrySdk.StableMetricData
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class LongSumAggregator : OpenTelemetrySdk.SumAggregator, OpenTelemetrySdk.StableAggregator {
+  public func diff(previousCumulative: OpenTelemetrySdk.PointData, currentCumulative: OpenTelemetrySdk.PointData) throws -> OpenTelemetrySdk.PointData
+  public func toPoint(measurement: OpenTelemetrySdk.Measurement) throws -> OpenTelemetrySdk.PointData
+  public func createHandle() -> OpenTelemetrySdk.AggregatorHandle
+  public func toMetricData(resource: OpenTelemetrySdk.Resource, scope: OpenTelemetrySdk.InstrumentationScopeInfo, descriptor: OpenTelemetrySdk.MetricDescriptor, points: [OpenTelemetrySdk.PointData], temporality: OpenTelemetrySdk.AggregationTemporality) -> OpenTelemetrySdk.StableMetricData
+  @objc deinit
+}
+public protocol StableAggregator {
+  func diff(previousCumulative: OpenTelemetrySdk.PointData, currentCumulative: OpenTelemetrySdk.PointData) throws -> OpenTelemetrySdk.PointData
+  func toPoint(measurement: OpenTelemetrySdk.Measurement) throws -> OpenTelemetrySdk.PointData
+  func createHandle() -> OpenTelemetrySdk.AggregatorHandle
+  func toMetricData(resource: OpenTelemetrySdk.Resource, scope: OpenTelemetrySdk.InstrumentationScopeInfo, descriptor: OpenTelemetrySdk.MetricDescriptor, points: [OpenTelemetrySdk.PointData], temporality: OpenTelemetrySdk.AggregationTemporality) -> OpenTelemetrySdk.StableMetricData
+}
+@_hasMissingDesignatedInitializers public class SumAggregation : OpenTelemetrySdk.Aggregation {
+  public static var instance: OpenTelemetrySdk.SumAggregation {
+    get
+  }
+  public func isCompatible(with descriptor: OpenTelemetrySdk.InstrumentDescriptor) -> Swift.Bool
+  public func createAggregator(descriptor: OpenTelemetrySdk.InstrumentDescriptor, exemplarFilter: OpenTelemetrySdk.ExemplarFilter) -> OpenTelemetrySdk.StableAggregator
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class SumAggregator {
+  final public let isMonotonic: Swift.Bool
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class CallbackRegistration {
+  public func execute(reader: OpenTelemetrySdk.RegisteredReader, startEpochNanos: Swift.UInt64, epochNanos: Swift.UInt64)
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class ExemplarData : Swift.Equatable {
+  public var filteredAttributes: [Swift.String : OpenTelemetryApi.AttributeValue]
+  public var epochNanos: Swift.UInt64
+  public var spanContext: OpenTelemetryApi.SpanContext?
+  public static func == (lhs: OpenTelemetrySdk.ExemplarData, rhs: OpenTelemetrySdk.ExemplarData) -> Swift.Bool
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers final public class DoubleExemplarData : OpenTelemetrySdk.ExemplarData {
+  final public var value: Swift.Double
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers final public class LongExemplarData : OpenTelemetrySdk.ExemplarData {
+  final public var value: Swift.Int
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class DoublePointData : OpenTelemetrySdk.PointData {
+  public var value: Swift.Double
+  @objc deinit
+}
+public protocol ExponentialHistogramBuckets {
+  var scale: Swift.Int { get }
+  var offset: Swift.Int { get }
+  var bucketCounts: [Swift.Int] { get }
+  var totalCount: Swift.Int { get }
+}
+@_hasMissingDesignatedInitializers public class HistogramPointData : OpenTelemetrySdk.PointData {
+  public var sum: Swift.Double
+  public var count: Swift.UInt64
+  public var min: Swift.Double
+  public var max: Swift.Double
+  public var boundaries: [Swift.Double]
+  public var counts: [Swift.Int]
+  public var hasMin: Swift.Bool
+  public var hasMax: Swift.Bool
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class LongPointData : OpenTelemetrySdk.PointData {
+  public var value: Swift.Int
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class SummaryPointData : OpenTelemetrySdk.PointData {
+  public var count: Swift.UInt64
+  public var sum: Swift.Double
+  public var values: [OpenTelemetrySdk.ValueAtQuantile]
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class PointData : Swift.Equatable {
+  public var startEpochNanos: Swift.UInt64
+  public var endEpochNanos: Swift.UInt64
+  public var attributes: [Swift.String : OpenTelemetryApi.AttributeValue]
+  public var exemplars: [OpenTelemetrySdk.ExemplarData]
+  public static func - (left: OpenTelemetrySdk.PointData, right: OpenTelemetrySdk.PointData) -> Self
+  public static func == (lhs: OpenTelemetrySdk.PointData, rhs: OpenTelemetrySdk.PointData) -> Swift.Bool
+  @objc deinit
+}
+public enum MetricDataType {
+  case LongGauge
+  case DoubleGauge
+  case LongSum
+  case DoubleSum
+  case Summary
+  case Histogram
+  case ExponentialHistogram
+  public static func == (a: OpenTelemetrySdk.MetricDataType, b: OpenTelemetrySdk.MetricDataType) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct StableMetricData : Swift.Equatable {
+  public var resource: OpenTelemetrySdk.Resource {
+    get
+  }
+  public var instrumentationScopeInfo: OpenTelemetrySdk.InstrumentationScopeInfo {
+    get
+  }
+  public var name: Swift.String {
+    get
+  }
+  public var description: Swift.String {
+    get
+  }
+  public var unit: Swift.String {
+    get
+  }
+  public var type: OpenTelemetrySdk.MetricDataType {
+    get
+  }
+  public var data: OpenTelemetrySdk.StableMetricData.Data {
+    get
+  }
+  public static let empty: OpenTelemetrySdk.StableMetricData
+  @_hasMissingDesignatedInitializers public class Data : Swift.Equatable {
+    public var points: [OpenTelemetrySdk.PointData] {
+      get
+    }
+    public static func == (lhs: OpenTelemetrySdk.StableMetricData.Data, rhs: OpenTelemetrySdk.StableMetricData.Data) -> Swift.Bool
+    @objc deinit
+  }
+  public static func == (lhs: OpenTelemetrySdk.StableMetricData, rhs: OpenTelemetrySdk.StableMetricData) -> Swift.Bool
+}
+@_hasMissingDesignatedInitializers public class StableHistogramData : OpenTelemetrySdk.StableMetricData.Data {
+  public var aggregationTemporality: OpenTelemetrySdk.AggregationTemporality {
+    get
+  }
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class StableExponentialHistogramData : OpenTelemetrySdk.StableMetricData.Data {
+  public var aggregationTemporality: OpenTelemetrySdk.AggregationTemporality {
+    get
+  }
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class StableGaugeData : OpenTelemetrySdk.StableMetricData.Data {
+  public var aggregationTemporality: OpenTelemetrySdk.AggregationTemporality {
+    get
+  }
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class StableSumData : OpenTelemetrySdk.StableMetricData.Data {
+  public var aggregationTemporality: OpenTelemetrySdk.AggregationTemporality {
+    get
+  }
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class StableSummaryData : OpenTelemetrySdk.StableMetricData.Data {
+  public var aggregationTemporality: OpenTelemetrySdk.AggregationTemporality {
+    get
+  }
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class DoubleCounterMeterBuilderSdk : OpenTelemetryApi.DoubleCounterBuilder {
+  public func build() -> OpenTelemetryApi.DoubleCounter
+  public func buildWithCallback(_ callback: @escaping (OpenTelemetryApi.ObservableDoubleMeasurement) -> Swift.Void) -> OpenTelemetryApi.ObservableDoubleCounter
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class DoubleGaugeBuilderSdk : OpenTelemetryApi.DoubleGaugeBuilder {
+  public func ofLongs() -> OpenTelemetryApi.LongGaugeBuilder
+  public func buildWithCallback(_ callback: @escaping (OpenTelemetryApi.ObservableDoubleMeasurement) -> Swift.Void) -> OpenTelemetryApi.ObservableDoubleGauge
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class DoubleHistogramMeterBuilderSdk : OpenTelemetryApi.DoubleHistogramBuilder {
+  public func ofLongs() -> OpenTelemetryApi.LongHistogramBuilder
+  public func build() -> OpenTelemetryApi.DoubleHistogram
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class DoubleHistogramMeterSdk : OpenTelemetryApi.DoubleHistogram, OpenTelemetrySdk.Instrument {
+  public var instrumentDescriptor: OpenTelemetrySdk.InstrumentDescriptor
+  public var storage: OpenTelemetrySdk.WritableMetricStorage
+  public func record(value: Swift.Double)
+  public func record(value: Swift.Double, attributes: [Swift.String : OpenTelemetryApi.AttributeValue])
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class DoubleUpDownCounterBuilderSdk : OpenTelemetryApi.DoubleUpDownCounterBuilder {
+  public func build() -> OpenTelemetryApi.DoubleUpDownCounter
+  public func buildWithCallback(_ callback: @escaping (OpenTelemetryApi.ObservableDoubleMeasurement) -> Swift.Void) -> OpenTelemetryApi.ObservableDoubleUpDownCounter
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class DoubleUpDownCounterSdk : OpenTelemetryApi.DoubleUpDownCounter, OpenTelemetrySdk.Instrument {
+  public var instrumentDescriptor: OpenTelemetrySdk.InstrumentDescriptor {
+    get
+  }
+  public func add(value: Swift.Double)
+  public func add(value: Swift.Double, attributes: [Swift.String : OpenTelemetryApi.AttributeValue])
+  @objc deinit
+}
+public protocol ExemplarFilter {
+  func shouldSampleMeasurement(value: Swift.Int, attributes: [Swift.String : OpenTelemetryApi.AttributeValue]) -> Swift.Bool
+  func shouldSampleMeasurement(value: Swift.Double, attributes: [Swift.String : OpenTelemetryApi.AttributeValue]) -> Swift.Bool
+}
+public struct AlwaysOnFilter : OpenTelemetrySdk.ExemplarFilter {
+  public func shouldSampleMeasurement(value: Swift.Double, attributes: [Swift.String : OpenTelemetryApi.AttributeValue]) -> Swift.Bool
+  public func shouldSampleMeasurement(value: Swift.Int, attributes: [Swift.String : OpenTelemetryApi.AttributeValue]) -> Swift.Bool
+}
+public struct AlwaysOffFilter : OpenTelemetrySdk.ExemplarFilter {
+  public init()
+  public func shouldSampleMeasurement(value: Swift.Int, attributes: [Swift.String : OpenTelemetryApi.AttributeValue]) -> Swift.Bool
+  public func shouldSampleMeasurement(value: Swift.Double, attributes: [Swift.String : OpenTelemetryApi.AttributeValue]) -> Swift.Bool
+}
+@_hasMissingDesignatedInitializers public class ExemplarReservoir {
+  public func collectAndReset(attribute: [Swift.String : OpenTelemetryApi.AttributeValue]) -> [OpenTelemetrySdk.ExemplarData]
+  public func offerDoubleMeasurement(value: Swift.Double, attributes: [Swift.String : OpenTelemetryApi.AttributeValue])
+  public func offerLongMeasurement(value: Swift.Int, attributes: [Swift.String : OpenTelemetryApi.AttributeValue])
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class NoopExemplarReservoir : OpenTelemetrySdk.ExemplarReservoir {
+  override public func offerDoubleMeasurement(value: Swift.Double, attributes: [Swift.String : OpenTelemetryApi.AttributeValue])
+  override public func offerLongMeasurement(value: Swift.Int, attributes: [Swift.String : OpenTelemetryApi.AttributeValue])
+  override public func collectAndReset(attribute: [Swift.String : OpenTelemetryApi.AttributeValue]) -> [OpenTelemetrySdk.ExemplarData]
+  @objc deinit
+}
+public enum ExemplarReservoirCollection {
+}
+@_hasMissingDesignatedInitializers public class FixedSizedExemplarReservoir : OpenTelemetrySdk.ExemplarReservoir {
+  override public func offerLongMeasurement(value: Swift.Int, attributes: [Swift.String : OpenTelemetryApi.AttributeValue])
+  override public func offerDoubleMeasurement(value: Swift.Double, attributes: [Swift.String : OpenTelemetryApi.AttributeValue])
+  override public func collectAndReset(attribute: [Swift.String : OpenTelemetryApi.AttributeValue]) -> [OpenTelemetrySdk.ExemplarData]
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class RandomFixedSizedExemplarReservoir : OpenTelemetrySdk.FixedSizedExemplarReservoir {
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class FilteredExemplarReservoir : OpenTelemetrySdk.ExemplarReservoir {
+  override public func offerDoubleMeasurement(value: Swift.Double, attributes: [Swift.String : OpenTelemetryApi.AttributeValue])
+  override public func offerLongMeasurement(value: Swift.Int, attributes: [Swift.String : OpenTelemetryApi.AttributeValue])
+  override public func collectAndReset(attribute: [Swift.String : OpenTelemetryApi.AttributeValue]) -> [OpenTelemetrySdk.ExemplarData]
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class HistogramExemplarReservoir : OpenTelemetrySdk.FixedSizedExemplarReservoir {
+  override public func offerLongMeasurement(value: Swift.Int, attributes: [Swift.String : OpenTelemetryApi.AttributeValue])
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class ReservoirCell {
+  @objc deinit
+}
+public protocol ReservoirCellSelector {
+  func reservoirCellIndex(for cells: [OpenTelemetrySdk.ReservoirCell], value: Swift.Int, attributes: [Swift.String : OpenTelemetryApi.AttributeValue]) -> Swift.Int
+  func reservoirCellIndex(for cells: [OpenTelemetrySdk.ReservoirCell], value: Swift.Double, attributes: [Swift.String : OpenTelemetryApi.AttributeValue]) -> Swift.Int
+  func reset()
+}
+public protocol CollectionRegistration {
+}
+public protocol MetricProducer : OpenTelemetrySdk.CollectionRegistration {
+  func collectAllMetrics() -> [OpenTelemetrySdk.StableMetricData]
+}
+public struct NoopMetricProducer : OpenTelemetrySdk.MetricProducer {
+  public func collectAllMetrics() -> [OpenTelemetrySdk.StableMetricData]
+}
+public protocol StableMetricExporter : OpenTelemetrySdk.AggregationTemporalitySelectorProtocol, OpenTelemetrySdk.DefaultAggregationSelector {
+  func export(metrics: [OpenTelemetrySdk.StableMetricData]) -> OpenTelemetrySdk.ExportResult
+  func flush() -> OpenTelemetrySdk.ExportResult
+  func shutdown() -> OpenTelemetrySdk.ExportResult
+}
+extension OpenTelemetrySdk.StableMetricExporter {
+  public func getDefaultAggregation(for instrument: OpenTelemetrySdk.InstrumentType) -> OpenTelemetrySdk.Aggregation
+}
+public class StablePeriodicMetricReaderBuilder {
+  public var exporter: OpenTelemetrySdk.StableMetricExporter {
+    get
+  }
+  public var exporterInterval: Swift.Double {
+    get
+  }
+  public init(exporter: OpenTelemetrySdk.StableMetricExporter)
+  public func setInterval(timeInterval: Foundation.TimeInterval) -> Self
+  public func build() -> OpenTelemetrySdk.StablePeriodicMetricReaderSdk
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class StablePeriodicMetricReaderSdk : OpenTelemetrySdk.StableMetricReader {
+  @objc deinit
+  public func register(registration: OpenTelemetrySdk.CollectionRegistration)
+  public func forceFlush() -> OpenTelemetrySdk.ExportResult
+  public func shutdown() -> OpenTelemetrySdk.ExportResult
+  public func getAggregationTemporality(for instrument: OpenTelemetrySdk.InstrumentType) -> OpenTelemetrySdk.AggregationTemporality
+  public func getDefaultAggregation(for instrument: OpenTelemetrySdk.InstrumentType) -> OpenTelemetrySdk.Aggregation
+}
+public protocol Instrument : Swift.Equatable {
+  var instrumentDescriptor: OpenTelemetrySdk.InstrumentDescriptor { get }
+}
+extension OpenTelemetrySdk.Instrument {
+  public static func == (lhs: Self, rhs: Self) -> Swift.Bool
+}
+public struct InstrumentDescriptor : Swift.Equatable {
+  public let name: Swift.String
+  public let description: Swift.String
+  public let unit: Swift.String
+  public let type: OpenTelemetrySdk.InstrumentType
+  public let valueType: OpenTelemetrySdk.InstrumentValueType
+  public init(name: Swift.String, description: Swift.String, unit: Swift.String, type: OpenTelemetrySdk.InstrumentType, valueType: OpenTelemetrySdk.InstrumentValueType)
+  public static func == (lhs: OpenTelemetrySdk.InstrumentDescriptor, rhs: OpenTelemetrySdk.InstrumentDescriptor) -> Swift.Bool
+}
+@_hasMissingDesignatedInitializers public class InstrumentSelector {
+  public static func builder() -> OpenTelemetrySdk.InstrumentSelectorBuilder
+  @objc deinit
+}
+public class InstrumentSelectorBuilder {
+  public init()
+  public func setInstrument(type: OpenTelemetrySdk.InstrumentType) -> Self
+  public func setInstrument(name: Swift.String) -> Self
+  public func setMeter(name: Swift.String) -> Self
+  public func setMeter(version: Swift.String) -> Self
+  public func setMeter(schemaUrl: Swift.String) -> Self
+  public func build() -> OpenTelemetrySdk.InstrumentSelector
+  @objc deinit
+}
+public enum InstrumentType : Swift.CaseIterable {
+  case counter
+  case upDownCounter
+  case histogram
+  case observableCounter
+  case observableUpDownCounter
+  case observableGauge
+  public static func == (a: OpenTelemetrySdk.InstrumentType, b: OpenTelemetrySdk.InstrumentType) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public typealias AllCases = [OpenTelemetrySdk.InstrumentType]
+  public static var allCases: [OpenTelemetrySdk.InstrumentType] {
+    get
+  }
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public enum InstrumentValueType {
+  case long
+  case double
+  public static func == (a: OpenTelemetrySdk.InstrumentValueType, b: OpenTelemetrySdk.InstrumentValueType) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+@_hasMissingDesignatedInitializers public class LongCounterMeterBuilderSdk : OpenTelemetryApi.LongCounterBuilder {
+  public func ofDoubles() -> OpenTelemetryApi.DoubleCounterBuilder
+  public func build() -> OpenTelemetryApi.LongCounter
+  public func buildWithCallback(_ callback: @escaping (OpenTelemetryApi.ObservableLongMeasurement) -> Swift.Void) -> OpenTelemetryApi.ObservableLongCounter
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class LongCounterSdk : OpenTelemetryApi.LongCounter, OpenTelemetrySdk.Instrument {
+  public var instrumentDescriptor: OpenTelemetrySdk.InstrumentDescriptor
+  public func add(value: Swift.Int)
+  public func add(value: Swift.Int, attribute: [Swift.String : OpenTelemetryApi.AttributeValue])
+  @objc deinit
+}
+public struct DoubleCounterSdk : OpenTelemetryApi.DoubleCounter, OpenTelemetrySdk.Instrument {
+  public var instrumentDescriptor: OpenTelemetrySdk.InstrumentDescriptor
+  public mutating func add(value: Swift.Double)
+  public mutating func add(value: Swift.Double, attributes: [Swift.String : OpenTelemetryApi.AttributeValue])
+}
+@_hasMissingDesignatedInitializers public class LongGaugeBuilderSdk : OpenTelemetryApi.LongGaugeBuilder {
+  public func buildWithCallback(_ callback: @escaping (OpenTelemetryApi.ObservableLongMeasurement) -> Swift.Void) -> OpenTelemetryApi.ObservableLongGauge
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class LongHistogramMeterBuilderSdk : OpenTelemetryApi.LongHistogramBuilder {
+  public func build() -> OpenTelemetryApi.LongHistogram
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class LongHistogramMeterSdk : OpenTelemetryApi.LongHistogram, OpenTelemetrySdk.Instrument {
+  public var instrumentDescriptor: OpenTelemetrySdk.InstrumentDescriptor
+  public func record(value: Swift.Int)
+  public func record(value: Swift.Int, attributes: [Swift.String : OpenTelemetryApi.AttributeValue])
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class LongUpDownCounterBuilderSdk : OpenTelemetryApi.LongUpDownCounterBuilder {
+  public func ofDoubles() -> OpenTelemetryApi.DoubleUpDownCounterBuilder
+  public func build() -> OpenTelemetryApi.LongUpDownCounter
+  public func buildWithCallback(_ callback: @escaping (OpenTelemetryApi.ObservableLongMeasurement) -> Swift.Void) -> OpenTelemetryApi.ObservableLongUpDownCounter
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class LongUpDownCounterSdk : OpenTelemetryApi.LongUpDownCounter, OpenTelemetrySdk.Instrument {
+  public var instrumentDescriptor: OpenTelemetrySdk.InstrumentDescriptor {
+    get
+  }
+  public func add(value: Swift.Int)
+  public func add(value: Swift.Int, attributes: [Swift.String : OpenTelemetryApi.AttributeValue])
+  @objc deinit
+}
+public struct Measurement {
+  public var startEpochNano: Swift.UInt64 {
+    get
+  }
+  public var epochNano: Swift.UInt64 {
+    get
+  }
+  public var hasLongValue: Swift.Bool {
+    get
+  }
+  public var longValue: Swift.Int {
+    get
+  }
+  public var doubleValue: Swift.Double {
+    get
+  }
+  public var hasDoubleValue: Swift.Bool {
+    get
+  }
+  public var attributes: [Swift.String : OpenTelemetryApi.AttributeValue] {
+    get
+  }
+  public static func longMeasurement(startEpochNano: Swift.UInt64, endEpochNano: Swift.UInt64, value: Swift.Int, attributes: [Swift.String : OpenTelemetryApi.AttributeValue]) -> OpenTelemetrySdk.Measurement
+  public static func doubleMeasurement(startEpochNano: Swift.UInt64, endEpochNano: Swift.UInt64, value: Swift.Double, attributes: [Swift.String : OpenTelemetryApi.AttributeValue]) -> OpenTelemetrySdk.Measurement
+}
+@_hasMissingDesignatedInitializers public class MeterBuilderSdk : OpenTelemetryApi.MeterBuilder {
+  public func setSchemaUrl(schemaUrl: Swift.String) -> Self
+  public func setInstrumentationVersion(instrumentationVersion: Swift.String) -> Self
+  public func build() -> OpenTelemetryApi.StableMeter
+  @objc deinit
+}
+public struct MetricDescriptor : Swift.Hashable {
+  public var name: Swift.String {
+    get
+  }
+  public var description: Swift.String {
+    get
+  }
+  public var view: OpenTelemetrySdk.StableView {
+    get
+  }
+  public var instrument: OpenTelemetrySdk.InstrumentDescriptor {
+    get
+  }
+  public func aggregationName() -> Swift.String
+  public static func == (lhs: OpenTelemetrySdk.MetricDescriptor, rhs: OpenTelemetrySdk.MetricDescriptor) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct ObservableInstrumentSdk : OpenTelemetryApi.ObservableDoubleCounter, OpenTelemetryApi.ObservableLongCounter, OpenTelemetryApi.ObservableLongGauge, OpenTelemetryApi.ObservableLongUpDownCounter, OpenTelemetryApi.ObservableDoubleGauge, OpenTelemetryApi.ObservableDoubleUpDownCounter {
+}
+@_hasMissingDesignatedInitializers public class RegisteredReader : Swift.Equatable, Swift.Hashable {
+  final public let id: Swift.Int32
+  final public let reader: OpenTelemetrySdk.StableMetricReader
+  final public let registry: OpenTelemetrySdk.StableViewRegistry
+  public var lastCollectedEpochNanos: Swift.UInt64
+  public func hash(into hasher: inout Swift.Hasher)
+  public static func == (lhs: OpenTelemetrySdk.RegisteredReader, rhs: OpenTelemetrySdk.RegisteredReader) -> Swift.Bool
+  @objc deinit
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public class StableMeterProviderBuilder {
+  public var clock: OpenTelemetrySdk.Clock {
+    get
+  }
+  public var resource: OpenTelemetrySdk.Resource {
+    get
+  }
+  public var metricReaders: [OpenTelemetrySdk.StableMetricReader] {
+    get
+  }
+  public var registeredViews: [OpenTelemetrySdk.RegisteredView] {
+    get
+  }
+  public var exemplarFilter: OpenTelemetrySdk.ExemplarFilter {
+    get
+  }
+  public init()
+  public func setClock(clock: OpenTelemetrySdk.Clock) -> Self
+  public func setResource(resource: OpenTelemetrySdk.Resource) -> Self
+  public func registerView(selector: OpenTelemetrySdk.InstrumentSelector, view: OpenTelemetrySdk.StableView) -> Self
+  public func registerMetricReader(reader: OpenTelemetrySdk.StableMetricReader) -> Self
+  public func build() -> OpenTelemetrySdk.StableMeterProviderSdk
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class MeterProviderError : Swift.Error {
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class StableMeterProviderSdk : OpenTelemetryApi.StableMeterProvider {
+  public func get(name: Swift.String) -> OpenTelemetryApi.StableMeter
+  public func meterBuilder(name: Swift.String) -> OpenTelemetryApi.MeterBuilder
+  public static func builder() -> OpenTelemetrySdk.StableMeterProviderBuilder
+  public func shutdown() -> OpenTelemetrySdk.ExportResult
+  public func forceFlush() -> OpenTelemetrySdk.ExportResult
+  @objc deinit
+}
+public protocol StableMetricReader : OpenTelemetrySdk.AggregationTemporalitySelectorProtocol, OpenTelemetrySdk.DefaultAggregationSelector {
+  func forceFlush() -> OpenTelemetrySdk.ExportResult
+  func shutdown() -> OpenTelemetrySdk.ExportResult
+  func register(registration: OpenTelemetrySdk.CollectionRegistration)
+}
+@_hasMissingDesignatedInitializers public class AsynchronousMetricStorage : OpenTelemetrySdk.MetricStorage {
+  public var registeredReader: OpenTelemetrySdk.RegisteredReader {
+    get
+  }
+  public var metricDescriptor: OpenTelemetrySdk.MetricDescriptor {
+    get
+  }
+  public func collect(resource: OpenTelemetrySdk.Resource, scope: OpenTelemetrySdk.InstrumentationScopeInfo, startEpochNanos: Swift.UInt64, epochNanos: Swift.UInt64) -> OpenTelemetrySdk.StableMetricData
+  public func isEmpty() -> Swift.Bool
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class EmptyMetricStorage {
+  public func recordLong(value: Swift.Int, attributes: [Swift.String : OpenTelemetryApi.AttributeValue])
+  public func recordDouble(value: Swift.Double, attributes: [Swift.String : OpenTelemetryApi.AttributeValue])
+  public static var instance: OpenTelemetrySdk.EmptyMetricStorage
+  public var metricDescriptor: OpenTelemetrySdk.MetricDescriptor
+  public func collect(resource: OpenTelemetrySdk.Resource, scope: OpenTelemetrySdk.InstrumentationScopeInfo, startEpochNanos: Swift.UInt64, epochNanos: Swift.UInt64) -> OpenTelemetrySdk.StableMetricData
+  public func isEmpty() -> Swift.Bool
+  @objc deinit
+}
+public struct MetricStorageConstants {
+}
+public protocol MetricStorage {
+  var metricDescriptor: OpenTelemetrySdk.MetricDescriptor { get }
+  mutating func collect(resource: OpenTelemetrySdk.Resource, scope: OpenTelemetrySdk.InstrumentationScopeInfo, startEpochNanos: Swift.UInt64, epochNanos: Swift.UInt64) -> OpenTelemetrySdk.StableMetricData
+  func isEmpty() -> Swift.Bool
+}
+public protocol WritableMetricStorage {
+  mutating func recordLong(value: Swift.Int, attributes: [Swift.String : OpenTelemetryApi.AttributeValue])
+  mutating func recordDouble(value: Swift.Double, attributes: [Swift.String : OpenTelemetryApi.AttributeValue])
+}
+@_hasMissingDesignatedInitializers public class MetricStorageRegistry {
+  @objc deinit
+}
+public class MeterProviderSharedState {
+  public init(clock: OpenTelemetrySdk.Clock, resource: OpenTelemetrySdk.Resource, startEpochNanos: Swift.UInt64, exemplarFilter: OpenTelemetrySdk.ExemplarFilter)
+  public var clock: OpenTelemetrySdk.Clock {
+    get
+  }
+  public var resource: OpenTelemetrySdk.Resource {
+    get
+  }
+  public var startEpochNanos: Swift.UInt64 {
+    get
+  }
+  public var exemplarFilter: OpenTelemetrySdk.ExemplarFilter {
+    get
+  }
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class StableObservableMeasurementSdk : OpenTelemetryApi.ObservableLongMeasurement, OpenTelemetryApi.ObservableDoubleMeasurement {
+  public var descriptor: OpenTelemetrySdk.InstrumentDescriptor {
+    get
+  }
+  public var storages: [OpenTelemetrySdk.AsynchronousMetricStorage] {
+    get
+  }
+  public func clearActiveReader()
+  public func record(value: Swift.Int)
+  public func record(value: Swift.Int, attributes: [Swift.String : OpenTelemetryApi.AttributeValue])
+  public func record(value: Swift.Double)
+  public func record(value: Swift.Double, attributes: [Swift.String : OpenTelemetryApi.AttributeValue])
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class SynchronousMetricStorage {
+  public var metricDescriptor: OpenTelemetrySdk.MetricDescriptor {
+    get
+  }
+  public func collect(resource: OpenTelemetrySdk.Resource, scope: OpenTelemetrySdk.InstrumentationScopeInfo, startEpochNanos: Swift.UInt64, epochNanos: Swift.UInt64) -> OpenTelemetrySdk.StableMetricData
+  public func isEmpty() -> Swift.Bool
+  public func recordLong(value: Swift.Int, attributes: [Swift.String : OpenTelemetryApi.AttributeValue])
+  public func recordDouble(value: Swift.Double, attributes: [Swift.String : OpenTelemetryApi.AttributeValue])
+  @objc deinit
+}
+public protocol ValueAtQuantile {
+  func quantile() -> Swift.Double
+  func value() -> Swift.Double
+}
+public protocol AttributeProcessorProtocol {
+  func process(incoming: [Swift.String : OpenTelemetryApi.AttributeValue]) -> [Swift.String : OpenTelemetryApi.AttributeValue]
+}
+@_hasMissingDesignatedInitializers public class AttributeProcessor : OpenTelemetrySdk.AttributeProcessorProtocol {
+  public func then(other: OpenTelemetrySdk.AttributeProcessor) -> OpenTelemetrySdk.AttributeProcessor
+  public func process(incoming: [Swift.String : OpenTelemetryApi.AttributeValue]) -> [Swift.String : OpenTelemetryApi.AttributeValue]
+  public static func filterByKeyName(nameFilter: @escaping (Swift.String) -> Swift.Bool) -> OpenTelemetrySdk.AttributeProcessor
+  public static func append(attributes: [Swift.String : OpenTelemetryApi.AttributeValue]) -> OpenTelemetrySdk.AttributeProcessor
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class JoinedAttributeProcessor : OpenTelemetrySdk.AttributeProcessor {
+  override public func process(incoming: [Swift.String : OpenTelemetryApi.AttributeValue]) -> [Swift.String : OpenTelemetryApi.AttributeValue]
+  override public func then(other: OpenTelemetrySdk.AttributeProcessor) -> OpenTelemetrySdk.AttributeProcessor
+  public func prepend(processor: OpenTelemetrySdk.AttributeProcessor) -> OpenTelemetrySdk.AttributeProcessor
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class NoopAttributeProcessor : OpenTelemetrySdk.AttributeProcessor {
+  override public func process(incoming: [Swift.String : OpenTelemetryApi.AttributeValue]) -> [Swift.String : OpenTelemetryApi.AttributeValue]
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class RegisteredView {
+  public var selector: OpenTelemetrySdk.InstrumentSelector {
+    get
+  }
+  public var view: OpenTelemetrySdk.StableView {
+    get
+  }
+  public var attributeProcessor: OpenTelemetrySdk.AttributeProcessor {
+    get
+  }
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class StableView {
+  public var name: Swift.String? {
+    get
+  }
+  public var description: Swift.String? {
+    get
+  }
+  public var aggregation: OpenTelemetrySdk.Aggregation {
+    get
+  }
+  public var attributeProcessor: OpenTelemetrySdk.AttributeProcessor {
+    get
+  }
+  public static func builder() -> OpenTelemetrySdk.ViewBuilder
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class StableViewRegistry {
+  public func findViews(descriptor: OpenTelemetrySdk.InstrumentDescriptor, meterScope: OpenTelemetrySdk.InstrumentationScopeInfo) -> [OpenTelemetrySdk.RegisteredView]
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class ViewBuilder {
+  public func withName(name: Swift.String) -> Self
+  public func withDescription(description: Swift.String) -> Self
+  public func withAggregation(aggregation: OpenTelemetrySdk.Aggregation) -> Self
+  public func addAttributeFilter(keyFilter: @escaping (Swift.String) -> Swift.Bool) -> Self
+  public func addAttributeProcessor(processor: OpenTelemetrySdk.AttributeProcessor) -> Self
+  public func build() -> OpenTelemetrySdk.StableView
+  @objc deinit
+}
+public struct EnvVarResource {
+  public static let resource: OpenTelemetrySdk.Resource
+  public static func get(environment: [Swift.String : Swift.String] = ProcessInfo.processInfo.environment) -> OpenTelemetrySdk.Resource
+}
+public struct Resource : Swift.Equatable, Swift.Hashable, Swift.Codable {
+  public var attributes: [Swift.String : OpenTelemetryApi.AttributeValue]
+  public init()
+  public init(attributes: [Swift.String : OpenTelemetryApi.AttributeValue])
+  public mutating func merge(other: OpenTelemetrySdk.Resource)
+  public func merging(other: OpenTelemetrySdk.Resource) -> OpenTelemetrySdk.Resource
+  public static func == (a: OpenTelemetrySdk.Resource, b: OpenTelemetrySdk.Resource) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public func encode(to encoder: Swift.Encoder) throws
+  public var hashValue: Swift.Int {
+    get
+  }
+  public init(from decoder: Swift.Decoder) throws
+}
+public enum ResourceAttributes : Swift.String {
+  case browserBrands
+  case browserPlatform
+  case browserMobile
+  case browserLanguage
+  case userAgentOriginal
+  case cloudProvider
+  case cloudAccountId
+  case cloudRegion
+  case cloudResourceId
+  case cloudAvailabilityZone
+  case cloudPlatform
+  case awsEcsContainerArn
+  case awsEcsClusterArn
+  case awsEcsLaunchtype
+  case awsEcsTaskArn
+  case awsEcsTaskFamily
+  case awsEcsTaskRevision
+  case awsEksClusterArn
+  case awsLogGroupNames
+  case awsLogGroupArns
+  case awsLogStreamNames
+  case awsLogStreamArns
+  case herokuReleaseCreationTimestamp
+  case herokuReleaseCommit
+  case herokuAppId
+  case containerName
+  case containerId
+  case containerRuntime
+  case containerImageName
+  case containerImageTag
+  case deploymentEnvironment
+  case deviceId
+  case deviceModelIdentifier
+  case deviceModelName
+  case deviceManufacturer
+  case faasName
+  case faasVersion
+  case faasInstance
+  case faasMaxMemory
+  case hostId
+  case hostName
+  case hostType
+  case hostArch
+  case hostImageName
+  case hostImageId
+  case hostImageVersion
+  case k8sClusterName
+  case k8sNodeName
+  case k8sNodeUid
+  case k8sNamespaceName
+  case k8sPodUid
+  case k8sPodName
+  case k8sContainerName
+  case k8sContainerRestartCount
+  case k8sReplicasetUid
+  case k8sReplicasetName
+  case k8sDeploymentUid
+  case k8sDeploymentName
+  case k8sStatefulsetUid
+  case k8sStatefulsetName
+  case k8sDaemonsetUid
+  case k8sDaemonsetName
+  case k8sJobUid
+  case k8sJobName
+  case k8sCronjobUid
+  case k8sCronjobName
+  case osType
+  case osDescription
+  case osName
+  case osVersion
+  case processPid
+  case processParentPid
+  case processExecutableName
+  case processExecutablePath
+  case processCommand
+  case processCommandLine
+  case processCommandArgs
+  case processOwner
+  case processRuntimeName
+  case processRuntimeVersion
+  case processRuntimeDescription
+  case serviceName
+  case serviceNamespace
+  case serviceInstanceId
+  case serviceVersion
+  case telemetrySdkName
+  case telemetrySdkLanguage
+  case telemetrySdkVersion
+  case telemetryAutoVersion
+  case webengineName
+  case webengineVersion
+  case webengineDescription
+  case otelScopeName
+  case otelScopeVersion
+  case otelLibraryName
+  case otelLibraryVersion
+  public struct CloudProviderValues : Swift.CustomStringConvertible {
+    public static let alibabaCloud: OpenTelemetrySdk.ResourceAttributes.CloudProviderValues
+    public static let aws: OpenTelemetrySdk.ResourceAttributes.CloudProviderValues
+    public static let azure: OpenTelemetrySdk.ResourceAttributes.CloudProviderValues
+    public static let gcp: OpenTelemetrySdk.ResourceAttributes.CloudProviderValues
+    public static let heroku: OpenTelemetrySdk.ResourceAttributes.CloudProviderValues
+    public static let ibmCloud: OpenTelemetrySdk.ResourceAttributes.CloudProviderValues
+    public static let tencentCloud: OpenTelemetrySdk.ResourceAttributes.CloudProviderValues
+    public init(_ customValue: Swift.String)
+    public var description: Swift.String {
+      get
+    }
+  }
+  public struct CloudPlatformValues : Swift.CustomStringConvertible {
+    public static let alibabaCloudEcs: OpenTelemetrySdk.ResourceAttributes.CloudPlatformValues
+    public static let alibabaCloudFc: OpenTelemetrySdk.ResourceAttributes.CloudPlatformValues
+    public static let alibabaCloudOpenshift: OpenTelemetrySdk.ResourceAttributes.CloudPlatformValues
+    public static let awsEc2: OpenTelemetrySdk.ResourceAttributes.CloudPlatformValues
+    public static let awsEcs: OpenTelemetrySdk.ResourceAttributes.CloudPlatformValues
+    public static let awsEks: OpenTelemetrySdk.ResourceAttributes.CloudPlatformValues
+    public static let awsLambda: OpenTelemetrySdk.ResourceAttributes.CloudPlatformValues
+    public static let awsElasticBeanstalk: OpenTelemetrySdk.ResourceAttributes.CloudPlatformValues
+    public static let awsAppRunner: OpenTelemetrySdk.ResourceAttributes.CloudPlatformValues
+    public static let awsOpenshift: OpenTelemetrySdk.ResourceAttributes.CloudPlatformValues
+    public static let azureVm: OpenTelemetrySdk.ResourceAttributes.CloudPlatformValues
+    public static let azureContainerInstances: OpenTelemetrySdk.ResourceAttributes.CloudPlatformValues
+    public static let azureAks: OpenTelemetrySdk.ResourceAttributes.CloudPlatformValues
+    public static let azureFunctions: OpenTelemetrySdk.ResourceAttributes.CloudPlatformValues
+    public static let azureAppService: OpenTelemetrySdk.ResourceAttributes.CloudPlatformValues
+    public static let azureOpenshift: OpenTelemetrySdk.ResourceAttributes.CloudPlatformValues
+    public static let gcpComputeEngine: OpenTelemetrySdk.ResourceAttributes.CloudPlatformValues
+    public static let gcpCloudRun: OpenTelemetrySdk.ResourceAttributes.CloudPlatformValues
+    public static let gcpKubernetesEngine: OpenTelemetrySdk.ResourceAttributes.CloudPlatformValues
+    public static let gcpCloudFunctions: OpenTelemetrySdk.ResourceAttributes.CloudPlatformValues
+    public static let gcpAppEngine: OpenTelemetrySdk.ResourceAttributes.CloudPlatformValues
+    public static let gcpOpenshift: OpenTelemetrySdk.ResourceAttributes.CloudPlatformValues
+    public static let ibmCloudOpenshift: OpenTelemetrySdk.ResourceAttributes.CloudPlatformValues
+    public static let tencentCloudCvm: OpenTelemetrySdk.ResourceAttributes.CloudPlatformValues
+    public static let tencentCloudEks: OpenTelemetrySdk.ResourceAttributes.CloudPlatformValues
+    public static let tencentCloudScf: OpenTelemetrySdk.ResourceAttributes.CloudPlatformValues
+    public init(_ customValue: Swift.String)
+    public var description: Swift.String {
+      get
+    }
+  }
+  public enum AwsEcsLaunchtypeValues : Swift.String {
+    case ec2
+    case fargate
+    public init?(rawValue: Swift.String)
+    public typealias RawValue = Swift.String
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  public struct HostArchValues : Swift.CustomStringConvertible {
+    public static let amd64: OpenTelemetrySdk.ResourceAttributes.HostArchValues
+    public static let arm32: OpenTelemetrySdk.ResourceAttributes.HostArchValues
+    public static let arm64: OpenTelemetrySdk.ResourceAttributes.HostArchValues
+    public static let ia64: OpenTelemetrySdk.ResourceAttributes.HostArchValues
+    public static let ppc32: OpenTelemetrySdk.ResourceAttributes.HostArchValues
+    public static let ppc64: OpenTelemetrySdk.ResourceAttributes.HostArchValues
+    public static let s390x: OpenTelemetrySdk.ResourceAttributes.HostArchValues
+    public static let x86: OpenTelemetrySdk.ResourceAttributes.HostArchValues
+    public init(_ customValue: Swift.String)
+    public var description: Swift.String {
+      get
+    }
+  }
+  public struct OsTypeValues : Swift.CustomStringConvertible {
+    public static let windows: OpenTelemetrySdk.ResourceAttributes.OsTypeValues
+    public static let linux: OpenTelemetrySdk.ResourceAttributes.OsTypeValues
+    public static let darwin: OpenTelemetrySdk.ResourceAttributes.OsTypeValues
+    public static let freebsd: OpenTelemetrySdk.ResourceAttributes.OsTypeValues
+    public static let netbsd: OpenTelemetrySdk.ResourceAttributes.OsTypeValues
+    public static let openbsd: OpenTelemetrySdk.ResourceAttributes.OsTypeValues
+    public static let dragonflybsd: OpenTelemetrySdk.ResourceAttributes.OsTypeValues
+    public static let hpux: OpenTelemetrySdk.ResourceAttributes.OsTypeValues
+    public static let aix: OpenTelemetrySdk.ResourceAttributes.OsTypeValues
+    public static let solaris: OpenTelemetrySdk.ResourceAttributes.OsTypeValues
+    public static let zOs: OpenTelemetrySdk.ResourceAttributes.OsTypeValues
+    public init(_ customValue: Swift.String)
+    public var description: Swift.String {
+      get
+    }
+  }
+  public struct TelemetrySdkLanguageValues : Swift.CustomStringConvertible {
+    public static let cpp: OpenTelemetrySdk.ResourceAttributes.TelemetrySdkLanguageValues
+    public static let dotnet: OpenTelemetrySdk.ResourceAttributes.TelemetrySdkLanguageValues
+    public static let erlang: OpenTelemetrySdk.ResourceAttributes.TelemetrySdkLanguageValues
+    public static let go: OpenTelemetrySdk.ResourceAttributes.TelemetrySdkLanguageValues
+    public static let java: OpenTelemetrySdk.ResourceAttributes.TelemetrySdkLanguageValues
+    public static let nodejs: OpenTelemetrySdk.ResourceAttributes.TelemetrySdkLanguageValues
+    public static let php: OpenTelemetrySdk.ResourceAttributes.TelemetrySdkLanguageValues
+    public static let python: OpenTelemetrySdk.ResourceAttributes.TelemetrySdkLanguageValues
+    public static let ruby: OpenTelemetrySdk.ResourceAttributes.TelemetrySdkLanguageValues
+    public static let webjs: OpenTelemetrySdk.ResourceAttributes.TelemetrySdkLanguageValues
+    public static let swift: OpenTelemetrySdk.ResourceAttributes.TelemetrySdkLanguageValues
+    public init(_ customValue: Swift.String)
+    public var description: Swift.String {
+      get
+    }
+  }
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public func == (left: OpenTelemetrySdk.ResourceAttributes, right: Swift.String) -> Swift.Bool
+public func == (left: Swift.String, right: OpenTelemetrySdk.ResourceAttributes) -> Swift.Bool
+public struct ArrayWithCapacity<T> {
+  public let capacity: Swift.Int
+  public init(capacity: Swift.Int)
+  public mutating func append(_ item: T)
+}
+extension OpenTelemetrySdk.ArrayWithCapacity : Swift.MutableCollection {
+  public var startIndex: Swift.Int {
+    get
+  }
+  public var endIndex: Swift.Int {
+    get
+  }
+  public subscript(index: Swift.Int) -> T {
+    get
+    set
+  }
+  public func index(after i: Swift.Int) -> Swift.Int
+  public typealias Element = T
+  public typealias Index = Swift.Int
+  public typealias Indices = Swift.DefaultIndices<OpenTelemetrySdk.ArrayWithCapacity<T>>
+  public typealias Iterator = Swift.IndexingIterator<OpenTelemetrySdk.ArrayWithCapacity<T>>
+  public typealias SubSequence = Swift.Slice<OpenTelemetrySdk.ArrayWithCapacity<T>>
+}
+public struct AttributesDictionary {
+  public init(capacity: Swift.Int, valueLengthLimit: Swift.Int = Int.max)
+  public subscript(key: Swift.String) -> OpenTelemetryApi.AttributeValue? {
+    get
+    set
+  }
+  @discardableResult
+  public mutating func updateValue(value: OpenTelemetryApi.AttributeValue, forKey key: Swift.String) -> OpenTelemetryApi.AttributeValue?
+  public mutating func updateValues(attributes: [Swift.String : OpenTelemetryApi.AttributeValue])
+  public mutating func updateValues(attributes: OpenTelemetrySdk.AttributesDictionary)
+  public mutating func removeValueForKey(key: Swift.String) -> OpenTelemetryApi.AttributeValue?
+  public mutating func removeAll(keepCapacity: Swift.Int)
+  public var count: Swift.Int {
+    get
+  }
+  public var numberOfDroppedAttributes: Swift.Int {
+    get
+  }
+  public var values: [OpenTelemetryApi.AttributeValue] {
+    get
+  }
+}
+extension OpenTelemetrySdk.AttributesDictionary : Swift.Sequence {
+  public func makeIterator() -> OpenTelemetrySdk.AttributesWithCapacityIterator
+  public typealias Element = (Swift.String, OpenTelemetryApi.AttributeValue)
+  public typealias Iterator = OpenTelemetrySdk.AttributesWithCapacityIterator
+}
+public struct AttributesWithCapacityIterator : Swift.IteratorProtocol {
+  public mutating func next() -> (Swift.String, OpenTelemetryApi.AttributeValue)?
+  public typealias Element = (Swift.String, OpenTelemetryApi.AttributeValue)
+}
+public struct SpanData : Swift.Equatable, Swift.Codable {
+  public var traceId: OpenTelemetryApi.TraceId {
+    get
+  }
+  public var spanId: OpenTelemetryApi.SpanId {
+    get
+  }
+  public var traceFlags: OpenTelemetryApi.TraceFlags {
+    get
+  }
+  public var traceState: OpenTelemetryApi.TraceState {
+    get
+  }
+  public var parentSpanId: OpenTelemetryApi.SpanId? {
+    get
+  }
+  public var resource: OpenTelemetrySdk.Resource {
+    get
+  }
+  public var instrumentationScope: OpenTelemetrySdk.InstrumentationScopeInfo {
+    get
+  }
+  public var name: Swift.String {
+    get
+  }
+  public var kind: OpenTelemetryApi.SpanKind {
+    get
+  }
+  public var startTime: Foundation.Date {
+    get
+  }
+  public var attributes: [Swift.String : OpenTelemetryApi.AttributeValue] {
+    get
+  }
+  public var events: [OpenTelemetrySdk.SpanData.Event] {
+    get
+  }
+  public var links: [OpenTelemetrySdk.SpanData.Link] {
+    get
+  }
+  public var status: OpenTelemetryApi.Status {
+    get
+  }
+  public var endTime: Foundation.Date {
+    get
+  }
+  public var hasRemoteParent: Swift.Bool {
+    get
+  }
+  public var hasEnded: Swift.Bool {
+    get
+  }
+  public var totalRecordedEvents: Swift.Int {
+    get
+  }
+  public var totalRecordedLinks: Swift.Int {
+    get
+  }
+  public var totalAttributeCount: Swift.Int {
+    get
+  }
+  public static func == (lhs: OpenTelemetrySdk.SpanData, rhs: OpenTelemetrySdk.SpanData) -> Swift.Bool
+  @discardableResult
+  public mutating func settingName(_ name: Swift.String) -> OpenTelemetrySdk.SpanData
+  @discardableResult
+  public mutating func settingTraceId(_ traceId: OpenTelemetryApi.TraceId) -> OpenTelemetrySdk.SpanData
+  @discardableResult
+  public mutating func settingSpanId(_ spanId: OpenTelemetryApi.SpanId) -> OpenTelemetrySdk.SpanData
+  @discardableResult
+  public mutating func settingTraceFlags(_ traceFlags: OpenTelemetryApi.TraceFlags) -> OpenTelemetrySdk.SpanData
+  @discardableResult
+  public mutating func settingTraceState(_ traceState: OpenTelemetryApi.TraceState) -> OpenTelemetrySdk.SpanData
+  @discardableResult
+  public mutating func settingAttributes(_ attributes: [Swift.String : OpenTelemetryApi.AttributeValue]) -> OpenTelemetrySdk.SpanData
+  @discardableResult
+  public mutating func settingStartTime(_ time: Foundation.Date) -> OpenTelemetrySdk.SpanData
+  @discardableResult
+  public mutating func settingEndTime(_ time: Foundation.Date) -> OpenTelemetrySdk.SpanData
+  @discardableResult
+  public mutating func settingKind(_ kind: OpenTelemetryApi.SpanKind) -> OpenTelemetrySdk.SpanData
+  @discardableResult
+  public mutating func settingLinks(_ links: [OpenTelemetrySdk.SpanData.Link]) -> OpenTelemetrySdk.SpanData
+  @discardableResult
+  public mutating func settingParentSpanId(_ parentSpanId: OpenTelemetryApi.SpanId) -> OpenTelemetrySdk.SpanData
+  @discardableResult
+  public mutating func settingResource(_ resource: OpenTelemetrySdk.Resource) -> OpenTelemetrySdk.SpanData
+  @discardableResult
+  public mutating func settingStatus(_ status: OpenTelemetryApi.Status) -> OpenTelemetrySdk.SpanData
+  @discardableResult
+  public mutating func settingEvents(_ events: [OpenTelemetrySdk.SpanData.Event]) -> OpenTelemetrySdk.SpanData
+  @discardableResult
+  public mutating func settingHasRemoteParent(_ hasRemoteParent: Swift.Bool) -> OpenTelemetrySdk.SpanData
+  @discardableResult
+  public mutating func settingHasEnded(_ hasEnded: Swift.Bool) -> OpenTelemetrySdk.SpanData
+  @discardableResult
+  public mutating func settingTotalRecordedEvents(_ totalRecordedEvents: Swift.Int) -> OpenTelemetrySdk.SpanData
+  @discardableResult
+  public mutating func settingTotalRecordedLinks(_ totalRecordedLinks: Swift.Int) -> OpenTelemetrySdk.SpanData
+  @discardableResult
+  public mutating func settingTotalAttributeCount(_ totalAttributeCount: Swift.Int) -> OpenTelemetrySdk.SpanData
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+extension OpenTelemetrySdk.SpanData {
+  public struct Event : Swift.Equatable, Swift.Codable {
+    public var timestamp: Foundation.Date {
+      get
+    }
+    public var name: Swift.String {
+      get
+    }
+    public var attributes: [Swift.String : OpenTelemetryApi.AttributeValue] {
+      get
+    }
+    public init(name: Swift.String, timestamp: Foundation.Date, attributes: [Swift.String : OpenTelemetryApi.AttributeValue]? = nil)
+    public init(timestamp: Foundation.Date, event: OpenTelemetrySdk.SpanData.Event)
+    public static func == (a: OpenTelemetrySdk.SpanData.Event, b: OpenTelemetrySdk.SpanData.Event) -> Swift.Bool
+    public func encode(to encoder: Swift.Encoder) throws
+    public init(from decoder: Swift.Decoder) throws
+  }
+}
+extension OpenTelemetrySdk.SpanData {
+  public struct Link : Swift.Codable {
+    public let context: OpenTelemetryApi.SpanContext
+    public let attributes: [Swift.String : OpenTelemetryApi.AttributeValue]
+    public init(context: OpenTelemetryApi.SpanContext, attributes: [Swift.String : OpenTelemetryApi.AttributeValue] = [String: AttributeValue]())
+    public func encode(to encoder: Swift.Encoder) throws
+    public init(from decoder: Swift.Decoder) throws
+  }
+}
+public func == (lhs: OpenTelemetrySdk.SpanData.Link, rhs: OpenTelemetrySdk.SpanData.Link) -> Swift.Bool
+public func == (lhs: [OpenTelemetrySdk.SpanData.Link], rhs: [OpenTelemetrySdk.SpanData.Link]) -> Swift.Bool
+public class MultiSpanExporter : OpenTelemetrySdk.SpanExporter {
+  public init(spanExporters: [OpenTelemetrySdk.SpanExporter])
+  public func export(spans: [OpenTelemetrySdk.SpanData]) -> OpenTelemetrySdk.SpanExporterResultCode
+  public func flush() -> OpenTelemetrySdk.SpanExporterResultCode
+  public func shutdown()
+  @objc deinit
+}
+public protocol SpanExporter : AnyObject {
+  @discardableResult
+  func export(spans: [OpenTelemetrySdk.SpanData]) -> OpenTelemetrySdk.SpanExporterResultCode
+  func flush() -> OpenTelemetrySdk.SpanExporterResultCode
+  func shutdown()
+}
+public enum SpanExporterResultCode {
+  case success
+  case failure
+  public static func == (a: OpenTelemetrySdk.SpanExporterResultCode, b: OpenTelemetrySdk.SpanExporterResultCode) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public protocol IdGenerator {
+  func generateSpanId() -> OpenTelemetryApi.SpanId
+  func generateTraceId() -> OpenTelemetryApi.TraceId
+}
+public struct EnvironmentContextPropagator : OpenTelemetryApi.TextMapPropagator {
+  public let fields: Swift.Set<Swift.String>
+  public init()
+  public func inject<S>(spanContext: OpenTelemetryApi.SpanContext, carrier: inout [Swift.String : Swift.String], setter: S) where S : OpenTelemetryApi.Setter
+  public func extract<G>(carrier: [Swift.String : Swift.String], getter: G) -> OpenTelemetryApi.SpanContext? where G : OpenTelemetryApi.Getter
+}
+public struct RandomIdGenerator : OpenTelemetrySdk.IdGenerator {
+  public init()
+  public func generateSpanId() -> OpenTelemetryApi.SpanId
+  public func generateTraceId() -> OpenTelemetryApi.TraceId
+}
+public protocol ReadableSpan : OpenTelemetryApi.Span {
+  var name: Swift.String { get set }
+  var instrumentationScopeInfo: OpenTelemetrySdk.InstrumentationScopeInfo { get }
+  func toSpanData() -> OpenTelemetrySdk.SpanData
+  var hasEnded: Swift.Bool { get }
+  var latency: Foundation.TimeInterval { get }
+}
+@_hasMissingDesignatedInitializers public class RecordEventsReadableSpan : OpenTelemetrySdk.ReadableSpan {
+  public var isRecording: Swift.Bool
+  public var name: Swift.String {
+    get
+    set
+  }
+  public var spanLimits: OpenTelemetrySdk.SpanLimits {
+    get
+  }
+  public var context: OpenTelemetryApi.SpanContext {
+    get
+  }
+  public var parentContext: OpenTelemetryApi.SpanContext? {
+    get
+  }
+  public var hasRemoteParent: Swift.Bool {
+    get
+  }
+  public var spanProcessor: OpenTelemetrySdk.SpanProcessor {
+    get
+  }
+  public var links: [OpenTelemetrySdk.SpanData.Link] {
+    get
+  }
+  public var totalRecordedLinks: Swift.Int {
+    get
+  }
+  public var maxNumberOfAttributes: Swift.Int {
+    get
+  }
+  public var maxNumberOfAttributesPerEvent: Swift.Int {
+    get
+  }
+  public var kind: OpenTelemetryApi.SpanKind {
+    get
+  }
+  public var clock: OpenTelemetrySdk.Clock {
+    get
+  }
+  public var resource: OpenTelemetrySdk.Resource {
+    get
+  }
+  public var instrumentationScopeInfo: OpenTelemetrySdk.InstrumentationScopeInfo {
+    get
+  }
+  public var startTime: Foundation.Date {
+    get
+  }
+  public var events: OpenTelemetrySdk.ArrayWithCapacity<OpenTelemetrySdk.SpanData.Event> {
+    get
+  }
+  public var totalAttributeCount: Swift.Int {
+    get
+  }
+  public var totalRecordedEvents: Swift.Int {
+    get
+  }
+  public var status: OpenTelemetryApi.Status {
+    get
+    set
+  }
+  public var latency: Foundation.TimeInterval {
+    get
+  }
+  public var endTime: Foundation.Date? {
+    get
+  }
+  public var hasEnded: Swift.Bool {
+    get
+  }
+  public static func startSpan(context: OpenTelemetryApi.SpanContext, name: Swift.String, instrumentationScopeInfo: OpenTelemetrySdk.InstrumentationScopeInfo, kind: OpenTelemetryApi.SpanKind, parentContext: OpenTelemetryApi.SpanContext?, hasRemoteParent: Swift.Bool, spanLimits: OpenTelemetrySdk.SpanLimits, spanProcessor: OpenTelemetrySdk.SpanProcessor, clock: OpenTelemetrySdk.Clock, resource: OpenTelemetrySdk.Resource, attributes: OpenTelemetrySdk.AttributesDictionary, links: [OpenTelemetrySdk.SpanData.Link], totalRecordedLinks: Swift.Int, startTime: Foundation.Date?) -> OpenTelemetrySdk.RecordEventsReadableSpan
+  public func toSpanData() -> OpenTelemetrySdk.SpanData
+  public func setAttribute(key: Swift.String, value: OpenTelemetryApi.AttributeValue?)
+  public func addEvent(name: Swift.String)
+  public func addEvent(name: Swift.String, timestamp: Foundation.Date)
+  public func addEvent(name: Swift.String, attributes: [Swift.String : OpenTelemetryApi.AttributeValue])
+  public func addEvent(name: Swift.String, attributes: [Swift.String : OpenTelemetryApi.AttributeValue], timestamp: Foundation.Date)
+  public func end()
+  public func end(time: Foundation.Date)
+  public var description: Swift.String {
+    get
+  }
+  @objc deinit
+}
+public protocol Sampler : AnyObject, Swift.CustomStringConvertible {
+  func shouldSample(parentContext: OpenTelemetryApi.SpanContext?, traceId: OpenTelemetryApi.TraceId, name: Swift.String, kind: OpenTelemetryApi.SpanKind, attributes: [Swift.String : OpenTelemetryApi.AttributeValue], parentLinks: [OpenTelemetrySdk.SpanData.Link]) -> OpenTelemetrySdk.Decision
+}
+public protocol Decision {
+  var isSampled: Swift.Bool { get }
+  var attributes: [Swift.String : OpenTelemetryApi.AttributeValue] { get }
+}
+public enum Samplers {
+  public static var alwaysOn: OpenTelemetrySdk.Sampler
+  public static var alwaysOff: OpenTelemetrySdk.Sampler
+  public static func traceIdRatio(ratio: Swift.Double) -> OpenTelemetrySdk.Sampler
+  public static func parentBased(root: OpenTelemetrySdk.Sampler, remoteParentSampled: OpenTelemetrySdk.Sampler? = nil, remoteParentNotSampled: OpenTelemetrySdk.Sampler? = nil, localParentSampled: OpenTelemetrySdk.Sampler? = nil, localParentNotSampled: OpenTelemetrySdk.Sampler? = nil) -> OpenTelemetrySdk.Sampler
+}
+public struct SpanLimits : Swift.Equatable {
+  public var attributeCountLimit: Swift.Int {
+    get
+  }
+  public var eventCountLimit: Swift.Int {
+    get
+  }
+  public var linkCountLimit: Swift.Int {
+    get
+  }
+  public var attributePerEventCountLimit: Swift.Int {
+    get
+  }
+  public var attributePerLinkCountLimit: Swift.Int {
+    get
+  }
+  public init()
+  @discardableResult
+  public func settingAttributeCountLimit(_ number: Swift.UInt) -> OpenTelemetrySdk.SpanLimits
+  @discardableResult
+  public func settingEventCountLimit(_ number: Swift.UInt) -> OpenTelemetrySdk.SpanLimits
+  @discardableResult
+  public func settingLinkCountLimit(_ number: Swift.UInt) -> OpenTelemetrySdk.SpanLimits
+  @discardableResult
+  public func settingAttributePerEventCountLimit(_ number: Swift.UInt) -> OpenTelemetrySdk.SpanLimits
+  @discardableResult
+  public func settingAttributePerLinkCountLimit(_ number: Swift.UInt) -> OpenTelemetrySdk.SpanLimits
+  public static func == (lhs: OpenTelemetrySdk.SpanLimits, rhs: OpenTelemetrySdk.SpanLimits) -> Swift.Bool
+}
+public protocol SpanProcessor {
+  var isStartRequired: Swift.Bool { get }
+  var isEndRequired: Swift.Bool { get }
+  func onStart(parentContext: OpenTelemetryApi.SpanContext?, span: OpenTelemetrySdk.ReadableSpan)
+  mutating func onEnd(span: OpenTelemetrySdk.ReadableSpan)
+  mutating func shutdown()
+  func forceFlush(timeout: Foundation.TimeInterval?)
+}
+public struct BatchSpanProcessor : OpenTelemetrySdk.SpanProcessor {
+  public init(spanExporter: OpenTelemetrySdk.SpanExporter, scheduleDelay: Foundation.TimeInterval = 5, exportTimeout: Foundation.TimeInterval = 30, maxQueueSize: Swift.Int = 2048, maxExportBatchSize: Swift.Int = 512, willExportCallback: ((inout [OpenTelemetrySdk.SpanData]) -> Swift.Void)? = nil)
+  public let isStartRequired: Swift.Bool
+  public let isEndRequired: Swift.Bool
+  public func onStart(parentContext: OpenTelemetryApi.SpanContext?, span: OpenTelemetrySdk.ReadableSpan)
+  public func onEnd(span: OpenTelemetrySdk.ReadableSpan)
+  public func shutdown()
+  public func forceFlush(timeout: Foundation.TimeInterval? = nil)
+}
+public struct MultiSpanProcessor : OpenTelemetrySdk.SpanProcessor {
+  public init(spanProcessors: [OpenTelemetrySdk.SpanProcessor])
+  public var isStartRequired: Swift.Bool {
+    get
+  }
+  public var isEndRequired: Swift.Bool {
+    get
+  }
+  public func onStart(parentContext: OpenTelemetryApi.SpanContext?, span: OpenTelemetrySdk.ReadableSpan)
+  public func onEnd(span: OpenTelemetrySdk.ReadableSpan)
+  public func shutdown()
+  public func forceFlush(timeout: Foundation.TimeInterval? = nil)
+}
+public struct SimpleSpanProcessor : OpenTelemetrySdk.SpanProcessor {
+  public let isStartRequired: Swift.Bool
+  public let isEndRequired: Swift.Bool
+  public func onStart(parentContext: OpenTelemetryApi.SpanContext?, span: OpenTelemetrySdk.ReadableSpan)
+  public mutating func onEnd(span: OpenTelemetrySdk.ReadableSpan)
+  public func shutdown()
+  public func forceFlush(timeout: Foundation.TimeInterval? = nil)
+  public init(spanExporter: OpenTelemetrySdk.SpanExporter)
+  public func reportingOnlySampled(sampled: Swift.Bool) -> OpenTelemetrySdk.SimpleSpanProcessor
+}
+public class TracerProviderBuilder {
+  public var clock: OpenTelemetrySdk.Clock {
+    get
+  }
+  public var idGenerator: OpenTelemetrySdk.IdGenerator {
+    get
+  }
+  public var resource: OpenTelemetrySdk.Resource {
+    get
+  }
+  public var spanLimits: OpenTelemetrySdk.SpanLimits {
+    get
+  }
+  public var sampler: OpenTelemetrySdk.Sampler {
+    get
+  }
+  public var spanProcessors: [OpenTelemetrySdk.SpanProcessor] {
+    get
+  }
+  public init()
+  public func with(clock: OpenTelemetrySdk.Clock) -> Self
+  public func with(idGenerator: OpenTelemetrySdk.IdGenerator) -> Self
+  public func with(resource: OpenTelemetrySdk.Resource) -> Self
+  public func with(spanLimits: OpenTelemetrySdk.SpanLimits) -> Self
+  public func with(sampler: OpenTelemetrySdk.Sampler) -> Self
+  public func add(spanProcessor: OpenTelemetrySdk.SpanProcessor) -> Self
+  public func add(spanProcessors: [OpenTelemetrySdk.SpanProcessor]) -> Self
+  public func build() -> OpenTelemetrySdk.TracerProviderSdk
+  @objc deinit
+}
+public class TracerProviderSdk : OpenTelemetryApi.TracerProvider {
+  public init(clock: OpenTelemetrySdk.Clock = MillisClock(), idGenerator: OpenTelemetrySdk.IdGenerator = RandomIdGenerator(), resource: OpenTelemetrySdk.Resource = EnvVarResource.get(), spanLimits: OpenTelemetrySdk.SpanLimits = SpanLimits(), sampler: OpenTelemetrySdk.Sampler = Samplers.parentBased(root: Samplers.alwaysOn), spanProcessors: [OpenTelemetrySdk.SpanProcessor] = [])
+  @objc deinit
+  public func get(instrumentationName: Swift.String, instrumentationVersion: Swift.String? = nil) -> OpenTelemetryApi.Tracer
+  public func getActiveClock() -> OpenTelemetrySdk.Clock
+  public func updateActiveClock(_ newClock: OpenTelemetrySdk.Clock)
+  public func getActiveIdGenerator() -> OpenTelemetrySdk.IdGenerator
+  public func updateActiveIdGenerator(_ newGenerator: OpenTelemetrySdk.IdGenerator)
+  public func getActiveResource() -> OpenTelemetrySdk.Resource
+  public func updateActiveResource(_ newResource: OpenTelemetrySdk.Resource)
+  public func getActiveSpanLimits() -> OpenTelemetrySdk.SpanLimits
+  public func updateActiveSpanLimits(_ spanLimits: OpenTelemetrySdk.SpanLimits)
+  public func getActiveSampler() -> OpenTelemetrySdk.Sampler
+  public func updateActiveSampler(_ newSampler: OpenTelemetrySdk.Sampler)
+  public func getActiveSpanProcessors() -> [OpenTelemetrySdk.SpanProcessor]
+  public func addSpanProcessor(_ spanProcessor: OpenTelemetrySdk.SpanProcessor)
+  public func resetSpanProcessors()
+  public func shutdown()
+  public func forceFlush(timeout: Foundation.TimeInterval? = nil)
+}
+@_hasMissingDesignatedInitializers public class TracerSdk : OpenTelemetryApi.Tracer {
+  final public let instrumentationScopeInfo: OpenTelemetrySdk.InstrumentationScopeInfo
+  public func spanBuilder(spanName: Swift.String) -> OpenTelemetryApi.SpanBuilder
+  @objc deinit
+}
+extension OpenTelemetrySdk.ExportResult : Swift.Equatable {}
+extension OpenTelemetrySdk.ExportResult : Swift.Hashable {}
+extension OpenTelemetrySdk.AggregationType : Swift.Equatable {}
+extension OpenTelemetrySdk.AggregationType : Swift.Hashable {}
+extension OpenTelemetrySdk.AggregationType : Swift.RawRepresentable {}
+extension OpenTelemetrySdk.MetricExporterResultCode : Swift.Equatable {}
+extension OpenTelemetrySdk.MetricExporterResultCode : Swift.Hashable {}
+extension OpenTelemetrySdk.AggregationTemporality : Swift.Equatable {}
+extension OpenTelemetrySdk.AggregationTemporality : Swift.Hashable {}
+extension OpenTelemetrySdk.MetricDataType : Swift.Equatable {}
+extension OpenTelemetrySdk.MetricDataType : Swift.Hashable {}
+extension OpenTelemetrySdk.InstrumentType : Swift.Equatable {}
+extension OpenTelemetrySdk.InstrumentType : Swift.Hashable {}
+extension OpenTelemetrySdk.InstrumentValueType : Swift.Equatable {}
+extension OpenTelemetrySdk.InstrumentValueType : Swift.Hashable {}
+extension OpenTelemetrySdk.EmptyMetricStorage : OpenTelemetrySdk.MetricStorage {}
+extension OpenTelemetrySdk.EmptyMetricStorage : OpenTelemetrySdk.WritableMetricStorage {}
+extension OpenTelemetrySdk.SynchronousMetricStorage : OpenTelemetrySdk.MetricStorage {}
+extension OpenTelemetrySdk.SynchronousMetricStorage : OpenTelemetrySdk.WritableMetricStorage {}
+extension OpenTelemetrySdk.ResourceAttributes : Swift.Equatable {}
+extension OpenTelemetrySdk.ResourceAttributes : Swift.Hashable {}
+extension OpenTelemetrySdk.ResourceAttributes : Swift.RawRepresentable {}
+extension OpenTelemetrySdk.ResourceAttributes.AwsEcsLaunchtypeValues : Swift.Equatable {}
+extension OpenTelemetrySdk.ResourceAttributes.AwsEcsLaunchtypeValues : Swift.Hashable {}
+extension OpenTelemetrySdk.ResourceAttributes.AwsEcsLaunchtypeValues : Swift.RawRepresentable {}
+extension OpenTelemetrySdk.SpanExporterResultCode : Swift.Equatable {}
+extension OpenTelemetrySdk.SpanExporterResultCode : Swift.Hashable {}

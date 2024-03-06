@@ -13,10 +13,10 @@ sh build-producer.sh
 sh build-ot.sh
 sh build-ot-swift.sh
 sh build-core.sh
-sh build-crashreporter.sh
+#sh build-crashreporter.sh
 sh build-networkdiagnosis.sh
-sh build-trace.sh
-sh build-urlsession.sh
+#sh build-trace.sh
+#sh build-urlsession.sh
 
 if [[ ${#BUILD_ENV} == 0 ]];
 then
@@ -40,10 +40,10 @@ mkdir -p build/zip/AliyunLogProducer && cp -r build/AliyunLogProducer.xcframewor
 mkdir -p build/zip/AliyunLogOT && cp -r build/AliyunLogOT.xcframework build/zip/AliyunLogOT/AliyunLogOT.xcframework
 mkdir -p build/zip/AliyunLogOTSwift && cp -r build/AliyunLogOTSwift.xcframework build/zip/AliyunLogOTSwift/AliyunLogOTSwift.xcframework
 mkdir -p build/zip/AliyunLogCore && cp -r build/AliyunLogCore.xcframework build/zip/AliyunLogCore/AliyunLogCore.xcframework
-mkdir -p build/zip/AliyunLogCrashReporter && cp -r build/AliyunLogCrashReporter.xcframework build/zip/AliyunLogCrashReporter/AliyunLogCrashReporter.xcframework
+#mkdir -p build/zip/AliyunLogCrashReporter && cp -r build/AliyunLogCrashReporter.xcframework build/zip/AliyunLogCrashReporter/AliyunLogCrashReporter.xcframework
 mkdir -p build/zip/AliyunLogNetworkDiagnosis && cp -r build/AliyunLogNetworkDiagnosis.xcframework build/zip/AliyunLogNetworkDiagnosis/AliyunLogNetworkDiagnosis.xcframework
-mkdir -p build/zip/AliyunLogTrace && cp -r build/AliyunLogTrace.xcframework build/zip/AliyunLogTrace/AliyunLogTrace.xcframework
-mkdir -p build/zip/AliyunLogURLSession && cp -r build/AliyunLogURLSession.xcframework build/zip/AliyunLogURLSession/AliyunLogURLSession.xcframework
+#mkdir -p build/zip/AliyunLogTrace && cp -r build/AliyunLogTrace.xcframework build/zip/AliyunLogTrace/AliyunLogTrace.xcframework
+#mkdir -p build/zip/AliyunLogURLSession && cp -r build/AliyunLogURLSession.xcframework build/zip/AliyunLogURLSession/AliyunLogURLSession.xcframework
 
 pushd build/zip
 zip -r ../../out/AliyunLogProducer.zip *

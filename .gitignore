@@ -42,6 +42,7 @@ playground.xcworkspace
 
 # Swift Package Manager
 .build/
+Package.resolved
 
 # Carthage
 Carthage/Build
@@ -49,3 +50,5 @@ Carthage/Build
 # build
 publish/build
 publish/out
+output
+

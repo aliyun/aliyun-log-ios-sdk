@@ -9,7 +9,7 @@
 #import "SLSCrashReporterFeature.h"
 #import "WPKMobi/WPKSetup.h"
 #import "WPKMobi/WPKThreadBlockChecker.h"
-#import "Utdid.h"
+#import "SLSUtdid.h"
 #import "NSDateFormatter+SLS.h"
 #import "SLSCrashReporter.h"
 #import "SLSProducer.h"
@@ -256,7 +256,7 @@ static void observeDirectory(dispatch_source_t _source, NSString *path, director
         return;
     }
     
-    NSString *utdid = [Utdid getUtdid];
+    NSString *utdid = [SLSUtdid getUtdid];
     
     // lines 可能存在多行的情况
     for (NSString *line in lines) {
@@ -324,7 +324,7 @@ static void observeDirectory(dispatch_source_t _source, NSString *path, director
         }
         
         if ([line containsString:@"UDID:"]) {
-            [((NSMutableString *) content) appendFormat:@"UDID:      %@\n", [Utdid getUtdid]];
+            [((NSMutableString *) content) appendFormat:@"UDID:      %@\n", [SLSUtdid getUtdid]];
         } else {
             if ([line containsString:@"k_ac:"]) {
                 NSArray *chunks = [line componentsSeparatedByString:@"k_ac:"];
@@ -400,7 +400,7 @@ static void observeDirectory(dispatch_source_t _source, NSString *path, director
         [span setSpanID:crashedSpan.spanID];
         [span addAttribute:
              [SLSAttribute of:@"ex.file" value:[file lastPathComponent]],
-             [SLSAttribute of:@"ex.uuid" value:[[Utdid getUtdid] copy]],
+             [SLSAttribute of:@"ex.uuid" value:[[SLSUtdid getUtdid] copy]],
              [SLSAttribute of:@"ex.project" value:_project],
              [SLSAttribute of:@"ex.time" value:t],
              [SLSAttribute of:@"ex.filter_time" value:[t substringToIndex:10]],

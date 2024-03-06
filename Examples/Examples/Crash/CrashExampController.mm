@@ -239,14 +239,14 @@
         NSMutableArray *array = @[];
         [array removeObjectAtIndex:10];
     } @catch (NSException *exception) {
-        [[SLSCrashReporter sharedInstance] reportException:exception];
+//        [[SLSCrashReporter sharedInstance] reportException:exception];
 //        [[SLSCrashReporter sharedInstance] reportError:@"exception" message:exception.name stacktrace:exception.description];
     } @finally {
         
     }
     
-    [[SLSCrashReporter sharedInstance] reportError:@[@"single custom error 1"]];
-    [[SLSCrashReporter sharedInstance] reportError:@"custom" stacktrace:@"custom error 2"];
+//    [[SLSCrashReporter sharedInstance] reportError:@[@"single custom error 1"]];
+//    [[SLSCrashReporter sharedInstance] reportError:@"custom" stacktrace:@"custom error 2"];
     
 }
 
@@ -295,7 +295,7 @@
         _enabled = YES;
     }
     
-    [[SLSCrashReporter sharedInstance] setEnabled:_enabled];
+//    [[SLSCrashReporter sharedInstance] setEnabled:_enabled];
 }
 
 @end

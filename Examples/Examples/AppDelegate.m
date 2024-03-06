@@ -8,8 +8,12 @@
 #import "AppDelegate.h"
 #import "DemoUtils.h"
 #import "MainViewController.h"
+#import "SLSUtdid.h"
 
 #import <AliyunLogProducer/AliyunLogProducer.h>
+
+@import AliyunLogCrashReporter;
+@import AliyunLogOTelCommon;
 
 
 @interface SpanProvider : NSObject<SLSSpanProviderProtocol>
@@ -32,67 +36,67 @@
 }
 @end
 
-@interface NSURLInstrumentation : NSObject<SLSURLSessionInstrumentationDelegate>
+//@interface NSURLInstrumentation : NSObject<SLSURLSessionInstrumentationDelegate>
+//
+//@end
+//
+//@implementation NSURLInstrumentation
+//
+//- (BOOL) shouldInstrument: (NSURLRequest *) request {
+//    NSString *host = request.URL.host;
+//    return ![host containsString:@"er.ns.aliyuncs.com"] &&
+//           ![host containsString:@"www.aliyun.com"] &&
+//           ![host containsString:@"applog.uc.cn"] &&
+//           ![host containsString:@"woodpecker.uc.cn"];
+//}
+//- (NSDictionary<NSString *, NSString *> *) injectCustomeHeaders {
+//    return @{};
+//}
+//
+//@end
 
-@end
-
-@implementation NSURLInstrumentation
-
-- (BOOL) shouldInstrument: (NSURLRequest *) request {
-    NSString *host = request.URL.host;
-    return ![host containsString:@"er.ns.aliyuncs.com"] &&
-           ![host containsString:@"www.aliyun.com"] &&
-           ![host containsString:@"applog.uc.cn"] &&
-           ![host containsString:@"woodpecker.uc.cn"];
-}
-- (NSDictionary<NSString *, NSString *> *) injectCustomeHeaders {
-    return @{};
-}
-
-@end
-
-#pragma mark -- URLSessionInstrumentationProtocol implementation
-@interface URLInstrumentationProtocal : NSObject<URLSessionInstrumentationProtocol>
-@end
-@implementation URLInstrumentationProtocal
-
-- (BOOL)shouldInstrument:(NSURLRequest * _Nonnull)request {
-    return ![request.URL.host containsString:@"log.aliyuncs.com"];
-}
-
-- (BOOL)shouldRecordError:(NSError * _Nonnull)error :(id _Nullable)_ {
-    return YES;
-}
-
-- (BOOL)shouldRecordPayload:(NSURLSession * _Nonnull)session {
-    return YES;
-}
-
-- (BOOL)shouldRecordRequestBody:(NSURLRequest * _Nonnull)request {
-    return YES;
-}
-
-- (BOOL)shouldRecordRequestHeaders:(NSURLRequest * _Nonnull)request {
-    return YES;
-}
-
-- (BOOL)shouldRecordResponse:(NSURLResponse * _Nonnull)response :(id _Nullable)dataOrFile {
-    return YES;
-}
-
-- (void)customizeSpan:(NSURLRequest * _Nonnull)request :(SLSSpanBuilder * _Nonnull)spanBuilder {
-    [spanBuilder setService:request.URL.path];
-}
-
-- (NSString * _Nullable)nameSpan:(NSURLRequest * _Nonnull)request {
-    return [NSString stringWithFormat:@"%@ %@", request.HTTPMethod, request.URL.path];
-}
-
-- (void)injectCustomHeaders:(NSURLRequest *)request :(SLSSpan *)span {
-    
-}
-
-@end
+//#pragma mark -- URLSessionInstrumentationProtocol implementation
+//@interface URLInstrumentationProtocal : NSObject<URLSessionInstrumentationProtocol>
+//@end
+//@implementation URLInstrumentationProtocal
+//
+//- (BOOL)shouldInstrument:(NSURLRequest * _Nonnull)request {
+//    return ![request.URL.host containsString:@"log.aliyuncs.com"];
+//}
+//
+//- (BOOL)shouldRecordError:(NSError * _Nonnull)error :(id _Nullable)_ {
+//    return YES;
+//}
+//
+//- (BOOL)shouldRecordPayload:(NSURLSession * _Nonnull)session {
+//    return YES;
+//}
+//
+//- (BOOL)shouldRecordRequestBody:(NSURLRequest * _Nonnull)request {
+//    return YES;
+//}
+//
+//- (BOOL)shouldRecordRequestHeaders:(NSURLRequest * _Nonnull)request {
+//    return YES;
+//}
+//
+//- (BOOL)shouldRecordResponse:(NSURLResponse * _Nonnull)response :(id _Nullable)dataOrFile {
+//    return YES;
+//}
+//
+//- (void)customizeSpan:(NSURLRequest * _Nonnull)request :(SLSSpanBuilder * _Nonnull)spanBuilder {
+//    [spanBuilder setService:request.URL.path];
+//}
+//
+//- (NSString * _Nullable)nameSpan:(NSURLRequest * _Nonnull)request {
+//    return [NSString stringWithFormat:@"%@ %@", request.HTTPMethod, request.URL.path];
+//}
+//
+//- (void)injectCustomHeaders:(NSURLRequest *)request :(SLSSpan *)span {
+//    
+//}
+//
+//@end
 
 @interface AppDelegate ()
 
@@ -142,6 +146,30 @@
     SLSLogV(@"accessKeyId: %@", [utils accessKeyId]);
     SLSLogV(@"accessKeySecret: %@", [utils accessKeySecret]);
     
+    [ConfigurationManager.shared setProviderWithAccessKeyProvider:^AccessKey * _Nullable(NSString * _Nonnull scope) {
+        return [AccessKey initWithAccessKeyId:utils.accessKeyId
+                              accessKeySecret:utils.accessKeySecret
+                        accessKeySecuritToken:@""
+        ];
+    } workspaceProvider:^Workspace * _Nullable(NSString * _Nonnull scope) {
+//        return [Workspace initWithEndpoint:@"https://cn-beijing.log.aliyuncs.com"
+//                                   project:@"qs-demos"
+//                                instanceId:@"sls-mall"
+//        ];
+        return [Workspace initWithEndpoint:@"https://cn-hangzhou.log.aliyuncs.com"
+                                   project:@"sls-aysls-rum-mobile"
+                                instanceId:@"yb-test-008"
+        ];
+    } environmentProvider:^Environment * _Nullable(NSString * _Nonnull scope) {
+        return [Environment initWithEnv:@"pub" uid:@"123456780" utdid:[SLSUtdid getUtdid] channel:@""];
+    }];
+    
+    [[CrashReporter shared] initWithDebuggable:YES];
+    
+//    if (YES) {
+//        return YES;
+//    }
+    
     SLSCredentials *credentials = [SLSCredentials credentials];
     credentials.endpoint = @"https://cn-hangzhou.log.aliyuncs.com";
     credentials.project = @"yuanbo-test-1";
@@ -158,21 +186,21 @@
     networkDiagnosisCredentials.project = @"mobile-demo-beijing-b";
 
     // Trace
-    SLSTraceCredentials *tracerCredentials = [credentials createTraceCredentials];
-    tracerCredentials.instanceId = @"sls-mall";
-    tracerCredentials.endpoint = @"https://cn-beijing.log.aliyuncs.com";
-    tracerCredentials.project = @"qs-demos";
+//    SLSTraceCredentials *tracerCredentials = [credentials createTraceCredentials];
+//    tracerCredentials.instanceId = @"sls-mall";
+//    tracerCredentials.endpoint = @"https://cn-beijing.log.aliyuncs.com";
+//    tracerCredentials.project = @"qs-demos";
     
-    [[SLSCocoa sharedInstance] setUtdid:@"1212122"];
+//    [[SLSCocoa sharedInstance] setUtdid:@"1212122"];
     
     void (^configuration)(SLSConfiguration *configuration) = ^(SLSConfiguration * configuration) {
         configuration.spanProvider = [SpanProvider provider];
         configuration.debuggable = YES;
-        configuration.enableCrashReporter = YES;
+        configuration.enableCrashReporter = NO;
 //        configuration.enableBlockDetection = YES;
         configuration.enableNetworkDiagnosis = YES;
-        configuration.enableTrace = YES;
-        configuration.enableTraceLogs = YES;
+        configuration.enableTrace = NO;
+        configuration.enableTraceLogs = NO;
     };
     // pre init first
     [[SLSCocoa sharedInstance] preInit:credentials configuration:configuration];
@@ -182,7 +210,7 @@
         [[SLSCocoa sharedInstance] initialize:credentials configuration:configuration];
     });
     
-    [[URLSessionInstrumentation alloc] initWithProtoco:[[URLInstrumentationProtocal alloc] init]];
+//    [[URLSessionInstrumentation alloc] initWithProtoco:[[URLInstrumentationProtocal alloc] init]];
     
 //    [[URLSessionInstrumentation alloc] init];
 //    [URLSessionInstrumentation new];
@@ -234,7 +262,7 @@
     [userinfo addExt:@"ext_value" key:@"ext_key"];
     // 更新用户信息
     [[SLSCocoa sharedInstance] setUserInfo:userinfo];
-    [SLSTracer registerURLSessionInstrumentationDelegate:[[NSURLInstrumentation alloc]init]];
+//    [SLSTracer registerURLSessionInstrumentationDelegate:[[NSURLInstrumentation alloc]init]];
     
     // logstore 中对应的字段
     // uid: attribute.user.uid

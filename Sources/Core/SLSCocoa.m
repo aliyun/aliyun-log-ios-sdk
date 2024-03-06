@@ -16,7 +16,7 @@
 #import "SLSSdkSender.h"
 #import "SLSAppUtils.h"
 #import "SLSFeatureProtocol.h"
-#import "Utdid.h"
+#import "SLSUtdid.h"
 #import "SLSDeviceUtils.h"
 #import "NSString+SLS.h"
 #import "SLSUtils.h"
@@ -245,7 +245,7 @@
     [_extraProvider clearExtras];
 }
 - (void) setUtdid: (NSString *) utdid {
-    [Utdid setUtdid:utdid];
+    [SLSUtdid setUtdid:utdid];
 }
 
 @end
@@ -285,7 +285,7 @@
     [resource add:@"sdk.language" value:@"Objective-C"];
     
     // device specification, ref: https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/resource/semantic_conventions/device.md
-    [resource add:@"device.id" value:[[Utdid getUtdid] copy]];
+    [resource add:@"device.id" value:[[SLSUtdid getUtdid] copy]];
     [resource add:@"device.model.identifier" value:privocy ? [SLSDeviceUtils getDeviceModelIdentifier] : @""];
     [resource add:@"device.model.name" value:privocy ? [SLSDeviceUtils getDeviceModelIdentifier] : @""];
     [resource add:@"device.manufacturer" value:@"Apple"];

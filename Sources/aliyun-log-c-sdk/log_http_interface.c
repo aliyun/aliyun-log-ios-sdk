@@ -11,7 +11,8 @@ void log_set_http_post_func(int (*f)(const char *url,
                                      char **header_array,
                                      int header_count,
                                      const void *data,
-                                     int data_len));
+                                     int data_len,
+                                     post_log_result *http_response));
 
 __attribute__ ((visibility("default")))
 void log_set_get_time_unix_func(unsigned int (*f)());
@@ -33,7 +34,8 @@ static int (*__LOG_OS_HttpPost)(const char *url,
                                 char **header_array,
                                 int header_count,
                                 const void *data,
-                                int data_len) = NULL;
+                                int data_len,
+                                post_log_result *http_response) = NULL;
 
 static unsigned int (*__LOG_GET_TIME)() = NULL;
 
@@ -45,7 +47,8 @@ void log_set_http_post_func(int (*f)(const char *url,
                                      char **header_array,
                                      int header_count,
                                      const void *data,
-                                     int data_len))
+                                     int data_len,
+                                     post_log_result *http_response))
 {
     __LOG_OS_HttpPost = f;
 }
@@ -66,18 +69,20 @@ int LOG_OS_HttpPost(const char *url,
                     char **header_array,
                     int header_count,
                     const void *data,
-                    int data_len)
+                    int data_len,
+                    post_log_result *http_response)
 {
     int (*f)(const char *url,
              char **header_array,
              int header_count,
              const void *data,
-             int data_len) = NULL;
+             int data_len,
+             post_log_result *http_response) = NULL;
     f = __LOG_OS_HttpPost;
 
     int ret = 506;
     if(f != NULL) {
-        ret = f(url, header_array, header_count, data, data_len);
+        ret = f(url, header_array, header_count, data, data_len, http_response);
     }
     return ret;
 }
