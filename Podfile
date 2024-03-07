@@ -14,28 +14,34 @@ source 'https://github.com/CocoaPods/Specs.git'
 #source 'https://github.com/aliyun-sls/Specs.git'
 source 'https://gitee.com/aliyun-sls/Specs.git'
 
+ALIYUN_SLS_VERSION = '4.2.5'
+OTEL_VERSION = '1.1.1'
+
+USE_LOCAL_PODS = true
+
 #source_project_path = 'AliyunLogSDK'
 example_project_path = 'Examples/Examples'
 
 test_project_path = 'Tests/AliyunLogSDKTests'
 
 def all_example_pods
-  pod 'OpenTelemetryApiObjc', '1.1.1'
-  pod 'OpenTelemetrySdkObjc', '1.1.1'
-  
-#  pod 'AliyunLogProducer', '4.2.2'
-#  pod 'AliyunLogOTelCommon', '4.2.2'
-#  pod 'AliyunLogOtlpExporter', '4.2.2'
-#  pod 'AliyunLogCrashReporter', '4.2.2'
-#  pod 'AliyunLogNetworkDiagnosis', '4.2.2'
-
-pod 'AliyunLogProducer', :path => './'
-pod 'AliyunLogOTelCommon', :path => './'
-#pod 'AliyunLogOTelCommon/OpenTelemetryApi', :path => './'
-#pod 'AliyunLogOTelCommon/OpenTelemetrySdk', :path => './'
-pod 'AliyunLogOtlpExporter', :path => './'
-pod 'AliyunLogCrashReporter', :path => './'
-pod 'AliyunLogNetworkDiagnosis', :path => './'
+  pod 'OpenTelemetryApiObjc', OTEL_VERSION
+  pod 'OpenTelemetrySdkObjc', OTEL_VERSION
+    
+  if USE_LOCAL_PODS
+    pod 'AliyunLogProducer', :path => './'
+    pod 'AliyunLogOTelCommon', :path => './'
+    pod 'AliyunLogOtlpExporter', :path => './'
+    pod 'AliyunLogCrashReporter', :path => './'
+    pod 'AliyunLogNetworkDiagnosis', :path => './'
+  else
+    
+    pod 'AliyunLogProducer', ALIYUN_SLS_VERSION
+    pod 'AliyunLogOTelCommon', ALIYUN_SLS_VERSION
+    pod 'AliyunLogOtlpExporter', ALIYUN_SLS_VERSION
+    pod 'AliyunLogCrashReporter', ALIYUN_SLS_VERSION
+    pod 'AliyunLogNetworkDiagnosis', ALIYUN_SLS_VERSION
+  end
 end
 
 def all_test_pods
@@ -48,23 +54,24 @@ def all_test_pods
     pod 'Quick', '5.0.1'
     pod 'Nimble', '10.0.0'
   end
- 
-  pod 'OpenTelemetryApiObjc', '1.1.1'
-  pod 'OpenTelemetrySdkObjc', '1.1.1'
- 
-#  pod 'AliyunLogProducer', '4.2.2'
-#  pod 'AliyunLogOTelCommon', '4.2.2'
-#  pod 'AliyunLogOtlpExporter', '4.2.2'
-#  pod 'AliyunLogCrashReporter', '4.2.2'
-#  pod 'AliyunLogNetworkDiagnosis', '4.2.2'
   
-  pod 'AliyunLogProducer', :path => './'
-  pod 'AliyunLogOTelCommon', :path => './'
-#  pod 'AliyunLogOTelCommon/OpenTelemetryApi', :path => './'
-#  pod 'AliyunLogOTelCommon/OpenTelemetrySdk', :path => './'
-  pod 'AliyunLogOtlpExporter', :path => './'
-  pod 'AliyunLogCrashReporter', :path => './'
-  pod 'AliyunLogNetworkDiagnosis', :path => './'
+  pod 'OpenTelemetryApiObjc', OTEL_VERSION
+  pod 'OpenTelemetrySdkObjc', OTEL_VERSION
+
+  if USE_LOCAL_PODS
+    pod 'AliyunLogProducer', :path => './'
+    pod 'AliyunLogOTelCommon', :path => './'
+    pod 'AliyunLogOtlpExporter', :path => './'
+    pod 'AliyunLogCrashReporter', :path => './'
+    pod 'AliyunLogNetworkDiagnosis', :path => './'
+  else
+
+    pod 'AliyunLogProducer', ALIYUN_SLS_VERSION
+    pod 'AliyunLogOTelCommon', ALIYUN_SLS_VERSION
+    pod 'AliyunLogOtlpExporter', ALIYUN_SLS_VERSION
+    pod 'AliyunLogCrashReporter', ALIYUN_SLS_VERSION
+    pod 'AliyunLogNetworkDiagnosis', ALIYUN_SLS_VERSION
+  end
 end
 
 workspace 'AliyunLogSDK.xcworkspace'
@@ -75,6 +82,19 @@ target 'iOSExamples' do |t|
   platform :ios, '10.0'
   
   all_example_pods
+end
+
+target 'NetworkDiagnosisExamples' do |t|
+  project 'Examples/NetworkDiagnosisExamples/NetworkDiagnosisExamples'
+  platform :ios, '10.0'
+  
+  if USE_LOCAL_PODS
+    pod 'AliyunLogProducer', :path => './'
+    pod 'AliyunLogNetworkDiagnosis', :path => './'
+  else
+    pod 'AliyunLogProducer', ALIYUN_SLS_VERSION
+    pod 'AliyunLogNetworkDiagnosis', ALIYUN_SLS_VERSION
+  end
 end
 
 # Test Project
