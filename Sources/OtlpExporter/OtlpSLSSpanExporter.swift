@@ -104,7 +104,7 @@ open class OtlpSLSSpanExporter: NSObject, SpanExporter {
     }
     
     
-    public func export(spans: [OpenTelemetrySdk.SpanData]) -> OpenTelemetrySdk.SpanExporterResultCode {
+    public func export(spans: [OpenTelemetrySdk.SpanData], explicitTimeout: TimeInterval?) -> OpenTelemetrySdk.SpanExporterResultCode {
         for span in spans {
             do {
                 let jsonData = try jsonEncoder.encode(SpanExporterData(span: span))
@@ -122,11 +122,11 @@ open class OtlpSLSSpanExporter: NSObject, SpanExporter {
         return .success
     }
     
-    public func flush() -> OpenTelemetrySdk.SpanExporterResultCode {
+    public func flush(explicitTimeout: TimeInterval?) -> OpenTelemetrySdk.SpanExporterResultCode {
         return .success
     }
     
-    public func shutdown() {
+    public func shutdown(explicitTimeout: TimeInterval?) {
         
     }
 }
