@@ -61,7 +61,7 @@ public class MonotonicClock : OpenTelemetrySdk.Clock {
   @objc deinit
 }
 public struct ReadableLogRecord : Swift.Codable {
-  public init(resource: OpenTelemetrySdk.Resource, instrumentationScopeInfo: OpenTelemetrySdk.InstrumentationScopeInfo, timestamp: Foundation.Date, observedTimestamp: Foundation.Date? = nil, spanContext: OpenTelemetryApi.SpanContext? = nil, severity: OpenTelemetryApi.Severity? = nil, body: Swift.String? = nil, attributes: [Swift.String : OpenTelemetryApi.AttributeValue])
+  public init(resource: OpenTelemetrySdk.Resource, instrumentationScopeInfo: OpenTelemetrySdk.InstrumentationScopeInfo, timestamp: Foundation.Date, observedTimestamp: Foundation.Date? = nil, spanContext: OpenTelemetryApi.SpanContext? = nil, severity: OpenTelemetryApi.Severity? = nil, body: OpenTelemetryApi.AttributeValue? = nil, attributes: [Swift.String : OpenTelemetryApi.AttributeValue])
   public var resource: OpenTelemetrySdk.Resource {
     get
   }
@@ -80,7 +80,7 @@ public struct ReadableLogRecord : Swift.Codable {
   public var severity: OpenTelemetryApi.Severity? {
     get
   }
-  public var body: Swift.String? {
+  public var body: OpenTelemetryApi.AttributeValue? {
     get
   }
   public var attributes: [Swift.String : OpenTelemetryApi.AttributeValue] {
@@ -91,28 +91,33 @@ public struct ReadableLogRecord : Swift.Codable {
 }
 @_hasMissingDesignatedInitializers public class InMemoryLogRecordExporter : OpenTelemetrySdk.LogRecordExporter {
   public func getFinishedLogRecords() -> [OpenTelemetrySdk.ReadableLogRecord]
-  public func export(logRecords: [OpenTelemetrySdk.ReadableLogRecord]) -> OpenTelemetrySdk.ExportResult
-  public func shutdown()
-  public func forceFlush() -> OpenTelemetrySdk.ExportResult
+  public func export(logRecords: [OpenTelemetrySdk.ReadableLogRecord], explicitTimeout: Foundation.TimeInterval? = nil) -> OpenTelemetrySdk.ExportResult
+  public func shutdown(explicitTimeout: Foundation.TimeInterval? = nil)
+  public func forceFlush(explicitTimeout: Foundation.TimeInterval? = nil) -> OpenTelemetrySdk.ExportResult
   @objc deinit
 }
 public protocol LogRecordExporter {
-  func export(logRecords: [OpenTelemetrySdk.ReadableLogRecord]) -> OpenTelemetrySdk.ExportResult
-  func shutdown()
-  func forceFlush() -> OpenTelemetrySdk.ExportResult
+  func export(logRecords: [OpenTelemetrySdk.ReadableLogRecord], explicitTimeout: Foundation.TimeInterval?) -> OpenTelemetrySdk.ExportResult
+  func shutdown(explicitTimeout: Foundation.TimeInterval?)
+  func forceFlush(explicitTimeout: Foundation.TimeInterval?) -> OpenTelemetrySdk.ExportResult
 }
-public class MultiLogRecordExporter : OpenTelemetrySdk.LogRecordExporter {
-  public init(logRecordExporters: [OpenTelemetrySdk.LogRecordExporter])
+extension OpenTelemetrySdk.LogRecordExporter {
   public func export(logRecords: [OpenTelemetrySdk.ReadableLogRecord]) -> OpenTelemetrySdk.ExportResult
   public func shutdown()
   public func forceFlush() -> OpenTelemetrySdk.ExportResult
+}
+public class MultiLogRecordExporter : OpenTelemetrySdk.LogRecordExporter {
+  public init(logRecordExporters: [OpenTelemetrySdk.LogRecordExporter])
+  public func export(logRecords: [OpenTelemetrySdk.ReadableLogRecord], explicitTimeout: Foundation.TimeInterval? = nil) -> OpenTelemetrySdk.ExportResult
+  public func shutdown(explicitTimeout: Foundation.TimeInterval? = nil)
+  public func forceFlush(explicitTimeout: Foundation.TimeInterval? = nil) -> OpenTelemetrySdk.ExportResult
   @objc deinit
 }
 @_hasMissingDesignatedInitializers public class NoopLogRecordExporter : OpenTelemetrySdk.LogRecordExporter {
   public static let instance: OpenTelemetrySdk.NoopLogRecordExporter
-  public func export(logRecords: [OpenTelemetrySdk.ReadableLogRecord]) -> OpenTelemetrySdk.ExportResult
-  public func shutdown()
-  public func forceFlush() -> OpenTelemetrySdk.ExportResult
+  public func export(logRecords: [OpenTelemetrySdk.ReadableLogRecord], explicitTimeout: Foundation.TimeInterval? = nil) -> OpenTelemetrySdk.ExportResult
+  public func shutdown(explicitTimeout: Foundation.TimeInterval? = nil)
+  public func forceFlush(explicitTimeout: Foundation.TimeInterval? = nil) -> OpenTelemetrySdk.ExportResult
   @objc deinit
 }
 public struct LogLimits {
@@ -127,7 +132,7 @@ public struct LogLimits {
   public func setObservedTimestamp(_ observed: Foundation.Date) -> Self
   public func setSpanContext(_ context: OpenTelemetryApi.SpanContext) -> Self
   public func setSeverity(_ severity: OpenTelemetryApi.Severity) -> Self
-  public func setBody(_ body: Swift.String) -> Self
+  public func setBody(_ body: OpenTelemetryApi.AttributeValue) -> Self
   public func setAttributes(_ attributes: [Swift.String : OpenTelemetryApi.AttributeValue]) -> Self
   public func setData(_ attributes: [Swift.String : OpenTelemetryApi.AttributeValue]) -> Self
   public func emit()
@@ -177,19 +182,23 @@ public class LoggerProviderSdk : OpenTelemetryApi.LoggerProvider {
 public class BatchLogRecordProcessor : OpenTelemetrySdk.LogRecordProcessor {
   public init(logRecordExporter: OpenTelemetrySdk.LogRecordExporter, scheduleDelay: Foundation.TimeInterval = 5, exportTimeout: Foundation.TimeInterval = 30, maxQueueSize: Swift.Int = 2048, maxExportBatchSize: Swift.Int = 512, willExportCallback: ((inout [OpenTelemetrySdk.ReadableLogRecord]) -> Swift.Void)? = nil)
   public func onEmit(logRecord: OpenTelemetrySdk.ReadableLogRecord)
-  public func forceFlush() -> OpenTelemetrySdk.ExportResult
-  public func forceFlush(timeout: Foundation.TimeInterval?)
-  public func shutdown() -> OpenTelemetrySdk.ExportResult
+  public func forceFlush(explicitTimeout: Foundation.TimeInterval?) -> OpenTelemetrySdk.ExportResult
+  public func forceFlush(timeout: Foundation.TimeInterval? = nil)
+  public func shutdown(explicitTimeout: Foundation.TimeInterval? = nil) -> OpenTelemetrySdk.ExportResult
   @objc deinit
 }
 public protocol LogRecordProcessor {
   func onEmit(logRecord: OpenTelemetrySdk.ReadableLogRecord)
-  func forceFlush() -> OpenTelemetrySdk.ExportResult
-  func shutdown() -> OpenTelemetrySdk.ExportResult
+  func forceFlush(explicitTimeout: Foundation.TimeInterval?) -> OpenTelemetrySdk.ExportResult
+  func shutdown(explicitTimeout: Foundation.TimeInterval?) -> OpenTelemetrySdk.ExportResult
 }
-public class MultiLogRecordProcessor : OpenTelemetrySdk.LogRecordProcessor {
+extension OpenTelemetrySdk.LogRecordProcessor {
   public func forceFlush() -> OpenTelemetrySdk.ExportResult
   public func shutdown() -> OpenTelemetrySdk.ExportResult
+}
+public class MultiLogRecordProcessor : OpenTelemetrySdk.LogRecordProcessor {
+  public func forceFlush(explicitTimeout: Foundation.TimeInterval? = nil) -> OpenTelemetrySdk.ExportResult
+  public func shutdown(explicitTimeout: Foundation.TimeInterval? = nil) -> OpenTelemetrySdk.ExportResult
   public init(logRecordProcessors: [OpenTelemetrySdk.LogRecordProcessor])
   public func onEmit(logRecord: OpenTelemetrySdk.ReadableLogRecord)
   @objc deinit
@@ -197,15 +206,15 @@ public class MultiLogRecordProcessor : OpenTelemetrySdk.LogRecordProcessor {
 @_hasMissingDesignatedInitializers public class NoopLogRecordProcessor : OpenTelemetrySdk.LogRecordProcessor {
   public static let noopLogRecordProcessor: OpenTelemetrySdk.NoopLogRecordProcessor
   public func onEmit(logRecord: OpenTelemetrySdk.ReadableLogRecord)
-  public func forceFlush() -> OpenTelemetrySdk.ExportResult
-  public func shutdown() -> OpenTelemetrySdk.ExportResult
+  public func forceFlush(explicitTimeout: Foundation.TimeInterval? = nil) -> OpenTelemetrySdk.ExportResult
+  public func shutdown(explicitTimeout: Foundation.TimeInterval? = nil) -> OpenTelemetrySdk.ExportResult
   @objc deinit
 }
 public class SimpleLogRecordProcessor : OpenTelemetrySdk.LogRecordProcessor {
   public init(logRecordExporter: OpenTelemetrySdk.LogRecordExporter)
   public func onEmit(logRecord: OpenTelemetrySdk.ReadableLogRecord)
-  public func forceFlush() -> OpenTelemetrySdk.ExportResult
-  public func shutdown() -> OpenTelemetrySdk.ExportResult
+  public func forceFlush(explicitTimeout: Foundation.TimeInterval? = nil) -> OpenTelemetrySdk.ExportResult
+  public func shutdown(explicitTimeout: Foundation.TimeInterval? = nil) -> OpenTelemetrySdk.ExportResult
   @objc deinit
 }
 @_hasMissingDesignatedInitializers public class Aggregator<T> {
@@ -446,8 +455,9 @@ public protocol DefaultAggregationSelector {
 public protocol AggregationTemporalitySelectorProtocol {
   func getAggregationTemporality(for instrument: OpenTelemetrySdk.InstrumentType) -> OpenTelemetrySdk.AggregationTemporality
 }
-@_hasMissingDesignatedInitializers public class AggregationTemporalitySelector : OpenTelemetrySdk.AggregationTemporalitySelectorProtocol {
+public class AggregationTemporalitySelector : OpenTelemetrySdk.AggregationTemporalitySelectorProtocol {
   public func getAggregationTemporality(for instrument: OpenTelemetrySdk.InstrumentType) -> OpenTelemetrySdk.AggregationTemporality
+  public init(aggregationTemporalitySelector: @escaping (OpenTelemetrySdk.InstrumentType) -> OpenTelemetrySdk.AggregationTemporality)
   public var aggregationTemporalitySelector: (OpenTelemetrySdk.InstrumentType) -> OpenTelemetrySdk.AggregationTemporality
   @objc deinit
 }
@@ -455,6 +465,7 @@ public enum AggregationTemporality {
   case delta
   case cumulative
   public static func alwaysCumulative() -> OpenTelemetrySdk.AggregationTemporalitySelector
+  public static func alwaysDelta() -> OpenTelemetrySdk.AggregationTemporalitySelector
   public static func deltaPreferred() -> OpenTelemetrySdk.AggregationTemporalitySelector
   public static func == (a: OpenTelemetrySdk.AggregationTemporality, b: OpenTelemetrySdk.AggregationTemporality) -> Swift.Bool
   public func hash(into hasher: inout Swift.Hasher)
@@ -668,6 +679,9 @@ public struct StableMetricData : Swift.Equatable {
   public var type: OpenTelemetrySdk.MetricDataType {
     get
   }
+  public var isMonotonic: Swift.Bool {
+    get
+  }
   public var data: OpenTelemetrySdk.StableMetricData.Data {
     get
   }
@@ -676,39 +690,27 @@ public struct StableMetricData : Swift.Equatable {
     public var points: [OpenTelemetrySdk.PointData] {
       get
     }
+    public var aggregationTemporality: OpenTelemetrySdk.AggregationTemporality {
+      get
+    }
     public static func == (lhs: OpenTelemetrySdk.StableMetricData.Data, rhs: OpenTelemetrySdk.StableMetricData.Data) -> Swift.Bool
     @objc deinit
   }
   public static func == (lhs: OpenTelemetrySdk.StableMetricData, rhs: OpenTelemetrySdk.StableMetricData) -> Swift.Bool
 }
 @_hasMissingDesignatedInitializers public class StableHistogramData : OpenTelemetrySdk.StableMetricData.Data {
-  public var aggregationTemporality: OpenTelemetrySdk.AggregationTemporality {
-    get
-  }
   @objc deinit
 }
-@_hasMissingDesignatedInitializers public class StableExponentialHistogramData : OpenTelemetrySdk.StableMetricData.Data {
-  public var aggregationTemporality: OpenTelemetrySdk.AggregationTemporality {
-    get
-  }
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class StableExponentialHistogramData : OpenTelemetrySdk.StableMetricData.Data {
   @objc deinit
 }
-@_hasMissingDesignatedInitializers public class StableGaugeData : OpenTelemetrySdk.StableMetricData.Data {
-  public var aggregationTemporality: OpenTelemetrySdk.AggregationTemporality {
-    get
-  }
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class StableGaugeData : OpenTelemetrySdk.StableMetricData.Data {
   @objc deinit
 }
-@_hasMissingDesignatedInitializers public class StableSumData : OpenTelemetrySdk.StableMetricData.Data {
-  public var aggregationTemporality: OpenTelemetrySdk.AggregationTemporality {
-    get
-  }
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class StableSumData : OpenTelemetrySdk.StableMetricData.Data {
   @objc deinit
 }
-@_hasMissingDesignatedInitializers public class StableSummaryData : OpenTelemetrySdk.StableMetricData.Data {
-  public var aggregationTemporality: OpenTelemetrySdk.AggregationTemporality {
-    get
-  }
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class StableSummaryData : OpenTelemetrySdk.StableMetricData.Data {
   @objc deinit
 }
 @_hasMissingDesignatedInitializers public class DoubleCounterMeterBuilderSdk : OpenTelemetryApi.DoubleCounterBuilder {
@@ -988,6 +990,7 @@ public struct MetricDescriptor : Swift.Hashable {
   }
 }
 public struct ObservableInstrumentSdk : OpenTelemetryApi.ObservableDoubleCounter, OpenTelemetryApi.ObservableLongCounter, OpenTelemetryApi.ObservableLongGauge, OpenTelemetryApi.ObservableLongUpDownCounter, OpenTelemetryApi.ObservableDoubleGauge, OpenTelemetryApi.ObservableDoubleUpDownCounter {
+  public func close()
 }
 @_hasMissingDesignatedInitializers public class RegisteredReader : Swift.Equatable, Swift.Hashable {
   final public let id: Swift.Int32
@@ -1221,6 +1224,10 @@ public enum ResourceAttributes : Swift.String {
   case awsLogGroupArns
   case awsLogStreamNames
   case awsLogStreamArns
+  case gcpCloudRunJobExecution
+  case gcpCloudRunJobTaskIndex
+  case gcpGceInstanceName
+  case gcpGceInstanceHostname
   case herokuReleaseCreationTimestamp
   case herokuReleaseCommit
   case herokuAppId
@@ -1229,6 +1236,10 @@ public enum ResourceAttributes : Swift.String {
   case containerRuntime
   case containerImageName
   case containerImageTag
+  case containerImageId
+  case containerCommand
+  case containerCommandLine
+  case containerCommandArgs
   case deploymentEnvironment
   case deviceId
   case deviceModelIdentifier
@@ -1246,6 +1257,7 @@ public enum ResourceAttributes : Swift.String {
   case hostImageId
   case hostImageVersion
   case k8sClusterName
+  case k8sClusterUid
   case k8sNodeName
   case k8sNodeUid
   case k8sNamespaceName
@@ -1281,9 +1293,9 @@ public enum ResourceAttributes : Swift.String {
   case processRuntimeVersion
   case processRuntimeDescription
   case serviceName
+  case serviceVersion
   case serviceNamespace
   case serviceInstanceId
-  case serviceVersion
   case telemetrySdkName
   case telemetrySdkLanguage
   case telemetrySdkVersion
@@ -1325,6 +1337,7 @@ public enum ResourceAttributes : Swift.String {
     public static let azureFunctions: OpenTelemetrySdk.ResourceAttributes.CloudPlatformValues
     public static let azureAppService: OpenTelemetrySdk.ResourceAttributes.CloudPlatformValues
     public static let azureOpenshift: OpenTelemetrySdk.ResourceAttributes.CloudPlatformValues
+    public static let gcpBareMetalSolution: OpenTelemetrySdk.ResourceAttributes.CloudPlatformValues
     public static let gcpComputeEngine: OpenTelemetrySdk.ResourceAttributes.CloudPlatformValues
     public static let gcpCloudRun: OpenTelemetrySdk.ResourceAttributes.CloudPlatformValues
     public static let gcpKubernetesEngine: OpenTelemetrySdk.ResourceAttributes.CloudPlatformValues
@@ -1390,8 +1403,9 @@ public enum ResourceAttributes : Swift.String {
     public static let php: OpenTelemetrySdk.ResourceAttributes.TelemetrySdkLanguageValues
     public static let python: OpenTelemetrySdk.ResourceAttributes.TelemetrySdkLanguageValues
     public static let ruby: OpenTelemetrySdk.ResourceAttributes.TelemetrySdkLanguageValues
-    public static let webjs: OpenTelemetrySdk.ResourceAttributes.TelemetrySdkLanguageValues
+    public static let rust: OpenTelemetrySdk.ResourceAttributes.TelemetrySdkLanguageValues
     public static let swift: OpenTelemetrySdk.ResourceAttributes.TelemetrySdkLanguageValues
+    public static let webjs: OpenTelemetrySdk.ResourceAttributes.TelemetrySdkLanguageValues
     public init(_ customValue: Swift.String)
     public var description: Swift.String {
       get
@@ -1593,16 +1607,21 @@ public func == (lhs: OpenTelemetrySdk.SpanData.Link, rhs: OpenTelemetrySdk.SpanD
 public func == (lhs: [OpenTelemetrySdk.SpanData.Link], rhs: [OpenTelemetrySdk.SpanData.Link]) -> Swift.Bool
 public class MultiSpanExporter : OpenTelemetrySdk.SpanExporter {
   public init(spanExporters: [OpenTelemetrySdk.SpanExporter])
-  public func export(spans: [OpenTelemetrySdk.SpanData]) -> OpenTelemetrySdk.SpanExporterResultCode
-  public func flush() -> OpenTelemetrySdk.SpanExporterResultCode
-  public func shutdown()
+  public func export(spans: [OpenTelemetrySdk.SpanData], explicitTimeout: Foundation.TimeInterval? = nil) -> OpenTelemetrySdk.SpanExporterResultCode
+  public func flush(explicitTimeout: Foundation.TimeInterval? = nil) -> OpenTelemetrySdk.SpanExporterResultCode
+  public func shutdown(explicitTimeout: Foundation.TimeInterval? = nil)
   @objc deinit
 }
 public protocol SpanExporter : AnyObject {
   @discardableResult
-  func export(spans: [OpenTelemetrySdk.SpanData]) -> OpenTelemetrySdk.SpanExporterResultCode
-  func flush() -> OpenTelemetrySdk.SpanExporterResultCode
-  func shutdown()
+  func export(spans: [OpenTelemetrySdk.SpanData], explicitTimeout: Foundation.TimeInterval?) -> OpenTelemetrySdk.SpanExporterResultCode
+  func flush(explicitTimeout: Foundation.TimeInterval?) -> OpenTelemetrySdk.SpanExporterResultCode
+  func shutdown(explicitTimeout: Foundation.TimeInterval?)
+}
+extension OpenTelemetrySdk.SpanExporter {
+  public func export(spans: [OpenTelemetrySdk.SpanData]) -> OpenTelemetrySdk.SpanExporterResultCode
+  public func flush() -> OpenTelemetrySdk.SpanExporterResultCode
+  public func shutdown()
 }
 public enum SpanExporterResultCode {
   case success
@@ -1766,7 +1785,7 @@ public protocol SpanProcessor {
   var isEndRequired: Swift.Bool { get }
   func onStart(parentContext: OpenTelemetryApi.SpanContext?, span: OpenTelemetrySdk.ReadableSpan)
   mutating func onEnd(span: OpenTelemetrySdk.ReadableSpan)
-  mutating func shutdown()
+  mutating func shutdown(explicitTimeout: Foundation.TimeInterval?)
   func forceFlush(timeout: Foundation.TimeInterval?)
 }
 public struct BatchSpanProcessor : OpenTelemetrySdk.SpanProcessor {
@@ -1775,7 +1794,7 @@ public struct BatchSpanProcessor : OpenTelemetrySdk.SpanProcessor {
   public let isEndRequired: Swift.Bool
   public func onStart(parentContext: OpenTelemetryApi.SpanContext?, span: OpenTelemetrySdk.ReadableSpan)
   public func onEnd(span: OpenTelemetrySdk.ReadableSpan)
-  public func shutdown()
+  public func shutdown(explicitTimeout: Foundation.TimeInterval? = nil)
   public func forceFlush(timeout: Foundation.TimeInterval? = nil)
 }
 public struct MultiSpanProcessor : OpenTelemetrySdk.SpanProcessor {
@@ -1788,7 +1807,7 @@ public struct MultiSpanProcessor : OpenTelemetrySdk.SpanProcessor {
   }
   public func onStart(parentContext: OpenTelemetryApi.SpanContext?, span: OpenTelemetrySdk.ReadableSpan)
   public func onEnd(span: OpenTelemetrySdk.ReadableSpan)
-  public func shutdown()
+  public func shutdown(explicitTimeout: Foundation.TimeInterval? = nil)
   public func forceFlush(timeout: Foundation.TimeInterval? = nil)
 }
 public struct SimpleSpanProcessor : OpenTelemetrySdk.SpanProcessor {
@@ -1796,7 +1815,7 @@ public struct SimpleSpanProcessor : OpenTelemetrySdk.SpanProcessor {
   public let isEndRequired: Swift.Bool
   public func onStart(parentContext: OpenTelemetryApi.SpanContext?, span: OpenTelemetrySdk.ReadableSpan)
   public mutating func onEnd(span: OpenTelemetrySdk.ReadableSpan)
-  public func shutdown()
+  public func shutdown(explicitTimeout: Foundation.TimeInterval? = nil)
   public func forceFlush(timeout: Foundation.TimeInterval? = nil)
   public init(spanExporter: OpenTelemetrySdk.SpanExporter)
   public func reportingOnlySampled(sampled: Swift.Bool) -> OpenTelemetrySdk.SimpleSpanProcessor
@@ -1855,6 +1874,9 @@ public class TracerProviderSdk : OpenTelemetryApi.TracerProvider {
   final public let instrumentationScopeInfo: OpenTelemetrySdk.InstrumentationScopeInfo
   public func spanBuilder(spanName: Swift.String) -> OpenTelemetryApi.SpanBuilder
   @objc deinit
+}
+extension OpenTelemetrySdk.Resource {
+  public static let OTEL_SWIFT_SDK_VERSION: Swift.String
 }
 extension OpenTelemetrySdk.ExportResult : Swift.Equatable {}
 extension OpenTelemetrySdk.ExportResult : Swift.Hashable {}

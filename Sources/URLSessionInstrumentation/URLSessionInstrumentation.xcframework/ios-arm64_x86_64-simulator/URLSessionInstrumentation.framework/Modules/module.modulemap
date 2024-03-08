@@ -1,4 +1,0 @@
-framework module URLSessionInstrumentation {
-  header "URLSessionInstrumentation-Swift.h"
-  requires objc
-}

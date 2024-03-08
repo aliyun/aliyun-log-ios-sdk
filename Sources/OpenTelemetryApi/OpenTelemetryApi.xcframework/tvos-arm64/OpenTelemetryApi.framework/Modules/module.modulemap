@@ -1,4 +1,0 @@
-framework module OpenTelemetryApi {
-  header "OpenTelemetryApi-Swift.h"
-  requires objc
-}

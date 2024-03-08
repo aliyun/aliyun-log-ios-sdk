@@ -242,7 +242,7 @@ public protocol LogRecordBuilder {
   func setObservedTimestamp(_ observed: Foundation.Date) -> Self
   func setSpanContext(_ context: OpenTelemetryApi.SpanContext) -> Self
   func setSeverity(_ severity: OpenTelemetryApi.Severity) -> Self
-  func setBody(_ body: Swift.String) -> Self
+  func setBody(_ body: OpenTelemetryApi.AttributeValue) -> Self
   func setAttributes(_ attributes: [Swift.String : OpenTelemetryApi.AttributeValue]) -> Self
   func emit()
 }
@@ -563,24 +563,30 @@ public protocol MeterBuilder : AnyObject {
   func build() -> OpenTelemetryApi.StableMeter
 }
 public protocol ObservableDoubleCounter {
+  func close()
 }
 public protocol ObservableDoubleGauge {
+  func close()
 }
 public protocol ObservableDoubleMeasurement {
   func record(value: Swift.Double)
   func record(value: Swift.Double, attributes: [Swift.String : OpenTelemetryApi.AttributeValue])
 }
 public protocol ObservableDoubleUpDownCounter {
+  func close()
 }
 public protocol ObservableLongCounter {
+  func close()
 }
 public protocol ObservableLongGauge {
+  func close()
 }
 public protocol ObservableLongMeasurement {
   func record(value: Swift.Int)
   func record(value: Swift.Int, attributes: [Swift.String : OpenTelemetryApi.AttributeValue])
 }
 public protocol ObservableLongUpDownCounter {
+  func close()
 }
 public protocol StableMeter {
   func counterBuilder(name: Swift.String) -> OpenTelemetryApi.LongCounterBuilder
@@ -683,25 +689,63 @@ public struct W3CTraceContextPropagator : OpenTelemetryApi.TextMapPropagator {
   public func extract<G>(carrier: [Swift.String : Swift.String], getter: G) -> OpenTelemetryApi.SpanContext? where G : OpenTelemetryApi.Getter
 }
 public enum SemanticAttributes : Swift.String {
+  case clientAddress
+  case clientPort
+  case clientSocketAddress
+  case clientSocketPort
+  case httpMethod
+  case httpStatusCode
+  case httpScheme
+  case httpUrl
+  case httpTarget
+  case httpRequestContentLength
+  case httpResponseContentLength
+  case netSockPeerName
+  case netSockPeerAddr
+  case netSockPeerPort
+  case netPeerName
+  case netPeerPort
+  case netHostName
+  case netHostPort
+  case netSockHostAddr
+  case netSockHostPort
+  case netTransport
+  case netProtocolName
+  case netProtocolVersion
+  case netSockFamily
+  case destinationDomain
+  case destinationAddress
+  case destinationPort
   case exceptionType
   case exceptionMessage
   case exceptionStacktrace
-  case httpMethod
-  case httpStatusCode
-  case netProtocolName
-  case netProtocolVersion
-  case netPeerName
-  case netPeerPort
-  case httpScheme
+  case httpRequestMethod
+  case httpResponseStatusCode
+  case networkProtocolName
+  case networkProtocolVersion
+  case serverAddress
+  case serverPort
   case httpRoute
-  case netHostName
-  case netHostPort
+  case urlScheme
   case eventName
   case eventDomain
   case logRecordUid
   case featureFlagKey
   case featureFlagProviderName
   case featureFlagVariant
+  case logIostream
+  case logFileName
+  case logFilePath
+  case logFileNameResolved
+  case logFilePathResolved
+  case serverSocketAddress
+  case pool
+  case type
+  case serverSocketDomain
+  case serverSocketPort
+  case sourceDomain
+  case sourceAddress
+  case sourcePort
   case awsLambdaInvokedArn
   case cloudeventsEventId
   case cloudeventsEventSource
@@ -716,11 +760,8 @@ public enum SemanticAttributes : Swift.String {
   case dbName
   case dbStatement
   case dbOperation
-  case netSockPeerAddr
-  case netSockPeerPort
-  case netSockFamily
-  case netSockPeerName
-  case netTransport
+  case networkTransport
+  case networkType
   case dbMssqlInstanceName
   case dbCassandraPageSize
   case dbCassandraConsistencyLevel
@@ -731,6 +772,7 @@ public enum SemanticAttributes : Swift.String {
   case dbCassandraCoordinatorDc
   case dbRedisDatabaseIndex
   case dbMongodbCollection
+  case urlFull
   case dbSqlTable
   case dbCosmosdbClientId
   case dbCosmosdbOperationType
@@ -750,13 +792,16 @@ public enum SemanticAttributes : Swift.String {
   case faasDocumentOperation
   case faasDocumentTime
   case faasDocumentName
-  case httpTarget
-  case httpClientIp
-  case netSockHostAddr
-  case netSockHostPort
+  case urlPath
+  case urlQuery
   case messagingSystem
   case messagingOperation
   case messagingBatchMessageCount
+  case messagingClientId
+  case messagingDestinationName
+  case messagingDestinationTemplate
+  case messagingDestinationTemporary
+  case messagingDestinationAnonymous
   case messagingMessageId
   case messagingMessageConversationId
   case messagingMessagePayloadSizeBytes
@@ -767,12 +812,12 @@ public enum SemanticAttributes : Swift.String {
   case faasInvokedName
   case faasInvokedProvider
   case faasInvokedRegion
-  case netHostConnectionType
-  case netHostConnectionSubtype
-  case netHostCarrierName
-  case netHostCarrierMcc
-  case netHostCarrierMnc
-  case netHostCarrierIcc
+  case networkConnectionType
+  case networkConnectionSubtype
+  case networkCarrierName
+  case networkCarrierMcc
+  case networkCarrierMnc
+  case networkCarrierIcc
   case peerService
   case enduserId
   case enduserRole
@@ -784,9 +829,9 @@ public enum SemanticAttributes : Swift.String {
   case codeFilepath
   case codeLineno
   case codeColumn
-  case httpRequestContentLength
-  case httpResponseContentLength
-  case httpUrl
+  case httpRequestMethodOriginal
+  case httpRequestBodySize
+  case httpResponseBodySize
   case httpResendCount
   case rpcSystem
   case rpcService
@@ -823,26 +868,14 @@ public enum SemanticAttributes : Swift.String {
   case graphqlOperationName
   case graphqlOperationType
   case graphqlDocument
-  case messagingDestinationName
-  case messagingSourceName
-  case messagingDestinationTemplate
-  case messagingDestinationTemporary
-  case messagingDestinationAnonymous
-  case messagingSourceTemplate
-  case messagingSourceTemporary
-  case messagingSourceAnonymous
-  case messagingConsumerId
   case messagingRabbitmqDestinationRoutingKey
   case messagingKafkaMessageKey
   case messagingKafkaConsumerGroup
-  case messagingKafkaClientId
   case messagingKafkaDestinationPartition
-  case messagingKafkaSourcePartition
   case messagingKafkaMessageOffset
   case messagingKafkaMessageTombstone
   case messagingRocketmqNamespace
   case messagingRocketmqClientGroup
-  case messagingRocketmqClientId
   case messagingRocketmqMessageDeliveryTimestamp
   case messagingRocketmqMessageDelayTimeLevel
   case messagingRocketmqMessageGroup
@@ -861,13 +894,68 @@ public enum SemanticAttributes : Swift.String {
   case messageUncompressedSize
   case rpcConnectRpcErrorCode
   case exceptionEscaped
+  case urlFragment
   case exception
+  public struct NetTransportValues : Swift.CustomStringConvertible {
+    public static let ipTcp: OpenTelemetryApi.SemanticAttributes.NetTransportValues
+    public static let ipUdp: OpenTelemetryApi.SemanticAttributes.NetTransportValues
+    public static let pipe: OpenTelemetryApi.SemanticAttributes.NetTransportValues
+    public static let inproc: OpenTelemetryApi.SemanticAttributes.NetTransportValues
+    public static let other: OpenTelemetryApi.SemanticAttributes.NetTransportValues
+    public init(_ customValue: Swift.String)
+    public var description: Swift.String {
+      get
+    }
+  }
+  public struct NetSockFamilyValues : Swift.CustomStringConvertible {
+    public static let inet: OpenTelemetryApi.SemanticAttributes.NetSockFamilyValues
+    public static let inet6: OpenTelemetryApi.SemanticAttributes.NetSockFamilyValues
+    public static let unix: OpenTelemetryApi.SemanticAttributes.NetSockFamilyValues
+    public init(_ customValue: Swift.String)
+    public var description: Swift.String {
+      get
+    }
+  }
+  public struct HttpRequestMethodValues : Swift.CustomStringConvertible {
+    public static let connect: OpenTelemetryApi.SemanticAttributes.HttpRequestMethodValues
+    public static let delete: OpenTelemetryApi.SemanticAttributes.HttpRequestMethodValues
+    public static let get: OpenTelemetryApi.SemanticAttributes.HttpRequestMethodValues
+    public static let head: OpenTelemetryApi.SemanticAttributes.HttpRequestMethodValues
+    public static let options: OpenTelemetryApi.SemanticAttributes.HttpRequestMethodValues
+    public static let patch: OpenTelemetryApi.SemanticAttributes.HttpRequestMethodValues
+    public static let post: OpenTelemetryApi.SemanticAttributes.HttpRequestMethodValues
+    public static let put: OpenTelemetryApi.SemanticAttributes.HttpRequestMethodValues
+    public static let trace: OpenTelemetryApi.SemanticAttributes.HttpRequestMethodValues
+    public static let other: OpenTelemetryApi.SemanticAttributes.HttpRequestMethodValues
+    public init(_ customValue: Swift.String)
+    public var description: Swift.String {
+      get
+    }
+  }
   public struct EventDomainValues : Swift.CustomStringConvertible {
     public static let browser: OpenTelemetryApi.SemanticAttributes.EventDomainValues
     public static let device: OpenTelemetryApi.SemanticAttributes.EventDomainValues
     public static let k8s: OpenTelemetryApi.SemanticAttributes.EventDomainValues
     public init(_ customValue: Swift.String)
     public var description: Swift.String {
+      get
+    }
+  }
+  public enum LogIostreamValues : Swift.String {
+    case stdout
+    case stderr
+    public init?(rawValue: Swift.String)
+    public typealias RawValue = Swift.String
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  public enum TypeValues : Swift.String {
+    case heap
+    case non_heap
+    public init?(rawValue: Swift.String)
+    public typealias RawValue = Swift.String
+    public var rawValue: Swift.String {
       get
     }
   }
@@ -938,21 +1026,19 @@ public enum SemanticAttributes : Swift.String {
       get
     }
   }
-  public struct NetSockFamilyValues : Swift.CustomStringConvertible {
-    public static let inet: OpenTelemetryApi.SemanticAttributes.NetSockFamilyValues
-    public static let inet6: OpenTelemetryApi.SemanticAttributes.NetSockFamilyValues
-    public static let unix: OpenTelemetryApi.SemanticAttributes.NetSockFamilyValues
+  public struct NetworkTransportValues : Swift.CustomStringConvertible {
+    public static let tcp: OpenTelemetryApi.SemanticAttributes.NetworkTransportValues
+    public static let udp: OpenTelemetryApi.SemanticAttributes.NetworkTransportValues
+    public static let pipe: OpenTelemetryApi.SemanticAttributes.NetworkTransportValues
+    public static let unix: OpenTelemetryApi.SemanticAttributes.NetworkTransportValues
     public init(_ customValue: Swift.String)
     public var description: Swift.String {
       get
     }
   }
-  public struct NetTransportValues : Swift.CustomStringConvertible {
-    public static let ipTcp: OpenTelemetryApi.SemanticAttributes.NetTransportValues
-    public static let ipUdp: OpenTelemetryApi.SemanticAttributes.NetTransportValues
-    public static let pipe: OpenTelemetryApi.SemanticAttributes.NetTransportValues
-    public static let inproc: OpenTelemetryApi.SemanticAttributes.NetTransportValues
-    public static let other: OpenTelemetryApi.SemanticAttributes.NetTransportValues
+  public struct NetworkTypeValues : Swift.CustomStringConvertible {
+    public static let ipv4: OpenTelemetryApi.SemanticAttributes.NetworkTypeValues
+    public static let ipv6: OpenTelemetryApi.SemanticAttributes.NetworkTypeValues
     public init(_ customValue: Swift.String)
     public var description: Swift.String {
       get
@@ -1056,39 +1142,39 @@ public enum SemanticAttributes : Swift.String {
       get
     }
   }
-  public struct NetHostConnectionTypeValues : Swift.CustomStringConvertible {
-    public static let wifi: OpenTelemetryApi.SemanticAttributes.NetHostConnectionTypeValues
-    public static let wired: OpenTelemetryApi.SemanticAttributes.NetHostConnectionTypeValues
-    public static let cell: OpenTelemetryApi.SemanticAttributes.NetHostConnectionTypeValues
-    public static let unavailable: OpenTelemetryApi.SemanticAttributes.NetHostConnectionTypeValues
-    public static let unknown: OpenTelemetryApi.SemanticAttributes.NetHostConnectionTypeValues
+  public struct NetworkConnectionTypeValues : Swift.CustomStringConvertible {
+    public static let wifi: OpenTelemetryApi.SemanticAttributes.NetworkConnectionTypeValues
+    public static let wired: OpenTelemetryApi.SemanticAttributes.NetworkConnectionTypeValues
+    public static let cell: OpenTelemetryApi.SemanticAttributes.NetworkConnectionTypeValues
+    public static let unavailable: OpenTelemetryApi.SemanticAttributes.NetworkConnectionTypeValues
+    public static let unknown: OpenTelemetryApi.SemanticAttributes.NetworkConnectionTypeValues
     public init(_ customValue: Swift.String)
     public var description: Swift.String {
       get
     }
   }
-  public struct NetHostConnectionSubtypeValues : Swift.CustomStringConvertible {
-    public static let gprs: OpenTelemetryApi.SemanticAttributes.NetHostConnectionSubtypeValues
-    public static let edge: OpenTelemetryApi.SemanticAttributes.NetHostConnectionSubtypeValues
-    public static let umts: OpenTelemetryApi.SemanticAttributes.NetHostConnectionSubtypeValues
-    public static let cdma: OpenTelemetryApi.SemanticAttributes.NetHostConnectionSubtypeValues
-    public static let evdo0: OpenTelemetryApi.SemanticAttributes.NetHostConnectionSubtypeValues
-    public static let evdoA: OpenTelemetryApi.SemanticAttributes.NetHostConnectionSubtypeValues
-    public static let cdma20001xrtt: OpenTelemetryApi.SemanticAttributes.NetHostConnectionSubtypeValues
-    public static let hsdpa: OpenTelemetryApi.SemanticAttributes.NetHostConnectionSubtypeValues
-    public static let hsupa: OpenTelemetryApi.SemanticAttributes.NetHostConnectionSubtypeValues
-    public static let hspa: OpenTelemetryApi.SemanticAttributes.NetHostConnectionSubtypeValues
-    public static let iden: OpenTelemetryApi.SemanticAttributes.NetHostConnectionSubtypeValues
-    public static let evdoB: OpenTelemetryApi.SemanticAttributes.NetHostConnectionSubtypeValues
-    public static let lte: OpenTelemetryApi.SemanticAttributes.NetHostConnectionSubtypeValues
-    public static let ehrpd: OpenTelemetryApi.SemanticAttributes.NetHostConnectionSubtypeValues
-    public static let hspap: OpenTelemetryApi.SemanticAttributes.NetHostConnectionSubtypeValues
-    public static let gsm: OpenTelemetryApi.SemanticAttributes.NetHostConnectionSubtypeValues
-    public static let tdScdma: OpenTelemetryApi.SemanticAttributes.NetHostConnectionSubtypeValues
-    public static let iwlan: OpenTelemetryApi.SemanticAttributes.NetHostConnectionSubtypeValues
-    public static let nr: OpenTelemetryApi.SemanticAttributes.NetHostConnectionSubtypeValues
-    public static let nrnsa: OpenTelemetryApi.SemanticAttributes.NetHostConnectionSubtypeValues
-    public static let lteCa: OpenTelemetryApi.SemanticAttributes.NetHostConnectionSubtypeValues
+  public struct NetworkConnectionSubtypeValues : Swift.CustomStringConvertible {
+    public static let gprs: OpenTelemetryApi.SemanticAttributes.NetworkConnectionSubtypeValues
+    public static let edge: OpenTelemetryApi.SemanticAttributes.NetworkConnectionSubtypeValues
+    public static let umts: OpenTelemetryApi.SemanticAttributes.NetworkConnectionSubtypeValues
+    public static let cdma: OpenTelemetryApi.SemanticAttributes.NetworkConnectionSubtypeValues
+    public static let evdo0: OpenTelemetryApi.SemanticAttributes.NetworkConnectionSubtypeValues
+    public static let evdoA: OpenTelemetryApi.SemanticAttributes.NetworkConnectionSubtypeValues
+    public static let cdma20001xrtt: OpenTelemetryApi.SemanticAttributes.NetworkConnectionSubtypeValues
+    public static let hsdpa: OpenTelemetryApi.SemanticAttributes.NetworkConnectionSubtypeValues
+    public static let hsupa: OpenTelemetryApi.SemanticAttributes.NetworkConnectionSubtypeValues
+    public static let hspa: OpenTelemetryApi.SemanticAttributes.NetworkConnectionSubtypeValues
+    public static let iden: OpenTelemetryApi.SemanticAttributes.NetworkConnectionSubtypeValues
+    public static let evdoB: OpenTelemetryApi.SemanticAttributes.NetworkConnectionSubtypeValues
+    public static let lte: OpenTelemetryApi.SemanticAttributes.NetworkConnectionSubtypeValues
+    public static let ehrpd: OpenTelemetryApi.SemanticAttributes.NetworkConnectionSubtypeValues
+    public static let hspap: OpenTelemetryApi.SemanticAttributes.NetworkConnectionSubtypeValues
+    public static let gsm: OpenTelemetryApi.SemanticAttributes.NetworkConnectionSubtypeValues
+    public static let tdScdma: OpenTelemetryApi.SemanticAttributes.NetworkConnectionSubtypeValues
+    public static let iwlan: OpenTelemetryApi.SemanticAttributes.NetworkConnectionSubtypeValues
+    public static let nr: OpenTelemetryApi.SemanticAttributes.NetworkConnectionSubtypeValues
+    public static let nrnsa: OpenTelemetryApi.SemanticAttributes.NetworkConnectionSubtypeValues
+    public static let lteCa: OpenTelemetryApi.SemanticAttributes.NetworkConnectionSubtypeValues
     public init(_ customValue: Swift.String)
     public var description: Swift.String {
       get
@@ -1480,6 +1566,12 @@ extension OpenTelemetryApi.Severity : Swift.RawRepresentable {}
 extension OpenTelemetryApi.SemanticAttributes : Swift.Equatable {}
 extension OpenTelemetryApi.SemanticAttributes : Swift.Hashable {}
 extension OpenTelemetryApi.SemanticAttributes : Swift.RawRepresentable {}
+extension OpenTelemetryApi.SemanticAttributes.LogIostreamValues : Swift.Equatable {}
+extension OpenTelemetryApi.SemanticAttributes.LogIostreamValues : Swift.Hashable {}
+extension OpenTelemetryApi.SemanticAttributes.LogIostreamValues : Swift.RawRepresentable {}
+extension OpenTelemetryApi.SemanticAttributes.TypeValues : Swift.Equatable {}
+extension OpenTelemetryApi.SemanticAttributes.TypeValues : Swift.Hashable {}
+extension OpenTelemetryApi.SemanticAttributes.TypeValues : Swift.RawRepresentable {}
 extension OpenTelemetryApi.SemanticAttributes.OpentracingRefTypeValues : Swift.Equatable {}
 extension OpenTelemetryApi.SemanticAttributes.OpentracingRefTypeValues : Swift.Hashable {}
 extension OpenTelemetryApi.SemanticAttributes.OpentracingRefTypeValues : Swift.RawRepresentable {}
