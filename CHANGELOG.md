@@ -1,5 +1,10 @@
 # Changelog
 
+## 4.3.0
+### Features
+
+- OpenTelemetry-Swift upgrade to 1.9.1
+
 ## 4.2.5
 ### Features
 
