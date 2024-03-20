@@ -1,5 +1,10 @@
 # Changelog
 
+## 4.3.1
+### Fixes
+
+- Fix collected data types to privacy manifests
+
 ## 4.3.0
 ### Features
 
