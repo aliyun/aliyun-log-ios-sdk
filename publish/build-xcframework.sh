@@ -8,6 +8,9 @@ PLATFORM_COUNT=0
 
 ENABLE_DEBUG=0
 
+VERSION=$(cat ../VERSION)
+echo "current version: ${VERSION}"
+
 SCHEME="AliyunLogProducer"
 SCHEME_SHADOW="AliyunLogProducer"
 PROJECT="AliyunLogSDK.xcodeproj"
@@ -92,6 +95,10 @@ build_framework()
     # remove invalid info
     rm -rf ${dest}/PrivateHeaders
     rm -rf ${dest}/_CodeSignature
+    
+    # set framework version
+    /usr/libexec/PlistBuddy -c "Set CFBundleVersion $VERSION" ${dest}/Info.plist
+    /usr/libexec/PlistBuddy -c "Set CFBundleShortVersionString $VERSION" ${dest}/Info.plist
 
     echo "building ${SCHEME} for ${PLATFORM} end."
 }
