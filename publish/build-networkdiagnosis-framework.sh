@@ -1,4 +1,10 @@
 #!/bin/sh
+set -o pipefail
+set -e
+
+VERSION=$(cat ../VERSION)
+echo "current version: ${VERSION}"
+
 BIN_OUTPUT_DIRECTORY=`pwd`
 cd ..
 
@@ -23,6 +29,10 @@ cp -r iphoneos/${SCHEME}.framework ./
 
 lipo -remove arm64 ./iphonesimulator/${SCHEME}.framework/${SCHEME} -output ./iphonesimulator/${SCHEME}.framework/${SCHEME}
 lipo -create iphoneos/${SCHEME}.framework/${SCHEME} iphonesimulator/${SCHEME}.framework/${SCHEME} -output ${SCHEME}.framework/${SCHEME}
+
+# set framework version
+/usr/libexec/PlistBuddy -c "Set CFBundleVersion $VERSION" ${SCHEME}.framework/Info.plist
+/usr/libexec/PlistBuddy -c "Set CFBundleShortVersionString $VERSION" ${SCHEME}.framework/Info.plist
 
 rm -rf iphoneos
 rm -rf iphonesimulator
