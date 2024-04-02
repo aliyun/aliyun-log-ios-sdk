@@ -114,11 +114,19 @@
 
 -(char*)convertToChar:(NSString*)strtemp
 {
+//    NSUInteger len = [strtemp lengthOfBytesUsingEncoding:NSUTF8StringEncoding] + 1;
+//    if (len > 1000000) return strdup([strtemp UTF8String]);
+//    char cStr [len];
+//    [strtemp getCString:cStr maxLength:len encoding:NSUTF8StringEncoding];
+//    return strdup(cStr);
+
+
     NSUInteger len = [strtemp lengthOfBytesUsingEncoding:NSUTF8StringEncoding] + 1;
-    if (len > 1000000) return strdup([strtemp UTF8String]);
-    char cStr [len];
+    // the limit on stack size will cause crash
+    // https://github.com/CocoaLumberjack/CocoaLumberjack/issues/38
+    char* cStr = malloc(sizeof(char) * len);
     [strtemp getCString:cStr maxLength:len encoding:NSUTF8StringEncoding];
-    return strdup(cStr);
+    return cStr;
 }
 
 @end
