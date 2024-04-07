@@ -4,7 +4,7 @@
 
 Pod::Spec.new do |s|
     s.name             = 'AliyunLogCrashReporterV1'
-    s.version          = "4.3.3-beta.1"
+    s.version          = "4.3.3"
     s.summary          = 'aliyun log service ios crashreporter v1'
 
     s.description      = <<-DESC
