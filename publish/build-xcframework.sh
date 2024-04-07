@@ -54,10 +54,9 @@ build_framework()
 
     echo "building ${PLATFORM} for ${SCHEME}. generic_platform: ${generic_platform}, PLATFORM_WORKING_DIRECTORY: ${PLATFORM_WORKING_DIRECTORY}"
     # clean
-    xcodebuild OTHER_CFLAGS="-fembed-bitcode" clean -project ${PROJECT} -scheme ${SCHEME} -configuration Release
+    xcodebuild clean -project ${PROJECT} -scheme ${SCHEME} -configuration Release
     # archive
-    xcodebuild OTHER_CFLAGS="-fembed-bitcode" \
-        -project ${PROJECT} \
+    xcodebuild -project ${PROJECT} \
         -scheme ${SCHEME} \
         -configuration Release \
         -destination "${generic_platform}" \
@@ -96,9 +95,37 @@ build_framework()
     rm -rf ${dest}/PrivateHeaders
     rm -rf ${dest}/_CodeSignature
     
+    pushd ${dest}
+    export _version_=$VERSION
     # set framework version
-    /usr/libexec/PlistBuddy -c "Set CFBundleVersion $VERSION" ${dest}/Info.plist
-    /usr/libexec/PlistBuddy -c "Set CFBundleShortVersionString $VERSION" ${dest}/Info.plist
+    /usr/libexec/PlistBuddy -c "Set CFBundleVersion $VERSION" -c "Set CFBundleShortVersionString $VERSION" Info.plist
+    
+    # compatible for Xcode 15.3
+    # https://github.com/Azure/azure-spatial-anchors-samples/issues/407#issuecomment-1755051174
+    # Check if the MinimumOSVersion key exists in the Info.plist
+    if /usr/libexec/PlistBuddy -c "Print :MinimumOSVersion" Info.plist >/dev/null 2>&1; then
+      # Key exists, so update its value
+      /usr/libexec/PlistBuddy -c "Set :MinimumOSVersion 100.0" Info.plist
+    fi
+    
+    # compatible for xcprivacy
+    find . -name "*.bundle" -type d -exec sh -c '
+        for bundle in "$PWD/$@"; do
+            echo "bundle path: $bundle"
+            find "$bundle" -name "Info.plist" -exec /usr/libexec/PlistBuddy \
+                -c "Set :CFBundleVersion $_version_" \
+                -c "Set :CFBundleShortVersionString $_version_" \
+                -c "Delete :CFBundleExecutable $_version_" "{}" \;
+                
+            for file in "$bundle"/*; do
+                if [[ "$file" != */Info.plist ]] && [[ "$file" != */PrivacyInfo.xcprivacy ]]; then
+                    echo "deleting file: $file"
+                    rm -rf "$file"
+                fi
+            done
+        done
+    ' sh {} +
+    popd
 
     echo "building ${SCHEME} for ${PLATFORM} end."
 }

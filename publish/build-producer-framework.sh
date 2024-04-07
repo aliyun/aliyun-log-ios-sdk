@@ -35,6 +35,7 @@ lipo -create iphoneos/${SCHEME}.framework/${SCHEME} iphonesimulator/${SCHEME}.fr
 # set framework version
 /usr/libexec/PlistBuddy -c "Set CFBundleVersion $VERSION" ${SCHEME}.framework/Info.plist
 /usr/libexec/PlistBuddy -c "Set CFBundleShortVersionString $VERSION" ${SCHEME}.framework/Info.plist
+/usr/libexec/PlistBuddy -c "Set :MinimumOSVersion 100.0" ${SCHEME}.framework/Info.plist
 
 rm -rf iphoneos
 rm -rf iphonesimulator
