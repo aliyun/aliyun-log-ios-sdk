@@ -14,8 +14,8 @@ source 'https://github.com/CocoaPods/Specs.git'
 #source 'https://github.com/aliyun-sls/Specs.git'
 source 'https://gitee.com/aliyun-sls/Specs.git'
 
-ALIYUN_SLS_VERSION = '4.2.5'
-OTEL_VERSION = '1.1.1'
+ALIYUN_SLS_VERSION = '4.3.2'
+OTEL_VERSION = '1.2.0-dev.1'
 
 USE_LOCAL_PODS = true
 
@@ -34,13 +34,16 @@ def all_example_pods
     pod 'AliyunLogOtlpExporter', :path => './'
     pod 'AliyunLogCrashReporter', :path => './'
     pod 'AliyunLogNetworkDiagnosis', :path => './'
+    pod 'AliyunLogURLSessionInstrumentation', :path => './'
+    pod 'AliyunLogWKWebViewInstrumentation', :path => './'
   else
-    
     pod 'AliyunLogProducer', ALIYUN_SLS_VERSION
     pod 'AliyunLogOTelCommon', ALIYUN_SLS_VERSION
     pod 'AliyunLogOtlpExporter', ALIYUN_SLS_VERSION
     pod 'AliyunLogCrashReporter', ALIYUN_SLS_VERSION
     pod 'AliyunLogNetworkDiagnosis', ALIYUN_SLS_VERSION
+    pod 'AliyunLogURLSessionInstrumentation', ALIYUN_SLS_VERSION
+    pod 'AliyunLogWKWebViewInstrumentation', ALIYUN_SLS_VERSION
   end
 end
 
@@ -64,13 +67,16 @@ def all_test_pods
     pod 'AliyunLogOtlpExporter', :path => './'
     pod 'AliyunLogCrashReporter', :path => './'
     pod 'AliyunLogNetworkDiagnosis', :path => './'
+    pod 'AliyunLogURLSessionInstrumentation', :path => './'
+    pod 'AliyunLogWKWebViewInstrumentation', :path => './'
   else
-
     pod 'AliyunLogProducer', ALIYUN_SLS_VERSION
     pod 'AliyunLogOTelCommon', ALIYUN_SLS_VERSION
     pod 'AliyunLogOtlpExporter', ALIYUN_SLS_VERSION
     pod 'AliyunLogCrashReporter', ALIYUN_SLS_VERSION
     pod 'AliyunLogNetworkDiagnosis', ALIYUN_SLS_VERSION
+    pod 'AliyunLogURLSessionInstrumentation', ALIYUN_SLS_VERSION
+    pod 'AliyunLogWKWebViewInstrumentation', ALIYUN_SLS_VERSION
   end
 end
 
@@ -84,6 +90,7 @@ target 'iOSExamples' do |t|
   all_example_pods
 end
 
+# NetworkDiagnosis Example Project
 target 'NetworkDiagnosisExamples' do |t|
   project 'Examples/NetworkDiagnosisExamples/NetworkDiagnosisExamples'
   platform :ios, '10.0'
@@ -93,6 +100,24 @@ target 'NetworkDiagnosisExamples' do |t|
     pod 'AliyunLogNetworkDiagnosis', :path => './'
   else
     pod 'AliyunLogProducer', ALIYUN_SLS_VERSION
+    pod 'AliyunLogNetworkDiagnosis', ALIYUN_SLS_VERSION
+  end
+end
+
+# NetowrkDiagnosis With Trace Swift Example Project
+target 'NetworkTraceSwiftExamples' do |t|
+  project 'Examples/NetworkTraceSwiftExamples/NetworkTraceSwiftExamples'
+  platform :ios, '10.0'
+  
+  if USE_LOCAL_PODS
+      pod 'AliyunLogProducer', :path => './'
+      pod 'AliyunLogOTelCommon/URLSessionInstrumentation', :path => './'
+      pod 'AliyunLogOtlpExporter', :path => './'
+      pod 'AliyunLogNetworkDiagnosis', :path => './'
+  else
+    pod 'AliyunLogProducer', ALIYUN_SLS_VERSION
+    pod 'AliyunLogOTelCommon', ALIYUN_SLS_VERSION
+    pod 'AliyunLogOtlpExporter', ALIYUN_SLS_VERSION
     pod 'AliyunLogNetworkDiagnosis', ALIYUN_SLS_VERSION
   end
 end
