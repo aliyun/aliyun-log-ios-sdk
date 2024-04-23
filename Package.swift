@@ -15,6 +15,7 @@ let package = Package(
         .library(name: "AliyunLogCore", targets: ["AliyunLogCore"]),
         .library(name: "AliyunLogTrace", targets: ["AliyunLogTrace"]),
         .library(name: "AliyunLogURLSessionInstrumentation", targets: ["AliyunLogURLSessionInstrumentation"]),
+        .library(name: "AliyunLogWKWebViewInstrumentation", targets: ["AliyunLogWKWebViewInstrumentation"]),
         .library(name: "AliyunLogCrashReporter", targets: ["AliyunLogCrashReporter"]),
         .library(name: "AliyunLogNetworkDiagnosis", targets: ["AliyunLogNetworkDiagnosis"]),
         .library(name: "AliyunLogOtlpExporter", targets: ["AliyunLogOtlpExporter"]),
@@ -96,12 +97,24 @@ let package = Package(
         ),
         .target(
             name: "AliyunLogURLSessionInstrumentation",
-            dependencies: ["AliyunLogTrace", "AliyunLogOTSwift", "AliyunLogOT"],
+            dependencies: [
+                .product(name: "URLSessionInstrumentation", package: "opentelemetry-swift"),
+                .product(name: "OpenTelemetryApi", package: "opentelemetry-swift")
+            ],
             path: "Sources/Instrumentation",
             sources: [
-                "URLSession/"
+                "AliyunLogURLSession/"
             ],
-            publicHeadersPath: "URLSession/include/"
+            publicHeadersPath: "AliyunLogURLSession/include/"
+        ),
+        .target(
+            name: "AliyunLogWKWebViewInstrumentation",
+            dependencies: [],
+            path: "Sources/Instrumentation",
+            sources: [
+                "WKWebView/"
+            ],
+            publicHeadersPath: "WKWebView/include/"
         ),
         .target(
             name: "AliyunLogCrashReporter",
