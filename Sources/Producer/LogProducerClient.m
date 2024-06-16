@@ -53,8 +53,11 @@
         return;
     }
     enable = NO;
+    
+    if (self->config && self->config->user_params) {
+        CFRelease(self->config->user_params);
+    }
     destroy_log_producer(self->producer);
-    CFRelease(self->config->user_params);
 }
 
 - (LogProducerResult)AddLog:(Log *) log
