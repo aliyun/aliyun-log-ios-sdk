@@ -18,7 +18,9 @@ import Foundation
 import OpenTelemetryApi
 import OpenTelemetrySdk
 import AliyunLogProducer
+#if canImport(AliyunLogOTelCommon)
 import AliyunLogOTelCommon
+#endif
 
 open class OtlpSLSSpanExporter: NSObject, SpanExporter {
     let jsonEncoder = JSONEncoder()

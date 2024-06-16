@@ -32,6 +32,11 @@
     #import "AliyunLogNetworkDiagnosis/AliyunLogNetworkDiagnosis-Swift.h"
 #endif
 
+#if __has_include("AliyunLogNetworkDiagnosisOne/AliyunLogNetworkDiagnosisOne-Swift.h")
+    #define SLS_NETWORK_SWIFT_FEATURE
+    #import "AliyunLogNetworkDiagnosisOne/AliyunLogNetworkDiagnosisOne-Swift.h"
+#endif
+
 static int DEFAULT_PING_SIZE = 64;
 static int DEFAULT_TIMEOUT = 2 * 1000;
 static int DEFAULT_MAX_TIMES = 10;

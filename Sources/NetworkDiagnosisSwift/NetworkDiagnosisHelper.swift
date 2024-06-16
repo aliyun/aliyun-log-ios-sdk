@@ -17,7 +17,9 @@
 import Foundation
 import OpenTelemetryApi
 import OpenTelemetrySdk
+#if canImport(AliyunLogOtlpExporter)
 import AliyunLogOtlpExporter
+#endif
 
 public class NetworkDiagnosisHelper : NSObject {
     static var endpoint: String?
