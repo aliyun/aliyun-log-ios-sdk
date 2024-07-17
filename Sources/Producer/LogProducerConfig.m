@@ -476,7 +476,7 @@ unsigned int time_func() {
 
 + (void)Debug
 {
-    aos_log_set_level(AOS_LOG_DEBUG);
+    aos_log_set_level(AOS_LOG_ALL);
 }
 
 

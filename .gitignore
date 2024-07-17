@@ -42,6 +42,7 @@ playground.xcworkspace
 
 # Swift Package Manager
 .build/
+.swiftpm
 Package.resolved
 
 # Carthage
