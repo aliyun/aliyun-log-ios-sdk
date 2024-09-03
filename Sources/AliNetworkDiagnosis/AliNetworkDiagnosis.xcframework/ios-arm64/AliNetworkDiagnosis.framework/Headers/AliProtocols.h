@@ -16,8 +16,11 @@ union common_sockaddr {
 };
 typedef union common_sockaddr sockaddr_any;
 
-static NSString * const CelluarNetworkInterface = @"pdp_ip0";
-static NSString * const WiFiNetworkInterface = @"en0";
+//static NSString * const CelluarNetworkInterface = @"pdp_ip0";
+static NSString * const CelluarNetworkInterfacePrefix = @"pdp_ip";
+//static NSString * const WiFiNetworkInterface = @"en0";
+static NSString * const WiFiNetworkInterfacePrefix = @"en";
+static NSString * const DefaultNetworkInterface = @"default";
 
 typedef enum ICMPv4Type {
     kICMPv4TypeEchoReply = 0, // 回显应答
