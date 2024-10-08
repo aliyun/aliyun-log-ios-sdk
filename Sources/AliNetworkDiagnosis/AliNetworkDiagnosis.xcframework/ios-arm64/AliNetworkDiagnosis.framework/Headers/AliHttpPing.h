@@ -65,6 +65,7 @@ typedef void (^AliHttpPingCompleteHandler)(id context, NSString *traceID, AliHtt
 @property AliHttpPingCompleteHandler complete;
 @property NSURLCredential* clientCredential;
 @property NSURLCredential* serverCredential;
+@property (nonatomic, strong) NSDictionary *headers;
 @property NSTimeInterval timeout;
 @property int downloadBodyLimitBytes;
 @property BOOL downloadHeaderOnly;
