@@ -15,13 +15,20 @@
 @property (readonly) NSString* ip;
 @property (readonly) NSString* traceID;
 @property (readonly) NSString* networkInterface;
-@property (readonly) NSTimeInterval maxTime;
-@property (readonly) NSTimeInterval minTime;
-@property (readonly) NSTimeInterval avgTime;
-@property (readonly) NSInteger loss;
-@property (readonly) NSInteger count;
-@property (readonly) NSTimeInterval totalTime;
-@property (readonly) NSTimeInterval stddev;
+@property NSTimeInterval maxTime;
+@property NSTimeInterval minTime;
+@property NSTimeInterval avgTime;
+@property NSInteger loss;
+@property NSInteger count;
+@property NSTimeInterval totalTime;
+@property NSTimeInterval stddev;
+@property NSTimeInterval plMaxTime;
+@property NSTimeInterval plMinTime;
+@property NSTimeInterval plAvgTime;
+@property NSInteger plLoss;
+@property NSInteger plCount;
+@property NSTimeInterval plTotalTime;
+@property NSTimeInterval plStddev;
 @property (nonatomic,strong) NSString* errMsg;
 @property (nonatomic,strong) NSString* content;
 - (NSString*)description;
@@ -36,6 +43,7 @@ typedef void (^AliTcpPingCombineCompleteHandler)(id context, NSString *traceID, 
 
 @property NSInteger timeout;
 @property NSInteger port;
+@property NSString* payload;
 @property NSInteger interval;
 @property AliTcpPingCompleteHandler complete;
 @property AliTcpPingCombineCompleteHandler combineComplete;

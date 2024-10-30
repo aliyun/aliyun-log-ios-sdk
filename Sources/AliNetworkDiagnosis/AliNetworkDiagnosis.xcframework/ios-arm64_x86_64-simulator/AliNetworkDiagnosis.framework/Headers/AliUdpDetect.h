@@ -9,9 +9,6 @@
 #import <AliNetworkDiagnosis/AliProtocols.h>
 #import <AliNetworkDiagnosis/AliDetectConfig.h>
 
-#define MAX_SEND_BUF_SIZE 2400
-#define MAX_RECV_BUF_SIZE 8000
-
 @interface AliUdpDetectResult : NSObject
 
 @property (readonly) NSInteger code;

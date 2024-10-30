@@ -9,6 +9,8 @@
 
 #define __APPLE_USE_RFC_3542 /* for IPv6 definitions on Apple platforms */
 
+typedef void (^AliTagDetectCompleteHandler)(id context, NSString *tag, NSString *result);
+
 union common_sockaddr {
     struct sockaddr sa;
     struct sockaddr_in sin;
