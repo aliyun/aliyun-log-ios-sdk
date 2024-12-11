@@ -34,6 +34,10 @@ typedef NSURLCredential* _Nullable (^CredentialDelegate)(NSString *url);
 
 @interface SLSTcpPingRequest : SLSPingRequest
 @property(atomic, assign) NSInteger port;
+@property(nonatomic, copy) NSString *payload;
+@end
+
+@interface SLSUdpRequest : SLSTcpPingRequest
 @end
 
 #define SLS_MTR_PROROCOL_ALL 0
@@ -118,6 +122,12 @@ typedef void (^Callback2)(SLSResponse *response);
 - (void) dns: (NSString *) nameServer domain: (NSString *) domain callback: (nullable Callback) callback DEPRECATED_ATTRIBUTE;
 - (void) dns: (NSString *) nameServer domain: (NSString *) domain type: (NSString *) type callback: (nullable Callback) callback DEPRECATED_ATTRIBUTE;
 - (void) dns: (NSString *) nameServer domain: (NSString *) domain type: (NSString *) type timeout: (int) timeout callback: (nullable Callback) callback DEPRECATED_ATTRIBUTE;
+
+- (void) udp: (SLSUdpRequest *) request;
+- (void) udp: (SLSUdpRequest *) request callback: (nullable Callback2) callback;
+
+- (void) tag: (NSString *)tag;
+- (void) tag: (NSString *)tag callback: (nullable Callback2) callback;
 
 @end
 

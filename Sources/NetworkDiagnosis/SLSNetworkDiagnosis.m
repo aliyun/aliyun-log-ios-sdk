@@ -347,4 +347,36 @@
     [_feature tcpPing2:request callback:callback];
 }
 
+- (void) udp: (SLSUdpRequest *) request {
+    if (!_feature) {
+        return;
+    }
+    
+    [_feature udp:request];
+}
+
+- (void) udp: (SLSUdpRequest *) request callback: (nullable Callback2) callback {
+    if (!_feature) {
+        return;
+    }
+    
+    [_feature udp:request callback:callback];
+}
+
+- (void) tag: (NSString *)tag {
+    if(!_feature) {
+        return;
+    }
+    
+    [_feature tag:tag];
+}
+
+- (void) tag:(NSString *)tag callback:(Callback2)callback {
+    if (!_feature) {
+        return;
+    }
+    
+    [_feature tag:tag callback:callback];
+}
+
 @end

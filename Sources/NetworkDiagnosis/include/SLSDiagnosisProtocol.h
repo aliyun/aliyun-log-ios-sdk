@@ -30,6 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 @class AliMTRConfig;
 @class AliPingConfig;
 @class AliTcpPingConfig;
+@class AliUdpDetectConfig;
 
 @protocol SLSDiagnosisProtocol <NSObject>
 - (void)registerDelegate:(id)delegate;
@@ -48,6 +49,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void) mtr: (AliMTRConfig *)config;
 - (void) ping: (AliPingConfig *)config;
 - (void) tcpPing: (AliTcpPingConfig *)config;
+- (void) udp: (AliUdpDetectConfig *)config;
+- (void) tag: (NSString *)tag callback:(nullable Callback2)callback;
 @end
 
 NS_ASSUME_NONNULL_END

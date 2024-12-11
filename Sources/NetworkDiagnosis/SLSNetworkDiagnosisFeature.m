@@ -20,6 +20,7 @@
 #import "AliNetworkDiagnosis/AliMTR.h"
 #import "AliNetworkDiagnosis/AliPing.h"
 #import "AliNetworkDiagnosis/AliTcpPing.h"
+#import "AliNetworkDiagnosis/AliUdpDetect.h"
 #import "AliNetworkDiagnosis/AliNetworkDiagnosis.h"
 
 #import "SLSHttpHeader.h"
@@ -117,6 +118,17 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
     self = [super init];
     if (self) {
         _port = DEFAULT_INVALID;
+    }
+    return self;
+}
+@end
+
+@implementation SLSUdpRequest
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        self.port = DEFAULT_INVALID;
     }
     return self;
 }
@@ -557,23 +569,6 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
 #endif
     
     [_diagnosis mtr:config];
-    
-    
-//    [AliMTR start:request.domain
-//           maxTtl:request.maxTTL
-//    interfaceType:(_enableMultiplePortsDetect ? AliNetDiagNetworkInterfaceDefault : AliNetDiagNetworkInterfaceCurrent)
-//         maxPaths:request.maxPaths
-//   maxTimesEachIP:request.maxTimes
-//          timeout:request.timeout
-//          context:request.context
-//          traceID:[self generateId]
-//           output:nil
-//         complete:^(id context, NSString *traceID, AliMTRResult *result) {
-//                    if (callback && result) {
-//                        callback([SLSResponse response:context type:@"mtr" content:[result.content copy]]);
-//                    }
-//                }
-//    ];
 }
 
 
@@ -722,6 +717,9 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
                                                            }
                                               combineComplete:nil
     ];
+    
+    config.payload = request.payload;
+    
     if (request.extention) {
         config.detectExtension = [NSMutableDictionary dictionaryWithDictionary:request.extention];
     }
@@ -733,6 +731,70 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
     [_diagnosis tcpPing: config];
 }
 
+#pragma mark - udp
+- (void) udp: (SLSUdpRequest *) request {
+    [self udp:request callback:nil];
+}
+
+- (void) udp: (SLSUdpRequest *) request callback: (nullable Callback2) callback {
+    if (nil == request || request.domain.length < 1) {
+        if (callback) {
+            callback([SLSResponse error:@"SLSUdpRequest is null or domain is empty."]);
+        }
+        return;
+    }
+    
+#ifdef SLS_NETWORK_SWIFT_FEATURE
+    TraceNode *node = [TraceNode traceNode:@"udp" request:request];
+#endif
+    
+    AliUdpDetectConfig *config = [[AliUdpDetectConfig alloc] init:request.domain
+                                                          timeout:request.timeout
+                                                    interfaceType:(_enableMultiplePortsDetect ? AliNetDiagNetworkInterfaceDefault : AliNetDiagNetworkInterfaceCurrent)
+                                                          payload:request.payload
+                                                           prefer:0
+                                                          context:request.context
+                                                          traceID:[self generateId]
+                                                             port:request.port
+                                                            count:request.maxTimes
+                                                         interval:DEFAULT_MAX_INTERVAL
+                                                         complete:^(id context, NSString *traceID, AliUdpDetectResult *result) {
+                                                                    if (callback) {
+                                                                        callback([SLSResponse response:context type:@"udp" content:[result.content copy]]);
+                                                                    }
+#ifdef SLS_NETWORK_SWIFT_FEATURE
+                                                                    [node end];
+#endif
+                                                                }
+                                                  combineComplete:nil];
+    if (request.extention) {
+        config.detectExtension = [NSMutableDictionary dictionaryWithDictionary:request.extention];
+    }
+    
+#ifdef SLS_NETWORK_SWIFT_FEATURE
+    [node setDetectConfig:config];
+#endif
+    [_diagnosis udp: config];
+}
+
+- (void) tag:(NSString *)tag {
+    [self tag:tag callback:nil];
+}
+
+- (void) tag:(NSString *)tag callback:(Callback2)callback {
+    if (!tag || tag.length < 1) {
+        if (callback) {
+            callback([SLSResponse error:@"tag is null or empty."]);
+        }
+        return;
+    }
+    
+    [_diagnosis tag:tag callback:^(SLSResponse * _Nonnull response) {
+        if (callback) {
+            callback(response);
+        }
+    }];
+}
 @end
 
 #pragma mark - network diagnosis sender
@@ -918,6 +980,18 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
 
 - (void)tcpPing:(nonnull AliTcpPingConfig *)config {
     [AliTcpPing execute:config];
+}
+
+- (void) udp: (AliUdpDetectConfig *)config {
+    [AliUdpDetect execute:config];
+}
+
+- (void) tag:(NSString *)tag callback:(Callback2)callback {
+    [AliNetworkDiagnosis detectWithTag:tag context:nil callback:^(id context, NSString *tag, NSString *result) {
+        if (callback) {
+            callback([SLSResponse response:context type:@"tag" content:[result copy]]);
+        }
+    }];
 }
 
 - (void)disableExNetInfo {
