@@ -14,7 +14,7 @@
 
 #import "log_producer_client.h"
 #import "LogProducerConfig.h"
-#import "Log.h"
+#import <AliyunLogProducer/Log.h>
 
 typedef void (^AddLogInterceptor)(Log *log);
 

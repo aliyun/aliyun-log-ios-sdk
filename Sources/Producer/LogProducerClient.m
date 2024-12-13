@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "LogProducerClient.h"
 #import "LogProducerConfig.h"
-#import "Log.h"
+#import <AliyunLogProducer/Log.h>
 #import "TimeUtils.h"
 
 @interface LogProducerClient ()

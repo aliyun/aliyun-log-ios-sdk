@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Log.h"
+#import <AliyunLogProducer/Log.h>
 #import "TimeUtils.h"
 #import "SLSProducer.h"
 
