@@ -10,6 +10,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SLSURLSession : NSObject
++ (void)setBeforeSend:(NSMutableURLRequest *(^)(NSMutableURLRequest *request))beforeSend;
++ (void)setURLSession:(NSURLSession *)session;
 + (NSData *)sendSynchronousRequest:(NSURLRequest *)request
                  returningResponse:(NSURLResponse *_Nullable*_Nullable)response
                              error:(NSError **)error;
