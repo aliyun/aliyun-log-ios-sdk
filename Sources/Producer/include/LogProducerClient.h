@@ -14,9 +14,9 @@
 
 #import "log_producer_client.h"
 #import "LogProducerConfig.h"
-#import "Log.h"
+#import "AliyunLog.h"
 
-typedef void (^AddLogInterceptor)(Log *log);
+typedef void (^AddLogInterceptor)(AliyunLog *log);
 
 @interface LogProducerClient : NSObject
 {
@@ -51,8 +51,8 @@ typedef NS_ENUM(NSInteger, LogProducerResult) {
 
 - (void)DestroyLogProducer;
 
-- (LogProducerResult)AddLog:(Log *) log;
+- (LogProducerResult)AddLog:(AliyunLog *) log;
 
-- (LogProducerResult)AddLog:(Log *) log flush:(int) flush;
+- (LogProducerResult)AddLog:(AliyunLog *) log flush:(int) flush;
 
 @end

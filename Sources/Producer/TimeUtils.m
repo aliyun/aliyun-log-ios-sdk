@@ -71,7 +71,7 @@ static NSTimeInterval elapsedRealtime = 0;
     
     return serverTime + delta;
 }
-+(void) fixTime: (Log *)log
++(void) fixTime: (AliyunLog *)log
 {
     if(!log) {
         return;

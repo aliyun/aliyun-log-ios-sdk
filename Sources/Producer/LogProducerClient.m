@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "LogProducerClient.h"
 #import "LogProducerConfig.h"
-#import "Log.h"
+#import "AliyunLog.h"
 #import "TimeUtils.h"
 
 @interface LogProducerClient ()
@@ -60,12 +60,12 @@
     destroy_log_producer(self->producer);
 }
 
-- (LogProducerResult)AddLog:(Log *) log
+- (LogProducerResult)AddLog:(AliyunLog *) log
 {
     return [self AddLog:log flush:0];
 }
 
-- (LogProducerResult)AddLog:(Log *) log flush:(int) flush
+- (LogProducerResult)AddLog:(AliyunLog *) log flush:(int) flush
 {
     if (!enable || self->client == NULL || log == nil) {
         return LogProducerInvalid;

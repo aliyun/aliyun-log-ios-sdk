@@ -101,7 +101,7 @@
     
     _client = [[LogProducerClient alloc] initWithLogProducerConfig:self.config callback:_on_log_send_done userparams:self];
 }
-- (BOOL) send: (Log *) log {
+- (BOOL) send: (AliyunLog *) log {
     if (!_client) {
         return NO;
     }
@@ -113,7 +113,7 @@
         return NO;
     }
     
-    Log *log = [Log log];
+    AliyunLog *log = [AliyunLog log];
     [log putContents:[span toDict]];
     
     return [self send:log];

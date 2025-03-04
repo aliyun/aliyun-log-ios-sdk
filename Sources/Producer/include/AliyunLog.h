@@ -12,7 +12,7 @@
 
 #endif /* Log_h */
 
-@interface Log : NSObject
+@interface AliyunLog : NSObject
 
 + (instancetype) log;
 

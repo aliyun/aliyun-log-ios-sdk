@@ -123,7 +123,7 @@ static id<SLSSpanProcessorProtocol> _processor;
         }
     }
     
-    Log *log = [Log log];
+    AliyunLog *log = [AliyunLog log];
     [log putContents:[logData toJson]];
     return [_feature addLog:log];
 }

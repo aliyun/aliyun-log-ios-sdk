@@ -4,7 +4,7 @@
 
 Pod::Spec.new do |s|
     s.name             = 'AliyunLogURLSessionInstrumentation'
-    s.version          = "4.3.3-beta.1"
+    s.version          = "4.3.13"
     s.summary          = 'aliyun log service ios urlsession instrumentation configuration.'
 
     s.description      = <<-DESC

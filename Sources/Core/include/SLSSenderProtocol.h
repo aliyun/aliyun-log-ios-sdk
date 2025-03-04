@@ -9,13 +9,13 @@
 #import "SLSCredentials.h"
 //#import "AliyunLogProducer/Log.h"
 
-@class Log;
+@class AliyunLog;
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol SLSSenderProtocol <NSObject>
 
 - (void) initialize: (SLSCredentials *) credentials;
-- (BOOL) send: (Log *) log;
+- (BOOL) send: (AliyunLog *) log;
 - (void) setCredentials: (SLSCredentials *) credentials;
 - (void) setCallback: (nullable CredentialsCallback) callback;
 @end

@@ -7,17 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Log.h"
+#import "AliyunLog.h"
 #import "TimeUtils.h"
 #import "SLSProducer.h"
 
-@interface Log ()
+@interface AliyunLog ()
 @property (nonatomic, assign) unsigned int logTime;
 @property (nonatomic, strong) NSMutableDictionary *content;
 - (BOOL) checkValue: (NSString *)value;
 @end
 
-@implementation Log
+@implementation AliyunLog
 
 - (id) init
 {
@@ -31,7 +31,7 @@
 }
 
 + (instancetype) log {
-    return [[Log alloc] init];
+    return [[AliyunLog alloc] init];
 }
 
 - (BOOL) checkValue:(NSString *)value {

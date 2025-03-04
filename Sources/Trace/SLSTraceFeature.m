@@ -84,7 +84,7 @@
     [_logsSender setCallback:callback];
 }
 
-- (BOOL) addLog:(Log *)log {
+- (BOOL) addLog:(AliyunLog *)log {
     if (nil == log || nil == _logsSender) {
         return NO;
     }

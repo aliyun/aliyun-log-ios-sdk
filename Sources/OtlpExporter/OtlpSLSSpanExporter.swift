@@ -114,7 +114,7 @@ open class OtlpSLSSpanExporter: NSObject, SpanExporter {
 //                    print(json)
 //                }
                 
-                let log: Log = Log()
+                let log: AliyunLog = AliyunLog()
                 log.putContent(jsonData)
                 client?.add(log)
             } catch {

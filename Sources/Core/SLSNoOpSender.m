@@ -12,7 +12,7 @@
 - (void) initialize: (SLSCredentials *) credentials {
     
 }
-- (BOOL) send: (Log *) log {
+- (BOOL) send: (AliyunLog *) log {
     return NO;
 }
 - (void) setCredentials: (SLSCredentials *) credentials {

@@ -28,7 +28,7 @@
 
 #import "LogProducerClient.h"
 #import "LogProducerConfig.h"
-#import "Log.h"
+#import "AliyunLog.h"
 #import "NSDateFormatter+SLS.h"
 #import "NSDictionary+SLS.h"
 #import "NSString+SLS.h"
