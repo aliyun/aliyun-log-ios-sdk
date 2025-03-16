@@ -26,11 +26,14 @@ static NSMutableURLRequest *(^sharedBeforeSend)(NSMutableURLRequest *request);
     NSError __block *err = NULL;
     NSData __block *data;
     NSURLResponse __block *resp;
+    
+    if (nil == sharedURLSession) {
+        NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration ephemeralSessionConfiguration];
+        [configuration setURLCache:nil];
+        sharedURLSession = [NSURLSession sessionWithConfiguration:configuration];
+    }
 
     NSURLSession *session = sharedURLSession;
-    if (nil == session) {
-        session = [NSURLSession sharedSession];
-    }
     
     __block NSMutableURLRequest *mutableRequest = (NSMutableURLRequest *)request;
     if (nil != sharedBeforeSend) {
