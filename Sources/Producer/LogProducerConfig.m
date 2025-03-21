@@ -94,14 +94,14 @@ static int os_http_post(const char *url,
             }
         }
         
+        NSString *requestId = fields[@"x-log-requestid"];
+        strncpy(http_response->requestID, requestId.length > 0 ? [requestId UTF8String] : "", request_id_len);
+        
         if (responseCode != 200) {
             NSString *res = [[NSString alloc] initWithData:resData encoding:NSUTF8StringEncoding];
-            strncpy(http_response->requestID, res.length > 0 ? [res UTF8String] : "", request_id_len);
-            
+            strncpy(http_response->errorMessage, res.length > 0 ? [res UTF8String] : "", request_id_len);
+   
             SLSLog(@"%ld %@ %@", [response statusCode], [response allHeaderFields], res);
-        } else {
-            NSString *requestId = fields[@"x-log-requestid"];
-            strncpy(http_response->requestID, requestId.length > 0 ? [requestId UTF8String] : "", request_id_len);
         }
 
         return responseCode;
