@@ -155,10 +155,16 @@ extern "C"{
             type = 1;
         } else if ([@"tcpping" isEqualToString:response.type]) {
             type = 2;
-        } else if ([@"mtr" isEqualToString:response.type]) {
+        } else if ([@"udp" isEqualToString:response.type]) {
             type = 3;
-        } else if ([@"dns" isEqualToString:response.type]) {
+        } else if ([@"mtr" isEqualToString:response.type]) {
             type = 4;
+        } else if ([@"dns" isEqualToString:response.type]) {
+            type = 5;
+        } else if ([@"tag" isEqualToString:response.type]) {
+            type = 6;
+        } else {
+            type = 7;
         }
         
         callback(type, content, context, error);
