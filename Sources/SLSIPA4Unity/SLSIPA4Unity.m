@@ -16,6 +16,7 @@
 
 #import "SLSIPA4Unity.h"
 #import "SLSCocoa.h"
+#import "SLSUtdid.h"
 #import "SLSNetworkDiagnosis.h"
 
 #pragma mark - Interface for Unity bridge
@@ -95,6 +96,14 @@ extern "C"{
         }
         
         [[SLSCocoa sharedInstance] setUserInfo: userInfo];
+    }
+    
+    void _SLS_SetDeviceId(const char * deviceId) {
+        if (!deviceId) {
+            return;
+        }
+
+        [SLSUtdid setUtdid:[NSString stringWithUTF8String:deviceId]];
     }
     
     void _SLS_SetExtraOfExt(const char * extKey, const char * extValue) {

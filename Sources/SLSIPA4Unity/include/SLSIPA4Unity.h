@@ -36,6 +36,8 @@ void _SLS_SetCredentials(const char * instanceId, const char * endpoint, const c
 
 void _SLS_SetUserInfo(const char * uid, const char * channel);
 
+void _SLS_SetDeviceId(const char * deviceId);
+
 void _SLS_SetExtraOfExt(const char * extKey, const char * extValue);
 
 void _SLS_SetExtra(const char * key, const char * value);
