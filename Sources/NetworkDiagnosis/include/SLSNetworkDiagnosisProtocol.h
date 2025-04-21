@@ -70,6 +70,7 @@ typedef void (^Callback2)(SLSResponse *response);
 @protocol SLSNetworkDiagnosisProtocol <NSObject>
 - (void) disableExNetworkInfo;
 - (void) setPolicyDomain: (NSString *) policyDomain;
+- (void) setUserTags: (NSArray<NSString *>*) tags;
 - (void) setMultiplePortsDetect: (BOOL) enable;
 /**
  * @deprecated use registerCallback2.

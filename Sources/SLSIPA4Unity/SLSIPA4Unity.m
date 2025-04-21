@@ -102,7 +102,7 @@ extern "C"{
         if (!deviceId) {
             return;
         }
-
+        
         [SLSUtdid setUtdid:[NSString stringWithUTF8String:deviceId]];
     }
     
@@ -183,7 +183,7 @@ extern "C"{
         }];
     }
 
-    void _SLS_TcpPing(const char * domain, const char * context, const int size, const int maxTimes, const int timeout, const int port, cs_sls_complete_callback callback) {
+    void _SLS_TcpPing(const char * domain, const char * context, const int size, const int maxTimes, const int timeout, const int port, const char *payload, cs_sls_complete_callback callback) {
         SLSTcpPingRequest *request = [[SLSTcpPingRequest alloc] init];
         request.domain = [NSString stringWithUTF8String:domain];
         request.context = [NSString stringWithUTF8String:context];
@@ -191,8 +191,24 @@ extern "C"{
         request.maxTimes = maxTimes;
         request.timeout = timeout;
         request.port = port;
+        request.payload = [NSString stringWithFormat:@"%s", payload];
         
         [[SLSNetworkDiagnosis sharedInstance] tcpPing2:request callback:^(SLSResponse * _Nonnull response) {
+            call_response_callback(callback, response);
+        }];
+    }
+    
+    void _SLS_UdpPing(const char * domain, const char * context, const int size, const int maxTimes, const int timeout, const int port, const char *payload, cs_sls_complete_callback callback) {
+        SLSUdpRequest *request = [[SLSUdpRequest alloc] init];
+        request.domain = [NSString stringWithUTF8String:domain];
+        request.context = [NSString stringWithUTF8String:context];
+        request.size = size;
+        request.maxTimes = maxTimes;
+        request.timeout = timeout;
+        request.port = port;
+        request.payload = [NSString stringWithFormat:@"%s", payload];
+        
+        [[SLSNetworkDiagnosis sharedInstance] udp:request callback:^(SLSResponse * _Nonnull response) {
             call_response_callback(callback, response);
         }];
     }
@@ -214,7 +230,7 @@ extern "C"{
         }];
     }
 
-    void _SLS_Mtr(const char * domain, const char * context, const int size, const int maxTimes, const int timeout, const int maxTTL, const int maxPaths, cs_sls_complete_callback callback) {
+    void _SLS_Mtr(const char * domain, const char * context, const int size, const int maxTimes, const int timeout, const int maxTTL, const int maxPaths, const int protocol, cs_sls_complete_callback callback) {
         SLSMtrRequest *request = [[SLSMtrRequest alloc] init];
         request.domain = [NSString stringWithUTF8String:domain];
         request.context = [NSString stringWithUTF8String:context];
@@ -223,6 +239,7 @@ extern "C"{
         request.timeout = timeout;
         request.maxTTL = maxTTL;
         request.maxPaths = maxPaths;
+        request.protocol = protocol;
         
         [[SLSNetworkDiagnosis sharedInstance] mtr2:request callback:^(SLSResponse * _Nonnull response) {
             call_response_callback(callback, response);
@@ -258,6 +275,19 @@ extern "C"{
 
     void _SLS_SetPolicyDomain(const char *domain) {
         [[SLSNetworkDiagnosis sharedInstance] setPolicyDomain:(nil != domain ? ([NSString stringWithUTF8String:domain]) : @"")];
+    }
+    
+    void _SLS_SetUserTags(const char **tags, int len) {
+        if (tags == NULL || len <= 0) {
+            NSLog(@"_SLS_SetUserTags: tags null or len <= 0");
+            return;
+        }
+        NSMutableArray *arrays = [[NSMutableArray alloc] init];
+        for (int i = 0; i < len; i++) {
+            NSString *s = [NSString stringWithFormat:@"%s", tags[i]];
+            [arrays addObject:s];
+        }
+        [[SLSNetworkDiagnosis sharedInstance] setUserTags:arrays];
     }
 
     void _SLS_RegisterCallback(cs_sls_complete_callback callback) {
