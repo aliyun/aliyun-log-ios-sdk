@@ -202,7 +202,7 @@
 		F838F09F2976772B001F1275 /* SLSNetworkDiagnosisFeature.m in Sources */ = {isa = PBXBuildFile; fileRef = F838F0982976772B001F1275 /* SLSNetworkDiagnosisFeature.m */; };
 		F838F0A02976772B001F1275 /* SLSNetworkDiagnosis.m in Sources */ = {isa = PBXBuildFile; fileRef = F838F0992976772B001F1275 /* SLSNetworkDiagnosis.m */; };
 		F838F0B7297677DF001F1275 /* Unity4SLSiOS.m in Sources */ = {isa = PBXBuildFile; fileRef = F838F0B6297677DF001F1275 /* Unity4SLSiOS.m */; };
-		F84AE62D2DACF8CE00A8895F /* SLSURLSession.h in Headers */ = {isa = PBXBuildFile; fileRef = F84AE62C2DACF8CE00A8895F /* SLSURLSession.h */; };
+		F84AE62D2DACF8CE00A8895F /* SLSURLSession.h in Headers */ = {isa = PBXBuildFile; fileRef = F84AE62C2DACF8CE00A8895F /* SLSURLSession.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F84F8ADD2814E1180038A46E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F80DF47C26A7037000151F7C /* CoreGraphics.framework */; };
 		F84F8ADE2814E1180038A46E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F80DF47A26A7035E00151F7C /* SystemConfiguration.framework */; };
 		F84F8AE02814E1180038A46E /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F80DF47826A7034E00151F7C /* libc++.tbd */; };
@@ -1540,6 +1540,7 @@
 				F8E05D7A2976819D002CD256 /* SLSHttpHeader.h in Headers */,
 				F8E05D7C2976819D002CD256 /* SLSSystemCapabilities.h in Headers */,
 				F8896C682977FAF0004CB258 /* SLSProducer.h in Headers */,
+				F84AE62D2DACF8CE00A8895F /* SLSURLSession.h in Headers */,
 				F8E05D492976819C002CD256 /* log_producer_sender.h in Headers */,
 				F8E05D602976819C002CD256 /* log_api.h in Headers */,
 				F8E05D442976819C002CD256 /* log_sha1.h in Headers */,
@@ -1551,7 +1552,6 @@
 				F8E05D612976819C002CD256 /* log_hmac-sha.h in Headers */,
 				F8E05D472976819C002CD256 /* inner_log.h in Headers */,
 				F8E05D582976819C002CD256 /* log_util.h in Headers */,
-				F84AE62D2DACF8CE00A8895F /* SLSURLSession.h in Headers */,
 				F8E05D4D2976819C002CD256 /* inner_log.h in Headers */,
 				F8E05D692976819C002CD256 /* log_ring_file.h in Headers */,
 				F8E05D6A2976819C002CD256 /* log_queue.h in Headers */,
