@@ -37,7 +37,7 @@ Pod::Spec.new do |s|
         #    c.osx.deployment_target =  '10.12'
         c.dependency 'AliyunLogOTelCommon/OpenTelemetryApi'
         c.dependency 'AliyunLogOTelCommon/OpenTelemetrySdk'
-        c.dependency 'AliyunLogOTelCommon/URLSessionInstrumentation'
+        #    c.dependency 'AliyunLogOTelCommon/URLSessionInstrumentation'
         c.source_files = 'Sources/OTelCommon/**/*.{m,h,swift}'
         c.pod_target_xcconfig = {
           'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64 i386',
@@ -74,17 +74,17 @@ Pod::Spec.new do |s|
         }
     end
 
-    s.subspec 'URLSessionInstrumentation' do |c|
-        c.ios.deployment_target = '10.0'
-        #    c.tvos.deployment_target =  '10.0'
-        #    c.osx.deployment_target =  '10.12'
-        c.vendored_frameworks = 'Sources/URLSessionInstrumentation/URLSessionInstrumentation.xcframework'
-        c.pod_target_xcconfig = {
-          'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64 i386',
-        }
-        c.user_target_xcconfig = {
-          'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64 i386'
-        }
-    end
+    #s.subspec 'URLSessionInstrumentation' do |c|
+    #    c.ios.deployment_target = '10.0'
+    #    c.tvos.deployment_target =  '10.0'
+    #    c.osx.deployment_target =  '10.12'
+    #    c.vendored_frameworks = 'Sources/URLSessionInstrumentation/URLSessionInstrumentation.xcframework'
+    #   c.pod_target_xcconfig = {
+    #      'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64 i386',
+    #    }
+    #    c.user_target_xcconfig = {
+    #      'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64 i386'
+    #    }
+    #end
 end
 
