@@ -4,7 +4,7 @@
 
 Pod::Spec.new do |s|
     s.name             = 'AliyunLogOTelCommon'
-    s.version          = "4.3.17-dev.2"
+    s.version          = "4.3.17-beta.1"
     s.summary          = 'aliyun log service ios otel common library.'
 
     s.description      = <<-DESC
