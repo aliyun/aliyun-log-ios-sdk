@@ -66,6 +66,7 @@ Pod::Spec.new do |s|
         #    c.tvos.deployment_target =  '10.0'
         #    c.osx.deployment_target =  '10.12'
         c.vendored_frameworks = 'Sources/OpenTelemetrySdk/OpenTelemetrySdk.xcframework'
+        c.dependency 'AliyunLogOTelCommon/OpenTelemetryApi'
         c.pod_target_xcconfig = {
           'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64 i386',
         }
