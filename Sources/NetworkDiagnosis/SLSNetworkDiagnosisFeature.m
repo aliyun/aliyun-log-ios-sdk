@@ -224,6 +224,12 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
     if (networkCredentials.secretKey.length > 0) {
         networkCredentials.instanceId = [self getIPAIdBySecretKey:networkCredentials.secretKey];
     }
+    NSDictionary *extensions = [[SLSNetworkDiagnosis sharedInstance] getExtensions];
+    if (extensions) {
+        for (NSString *key in extensions) {
+            [networkCredentials.extension setValue:[extensions valueForKey:key] forKey:key];
+        }
+    }
     
 #ifdef SLS_NETWORK_SWIFT_FEATURE
     [NetworkDiagnosisHelper updateWorkspace:networkCredentials.endpoint
@@ -263,6 +269,14 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
     if (networkCredentials.secretKey.length > 0) {
         networkCredentials.instanceId = [self getIPAIdBySecretKey:networkCredentials.secretKey];
     }
+    NSDictionary *extensions = [[SLSNetworkDiagnosis sharedInstance] getExtensions];
+    if (extensions) {
+        for (NSString *key in extensions) {
+            [networkCredentials.extension setValue:[extensions valueForKey:key] forKey:key];
+        }
+        SLSLog(@"onInitialize show extension %@", networkCredentials.extension);
+    }
+    
     
     [_diagnosis init:networkCredentials.secretKey
             deviceId:[[SLSUtdid getUtdid] copy]
@@ -285,27 +299,35 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
 }
 
 - (NSString *) getIPAIdBySecretKey: (NSString *) secretKey {
-    NSString *decode = [secretKey base64Decode];
-    if (!decode) {
+    NSData *decodeData = [[NSData alloc] initWithBase64EncodedString:secretKey options:0];
+    if (!decodeData) {
         return @"";
     }
-    
-    NSDictionary *dict = [decode toDictionary];
+    NSError *error;
+    NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:decodeData
+                                    options:kNilOptions
+                                      error:&error
+    ];
+    if (error) {
+        NSLog(@"getIPAIdBySecretKey to NSDictionary error. %@", error);
+        return @"";
+    }
+        
     if (!dict || ![dict objectForKey:@"ipa_app_id"]) {
         return @"";
     }
-    
     
     return [[dict objectForKey:@"ipa_app_id"] lowercaseString];
 }
 
 - (NSString *)generateId {
-    [_lock lock];
-    _index += 1;
-    NSString *traceId = [NSString stringWithFormat:@"%@_%ld", _idPrefix, _index];
-    [_lock unlock];
+    // [_lock lock];
+    // _index += 1;
+    // NSString *traceId = [NSString stringWithFormat:@"%@_%ld", _idPrefix, _index];
+    // [_lock unlock];
 
-    return traceId;
+    // return traceId;
+    return nil;
 }
 
 - (void) disableExNetworkInfo {
@@ -314,6 +336,11 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
 
 - (void) setPolicyDomain: (NSString *) policyDomain {
     [_diagnosis setPolicyDomain:policyDomain];
+}
+
+- (void) setUserTags:(NSArray<NSString *> *)tags {
+    SLSLog(@"setUserTags to diagnosis with %@", tags);
+    [_diagnosis setUserTags:tags];
 }
 
 - (void) setMultiplePortsDetect: (BOOL) enable {
@@ -337,7 +364,7 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
 }
 
 - (void) updateExtensions: (NSDictionary *) extension {
-    [_diagnosis updateExtension: [extension copy]];
+    [_diagnosis updateExtension: extension];
 }
 - (void) registerHttpCredentialDelegate: (nullable CredentialDelegate) delegate {
     [_diagnosis registerHttpCredentialDelegate:[InternalHttpCredentialDelegate delegate:delegate]];
@@ -1036,6 +1063,9 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
     [AliNetworkDiagnosis setPolicyDomain:domain];
 }
 
+- (void)setUserTags:(NSArray<NSString *> *)tags {
+    [AliNetworkDiagnosis setUserTags:tags];
+}
 
 - (void)updateExtension:(nonnull NSDictionary *)extension {
     [AliNetworkDiagnosis updateExtension:extension];

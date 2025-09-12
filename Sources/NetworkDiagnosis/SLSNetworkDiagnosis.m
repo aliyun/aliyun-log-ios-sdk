@@ -9,6 +9,7 @@
 
 @interface SLSNetworkDiagnosis ()
 @property(nonatomic, strong) SLSNetworkDiagnosisFeature *feature;
+@property(nonatomic, strong) NSMutableDictionary *extensions;
 @end
 
 @implementation SLSNetworkDiagnosis
@@ -18,6 +19,7 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         ins = [[SLSNetworkDiagnosis alloc] init];
+        ins.extensions = [[NSMutableDictionary alloc] init];
     });
     return ins;
 }
@@ -50,6 +52,14 @@
     [_feature setPolicyDomain:policyDomain];
 }
 
+- (void) setUserTags: (NSArray<NSString *>*) tags {
+    if (!_feature) {
+        return;
+    }
+    
+    [_feature setUserTags:tags];
+}
+
 - (void) registerCallback: (nullable Callback) callback {
     if (!_feature) {
         return;
@@ -67,11 +77,20 @@
 }
 
 - (void) updateExtensions: (NSDictionary *) extension {
+    if (extension != nil && [extension count]>0) {
+        for (NSString *key in extension) {
+            [_extensions setValue:[extension valueForKey:key] forKey:key];
+        }
+    }
     if (!_feature) {
         return;
     }
     
-    [_feature updateExtensions:extension];
+    [_feature updateExtensions:_extensions];
+}
+
+- (NSDictionary *) getExtensions {
+    return _extensions;
 }
 
 - (void) registerHttpCredentialDelegate: (nullable CredentialDelegate) delegate {

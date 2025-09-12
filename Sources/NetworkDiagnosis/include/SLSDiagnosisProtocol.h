@@ -37,6 +37,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)preInit:(NSString*)secretKey deviceId:(NSString*)deviceId siteId:(NSString*)siteId extension:(NSDictionary*)extension;
 - (void)init:(NSString*)secretKey deviceId:(NSString*)deviceId siteId:(NSString*)siteId extension:(NSDictionary*)extension;
 - (void)setPolicyDomain:(NSString*)domain;
+- (void)setUserTags:(NSArray<NSString *>*) tags;
 - (void)refreshSecretKey:(NSString*)secretKey;
 - (void)executeOncePolicy:(NSString*)policy;
 - (void)disableExNetInfo;
