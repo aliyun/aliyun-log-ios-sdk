@@ -178,10 +178,46 @@ static void log_persistent_manager_init(log_persistent_manager * manager, log_pr
     manager->checkpoint_file_path = log_sdscat(log_sdsdup(config->persistentFilePath), ".idx");
     memset(manager->in_buffer_log_sizes, 0, sizeof(uint32_t) * config->maxPersistentLogCount);
     manager->ring_file = log_ring_file_open(config->persistentFilePath, config->maxPersistentFileCount, config->maxPersistentFileSize, config->forceFlushDisk);
+    
+    // 初始化异步恢复相关字段（使用原子操作）
+    atomic_store(&manager->is_recovering, 0);
+    atomic_store(&manager->recover_completed, 0);
+    atomic_store(&manager->recover_success, 0);
+    manager->recover_cond = CreateCond();
+    
+    // 初始化恢复期间日志缓存队列
+    manager->recover_cache = (log_recover_cache_queue *)malloc(sizeof(log_recover_cache_queue));
+    memset(manager->recover_cache, 0, sizeof(log_recover_cache_queue));
+    manager->recover_cache->max_count = 1000;  // 最大缓存1000条日志
+    manager->recover_cache->max_size = 10 * 1024 * 1024;  // 最大缓存10MB
+    manager->recover_cache_lock = CreateCriticalSection();
+    
+    // 初始化缓存UUID管理
+    manager->cache_log_uuid_base = 0;
+    manager->cache_log_uuid_counter = 0;
+    manager->cache_uuid_initialized = 0;
 }
 
 static void log_persistent_manager_clear(log_persistent_manager * manager)
 {
+    // 使用原子操作进行快速检查，避免不必要的锁操作
+    if (atomic_load(&manager->is_recovering) && !atomic_load(&manager->recover_completed))
+    {
+        // 只有在需要等待时才加锁
+        CS_ENTER(manager->lock);
+        while (atomic_load(&manager->is_recovering) && !atomic_load(&manager->recover_completed))
+        {
+            COND_WAIT(manager->recover_cond, manager->lock);
+        }
+        CS_LEAVE(manager->lock);
+        
+        // 等待恢复线程结束
+        if (manager->recover_thread)
+        {
+            THREAD_JOIN(manager->recover_thread);
+        }
+    }
+    
     log_group_destroy(manager->builder);
     ReleaseCriticalSection(manager->lock);
     if (manager->checkpoint_file_ptr != NULL)
@@ -192,6 +228,21 @@ static void log_persistent_manager_clear(log_persistent_manager * manager)
     free(manager->in_buffer_log_sizes);
     log_sdsfree(manager->checkpoint_file_path);
     log_ring_file_close(manager->ring_file);
+    
+    // 清理异步恢复相关资源
+    if (manager->recover_cond)
+    {
+        DeleteCond(manager->recover_cond);
+    }
+    
+    // 清理恢复期间日志缓存队列
+    log_persistent_manager_clear_recover_cache(manager);
+    if (manager->recover_cache)
+    {
+        ReleaseCriticalSection(manager->recover_cache_lock);
+        free(manager->recover_cache);
+        manager->recover_cache = NULL;
+    }
 }
 
 log_persistent_manager *
@@ -456,6 +507,62 @@ static void log_persistent_manager_reset(log_persistent_manager * manager)
     manager->is_invalid = 0;
 }
 
+// 异步恢复线程函数
+#ifdef WIN32
+DWORD WINAPI log_persistent_manager_recover_thread(LPVOID param)
+#else
+void * log_persistent_manager_recover_thread(void * param)
+#endif
+{
+    typedef struct {
+        log_persistent_manager * manager;
+        log_producer_manager * producer_manager;
+    } recover_thread_param_t;
+    
+    recover_thread_param_t * thread_param = (recover_thread_param_t *)param;
+    log_persistent_manager * manager = thread_param->manager;
+    log_producer_manager * producer_manager = thread_param->producer_manager;
+    
+    aos_info_log("project %s, logstore %s, start async recover persistent manager",
+                 manager->config->project,
+                 manager->config->logstore);
+    
+    // 执行恢复操作
+    int rst = log_persistent_manager_recover_inner(manager, producer_manager);
+    
+    // 更新恢复状态（使用原子操作）
+    CS_ENTER(manager->lock);
+    atomic_store(&manager->is_recovering, 0);
+    atomic_store(&manager->recover_completed, 1);
+    atomic_store(&manager->recover_success, (rst == 0) ? 1 : 0);
+    
+    if (rst != 0)
+    {
+        // 如果恢复失败，重置persistent manager
+        manager->is_invalid = 1;
+        log_persistent_manager_reset(manager);
+        aos_error_log("project %s, logstore %s, async recover persistent manager failed, result %d",
+                      manager->config->project,
+                      manager->config->logstore,
+                      rst);
+    }
+    else
+    {
+        manager->is_invalid = 0;
+        aos_info_log("project %s, logstore %s, async recover persistent manager success",
+                     manager->config->project,
+                     manager->config->logstore);
+    }
+    
+    COND_SIGNAL(manager->recover_cond);
+    CS_LEAVE(manager->lock);
+    
+    // 释放线程参数
+    free(thread_param);
+    
+    return 0;
+}
+
 int log_persistent_manager_recover(log_persistent_manager *manager,
                                    log_producer_manager *producer_manager)
 {
@@ -476,4 +583,388 @@ int log_persistent_manager_recover(log_persistent_manager *manager,
     }
     CS_LEAVE(manager->lock);
     return rst;
+}
+
+int log_persistent_manager_recover_async(log_persistent_manager *manager,
+                                         log_producer_manager *producer_manager)
+{
+    if (manager == NULL || producer_manager == NULL)
+    {
+        return -1;
+    }
+    
+    // 使用原子操作进行快速检查，避免不必要的锁操作
+    if (atomic_load(&manager->is_recovering))
+    {
+        return 0; // 已经在恢复中，直接返回
+    }
+    
+    if (atomic_load(&manager->recover_completed))
+    {
+        return atomic_load(&manager->recover_success) ? 0 : -1;
+    }
+    
+    // 只有在需要启动恢复时才加锁
+    CS_ENTER(manager->lock);
+    
+    // 双重检查，防止在加锁期间状态发生变化
+    if (atomic_load(&manager->is_recovering))
+    {
+        CS_LEAVE(manager->lock);
+        return 0;
+    }
+    
+    if (atomic_load(&manager->recover_completed))
+    {
+        CS_LEAVE(manager->lock);
+        return atomic_load(&manager->recover_success) ? 0 : -1;
+    }
+    
+    // 准备线程参数
+    typedef struct {
+        log_persistent_manager * manager;
+        log_producer_manager * producer_manager;
+    } recover_thread_param_t;
+    
+    recover_thread_param_t * thread_param = (recover_thread_param_t *)malloc(sizeof(recover_thread_param_t));
+    if (thread_param == NULL)
+    {
+        CS_LEAVE(manager->lock);
+        return -2;
+    }
+    
+    thread_param->manager = manager;
+    thread_param->producer_manager = producer_manager;
+    
+    // 设置恢复状态（使用原子操作）
+    atomic_store(&manager->is_recovering, 1);
+    atomic_store(&manager->recover_completed, 0);
+    atomic_store(&manager->recover_success, 0);
+    
+    // 创建恢复线程
+    THREAD_INIT(manager->recover_thread, log_persistent_manager_recover_thread, thread_param);
+    
+    CS_LEAVE(manager->lock);
+    
+    aos_info_log("project %s, logstore %s, start async recover persistent manager",
+                 manager->config->project,
+                 manager->config->logstore);
+    
+    return 0;
+}
+
+int log_persistent_manager_wait_recover_complete(log_persistent_manager *manager)
+{
+    if (manager == NULL)
+    {
+        return -1;
+    }
+    
+    // 快速检查是否已经完成，避免不必要的锁操作
+    if (!atomic_load(&manager->is_recovering) && atomic_load(&manager->recover_completed))
+    {
+        return atomic_load(&manager->recover_success) ? 0 : -1;
+    }
+    
+    CS_ENTER(manager->lock);
+    
+    // 等待恢复完成（使用原子操作）
+    while (atomic_load(&manager->is_recovering) && !atomic_load(&manager->recover_completed))
+    {
+        COND_WAIT(manager->recover_cond, manager->lock);
+    }
+    
+    int result = atomic_load(&manager->recover_success) ? 0 : -1;
+    
+    CS_LEAVE(manager->lock);
+    
+    // 等待线程结束
+    if (manager->recover_thread)
+    {
+        THREAD_JOIN(manager->recover_thread);
+    }
+    
+    // 如果恢复成功，处理缓存的日志
+    if (result == 0 && manager->recover_cache != NULL)
+    {
+        // 这里需要获取producer_manager，我们需要通过其他方式获取
+        // 暂时先记录日志，实际处理会在第一次日志添加时触发
+        aos_info_log("project %s, logstore %s, recover completed, cached logs will be processed on next log add",
+                     manager->config->project,
+                     manager->config->logstore);
+    }
+    
+    return result;
+}
+
+// 恢复期间日志缓存相关函数实现
+
+int log_persistent_manager_cache_log_during_recover(log_persistent_manager * manager, const char * log_data, size_t log_size, uint32_t log_time)
+{
+    if (manager == NULL || manager->recover_cache == NULL || log_data == NULL || log_size == 0)
+    {
+        return -1;
+    }
+    
+    CS_ENTER(manager->recover_cache_lock);
+    
+    // 初始化缓存UUID空间（只在第一次缓存时初始化）
+    if (!manager->cache_uuid_initialized)
+    {
+        // 使用一个很大的基础值，确保不与正常UUID冲突
+        // 正常UUID基于时间戳，缓存UUID使用负值空间
+        manager->cache_log_uuid_base = -1000000000000000000LL; // 负值空间
+        manager->cache_log_uuid_counter = 0;
+        manager->cache_uuid_initialized = 1;
+        
+        aos_info_log("project %s, logstore %s, initialized cache UUID space, base %lld",
+                     manager->config->project,
+                     manager->config->logstore,
+                     manager->cache_log_uuid_base);
+    }
+    
+    // 检查缓存是否已满
+    if (manager->recover_cache->count >= manager->recover_cache->max_count ||
+        manager->recover_cache->total_size + log_size > manager->recover_cache->max_size)
+    {
+        // 缓存已满，丢弃最旧的日志
+        if (manager->recover_cache->head != NULL)
+        {
+            log_recover_cache_item * old_item = manager->recover_cache->head;
+            manager->recover_cache->head = old_item->next;
+            if (manager->recover_cache->head == NULL)
+            {
+                manager->recover_cache->tail = NULL;
+            }
+            
+            manager->recover_cache->count--;
+            manager->recover_cache->total_size -= old_item->log_size;
+            free(old_item->log_data);
+            free(old_item);
+        }
+    }
+    
+    // 创建新的缓存项
+    log_recover_cache_item * new_item = (log_recover_cache_item *)malloc(sizeof(log_recover_cache_item));
+    if (new_item == NULL)
+    {
+        CS_LEAVE(manager->recover_cache_lock);
+        return -2;
+    }
+    
+    new_item->log_data = (char *)malloc(log_size);
+    if (new_item->log_data == NULL)
+    {
+        free(new_item);
+        CS_LEAVE(manager->recover_cache_lock);
+        return -3;
+    }
+    
+    memcpy(new_item->log_data, log_data, log_size);
+    new_item->log_size = log_size;
+    new_item->log_time = log_time;
+    
+    // 使用独立的缓存UUID空间
+    new_item->uuid = manager->cache_log_uuid_base + manager->cache_log_uuid_counter++;
+    new_item->next = NULL;
+    
+    // 添加到队列尾部
+    if (manager->recover_cache->tail == NULL)
+    {
+        manager->recover_cache->head = new_item;
+        manager->recover_cache->tail = new_item;
+    }
+    else
+    {
+        manager->recover_cache->tail->next = new_item;
+        manager->recover_cache->tail = new_item;
+    }
+    
+    manager->recover_cache->count++;
+    manager->recover_cache->total_size += log_size;
+    
+    CS_LEAVE(manager->recover_cache_lock);
+    
+    aos_debug_log("project %s, logstore %s, cache log during recover, size %d, cache_uuid %lld, count %d, total_size %d",
+                  manager->config->project,
+                  manager->config->logstore,
+                  (int)log_size,
+                  new_item->uuid,
+                  manager->recover_cache->count,
+                  (int)manager->recover_cache->total_size);
+    
+    return 0;
+}
+
+int log_persistent_manager_process_recover_cache(log_persistent_manager * manager, log_producer_manager * producer_manager)
+{
+    if (manager == NULL || manager->recover_cache == NULL || producer_manager == NULL)
+    {
+        return -1;
+    }
+    
+    // 先获取缓存锁，复制所有缓存项到临时列表
+    CS_ENTER(manager->recover_cache_lock);
+    
+    if (manager->recover_cache->count == 0)
+    {
+        CS_LEAVE(manager->recover_cache_lock);
+        return 0;
+    }
+    
+    // 创建临时列表，避免长时间持有缓存锁
+    log_recover_cache_item * temp_list = NULL;
+    log_recover_cache_item * temp_tail = NULL;
+    int temp_count = manager->recover_cache->count;
+    
+    log_recover_cache_item * current = manager->recover_cache->head;
+    while (current != NULL)
+    {
+        log_recover_cache_item * temp_item = (log_recover_cache_item *)malloc(sizeof(log_recover_cache_item));
+        if (temp_item == NULL)
+        {
+            // 内存不足，清理已分配的内存
+            while (temp_list != NULL)
+            {
+                log_recover_cache_item * next = temp_list->next;
+                free(temp_list->log_data);
+                free(temp_list);
+                temp_list = next;
+            }
+            CS_LEAVE(manager->recover_cache_lock);
+            return -2;
+        }
+        
+        temp_item->log_data = (char *)malloc(current->log_size);
+        if (temp_item->log_data == NULL)
+        {
+            free(temp_item);
+            // 内存不足，清理已分配的内存
+            while (temp_list != NULL)
+            {
+                log_recover_cache_item * next = temp_list->next;
+                free(temp_list->log_data);
+                free(temp_list);
+                temp_list = next;
+            }
+            CS_LEAVE(manager->recover_cache_lock);
+            return -3;
+        }
+        
+        memcpy(temp_item->log_data, current->log_data, current->log_size);
+        temp_item->log_size = current->log_size;
+        temp_item->log_time = current->log_time;
+        temp_item->uuid = current->uuid;
+        temp_item->next = NULL;
+        
+        if (temp_tail == NULL)
+        {
+            temp_list = temp_item;
+            temp_tail = temp_item;
+        }
+        else
+        {
+            temp_tail->next = temp_item;
+            temp_tail = temp_item;
+        }
+        
+        current = current->next;
+    }
+    
+    // 清空原始缓存队列
+    manager->recover_cache->head = NULL;
+    manager->recover_cache->tail = NULL;
+    manager->recover_cache->count = 0;
+    manager->recover_cache->total_size = 0;
+    
+    // 重置缓存UUID状态
+    manager->cache_uuid_initialized = 0;
+    manager->cache_log_uuid_base = 0;
+    manager->cache_log_uuid_counter = 0;
+    
+    CS_LEAVE(manager->recover_cache_lock);
+    
+    // 现在处理临时列表，不需要持有任何锁
+    int processed_count = 0;
+    current = temp_list;
+    
+    while (current != NULL)
+    {
+        // 保存日志到持久化存储（这里会获取manager->lock，但不会与缓存锁冲突）
+        int rst = log_persistent_manager_save_log(manager, current->log_data, current->log_size);
+        if (rst == LOG_PRODUCER_OK)
+        {
+            // 添加到发送队列（使用新分配的UUID）
+            rst = log_producer_manager_add_log_raw(producer_manager, current->log_data, current->log_size, 0, manager->checkpoint.now_log_uuid - 1);
+            if (rst == LOG_PRODUCER_OK)
+            {
+                processed_count++;
+                aos_debug_log("project %s, logstore %s, process cached log success, cache_uuid %lld -> normal_uuid %lld, size %d",
+                              manager->config->project,
+                              manager->config->logstore,
+                              current->uuid,
+                              manager->checkpoint.now_log_uuid - 1,
+                              (int)current->log_size);
+            }
+            else
+            {
+                aos_error_log("project %s, logstore %s, add cached log to producer manager failed, cache_uuid %lld, result %d",
+                              manager->config->project,
+                              manager->config->logstore,
+                              current->uuid,
+                              rst);
+            }
+        }
+        else
+        {
+            aos_error_log("project %s, logstore %s, save cached log failed, cache_uuid %lld, result %d",
+                          manager->config->project,
+                          manager->config->logstore,
+                          current->uuid,
+                          rst);
+        }
+        
+        // 移动到下一个
+        log_recover_cache_item * next = current->next;
+        free(current->log_data);
+        free(current);
+        current = next;
+    }
+    
+    aos_info_log("project %s, logstore %s, process recover cache completed, processed %d logs",
+                 manager->config->project,
+                 manager->config->logstore,
+                 processed_count);
+    
+    return processed_count;
+}
+
+void log_persistent_manager_clear_recover_cache(log_persistent_manager * manager)
+{
+    if (manager == NULL || manager->recover_cache == NULL)
+    {
+        return;
+    }
+    
+    CS_ENTER(manager->recover_cache_lock);
+    
+    log_recover_cache_item * current = manager->recover_cache->head;
+    while (current != NULL)
+    {
+        log_recover_cache_item * next = current->next;
+        free(current->log_data);
+        free(current);
+        current = next;
+    }
+    
+    manager->recover_cache->head = NULL;
+    manager->recover_cache->tail = NULL;
+    manager->recover_cache->count = 0;
+    manager->recover_cache->total_size = 0;
+    
+    CS_LEAVE(manager->recover_cache_lock);
+    
+    aos_info_log("project %s, logstore %s, clear recover cache completed",
+                 manager->config->project,
+                 manager->config->logstore);
 }

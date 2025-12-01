@@ -7,6 +7,7 @@ VERSION=$(cat VERSION)
 echo "version: ${VERSION}"
 
 sed -i '' "s/s.version *=.*/s.version          = \"$VERSION\"/" AliyunLogProducer.podspec
+sed -i '' "s/s.version *=.*/s.version          = \"$VERSION\"/" AliyunLogProducerV1.podspec
 sed -i '' "s/s.version *=.*/s.version          = \"$VERSION\"/" AliyunLogOTelCommon.podspec
 sed -i '' "s/s.version *=.*/s.version          = \"$VERSION\"/" AliyunLogOtlpExporter.podspec
 sed -i '' "s/s.version *=.*/s.version          = \"$VERSION\"/" AliyunLogNetworkDiagnosis.podspec
@@ -19,7 +20,6 @@ git add AliyunLogOTelCommon.podspec
 git add AliyunLogOtlpExporter.podspec
 git add AliyunLogNetworkDiagnosis.podspec
 git add AliyunLogCrashReporter.podspec
-git add AliyunLogCrashReporterV1.podspec
 
 if [ -n "$(git diff --cached --name-only)" ]; then
     echo "Has staged changes"
@@ -50,4 +50,3 @@ pod repo push gitee-aliyun-sls AliyunLogOTelCommon.podspec --allow-warnings --ve
 pod repo push gitee-aliyun-sls AliyunLogOtlpExporter.podspec --allow-warnings --verbose --skip-tests --sources=https://gitee.com/aliyun-sls/Specs.git
 pod repo push gitee-aliyun-sls AliyunLogNetworkDiagnosis.podspec --allow-warnings --verbose --skip-tests --sources=https://gitee.com/aliyun-sls/Specs.git
 pod repo push gitee-aliyun-sls AliyunLogCrashReporter.podspec --allow-warnings --verbose --skip-tests --sources=https://gitee.com/aliyun-sls/Specs.git
-pod repo push gitee-aliyun-sls AliyunLogCrashReporterV1.podspec --allow-warnings --verbose --skip-tests --sources=https://gitee.com/aliyun-sls/Specs.git

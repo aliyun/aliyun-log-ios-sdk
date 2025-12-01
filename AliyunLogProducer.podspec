@@ -4,7 +4,7 @@
 
 Pod::Spec.new do |s|
     s.name             = 'AliyunLogProducer'
-    s.version          = "4.3.3"
+    s.version          = "4.3.17"
     s.summary          = 'aliyun log service ios producer.'
 
     s.description      = <<-DESC
@@ -40,7 +40,7 @@ Pod::Spec.new do |s|
     }
 
     s.ios.deployment_target = '10.0'
-    s.tvos.deployment_target =  '10.0'
+    # s.tvos.deployment_target =  '10.0'
     s.osx.deployment_target =  '10.12'
     s.source_files = 'Sources/Producer/**/*.{h,m}', 'Sources/aliyun-log-c-sdk/**/*.{c,h}'
     s.public_header_files = 'Sources/Producer/include/*.h', 'Sources/aliyun-log-c-sdk/include/*.h'

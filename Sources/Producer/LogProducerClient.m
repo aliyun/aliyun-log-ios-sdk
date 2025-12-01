@@ -53,8 +53,15 @@
         return;
     }
     enable = NO;
+    
+    if (self->config && self->config->user_params) {
+        CFRelease(self->config->user_params);
+    }
     destroy_log_producer(self->producer);
-    CFRelease(self->config->user_params);
+}
+
+- (void)SetSendEnable:(BOOL)enable {
+    log_producer_config_set_enable_log_send(self->config, enable ? 1 : 0);
 }
 
 - (LogProducerResult)AddLog:(Log *) log

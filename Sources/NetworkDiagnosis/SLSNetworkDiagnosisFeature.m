@@ -20,6 +20,7 @@
 #import "AliNetworkDiagnosis/AliMTR.h"
 #import "AliNetworkDiagnosis/AliPing.h"
 #import "AliNetworkDiagnosis/AliTcpPing.h"
+#import "AliNetworkDiagnosis/AliUdpDetect.h"
 #import "AliNetworkDiagnosis/AliNetworkDiagnosis.h"
 
 #import "SLSHttpHeader.h"
@@ -30,6 +31,11 @@
 #if __has_include("AliyunLogNetworkDiagnosis/AliyunLogNetworkDiagnosis-Swift.h")
     #define SLS_NETWORK_SWIFT_FEATURE
     #import "AliyunLogNetworkDiagnosis/AliyunLogNetworkDiagnosis-Swift.h"
+#endif
+
+#if __has_include("AliyunLogNetworkDiagnosisOne/AliyunLogNetworkDiagnosisOne-Swift.h")
+    #define SLS_NETWORK_SWIFT_FEATURE
+    #import "AliyunLogNetworkDiagnosisOne/AliyunLogNetworkDiagnosisOne-Swift.h"
 #endif
 
 static int DEFAULT_PING_SIZE = 64;
@@ -112,6 +118,17 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
     self = [super init];
     if (self) {
         _port = DEFAULT_INVALID;
+    }
+    return self;
+}
+@end
+
+@implementation SLSUdpRequest
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        self.port = DEFAULT_INVALID;
     }
     return self;
 }
@@ -207,6 +224,12 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
     if (networkCredentials.secretKey.length > 0) {
         networkCredentials.instanceId = [self getIPAIdBySecretKey:networkCredentials.secretKey];
     }
+    NSDictionary *extensions = [[SLSNetworkDiagnosis sharedInstance] getExtensions];
+    if (extensions) {
+        for (NSString *key in extensions) {
+            [networkCredentials.extension setValue:[extensions valueForKey:key] forKey:key];
+        }
+    }
     
 #ifdef SLS_NETWORK_SWIFT_FEATURE
     [NetworkDiagnosisHelper updateWorkspace:networkCredentials.endpoint
@@ -246,6 +269,14 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
     if (networkCredentials.secretKey.length > 0) {
         networkCredentials.instanceId = [self getIPAIdBySecretKey:networkCredentials.secretKey];
     }
+    NSDictionary *extensions = [[SLSNetworkDiagnosis sharedInstance] getExtensions];
+    if (extensions) {
+        for (NSString *key in extensions) {
+            [networkCredentials.extension setValue:[extensions valueForKey:key] forKey:key];
+        }
+        SLSLog(@"onInitialize show extension %@", networkCredentials.extension);
+    }
+    
     
     [_diagnosis init:networkCredentials.secretKey
             deviceId:[[SLSUtdid getUtdid] copy]
@@ -268,27 +299,35 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
 }
 
 - (NSString *) getIPAIdBySecretKey: (NSString *) secretKey {
-    NSString *decode = [secretKey base64Decode];
-    if (!decode) {
+    NSData *decodeData = [[NSData alloc] initWithBase64EncodedString:secretKey options:0];
+    if (!decodeData) {
         return @"";
     }
-    
-    NSDictionary *dict = [decode toDictionary];
+    NSError *error;
+    NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:decodeData
+                                    options:kNilOptions
+                                      error:&error
+    ];
+    if (error) {
+        NSLog(@"getIPAIdBySecretKey to NSDictionary error. %@", error);
+        return @"";
+    }
+        
     if (!dict || ![dict objectForKey:@"ipa_app_id"]) {
         return @"";
     }
-    
     
     return [[dict objectForKey:@"ipa_app_id"] lowercaseString];
 }
 
 - (NSString *)generateId {
-    [_lock lock];
-    _index += 1;
-    NSString *traceId = [NSString stringWithFormat:@"%@_%ld", _idPrefix, _index];
-    [_lock unlock];
+    // [_lock lock];
+    // _index += 1;
+    // NSString *traceId = [NSString stringWithFormat:@"%@_%ld", _idPrefix, _index];
+    // [_lock unlock];
 
-    return traceId;
+    // return traceId;
+    return nil;
 }
 
 - (void) disableExNetworkInfo {
@@ -297,6 +336,11 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
 
 - (void) setPolicyDomain: (NSString *) policyDomain {
     [_diagnosis setPolicyDomain:policyDomain];
+}
+
+- (void) setUserTags:(NSArray<NSString *> *)tags {
+    SLSLog(@"setUserTags to diagnosis with %@", tags);
+    [_diagnosis setUserTags:tags];
 }
 
 - (void) setMultiplePortsDetect: (BOOL) enable {
@@ -320,7 +364,7 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
 }
 
 - (void) updateExtensions: (NSDictionary *) extension {
-    [_diagnosis updateExtension: [extension copy]];
+    [_diagnosis updateExtension: extension];
 }
 - (void) registerHttpCredentialDelegate: (nullable CredentialDelegate) delegate {
     [_diagnosis registerHttpCredentialDelegate:[InternalHttpCredentialDelegate delegate:delegate]];
@@ -552,23 +596,6 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
 #endif
     
     [_diagnosis mtr:config];
-    
-    
-//    [AliMTR start:request.domain
-//           maxTtl:request.maxTTL
-//    interfaceType:(_enableMultiplePortsDetect ? AliNetDiagNetworkInterfaceDefault : AliNetDiagNetworkInterfaceCurrent)
-//         maxPaths:request.maxPaths
-//   maxTimesEachIP:request.maxTimes
-//          timeout:request.timeout
-//          context:request.context
-//          traceID:[self generateId]
-//           output:nil
-//         complete:^(id context, NSString *traceID, AliMTRResult *result) {
-//                    if (callback && result) {
-//                        callback([SLSResponse response:context type:@"mtr" content:[result.content copy]]);
-//                    }
-//                }
-//    ];
 }
 
 
@@ -717,6 +744,9 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
                                                            }
                                               combineComplete:nil
     ];
+    
+    config.payload = request.payload;
+    
     if (request.extention) {
         config.detectExtension = [NSMutableDictionary dictionaryWithDictionary:request.extention];
     }
@@ -728,6 +758,70 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
     [_diagnosis tcpPing: config];
 }
 
+#pragma mark - udp
+- (void) udp: (SLSUdpRequest *) request {
+    [self udp:request callback:nil];
+}
+
+- (void) udp: (SLSUdpRequest *) request callback: (nullable Callback2) callback {
+    if (nil == request || request.domain.length < 1) {
+        if (callback) {
+            callback([SLSResponse error:@"SLSUdpRequest is null or domain is empty."]);
+        }
+        return;
+    }
+    
+#ifdef SLS_NETWORK_SWIFT_FEATURE
+    TraceNode *node = [TraceNode traceNode:@"udp" request:request];
+#endif
+    
+    AliUdpDetectConfig *config = [[AliUdpDetectConfig alloc] init:request.domain
+                                                          timeout:request.timeout
+                                                    interfaceType:(_enableMultiplePortsDetect ? AliNetDiagNetworkInterfaceDefault : AliNetDiagNetworkInterfaceCurrent)
+                                                          payload:request.payload
+                                                           prefer:0
+                                                          context:request.context
+                                                          traceID:[self generateId]
+                                                             port:request.port
+                                                            count:request.maxTimes
+                                                         interval:DEFAULT_MAX_INTERVAL
+                                                         complete:^(id context, NSString *traceID, AliUdpDetectResult *result) {
+                                                                    if (callback) {
+                                                                        callback([SLSResponse response:context type:@"udp" content:[result.content copy]]);
+                                                                    }
+#ifdef SLS_NETWORK_SWIFT_FEATURE
+                                                                    [node end];
+#endif
+                                                                }
+                                                  combineComplete:nil];
+    if (request.extention) {
+        config.detectExtension = [NSMutableDictionary dictionaryWithDictionary:request.extention];
+    }
+    
+#ifdef SLS_NETWORK_SWIFT_FEATURE
+    [node setDetectConfig:config];
+#endif
+    [_diagnosis udp: config];
+}
+
+- (void) tag:(NSString *)tag {
+    [self tag:tag callback:nil];
+}
+
+- (void) tag:(NSString *)tag callback:(Callback2)callback {
+    if (!tag || tag.length < 1) {
+        if (callback) {
+            callback([SLSResponse error:@"tag is null or empty."]);
+        }
+        return;
+    }
+    
+    [_diagnosis tag:tag callback:^(SLSResponse * _Nonnull response) {
+        if (callback) {
+            callback(response);
+        }
+    }];
+}
 @end
 
 #pragma mark - network diagnosis sender
@@ -915,6 +1009,18 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
     [AliTcpPing execute:config];
 }
 
+- (void) udp: (AliUdpDetectConfig *)config {
+    [AliUdpDetect execute:config];
+}
+
+- (void) tag:(NSString *)tag callback:(Callback2)callback {
+    [AliNetworkDiagnosis detectWithTag:tag context:nil callback:^(id context, NSString *tag, NSString *result) {
+        if (callback) {
+            callback([SLSResponse response:context type:@"tag" content:[result copy]]);
+        }
+    }];
+}
+
 - (void)disableExNetInfo {
     [AliNetworkDiagnosis disableExNetInfo];
 }
@@ -957,6 +1063,9 @@ static NSString *DNS_TYPE_IPv6 = @"AAAA";
     [AliNetworkDiagnosis setPolicyDomain:domain];
 }
 
+- (void)setUserTags:(NSArray<NSString *> *)tags {
+    [AliNetworkDiagnosis setUserTags:tags];
+}
 
 - (void)updateExtension:(nonnull NSDictionary *)extension {
     [AliNetworkDiagnosis updateExtension:extension];

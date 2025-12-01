@@ -1,0 +1,4424 @@
+{
+  "ABIRoot": {
+    "kind": "Root",
+    "name": "TopLevel",
+    "printedName": "TopLevel",
+    "children": [
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "URLSessionInstrumentation",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "UIKit",
+        "printedName": "UIKit",
+        "declKind": "Import",
+        "moduleName": "URLSessionInstrumentation"
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "InstrumentationUtils",
+        "printedName": "InstrumentationUtils",
+        "children": [
+          {
+            "kind": "Function",
+            "name": "objc_getClassList",
+            "printedName": "objc_getClassList()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Array",
+                "printedName": "[AnyObject.Type]",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ExistentialMetatype",
+                    "printedName": "AnyObject.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "ProtocolComposition",
+                        "printedName": "AnyObject"
+                      }
+                    ]
+                  }
+                ],
+                "usr": "s:Sa"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:25URLSessionInstrumentation0B5UtilsO17objc_getClassListSayyXlXpGyFZ",
+            "mangledName": "$s25URLSessionInstrumentation0B5UtilsO17objc_getClassListSayyXlXpGyFZ",
+            "moduleName": "URLSessionInstrumentation",
+            "static": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "instanceRespondsAndImplements",
+            "printedName": "instanceRespondsAndImplements(cls:selector:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ExistentialMetatype",
+                "printedName": "AnyObject.Type",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ProtocolComposition",
+                    "printedName": "AnyObject"
+                  }
+                ]
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Selector",
+                "printedName": "ObjectiveC.Selector",
+                "usr": "s:10ObjectiveC8SelectorV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:25URLSessionInstrumentation0B5UtilsO29instanceRespondsAndImplements3cls8selectorSbyXlXp_10ObjectiveC8SelectorVtFZ",
+            "mangledName": "$s25URLSessionInstrumentation0B5UtilsO29instanceRespondsAndImplements3cls8selectorSbyXlXp_10ObjectiveC8SelectorVtFZ",
+            "moduleName": "URLSessionInstrumentation",
+            "static": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Enum",
+        "usr": "s:25URLSessionInstrumentation0B5UtilsO",
+        "mangledName": "$s25URLSessionInstrumentation0B5UtilsO",
+        "moduleName": "URLSessionInstrumentation",
+        "isEnumExhaustive": true,
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "URLSessionInstrumentation",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "OpenTelemetryApi",
+        "printedName": "OpenTelemetryApi",
+        "declKind": "Import",
+        "moduleName": "URLSessionInstrumentation"
+      },
+      {
+        "kind": "Import",
+        "name": "OpenTelemetrySdk",
+        "printedName": "OpenTelemetrySdk",
+        "declKind": "Import",
+        "moduleName": "URLSessionInstrumentation"
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "NetworkRequestState",
+        "printedName": "NetworkRequestState",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "request",
+            "printedName": "request",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Foundation.URLRequest?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "URLRequest",
+                    "printedName": "Foundation.URLRequest",
+                    "usr": "s:10Foundation10URLRequestV"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:25URLSessionInstrumentation19NetworkRequestStateV7request10Foundation10URLRequestVSgvp",
+            "mangledName": "$s25URLSessionInstrumentation19NetworkRequestStateV7request10Foundation10URLRequestVSgvp",
+            "moduleName": "URLSessionInstrumentation",
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage"
+            ],
+            "fixedbinaryorder": 0,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Foundation.URLRequest?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "URLRequest",
+                        "printedName": "Foundation.URLRequest",
+                        "usr": "s:10Foundation10URLRequestV"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:25URLSessionInstrumentation19NetworkRequestStateV7request10Foundation10URLRequestVSgvg",
+                "mangledName": "$s25URLSessionInstrumentation19NetworkRequestStateV7request10Foundation10URLRequestVSgvg",
+                "moduleName": "URLSessionInstrumentation",
+                "implicit": true,
+                "declAttributes": [
+                  "Transparent"
+                ],
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Foundation.URLRequest?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "URLRequest",
+                        "printedName": "Foundation.URLRequest",
+                        "usr": "s:10Foundation10URLRequestV"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:25URLSessionInstrumentation19NetworkRequestStateV7request10Foundation10URLRequestVSgvs",
+                "mangledName": "$s25URLSessionInstrumentation19NetworkRequestStateV7request10Foundation10URLRequestVSgvs",
+                "moduleName": "URLSessionInstrumentation",
+                "implicit": true,
+                "declAttributes": [
+                  "Transparent"
+                ],
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:25URLSessionInstrumentation19NetworkRequestStateV7request10Foundation10URLRequestVSgvM",
+                "mangledName": "$s25URLSessionInstrumentation19NetworkRequestStateV7request10Foundation10URLRequestVSgvM",
+                "moduleName": "URLSessionInstrumentation",
+                "implicit": true,
+                "declAttributes": [
+                  "Transparent"
+                ],
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "dataProcessed",
+            "printedName": "dataProcessed",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Foundation.Data?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Data",
+                    "printedName": "Foundation.Data",
+                    "usr": "s:10Foundation4DataV"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:25URLSessionInstrumentation19NetworkRequestStateV13dataProcessed10Foundation4DataVSgvp",
+            "mangledName": "$s25URLSessionInstrumentation19NetworkRequestStateV13dataProcessed10Foundation4DataVSgvp",
+            "moduleName": "URLSessionInstrumentation",
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage"
+            ],
+            "fixedbinaryorder": 1,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Foundation.Data?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Data",
+                        "printedName": "Foundation.Data",
+                        "usr": "s:10Foundation4DataV"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:25URLSessionInstrumentation19NetworkRequestStateV13dataProcessed10Foundation4DataVSgvg",
+                "mangledName": "$s25URLSessionInstrumentation19NetworkRequestStateV13dataProcessed10Foundation4DataVSgvg",
+                "moduleName": "URLSessionInstrumentation",
+                "implicit": true,
+                "declAttributes": [
+                  "Transparent"
+                ],
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Foundation.Data?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Data",
+                        "printedName": "Foundation.Data",
+                        "usr": "s:10Foundation4DataV"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:25URLSessionInstrumentation19NetworkRequestStateV13dataProcessed10Foundation4DataVSgvs",
+                "mangledName": "$s25URLSessionInstrumentation19NetworkRequestStateV13dataProcessed10Foundation4DataVSgvs",
+                "moduleName": "URLSessionInstrumentation",
+                "implicit": true,
+                "declAttributes": [
+                  "Transparent"
+                ],
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:25URLSessionInstrumentation19NetworkRequestStateV13dataProcessed10Foundation4DataVSgvM",
+                "mangledName": "$s25URLSessionInstrumentation19NetworkRequestStateV13dataProcessed10Foundation4DataVSgvM",
+                "moduleName": "URLSessionInstrumentation",
+                "implicit": true,
+                "declAttributes": [
+                  "Transparent"
+                ],
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Function",
+            "name": "setRequest",
+            "printedName": "setRequest(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "URLRequest",
+                "printedName": "Foundation.URLRequest",
+                "usr": "s:10Foundation10URLRequestV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:25URLSessionInstrumentation19NetworkRequestStateV03setD0yy10Foundation10URLRequestVF",
+            "mangledName": "$s25URLSessionInstrumentation19NetworkRequestStateV03setD0yy10Foundation10URLRequestVF",
+            "moduleName": "URLSessionInstrumentation",
+            "declAttributes": [
+              "Mutating"
+            ],
+            "funcSelfKind": "Mutating"
+          },
+          {
+            "kind": "Function",
+            "name": "setData",
+            "printedName": "setData(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "URLRequest",
+                "printedName": "Foundation.URLRequest",
+                "usr": "s:10Foundation10URLRequestV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:25URLSessionInstrumentation19NetworkRequestStateV7setDatayy10Foundation10URLRequestVF",
+            "mangledName": "$s25URLSessionInstrumentation19NetworkRequestStateV7setDatayy10Foundation10URLRequestVF",
+            "moduleName": "URLSessionInstrumentation",
+            "declAttributes": [
+              "Mutating"
+            ],
+            "funcSelfKind": "Mutating"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(request:dataProcessed:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "NetworkRequestState",
+                "printedName": "URLSessionInstrumentation.NetworkRequestState",
+                "usr": "s:25URLSessionInstrumentation19NetworkRequestStateV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Foundation.URLRequest?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "URLRequest",
+                    "printedName": "Foundation.URLRequest",
+                    "usr": "s:10Foundation10URLRequestV"
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Foundation.Data?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Data",
+                    "printedName": "Foundation.Data",
+                    "usr": "s:10Foundation4DataV"
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:25URLSessionInstrumentation19NetworkRequestStateV7request13dataProcessedAC10Foundation10URLRequestVSg_AF4DataVSgtcfc",
+            "mangledName": "$s25URLSessionInstrumentation19NetworkRequestStateV7request13dataProcessedAC10Foundation10URLRequestVSg_AF4DataVSgtcfc",
+            "moduleName": "URLSessionInstrumentation",
+            "implicit": true,
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "NetworkRequestState",
+                "printedName": "URLSessionInstrumentation.NetworkRequestState",
+                "usr": "s:25URLSessionInstrumentation19NetworkRequestStateV"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:25URLSessionInstrumentation19NetworkRequestStateVACycfc",
+            "mangledName": "$s25URLSessionInstrumentation19NetworkRequestStateVACycfc",
+            "moduleName": "URLSessionInstrumentation",
+            "implicit": true,
+            "init_kind": "Designated"
+          }
+        ],
+        "declKind": "Struct",
+        "usr": "s:25URLSessionInstrumentation19NetworkRequestStateV",
+        "mangledName": "$s25URLSessionInstrumentation19NetworkRequestStateV",
+        "moduleName": "URLSessionInstrumentation",
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "URLSessionInstrumentation",
+        "printedName": "URLSessionInstrumentation",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "configuration",
+            "printedName": "configuration",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "URLSessionInstrumentationConfiguration",
+                "printedName": "URLSessionInstrumentation.URLSessionInstrumentationConfiguration",
+                "usr": "s:25URLSessionInstrumentation0aB13ConfigurationV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:25URLSessionInstrumentationAAC13configurationAA0aB13ConfigurationVvp",
+            "mangledName": "$s25URLSessionInstrumentationAAC13configurationAA0aB13ConfigurationVvp",
+            "moduleName": "URLSessionInstrumentation",
+            "isOpen": true,
+            "declAttributes": [
+              "HasStorage"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "URLSessionInstrumentationConfiguration",
+                    "printedName": "URLSessionInstrumentation.URLSessionInstrumentationConfiguration",
+                    "usr": "s:25URLSessionInstrumentation0aB13ConfigurationV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:25URLSessionInstrumentationAAC13configurationAA0aB13ConfigurationVvg",
+                "mangledName": "$s25URLSessionInstrumentationAAC13configurationAA0aB13ConfigurationVvg",
+                "moduleName": "URLSessionInstrumentation",
+                "implicit": true,
+                "isOpen": true,
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "URLSessionInstrumentationConfiguration",
+                    "printedName": "URLSessionInstrumentation.URLSessionInstrumentationConfiguration",
+                    "usr": "s:25URLSessionInstrumentation0aB13ConfigurationV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:25URLSessionInstrumentationAAC13configurationAA0aB13ConfigurationVvs",
+                "mangledName": "$s25URLSessionInstrumentationAAC13configurationAA0aB13ConfigurationVvs",
+                "moduleName": "URLSessionInstrumentation",
+                "implicit": true,
+                "isOpen": true,
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:25URLSessionInstrumentationAAC13configurationAA0aB13ConfigurationVvM",
+                "mangledName": "$s25URLSessionInstrumentationAAC13configurationAA0aB13ConfigurationVvM",
+                "moduleName": "URLSessionInstrumentation",
+                "implicit": true,
+                "isOpen": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "instrumentedKey",
+            "printedName": "instrumentedKey",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:25URLSessionInstrumentationAAC15instrumentedKeySSvpZ",
+            "mangledName": "$s25URLSessionInstrumentationAAC15instrumentedKeySSvpZ",
+            "moduleName": "URLSessionInstrumentation",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "Final",
+              "HasStorage"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:25URLSessionInstrumentationAAC15instrumentedKeySSvgZ",
+                "mangledName": "$s25URLSessionInstrumentationAAC15instrumentedKeySSvgZ",
+                "moduleName": "URLSessionInstrumentation",
+                "static": true,
+                "implicit": true,
+                "declAttributes": [
+                  "Transparent",
+                  "Final"
+                ],
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:25URLSessionInstrumentationAAC15instrumentedKeySSvsZ",
+                "mangledName": "$s25URLSessionInstrumentationAAC15instrumentedKeySSvsZ",
+                "moduleName": "URLSessionInstrumentation",
+                "static": true,
+                "implicit": true,
+                "declAttributes": [
+                  "Transparent",
+                  "Final"
+                ],
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:25URLSessionInstrumentationAAC15instrumentedKeySSvMZ",
+                "mangledName": "$s25URLSessionInstrumentationAAC15instrumentedKeySSvMZ",
+                "moduleName": "URLSessionInstrumentation",
+                "static": true,
+                "implicit": true,
+                "declAttributes": [
+                  "Transparent",
+                  "Final"
+                ],
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "avAssetDownloadTask",
+            "printedName": "avAssetDownloadTask",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "AnyObject.Type?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ExistentialMetatype",
+                    "printedName": "AnyObject.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "ProtocolComposition",
+                        "printedName": "AnyObject"
+                      }
+                    ]
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:25URLSessionInstrumentationAAC19avAssetDownloadTaskyXlXpSgvpZ",
+            "mangledName": "$s25URLSessionInstrumentationAAC19avAssetDownloadTaskyXlXpSgvpZ",
+            "moduleName": "URLSessionInstrumentation",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "Final",
+              "HasStorage"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "AnyObject.Type?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "ExistentialMetatype",
+                        "printedName": "AnyObject.Type",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "ProtocolComposition",
+                            "printedName": "AnyObject"
+                          }
+                        ]
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:25URLSessionInstrumentationAAC19avAssetDownloadTaskyXlXpSgvgZ",
+                "mangledName": "$s25URLSessionInstrumentationAAC19avAssetDownloadTaskyXlXpSgvgZ",
+                "moduleName": "URLSessionInstrumentation",
+                "static": true,
+                "implicit": true,
+                "declAttributes": [
+                  "Transparent",
+                  "Final"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "tracer",
+            "printedName": "tracer",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Tracer",
+                "printedName": "OpenTelemetryApi.Tracer",
+                "usr": "s:16OpenTelemetryApi6TracerP"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:25URLSessionInstrumentationAAC6tracer16OpenTelemetryApi6Tracer_pvp",
+            "mangledName": "$s25URLSessionInstrumentationAAC6tracer16OpenTelemetryApi6Tracer_pvp",
+            "moduleName": "URLSessionInstrumentation",
+            "isOpen": true,
+            "declAttributes": [
+              "HasStorage",
+              "SetterAccess",
+              "AccessControl"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Tracer",
+                    "printedName": "OpenTelemetryApi.Tracer",
+                    "usr": "s:16OpenTelemetryApi6TracerP"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:25URLSessionInstrumentationAAC6tracer16OpenTelemetryApi6Tracer_pvg",
+                "mangledName": "$s25URLSessionInstrumentationAAC6tracer16OpenTelemetryApi6Tracer_pvg",
+                "moduleName": "URLSessionInstrumentation",
+                "implicit": true,
+                "isOpen": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "startedRequestSpans",
+            "printedName": "startedRequestSpans",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Array",
+                "printedName": "[OpenTelemetryApi.Span]",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Span",
+                    "printedName": "OpenTelemetryApi.Span",
+                    "usr": "s:16OpenTelemetryApi4SpanP"
+                  }
+                ],
+                "usr": "s:Sa"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:25URLSessionInstrumentationAAC19startedRequestSpansSay16OpenTelemetryApi4Span_pGvp",
+            "mangledName": "$s25URLSessionInstrumentationAAC19startedRequestSpansSay16OpenTelemetryApi4Span_pGvp",
+            "moduleName": "URLSessionInstrumentation",
+            "isOpen": true,
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Array",
+                    "printedName": "[OpenTelemetryApi.Span]",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Span",
+                        "printedName": "OpenTelemetryApi.Span",
+                        "usr": "s:16OpenTelemetryApi4SpanP"
+                      }
+                    ],
+                    "usr": "s:Sa"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:25URLSessionInstrumentationAAC19startedRequestSpansSay16OpenTelemetryApi4Span_pGvg",
+                "mangledName": "$s25URLSessionInstrumentationAAC19startedRequestSpansSay16OpenTelemetryApi4Span_pGvg",
+                "moduleName": "URLSessionInstrumentation",
+                "isOpen": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(configuration:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "URLSessionInstrumentation",
+                "printedName": "URLSessionInstrumentation.URLSessionInstrumentation",
+                "usr": "s:25URLSessionInstrumentationAAC"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "URLSessionInstrumentationConfiguration",
+                "printedName": "URLSessionInstrumentation.URLSessionInstrumentationConfiguration",
+                "usr": "s:25URLSessionInstrumentation0aB13ConfigurationV"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:25URLSessionInstrumentationAAC13configurationAbA0aB13ConfigurationV_tcfc",
+            "mangledName": "$s25URLSessionInstrumentationAAC13configurationAbA0aB13ConfigurationV_tcfc",
+            "moduleName": "URLSessionInstrumentation",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "injectRespondsToSelectorIntoDelegateClass",
+            "printedName": "injectRespondsToSelectorIntoDelegateClass(cls:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ExistentialMetatype",
+                "printedName": "AnyObject.Type",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ProtocolComposition",
+                    "printedName": "AnyObject"
+                  }
+                ]
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:25URLSessionInstrumentationAAC41injectRespondsToSelectorIntoDelegateClass3clsyyXlXp_tF",
+            "mangledName": "$s25URLSessionInstrumentationAAC41injectRespondsToSelectorIntoDelegateClass3clsyyXlXp_tF",
+            "moduleName": "URLSessionInstrumentation",
+            "isOpen": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "s:25URLSessionInstrumentationAAC",
+        "mangledName": "$s25URLSessionInstrumentationAAC",
+        "moduleName": "URLSessionInstrumentation",
+        "isOpen": true,
+        "declAttributes": [
+          "AccessControl"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "FakeDelegate",
+        "printedName": "FakeDelegate",
+        "children": [
+          {
+            "kind": "Function",
+            "name": "urlSession",
+            "printedName": "urlSession(_:task:didCompleteWithError:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "URLSession",
+                "printedName": "Foundation.URLSession",
+                "usr": "c:objc(cs)NSURLSession"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "URLSessionTask",
+                "printedName": "Foundation.URLSessionTask",
+                "usr": "c:objc(cs)NSURLSessionTask"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.Error?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Error",
+                    "printedName": "Swift.Error",
+                    "usr": "s:s5ErrorP"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@URLSessionInstrumentation@objc(cs)FakeDelegate(im)URLSession:task:didCompleteWithError:",
+            "mangledName": "$s25URLSessionInstrumentation12FakeDelegateC10urlSession_4task20didCompleteWithErrorySo12NSURLSessionC_So0L4TaskCs0K0_pSgtF",
+            "moduleName": "URLSessionInstrumentation",
+            "isOpen": true,
+            "objc_name": "URLSession:task:didCompleteWithError:",
+            "declAttributes": [
+              "ObjC"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "FakeDelegate",
+                "printedName": "URLSessionInstrumentation.FakeDelegate",
+                "usr": "c:@M@URLSessionInstrumentation@objc(cs)FakeDelegate"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "c:@M@URLSessionInstrumentation@objc(cs)FakeDelegate(im)init",
+            "mangledName": "$s25URLSessionInstrumentation12FakeDelegateCACycfc",
+            "moduleName": "URLSessionInstrumentation",
+            "overriding": true,
+            "implicit": true,
+            "objc_name": "init",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "Override"
+            ],
+            "init_kind": "Designated"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "c:@M@URLSessionInstrumentation@objc(cs)FakeDelegate",
+        "mangledName": "$s25URLSessionInstrumentation12FakeDelegateC",
+        "moduleName": "URLSessionInstrumentation",
+        "isOpen": true,
+        "declAttributes": [
+          "ObjC"
+        ],
+        "superclassUsr": "c:objc(cs)NSObject",
+        "inheritsConvenienceInitializers": true,
+        "superclassNames": [
+          "ObjectiveC.NSObject"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CVarArg",
+            "printedName": "CVarArg",
+            "usr": "s:s7CVarArgP",
+            "mangledName": "$ss7CVarArgP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObservingPublishing",
+            "printedName": "_KeyValueCodingAndObservingPublishing",
+            "usr": "s:10Foundation37_KeyValueCodingAndObservingPublishingP",
+            "mangledName": "$s10Foundation37_KeyValueCodingAndObservingPublishingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObserving",
+            "printedName": "_KeyValueCodingAndObserving",
+            "usr": "s:10Foundation27_KeyValueCodingAndObservingP",
+            "mangledName": "$s10Foundation27_KeyValueCodingAndObservingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomStringConvertible",
+            "printedName": "CustomStringConvertible",
+            "usr": "s:s23CustomStringConvertibleP",
+            "mangledName": "$ss23CustomStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomDebugStringConvertible",
+            "printedName": "CustomDebugStringConvertible",
+            "usr": "s:s28CustomDebugStringConvertibleP",
+            "mangledName": "$ss28CustomDebugStringConvertibleP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "URLSessionInstrumentation",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "OpenTelemetryApi",
+        "printedName": "OpenTelemetryApi",
+        "declKind": "Import",
+        "moduleName": "URLSessionInstrumentation"
+      },
+      {
+        "kind": "Import",
+        "name": "OpenTelemetrySdk",
+        "printedName": "OpenTelemetrySdk",
+        "declKind": "Import",
+        "moduleName": "URLSessionInstrumentation"
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "URLSessionInstrumentationConfiguration",
+        "printedName": "URLSessionInstrumentationConfiguration",
+        "children": [
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(shouldRecordPayload:shouldInstrument:nameSpan:spanCustomization:shouldInjectTracingHeaders:injectCustomHeaders:createdRequest:receivedResponse:receivedError:delegateClassesToInstrument:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "URLSessionInstrumentationConfiguration",
+                "printedName": "URLSessionInstrumentation.URLSessionInstrumentationConfiguration",
+                "usr": "s:25URLSessionInstrumentation0aB13ConfigurationV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "((Foundation.URLSession) -> Swift.Bool?)?",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(Foundation.URLSession) -> Swift.Bool?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Optional",
+                        "printedName": "Swift.Bool?",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Bool",
+                            "printedName": "Swift.Bool",
+                            "usr": "s:Sb"
+                          }
+                        ],
+                        "usr": "s:Sq"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "URLSession",
+                        "printedName": "Foundation.URLSession",
+                        "usr": "c:objc(cs)NSURLSession"
+                      }
+                    ]
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "((Foundation.URLRequest) -> Swift.Bool?)?",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(Foundation.URLRequest) -> Swift.Bool?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Optional",
+                        "printedName": "Swift.Bool?",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Bool",
+                            "printedName": "Swift.Bool",
+                            "usr": "s:Sb"
+                          }
+                        ],
+                        "usr": "s:Sq"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "URLRequest",
+                        "printedName": "Foundation.URLRequest",
+                        "usr": "s:10Foundation10URLRequestV"
+                      }
+                    ]
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "((Foundation.URLRequest) -> Swift.String?)?",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(Foundation.URLRequest) -> Swift.String?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Optional",
+                        "printedName": "Swift.String?",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "String",
+                            "printedName": "Swift.String",
+                            "usr": "s:SS"
+                          }
+                        ],
+                        "usr": "s:Sq"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "URLRequest",
+                        "printedName": "Foundation.URLRequest",
+                        "usr": "s:10Foundation10URLRequestV"
+                      }
+                    ]
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "((Foundation.URLRequest, OpenTelemetryApi.SpanBuilder) -> ())?",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(Foundation.URLRequest, OpenTelemetryApi.SpanBuilder) -> ()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Void",
+                        "printedName": "()"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Tuple",
+                        "printedName": "(Foundation.URLRequest, OpenTelemetryApi.SpanBuilder)",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "URLRequest",
+                            "printedName": "Foundation.URLRequest",
+                            "usr": "s:10Foundation10URLRequestV"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "SpanBuilder",
+                            "printedName": "OpenTelemetryApi.SpanBuilder",
+                            "usr": "s:16OpenTelemetryApi11SpanBuilderP"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "((Foundation.URLRequest) -> Swift.Bool?)?",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(Foundation.URLRequest) -> Swift.Bool?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Optional",
+                        "printedName": "Swift.Bool?",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Bool",
+                            "printedName": "Swift.Bool",
+                            "usr": "s:Sb"
+                          }
+                        ],
+                        "usr": "s:Sq"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "URLRequest",
+                        "printedName": "Foundation.URLRequest",
+                        "usr": "s:10Foundation10URLRequestV"
+                      }
+                    ]
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "((inout Foundation.URLRequest, OpenTelemetryApi.Span?) -> ())?",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(inout Foundation.URLRequest, OpenTelemetryApi.Span?) -> ()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Void",
+                        "printedName": "()"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Tuple",
+                        "printedName": "(Foundation.URLRequest, OpenTelemetryApi.Span?)",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "URLRequest",
+                            "printedName": "Foundation.URLRequest",
+                            "usr": "s:10Foundation10URLRequestV"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Optional",
+                            "printedName": "OpenTelemetryApi.Span?",
+                            "children": [
+                              {
+                                "kind": "TypeNominal",
+                                "name": "Span",
+                                "printedName": "OpenTelemetryApi.Span",
+                                "usr": "s:16OpenTelemetryApi4SpanP"
+                              }
+                            ],
+                            "usr": "s:Sq"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "((Foundation.URLRequest, OpenTelemetryApi.Span) -> ())?",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(Foundation.URLRequest, OpenTelemetryApi.Span) -> ()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Void",
+                        "printedName": "()"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Tuple",
+                        "printedName": "(Foundation.URLRequest, OpenTelemetryApi.Span)",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "URLRequest",
+                            "printedName": "Foundation.URLRequest",
+                            "usr": "s:10Foundation10URLRequestV"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Span",
+                            "printedName": "OpenTelemetryApi.Span",
+                            "usr": "s:16OpenTelemetryApi4SpanP"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "((Foundation.URLResponse, Any?, OpenTelemetryApi.Span) -> ())?",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(Foundation.URLResponse, Any?, OpenTelemetryApi.Span) -> ()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Void",
+                        "printedName": "()"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Tuple",
+                        "printedName": "(Foundation.URLResponse, Any?, OpenTelemetryApi.Span)",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "URLResponse",
+                            "printedName": "Foundation.URLResponse",
+                            "usr": "c:objc(cs)NSURLResponse"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Optional",
+                            "printedName": "Any?",
+                            "children": [
+                              {
+                                "kind": "TypeNominal",
+                                "name": "ProtocolComposition",
+                                "printedName": "Any"
+                              }
+                            ],
+                            "usr": "s:Sq"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Span",
+                            "printedName": "OpenTelemetryApi.Span",
+                            "usr": "s:16OpenTelemetryApi4SpanP"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "((Swift.Error, Any?, Swift.Int, OpenTelemetryApi.Span) -> ())?",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(Swift.Error, Any?, Swift.Int, OpenTelemetryApi.Span) -> ()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Void",
+                        "printedName": "()"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Tuple",
+                        "printedName": "(Swift.Error, Any?, Swift.Int, OpenTelemetryApi.Span)",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Error",
+                            "printedName": "Swift.Error",
+                            "usr": "s:s5ErrorP"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Optional",
+                            "printedName": "Any?",
+                            "children": [
+                              {
+                                "kind": "TypeNominal",
+                                "name": "ProtocolComposition",
+                                "printedName": "Any"
+                              }
+                            ],
+                            "usr": "s:Sq"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Int",
+                            "printedName": "Swift.Int",
+                            "usr": "s:Si"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Span",
+                            "printedName": "OpenTelemetryApi.Span",
+                            "usr": "s:16OpenTelemetryApi4SpanP"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "[AnyObject.Type]?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Array",
+                    "printedName": "[AnyObject.Type]",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "ExistentialMetatype",
+                        "printedName": "AnyObject.Type",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "ProtocolComposition",
+                            "printedName": "AnyObject"
+                          }
+                        ]
+                      }
+                    ],
+                    "usr": "s:Sa"
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:25URLSessionInstrumentation0aB13ConfigurationV19shouldRecordPayload0D10Instrument8nameSpan17spanCustomization0D20InjectTracingHeaders012injectCustomN014createdRequest16receivedResponse0S5Error017delegateClassesToG0ACSbSgSo12NSURLSessionCcSg_AN10Foundation10URLRequestVcSgSSSgATcSgyAT_16OpenTelemetryApi0I7Builder_ptcSgAUyATz_AX0I0_pSgtcSgyAT_AXA__ptcSgySo13NSURLResponseC_ypSgAXA__ptcSgys0U0_p_A5_SiAXA__ptcSgSayyXlXpGSgtcfc",
+            "mangledName": "$s25URLSessionInstrumentation0aB13ConfigurationV19shouldRecordPayload0D10Instrument8nameSpan17spanCustomization0D20InjectTracingHeaders012injectCustomN014createdRequest16receivedResponse0S5Error017delegateClassesToG0ACSbSgSo12NSURLSessionCcSg_AN10Foundation10URLRequestVcSgSSSgATcSgyAT_16OpenTelemetryApi0I7Builder_ptcSgAUyATz_AX0I0_pSgtcSgyAT_AXA__ptcSgySo13NSURLResponseC_ypSgAXA__ptcSgys0U0_p_A5_SiAXA__ptcSgSayyXlXpGSgtcfc",
+            "moduleName": "URLSessionInstrumentation",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Var",
+            "name": "shouldInstrument",
+            "printedName": "shouldInstrument",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "((Foundation.URLRequest) -> Swift.Bool?)?",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(Foundation.URLRequest) -> Swift.Bool?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Optional",
+                        "printedName": "Swift.Bool?",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Bool",
+                            "printedName": "Swift.Bool",
+                            "usr": "s:Sb"
+                          }
+                        ],
+                        "usr": "s:Sq"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "URLRequest",
+                        "printedName": "Foundation.URLRequest",
+                        "usr": "s:10Foundation10URLRequestV"
+                      }
+                    ]
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:25URLSessionInstrumentation0aB13ConfigurationV16shouldInstrumentSbSg10Foundation10URLRequestVcSgvp",
+            "mangledName": "$s25URLSessionInstrumentation0aB13ConfigurationV16shouldInstrumentSbSg10Foundation10URLRequestVcSgvp",
+            "moduleName": "URLSessionInstrumentation",
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "((Foundation.URLRequest) -> Swift.Bool?)?",
+                    "children": [
+                      {
+                        "kind": "TypeFunc",
+                        "name": "Function",
+                        "printedName": "(Foundation.URLRequest) -> Swift.Bool?",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Optional",
+                            "printedName": "Swift.Bool?",
+                            "children": [
+                              {
+                                "kind": "TypeNominal",
+                                "name": "Bool",
+                                "printedName": "Swift.Bool",
+                                "usr": "s:Sb"
+                              }
+                            ],
+                            "usr": "s:Sq"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "URLRequest",
+                            "printedName": "Foundation.URLRequest",
+                            "usr": "s:10Foundation10URLRequestV"
+                          }
+                        ]
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:25URLSessionInstrumentation0aB13ConfigurationV16shouldInstrumentSbSg10Foundation10URLRequestVcSgvg",
+                "mangledName": "$s25URLSessionInstrumentation0aB13ConfigurationV16shouldInstrumentSbSg10Foundation10URLRequestVcSgvg",
+                "moduleName": "URLSessionInstrumentation",
+                "implicit": true,
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "((Foundation.URLRequest) -> Swift.Bool?)?",
+                    "children": [
+                      {
+                        "kind": "TypeFunc",
+                        "name": "Function",
+                        "printedName": "(Foundation.URLRequest) -> Swift.Bool?",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Optional",
+                            "printedName": "Swift.Bool?",
+                            "children": [
+                              {
+                                "kind": "TypeNominal",
+                                "name": "Bool",
+                                "printedName": "Swift.Bool",
+                                "usr": "s:Sb"
+                              }
+                            ],
+                            "usr": "s:Sq"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "URLRequest",
+                            "printedName": "Foundation.URLRequest",
+                            "usr": "s:10Foundation10URLRequestV"
+                          }
+                        ]
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:25URLSessionInstrumentation0aB13ConfigurationV16shouldInstrumentSbSg10Foundation10URLRequestVcSgvs",
+                "mangledName": "$s25URLSessionInstrumentation0aB13ConfigurationV16shouldInstrumentSbSg10Foundation10URLRequestVcSgvs",
+                "moduleName": "URLSessionInstrumentation",
+                "implicit": true,
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:25URLSessionInstrumentation0aB13ConfigurationV16shouldInstrumentSbSg10Foundation10URLRequestVcSgvM",
+                "mangledName": "$s25URLSessionInstrumentation0aB13ConfigurationV16shouldInstrumentSbSg10Foundation10URLRequestVcSgvM",
+                "moduleName": "URLSessionInstrumentation",
+                "implicit": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "shouldRecordPayload",
+            "printedName": "shouldRecordPayload",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "((Foundation.URLSession) -> Swift.Bool?)?",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(Foundation.URLSession) -> Swift.Bool?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Optional",
+                        "printedName": "Swift.Bool?",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Bool",
+                            "printedName": "Swift.Bool",
+                            "usr": "s:Sb"
+                          }
+                        ],
+                        "usr": "s:Sq"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "URLSession",
+                        "printedName": "Foundation.URLSession",
+                        "usr": "c:objc(cs)NSURLSession"
+                      }
+                    ]
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:25URLSessionInstrumentation0aB13ConfigurationV19shouldRecordPayloadSbSgSo12NSURLSessionCcSgvp",
+            "mangledName": "$s25URLSessionInstrumentation0aB13ConfigurationV19shouldRecordPayloadSbSgSo12NSURLSessionCcSgvp",
+            "moduleName": "URLSessionInstrumentation",
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "((Foundation.URLSession) -> Swift.Bool?)?",
+                    "children": [
+                      {
+                        "kind": "TypeFunc",
+                        "name": "Function",
+                        "printedName": "(Foundation.URLSession) -> Swift.Bool?",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Optional",
+                            "printedName": "Swift.Bool?",
+                            "children": [
+                              {
+                                "kind": "TypeNominal",
+                                "name": "Bool",
+                                "printedName": "Swift.Bool",
+                                "usr": "s:Sb"
+                              }
+                            ],
+                            "usr": "s:Sq"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "URLSession",
+                            "printedName": "Foundation.URLSession",
+                            "usr": "c:objc(cs)NSURLSession"
+                          }
+                        ]
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:25URLSessionInstrumentation0aB13ConfigurationV19shouldRecordPayloadSbSgSo12NSURLSessionCcSgvg",
+                "mangledName": "$s25URLSessionInstrumentation0aB13ConfigurationV19shouldRecordPayloadSbSgSo12NSURLSessionCcSgvg",
+                "moduleName": "URLSessionInstrumentation",
+                "implicit": true,
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "((Foundation.URLSession) -> Swift.Bool?)?",
+                    "children": [
+                      {
+                        "kind": "TypeFunc",
+                        "name": "Function",
+                        "printedName": "(Foundation.URLSession) -> Swift.Bool?",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Optional",
+                            "printedName": "Swift.Bool?",
+                            "children": [
+                              {
+                                "kind": "TypeNominal",
+                                "name": "Bool",
+                                "printedName": "Swift.Bool",
+                                "usr": "s:Sb"
+                              }
+                            ],
+                            "usr": "s:Sq"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "URLSession",
+                            "printedName": "Foundation.URLSession",
+                            "usr": "c:objc(cs)NSURLSession"
+                          }
+                        ]
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:25URLSessionInstrumentation0aB13ConfigurationV19shouldRecordPayloadSbSgSo12NSURLSessionCcSgvs",
+                "mangledName": "$s25URLSessionInstrumentation0aB13ConfigurationV19shouldRecordPayloadSbSgSo12NSURLSessionCcSgvs",
+                "moduleName": "URLSessionInstrumentation",
+                "implicit": true,
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:25URLSessionInstrumentation0aB13ConfigurationV19shouldRecordPayloadSbSgSo12NSURLSessionCcSgvM",
+                "mangledName": "$s25URLSessionInstrumentation0aB13ConfigurationV19shouldRecordPayloadSbSgSo12NSURLSessionCcSgvM",
+                "moduleName": "URLSessionInstrumentation",
+                "implicit": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "shouldInjectTracingHeaders",
+            "printedName": "shouldInjectTracingHeaders",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "((Foundation.URLRequest) -> Swift.Bool?)?",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(Foundation.URLRequest) -> Swift.Bool?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Optional",
+                        "printedName": "Swift.Bool?",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Bool",
+                            "printedName": "Swift.Bool",
+                            "usr": "s:Sb"
+                          }
+                        ],
+                        "usr": "s:Sq"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "URLRequest",
+                        "printedName": "Foundation.URLRequest",
+                        "usr": "s:10Foundation10URLRequestV"
+                      }
+                    ]
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:25URLSessionInstrumentation0aB13ConfigurationV26shouldInjectTracingHeadersSbSg10Foundation10URLRequestVcSgvp",
+            "mangledName": "$s25URLSessionInstrumentation0aB13ConfigurationV26shouldInjectTracingHeadersSbSg10Foundation10URLRequestVcSgvp",
+            "moduleName": "URLSessionInstrumentation",
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "((Foundation.URLRequest) -> Swift.Bool?)?",
+                    "children": [
+                      {
+                        "kind": "TypeFunc",
+                        "name": "Function",
+                        "printedName": "(Foundation.URLRequest) -> Swift.Bool?",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Optional",
+                            "printedName": "Swift.Bool?",
+                            "children": [
+                              {
+                                "kind": "TypeNominal",
+                                "name": "Bool",
+                                "printedName": "Swift.Bool",
+                                "usr": "s:Sb"
+                              }
+                            ],
+                            "usr": "s:Sq"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "URLRequest",
+                            "printedName": "Foundation.URLRequest",
+                            "usr": "s:10Foundation10URLRequestV"
+                          }
+                        ]
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:25URLSessionInstrumentation0aB13ConfigurationV26shouldInjectTracingHeadersSbSg10Foundation10URLRequestVcSgvg",
+                "mangledName": "$s25URLSessionInstrumentation0aB13ConfigurationV26shouldInjectTracingHeadersSbSg10Foundation10URLRequestVcSgvg",
+                "moduleName": "URLSessionInstrumentation",
+                "implicit": true,
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "((Foundation.URLRequest) -> Swift.Bool?)?",
+                    "children": [
+                      {
+                        "kind": "TypeFunc",
+                        "name": "Function",
+                        "printedName": "(Foundation.URLRequest) -> Swift.Bool?",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Optional",
+                            "printedName": "Swift.Bool?",
+                            "children": [
+                              {
+                                "kind": "TypeNominal",
+                                "name": "Bool",
+                                "printedName": "Swift.Bool",
+                                "usr": "s:Sb"
+                              }
+                            ],
+                            "usr": "s:Sq"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "URLRequest",
+                            "printedName": "Foundation.URLRequest",
+                            "usr": "s:10Foundation10URLRequestV"
+                          }
+                        ]
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:25URLSessionInstrumentation0aB13ConfigurationV26shouldInjectTracingHeadersSbSg10Foundation10URLRequestVcSgvs",
+                "mangledName": "$s25URLSessionInstrumentation0aB13ConfigurationV26shouldInjectTracingHeadersSbSg10Foundation10URLRequestVcSgvs",
+                "moduleName": "URLSessionInstrumentation",
+                "implicit": true,
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:25URLSessionInstrumentation0aB13ConfigurationV26shouldInjectTracingHeadersSbSg10Foundation10URLRequestVcSgvM",
+                "mangledName": "$s25URLSessionInstrumentation0aB13ConfigurationV26shouldInjectTracingHeadersSbSg10Foundation10URLRequestVcSgvM",
+                "moduleName": "URLSessionInstrumentation",
+                "implicit": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "injectCustomHeaders",
+            "printedName": "injectCustomHeaders",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "((inout Foundation.URLRequest, OpenTelemetryApi.Span?) -> ())?",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(inout Foundation.URLRequest, OpenTelemetryApi.Span?) -> ()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Void",
+                        "printedName": "()"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Tuple",
+                        "printedName": "(Foundation.URLRequest, OpenTelemetryApi.Span?)",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "URLRequest",
+                            "printedName": "Foundation.URLRequest",
+                            "usr": "s:10Foundation10URLRequestV"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Optional",
+                            "printedName": "OpenTelemetryApi.Span?",
+                            "children": [
+                              {
+                                "kind": "TypeNominal",
+                                "name": "Span",
+                                "printedName": "OpenTelemetryApi.Span",
+                                "usr": "s:16OpenTelemetryApi4SpanP"
+                              }
+                            ],
+                            "usr": "s:Sq"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:25URLSessionInstrumentation0aB13ConfigurationV19injectCustomHeadersy10Foundation10URLRequestVz_16OpenTelemetryApi4Span_pSgtcSgvp",
+            "mangledName": "$s25URLSessionInstrumentation0aB13ConfigurationV19injectCustomHeadersy10Foundation10URLRequestVz_16OpenTelemetryApi4Span_pSgtcSgvp",
+            "moduleName": "URLSessionInstrumentation",
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "((inout Foundation.URLRequest, OpenTelemetryApi.Span?) -> ())?",
+                    "children": [
+                      {
+                        "kind": "TypeFunc",
+                        "name": "Function",
+                        "printedName": "(inout Foundation.URLRequest, OpenTelemetryApi.Span?) -> ()",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Void",
+                            "printedName": "()"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Tuple",
+                            "printedName": "(Foundation.URLRequest, OpenTelemetryApi.Span?)",
+                            "children": [
+                              {
+                                "kind": "TypeNominal",
+                                "name": "URLRequest",
+                                "printedName": "Foundation.URLRequest",
+                                "usr": "s:10Foundation10URLRequestV"
+                              },
+                              {
+                                "kind": "TypeNominal",
+                                "name": "Optional",
+                                "printedName": "OpenTelemetryApi.Span?",
+                                "children": [
+                                  {
+                                    "kind": "TypeNominal",
+                                    "name": "Span",
+                                    "printedName": "OpenTelemetryApi.Span",
+                                    "usr": "s:16OpenTelemetryApi4SpanP"
+                                  }
+                                ],
+                                "usr": "s:Sq"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:25URLSessionInstrumentation0aB13ConfigurationV19injectCustomHeadersy10Foundation10URLRequestVz_16OpenTelemetryApi4Span_pSgtcSgvg",
+                "mangledName": "$s25URLSessionInstrumentation0aB13ConfigurationV19injectCustomHeadersy10Foundation10URLRequestVz_16OpenTelemetryApi4Span_pSgtcSgvg",
+                "moduleName": "URLSessionInstrumentation",
+                "implicit": true,
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "((inout Foundation.URLRequest, OpenTelemetryApi.Span?) -> ())?",
+                    "children": [
+                      {
+                        "kind": "TypeFunc",
+                        "name": "Function",
+                        "printedName": "(inout Foundation.URLRequest, OpenTelemetryApi.Span?) -> ()",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Void",
+                            "printedName": "()"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Tuple",
+                            "printedName": "(Foundation.URLRequest, OpenTelemetryApi.Span?)",
+                            "children": [
+                              {
+                                "kind": "TypeNominal",
+                                "name": "URLRequest",
+                                "printedName": "Foundation.URLRequest",
+                                "usr": "s:10Foundation10URLRequestV"
+                              },
+                              {
+                                "kind": "TypeNominal",
+                                "name": "Optional",
+                                "printedName": "OpenTelemetryApi.Span?",
+                                "children": [
+                                  {
+                                    "kind": "TypeNominal",
+                                    "name": "Span",
+                                    "printedName": "OpenTelemetryApi.Span",
+                                    "usr": "s:16OpenTelemetryApi4SpanP"
+                                  }
+                                ],
+                                "usr": "s:Sq"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:25URLSessionInstrumentation0aB13ConfigurationV19injectCustomHeadersy10Foundation10URLRequestVz_16OpenTelemetryApi4Span_pSgtcSgvs",
+                "mangledName": "$s25URLSessionInstrumentation0aB13ConfigurationV19injectCustomHeadersy10Foundation10URLRequestVz_16OpenTelemetryApi4Span_pSgtcSgvs",
+                "moduleName": "URLSessionInstrumentation",
+                "implicit": true,
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:25URLSessionInstrumentation0aB13ConfigurationV19injectCustomHeadersy10Foundation10URLRequestVz_16OpenTelemetryApi4Span_pSgtcSgvM",
+                "mangledName": "$s25URLSessionInstrumentation0aB13ConfigurationV19injectCustomHeadersy10Foundation10URLRequestVz_16OpenTelemetryApi4Span_pSgtcSgvM",
+                "moduleName": "URLSessionInstrumentation",
+                "implicit": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "nameSpan",
+            "printedName": "nameSpan",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "((Foundation.URLRequest) -> Swift.String?)?",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(Foundation.URLRequest) -> Swift.String?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Optional",
+                        "printedName": "Swift.String?",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "String",
+                            "printedName": "Swift.String",
+                            "usr": "s:SS"
+                          }
+                        ],
+                        "usr": "s:Sq"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "URLRequest",
+                        "printedName": "Foundation.URLRequest",
+                        "usr": "s:10Foundation10URLRequestV"
+                      }
+                    ]
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:25URLSessionInstrumentation0aB13ConfigurationV8nameSpanSSSg10Foundation10URLRequestVcSgvp",
+            "mangledName": "$s25URLSessionInstrumentation0aB13ConfigurationV8nameSpanSSSg10Foundation10URLRequestVcSgvp",
+            "moduleName": "URLSessionInstrumentation",
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "((Foundation.URLRequest) -> Swift.String?)?",
+                    "children": [
+                      {
+                        "kind": "TypeFunc",
+                        "name": "Function",
+                        "printedName": "(Foundation.URLRequest) -> Swift.String?",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Optional",
+                            "printedName": "Swift.String?",
+                            "children": [
+                              {
+                                "kind": "TypeNominal",
+                                "name": "String",
+                                "printedName": "Swift.String",
+                                "usr": "s:SS"
+                              }
+                            ],
+                            "usr": "s:Sq"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "URLRequest",
+                            "printedName": "Foundation.URLRequest",
+                            "usr": "s:10Foundation10URLRequestV"
+                          }
+                        ]
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:25URLSessionInstrumentation0aB13ConfigurationV8nameSpanSSSg10Foundation10URLRequestVcSgvg",
+                "mangledName": "$s25URLSessionInstrumentation0aB13ConfigurationV8nameSpanSSSg10Foundation10URLRequestVcSgvg",
+                "moduleName": "URLSessionInstrumentation",
+                "implicit": true,
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "((Foundation.URLRequest) -> Swift.String?)?",
+                    "children": [
+                      {
+                        "kind": "TypeFunc",
+                        "name": "Function",
+                        "printedName": "(Foundation.URLRequest) -> Swift.String?",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Optional",
+                            "printedName": "Swift.String?",
+                            "children": [
+                              {
+                                "kind": "TypeNominal",
+                                "name": "String",
+                                "printedName": "Swift.String",
+                                "usr": "s:SS"
+                              }
+                            ],
+                            "usr": "s:Sq"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "URLRequest",
+                            "printedName": "Foundation.URLRequest",
+                            "usr": "s:10Foundation10URLRequestV"
+                          }
+                        ]
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:25URLSessionInstrumentation0aB13ConfigurationV8nameSpanSSSg10Foundation10URLRequestVcSgvs",
+                "mangledName": "$s25URLSessionInstrumentation0aB13ConfigurationV8nameSpanSSSg10Foundation10URLRequestVcSgvs",
+                "moduleName": "URLSessionInstrumentation",
+                "implicit": true,
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:25URLSessionInstrumentation0aB13ConfigurationV8nameSpanSSSg10Foundation10URLRequestVcSgvM",
+                "mangledName": "$s25URLSessionInstrumentation0aB13ConfigurationV8nameSpanSSSg10Foundation10URLRequestVcSgvM",
+                "moduleName": "URLSessionInstrumentation",
+                "implicit": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "spanCustomization",
+            "printedName": "spanCustomization",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "((Foundation.URLRequest, OpenTelemetryApi.SpanBuilder) -> ())?",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(Foundation.URLRequest, OpenTelemetryApi.SpanBuilder) -> ()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Void",
+                        "printedName": "()"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Tuple",
+                        "printedName": "(Foundation.URLRequest, OpenTelemetryApi.SpanBuilder)",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "URLRequest",
+                            "printedName": "Foundation.URLRequest",
+                            "usr": "s:10Foundation10URLRequestV"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "SpanBuilder",
+                            "printedName": "OpenTelemetryApi.SpanBuilder",
+                            "usr": "s:16OpenTelemetryApi11SpanBuilderP"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:25URLSessionInstrumentation0aB13ConfigurationV17spanCustomizationy10Foundation10URLRequestV_16OpenTelemetryApi11SpanBuilder_ptcSgvp",
+            "mangledName": "$s25URLSessionInstrumentation0aB13ConfigurationV17spanCustomizationy10Foundation10URLRequestV_16OpenTelemetryApi11SpanBuilder_ptcSgvp",
+            "moduleName": "URLSessionInstrumentation",
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "((Foundation.URLRequest, OpenTelemetryApi.SpanBuilder) -> ())?",
+                    "children": [
+                      {
+                        "kind": "TypeFunc",
+                        "name": "Function",
+                        "printedName": "(Foundation.URLRequest, OpenTelemetryApi.SpanBuilder) -> ()",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Void",
+                            "printedName": "()"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Tuple",
+                            "printedName": "(Foundation.URLRequest, OpenTelemetryApi.SpanBuilder)",
+                            "children": [
+                              {
+                                "kind": "TypeNominal",
+                                "name": "URLRequest",
+                                "printedName": "Foundation.URLRequest",
+                                "usr": "s:10Foundation10URLRequestV"
+                              },
+                              {
+                                "kind": "TypeNominal",
+                                "name": "SpanBuilder",
+                                "printedName": "OpenTelemetryApi.SpanBuilder",
+                                "usr": "s:16OpenTelemetryApi11SpanBuilderP"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:25URLSessionInstrumentation0aB13ConfigurationV17spanCustomizationy10Foundation10URLRequestV_16OpenTelemetryApi11SpanBuilder_ptcSgvg",
+                "mangledName": "$s25URLSessionInstrumentation0aB13ConfigurationV17spanCustomizationy10Foundation10URLRequestV_16OpenTelemetryApi11SpanBuilder_ptcSgvg",
+                "moduleName": "URLSessionInstrumentation",
+                "implicit": true,
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "((Foundation.URLRequest, OpenTelemetryApi.SpanBuilder) -> ())?",
+                    "children": [
+                      {
+                        "kind": "TypeFunc",
+                        "name": "Function",
+                        "printedName": "(Foundation.URLRequest, OpenTelemetryApi.SpanBuilder) -> ()",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Void",
+                            "printedName": "()"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Tuple",
+                            "printedName": "(Foundation.URLRequest, OpenTelemetryApi.SpanBuilder)",
+                            "children": [
+                              {
+                                "kind": "TypeNominal",
+                                "name": "URLRequest",
+                                "printedName": "Foundation.URLRequest",
+                                "usr": "s:10Foundation10URLRequestV"
+                              },
+                              {
+                                "kind": "TypeNominal",
+                                "name": "SpanBuilder",
+                                "printedName": "OpenTelemetryApi.SpanBuilder",
+                                "usr": "s:16OpenTelemetryApi11SpanBuilderP"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:25URLSessionInstrumentation0aB13ConfigurationV17spanCustomizationy10Foundation10URLRequestV_16OpenTelemetryApi11SpanBuilder_ptcSgvs",
+                "mangledName": "$s25URLSessionInstrumentation0aB13ConfigurationV17spanCustomizationy10Foundation10URLRequestV_16OpenTelemetryApi11SpanBuilder_ptcSgvs",
+                "moduleName": "URLSessionInstrumentation",
+                "implicit": true,
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:25URLSessionInstrumentation0aB13ConfigurationV17spanCustomizationy10Foundation10URLRequestV_16OpenTelemetryApi11SpanBuilder_ptcSgvM",
+                "mangledName": "$s25URLSessionInstrumentation0aB13ConfigurationV17spanCustomizationy10Foundation10URLRequestV_16OpenTelemetryApi11SpanBuilder_ptcSgvM",
+                "moduleName": "URLSessionInstrumentation",
+                "implicit": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "createdRequest",
+            "printedName": "createdRequest",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "((Foundation.URLRequest, OpenTelemetryApi.Span) -> ())?",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(Foundation.URLRequest, OpenTelemetryApi.Span) -> ()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Void",
+                        "printedName": "()"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Tuple",
+                        "printedName": "(Foundation.URLRequest, OpenTelemetryApi.Span)",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "URLRequest",
+                            "printedName": "Foundation.URLRequest",
+                            "usr": "s:10Foundation10URLRequestV"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Span",
+                            "printedName": "OpenTelemetryApi.Span",
+                            "usr": "s:16OpenTelemetryApi4SpanP"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:25URLSessionInstrumentation0aB13ConfigurationV14createdRequesty10Foundation10URLRequestV_16OpenTelemetryApi4Span_ptcSgvp",
+            "mangledName": "$s25URLSessionInstrumentation0aB13ConfigurationV14createdRequesty10Foundation10URLRequestV_16OpenTelemetryApi4Span_ptcSgvp",
+            "moduleName": "URLSessionInstrumentation",
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "((Foundation.URLRequest, OpenTelemetryApi.Span) -> ())?",
+                    "children": [
+                      {
+                        "kind": "TypeFunc",
+                        "name": "Function",
+                        "printedName": "(Foundation.URLRequest, OpenTelemetryApi.Span) -> ()",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Void",
+                            "printedName": "()"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Tuple",
+                            "printedName": "(Foundation.URLRequest, OpenTelemetryApi.Span)",
+                            "children": [
+                              {
+                                "kind": "TypeNominal",
+                                "name": "URLRequest",
+                                "printedName": "Foundation.URLRequest",
+                                "usr": "s:10Foundation10URLRequestV"
+                              },
+                              {
+                                "kind": "TypeNominal",
+                                "name": "Span",
+                                "printedName": "OpenTelemetryApi.Span",
+                                "usr": "s:16OpenTelemetryApi4SpanP"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:25URLSessionInstrumentation0aB13ConfigurationV14createdRequesty10Foundation10URLRequestV_16OpenTelemetryApi4Span_ptcSgvg",
+                "mangledName": "$s25URLSessionInstrumentation0aB13ConfigurationV14createdRequesty10Foundation10URLRequestV_16OpenTelemetryApi4Span_ptcSgvg",
+                "moduleName": "URLSessionInstrumentation",
+                "implicit": true,
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "((Foundation.URLRequest, OpenTelemetryApi.Span) -> ())?",
+                    "children": [
+                      {
+                        "kind": "TypeFunc",
+                        "name": "Function",
+                        "printedName": "(Foundation.URLRequest, OpenTelemetryApi.Span) -> ()",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Void",
+                            "printedName": "()"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Tuple",
+                            "printedName": "(Foundation.URLRequest, OpenTelemetryApi.Span)",
+                            "children": [
+                              {
+                                "kind": "TypeNominal",
+                                "name": "URLRequest",
+                                "printedName": "Foundation.URLRequest",
+                                "usr": "s:10Foundation10URLRequestV"
+                              },
+                              {
+                                "kind": "TypeNominal",
+                                "name": "Span",
+                                "printedName": "OpenTelemetryApi.Span",
+                                "usr": "s:16OpenTelemetryApi4SpanP"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:25URLSessionInstrumentation0aB13ConfigurationV14createdRequesty10Foundation10URLRequestV_16OpenTelemetryApi4Span_ptcSgvs",
+                "mangledName": "$s25URLSessionInstrumentation0aB13ConfigurationV14createdRequesty10Foundation10URLRequestV_16OpenTelemetryApi4Span_ptcSgvs",
+                "moduleName": "URLSessionInstrumentation",
+                "implicit": true,
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:25URLSessionInstrumentation0aB13ConfigurationV14createdRequesty10Foundation10URLRequestV_16OpenTelemetryApi4Span_ptcSgvM",
+                "mangledName": "$s25URLSessionInstrumentation0aB13ConfigurationV14createdRequesty10Foundation10URLRequestV_16OpenTelemetryApi4Span_ptcSgvM",
+                "moduleName": "URLSessionInstrumentation",
+                "implicit": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "receivedResponse",
+            "printedName": "receivedResponse",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "((Foundation.URLResponse, Any?, OpenTelemetryApi.Span) -> ())?",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(Foundation.URLResponse, Any?, OpenTelemetryApi.Span) -> ()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Void",
+                        "printedName": "()"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Tuple",
+                        "printedName": "(Foundation.URLResponse, Any?, OpenTelemetryApi.Span)",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "URLResponse",
+                            "printedName": "Foundation.URLResponse",
+                            "usr": "c:objc(cs)NSURLResponse"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Optional",
+                            "printedName": "Any?",
+                            "children": [
+                              {
+                                "kind": "TypeNominal",
+                                "name": "ProtocolComposition",
+                                "printedName": "Any"
+                              }
+                            ],
+                            "usr": "s:Sq"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Span",
+                            "printedName": "OpenTelemetryApi.Span",
+                            "usr": "s:16OpenTelemetryApi4SpanP"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:25URLSessionInstrumentation0aB13ConfigurationV16receivedResponseySo13NSURLResponseC_ypSg16OpenTelemetryApi4Span_ptcSgvp",
+            "mangledName": "$s25URLSessionInstrumentation0aB13ConfigurationV16receivedResponseySo13NSURLResponseC_ypSg16OpenTelemetryApi4Span_ptcSgvp",
+            "moduleName": "URLSessionInstrumentation",
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "((Foundation.URLResponse, Any?, OpenTelemetryApi.Span) -> ())?",
+                    "children": [
+                      {
+                        "kind": "TypeFunc",
+                        "name": "Function",
+                        "printedName": "(Foundation.URLResponse, Any?, OpenTelemetryApi.Span) -> ()",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Void",
+                            "printedName": "()"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Tuple",
+                            "printedName": "(Foundation.URLResponse, Any?, OpenTelemetryApi.Span)",
+                            "children": [
+                              {
+                                "kind": "TypeNominal",
+                                "name": "URLResponse",
+                                "printedName": "Foundation.URLResponse",
+                                "usr": "c:objc(cs)NSURLResponse"
+                              },
+                              {
+                                "kind": "TypeNominal",
+                                "name": "Optional",
+                                "printedName": "Any?",
+                                "children": [
+                                  {
+                                    "kind": "TypeNominal",
+                                    "name": "ProtocolComposition",
+                                    "printedName": "Any"
+                                  }
+                                ],
+                                "usr": "s:Sq"
+                              },
+                              {
+                                "kind": "TypeNominal",
+                                "name": "Span",
+                                "printedName": "OpenTelemetryApi.Span",
+                                "usr": "s:16OpenTelemetryApi4SpanP"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:25URLSessionInstrumentation0aB13ConfigurationV16receivedResponseySo13NSURLResponseC_ypSg16OpenTelemetryApi4Span_ptcSgvg",
+                "mangledName": "$s25URLSessionInstrumentation0aB13ConfigurationV16receivedResponseySo13NSURLResponseC_ypSg16OpenTelemetryApi4Span_ptcSgvg",
+                "moduleName": "URLSessionInstrumentation",
+                "implicit": true,
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "((Foundation.URLResponse, Any?, OpenTelemetryApi.Span) -> ())?",
+                    "children": [
+                      {
+                        "kind": "TypeFunc",
+                        "name": "Function",
+                        "printedName": "(Foundation.URLResponse, Any?, OpenTelemetryApi.Span) -> ()",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Void",
+                            "printedName": "()"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Tuple",
+                            "printedName": "(Foundation.URLResponse, Any?, OpenTelemetryApi.Span)",
+                            "children": [
+                              {
+                                "kind": "TypeNominal",
+                                "name": "URLResponse",
+                                "printedName": "Foundation.URLResponse",
+                                "usr": "c:objc(cs)NSURLResponse"
+                              },
+                              {
+                                "kind": "TypeNominal",
+                                "name": "Optional",
+                                "printedName": "Any?",
+                                "children": [
+                                  {
+                                    "kind": "TypeNominal",
+                                    "name": "ProtocolComposition",
+                                    "printedName": "Any"
+                                  }
+                                ],
+                                "usr": "s:Sq"
+                              },
+                              {
+                                "kind": "TypeNominal",
+                                "name": "Span",
+                                "printedName": "OpenTelemetryApi.Span",
+                                "usr": "s:16OpenTelemetryApi4SpanP"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:25URLSessionInstrumentation0aB13ConfigurationV16receivedResponseySo13NSURLResponseC_ypSg16OpenTelemetryApi4Span_ptcSgvs",
+                "mangledName": "$s25URLSessionInstrumentation0aB13ConfigurationV16receivedResponseySo13NSURLResponseC_ypSg16OpenTelemetryApi4Span_ptcSgvs",
+                "moduleName": "URLSessionInstrumentation",
+                "implicit": true,
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:25URLSessionInstrumentation0aB13ConfigurationV16receivedResponseySo13NSURLResponseC_ypSg16OpenTelemetryApi4Span_ptcSgvM",
+                "mangledName": "$s25URLSessionInstrumentation0aB13ConfigurationV16receivedResponseySo13NSURLResponseC_ypSg16OpenTelemetryApi4Span_ptcSgvM",
+                "moduleName": "URLSessionInstrumentation",
+                "implicit": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "receivedError",
+            "printedName": "receivedError",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "((Swift.Error, Any?, Swift.Int, OpenTelemetryApi.Span) -> ())?",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(Swift.Error, Any?, Swift.Int, OpenTelemetryApi.Span) -> ()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Void",
+                        "printedName": "()"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Tuple",
+                        "printedName": "(Swift.Error, Any?, Swift.Int, OpenTelemetryApi.Span)",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Error",
+                            "printedName": "Swift.Error",
+                            "usr": "s:s5ErrorP"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Optional",
+                            "printedName": "Any?",
+                            "children": [
+                              {
+                                "kind": "TypeNominal",
+                                "name": "ProtocolComposition",
+                                "printedName": "Any"
+                              }
+                            ],
+                            "usr": "s:Sq"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Int",
+                            "printedName": "Swift.Int",
+                            "usr": "s:Si"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Span",
+                            "printedName": "OpenTelemetryApi.Span",
+                            "usr": "s:16OpenTelemetryApi4SpanP"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:25URLSessionInstrumentation0aB13ConfigurationV13receivedErrorys0E0_p_ypSgSi16OpenTelemetryApi4Span_ptcSgvp",
+            "mangledName": "$s25URLSessionInstrumentation0aB13ConfigurationV13receivedErrorys0E0_p_ypSgSi16OpenTelemetryApi4Span_ptcSgvp",
+            "moduleName": "URLSessionInstrumentation",
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "((Swift.Error, Any?, Swift.Int, OpenTelemetryApi.Span) -> ())?",
+                    "children": [
+                      {
+                        "kind": "TypeFunc",
+                        "name": "Function",
+                        "printedName": "(Swift.Error, Any?, Swift.Int, OpenTelemetryApi.Span) -> ()",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Void",
+                            "printedName": "()"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Tuple",
+                            "printedName": "(Swift.Error, Any?, Swift.Int, OpenTelemetryApi.Span)",
+                            "children": [
+                              {
+                                "kind": "TypeNominal",
+                                "name": "Error",
+                                "printedName": "Swift.Error",
+                                "usr": "s:s5ErrorP"
+                              },
+                              {
+                                "kind": "TypeNominal",
+                                "name": "Optional",
+                                "printedName": "Any?",
+                                "children": [
+                                  {
+                                    "kind": "TypeNominal",
+                                    "name": "ProtocolComposition",
+                                    "printedName": "Any"
+                                  }
+                                ],
+                                "usr": "s:Sq"
+                              },
+                              {
+                                "kind": "TypeNominal",
+                                "name": "Int",
+                                "printedName": "Swift.Int",
+                                "usr": "s:Si"
+                              },
+                              {
+                                "kind": "TypeNominal",
+                                "name": "Span",
+                                "printedName": "OpenTelemetryApi.Span",
+                                "usr": "s:16OpenTelemetryApi4SpanP"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:25URLSessionInstrumentation0aB13ConfigurationV13receivedErrorys0E0_p_ypSgSi16OpenTelemetryApi4Span_ptcSgvg",
+                "mangledName": "$s25URLSessionInstrumentation0aB13ConfigurationV13receivedErrorys0E0_p_ypSgSi16OpenTelemetryApi4Span_ptcSgvg",
+                "moduleName": "URLSessionInstrumentation",
+                "implicit": true,
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "((Swift.Error, Any?, Swift.Int, OpenTelemetryApi.Span) -> ())?",
+                    "children": [
+                      {
+                        "kind": "TypeFunc",
+                        "name": "Function",
+                        "printedName": "(Swift.Error, Any?, Swift.Int, OpenTelemetryApi.Span) -> ()",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Void",
+                            "printedName": "()"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Tuple",
+                            "printedName": "(Swift.Error, Any?, Swift.Int, OpenTelemetryApi.Span)",
+                            "children": [
+                              {
+                                "kind": "TypeNominal",
+                                "name": "Error",
+                                "printedName": "Swift.Error",
+                                "usr": "s:s5ErrorP"
+                              },
+                              {
+                                "kind": "TypeNominal",
+                                "name": "Optional",
+                                "printedName": "Any?",
+                                "children": [
+                                  {
+                                    "kind": "TypeNominal",
+                                    "name": "ProtocolComposition",
+                                    "printedName": "Any"
+                                  }
+                                ],
+                                "usr": "s:Sq"
+                              },
+                              {
+                                "kind": "TypeNominal",
+                                "name": "Int",
+                                "printedName": "Swift.Int",
+                                "usr": "s:Si"
+                              },
+                              {
+                                "kind": "TypeNominal",
+                                "name": "Span",
+                                "printedName": "OpenTelemetryApi.Span",
+                                "usr": "s:16OpenTelemetryApi4SpanP"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:25URLSessionInstrumentation0aB13ConfigurationV13receivedErrorys0E0_p_ypSgSi16OpenTelemetryApi4Span_ptcSgvs",
+                "mangledName": "$s25URLSessionInstrumentation0aB13ConfigurationV13receivedErrorys0E0_p_ypSgSi16OpenTelemetryApi4Span_ptcSgvs",
+                "moduleName": "URLSessionInstrumentation",
+                "implicit": true,
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:25URLSessionInstrumentation0aB13ConfigurationV13receivedErrorys0E0_p_ypSgSi16OpenTelemetryApi4Span_ptcSgvM",
+                "mangledName": "$s25URLSessionInstrumentation0aB13ConfigurationV13receivedErrorys0E0_p_ypSgSi16OpenTelemetryApi4Span_ptcSgvM",
+                "moduleName": "URLSessionInstrumentation",
+                "implicit": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "delegateClassesToInstrument",
+            "printedName": "delegateClassesToInstrument",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "[AnyObject.Type]?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Array",
+                    "printedName": "[AnyObject.Type]",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "ExistentialMetatype",
+                        "printedName": "AnyObject.Type",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "ProtocolComposition",
+                            "printedName": "AnyObject"
+                          }
+                        ]
+                      }
+                    ],
+                    "usr": "s:Sa"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:25URLSessionInstrumentation0aB13ConfigurationV27delegateClassesToInstrumentSayyXlXpGSgvp",
+            "mangledName": "$s25URLSessionInstrumentation0aB13ConfigurationV27delegateClassesToInstrumentSayyXlXpGSgvp",
+            "moduleName": "URLSessionInstrumentation",
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "[AnyObject.Type]?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Array",
+                        "printedName": "[AnyObject.Type]",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "ExistentialMetatype",
+                            "printedName": "AnyObject.Type",
+                            "children": [
+                              {
+                                "kind": "TypeNominal",
+                                "name": "ProtocolComposition",
+                                "printedName": "AnyObject"
+                              }
+                            ]
+                          }
+                        ],
+                        "usr": "s:Sa"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:25URLSessionInstrumentation0aB13ConfigurationV27delegateClassesToInstrumentSayyXlXpGSgvg",
+                "mangledName": "$s25URLSessionInstrumentation0aB13ConfigurationV27delegateClassesToInstrumentSayyXlXpGSgvg",
+                "moduleName": "URLSessionInstrumentation",
+                "implicit": true,
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "[AnyObject.Type]?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Array",
+                        "printedName": "[AnyObject.Type]",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "ExistentialMetatype",
+                            "printedName": "AnyObject.Type",
+                            "children": [
+                              {
+                                "kind": "TypeNominal",
+                                "name": "ProtocolComposition",
+                                "printedName": "AnyObject"
+                              }
+                            ]
+                          }
+                        ],
+                        "usr": "s:Sa"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:25URLSessionInstrumentation0aB13ConfigurationV27delegateClassesToInstrumentSayyXlXpGSgvs",
+                "mangledName": "$s25URLSessionInstrumentation0aB13ConfigurationV27delegateClassesToInstrumentSayyXlXpGSgvs",
+                "moduleName": "URLSessionInstrumentation",
+                "implicit": true,
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:25URLSessionInstrumentation0aB13ConfigurationV27delegateClassesToInstrumentSayyXlXpGSgvM",
+                "mangledName": "$s25URLSessionInstrumentation0aB13ConfigurationV27delegateClassesToInstrumentSayyXlXpGSgvM",
+                "moduleName": "URLSessionInstrumentation",
+                "implicit": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          }
+        ],
+        "declKind": "Struct",
+        "usr": "s:25URLSessionInstrumentation0aB13ConfigurationV",
+        "mangledName": "$s25URLSessionInstrumentation0aB13ConfigurationV",
+        "moduleName": "URLSessionInstrumentation",
+        "declAttributes": [
+          "AccessControl"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "URLSessionInstrumentation",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "OpenTelemetryApi",
+        "printedName": "OpenTelemetryApi",
+        "declKind": "Import",
+        "moduleName": "URLSessionInstrumentation"
+      },
+      {
+        "kind": "Import",
+        "name": "OpenTelemetrySdk",
+        "printedName": "OpenTelemetrySdk",
+        "declKind": "Import",
+        "moduleName": "URLSessionInstrumentation"
+      },
+      {
+        "kind": "Import",
+        "name": "os.log",
+        "printedName": "os.log",
+        "declKind": "Import",
+        "moduleName": "URLSessionInstrumentation"
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "URLSessionLogger",
+        "printedName": "URLSessionLogger",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "runningSpans",
+            "printedName": "runningSpans",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Dictionary",
+                "printedName": "[Swift.String : OpenTelemetryApi.Span]",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Span",
+                    "printedName": "OpenTelemetryApi.Span",
+                    "usr": "s:16OpenTelemetryApi4SpanP"
+                  }
+                ],
+                "usr": "s:SD"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:25URLSessionInstrumentation0A6LoggerC12runningSpansSDySS16OpenTelemetryApi4Span_pGvpZ",
+            "mangledName": "$s25URLSessionInstrumentation0A6LoggerC12runningSpansSDySS16OpenTelemetryApi4Span_pGvpZ",
+            "moduleName": "URLSessionInstrumentation",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "Final",
+              "HasStorage"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Dictionary",
+                    "printedName": "[Swift.String : OpenTelemetryApi.Span]",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Span",
+                        "printedName": "OpenTelemetryApi.Span",
+                        "usr": "s:16OpenTelemetryApi4SpanP"
+                      }
+                    ],
+                    "usr": "s:SD"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:25URLSessionInstrumentation0A6LoggerC12runningSpansSDySS16OpenTelemetryApi4Span_pGvgZ",
+                "mangledName": "$s25URLSessionInstrumentation0A6LoggerC12runningSpansSDySS16OpenTelemetryApi4Span_pGvgZ",
+                "moduleName": "URLSessionInstrumentation",
+                "static": true,
+                "implicit": true,
+                "declAttributes": [
+                  "Transparent",
+                  "Final"
+                ],
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Dictionary",
+                    "printedName": "[Swift.String : OpenTelemetryApi.Span]",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Span",
+                        "printedName": "OpenTelemetryApi.Span",
+                        "usr": "s:16OpenTelemetryApi4SpanP"
+                      }
+                    ],
+                    "usr": "s:SD"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:25URLSessionInstrumentation0A6LoggerC12runningSpansSDySS16OpenTelemetryApi4Span_pGvsZ",
+                "mangledName": "$s25URLSessionInstrumentation0A6LoggerC12runningSpansSDySS16OpenTelemetryApi4Span_pGvsZ",
+                "moduleName": "URLSessionInstrumentation",
+                "static": true,
+                "implicit": true,
+                "declAttributes": [
+                  "Transparent",
+                  "Final"
+                ],
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:25URLSessionInstrumentation0A6LoggerC12runningSpansSDySS16OpenTelemetryApi4Span_pGvMZ",
+                "mangledName": "$s25URLSessionInstrumentation0A6LoggerC12runningSpansSDySS16OpenTelemetryApi4Span_pGvMZ",
+                "moduleName": "URLSessionInstrumentation",
+                "static": true,
+                "implicit": true,
+                "declAttributes": [
+                  "Transparent",
+                  "Final"
+                ],
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "runningSpansQueue",
+            "printedName": "runningSpansQueue",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "DispatchQueue",
+                "printedName": "Dispatch.DispatchQueue",
+                "usr": "c:objc(cs)OS_dispatch_queue"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:25URLSessionInstrumentation0A6LoggerC17runningSpansQueueSo17OS_dispatch_queueCvpZ",
+            "mangledName": "$s25URLSessionInstrumentation0A6LoggerC17runningSpansQueueSo17OS_dispatch_queueCvpZ",
+            "moduleName": "URLSessionInstrumentation",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "Final",
+              "HasStorage"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "DispatchQueue",
+                    "printedName": "Dispatch.DispatchQueue",
+                    "usr": "c:objc(cs)OS_dispatch_queue"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:25URLSessionInstrumentation0A6LoggerC17runningSpansQueueSo17OS_dispatch_queueCvgZ",
+                "mangledName": "$s25URLSessionInstrumentation0A6LoggerC17runningSpansQueueSo17OS_dispatch_queueCvgZ",
+                "moduleName": "URLSessionInstrumentation",
+                "static": true,
+                "implicit": true,
+                "declAttributes": [
+                  "Transparent",
+                  "Final"
+                ],
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "DispatchQueue",
+                    "printedName": "Dispatch.DispatchQueue",
+                    "usr": "c:objc(cs)OS_dispatch_queue"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:25URLSessionInstrumentation0A6LoggerC17runningSpansQueueSo17OS_dispatch_queueCvsZ",
+                "mangledName": "$s25URLSessionInstrumentation0A6LoggerC17runningSpansQueueSo17OS_dispatch_queueCvsZ",
+                "moduleName": "URLSessionInstrumentation",
+                "static": true,
+                "implicit": true,
+                "declAttributes": [
+                  "Transparent",
+                  "Final"
+                ],
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:25URLSessionInstrumentation0A6LoggerC17runningSpansQueueSo17OS_dispatch_queueCvMZ",
+                "mangledName": "$s25URLSessionInstrumentation0A6LoggerC17runningSpansQueueSo17OS_dispatch_queueCvMZ",
+                "moduleName": "URLSessionInstrumentation",
+                "static": true,
+                "implicit": true,
+                "declAttributes": [
+                  "Transparent",
+                  "Final"
+                ],
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Function",
+            "name": "processAndLogRequest",
+            "printedName": "processAndLogRequest(_:sessionTaskId:instrumentation:shouldInjectHeaders:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Foundation.URLRequest?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "URLRequest",
+                    "printedName": "Foundation.URLRequest",
+                    "usr": "s:10Foundation10URLRequestV"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "URLRequest",
+                "printedName": "Foundation.URLRequest",
+                "usr": "s:10Foundation10URLRequestV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "URLSessionInstrumentation",
+                "printedName": "URLSessionInstrumentation.URLSessionInstrumentation",
+                "usr": "s:25URLSessionInstrumentationAAC"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:25URLSessionInstrumentation0A6LoggerC20processAndLogRequest_13sessionTaskId15instrumentation19shouldInjectHeaders10Foundation10URLRequestVSgAJ_SSA2ACSbtFZ",
+            "mangledName": "$s25URLSessionInstrumentation0A6LoggerC20processAndLogRequest_13sessionTaskId15instrumentation19shouldInjectHeaders10Foundation10URLRequestVSgAJ_SSA2ACSbtFZ",
+            "moduleName": "URLSessionInstrumentation",
+            "static": true,
+            "declAttributes": [
+              "Final",
+              "DiscardableResult",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "logResponse",
+            "printedName": "logResponse(_:dataOrFile:instrumentation:sessionTaskId:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "URLResponse",
+                "printedName": "Foundation.URLResponse",
+                "usr": "c:objc(cs)NSURLResponse"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Any?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ProtocolComposition",
+                    "printedName": "Any"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "URLSessionInstrumentation",
+                "printedName": "URLSessionInstrumentation.URLSessionInstrumentation",
+                "usr": "s:25URLSessionInstrumentationAAC"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:25URLSessionInstrumentation0A6LoggerC11logResponse_10dataOrFile15instrumentation13sessionTaskIdySo13NSURLResponseC_ypSgA2ACSStFZ",
+            "mangledName": "$s25URLSessionInstrumentation0A6LoggerC11logResponse_10dataOrFile15instrumentation13sessionTaskIdySo13NSURLResponseC_ypSgA2ACSStFZ",
+            "moduleName": "URLSessionInstrumentation",
+            "static": true,
+            "declAttributes": [
+              "Final",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "logError",
+            "printedName": "logError(_:dataOrFile:statusCode:instrumentation:sessionTaskId:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Error",
+                "printedName": "Swift.Error",
+                "usr": "s:s5ErrorP"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Any?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ProtocolComposition",
+                    "printedName": "Any"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "URLSessionInstrumentation",
+                "printedName": "URLSessionInstrumentation.URLSessionInstrumentation",
+                "usr": "s:25URLSessionInstrumentationAAC"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:25URLSessionInstrumentation0A6LoggerC8logError_10dataOrFile10statusCode15instrumentation13sessionTaskIdys0E0_p_ypSgSiA2ACSStFZ",
+            "mangledName": "$s25URLSessionInstrumentation0A6LoggerC8logError_10dataOrFile10statusCode15instrumentation13sessionTaskIdys0E0_p_ypSgSiA2ACSStFZ",
+            "moduleName": "URLSessionInstrumentation",
+            "static": true,
+            "declAttributes": [
+              "Final",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "URLSessionLogger",
+                "printedName": "URLSessionInstrumentation.URLSessionLogger",
+                "usr": "s:25URLSessionInstrumentation0A6LoggerC"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:25URLSessionInstrumentation0A6LoggerCACycfc",
+            "mangledName": "$s25URLSessionInstrumentation0A6LoggerCACycfc",
+            "moduleName": "URLSessionInstrumentation",
+            "implicit": true,
+            "init_kind": "Designated"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "s:25URLSessionInstrumentation0A6LoggerC",
+        "mangledName": "$s25URLSessionInstrumentation0A6LoggerC",
+        "moduleName": "URLSessionInstrumentation",
+        "isOpen": true,
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      }
+    ],
+    "json_format_version": 8
+  },
+  "ConstValues": [
+    {
+      "filePath": "\/Users\/gordon\/Documents\/code\/open\/ios\/opentelemetry-swift\/Sources\/Instrumentation\/URLSession\/InstrumentationUtils.swift",
+      "kind": "IntegerLiteral",
+      "offset": 340,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/gordon\/Documents\/code\/open\/ios\/opentelemetry-swift\/Sources\/Instrumentation\/URLSession\/InstrumentationUtils.swift",
+      "kind": "IntegerLiteral",
+      "offset": 702,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/gordon\/Documents\/code\/open\/ios\/opentelemetry-swift\/Sources\/Instrumentation\/URLSession\/InstrumentationUtils.swift",
+      "kind": "BooleanLiteral",
+      "offset": 962,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/gordon\/Documents\/code\/open\/ios\/opentelemetry-swift\/Sources\/Instrumentation\/URLSession\/InstrumentationUtils.swift",
+      "kind": "IntegerLiteral",
+      "offset": 1054,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/gordon\/Documents\/code\/open\/ios\/opentelemetry-swift\/Sources\/Instrumentation\/URLSession\/InstrumentationUtils.swift",
+      "kind": "IntegerLiteral",
+      "offset": 1254,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/gordon\/Documents\/code\/open\/ios\/opentelemetry-swift\/Sources\/Instrumentation\/URLSession\/InstrumentationUtils.swift",
+      "kind": "BooleanLiteral",
+      "offset": 1465,
+      "length": 4,
+      "value": "true"
+    },
+    {
+      "filePath": "\/Users\/gordon\/Documents\/code\/open\/ios\/opentelemetry-swift\/Sources\/Instrumentation\/URLSession\/InstrumentationUtils.swift",
+      "kind": "IntegerLiteral",
+      "offset": 1748,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/gordon\/Documents\/code\/open\/ios\/opentelemetry-swift\/Sources\/Instrumentation\/URLSession\/URLSessionInstrumentation.swift",
+      "kind": "StringLiteral",
+      "offset": 650,
+      "length": 43,
+      "value": "\"io.opentelemetry.ddnetworkinstrumentation\""
+    },
+    {
+      "filePath": "\/Users\/gordon\/Documents\/code\/open\/ios\/opentelemetry-swift\/Sources\/Instrumentation\/URLSession\/URLSessionInstrumentation.swift",
+      "kind": "StringLiteral",
+      "offset": 729,
+      "length": 35,
+      "value": "\"io.opentelemetry.instrumentedCall\""
+    },
+    {
+      "filePath": "\/Users\/gordon\/Documents\/code\/open\/ios\/opentelemetry-swift\/Sources\/Instrumentation\/URLSession\/URLSessionInstrumentation.swift",
+      "kind": "StringLiteral",
+      "offset": 832,
+      "length": 37,
+      "value": "\"__NSCFBackgroundAVAssetDownloadTask\""
+    },
+    {
+      "filePath": "\/Users\/gordon\/Documents\/code\/open\/ios\/opentelemetry-swift\/Sources\/Instrumentation\/URLSession\/URLSessionInstrumentation.swift",
+      "kind": "StringLiteral",
+      "offset": 1338,
+      "length": 14,
+      "value": "\"NSURLSession\""
+    },
+    {
+      "filePath": "\/Users\/gordon\/Documents\/code\/open\/ios\/opentelemetry-swift\/Sources\/Instrumentation\/URLSession\/URLSessionInstrumentation.swift",
+      "kind": "StringLiteral",
+      "offset": 1378,
+      "length": 7,
+      "value": "\"0.0.1\""
+    },
+    {
+      "filePath": "\/Users\/gordon\/Documents\/code\/open\/ios\/opentelemetry-swift\/Sources\/Instrumentation\/URLSession\/URLSessionInstrumentation.swift",
+      "kind": "BooleanLiteral",
+      "offset": 3279,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/gordon\/Documents\/code\/open\/ios\/opentelemetry-swift\/Sources\/Instrumentation\/URLSession\/URLSessionInstrumentation.swift",
+      "kind": "IntegerLiteral",
+      "offset": 3323,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/gordon\/Documents\/code\/open\/ios\/opentelemetry-swift\/Sources\/Instrumentation\/URLSession\/URLSessionInstrumentation.swift",
+      "kind": "IntegerLiteral",
+      "offset": 3482,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/gordon\/Documents\/code\/open\/ios\/opentelemetry-swift\/Sources\/Instrumentation\/URLSession\/URLSessionInstrumentation.swift",
+      "kind": "IntegerLiteral",
+      "offset": 3530,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/gordon\/Documents\/code\/open\/ios\/opentelemetry-swift\/Sources\/Instrumentation\/URLSession\/URLSessionInstrumentation.swift",
+      "kind": "BooleanLiteral",
+      "offset": 3666,
+      "length": 4,
+      "value": "true"
+    },
+    {
+      "filePath": "\/Users\/gordon\/Documents\/code\/open\/ios\/opentelemetry-swift\/Sources\/Instrumentation\/URLSession\/URLSessionInstrumentation.swift",
+      "kind": "StringLiteral",
+      "offset": 5699,
+      "length": 43,
+      "value": "\"injectInto \""
+    },
+    {
+      "filePath": "\/Users\/gordon\/Documents\/code\/open\/ios\/opentelemetry-swift\/Sources\/Instrumentation\/URLSession\/URLSessionInstrumentation.swift",
+      "kind": "StringLiteral",
+      "offset": 5734,
+      "length": 6,
+      "value": "\" failed\""
+    },
+    {
+      "filePath": "\/Users\/gordon\/Documents\/code\/open\/ios\/opentelemetry-swift\/Sources\/Instrumentation\/URLSession\/URLSessionInstrumentation.swift",
+      "kind": "BooleanLiteral",
+      "offset": 6110,
+      "length": 4,
+      "value": "true"
+    },
+    {
+      "filePath": "\/Users\/gordon\/Documents\/code\/open\/ios\/opentelemetry-swift\/Sources\/Instrumentation\/URLSession\/URLSessionInstrumentation.swift",
+      "kind": "BooleanLiteral",
+      "offset": 6990,
+      "length": 4,
+      "value": "true"
+    },
+    {
+      "filePath": "\/Users\/gordon\/Documents\/code\/open\/ios\/opentelemetry-swift\/Sources\/Instrumentation\/URLSession\/URLSessionInstrumentation.swift",
+      "kind": "BooleanLiteral",
+      "offset": 7464,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/gordon\/Documents\/code\/open\/ios\/opentelemetry-swift\/Sources\/Instrumentation\/URLSession\/URLSessionInstrumentation.swift",
+      "kind": "StringLiteral",
+      "offset": 8196,
+      "length": 43,
+      "value": "\"injectInto \""
+    },
+    {
+      "filePath": "\/Users\/gordon\/Documents\/code\/open\/ios\/opentelemetry-swift\/Sources\/Instrumentation\/URLSession\/URLSessionInstrumentation.swift",
+      "kind": "StringLiteral",
+      "offset": 8231,
+      "length": 6,
+      "value": "\" failed\""
+    },
+    {
+      "filePath": "\/Users\/gordon\/Documents\/code\/open\/ios\/opentelemetry-swift\/Sources\/Instrumentation\/URLSession\/URLSessionInstrumentation.swift",
+      "kind": "BooleanLiteral",
+      "offset": 8814,
+      "length": 4,
+      "value": "true"
+    },
+    {
+      "filePath": "\/Users\/gordon\/Documents\/code\/open\/ios\/opentelemetry-swift\/Sources\/Instrumentation\/URLSession\/URLSessionInstrumentation.swift",
+      "kind": "StringLiteral",
+      "offset": 10255,
+      "length": 43,
+      "value": "\"injectInto \""
+    },
+    {
+      "filePath": "\/Users\/gordon\/Documents\/code\/open\/ios\/opentelemetry-swift\/Sources\/Instrumentation\/URLSession\/URLSessionInstrumentation.swift",
+      "kind": "StringLiteral",
+      "offset": 10290,
+      "length": 6,
+      "value": "\" failed\""
+    },
+    {
+      "filePath": "\/Users\/gordon\/Documents\/code\/open\/ios\/opentelemetry-swift\/Sources\/Instrumentation\/URLSession\/URLSessionInstrumentation.swift",
+      "kind": "BooleanLiteral",
+      "offset": 10721,
+      "length": 4,
+      "value": "true"
+    },
+    {
+      "filePath": "\/Users\/gordon\/Documents\/code\/open\/ios\/opentelemetry-swift\/Sources\/Instrumentation\/URLSession\/URLSessionInstrumentation.swift",
+      "kind": "IntegerLiteral",
+      "offset": 12326,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/gordon\/Documents\/code\/open\/ios\/opentelemetry-swift\/Sources\/Instrumentation\/URLSession\/URLSessionInstrumentation.swift",
+      "kind": "BooleanLiteral",
+      "offset": 13538,
+      "length": 4,
+      "value": "true"
+    },
+    {
+      "filePath": "\/Users\/gordon\/Documents\/code\/open\/ios\/opentelemetry-swift\/Sources\/Instrumentation\/URLSession\/URLSessionInstrumentation.swift",
+      "kind": "BooleanLiteral",
+      "offset": 14049,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/gordon\/Documents\/code\/open\/ios\/opentelemetry-swift\/Sources\/Instrumentation\/URLSession\/URLSessionInstrumentation.swift",
+      "kind": "StringLiteral",
+      "offset": 14809,
+      "length": 43,
+      "value": "\"injectInto \""
+    },
+    {
+      "filePath": "\/Users\/gordon\/Documents\/code\/open\/ios\/opentelemetry-swift\/Sources\/Instrumentation\/URLSession\/URLSessionInstrumentation.swift",
+      "kind": "StringLiteral",
+      "offset": 14844,
+      "length": 6,
+      "value": "\" failed\""
+    },
+    {
+      "filePath": "\/Users\/gordon\/Documents\/code\/open\/ios\/opentelemetry-swift\/Sources\/Instrumentation\/URLSession\/URLSessionInstrumentation.swift",
+      "kind": "IntegerLiteral",
+      "offset": 15763,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/gordon\/Documents\/code\/open\/ios\/opentelemetry-swift\/Sources\/Instrumentation\/URLSession\/URLSessionInstrumentation.swift",
+      "kind": "BooleanLiteral",
+      "offset": 16784,
+      "length": 4,
+      "value": "true"
+    },
+    {
+      "filePath": "\/Users\/gordon\/Documents\/code\/open\/ios\/opentelemetry-swift\/Sources\/Instrumentation\/URLSession\/URLSessionInstrumentation.swift",
+      "kind": "StringLiteral",
+      "offset": 17500,
+      "length": 22,
+      "value": "\"__NSCFURLSessionTask\""
+    },
+    {
+      "filePath": "\/Users\/gordon\/Documents\/code\/open\/ios\/opentelemetry-swift\/Sources\/Instrumentation\/URLSession\/URLSessionInstrumentation.swift",
+      "kind": "StringLiteral",
+      "offset": 17608,
+      "length": 8,
+      "value": "\"resume\""
+    },
+    {
+      "filePath": "\/Users\/gordon\/Documents\/code\/open\/ios\/opentelemetry-swift\/Sources\/Instrumentation\/URLSession\/URLSessionInstrumentation.swift",
+      "kind": "StringLiteral",
+      "offset": 17705,
+      "length": 21,
+      "value": "\"AFURLSessionManager\""
+    },
+    {
+      "filePath": "\/Users\/gordon\/Documents\/code\/open\/ios\/opentelemetry-swift\/Sources\/Instrumentation\/URLSession\/URLSessionInstrumentation.swift",
+      "kind": "StringLiteral",
+      "offset": 17777,
+      "length": 28,
+      "value": "\"_AFURLSessionTaskSwizzling\""
+    },
+    {
+      "filePath": "\/Users\/gordon\/Documents\/code\/open\/ios\/opentelemetry-swift\/Sources\/Instrumentation\/URLSession\/URLSessionInstrumentation.swift",
+      "kind": "StringLiteral",
+      "offset": 17884,
+      "length": 11,
+      "value": "\"af_resume\""
+    },
+    {
+      "filePath": "\/Users\/gordon\/Documents\/code\/open\/ios\/opentelemetry-swift\/Sources\/Instrumentation\/URLSession\/URLSessionInstrumentation.swift",
+      "kind": "BooleanLiteral",
+      "offset": 18301,
+      "length": 4,
+      "value": "true"
+    },
+    {
+      "filePath": "\/Users\/gordon\/Documents\/code\/open\/ios\/opentelemetry-swift\/Sources\/Instrumentation\/URLSession\/URLSessionInstrumentation.swift",
+      "kind": "BooleanLiteral",
+      "offset": 19494,
+      "length": 4,
+      "value": "true"
+    },
+    {
+      "filePath": "\/Users\/gordon\/Documents\/code\/open\/ios\/opentelemetry-swift\/Sources\/Instrumentation\/URLSession\/URLSessionInstrumentation.swift",
+      "kind": "BooleanLiteral",
+      "offset": 20842,
+      "length": 4,
+      "value": "true"
+    },
+    {
+      "filePath": "\/Users\/gordon\/Documents\/code\/open\/ios\/opentelemetry-swift\/Sources\/Instrumentation\/URLSession\/URLSessionInstrumentation.swift",
+      "kind": "BooleanLiteral",
+      "offset": 22143,
+      "length": 4,
+      "value": "true"
+    },
+    {
+      "filePath": "\/Users\/gordon\/Documents\/code\/open\/ios\/opentelemetry-swift\/Sources\/Instrumentation\/URLSession\/URLSessionInstrumentation.swift",
+      "kind": "StringLiteral",
+      "offset": 23301,
+      "length": 5,
+      "value": "\"@@@\""
+    },
+    {
+      "filePath": "\/Users\/gordon\/Documents\/code\/open\/ios\/opentelemetry-swift\/Sources\/Instrumentation\/URLSession\/URLSessionInstrumentation.swift",
+      "kind": "BooleanLiteral",
+      "offset": 23771,
+      "length": 4,
+      "value": "true"
+    },
+    {
+      "filePath": "\/Users\/gordon\/Documents\/code\/open\/ios\/opentelemetry-swift\/Sources\/Instrumentation\/URLSession\/URLSessionInstrumentation.swift",
+      "kind": "BooleanLiteral",
+      "offset": 24902,
+      "length": 4,
+      "value": "true"
+    },
+    {
+      "filePath": "\/Users\/gordon\/Documents\/code\/open\/ios\/opentelemetry-swift\/Sources\/Instrumentation\/URLSession\/URLSessionInstrumentation.swift",
+      "kind": "BooleanLiteral",
+      "offset": 26360,
+      "length": 4,
+      "value": "true"
+    },
+    {
+      "filePath": "\/Users\/gordon\/Documents\/code\/open\/ios\/opentelemetry-swift\/Sources\/Instrumentation\/URLSession\/URLSessionInstrumentation.swift",
+      "kind": "BooleanLiteral",
+      "offset": 27109,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/gordon\/Documents\/code\/open\/ios\/opentelemetry-swift\/Sources\/Instrumentation\/URLSession\/URLSessionInstrumentation.swift",
+      "kind": "BooleanLiteral",
+      "offset": 27890,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/gordon\/Documents\/code\/open\/ios\/opentelemetry-swift\/Sources\/Instrumentation\/URLSession\/URLSessionInstrumentation.swift",
+      "kind": "IntegerLiteral",
+      "offset": 28204,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/gordon\/Documents\/code\/open\/ios\/opentelemetry-swift\/Sources\/Instrumentation\/URLSession\/URLSessionInstrumentation.swift",
+      "kind": "IntegerLiteral",
+      "offset": 29000,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/gordon\/Documents\/code\/open\/ios\/opentelemetry-swift\/Sources\/Instrumentation\/URLSession\/URLSessionInstrumentation.swift",
+      "kind": "IntegerLiteral",
+      "offset": 30391,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/gordon\/Documents\/code\/open\/ios\/opentelemetry-swift\/Sources\/Instrumentation\/URLSession\/URLSessionInstrumentation.swift",
+      "kind": "BooleanLiteral",
+      "offset": 31777,
+      "length": 4,
+      "value": "true"
+    },
+    {
+      "filePath": "\/Users\/gordon\/Documents\/code\/open\/ios\/opentelemetry-swift\/Sources\/Instrumentation\/URLSession\/URLSessionInstrumentation.swift",
+      "kind": "StringLiteral",
+      "offset": 31846,
+      "length": 16,
+      "value": "\"currentRequest\""
+    },
+    {
+      "filePath": "\/Users\/gordon\/Documents\/code\/open\/ios\/opentelemetry-swift\/Sources\/Instrumentation\/URLSession\/URLSessionLogger.swift",
+      "kind": "StringLiteral",
+      "offset": 422,
+      "length": 35,
+      "value": "\"io.opentelemetry.URLSessionLogger\""
+    },
+    {
+      "filePath": "\/Users\/gordon\/Documents\/code\/open\/ios\/opentelemetry-swift\/Sources\/Instrumentation\/URLSession\/URLSessionLogger.swift",
+      "kind": "BooleanLiteral",
+      "offset": 1672,
+      "length": 4,
+      "value": "true"
+    },
+    {
+      "filePath": "\/Users\/gordon\/Documents\/code\/open\/ios\/opentelemetry-swift\/Sources\/Instrumentation\/URLSession\/URLSessionLogger.swift",
+      "kind": "StringLiteral",
+      "offset": 1876,
+      "length": 16,
+      "value": "\"unknown_method\""
+    },
+    {
+      "filePath": "\/Users\/gordon\/Documents\/code\/open\/ios\/opentelemetry-swift\/Sources\/Instrumentation\/URLSession\/URLSessionLogger.swift",
+      "kind": "StringLiteral",
+      "offset": 2879,
+      "length": 7,
+      "value": "\"HTTP \""
+    },
+    {
+      "filePath": "\/Users\/gordon\/Documents\/code\/open\/ios\/opentelemetry-swift\/Sources\/Instrumentation\/URLSession\/URLSessionLogger.swift",
+      "kind": "StringLiteral",
+      "offset": 2912,
+      "length": 2,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/gordon\/Documents\/code\/open\/ios\/opentelemetry-swift\/Sources\/Instrumentation\/URLSession\/URLSessionLogger.swift",
+      "kind": "BooleanLiteral",
+      "offset": 3640,
+      "length": 4,
+      "value": "true"
+    },
+    {
+      "filePath": "\/Users\/gordon\/Documents\/code\/open\/ios\/opentelemetry-swift\/Sources\/Instrumentation\/URLSession\/URLSessionLogger.swift",
+      "kind": "StringLiteral",
+      "offset": 4854,
+      "length": 16,
+      "value": "\"Content-Length\""
+    },
+    {
+      "filePath": "\/Users\/gordon\/Documents\/code\/open\/ios\/opentelemetry-swift\/Sources\/Instrumentation\/URLSession\/URLSessionLogger.swift",
+      "kind": "IntegerLiteral",
+      "offset": 6025,
+      "length": 3,
+      "value": "100"
+    },
+    {
+      "filePath": "\/Users\/gordon\/Documents\/code\/open\/ios\/opentelemetry-swift\/Sources\/Instrumentation\/URLSession\/URLSessionLogger.swift",
+      "kind": "IntegerLiteral",
+      "offset": 6033,
+      "length": 3,
+      "value": "399"
+    },
+    {
+      "filePath": "\/Users\/gordon\/Documents\/code\/open\/ios\/opentelemetry-swift\/Sources\/Instrumentation\/URLSession\/URLSessionLogger.swift",
+      "kind": "BooleanLiteral",
+      "offset": 6408,
+      "length": 4,
+      "value": "true"
+    },
+    {
+      "filePath": "\/Users\/gordon\/Documents\/code\/open\/ios\/opentelemetry-swift\/Sources\/Instrumentation\/URLSession\/URLSessionLogger.swift",
+      "kind": "BooleanLiteral",
+      "offset": 6676,
+      "length": 4,
+      "value": "true"
+    }
+  ]
+}

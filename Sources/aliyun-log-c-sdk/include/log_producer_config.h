@@ -80,6 +80,8 @@ typedef struct _log_producer_config
     char *shardKey;
 
     void *user_params; // user params pass to c
+    
+    int32_t enable_log_send; //0, send disable; 1, send enable, default 1
 
 }log_producer_config;
 
@@ -380,6 +382,20 @@ LOG_EXPORT int log_producer_config_is_valid(log_producer_config * config);
  * @return
  */
 LOG_EXPORT int log_producer_persistent_config_is_enabled(log_producer_config * config);
+
+/**
+ * set global log-send switch
+ * @param config
+ * @param enable 0 disable, 1 enable
+ */
+LOG_EXPORT void log_producer_config_set_enable_log_send(log_producer_config * config, int32_t enable);
+
+/**
+ * check if log-send is enabled
+ * @param config
+ * @return 1 enabled, 0 disabled
+ */
+LOG_EXPORT int log_producer_config_is_log_send_enabled(log_producer_config * config);
 
 
 LOG_CPP_END

@@ -6,8 +6,15 @@
 //
 
 #import "SLSURLSession.h"
-
+static NSURLSession *sharedURLSession = NULL;
+static NSMutableURLRequest *(^sharedBeforeSend)(NSMutableURLRequest *request);
 @implementation SLSURLSession
++ (void)setBeforeSend:(NSMutableURLRequest *(^)(NSMutableURLRequest *request))beforeSend {
+    sharedBeforeSend = beforeSend;
+}
++ (void)setURLSession:(NSURLSession *)session {
+    sharedURLSession = session;
+}
 + (NSData *)sendSynchronousRequest:(NSURLRequest *)request
                  returningResponse:(NSURLResponse *_Nullable*_Nullable)response
                              error:(NSError **)error {
@@ -19,14 +26,28 @@
     NSError __block *err = NULL;
     NSData __block *data;
     NSURLResponse __block *resp;
+    
+    if (nil == sharedURLSession) {
+        NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration ephemeralSessionConfiguration];
+        [configuration setURLCache:nil];
+        sharedURLSession = [NSURLSession sessionWithConfiguration:configuration];
+    }
 
-    [[[NSURLSession sharedSession] dataTaskWithRequest:request
-                                     completionHandler:^(NSData* _data, NSURLResponse* _response, NSError* _error) {
+    NSURLSession *session = sharedURLSession;
+    
+    __block NSMutableURLRequest *mutableRequest = (NSMutableURLRequest *)request;
+    if (nil != sharedBeforeSend) {
+        mutableRequest = sharedBeforeSend(mutableRequest);
+    }
+    
+    [[session dataTaskWithRequest:mutableRequest
+                completionHandler:^(NSData* _data, NSURLResponse* _response, NSError* _error) {
+        NSLog(@"DEBUGGG, data: %@", [[NSString alloc] initWithData:_data encoding:NSUTF8StringEncoding]);
         resp = _response;
         err = _error;
         data = _data;
         dispatch_group_leave(group);
-
+        
     }] resume];
 
     dispatch_group_wait(group, DISPATCH_TIME_FOREVER);

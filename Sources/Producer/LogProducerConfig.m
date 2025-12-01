@@ -94,14 +94,14 @@ static int os_http_post(const char *url,
             }
         }
         
+        NSString *requestId = fields[@"x-log-requestid"];
+        strncpy(http_response->requestID, requestId.length > 0 ? [requestId UTF8String] : "", request_id_len);
+        
         if (responseCode != 200) {
             NSString *res = [[NSString alloc] initWithData:resData encoding:NSUTF8StringEncoding];
-            strncpy(http_response->requestID, res.length > 0 ? [res UTF8String] : "", request_id_len);
-            
+            strncpy(http_response->errorMessage, res.length > 0 ? [res UTF8String] : "", request_id_len);
+   
             SLSLog(@"%ld %@ %@", [response statusCode], [response allHeaderFields], res);
-        } else {
-            NSString *requestId = fields[@"x-log-requestid"];
-            strncpy(http_response->requestID, requestId.length > 0 ? [requestId UTF8String] : "", request_id_len);
         }
 
         return responseCode;
@@ -438,6 +438,11 @@ unsigned int time_func() {
     log_set_get_time_unix_func(f);
 }
 
+- (void)SetSendEnable:(int) num;
+{
+    log_producer_config_set_enable_log_send(self->config, num);
+}
+
 - (int)IsValid;
 {
     return log_producer_config_is_valid(self->config);
@@ -476,7 +481,7 @@ unsigned int time_func() {
 
 + (void)Debug
 {
-    aos_log_set_level(AOS_LOG_DEBUG);
+    aos_log_set_level(AOS_LOG_ALL);
 }
 
 

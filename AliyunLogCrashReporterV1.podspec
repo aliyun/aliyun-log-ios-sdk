@@ -4,7 +4,7 @@
 
 Pod::Spec.new do |s|
     s.name             = 'AliyunLogCrashReporterV1'
-    s.version          = "4.3.3"
+    s.version          = "4.3.4"
     s.summary          = 'aliyun log service ios crashreporter v1'
 
     s.description      = <<-DESC
@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
     s.homepage         = 'https://github.com/aliyun/aliyun-log-ios-sdk'
     s.license          = { :type => 'MIT', :file => 'LICENSE' }
     s.author           = { 'aliyun-log' => 'yulong.gyl@alibaba-inc.com' }
-    s.source           = { :git => 'https://gitee.com/aliyun-sls/aliyun-log-ios-sdk.git', :tag => s.version.to_s }
+    s.source           = { :git => 'https://github.com/aliyun/aliyun-log-ios-sdk.git', :tag => s.version.to_s }
     s.social_media_url = 'http://t.cn/AiRpol8C'
 
     # s.ios.deployment_target = '10.0'
@@ -38,7 +38,7 @@ Pod::Spec.new do |s|
         'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64 i386'
     }
 
-    s.dependency 'AliyunLogProducer', "#{s.version}"
+    s.dependency 'AliyunLogProducerV1', "#{s.version}"
     s.source_files = 'Sources/CrashReporter/**/*.{m,h}', 'Sources/Core/**/*.{m,h}', 'Sources/OT/**/*.{m,h}'
     s.public_header_files = "Sources/CrashReporter/include/*.h", 'Sources/Core/include/*.h', 'Sources/OT/**/include/*.h'
     s.resource_bundles = { s.name => ['Sources/CrashReporter/PrivacyInfo.xcprivacy'] }

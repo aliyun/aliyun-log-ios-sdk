@@ -51,6 +51,8 @@ typedef NS_ENUM(NSInteger, LogProducerResult) {
 
 - (void)DestroyLogProducer;
 
+- (void)SetSendEnable:(BOOL)enable;
+
 - (LogProducerResult)AddLog:(Log *) log;
 
 - (LogProducerResult)AddLog:(Log *) log flush:(int) flush;

@@ -36,6 +36,8 @@ void _SLS_SetCredentials(const char * instanceId, const char * endpoint, const c
 
 void _SLS_SetUserInfo(const char * uid, const char * channel);
 
+void _SLS_SetDeviceId(const char * deviceId);
+
 void _SLS_SetExtraOfExt(const char * extKey, const char * extValue);
 
 void _SLS_SetExtra(const char * key, const char * value);
@@ -46,11 +48,13 @@ void _SLS_ClearExtra(void);
 
 void _SLS_Ping(const char * domain, const char * context, const int size, const int maxTimes, const int timeout, cs_sls_complete_callback callback);
 
-void _SLS_TcpPing(const char * domain, const char * context, const int size, const int maxTimes, const int timeout, const int port, cs_sls_complete_callback callback);
+void _SLS_TcpPing(const char * domain, const char * context, const int size, const int maxTimes, const int timeout, const int port, const char *payload, cs_sls_complete_callback callback);
+
+void _SLS_UdpPing(const char * domain, const char * context, const int size, const int maxTimes, const int timeout, const int port, const char *payload, cs_sls_complete_callback callback);
 
 void _SLS_Dns(const char * domain, const char * context, const int size, const int maxTimes, const int timeout, const char * type, const char * nameServer, cs_sls_complete_callback callback);
 
-void _SLS_Mtr(const char * domain, const char * context, const int size, const int maxTimes, const int timeout, const int maxTTL, const int maxPaths, cs_sls_complete_callback callback);
+void _SLS_Mtr(const char * domain, const char * context, const int size, const int maxTimes, const int timeout, const int maxTTL, const int maxPaths, const int protocol, cs_sls_complete_callback callback);
 
 void _SLS_Http(const char * domain, const char * context, const int size, const int maxTimes, const int timeout, const char *ip, const bool headerOnly, const int downloadBytesLimit, cs_sls_complete_callback callback);
 
@@ -59,6 +63,8 @@ void _SLS_DisableExNetworkInfo(void);
 void _SLS_SetMultiplePortsDetect(const bool enable);
 
 void _SLS_SetPolicyDomain(const char *domain);
+
+void _SLS_SetUserTags(const char **tags, int len);
 
 void _SLS_RegisterCallback(cs_sls_complete_callback callback);
 

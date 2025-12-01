@@ -9,11 +9,70 @@
 #include <stdarg.h>
 #include <string.h>
 #include "log_persistent_manager.h"
+#include "log_sds.h"
 
 static uint32_t s_init_flag = 0;
 static log_producer_result s_last_result = 0;
 
 unsigned int LOG_GET_TIME();
+
+// 优化后的恢复状态检查函数
+static int check_recover_status_and_cache_log(log_persistent_manager * persistent_manager, 
+                                              log_producer_manager * manager,
+                                              int32_t pair_count, char ** keys, size_t * key_lens, 
+                                              char ** values, size_t * val_lens, int flush)
+{
+    // 使用原子操作进行快速检查
+    if (atomic_load(&persistent_manager->is_recovering) && !atomic_load(&persistent_manager->recover_completed))
+    {
+        // 需要缓存日志，此时才加锁
+        CS_ENTER(persistent_manager->lock);
+        
+        // 双重检查，防止在加锁期间状态发生变化
+        if (atomic_load(&persistent_manager->is_recovering) && !atomic_load(&persistent_manager->recover_completed))
+        {
+            // 构建日志数据用于缓存
+            add_log_full(persistent_manager->builder, LOG_GET_TIME(), pair_count, keys, key_lens, values, val_lens);
+            char * logBuf = persistent_manager->builder->grp->logs.buffer;
+            size_t logSize = persistent_manager->builder->grp->logs.now_buffer_len;
+            clear_log_tag(&(persistent_manager->builder->grp->logs));
+            
+            // 缓存日志
+            int cache_rst = log_persistent_manager_cache_log_during_recover(persistent_manager, logBuf, logSize, LOG_GET_TIME());
+            CS_LEAVE(persistent_manager->lock);
+            
+            if (cache_rst == 0)
+            {
+                aos_debug_log("project %s, logstore %s, log cached during recover, size %d",
+                              manager->producer_config->project,
+                              manager->producer_config->logstore,
+                              (int)logSize);
+                return LOG_PRODUCER_OK;
+            }
+            else
+            {
+                aos_warn_log("project %s, logstore %s, failed to cache log during recover, fallback to memory mode, result %d",
+                             manager->producer_config->project,
+                             manager->producer_config->logstore,
+                             cache_rst);
+                // 缓存失败，降级到内存模式
+                return log_producer_manager_add_log(manager, pair_count, keys, key_lens, values, val_lens, flush, -1);
+            }
+        }
+        else
+        {
+            CS_LEAVE(persistent_manager->lock);
+        }
+    }
+    
+    // 如果恢复失败，也使用内存模式
+    if (atomic_load(&persistent_manager->recover_completed) && !atomic_load(&persistent_manager->recover_success))
+    {
+        return log_producer_manager_add_log(manager, pair_count, keys, key_lens, values, val_lens, flush, -1);
+    }
+    
+    return -1; // 需要继续正常处理
+}
 
 typedef struct _producer_client_private {
 
@@ -75,17 +134,19 @@ log_producer * create_log_producer(log_producer_config * config, on_log_producer
     {
         client_private->producer_manager->uuid_user_param = client_private->persistent_manager;
         client_private->producer_manager->uuid_send_done_function = on_log_persistent_manager_send_done_uuid;
-        int recoverRst = log_persistent_manager_recover(client_private->persistent_manager, client_private->producer_manager);
+        
+        // 使用异步恢复，避免阻塞初始化
+        int recoverRst = log_persistent_manager_recover_async(client_private->persistent_manager, client_private->producer_manager);
         if (recoverRst != 0)
         {
-            aos_error_log("project %s, logstore %s, recover log persistent manager failed, result %d",
+            aos_error_log("project %s, logstore %s, start async recover log persistent manager failed, result %d",
                           config->project,
                           config->logstore,
                           recoverRst);
         }
         else
         {
-            aos_info_log("project %s, logstore %s, recover log persistent manager success",
+            aos_info_log("project %s, logstore %s, start async recover log persistent manager success",
                           config->project,
                           config->logstore);
         }
@@ -134,6 +195,11 @@ void log_producer_client_network_recover(log_producer_client * client)
     manager->networkRecover = 1;
 }
 
+log_group_builder * log_producer_client_new_log_group_builder(void)
+{
+    return log_group_create();
+}
+
 log_producer_result log_producer_client_add_log(log_producer_client * client, int32_t kv_count, ...)
 {
     if (client == NULL || !client->valid_flag)
@@ -169,6 +235,70 @@ log_producer_result log_producer_client_add_log(log_producer_client * client, in
     return rst;
 }
 
+log_producer_result log_producer_client_send_log(log_producer_manager * producer_manager, log_group_builder * builder)
+{
+    log_producer_config * config = producer_manager->producer_config;
+    int i = 0;
+    for (i = 0; i < config->tagCount; ++i)
+    {
+        add_tag(builder, config->tags[i].key, strlen(config->tags[i].key), config->tags[i].value, strlen(config->tags[i].value));
+    }
+    if (config->topic != NULL)
+    {
+        add_topic(builder, config->topic, strlen(config->topic));
+    }
+    if (producer_manager->source != NULL)
+    {
+        add_source(builder, producer_manager->source, strlen(producer_manager->source));
+    }
+    if (producer_manager->pack_prefix != NULL)
+    {
+        add_pack_id(builder, producer_manager->pack_prefix, strlen(producer_manager->pack_prefix), producer_manager->pack_index++);
+    }
+
+    lz4_log_buf * lz4_buf = NULL;
+    // check compress type
+    if (config->compressType == 1)
+    {
+        lz4_buf = serialize_to_proto_buf_with_malloc_lz4(builder);
+    }
+    else
+    {
+        lz4_buf = serialize_to_proto_buf_with_malloc_no_lz4(builder);
+    }
+    log_group_destroy(builder);
+    if (lz4_buf == NULL)
+    {
+        return LOG_PRODUCER_DROP_ERROR;
+    }
+
+    log_post_option option;
+    memset(&option, 0, sizeof(log_post_option));
+    option.connect_timeout = config->connectTimeoutSec;
+    option.operation_timeout = config->sendTimeoutSec;
+    option.interface = config->netInterface;
+    option.compress_type = config->compressType;
+    option.using_https = config->using_https;
+    option.ntp_time_offset = config->ntpTimeOffset;
+    log_sds accessKeyId = NULL;
+    log_sds accessKey = NULL;
+    log_sds stsToken = NULL;
+    log_producer_config_get_security(config, &accessKeyId, &accessKey, &stsToken);
+    post_log_result * rst = post_logs_from_lz4buf_with_config(config, config->endpoint, config->project, config->logstore, accessKeyId, accessKey, stsToken, lz4_buf, &option);
+    log_sdsfree(accessKeyId);
+    log_sdsfree(accessKey);
+    log_sdsfree(stsToken);
+
+    log_producer_send_result send_result = AosStatusToResult(rst);
+
+    post_log_result_destroy(rst);
+    free_lz4_log_buf(lz4_buf);
+
+    return send_result == LOG_SEND_OK ?
+            LOG_PRODUCER_OK :
+            (LOG_PRODUCER_SEND_NETWORK_ERROR + send_result - LOG_SEND_NETWORK_ERROR);
+}
+
 log_producer_result log_producer_client_add_log_with_len(log_producer_client * client, int32_t pair_count, char ** keys, size_t * key_lens, char ** values, size_t * val_lens, int flush)
 {
     if (client == NULL || !client->valid_flag)
@@ -177,10 +307,45 @@ log_producer_result log_producer_client_add_log_with_len(log_producer_client * c
     }
 
     log_producer_manager * manager = ((producer_client_private *)client->private_data)->producer_manager;
+    if (flush == 2)
+    {
+        log_group_builder *builder = log_producer_client_new_log_group_builder();
+        add_log_full(builder, LOG_GET_TIME(), pair_count, keys, key_lens, values, val_lens);
+        return log_producer_client_send_log(manager, builder);
+    }
+    
     log_persistent_manager * persistent_manager = ((producer_client_private *)client->private_data)->persistent_manager;
     if (persistent_manager != NULL && persistent_manager->is_invalid == 0)
     {
+        // 使用优化的恢复状态检查函数
+        int cache_result = check_recover_status_and_cache_log(persistent_manager, manager, pair_count, keys, key_lens, values, val_lens, flush);
+        if (cache_result != -1)
+        {
+            return cache_result; // 已经处理完成（缓存或内存模式）
+        }
+        
+        // 需要正常处理，此时才加锁
         CS_ENTER(persistent_manager->lock);
+        
+        // 如果恢复成功且刚刚完成，先处理缓存的日志
+        if (atomic_load(&persistent_manager->recover_completed) && atomic_load(&persistent_manager->recover_success))
+        {
+            // 检查是否有缓存的日志需要处理
+            if (persistent_manager->recover_cache != NULL && persistent_manager->recover_cache->count > 0)
+            {
+                CS_LEAVE(persistent_manager->lock);
+                int cached_count = log_persistent_manager_process_recover_cache(persistent_manager, manager);
+                if (cached_count > 0)
+                {
+                    aos_info_log("project %s, logstore %s, processed %d cached logs after recover",
+                                 manager->producer_config->project,
+                                 manager->producer_config->logstore,
+                                 cached_count);
+                }
+                CS_ENTER(persistent_manager->lock);
+            }
+        }
+        
         add_log_full(persistent_manager->builder, LOG_GET_TIME(), pair_count, keys, key_lens, values, val_lens);
         char * logBuf = persistent_manager->builder->grp->logs.buffer;
         size_t logSize = persistent_manager->builder->grp->logs.now_buffer_len;
@@ -225,10 +390,70 @@ log_producer_client_add_log_raw(log_producer_client *client, char *logBuf,
         return LOG_PRODUCER_INVALID;
     }
     log_producer_manager * manager = ((producer_client_private *)client->private_data)->producer_manager;
+    if (flush == 2)
+    {
+        log_group_builder * builder = log_producer_client_new_log_group_builder();
+        add_log_raw(builder, logBuf, logSize);
+        return log_producer_client_send_log(manager, builder);
+    }
+    
     log_persistent_manager * persistent_manager = ((producer_client_private *)client->private_data)->persistent_manager;
     if (persistent_manager != NULL && persistent_manager->is_invalid == 0)
     {
         CS_ENTER(persistent_manager->lock);
+        
+        // 如果正在恢复中且未完成，缓存日志而不是直接发送
+        if (atomic_load(&persistent_manager->is_recovering) && !atomic_load(&persistent_manager->recover_completed))
+        {
+            // 缓存日志
+            int cache_rst = log_persistent_manager_cache_log_during_recover(persistent_manager, logBuf, logSize, LOG_GET_TIME());
+            CS_LEAVE(persistent_manager->lock);
+            
+            if (cache_rst == 0)
+            {
+                aos_debug_log("project %s, logstore %s, raw log cached during recover, size %d",
+                              manager->producer_config->project,
+                              manager->producer_config->logstore,
+                              (int)logSize);
+                return LOG_PRODUCER_OK;
+            }
+            else
+            {
+                aos_warn_log("project %s, logstore %s, failed to cache raw log during recover, fallback to memory mode, result %d",
+                             manager->producer_config->project,
+                             manager->producer_config->logstore,
+                             cache_rst);
+                // 缓存失败，降级到内存模式
+                return log_producer_manager_add_log_raw(manager, logBuf, logSize, flush, -1);
+            }
+        }
+        
+        // 如果恢复失败，也使用内存模式
+        if (atomic_load(&persistent_manager->recover_completed) && !atomic_load(&persistent_manager->recover_success))
+        {
+            CS_LEAVE(persistent_manager->lock);
+            return log_producer_manager_add_log_raw(manager, logBuf, logSize, flush, -1);
+        }
+        
+        // 如果恢复成功且刚刚完成，先处理缓存的日志
+        if (atomic_load(&persistent_manager->recover_completed) && atomic_load(&persistent_manager->recover_success))
+        {
+            // 检查是否有缓存的日志需要处理
+            if (persistent_manager->recover_cache != NULL && persistent_manager->recover_cache->count > 0)
+            {
+                CS_LEAVE(persistent_manager->lock);
+                int cached_count = log_persistent_manager_process_recover_cache(persistent_manager, manager);
+                if (cached_count > 0)
+                {
+                    aos_info_log("project %s, logstore %s, processed %d cached logs after recover (raw)",
+                                 manager->producer_config->project,
+                                 manager->producer_config->logstore,
+                                 cached_count);
+                }
+                CS_ENTER(persistent_manager->lock);
+            }
+        }
+        
         if (!log_persistent_manager_is_buffer_enough(persistent_manager, logSize) ||
                 manager->totalBufferSize > manager->producer_config->maxBufferBytes)
         {
@@ -261,10 +486,75 @@ log_producer_client_add_log_with_array(log_producer_client *client,
         return LOG_PRODUCER_INVALID;
     }
     log_producer_manager * manager = ((producer_client_private *)client->private_data)->producer_manager;
+    if (flush == 2)
+    {
+        log_group_builder * builder = log_producer_client_new_log_group_builder();
+        add_log_full_v2(builder, logTime, logItemCount, logItemsBuf, logItemsSize);
+        return log_producer_client_send_log(manager, builder);
+    }
+    
     log_persistent_manager * persistent_manager = ((producer_client_private *)client->private_data)->persistent_manager;
     if (persistent_manager != NULL && persistent_manager->is_invalid == 0)
     {
         CS_ENTER(persistent_manager->lock);
+        
+        // 如果正在恢复中且未完成，缓存日志而不是直接发送
+        if (atomic_load(&persistent_manager->is_recovering) && !atomic_load(&persistent_manager->recover_completed))
+        {
+            // 构建日志数据用于缓存
+            add_log_full_v2(persistent_manager->builder, logTime, logItemCount, logItemsBuf, logItemsSize);
+            char * logBuf = persistent_manager->builder->grp->logs.buffer;
+            size_t logSize = persistent_manager->builder->grp->logs.now_buffer_len;
+            clear_log_tag(&(persistent_manager->builder->grp->logs));
+            
+            // 缓存日志
+            int cache_rst = log_persistent_manager_cache_log_during_recover(persistent_manager, logBuf, logSize, logTime);
+            CS_LEAVE(persistent_manager->lock);
+            
+            if (cache_rst == 0)
+            {
+                aos_debug_log("project %s, logstore %s, array log cached during recover, size %d",
+                              manager->producer_config->project,
+                              manager->producer_config->logstore,
+                              (int)logSize);
+                return LOG_PRODUCER_OK;
+            }
+            else
+            {
+                aos_warn_log("project %s, logstore %s, failed to cache array log during recover, fallback to memory mode, result %d",
+                             manager->producer_config->project,
+                             manager->producer_config->logstore,
+                             cache_rst);
+                // 缓存失败，降级到内存模式
+                return log_producer_manager_add_log_with_array(manager, logTime, logItemCount, logItemsBuf, logItemsSize, flush, -1);
+            }
+        }
+        
+        // 如果恢复失败，也使用内存模式
+        if (atomic_load(&persistent_manager->recover_completed) && !atomic_load(&persistent_manager->recover_success))
+        {
+            CS_LEAVE(persistent_manager->lock);
+            return log_producer_manager_add_log_with_array(manager, logTime, logItemCount, logItemsBuf, logItemsSize, flush, -1);
+        }
+        
+        // 如果恢复成功且刚刚完成，先处理缓存的日志
+        if (atomic_load(&persistent_manager->recover_completed) && atomic_load(&persistent_manager->recover_success))
+        {
+            // 检查是否有缓存的日志需要处理
+            if (persistent_manager->recover_cache != NULL && persistent_manager->recover_cache->count > 0)
+            {
+                CS_LEAVE(persistent_manager->lock);
+                int cached_count = log_persistent_manager_process_recover_cache(persistent_manager, manager);
+                if (cached_count > 0)
+                {
+                    aos_info_log("project %s, logstore %s, processed %d cached logs after recover (array)",
+                                 manager->producer_config->project,
+                                 manager->producer_config->logstore,
+                                 cached_count);
+                }
+                CS_ENTER(persistent_manager->lock);
+            }
+        }
 
         add_log_full_v2(persistent_manager->builder, logTime, logItemCount, logItemsBuf, logItemsSize);
         char * logBuf = persistent_manager->builder->grp->logs.buffer;
@@ -304,10 +594,76 @@ log_producer_client_add_log_with_len_int32(log_producer_client *client,
     }
 
     log_producer_manager * manager = ((producer_client_private *)client->private_data)->producer_manager;
+    if (flush == 2)
+    {
+        log_group_builder * builder = log_producer_client_new_log_group_builder();
+        add_log_full_int32(builder, LOG_GET_TIME(), pair_count, keys, key_lens, values, value_lens);
+        return log_producer_client_send_log(manager, builder);
+    }
+    
     log_persistent_manager * persistent_manager = ((producer_client_private *)client->private_data)->persistent_manager;
     if (persistent_manager != NULL && persistent_manager->is_invalid == 0)
     {
         CS_ENTER(persistent_manager->lock);
+        
+        // 如果正在恢复中且未完成，缓存日志而不是直接发送
+        if (atomic_load(&persistent_manager->is_recovering) && !atomic_load(&persistent_manager->recover_completed))
+        {
+            // 构建日志数据用于缓存
+            add_log_full_int32(persistent_manager->builder, LOG_GET_TIME(), pair_count, keys, key_lens, values, value_lens);
+            char * logBuf = persistent_manager->builder->grp->logs.buffer;
+            size_t logSize = persistent_manager->builder->grp->logs.now_buffer_len;
+            clear_log_tag(&(persistent_manager->builder->grp->logs));
+            
+            // 缓存日志
+            int cache_rst = log_persistent_manager_cache_log_during_recover(persistent_manager, logBuf, logSize, LOG_GET_TIME());
+            CS_LEAVE(persistent_manager->lock);
+            
+            if (cache_rst == 0)
+            {
+                aos_debug_log("project %s, logstore %s, int32 log cached during recover, size %d",
+                              manager->producer_config->project,
+                              manager->producer_config->logstore,
+                              (int)logSize);
+                return LOG_PRODUCER_OK;
+            }
+            else
+            {
+                aos_warn_log("project %s, logstore %s, failed to cache int32 log during recover, fallback to memory mode, result %d",
+                             manager->producer_config->project,
+                             manager->producer_config->logstore,
+                             cache_rst);
+                // 缓存失败，降级到内存模式
+                return log_producer_manager_add_log_int32(manager, pair_count, keys, key_lens, values, value_lens, flush, -1);
+            }
+        }
+        
+        // 如果恢复失败，也使用内存模式
+        if (atomic_load(&persistent_manager->recover_completed) && !atomic_load(&persistent_manager->recover_success))
+        {
+            CS_LEAVE(persistent_manager->lock);
+            return log_producer_manager_add_log_int32(manager, pair_count, keys, key_lens, values, value_lens, flush, -1);
+        }
+        
+        // 如果恢复成功且刚刚完成，先处理缓存的日志
+        if (atomic_load(&persistent_manager->recover_completed) && atomic_load(&persistent_manager->recover_success))
+        {
+            // 检查是否有缓存的日志需要处理
+            if (persistent_manager->recover_cache != NULL && persistent_manager->recover_cache->count > 0)
+            {
+                CS_LEAVE(persistent_manager->lock);
+                int cached_count = log_persistent_manager_process_recover_cache(persistent_manager, manager);
+                if (cached_count > 0)
+                {
+                    aos_info_log("project %s, logstore %s, processed %d cached logs after recover (int32)",
+                                 manager->producer_config->project,
+                                 manager->producer_config->logstore,
+                                 cached_count);
+                }
+                CS_ENTER(persistent_manager->lock);
+            }
+        }
+        
         add_log_full_int32(persistent_manager->builder, LOG_GET_TIME(), pair_count, keys, key_lens, values, value_lens);
         char * logBuf = persistent_manager->builder->grp->logs.buffer;
         size_t logSize = persistent_manager->builder->grp->logs.now_buffer_len;
@@ -346,10 +702,76 @@ log_producer_client_add_log_with_len_time_int32(log_producer_client *client,
     }
 
     log_producer_manager * manager = ((producer_client_private *)client->private_data)->producer_manager;
+    if (flush == 2)
+    {
+        log_group_builder * builder = log_producer_client_new_log_group_builder();
+        add_log_full_int32(builder, time_sec, pair_count, keys, key_lens, values, value_lens);
+        return log_producer_client_send_log(manager, builder);
+    }
+    
     log_persistent_manager * persistent_manager = ((producer_client_private *)client->private_data)->persistent_manager;
     if (persistent_manager != NULL && persistent_manager->is_invalid == 0)
     {
         CS_ENTER(persistent_manager->lock);
+        
+        // 如果正在恢复中且未完成，缓存日志而不是直接发送
+        if (atomic_load(&persistent_manager->is_recovering) && !atomic_load(&persistent_manager->recover_completed))
+        {
+            // 构建日志数据用于缓存
+            add_log_full_int32(persistent_manager->builder, time_sec, pair_count, keys, key_lens, values, value_lens);
+            char * logBuf = persistent_manager->builder->grp->logs.buffer;
+            size_t logSize = persistent_manager->builder->grp->logs.now_buffer_len;
+            clear_log_tag(&(persistent_manager->builder->grp->logs));
+            
+            // 缓存日志
+            int cache_rst = log_persistent_manager_cache_log_during_recover(persistent_manager, logBuf, logSize, time_sec);
+            CS_LEAVE(persistent_manager->lock);
+            
+            if (cache_rst == 0)
+            {
+                aos_debug_log("project %s, logstore %s, time_int32 log cached during recover, size %d",
+                              manager->producer_config->project,
+                              manager->producer_config->logstore,
+                              (int)logSize);
+                return LOG_PRODUCER_OK;
+            }
+            else
+            {
+                aos_warn_log("project %s, logstore %s, failed to cache time_int32 log during recover, fallback to memory mode, result %d",
+                             manager->producer_config->project,
+                             manager->producer_config->logstore,
+                             cache_rst);
+                // 缓存失败，降级到内存模式
+                return log_producer_manager_add_log_int32(manager, pair_count, keys, key_lens, values, value_lens, flush, -1);
+            }
+        }
+        
+        // 如果恢复失败，也使用内存模式
+        if (atomic_load(&persistent_manager->recover_completed) && !atomic_load(&persistent_manager->recover_success))
+        {
+            CS_LEAVE(persistent_manager->lock);
+            return log_producer_manager_add_log_int32(manager, pair_count, keys, key_lens, values, value_lens, flush, -1);
+        }
+        
+        // 如果恢复成功且刚刚完成，先处理缓存的日志
+        if (atomic_load(&persistent_manager->recover_completed) && atomic_load(&persistent_manager->recover_success))
+        {
+            // 检查是否有缓存的日志需要处理
+            if (persistent_manager->recover_cache != NULL && persistent_manager->recover_cache->count > 0)
+            {
+                CS_LEAVE(persistent_manager->lock);
+                int cached_count = log_persistent_manager_process_recover_cache(persistent_manager, manager);
+                if (cached_count > 0)
+                {
+                    aos_info_log("project %s, logstore %s, processed %d cached logs after recover (time_int32)",
+                                 manager->producer_config->project,
+                                 manager->producer_config->logstore,
+                                 cached_count);
+                }
+                CS_ENTER(persistent_manager->lock);
+            }
+        }
+        
         add_log_full_int32(persistent_manager->builder, time_sec, pair_count, keys, key_lens, values, value_lens);
         char * logBuf = persistent_manager->builder->grp->logs.buffer;
         size_t logSize = persistent_manager->builder->grp->logs.now_buffer_len;

@@ -62,6 +62,7 @@ typedef int socklen_t;
 #include <assert.h>
 #include <sys/time.h>
 #include <stdint.h>
+#include <stdatomic.h>
 
 #endif
 

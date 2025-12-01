@@ -182,6 +182,11 @@ void * log_producer_send_fun(void * param)
 
     do
     {
+        if (!log_producer_config_is_log_send_enabled(config)) {
+            aos_warn_log("[sender] send fail, check log enable status.");
+            break;
+        }
+        
         if (producer_manager->shutdown)
         {
             aos_info_log("[sender] send fail but shutdown signal received, force exit");

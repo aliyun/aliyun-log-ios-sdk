@@ -83,6 +83,8 @@ typedef NSArray<NSString *> * (^SLSHttpHeaderInjector) (NSArray<NSString *> *src
 
 - (void)SetGetTimeUnixFunc:(unsigned int (*)()) f;
 
+- (void)SetSendEnable:(int)num;
+
 - (int)IsValid;
 
 - (int)IsEnabled;
