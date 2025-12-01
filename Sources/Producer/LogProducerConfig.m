@@ -438,6 +438,11 @@ unsigned int time_func() {
     log_set_get_time_unix_func(f);
 }
 
+- (void)SetSendEnable:(int) num;
+{
+    log_producer_config_set_enable_log_send(self->config, num);
+}
+
 - (int)IsValid;
 {
     return log_producer_config_is_valid(self->config);

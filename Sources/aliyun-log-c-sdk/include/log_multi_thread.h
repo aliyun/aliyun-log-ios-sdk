@@ -109,6 +109,27 @@ static inline void DeleteCond(COND cond) {
 
 #define COND_SIGNAL(cond) COND_WAKE(cond)
 
+static inline COND_WAIT_T COND_WAIT(COND cond, CRITICALSECTION cs) {
+	if (cond == INVALID_COND) 
+	{
+		return EINVAL;
+	}
+	DWORD ret;
+	int result = -1;
+
+	LeaveCriticalSection(cs);
+	ret = WaitForSingleObject((HANDLE)cond->event, INFINITE);
+
+	if (ret != WAIT_OBJECT_0)
+	{
+		result = EINVAL;
+	}
+
+	EnterCriticalSection(cs);
+
+	return result;
+}
+
 static inline COND_WAIT_T COND_WAIT_TIME(COND cond, CRITICALSECTION cs, int32_t waitMs) {
 	if (cond == INVALID_COND) 
 	{
@@ -258,6 +279,8 @@ static inline void DeleteCond(COND cond) {
 
 #define COND_SIGNAL(cond) pthread_cond_signal(cond)
 #define COND_SIGNAL_ALL(cond) pthread_cond_broadcast(cond)
+
+#define COND_WAIT(cond, cs) pthread_cond_wait(cond, cs)
 
 static inline COND_WAIT_T COND_WAIT_TIME(COND cond, CRITICALSECTION cs, int32_t waitMs) {
     struct timeval now;

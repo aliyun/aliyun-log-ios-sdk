@@ -60,6 +60,10 @@
     destroy_log_producer(self->producer);
 }
 
+- (void)SetSendEnable:(BOOL)enable {
+    log_producer_config_set_enable_log_send(self->config, enable ? 1 : 0);
+}
+
 - (LogProducerResult)AddLog:(Log *) log
 {
     return [self AddLog:log flush:0];

@@ -30,6 +30,7 @@ static void _set_default_producer_config(log_producer_config * pConfig)
     pConfig->webTracking = 0;
     pConfig->mode = 0;
     pConfig->user_params = NULL;
+    pConfig->enable_log_send = 1;
 }
 
 
@@ -556,4 +557,16 @@ void log_producer_config_set_shardkey(log_producer_config *config, const char *s
     }
 
     _copy_config_string(shardKey, &config->shardKey);
+}
+
+void log_producer_config_set_enable_log_send(log_producer_config * config, int32_t enable)
+{
+    if (config == NULL) return;
+    config->enable_log_send = (enable != 0);
+}
+
+int log_producer_config_is_log_send_enabled(log_producer_config * config)
+{
+    if (config == NULL) return 0;
+    return config->enable_log_send != 0;
 }
